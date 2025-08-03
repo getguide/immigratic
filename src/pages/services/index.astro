@@ -1,0 +1,133 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import { services } from '../../data/services';
+
+export const prerender = true;
+---
+
+<Layout 
+  title="Immigration Services" 
+  description="Comprehensive immigration services for Express Entry, Family Sponsorship, Work Permits, Study Permits, and Business Immigration to Canada."
+>
+  <!-- Hero Section -->
+  <section class="bg-gradient-to-br from-blue-600 to-green-600 text-white py-20">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      <h1 class="text-responsive-xl font-bold mb-6">
+        Our Immigration Services
+      </h1>
+      <p class="text-responsive text-blue-100 max-w-3xl mx-auto">
+        From Express Entry to family sponsorship, we provide expert guidance for every immigration pathway to Canada. Choose the service that best fits your goals.
+      </p>
+    </div>
+  </section>
+
+  <!-- Services Grid -->
+  <section class="py-20 bg-gray-50">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        {services.map((service) => (
+          <div class="card-hover group">
+            <div class={`w-12 h-12 bg-gradient-to-br ${service.gradient} rounded-lg flex items-center justify-center mb-4 group-hover:scale-110 transition-transform`}>
+              <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d={service.icon}></path>
+              </svg>
+            </div>
+            <h3 class="text-xl font-semibold text-gray-900 mb-2">{service.title}</h3>
+            <p class="text-gray-600 mb-4">{service.shortDescription}</p>
+            <div class="flex items-center justify-between mb-4">
+              <span class="text-sm text-gray-500">Success Rate</span>
+              <span class="text-green-600 font-semibold">{service.successRate}</span>
+            </div>
+            <div class="flex items-center justify-between mb-4">
+              <span class="text-sm text-gray-500">Timeline</span>
+              <span class="text-blue-600 font-medium">{service.timeline}</span>
+            </div>
+            <div class="flex items-center justify-between mb-6">
+              <span class="text-sm text-gray-500">Starting Cost</span>
+              <span class="text-gray-900 font-medium">{service.cost}</span>
+            </div>
+            <a href={`/services/${service.slug}`} class="btn-primary w-full text-center">
+              Learn More
+            </a>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Why Choose Us -->
+  <section class="py-20 bg-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-16">
+        <h2 class="text-responsive-lg font-bold text-gray-900 mb-4">
+          Why Choose Our Services?
+        </h2>
+        <p class="text-responsive text-gray-600 max-w-3xl mx-auto">
+          We combine cutting-edge technology with expert human guidance to provide the most comprehensive immigration services in Canada.
+        </p>
+      </div>
+      
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+        <div class="text-center">
+          <div class="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-4">
+            <svg class="w-8 h-8 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"></path>
+            </svg>
+          </div>
+          <h3 class="text-lg font-semibold text-gray-900 mb-2">AI-Powered</h3>
+          <p class="text-gray-600">Advanced AI tools for eligibility assessment and application optimization</p>
+        </div>
+        
+        <div class="text-center">
+          <div class="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
+            <svg class="w-8 h-8 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"></path>
+            </svg>
+          </div>
+          <h3 class="text-lg font-semibold text-gray-900 mb-2">Expert Team</h3>
+          <p class="text-gray-600">Certified immigration consultants with years of experience</p>
+        </div>
+        
+        <div class="text-center">
+          <div class="w-16 h-16 bg-purple-100 rounded-full flex items-center justify-center mx-auto mb-4">
+            <svg class="w-8 h-8 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
+            </svg>
+          </div>
+          <h3 class="text-lg font-semibold text-gray-900 mb-2">Fast Processing</h3>
+          <p class="text-gray-600">Optimized processes to reduce processing times</p>
+        </div>
+        
+        <div class="text-center">
+          <div class="w-16 h-16 bg-orange-100 rounded-full flex items-center justify-center mx-auto mb-4">
+            <svg class="w-8 h-8 text-orange-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+            </svg>
+          </div>
+          <h3 class="text-lg font-semibold text-gray-900 mb-2">High Success Rate</h3>
+          <p class="text-gray-600">95% success rate across all immigration programs</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA Section -->
+  <section class="py-20 gradient-primary text-white">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      <h2 class="text-responsive-lg font-bold mb-4">
+        Ready to Start Your Immigration Journey?
+      </h2>
+      <p class="text-responsive text-blue-100 mb-8 max-w-2xl mx-auto">
+        Book a free consultation with our immigration experts to discuss your options and create a personalized plan for your Canadian dream.
+      </p>
+      <div class="flex flex-col sm:flex-row gap-4 justify-center">
+        <a href="/visa-checker" class="bg-white text-blue-600 px-8 py-3 rounded-lg font-medium hover:bg-gray-100 transition-colors">
+          Check Your Eligibility
+        </a>
+        <a href="/consultation" class="border-2 border-white text-white px-8 py-3 rounded-lg font-medium hover:bg-white hover:text-blue-600 transition-colors">
+          Book Free Consultation
+        </a>
+      </div>
+    </div>
+  </section>
+</Layout> 
