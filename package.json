@@ -1,0 +1,51 @@
+{
+  "name": "immigratic",
+  "type": "module",
+  "version": "0.0.1",
+  "description": "Canada's most innovative immigration services platform",
+  "scripts": {
+    "dev": "astro dev",
+    "start": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "astro": "astro",
+    "lint": "eslint . --ext .astro,.js,.jsx,.ts,.tsx",
+    "lint:fix": "eslint . --ext .astro,.js,.jsx,.ts,.tsx --fix"
+  },
+  "dependencies": {
+    "@astrojs/tailwind": "^6.0.0",
+    "@headlessui/react": "^2.0.0",
+    "@heroicons/react": "^2.0.18",
+    "alpinejs": "^3.13.5",
+    "astro": "^4.0.0"
+  },
+  "devDependencies": {
+    "@tailwindcss/forms": "^0.5.7",
+    "@tailwindcss/postcss": "^4.1.11",
+    "@tailwindcss/typography": "^0.5.10",
+    "@typescript-eslint/eslint-plugin": "^6.0.0",
+    "@typescript-eslint/parser": "^6.0.0",
+    "eslint": "^8.45.0",
+    "eslint-plugin-astro": "^0.29.0",
+    "tailwindcss": "^3.4.0",
+    "typescript": "^5.0.4"
+  },
+  "keywords": [
+    "immigration",
+    "canada",
+    "visa",
+    "express-entry",
+    "work-permit",
+    "study-permit",
+    "family-sponsorship"
+  ],
+  "author": "Immigratic Team",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/immigratic/immigratic-website"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}
