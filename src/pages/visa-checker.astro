@@ -19,14 +19,14 @@ import Layout from '../layouts/Layout.astro';
   </section>
 
   <!-- Eligibility Checker Form -->
-  <section class="py-20 bg-gray-50">
+  <section class="py-20 bg-gray-50 dark:bg-gray-800 transition-colors duration-200">
     <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="bg-white rounded-2xl shadow-large p-8">
+      <div class="bg-white dark:bg-gray-900 rounded-2xl shadow-large p-8 border border-gray-200 dark:border-gray-700">
         <div class="text-center mb-8">
-          <h2 class="text-2xl font-bold text-gray-900 mb-4">
+          <h2 class="text-2xl font-bold text-gray-900 dark:text-white mb-4">
             Check Your Eligibility
           </h2>
-          <p class="text-gray-600">
+          <p class="text-gray-600 dark:text-gray-300">
             Answer a few questions to get personalized immigration recommendations
           </p>
         </div>
@@ -55,41 +55,41 @@ import Layout from '../layouts/Layout.astro';
           <!-- Step 1: Program Selection -->
           <div x-show="currentStep === 1" class="space-y-6">
             <div>
-              <h3 class="text-lg font-semibold text-gray-900 mb-4">Which immigration program are you interested in?</h3>
+              <h3 class="text-lg font-semibold text-gray-900 dark:text-white mb-4">Which immigration program are you interested in?</h3>
               <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                <label class="flex items-center p-4 border border-gray-200 rounded-lg cursor-pointer hover:border-blue-300 transition-colors">
+                <label class="flex items-center p-4 border border-gray-200 dark:border-gray-600 rounded-lg cursor-pointer hover:border-blue-300 dark:hover:border-blue-400 transition-colors bg-white dark:bg-gray-800">
                   <input type="radio" name="program" value="express-entry" x-model="formData.program" class="sr-only">
-                  <div class="w-4 h-4 border-2 border-gray-300 rounded-full mr-3 flex-shrink-0"></div>
+                  <div class="w-4 h-4 border-2 border-gray-300 dark:border-gray-500 rounded-full mr-3 flex-shrink-0"></div>
                   <div>
-                    <div class="font-medium text-gray-900">Express Entry</div>
-                    <div class="text-sm text-gray-500">Federal Skilled Worker, Trades, or Experience Class</div>
+                    <div class="font-medium text-gray-900 dark:text-white">Express Entry</div>
+                    <div class="text-sm text-gray-500 dark:text-gray-400">Federal Skilled Worker, Trades, or Experience Class</div>
                   </div>
                 </label>
                 
-                <label class="flex items-center p-4 border border-gray-200 rounded-lg cursor-pointer hover:border-blue-300 transition-colors">
+                <label class="flex items-center p-4 border border-gray-200 dark:border-gray-600 rounded-lg cursor-pointer hover:border-blue-300 dark:hover:border-blue-400 transition-colors bg-white dark:bg-gray-800">
                   <input type="radio" name="program" value="family-sponsorship" x-model="formData.program" class="sr-only">
-                  <div class="w-4 h-4 border-2 border-gray-300 rounded-full mr-3 flex-shrink-0"></div>
+                  <div class="w-4 h-4 border-2 border-gray-300 dark:border-gray-500 rounded-full mr-3 flex-shrink-0"></div>
                   <div>
-                    <div class="font-medium text-gray-900">Family Sponsorship</div>
-                    <div class="text-sm text-gray-500">Sponsor spouse, children, or parents</div>
+                    <div class="font-medium text-gray-900 dark:text-white">Family Sponsorship</div>
+                    <div class="text-sm text-gray-500 dark:text-gray-400">Sponsor spouse, children, or parents</div>
                   </div>
                 </label>
                 
-                <label class="flex items-center p-4 border border-gray-200 rounded-lg cursor-pointer hover:border-blue-300 transition-colors">
+                <label class="flex items-center p-4 border border-gray-200 dark:border-gray-600 rounded-lg cursor-pointer hover:border-blue-300 dark:hover:border-blue-400 transition-colors bg-white dark:bg-gray-800">
                   <input type="radio" name="program" value="work-permit" x-model="formData.program" class="sr-only">
-                  <div class="w-4 h-4 border-2 border-gray-300 rounded-full mr-3 flex-shrink-0"></div>
+                  <div class="w-4 h-4 border-2 border-gray-300 dark:border-gray-500 rounded-full mr-3 flex-shrink-0"></div>
                   <div>
-                    <div class="font-medium text-gray-900">Work Permit</div>
-                    <div class="text-sm text-gray-500">Temporary work authorization</div>
+                    <div class="font-medium text-gray-900 dark:text-white">Work Permit</div>
+                    <div class="text-sm text-gray-500 dark:text-gray-400">Temporary work authorization</div>
                   </div>
                 </label>
                 
-                <label class="flex items-center p-4 border border-gray-200 rounded-lg cursor-pointer hover:border-blue-300 transition-colors">
+                <label class="flex items-center p-4 border border-gray-200 dark:border-gray-600 rounded-lg cursor-pointer hover:border-blue-300 dark:hover:border-blue-400 transition-colors bg-white dark:bg-gray-800">
                   <input type="radio" name="program" value="study-permit" x-model="formData.program" class="sr-only">
-                  <div class="w-4 h-4 border-2 border-gray-300 rounded-full mr-3 flex-shrink-0"></div>
+                  <div class="w-4 h-4 border-2 border-gray-300 dark:border-gray-500 rounded-full mr-3 flex-shrink-0"></div>
                   <div>
-                    <div class="font-medium text-gray-900">Study Permit</div>
-                    <div class="text-sm text-gray-500">Study at a Canadian institution</div>
+                    <div class="font-medium text-gray-900 dark:text-white">Study Permit</div>
+                    <div class="text-sm text-gray-500 dark:text-gray-400">Study at a Canadian institution</div>
                   </div>
                 </label>
               </div>
@@ -309,7 +309,7 @@ import Layout from '../layouts/Layout.astro';
   </section>
 
   <!-- Features Section -->
-  <section class="py-20 bg-white">
+  <section class="py-20 bg-white dark:bg-gray-900 transition-colors duration-200">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="text-center mb-16">
         <h2 class="text-responsive-lg font-bold text-gray-900 mb-4">
