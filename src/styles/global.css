@@ -445,6 +445,17 @@
   }
 }
 
+/* Footer Logo Enhancement */
+footer img {
+  filter: brightness(0) invert(1);
+  transition: all 0.3s ease;
+}
+
+footer img:hover {
+  filter: brightness(0) invert(1) drop-shadow(0 0 8px rgba(255, 255, 255, 0.3));
+  transform: scale(1.05);
+}
+
 /* Testimonials Section Animations */
 .testimonial-card {
   transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
