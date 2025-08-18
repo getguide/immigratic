@@ -350,6 +350,100 @@
   opacity: 1;
   transform: translateY(0);
 }
+
+/* Enhanced Timeline Animations */
+.timeline-particle {
+  animation: float-gentle 4s ease-in-out infinite;
+}
+
+.step-indicator {
+  transition: all 0.3s ease;
+}
+
+.step-indicator:hover {
+  transform: scale(1.2);
+}
+
+.step-number-circle {
+  position: relative;
+  z-index: 10;
+}
+
+.step-label {
+  transition: all 0.3s ease;
+  position: relative;
+}
+
+.step-label::after {
+  content: '';
+  position: absolute;
+  bottom: -4px;
+  left: 50%;
+  width: 0;
+  height: 2px;
+  background: currentColor;
+  transition: width 0.3s ease;
+  transform: translateX(-50%);
+}
+
+.step-label:hover::after {
+  width: 100%;
+}
+
+/* Enhanced Card Hover Effects */
+.journey-step-card:hover .step-number-circle {
+  animation: pulse-glow 2s ease-in-out infinite;
+}
+
+/* Timeline Progress Enhancement */
+#journey-progress {
+  background: linear-gradient(90deg, 
+    rgba(255,255,255,0.9) 0%, 
+    rgba(255,255,255,0.7) 50%, 
+    rgba(255,255,255,0.5) 100%);
+  box-shadow: 0 0 20px rgba(255,255,255,0.3);
+}
+
+/* Step Indicator Glow Effects */
+.step-indicator .animate-ping {
+  animation: ping 2s cubic-bezier(0, 0, 0.2, 1) infinite;
+}
+
+.step-indicator .animate-pulse {
+  animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+/* Enhanced Floating Animation for Particles */
+@keyframes float-gentle {
+  0%, 100% { 
+    transform: translateY(0px) translateX(0px); 
+    opacity: 0.4;
+  }
+  25% { 
+    transform: translateY(-8px) translateX(4px); 
+    opacity: 0.7;
+  }
+  50% { 
+    transform: translateY(-4px) translateX(-2px); 
+    opacity: 0.5;
+  }
+  75% { 
+    transform: translateY(-6px) translateX(3px); 
+    opacity: 0.6;
+  }
+}
+
+/* Enhanced Pulse Glow Animation */
+@keyframes pulse-glow {
+  0%, 100% { 
+    box-shadow: 0 0 20px currentColor;
+    transform: scale(1);
+  }
+  50% { 
+    box-shadow: 0 0 40px currentColor, 0 0 60px currentColor;
+    transform: scale(1.05);
+  }
+}
 .floating-logo {
   animation: float-gentle 4s ease-in-out infinite;
 }

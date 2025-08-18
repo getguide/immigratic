@@ -24,7 +24,7 @@ import Layout from '../layouts/Layout.astro';
       
       <!-- Subtitle -->
       <p class="text-xl md:text-2xl text-gray-300 mb-12 max-w-4xl mx-auto leading-relaxed opacity-0 animate-fade-in-up" style="animation-delay: 0.8s; animation-fill-mode: forwards;">
-        Canada's most innovative immigration platform. AI-powered tools, expert guidance, and seamless experiences that make your journey to Canada effortless.
+        At Immigratic, every case is built with care, backed by research, and delivered with precision — because your future deserves more than guesswork.
       </p>
       
       <!-- CTA Buttons -->
@@ -661,23 +661,52 @@ import Layout from '../layouts/Layout.astro';
       <!-- Interactive Journey Timeline -->
       <div class="relative mb-12">
         <!-- Timeline Bar -->
-        <div class="relative h-2 bg-gradient-to-r from-blue-600 via-green-600 via-purple-600 to-orange-600 rounded-full overflow-hidden">
-          <!-- Progress Indicator -->
-          <div id="journey-progress" class="absolute top-0 left-0 h-full bg-white/30 rounded-full transition-all duration-1000 ease-out" style="width: 25%"></div>
+        <div class="relative h-3 bg-gradient-to-r from-blue-600 via-green-600 via-purple-600 to-orange-600 rounded-full overflow-hidden shadow-2xl">
+          <!-- Animated Background Particles -->
+          <div class="absolute inset-0">
+            <div class="timeline-particle absolute top-1/2 left-0 w-2 h-2 bg-white/40 rounded-full animate-float-gentle" style="animation-delay: 0s;"></div>
+            <div class="timeline-particle absolute top-1/2 left-1/4 w-1.5 h-1.5 bg-white/30 rounded-full animate-float-gentle" style="animation-delay: 1s;"></div>
+            <div class="timeline-particle absolute top-1/2 left-1/2 w-2 h-2 bg-white/50 rounded-full animate-float-gentle" style="animation-delay: 2s;"></div>
+            <div class="timeline-particle absolute top-1/2 left-3/4 w-1.5 h-1.5 bg-white/40 rounded-full animate-float-gentle" style="animation-delay: 3s;"></div>
+            <div class="timeline-particle absolute top-1/2 left-full w-2 h-2 bg-white/30 rounded-full animate-float-gentle" style="animation-delay: 4s;"></div>
+          </div>
           
-          <!-- Step Indicators -->
-          <div class="absolute top-1/2 left-0 w-4 h-4 bg-blue-600 rounded-full transform -translate-y-1/2 -translate-x-1/2 shadow-lg border-2 border-white"></div>
-          <div class="absolute top-1/2 left-1/3 w-4 h-4 bg-green-600 rounded-full transform -translate-y-1/2 -translate-x-1/2 shadow-lg border-2 border-white"></div>
-          <div class="absolute top-1/2 left-2/3 w-4 h-4 bg-purple-600 rounded-full transform -translate-y-1/2 -translate-x-1/2 shadow-lg border-2 border-white"></div>
-          <div class="absolute top-1/2 left-full w-4 h-4 bg-orange-600 rounded-full transform -translate-y-1/2 -translate-x-1/2 shadow-lg border-2 border-white"></div>
+          <!-- Enhanced Progress Indicator -->
+          <div id="journey-progress" class="absolute top-0 left-0 h-full bg-gradient-to-r from-white/80 to-white/60 rounded-full transition-all duration-1000 ease-out shadow-lg" style="width: 25%">
+            <!-- Progress Glow Effect -->
+            <div class="absolute inset-0 bg-gradient-to-r from-white/40 to-transparent rounded-full animate-pulse-glow"></div>
+          </div>
+          
+          <!-- Enhanced Step Indicators -->
+          <div class="absolute top-1/2 left-0 w-6 h-6 bg-gradient-to-br from-blue-500 to-blue-600 rounded-full transform -translate-y-1/2 -translate-x-1/2 shadow-2xl border-4 border-white dark:border-gray-800 step-indicator" data-step="1">
+            <!-- Glowing Ring -->
+            <div class="absolute inset-0 w-6 h-6 bg-blue-400 rounded-full animate-ping opacity-75"></div>
+            <!-- Inner Glow -->
+            <div class="absolute inset-1 w-4 h-4 bg-blue-300 rounded-full animate-pulse"></div>
+          </div>
+          
+          <div class="absolute top-1/2 left-1/3 w-6 h-6 bg-gradient-to-br from-green-500 to-green-600 rounded-full transform -translate-y-1/2 -translate-x-1/2 shadow-2xl border-4 border-white dark:border-gray-800 step-indicator" data-step="2">
+            <div class="absolute inset-0 w-6 h-6 bg-green-400 rounded-full animate-ping opacity-75"></div>
+            <div class="absolute inset-1 w-4 h-4 bg-green-300 rounded-full animate-pulse"></div>
+          </div>
+          
+          <div class="absolute top-1/2 left-2/3 w-6 h-6 bg-gradient-to-br from-purple-500 to-purple-600 rounded-full transform -translate-y-1/2 -translate-x-1/2 shadow-2xl border-4 border-white dark:border-gray-800 step-indicator" data-step="3">
+            <div class="absolute inset-0 w-6 h-6 bg-purple-400 rounded-full animate-ping opacity-75"></div>
+            <div class="absolute inset-1 w-4 h-4 bg-purple-300 rounded-full animate-pulse"></div>
+          </div>
+          
+          <div class="absolute top-1/2 left-full w-6 h-6 bg-gradient-to-br from-orange-500 to-orange-600 rounded-full transform -translate-y-1/2 -translate-x-1/2 shadow-2xl border-4 border-white dark:border-gray-800 step-indicator" data-step="4">
+            <div class="absolute inset-0 w-6 h-6 bg-orange-400 rounded-full animate-ping opacity-75"></div>
+            <div class="absolute inset-1 w-4 h-4 bg-orange-300 rounded-full animate-pulse"></div>
+          </div>
         </div>
         
-        <!-- Step Labels -->
-        <div class="flex justify-between mt-4 text-sm font-medium text-gray-600 dark:text-gray-400">
-          <span>Smart Assessment</span>
-          <span>Book Consultation</span>
-          <span>Seamless Submission</span>
-          <span>Ongoing Support</span>
+        <!-- Enhanced Step Labels -->
+        <div class="flex justify-between mt-6 text-sm font-medium">
+          <span class="text-blue-600 dark:text-blue-400 step-label" data-step="1">Smart Assessment</span>
+          <span class="text-green-600 dark:text-green-400 step-label" data-step="2">Book Consultation</span>
+          <span class="text-purple-600 dark:text-purple-400 step-label" data-step="3">Seamless Submission</span>
+          <span class="text-orange-600 dark:text-orange-400 step-label" data-step="4">Ongoing Support</span>
         </div>
       </div>
 
@@ -686,13 +715,18 @@ import Layout from '../layouts/Layout.astro';
         <!-- Step 1: Smart Assessment -->
         <div class="journey-step-card group cursor-pointer" data-step="1">
           <div class="relative">
-            <!-- Step Number Circle -->
-            <div class="absolute -top-4 -left-4 w-16 h-16 bg-gradient-to-br from-blue-600 to-purple-600 rounded-full flex items-center justify-center text-white font-bold text-xl shadow-lg group-hover:scale-110 transition-all duration-300 border-4 border-white dark:border-gray-800">
-              01
+            <!-- Enhanced Step Number Circle -->
+            <div class="absolute -top-4 -left-4 w-16 h-16 bg-gradient-to-br from-blue-600 to-purple-600 rounded-full flex items-center justify-center text-white font-bold text-xl shadow-2xl group-hover:scale-110 transition-all duration-300 border-4 border-white dark:border-gray-800 step-number-circle">
+              <!-- Glowing Ring -->
+              <div class="absolute inset-0 w-16 h-16 bg-blue-400 rounded-full animate-ping opacity-75 group-hover:opacity-100"></div>
+              <!-- Inner Glow -->
+              <div class="absolute inset-2 w-12 h-12 bg-blue-300 rounded-full animate-pulse group-hover:animate-pulse-glow"></div>
+              <!-- Number -->
+              <span class="relative z-10">01</span>
             </div>
             
-            <!-- Main Card -->
-            <div class="bg-white dark:bg-gray-800 rounded-2xl p-8 pt-16 shadow-xl border border-gray-200 dark:border-gray-700 hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-3 group-hover:border-blue-300 dark:group-hover:border-blue-600">
+            <!-- Enhanced Main Card -->
+            <div class="bg-white dark:bg-gray-800 rounded-2xl p-8 pt-16 shadow-xl border border-gray-200 dark:border-gray-700 hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-3 group-hover:border-blue-300 dark:group-hover:border-blue-600 group-hover:bg-gradient-to-br group-hover:from-blue-50 group-hover:to-purple-50 dark:group-hover:from-blue-900/20 dark:group-hover:to-purple-900/20">
               <h3 class="text-xl font-bold text-gray-900 dark:text-white mb-4 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">Smart Assessment</h3>
               <p class="text-gray-600 dark:text-gray-300 leading-relaxed mb-4">Complete our AI-powered assessment to discover your best immigration pathways and get a personalized roadmap.</p>
               
@@ -718,13 +752,18 @@ import Layout from '../layouts/Layout.astro';
         <!-- Step 2: Book Consultation -->
         <div class="journey-step-card group cursor-pointer" data-step="2">
           <div class="relative">
-            <!-- Step Number Circle -->
-            <div class="absolute -top-4 -left-4 w-16 h-16 bg-gradient-to-br from-green-600 to-blue-600 rounded-full flex items-center justify-center text-white font-bold text-xl shadow-lg group-hover:scale-110 transition-all duration-300 border-4 border-white dark:border-gray-800">
-              02
+            <!-- Enhanced Step Number Circle -->
+            <div class="absolute -top-4 -left-4 w-16 h-16 bg-gradient-to-br from-green-600 to-blue-600 rounded-full flex items-center justify-center text-white font-bold text-xl shadow-2xl group-hover:scale-110 transition-all duration-300 border-4 border-white dark:border-gray-800 step-number-circle">
+              <!-- Glowing Ring -->
+              <div class="absolute inset-0 w-16 h-16 bg-green-400 rounded-full animate-ping opacity-75 group-hover:opacity-100"></div>
+              <!-- Inner Glow -->
+              <div class="absolute inset-2 w-12 h-12 bg-green-300 rounded-full animate-pulse group-hover:animate-pulse-glow"></div>
+              <!-- Number -->
+              <span class="relative z-10">02</span>
             </div>
             
-            <!-- Main Card -->
-            <div class="bg-white dark:bg-gray-800 rounded-2xl p-8 pt-16 shadow-xl border border-gray-200 dark:border-gray-700 hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-3 group-hover:border-green-300 dark:group-hover:border-green-600">
+            <!-- Enhanced Main Card -->
+            <div class="bg-white dark:bg-gray-800 rounded-2xl p-8 pt-16 shadow-xl border border-gray-200 dark:border-gray-700 hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-3 group-hover:border-green-300 dark:group-hover:border-green-600 group-hover:bg-gradient-to-br group-hover:from-green-50 group-hover:to-blue-50 dark:group-hover:from-green-900/20 dark:group-hover:to-blue-900/20">
               <h3 class="text-xl font-bold text-gray-900 dark:text-white mb-4 group-hover:text-green-600 dark:group-hover:text-green-400 transition-colors">Book a Consultation</h3>
               <p class="text-gray-600 dark:text-gray-300 leading-relaxed mb-4">Schedule a consultation with certified RCICs who will create your immigration profile and optimize your application strategy.</p>
               
@@ -750,13 +789,18 @@ import Layout from '../layouts/Layout.astro';
         <!-- Step 3: Seamless Submission -->
         <div class="journey-step-card group cursor-pointer" data-step="3">
           <div class="relative">
-            <!-- Step Number Circle -->
-            <div class="absolute -top-4 -left-4 w-16 h-16 bg-gradient-to-br from-purple-600 to-pink-600 rounded-full flex items-center justify-center text-white font-bold text-xl shadow-lg group-hover:scale-110 transition-all duration-300 border-4 border-white dark:border-gray-800">
-              03
+            <!-- Enhanced Step Number Circle -->
+            <div class="absolute -top-4 -left-4 w-16 h-16 bg-gradient-to-br from-purple-600 to-pink-600 rounded-full flex items-center justify-center text-white font-bold text-xl shadow-2xl group-hover:scale-110 transition-all duration-300 border-4 border-white dark:border-gray-800 step-number-circle">
+              <!-- Glowing Ring -->
+              <div class="absolute inset-0 w-16 h-16 bg-purple-400 rounded-full animate-ping opacity-75 group-hover:opacity-100"></div>
+              <!-- Inner Glow -->
+              <div class="absolute inset-2 w-12 h-12 bg-purple-300 rounded-full animate-pulse group-hover:animate-pulse-glow"></div>
+              <!-- Number -->
+              <span class="relative z-10">03</span>
             </div>
             
-            <!-- Main Card -->
-            <div class="bg-white dark:bg-gray-800 rounded-2xl p-8 pt-16 shadow-xl border border-gray-200 dark:border-gray-700 hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-3 group-hover:border-purple-300 dark:group-hover:border-purple-600">
+            <!-- Enhanced Main Card -->
+            <div class="bg-white dark:bg-gray-800 rounded-2xl p-8 pt-16 shadow-xl border border-gray-200 dark:border-gray-700 hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-3 group-hover:border-purple-300 dark:group-hover:border-purple-600 group-hover:bg-gradient-to-br group-hover:from-purple-50 group-hover:to-pink-50 dark:group-hover:from-purple-900/20 dark:group-hover:to-pink-900/20">
               <h3 class="text-xl font-bold text-gray-900 dark:text-white mb-4 group-hover:text-purple-600 dark:group-hover:text-purple-400 transition-colors">Seamless Submission</h3>
               <p class="text-gray-600 dark:text-gray-300 leading-relaxed mb-4">Our experts handle document preparation and submission, ensuring compliance and maximizing success rates.</p>
               
@@ -790,13 +834,18 @@ import Layout from '../layouts/Layout.astro';
         <!-- Step 4: Ongoing Support -->
         <div class="journey-step-card group cursor-pointer" data-step="4">
           <div class="relative">
-            <!-- Step Number Circle -->
-            <div class="absolute -top-4 -left-4 w-16 h-16 bg-gradient-to-br from-orange-600 to-red-600 rounded-full flex items-center justify-center text-white font-bold text-xl shadow-lg group-hover:scale-110 transition-all duration-300 border-4 border-white dark:border-gray-800">
-              04
+            <!-- Enhanced Step Number Circle -->
+            <div class="absolute -top-4 -left-4 w-16 h-16 bg-gradient-to-br from-orange-600 to-red-600 rounded-full flex items-center justify-center text-white font-bold text-xl shadow-2xl group-hover:scale-110 transition-all duration-300 border-4 border-white dark:border-gray-800 step-number-circle">
+              <!-- Glowing Ring -->
+              <div class="absolute inset-0 w-16 h-16 bg-orange-400 rounded-full animate-ping opacity-75 group-hover:opacity-100"></div>
+              <!-- Inner Glow -->
+              <div class="absolute inset-2 w-12 h-12 bg-orange-300 rounded-full animate-pulse group-hover:animate-pulse-glow"></div>
+              <!-- Number -->
+              <span class="relative z-10">04</span>
             </div>
             
-            <!-- Main Card -->
-            <div class="bg-white dark:bg-gray-800 rounded-2xl p-8 pt-16 shadow-xl border border-gray-200 dark:border-gray-700 hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-3 group-hover:border-orange-300 dark:group-hover:border-orange-600">
+            <!-- Enhanced Main Card -->
+            <div class="bg-white dark:bg-gray-800 rounded-2xl p-8 pt-16 shadow-xl border border-gray-200 dark:border-gray-700 hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-3 group-hover:border-orange-300 dark:group-hover:border-orange-600 group-hover:bg-gradient-to-br group-hover:from-orange-50 group-hover:to-red-50 dark:group-hover:from-orange-900/20 dark:group-hover:to-red-900/20">
               <h3 class="text-xl font-bold text-gray-900 dark:text-white mb-4 group-hover:text-orange-600 dark:group-hover:text-orange-400 transition-colors">Ongoing Support</h3>
               <p class="text-gray-600 dark:text-gray-300 leading-relaxed mb-4">Track progress, get updates, and access expert guidance throughout your entire immigration journey.</p>
               
