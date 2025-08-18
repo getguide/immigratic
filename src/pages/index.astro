@@ -311,19 +311,28 @@ import Layout from '../layouts/Layout.astro';
           </div>
         </div>
         
-        <div class="relative">
-          <div class="bg-gradient-to-br from-blue-50 to-purple-50 dark:from-blue-900/20 dark:to-purple-900/20 rounded-3xl p-8 border border-blue-200 dark:border-blue-700">
-            <div class="text-center">
-              <div class="w-32 h-20 mx-auto mb-6 flex items-center justify-center">
-                <img src="/passage-logo.svg" alt="Passage, Inc. Logo" class="h-12 w-auto dark:filter dark:brightness-0 dark:invert floating-logo" />
-              </div>
-              <p class="text-gray-600 dark:text-gray-400 mb-4">Educational Services Company</p>
-              <div class="text-sm text-gray-500 dark:text-gray-400">
-                <p>Hundreds of International Students</p>
-                <p>Study Permits → PGWP → PR</p>
+        <div class="relative group">
+          <a href="https://passage.com" target="_blank" rel="noopener noreferrer" class="block">
+            <div class="bg-gradient-to-br from-blue-50 to-purple-50 dark:from-blue-900/20 dark:to-purple-900/20 rounded-3xl p-8 border border-blue-200 dark:border-blue-700 hover:shadow-2xl hover:scale-105 transition-all duration-300 cursor-pointer group-hover:border-blue-400 dark:group-hover:border-blue-500">
+              <div class="text-center">
+                <div class="w-32 h-20 mx-auto mb-6 flex items-center justify-center">
+                  <img src="/passage-logo.svg" alt="Passage, Inc. Logo" class="h-12 w-auto dark:filter dark:brightness-0 dark:invert floating-logo group-hover:scale-110 transition-transform duration-300" />
+                </div>
+                <p class="text-gray-600 dark:text-gray-400 mb-4 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">Educational Services Company</p>
+                <div class="text-sm text-gray-500 dark:text-gray-400 group-hover:text-gray-600 dark:group-hover:text-gray-300 transition-colors">
+                  <p>Hundreds of International Students</p>
+                  <p>Study Permits → PGWP → PR</p>
+                </div>
+                <!-- Click indicator -->
+                <div class="mt-4 flex items-center justify-center space-x-2 text-blue-600 dark:text-blue-400 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                  <span class="text-sm font-medium">Visit Website</span>
+                  <svg class="w-4 h-4 transform group-hover:translate-x-1 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path>
+                  </svg>
+                </div>
               </div>
             </div>
-          </div>
+          </a>
         </div>
       </div>
     </div>
