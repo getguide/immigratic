@@ -392,6 +392,178 @@ export const metadata = {
         </div>
       </div>
       </div>
+
+      <!-- Express Entry Journey Map -->
+      <div class="mt-20 opacity-0 animate-fade-in-up" style="animation-delay: 1.4s; animation-fill-mode: forwards;">
+        <div class="text-center mb-12">
+          <h3 class="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-4">
+            Your Express Entry Journey
+          </h3>
+          <p class="text-lg text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
+            Understand the pathway: First qualify for a main program, then access targeted categories
+          </p>
+        </div>
+
+        <!-- Journey Flow -->
+        <div class="relative max-w-6xl mx-auto">
+          <!-- Main Programs Row -->
+          <div class="mb-12">
+            <h4 class="text-xl font-semibold text-gray-700 dark:text-gray-300 mb-6 text-center">Step 1: Qualify for Main Programs</h4>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+              <!-- CEC -->
+              <div class="relative">
+                <div class="bg-gradient-to-br from-blue-500 to-purple-600 rounded-2xl p-6 text-white text-center shadow-lg">
+                  <div class="w-16 h-16 bg-white/20 rounded-full flex items-center justify-center mx-auto mb-4">
+                    <span class="text-2xl">🇨🇦</span>
+                  </div>
+                  <h5 class="font-bold text-lg mb-2">Canadian Experience Class</h5>
+                  <p class="text-sm opacity-90">1+ year skilled work in Canada</p>
+                  <div class="mt-4">
+                    <span class="px-3 py-1 bg-white/20 rounded-full text-xs font-semibold">✅ Accepting Clients</span>
+                  </div>
+                </div>
+                <!-- Arrow Down -->
+                <div class="absolute bottom-0 left-1/2 transform -translate-x-1/2 translate-y-full w-0.5 h-8 bg-gradient-to-b from-blue-500 to-transparent"></div>
+              </div>
+
+              <!-- FSW -->
+              <div class="relative">
+                <div class="bg-gradient-to-br from-green-500 to-blue-600 rounded-2xl p-6 text-white text-center shadow-lg">
+                  <div class="w-16 h-16 bg-white/20 rounded-full flex items-center justify-center mx-auto mb-4">
+                    <span class="text-2xl">🌍</span>
+                  </div>
+                  <h5 class="font-bold text-lg mb-2">Federal Skilled Worker</h5>
+                  <p class="text-sm opacity-90">1+ year skilled work worldwide</p>
+                  <div class="mt-4">
+                    <span class="px-3 py-1 bg-white/20 rounded-full text-xs font-semibold">✅ Accepting Clients</span>
+                  </div>
+                </div>
+                <!-- Arrow Down -->
+                <div class="absolute bottom-0 left-1/2 transform -translate-x-1/2 translate-y-full w-0.5 h-8 bg-gradient-to-b from-green-500 to-transparent"></div>
+              </div>
+
+              <!-- FST (Not Offered) -->
+              <div class="relative">
+                <div class="bg-gray-400 rounded-2xl p-6 text-white text-center shadow-lg">
+                  <div class="w-16 h-16 bg-white/20 rounded-full flex items-center justify-center mx-auto mb-4">
+                    <span class="text-2xl">🔧</span>
+                  </div>
+                  <h5 class="text-lg mb-2">Federal Skilled Trades</h5>
+                  <p class="text-sm opacity-90">Skilled trades certification</p>
+                  <div class="mt-4">
+                    <span class="px-3 py-1 bg-white/20 rounded-full text-xs font-semibold">❌ Not Offered</span>
+                  </div>
+                </div>
+                <!-- Arrow Down -->
+                <div class="absolute bottom-0 left-1/2 transform -translate-x-1/2 translate-y-full w-0.5 h-8 bg-gradient-to-b from-gray-400 to-transparent"></div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Pool Entry Point -->
+          <div class="text-center mb-12">
+            <div class="inline-block bg-gradient-to-r from-blue-600 to-purple-600 rounded-full p-6 shadow-2xl">
+              <div class="w-20 h-20 bg-white rounded-full flex items-center justify-center">
+                <span class="text-3xl">🏊</span>
+              </div>
+            </div>
+            <h4 class="text-xl font-semibold text-gray-700 dark:text-gray-300 mt-4">Express Entry Pool</h4>
+            <p class="text-gray-600 dark:text-gray-400">Once qualified, you enter the candidate pool</p>
+          </div>
+
+          <!-- Targeted Categories Access -->
+          <div class="mb-12">
+            <h4 class="text-xl font-semibold text-gray-700 dark:text-gray-300 mb-6 text-center">Step 2: Access Targeted Categories</h4>
+            <div class="bg-gradient-to-r from-blue-50 to-purple-50 dark:from-blue-900/20 dark:to-purple-900/20 rounded-3xl p-8 border border-blue-200 dark:border-blue-700">
+              <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                <!-- Health -->
+                <div class="bg-white dark:bg-gray-800 rounded-xl p-4 shadow-md border border-gray-200 dark:border-gray-700">
+                  <div class="flex items-center gap-3 mb-2">
+                    <span class="text-xl">🏥</span>
+                    <span class="font-semibold text-gray-900 dark:text-white">Health</span>
+                  </div>
+                  <p class="text-xs text-gray-600 dark:text-gray-400">Healthcare work experience required</p>
+                </div>
+
+                <!-- STEM -->
+                <div class="bg-white dark:bg-gray-800 rounded-xl p-4 shadow-md border border-gray-200 dark:border-gray-700">
+                  <div class="flex items-center gap-3 mb-2">
+                    <span class="text-xl">🔬</span>
+                    <span class="font-semibold text-gray-900 dark:text-white">STEM</span>
+                  </div>
+                  <p class="text-xs text-gray-600 dark:text-gray-400">Science/tech work experience required</p>
+                </div>
+
+                <!-- Trade -->
+                <div class="bg-white dark:bg-gray-800 rounded-xl p-4 shadow-md border border-gray-200 dark:border-gray-700">
+                  <div class="flex items-center gap-3 mb-2">
+                    <span class="text-xl">🔧</span>
+                    <span class="font-semibold text-gray-900 dark:text-white">Trade</span>
+                  </div>
+                  <p class="text-xs text-gray-600 dark:text-gray-400">Skilled trades experience required</p>
+                </div>
+
+                <!-- Education -->
+                <div class="bg-white dark:bg-gray-800 rounded-xl p-4 shadow-md border border-gray-200 dark:border-gray-700">
+                  <div class="flex items-center gap-3 mb-2">
+                    <span class="text-xl">📚</span>
+                    <span class="font-semibold text-gray-900 dark:text-white">Education</span>
+                  </div>
+                  <p class="text-xs text-gray-600 dark:text-gray-400">Education work experience required</p>
+                </div>
+
+                <!-- Agriculture -->
+                <div class="bg-white dark:bg-gray-800 rounded-xl p-4 shadow-md border border-gray-200 dark:border-gray-700">
+                  <div class="flex items-center gap-3 mb-2">
+                    <span class="text-xl">🌾</span>
+                    <span class="font-semibold text-gray-900 dark:text-white">Agriculture</span>
+                  </div>
+                  <p class="text-xs text-gray-600 dark:text-gray-400">Agricultural work experience required</p>
+                </div>
+
+                <!-- French -->
+                <div class="bg-white dark:bg-gray-800 rounded-xl p-4 shadow-md border border-gray-200 dark:border-gray-700">
+                  <div class="flex items-center gap-3 mb-2">
+                    <span class="text-xl">🇫🇷</span>
+                    <span class="font-semibold text-gray-900 dark:text-white">French</span>
+                  </div>
+                  <p class="text-xs text-gray-600 dark:text-gray-400">French language ability required</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Success Path -->
+          <div class="text-center">
+            <div class="inline-block bg-gradient-to-r from-green-500 to-emerald-600 rounded-full p-6 shadow-2xl">
+              <div class="w-20 h-20 bg-white rounded-full flex items-center justify-center">
+                <span class="text-3xl">🎯</span>
+              </div>
+            </div>
+            <h4 class="text-xl font-semibold text-gray-700 dark:text-gray-300 mt-4">Targeted Draw Selection</h4>
+            <p class="text-gray-600 dark:text-gray-400">Lower CRS requirements for category-specific draws</p>
+          </div>
+        </div>
+
+        <!-- Key Takeaway Box -->
+        <div class="mt-12 max-w-4xl mx-auto">
+          <div class="bg-gradient-to-r from-blue-50 to-purple-50 dark:from-blue-900/20 dark:to-purple-900/20 rounded-2xl p-6 border border-blue-200 dark:border-blue-700">
+            <div class="flex items-start gap-4">
+              <div class="w-8 h-8 bg-blue-500 rounded-full flex items-center justify-center flex-shrink-0 mt-1">
+                <span class="text-white text-sm">💡</span>
+              </div>
+              <div>
+                <h5 class="font-semibold text-gray-900 dark:text-white mb-2">Key Takeaway</h5>
+                <p class="text-gray-700 dark:text-gray-300">
+                  <strong>You must first qualify for CEC or FSW to enter the Express Entry pool.</strong> 
+                  Only then can you access targeted categories if you have relevant work experience or French language skills. 
+                  Think of it as a two-step process: qualify for the main program first, then become eligible for targeted draws.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
     </section>
 
     <!-- Provincial Nominee Programs Section -->
