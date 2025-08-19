@@ -464,71 +464,112 @@ export const metadata = {
           <div class="text-center mb-12">
             <div class="inline-block bg-gradient-to-r from-blue-600 to-purple-600 rounded-full p-6 shadow-2xl">
               <div class="w-20 h-20 bg-white rounded-full flex items-center justify-center">
-                <span class="text-3xl">🏊</span>
+                <span class="text-3xl">👥</span>
               </div>
             </div>
             <h4 class="text-xl font-semibold text-gray-700 dark:text-gray-300 mt-4">Express Entry Pool</h4>
             <p class="text-gray-600 dark:text-gray-400">Once qualified, you enter the candidate pool</p>
           </div>
 
-          <!-- Targeted Categories Access -->
+          <!-- Two Pathways to ITA -->
           <div class="mb-12">
-            <h4 class="text-xl font-semibold text-gray-700 dark:text-gray-300 mb-6 text-center">Step 2: Access Targeted Categories</h4>
-            <div class="bg-gradient-to-r from-blue-50 to-purple-50 dark:from-blue-900/20 dark:to-purple-900/20 rounded-3xl p-8 border border-blue-200 dark:border-blue-700">
-              <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-                <!-- Health -->
-                <div class="bg-white dark:bg-gray-800 rounded-xl p-4 shadow-md border border-gray-200 dark:border-gray-700">
-                  <div class="flex items-center gap-3 mb-2">
-                    <span class="text-xl">🏥</span>
-                    <span class="font-semibold text-gray-900 dark:text-white">Health</span>
-                  </div>
-                  <p class="text-xs text-gray-600 dark:text-gray-400">Healthcare work experience required</p>
+            <h4 class="text-xl font-semibold text-gray-700 dark:text-gray-300 mb-6 text-center">Two Pathways to ITA</h4>
+            
+            <!-- Pathway 1: General Draws -->
+            <div class="mb-8">
+              <div class="flex items-center gap-4 mb-4">
+                <div class="w-12 h-12 bg-gradient-to-br from-blue-500 to-purple-600 rounded-full flex items-center justify-center text-white font-bold">
+                  1
                 </div>
+                <h5 class="text-lg font-semibold text-gray-900 dark:text-white">General Program Draws</h5>
+              </div>
+              <div class="bg-gradient-to-r from-blue-50 to-purple-50 dark:from-blue-900/20 dark:to-purple-900/20 rounded-2xl p-6 border border-blue-200 dark:border-blue-700">
+                <p class="text-gray-700 dark:text-gray-300 mb-4">
+                  <strong>High CRS score required.</strong> Get ITA based on your overall score in CEC, FSW, or FST draws.
+                </p>
+                <div class="flex items-center gap-2 text-sm text-gray-600 dark:text-gray-400">
+                  <span>🎯</span>
+                  <span>Example: CEC draw with CRS 534+</span>
+                </div>
+              </div>
+            </div>
 
-                <!-- STEM -->
-                <div class="bg-white dark:bg-gray-800 rounded-xl p-4 shadow-md border border-gray-200 dark:border-gray-700">
-                  <div class="flex items-center gap-3 mb-2">
-                    <span class="text-xl">🔬</span>
-                    <span class="font-semibold text-gray-900 dark:text-white">STEM</span>
-                  </div>
-                  <p class="text-xs text-gray-600 dark:text-gray-400">Science/tech work experience required</p>
+            <!-- Pathway 2: Targeted Category Draws -->
+            <div class="mb-8">
+              <div class="flex items-center gap-4 mb-4">
+                <div class="w-12 h-12 bg-gradient-to-br from-green-500 to-emerald-600 rounded-full flex items-center justify-center text-white font-bold">
+                  2
                 </div>
+                <h5 class="text-lg font-semibold text-gray-900 dark:text-white">Targeted Category Draws</h5>
+              </div>
+              <div class="bg-gradient-to-r from-green-50 to-emerald-50 dark:from-green-900/20 dark:to-emerald-900/20 rounded-2xl p-6 border border-green-200 dark:border-green-700">
+                <p class="text-gray-700 dark:text-gray-300 mb-4">
+                  <strong>Lower CRS requirement + specific experience.</strong> Get ITA if you qualify for a category AND have relevant work experience.
+                </p>
+                <div class="flex items-center gap-2 text-sm text-gray-600 dark:text-gray-400">
+                  <span>🎯</span>
+                  <span>Example: Health category with CRS 481+</span>
+                </div>
+              </div>
+            </div>
+          </div>
 
-                <!-- Trade -->
-                <div class="bg-white dark:bg-gray-800 rounded-xl p-4 shadow-md border border-gray-200 dark:border-gray-700">
-                  <div class="flex items-center gap-3 mb-2">
-                    <span class="text-xl">🔧</span>
-                    <span class="font-semibold text-gray-900 dark:text-white">Trade</span>
-                  </div>
-                  <p class="text-xs text-gray-600 dark:text-gray-400">Skilled trades experience required</p>
+          <!-- Categories Grid -->
+          <div class="mb-12">
+            <h4 class="text-xl font-semibold text-gray-700 dark:text-gray-300 mb-6 text-center">Available Categories for Targeted Draws</h4>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+              <!-- Health -->
+              <div class="bg-white dark:bg-gray-800 rounded-xl p-4 shadow-md border border-gray-200 dark:border-gray-700">
+                <div class="flex items-center gap-3 mb-2">
+                  <span class="text-xl">🏥</span>
+                  <span class="font-semibold text-gray-900 dark:text-white">Health</span>
                 </div>
+                <p class="text-xs text-gray-600 dark:text-gray-400">Healthcare work experience required</p>
+              </div>
 
-                <!-- Education -->
-                <div class="bg-white dark:bg-gray-800 rounded-xl p-4 shadow-md border border-gray-200 dark:border-gray-700">
-                  <div class="flex items-center gap-3 mb-2">
-                    <span class="text-xl">📚</span>
-                    <span class="font-semibold text-gray-900 dark:text-white">Education</span>
-                  </div>
-                  <p class="text-xs text-gray-600 dark:text-gray-400">Education work experience required</p>
+              <!-- STEM -->
+              <div class="bg-white dark:bg-gray-800 rounded-xl p-4 shadow-md border border-gray-200 dark:border-gray-700">
+                <div class="flex items-center gap-3 mb-2">
+                  <span class="text-xl">🔬</span>
+                  <span class="font-semibold text-gray-900 dark:text-white">STEM</span>
                 </div>
+                <p class="text-xs text-gray-600 dark:text-gray-400">Science/tech work experience required</p>
+              </div>
 
-                <!-- Agriculture -->
-                <div class="bg-white dark:bg-gray-800 rounded-xl p-4 shadow-md border border-gray-200 dark:border-gray-700">
-                  <div class="flex items-center gap-3 mb-2">
-                    <span class="text-xl">🌾</span>
-                    <span class="font-semibold text-gray-900 dark:text-white">Agriculture</span>
-                  </div>
-                  <p class="text-xs text-gray-600 dark:text-gray-400">Agricultural work experience required</p>
+              <!-- Trade -->
+              <div class="bg-white dark:bg-gray-800 rounded-xl p-4 shadow-md border border-gray-200 dark:border-gray-700">
+                <div class="flex items-center gap-3 mb-2">
+                  <span class="text-xl">🔧</span>
+                  <span class="font-semibold text-gray-900 dark:text-white">Trade</span>
                 </div>
+                <p class="text-xs text-gray-600 dark:text-gray-400">Skilled trades experience required</p>
+              </div>
 
-                <!-- French -->
-                <div class="bg-white dark:bg-gray-800 rounded-xl p-4 shadow-md border border-gray-200 dark:border-gray-700">
-                  <div class="flex items-center gap-3 mb-2">
-                    <span class="text-xl">🇫🇷</span>
-                    <span class="font-semibold text-gray-900 dark:text-white">French</span>
-                  </div>
-                  <p class="text-xs text-gray-600 dark:text-gray-400">French language ability required</p>
+              <!-- Education -->
+              <div class="bg-white dark:bg-gray-800 rounded-xl p-4 shadow-md border border-gray-200 dark:border-gray-700">
+                <div class="flex items-center gap-3 mb-2">
+                  <span class="text-xl">📚</span>
+                  <span class="font-semibold text-gray-900 dark:text-white">Education</span>
                 </div>
+                <p class="text-xs text-gray-600 dark:text-gray-400">Education work experience required</p>
+              </div>
+
+              <!-- Agriculture -->
+              <div class="bg-white dark:bg-gray-800 rounded-xl p-4 shadow-md border border-gray-200 dark:border-gray-700">
+                <div class="flex items-center gap-3 mb-2">
+                  <span class="text-xl">🌾</span>
+                  <span class="font-semibold text-gray-900 dark:text-white">Agriculture</span>
+                </div>
+                <p class="text-xs text-gray-600 dark:text-gray-400">Agricultural work experience required</p>
+              </div>
+
+              <!-- French -->
+              <div class="bg-white dark:bg-gray-800 rounded-xl p-4 shadow-md border border-gray-200 dark:border-gray-700">
+                <div class="flex items-center gap-3 mb-2">
+                  <span class="text-xl">🇫🇷</span>
+                  <span class="font-semibold text-gray-900 dark:text-white">French</span>
+                </div>
+                <p class="text-xs text-gray-600 dark:text-gray-400">French language ability required</p>
               </div>
             </div>
           </div>
@@ -537,11 +578,11 @@ export const metadata = {
           <div class="text-center">
             <div class="inline-block bg-gradient-to-r from-green-500 to-emerald-600 rounded-full p-6 shadow-2xl">
               <div class="w-20 h-20 bg-white rounded-full flex items-center justify-center">
-                <span class="text-3xl">🎯</span>
+                <span class="text-3xl">📧</span>
               </div>
             </div>
-            <h4 class="text-xl font-semibold text-gray-700 dark:text-gray-300 mt-4">Targeted Draw Selection</h4>
-            <p class="text-gray-600 dark:text-gray-400">Lower CRS requirements for category-specific draws</p>
+            <h4 class="text-xl font-semibold text-gray-700 dark:text-gray-300 mt-4">Invitation to Apply (ITA)</h4>
+            <p class="text-gray-600 dark:text-gray-400">Your goal: Receive ITA through either pathway</p>
           </div>
         </div>
 
@@ -556,8 +597,8 @@ export const metadata = {
                 <h5 class="font-semibold text-gray-900 dark:text-white mb-2">Key Takeaway</h5>
                 <p class="text-gray-700 dark:text-gray-300">
                   <strong>You must first qualify for CEC or FSW to enter the Express Entry pool.</strong> 
-                  Only then can you access targeted categories if you have relevant work experience or French language skills. 
-                  Think of it as a two-step process: qualify for the main program first, then become eligible for targeted draws.
+                  Once in the pool, you have TWO chances to get ITA: through general program draws (high CRS) OR through targeted category draws (lower CRS + specific experience). 
+                  Think of it as having multiple pathways to your goal - the more categories you qualify for, the better your chances!
                 </p>
               </div>
             </div>
