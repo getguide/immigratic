@@ -121,7 +121,7 @@ export const metadata = {
         </div>
         
         <h2 class="text-4xl md:text-6xl font-bold text-gray-900 dark:text-white mb-6 opacity-0 animate-fade-in-up" style="animation-delay: 0.4s; animation-fill-mode: forwards;">
-          <span class="inline-block animate-typing overflow-hidden whitespace-nowrap border-r-4 border-blue-500 pr-2" style="animation-delay: 0.6s; animation-fill-mode: forwards;">
+          <span id="typing-text-pr" class="inline-block animate-typing overflow-hidden whitespace-nowrap border-r-4 border-blue-500 pr-2" style="animation-delay: 0.6s; animation-fill-mode: forwards;">
             Your Path to Permanent Residency
           </span>
           <span class="block bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 bg-clip-text text-transparent animate-gradient-shift flex items-center gap-3 mt-2">
@@ -519,7 +519,7 @@ export const metadata = {
         </div>
         
         <h2 class="text-4xl md:text-6xl font-bold text-gray-900 dark:text-white mb-6 opacity-0 animate-fade-in-up" style="animation-delay: 0.4s; animation-fill-mode: forwards;">
-          <span class="inline-block animate-typing overflow-hidden whitespace-nowrap border-r-4 border-green-500 pr-2" style="animation-delay: 0.6s; animation-fill-mode: forwards;">
+          <span id="typing-text-tr" class="inline-block animate-typing overflow-hidden whitespace-nowrap border-r-4 border-green-500 pr-2" style="animation-delay: 0.6s; animation-fill-mode: forwards;">
             Your Gateway to Temporary Residence
           </span>
           <span class="block bg-gradient-to-r from-green-600 via-blue-600 to-purple-600 bg-clip-text text-transparent animate-gradient-shift flex items-center gap-3 mt-2">
@@ -2209,6 +2209,25 @@ export const metadata = {
             }
           }
         });
+
+        // Typing animation loop every 30 seconds
+        function restartTypingAnimation(elementId) {
+          const element = document.getElementById(elementId);
+          if (element) {
+            element.style.animation = 'none';
+            element.offsetHeight; // Trigger reflow
+            element.style.animation = 'typing 2s steps(40, end) 0.5s forwards, blink-caret 0.75s step-end infinite';
+          }
+        }
+
+        // Set up 30-second intervals for typing animations
+        setInterval(() => {
+          restartTypingAnimation('typing-text-pr');
+        }, 30000);
+
+        setInterval(() => {
+          restartTypingAnimation('typing-text-tr');
+        }, 30000);
       });
     </script>
 </Layout>
