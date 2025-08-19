@@ -71,6 +71,114 @@
   ::-webkit-scrollbar-thumb:hover {
     background: #94a3b8;
   }
+  
+  /* Mobile-specific optimizations */
+  @media (max-width: 640px) {
+    /* Improve touch targets */
+    button, a, [role="button"] {
+      min-height: 44px;
+      min-width: 44px;
+    }
+    
+    /* Optimize text readability on small screens */
+    h1, h2, h3, h4, h5, h6 {
+      line-height: 1.2;
+    }
+    
+    /* Reduce animation intensity on mobile for better performance */
+    .animate-pulse, .animate-ping, .animate-bounce {
+      animation-duration: 2s;
+    }
+    
+    /* Optimize hover effects for touch devices */
+    .hover\:scale-105:hover,
+    .hover\:scale-110:hover,
+    .hover\:-translate-y-2:hover,
+    .hover\:-translate-y-3:hover {
+      transform: none;
+    }
+    
+    /* Ensure proper spacing on mobile */
+    .container {
+      padding-left: 1rem;
+      padding-right: 1rem;
+    }
+  }
+  
+  /* Touch device optimizations */
+  @media (hover: none) and (pointer: coarse) {
+    /* Disable hover effects on touch devices */
+    .hover\:scale-105,
+    .hover\:scale-110,
+    .hover\:-translate-y-2,
+    .hover\:-translate-y-3 {
+      transition: none;
+    }
+    
+    /* Optimize for touch scrolling */
+    .overflow-hidden {
+      overflow: auto;
+      -webkit-overflow-scrolling: touch;
+    }
+  }
+  
+  /* Mobile Menu Enhancements */
+  .mobile-menu-item {
+    transition: all 0.2s ease;
+  }
+  
+  .mobile-menu-item:hover {
+    transform: translateX(8px);
+  }
+  
+  /* Mobile Menu Icon Animation */
+  .mobile-menu-icon {
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  
+  /* Mobile Menu Dropdown Animation */
+  .mobile-menu-dropdown {
+    animation: slideDown 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  
+  @keyframes slideDown {
+    from {
+      opacity: 0;
+      transform: translateY(-10px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  /* Image Optimization */
+  img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+  }
+  
+  /* Logo Optimization */
+  .flex-shrink-0 img {
+    image-rendering: -webkit-optimize-contrast;
+    image-rendering: crisp-edges;
+  }
+  
+  /* Dark Mode Image Filtering */
+  .dark img[class*="dark:filter"] {
+    filter: brightness(0) invert(1);
+  }
+  
+  /* Image Loading States */
+  img[loading="lazy"] {
+    opacity: 0;
+    transition: opacity 0.3s ease;
+  }
+  
+  img[loading="lazy"].loaded {
+    opacity: 1;
+  }
 }
 
 /* Custom component styles */
@@ -275,6 +383,11 @@
   }
 }
 
+.animate-gradient-shift {
+  background-size: 200% 200%;
+  animation: gradient-shift 3s ease infinite;
+}
+
 /* Immigration at Scale Section Enhancements */
 
 /* Technology Advantage Section - Interactive Dashboard */
@@ -456,6 +569,50 @@ footer img:hover {
   transform: scale(1.05);
 }
 
+/* Toggle Switch Styles */
+.toggle-switch {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.toggle-handle {
+  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.toggle-label {
+  transition: color 0.3s ease;
+}
+
+/* Smooth Toggle Card Transitions */
+.toggle-card-container {
+  position: relative;
+}
+
+/* Toggle Bullet Point Animations */
+.toggle-bullet {
+  animation: toggle-blink 2s ease-in-out infinite;
+}
+
+.toggle-bullet.red {
+  animation-delay: 0s;
+}
+
+.toggle-bullet.blue {
+  animation-delay: 0.5s;
+}
+
+@keyframes toggle-blink {
+  0%, 100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.6;
+    transform: scale(1.2);
+  }
+}
+
+
+
 /* Testimonials Section Animations */
 .testimonial-card {
   transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
@@ -584,6 +741,13 @@ footer img:hover {
   animation: blink-green 2s ease-in-out infinite !important;
   transition: none !important;
   will-change: opacity, transform, box-shadow;
+  animation-fill-mode: both;
+  animation-delay: 0s;
+}
+
+/* Ensure consistent animation timing for all bullet dots */
+.bullet-dot.animate-pulse-glow[data-delay] {
+  animation-delay: var(--delay, 0s) !important;
 }
 
 /* Fallback animation if blink-green doesn't work */
@@ -700,4 +864,89 @@ footer img:hover {
   p, blockquote, table, figure {
     page-break-inside: avoid;
   }
+}
+
+/* Enhanced Services Section Interactions */
+.services-card {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.services-card:hover {
+  transform: translateY(-8px) scale(1.02);
+}
+
+/* Hover Tooltip Animations */
+.hover-tooltip {
+  opacity: 0;
+  transform: translateX(-10px);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.group:hover .hover-tooltip {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+/* Enhanced Icon Interactions */
+.service-icon {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.service-icon:hover {
+  transform: scale(1.1) rotate(5deg);
+}
+
+/* Ripple Effect for CTA Buttons */
+.ripple-effect {
+  position: absolute;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.3);
+  transform: scale(0);
+  animation: ripple 0.6s linear;
+  pointer-events: none;
+}
+
+@keyframes ripple {
+  to {
+    transform: scale(4);
+    opacity: 0;
+  }
+}
+
+@keyframes float-gentle {
+  0%, 100% {
+    transform: translateY(0px) rotate(0deg);
+  }
+  50% {
+    transform: translateY(-10px) rotate(180deg);
+  }
+}
+
+@keyframes pulse-subtle {
+  0%, 100% {
+    opacity: 0.5;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.8;
+    transform: scale(1.05);
+  }
+}
+
+/* Enhanced Bullet Point Interactions */
+.interactive-bullet {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.interactive-bullet:hover {
+  transform: translateX(8px);
+}
+
+.bullet-dot {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.interactive-bullet:hover .bullet-dot {
+  transform: scale(1.5);
+  box-shadow: 0 0 20px currentColor;
 }
