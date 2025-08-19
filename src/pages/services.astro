@@ -121,8 +121,8 @@ export const metadata = {
         </div>
         
         <h2 class="text-4xl md:text-6xl font-bold text-gray-900 dark:text-white mb-6 opacity-0 animate-fade-in-up" style="animation-delay: 0.4s; animation-fill-mode: forwards;">
-          <span id="typing-text-pr" class="inline-block overflow-hidden border-r-4 border-blue-500 pr-2" style="animation-delay: 0.6s; animation-fill-mode: forwards;">
-            <span class="typing-text">Your Path to Permanent Residency in <span class="text-red-500 animate-bounce">Canada</span></span>
+          <span class="slide-reveal-text" style="animation-delay: 0.6s;">
+            Your Path to Permanent Residency in <span class="text-red-500 animate-bounce">Canada</span>
           </span>
         </h2>
         
@@ -514,8 +514,8 @@ export const metadata = {
         </div>
         
         <h2 class="text-4xl md:text-6xl font-bold text-gray-900 dark:text-white mb-6 opacity-0 animate-fade-in-up" style="animation-delay: 0.4s; animation-fill-mode: forwards;">
-          <span id="typing-text-tr" class="inline-block overflow-hidden border-r-4 border-green-500 pr-2" style="animation-delay: 0.6s; animation-fill-mode: forwards;">
-            <span class="typing-text">Your Gateway to Temporary Residence in <span class="text-red-500 animate-bounce">Canada</span></span>
+          <span class="slide-reveal-text" style="animation-delay: 0.6s;">
+            Your Gateway to Temporary Residence in <span class="text-red-500 animate-bounce">Canada</span>
           </span>
         </h2>
         
@@ -2200,24 +2200,7 @@ export const metadata = {
           }
         });
 
-        // Typing animation loop every 30 seconds
-        function restartTypingAnimation(elementId) {
-          const element = document.getElementById(elementId);
-          if (element) {
-            element.style.animation = 'none';
-            element.offsetHeight; // Trigger reflow
-            element.style.animation = 'typing 2s steps(40, end) 0.5s forwards, blink-caret 0.75s step-end infinite';
-          }
-        }
 
-        // Set up 30-second intervals for typing animations
-        setInterval(() => {
-          restartTypingAnimation('typing-text-pr');
-        }, 30000);
-
-        setInterval(() => {
-          restartTypingAnimation('typing-text-tr');
-        }, 30000);
       });
     </script>
 </Layout>
