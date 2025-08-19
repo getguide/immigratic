@@ -1,0 +1,244 @@
+---
+// Search Results Page
+export async function get({ url }) {
+  const query = url.searchParams.get('q') || '';
+  
+  // Mock search results - in production, this would integrate with a real search system
+  const searchResults = query ? [
+    {
+      title: 'Express Entry',
+      description: 'Federal immigration programs for skilled workers',
+      url: '/services',
+      category: 'Immigration Programs'
+    },
+    {
+      title: 'Provincial Nominee Program',
+      description: 'Province-specific immigration pathways',
+      url: '/services',
+      category: 'Immigration Programs'
+    },
+    {
+      title: 'Work Permits',
+      description: 'Temporary work authorization in Canada',
+      url: '/services',
+      category: 'Immigration Programs'
+    },
+    {
+      title: 'Study Permits',
+      description: 'Student visas for Canadian education',
+      url: '/services',
+      category: 'Immigration Programs'
+    },
+    {
+      title: 'Master Assessment Tool',
+      description: 'AI-powered immigration eligibility assessment',
+      url: '/tools/master-assessment',
+      category: 'Tools'
+    },
+    {
+      title: 'Immigration Calculator',
+      description: 'Calculate your CRS score and eligibility',
+      url: '/tools',
+      category: 'Tools'
+    }
+  ] : [];
+  
+  return {
+    body: {
+      query,
+      results: searchResults
+    }
+  };
+}
+
+const { query, results } = Astro.props;
+---
+
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Search Results - Immigratic</title>
+  <meta name="description" content="Search results for immigration programs, tools, and information on Immigratic.">
+  
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  
+  <!-- Custom Styles -->
+  <style>
+    .gradient-text {
+      background: linear-gradient(135deg, #3b82f6, #8b5cf6, #ec4899);
+      background-size: 200% 200%;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      animation: gradient-shift 3s ease-in-out infinite;
+    }
+    
+    @keyframes gradient-shift {
+      0%, 100% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+    }
+  </style>
+</head>
+
+<body class="bg-gradient-to-br from-gray-900 via-blue-900 to-purple-900 min-h-screen text-white">
+  <!-- Header -->
+  <header class="py-6 px-4">
+    <div class="max-w-6xl mx-auto flex items-center justify-between">
+      <a href="/" class="flex items-center gap-3">
+        <div class="w-12 h-12 bg-gradient-to-br from-blue-500 to-purple-600 rounded-xl flex items-center justify-center text-white font-bold text-xl">
+          I
+        </div>
+        <span class="text-2xl font-bold gradient-text">Immigratic</span>
+      </a>
+      
+      <a href="/" class="px-6 py-2 bg-gradient-to-r from-blue-500 to-purple-600 text-white font-semibold rounded-xl hover:from-blue-600 hover:to-purple-700 transition-all duration-300">
+        Return Home
+      </a>
+    </div>
+  </header>
+
+  <!-- Main Content -->
+  <main class="max-w-4xl mx-auto px-4 py-12">
+    <!-- Search Header -->
+    <div class="text-center mb-12">
+      <h1 class="text-4xl md:text-6xl font-bold mb-6">
+        Search Results
+      </h1>
+      
+      <!-- Search Bar -->
+      <div class="max-w-2xl mx-auto mb-8">
+        <form action="/search" method="get" class="flex gap-3">
+          <input 
+            type="text" 
+            name="q"
+            value={query}
+            placeholder="Search for immigration programs, tools, or information..."
+            class="flex-1 px-6 py-3 bg-white/10 backdrop-blur-sm border border-white/20 rounded-xl text-white placeholder-gray-300 focus:outline-none focus:border-blue-400 transition-all duration-300"
+          >
+          <button type="submit" class="px-8 py-3 bg-gradient-to-r from-blue-500 to-purple-600 text-white font-semibold rounded-xl hover:from-blue-600 hover:to-purple-700 transition-all duration-300">
+            Search
+          </button>
+        </form>
+      </div>
+      
+      {query && (
+        <p class="text-xl text-blue-200">
+          Showing results for: <span class="font-semibold text-white">"{query}"</span>
+        </p>
+      )}
+    </div>
+
+    <!-- Search Results -->
+    {query ? (
+      <div class="space-y-6">
+        {results.length > 0 ? (
+          results.map((result, index) => (
+            <div class="bg-white/10 backdrop-blur-sm border border-white/20 rounded-2xl p-6 hover:bg-white/15 transition-all duration-300">
+              <div class="flex items-start justify-between gap-4">
+                <div class="flex-1">
+                  <div class="flex items-center gap-3 mb-2">
+                    <span class="px-3 py-1 bg-blue-500/20 border border-blue-500/30 rounded-full text-xs font-medium text-blue-300">
+                      {result.category}
+                    </span>
+                  </div>
+                  <h3 class="text-xl font-bold mb-2 hover:text-blue-300 transition-colors">
+                    <a href={result.url}>{result.title}</a>
+                  </h3>
+                  <p class="text-blue-200 mb-3">{result.description}</p>
+                  <a href={result.url} class="inline-flex items-center gap-2 text-blue-400 hover:text-blue-300 transition-colors">
+                    Learn more
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6"></path>
+                    </svg>
+                  </a>
+                </div>
+              </div>
+            </div>
+          ))
+        ) : (
+          <div class="text-center py-12">
+            <div class="w-24 h-24 bg-gradient-to-br from-blue-500 to-purple-600 rounded-full flex items-center justify-center mx-auto mb-6">
+              <svg class="w-12 h-12 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+              </svg>
+            </div>
+            <h3 class="text-2xl font-bold mb-4">No results found</h3>
+            <p class="text-blue-200 mb-6">
+              We couldn't find any immigration programs or tools matching your search.
+            </p>
+            <div class="flex flex-col sm:flex-row gap-4 justify-center">
+              <a href="/services" class="px-6 py-3 bg-gradient-to-r from-blue-500 to-purple-600 text-white font-semibold rounded-xl hover:from-blue-600 hover:to-purple-700 transition-all duration-300">
+                Browse All Services
+              </a>
+              <a href="/tools" class="px-6 py-3 border border-white/30 text-white font-semibold rounded-xl hover:bg-white/10 transition-all duration-300">
+                Explore Tools
+              </a>
+            </div>
+          </div>
+        )}
+      </div>
+    ) : (
+      <!-- No Search Query -->
+      <div class="text-center py-12">
+        <div class="w-24 h-24 bg-gradient-to-br from-blue-500 to-purple-600 rounded-full flex items-center justify-center mx-auto mb-6">
+          <svg class="w-12 h-12 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+          </svg>
+        </div>
+        <h3 class="text-2xl font-bold mb-4">Start Your Search</h3>
+        <p class="text-blue-200 mb-6">
+          Use the search bar above to find immigration programs, tools, and information.
+        </p>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-4xl mx-auto">
+          <a href="/services" class="bg-white/10 backdrop-blur-sm border border-white/20 rounded-2xl p-6 hover:bg-white/15 transition-all duration-300 text-center">
+            <div class="w-16 h-16 bg-gradient-to-br from-blue-500 to-blue-600 rounded-xl flex items-center justify-center mx-auto mb-4">
+              <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z"></path>
+              </svg>
+            </div>
+            <h4 class="text-lg font-bold mb-2">Immigration Services</h4>
+            <p class="text-blue-200 text-sm">Explore all our immigration programs</p>
+          </a>
+          
+          <a href="/tools" class="bg-white/10 backdrop-blur-sm border border-white/20 rounded-2xl p-6 hover:bg-white/15 transition-all duration-300 text-center">
+            <div class="w-16 h-16 bg-gradient-to-br from-purple-500 to-purple-600 rounded-xl flex items-center justify-center mx-auto mb-4">
+              <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"></path>
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path>
+              </svg>
+            </div>
+            <h4 class="text-lg font-bold mb-2">Immigration Tools</h4>
+            <p class="text-blue-200 text-sm">Access our advanced technology</p>
+          </a>
+          
+          <a href="https://intake.immigratic.com/ma?utm_source=immigratic&utm_medium=website&utm_campaign=search_page&utm_content=assessment_cta" target="_blank" rel="noopener noreferrer" class="bg-white/10 backdrop-blur-sm border border-white/20 rounded-2xl p-6 hover:bg-white/15 transition-all duration-300 text-center">
+            <div class="w-16 h-16 bg-gradient-to-br from-green-500 to-green-600 rounded-xl flex items-center justify-center mx-auto mb-4">
+              <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v10a2 2 0 002 2h8a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01"></path>
+              </svg>
+            </div>
+            <h4 class="text-lg font-bold mb-2">Free Assessment</h4>
+            <p class="text-blue-200 text-sm">Discover your immigration pathways</p>
+          </a>
+        </div>
+      </div>
+    )}
+  </main>
+
+  <!-- Footer -->
+  <footer class="py-8 px-4 border-t border-white/10">
+    <div class="max-w-6xl mx-auto text-center">
+      <p class="text-blue-300 mb-4">
+        Need immediate assistance? 
+        <a href="mailto:support@immigratic.com" class="text-blue-400 hover:text-blue-300 underline">Contact our support team</a>
+      </p>
+      <p class="text-sm text-blue-400">
+        © 2024 Immigratic. Making Canadian immigration accessible, accurate, and efficient.
+      </p>
+    </div>
+  </footer>
+</body>
+</html>
