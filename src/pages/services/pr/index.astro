@@ -140,12 +140,19 @@ export const metadata = {
         </p>
       </div>
 
-      <!-- Programs Grid -->
-      <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
+            <!-- Programs Grid -->
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 mb-16">
         <!-- Canadian Experience Class -->
         <div class="group relative opacity-0 animate-fade-in-up" style="animation-delay: 0.8s; animation-fill-mode: forwards;">
           <div class="absolute inset-0 bg-gradient-to-r from-blue-600 to-purple-600 rounded-3xl blur-xl opacity-0 group-hover:opacity-100 transition-all duration-700 scale-110"></div>
           <div class="relative bg-white dark:bg-gray-800 rounded-3xl p-8 shadow-2xl border border-white/20 dark:border-gray-700/50 hover:shadow-3xl transition-all duration-700 transform hover:-translate-y-4 hover:scale-105 group-hover:border-blue-400/50 dark:group-hover:border-blue-500/50">
+            <!-- Client Acceptance Tag -->
+            <div class="absolute top-4 right-4">
+              <span class="px-3 py-1 bg-green-100 dark:bg-green-900/30 text-green-700 dark:text-green-300 text-xs font-semibold rounded-full border border-green-200 dark:border-green-700">
+                ✅ Accepting Clients
+              </span>
+            </div>
+            
             <div class="flex items-center gap-4 mb-6">
               <div class="w-16 h-16 bg-gradient-to-br from-blue-500 to-purple-600 rounded-2xl flex items-center justify-center text-white group-hover:scale-110 transition-transform duration-300">
                 <svg class="w-8 h-8" fill="currentColor" viewBox="0 0 24 24">
@@ -188,6 +195,13 @@ export const metadata = {
         <div class="group relative opacity-0 animate-fade-in-up" style="animation-delay: 1s; animation-fill-mode: forwards;">
           <div class="absolute inset-0 bg-gradient-to-r from-green-600 to-blue-600 rounded-3xl blur-xl opacity-0 group-hover:opacity-100 transition-all duration-700 scale-110"></div>
           <div class="relative bg-white dark:bg-gray-800 rounded-3xl p-8 shadow-2xl border border-white/20 dark:border-gray-700/50 hover:shadow-3xl transition-all duration-700 transform hover:-translate-y-4 hover:scale-105 group-hover:border-green-400/50 dark:group-hover:border-green-500/50">
+            <!-- Client Acceptance Tag -->
+            <div class="absolute top-4 right-4">
+              <span class="px-3 py-1 bg-green-100 dark:bg-green-900/30 text-green-700 dark:text-green-300 text-xs font-semibold rounded-full border border-green-200 dark:border-green-700">
+                ✅ Accepting Clients
+              </span>
+            </div>
+            
             <div class="flex items-center gap-4 mb-6">
               <div class="w-16 h-16 bg-gradient-to-br from-green-500 to-blue-600 rounded-2xl flex items-center justify-center text-white group-hover:scale-110 transition-transform duration-300">
                 <svg class="w-8 h-8" fill="currentColor" viewBox="0 0 24 24">
@@ -225,7 +239,158 @@ export const metadata = {
             </div>
           </div>
         </div>
+      </div>
+
+      <!-- Federal Skilled Trades (Not Offered) -->
+      <div class="mb-16 opacity-0 animate-fade-in-up" style="animation-delay: 1.2s; animation-fill-mode: forwards;">
+        <div class="bg-gray-50 dark:bg-gray-800/50 rounded-3xl p-8 border-2 border-dashed border-gray-300 dark:border-gray-600">
+          <div class="flex items-center gap-4 mb-4">
+            <div class="w-16 h-16 bg-gray-300 dark:bg-gray-600 rounded-2xl flex items-center justify-center">
+              <svg class="w-8 h-8 text-gray-500 dark:text-gray-400" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
+              </svg>
+            </div>
+            <div>
+              <h3 class="text-2xl font-bold text-gray-500 dark:text-gray-400">Federal Skilled Trades</h3>
+              <p class="text-gray-500 dark:text-gray-400">Currently not offered</p>
+            </div>
+          </div>
+          <div class="text-center">
+            <span class="px-4 py-2 bg-gray-200 dark:bg-gray-700 text-gray-600 dark:text-gray-300 text-sm font-semibold rounded-full">
+              ❌ Not Currently Offered
+            </span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Targeted Categories Section -->
+      <div class="mb-16">
+        <div class="text-center mb-12">
+          <h3 class="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-4">
+            Federal Targeted Categories
+          </h3>
+          <p class="text-lg text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
+            Priority streams with lower CRS requirements for specific occupations and language skills
+          </p>
+        </div>
+
+        <!-- Targeted Categories Grid -->
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <!-- Health -->
+          <div class="group relative bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-lg border border-gray-200 dark:border-gray-700 hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2">
+            <div class="flex items-center gap-3 mb-4">
+              <div class="w-12 h-12 bg-red-100 dark:bg-red-900/30 rounded-xl flex items-center justify-center">
+                <span class="text-2xl">🏥</span>
               </div>
+              <div>
+                <h4 class="font-semibold text-gray-900 dark:text-white">Health</h4>
+                <span class="px-2 py-1 bg-green-100 dark:bg-green-900/30 text-green-700 dark:text-green-300 text-xs rounded-full">
+                  ✅ Accepting
+                </span>
+              </div>
+            </div>
+            <p class="text-sm text-gray-600 dark:text-gray-400 mb-4">Healthcare professionals, nurses, doctors, medical technicians</p>
+            <button onclick="openEligibilityModal()" class="w-full px-4 py-2 bg-red-600 text-white text-sm font-semibold rounded-xl hover:bg-red-700 transition-colors">
+              Check Eligibility
+            </button>
+          </div>
+
+          <!-- STEM -->
+          <div class="group relative bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-lg border border-gray-200 dark:border-gray-700 hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2">
+            <div class="flex items-center gap-3 mb-4">
+              <div class="w-12 h-12 bg-blue-100 dark:bg-blue-900/30 rounded-xl flex items-center justify-center">
+                <span class="text-2xl">🔬</span>
+              </div>
+              <div>
+                <h4 class="font-semibold text-gray-900 dark:text-white">STEM</h4>
+                <span class="px-2 py-1 bg-green-100 dark:bg-green-900/30 text-green-700 dark:text-green-300 text-xs rounded-full">
+                  ✅ Accepting
+                </span>
+              </div>
+            </div>
+            <p class="text-sm text-gray-600 dark:text-gray-400 mb-4">Scientists, engineers, tech professionals, researchers</p>
+            <button onclick="openEligibilityModal()" class="w-full px-4 py-2 bg-blue-600 text-white text-sm font-semibold rounded-xl hover:bg-blue-700 transition-colors">
+              Check Eligibility
+            </button>
+          </div>
+
+          <!-- Trade -->
+          <div class="group relative bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-lg border border-gray-200 dark:border-gray-700 hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2">
+            <div class="flex items-center gap-3 mb-4">
+              <div class="w-12 h-12 bg-yellow-100 dark:bg-yellow-900/30 rounded-xl flex items-center justify-center">
+                <span class="text-2xl">🔧</span>
+              </div>
+              <div>
+                <h4 class="font-semibold text-gray-900 dark:text-white">Trade</h4>
+                <span class="px-2 py-1 bg-green-100 dark:bg-green-900/30 text-green-700 dark:text-green-300 text-xs rounded-full">
+                  ✅ Accepting
+                </span>
+              </div>
+            </div>
+            <p class="text-sm text-gray-600 dark:text-gray-400 mb-4">Skilled trades, electricians, plumbers, carpenters</p>
+            <button onclick="openEligibilityModal()" class="w-full px-4 py-2 bg-yellow-600 text-white text-sm font-semibold rounded-xl hover:bg-yellow-700 transition-colors">
+              Check Eligibility
+            </button>
+          </div>
+
+          <!-- Education -->
+          <div class="group relative bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-lg border border-gray-200 dark:border-gray-700 hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2">
+            <div class="flex items-center gap-3 mb-4">
+              <div class="w-12 h-12 bg-purple-100 dark:bg-purple-900/30 rounded-xl flex items-center justify-center">
+                <span class="text-2xl">📚</span>
+              </div>
+              <div>
+                <h4 class="font-semibold text-gray-900 dark:text-white">Education</h4>
+                <span class="px-2 py-1 bg-green-100 dark:bg-green-900/30 text-green-700 dark:text-green-300 text-xs rounded-full">
+                  ✅ Accepting
+                </span>
+              </div>
+            </div>
+            <p class="text-sm text-gray-600 dark:text-gray-400 mb-4">Teachers, professors, education administrators</p>
+            <button onclick="openEligibilityModal()" class="w-full px-4 py-2 bg-purple-600 text-white text-sm font-semibold rounded-xl hover:bg-purple-700 transition-colors">
+              Check Eligibility
+            </button>
+          </div>
+
+          <!-- Agriculture -->
+          <div class="group relative bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-lg border border-gray-200 dark:border-gray-700 hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2">
+            <div class="flex items-center gap-3 mb-4">
+              <div class="w-12 h-12 bg-green-100 dark:bg-green-900/30 rounded-xl flex items-center justify-center">
+                <span class="text-2xl">🌾</span>
+              </div>
+              <div>
+                <h4 class="font-semibold text-gray-900 dark:text-white">Agriculture</h4>
+                <span class="px-2 py-1 bg-green-100 dark:bg-green-900/30 text-green-700 dark:text-green-300 text-xs rounded-full">
+                  ✅ Accepting
+                </span>
+              </div>
+            </div>
+            <p class="text-sm text-gray-600 dark:text-gray-400 mb-4">Farmers, agricultural specialists, food processors</p>
+            <button onclick="openEligibilityModal()" class="w-full px-4 py-2 bg-green-600 text-white text-sm font-semibold rounded-xl hover:bg-green-700 transition-colors">
+              Check Eligibility
+            </button>
+          </div>
+
+          <!-- French -->
+          <div class="group relative bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-lg border border-gray-200 dark:border-gray-700 hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2">
+            <div class="flex items-center gap-3 mb-4">
+              <div class="w-12 h-12 bg-indigo-100 dark:bg-indigo-900/30 rounded-xl flex items-center justify-center">
+                <span class="text-2xl">🇫🇷</span>
+              </div>
+              <div>
+                <h4 class="font-semibold text-gray-900 dark:text-white">French</h4>
+                <span class="px-2 py-1 bg-green-100 dark:bg-green-900/30 text-green-700 dark:text-green-300 text-xs rounded-full">
+                  ✅ Accepting
+                </span>
+              </div>
+            </div>
+            <p class="text-sm text-gray-600 dark:text-gray-400 mb-4">French-speaking professionals with CLB 7+</p>
+            <button onclick="openEligibilityModal()" class="w-full px-4 py-2 bg-indigo-600 text-white text-sm font-semibold rounded-xl hover:bg-indigo-700 transition-colors">
+              Check Eligibility
+            </button>
+          </div>
+        </div>
+      </div>
       </div>
     </section>
 
