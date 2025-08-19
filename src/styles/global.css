@@ -283,13 +283,11 @@
   }
 }
 
-.animate-typing {
-  animation: typing 3s steps(60, end) 0.5s forwards, blink-caret 0.75s step-end infinite;
+.typing-text {
+  display: inline-block;
   white-space: nowrap;
   overflow: hidden;
-  border-right: 3px solid;
-  display: inline-block;
-  max-width: 100%;
+  animation: typing 4s steps(80, end) 0.5s forwards;
 }
 
 .animate-typing-loop {
