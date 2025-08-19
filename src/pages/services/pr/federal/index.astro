@@ -1,0 +1,492 @@
+---
+import Layout from '../../../../layouts/Layout.astro';
+
+export const metadata = {
+  title: 'Federal Immigration Programs | Express Entry, FSW, CEC | Immigratic',
+  description: 'Explore Canada\'s federal immigration programs including Express Entry, Federal Skilled Worker, Canadian Experience Class, and targeted categories. Get live CRS data, eligibility requirements, and expert guidance.',
+  image: '/images/federal-immigration-programs.jpg',
+  canonical: 'https://immigratic.com/services/federal'
+};
+---
+
+<Layout title="Federal Immigration Programs | Express Entry, FSW, CEC | Immigratic">
+  <!-- Hero Section with Live Data -->
+  <section class="relative min-h-screen bg-gradient-to-br from-blue-900 via-purple-900 to-indigo-900 overflow-hidden">
+    <!-- Animated Background Elements -->
+    <div class="absolute inset-0">
+      <div class="absolute top-20 left-20 w-72 h-72 bg-blue-500/20 rounded-full blur-3xl animate-pulse"></div>
+      <div class="absolute bottom-20 right-20 w-96 h-96 bg-purple-500/20 rounded-full blur-3xl animate-pulse" style="animation-delay: 2s;"></div>
+      <div class="absolute top-1/2 left-1/2 w-64 h-64 bg-indigo-500/20 rounded-full blur-3xl animate-pulse" style="animation-delay: 4s;"></div>
+    </div>
+
+    <!-- Floating Navigation Particles -->
+    <div class="absolute inset-0 pointer-events-none">
+      <div class="particle" style="--delay: 0s; --duration: 20s; --x: 10%; --y: 20%"></div>
+      <div class="particle" style="--delay: 5s; --duration: 25s; --x: 80%; --y: 60%"></div>
+      <div class="particle" style="--delay: 10s; --duration: 30s; --x: 30%; --y: 80%"></div>
+      <div class="particle" style="--delay: 15s; --duration: 35s; --x: 70%; --y: 30%"></div>
+    </div>
+
+    <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-32 pb-20">
+      <!-- Breadcrumb Navigation -->
+      <nav class="flex items-center gap-2 text-white/80 mb-8 opacity-0 animate-fade-in-up" style="animation-delay: 0.2s; animation-fill-mode: forwards;">
+        <a href="/" class="hover:text-white transition-colors">Home</a>
+        <span class="text-white/50">→</span>
+        <a href="/services" class="hover:text-white transition-colors">Services</a>
+        <span class="text-white/50">→</span>
+        <a href="/services/pr" class="hover:text-white transition-colors">Permanent Residency</a>
+        <span class="text-white/50">→</span>
+        <span class="text-white font-semibold">Federal Programs</span>
+      </nav>
+
+      <!-- Hero Content -->
+      <div class="text-center mb-16">
+        <div class="inline-flex items-center gap-3 mb-6 opacity-0 animate-fade-in-up" style="animation-delay: 0.4s; animation-fill-mode: forwards;">
+          <div class="w-3 h-3 bg-gradient-to-r from-blue-400 to-purple-400 rounded-full animate-pulse"></div>
+          <span class="text-blue-300 font-semibold text-sm uppercase tracking-wider">Federal Immigration</span>
+          <div class="w-3 h-3 bg-gradient-to-r from-purple-400 to-indigo-400 rounded-full animate-pulse" style="animation-delay: 1s;"></div>
+        </div>
+        
+        <h1 class="text-5xl md:text-7xl font-bold text-white mb-6 opacity-0 animate-fade-in-up" style="animation-delay: 0.6s; animation-fill-mode: forwards;">
+          Express Entry
+          <span class="block bg-gradient-to-r from-blue-400 via-purple-400 to-indigo-400 bg-clip-text text-transparent animate-gradient-shift">
+            Federal Programs
+          </span>
+        </h1>
+        
+        <p class="text-xl md:text-2xl text-blue-100 max-w-4xl mx-auto mb-12 opacity-0 animate-fade-in-up" style="animation-delay: 0.8s; animation-fill-mode: forwards;">
+          Canada's flagship immigration system combining skilled worker programs, experience-based pathways, and targeted category draws for maximum success potential.
+        </p>
+
+        <!-- Live CRS Counter -->
+        <div class="inline-flex items-center gap-4 bg-white/10 backdrop-blur-sm rounded-2xl p-6 mb-8 opacity-0 animate-fade-in-up" style="animation-delay: 1s; animation-fill-mode: forwards;">
+          <div class="text-center">
+            <div class="text-3xl md:text-4xl font-bold text-white mb-1" id="liveCRS">534</div>
+            <div class="text-sm text-blue-200">Latest CRS Cutoff</div>
+          </div>
+          <div class="w-px h-12 bg-white/20"></div>
+          <div class="text-center">
+            <div class="text-3xl md:text-4xl font-bold text-white mb-1" id="lastDraw">Aug 7</div>
+            <div class="text-sm text-blue-200">Last Draw</div>
+          </div>
+          <div class="w-px h-12 bg-white/20"></div>
+          <div class="text-center">
+            <div class="text-3xl md:text-4xl font-bold text-white mb-1" id="nextDraw">Aug 21</div>
+            <div class="text-sm text-blue-200">Next Expected</div>
+          </div>
+        </div>
+
+        <!-- CTA Buttons -->
+        <div class="flex flex-col sm:flex-row gap-4 justify-center opacity-0 animate-fade-in-up" style="animation-delay: 1.2s; animation-fill-mode: forwards;">
+          <a href="https://intake.immigratic.com/ma?utm_source=immigratic&utm_medium=website&utm_campaign=federal_page&utm_content=hero_assessment" target="_blank" rel="noopener noreferrer" class="px-8 py-4 bg-gradient-to-r from-blue-500 to-purple-600 text-white font-bold rounded-2xl hover:from-blue-600 hover:to-purple-700 transition-all duration-300 transform hover:scale-105 shadow-2xl">
+            Start Express Entry Assessment
+          </a>
+          <a href="https://try.immigratic.com/meetings/immicare/165?utm_source=immigratic&utm_medium=website&utm_campaign=federal_page&utm_content=hero_consultation" target="_blank" rel="noopener noreferrer" class="px-8 py-4 border-2 border-white/30 text-white font-bold rounded-2xl hover:bg-white/10 transition-all duration-300 backdrop-blur-sm">
+            Book Expert Consultation
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Programs Overview Section -->
+  <section class="py-24 bg-white dark:bg-gray-900 relative">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <!-- Section Header -->
+      <div class="text-center mb-20">
+        <h2 class="text-4xl md:text-6xl font-bold text-gray-900 dark:text-white mb-6">
+          Three Pathways to
+          <span class="bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
+            Permanent Residency
+          </span>
+        </h2>
+        <p class="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
+          Express Entry combines multiple immigration streams into one unified system, maximizing your chances of success.
+        </p>
+      </div>
+
+      <!-- Programs Grid -->
+      <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-16">
+        <!-- Federal Skilled Worker -->
+        <div class="group relative bg-white dark:bg-gray-800 rounded-3xl p-8 shadow-2xl border border-gray-200 dark:border-gray-700 hover:shadow-3xl transition-all duration-500 transform hover:-translate-y-4">
+          <div class="absolute inset-0 bg-gradient-to-r from-blue-500/5 to-purple-500/5 rounded-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+          
+          <div class="relative z-10">
+            <!-- Program Icon -->
+            <div class="w-20 h-20 bg-gradient-to-br from-blue-500 to-purple-600 rounded-2xl flex items-center justify-center text-white text-3xl font-bold mb-6 group-hover:scale-110 transition-transform duration-300">
+              👨‍💼
+            </div>
+            
+            <!-- Program Title -->
+            <h3 class="text-2xl font-bold text-gray-900 dark:text-white mb-4">Federal Skilled Worker</h3>
+            
+            <!-- Key Requirements -->
+            <div class="space-y-3 mb-6">
+              <div class="flex items-center gap-3">
+                <div class="w-2 h-2 bg-blue-500 rounded-full"></div>
+                <span class="text-gray-600 dark:text-gray-400">Minimum 1 year skilled work experience</span>
+              </div>
+              <div class="flex items-center gap-3">
+                <div class="w-2 h-2 bg-blue-500 rounded-full"></div>
+                <span class="text-gray-600 dark:text-gray-400">CLB 7 in English/French</span>
+              </div>
+              <div class="flex items-center gap-3">
+                <div class="w-2 h-2 bg-blue-500 rounded-full"></div>
+                <span class="text-gray-600 dark:text-gray-400">Secondary education or higher</span>
+              </div>
+            </div>
+            
+            <!-- Processing Time -->
+            <div class="bg-blue-50 dark:bg-blue-900/20 rounded-xl p-4 mb-6">
+              <div class="text-center">
+                <div class="text-2xl font-bold text-blue-600 dark:text-blue-400">6-8 months</div>
+                <div class="text-sm text-blue-600 dark:text-blue-400">Processing Time</div>
+              </div>
+            </div>
+            
+            <!-- CTA -->
+            <a href="/services/federal/ee-fsw?utm_source=immigratic&utm_medium=website&utm_campaign=federal_page&utm_content=fsw_card" class="block w-full text-center px-6 py-3 bg-gradient-to-r from-blue-600 to-purple-600 text-white font-semibold rounded-xl hover:from-blue-700 hover:to-purple-700 transition-all duration-300">
+              Explore FSW Program
+            </a>
+          </div>
+        </div>
+
+        <!-- Canadian Experience Class -->
+        <div class="group relative bg-white dark:bg-gray-800 rounded-3xl p-8 shadow-2xl border border-gray-200 dark:border-gray-700 hover:shadow-3xl transition-all duration-500 transform hover:-translate-y-4">
+          <div class="absolute inset-0 bg-gradient-to-r from-green-500/5 to-blue-500/5 rounded-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+          
+          <div class="relative z-10">
+            <!-- Program Icon -->
+            <div class="w-20 h-20 bg-gradient-to-br from-green-500 to-blue-600 rounded-2xl flex items-center justify-center text-white text-3xl font-bold mb-6 group-hover:scale-110 transition-transform duration-300">
+              🎓
+            </div>
+            
+            <!-- Program Title -->
+            <h3 class="text-2xl font-bold text-gray-900 dark:text-white mb-4">Canadian Experience Class</h3>
+            
+            <!-- Key Requirements -->
+            <div class="space-y-3 mb-6">
+              <div class="flex items-center gap-3">
+                <div class="w-2 h-2 bg-green-500 rounded-full"></div>
+                <span class="text-gray-600 dark:text-gray-400">1 year Canadian work experience</span>
+              </div>
+              <div class="flex items-center gap-3">
+                <div class="w-2 h-2 bg-green-500 rounded-full"></div>
+                <span class="text-gray-600 dark:text-gray-400">CLB 7 in English/French</span>
+              </div>
+              <div class="flex items-center gap-3">
+                <div class="w-2 h-2 bg-green-500 rounded-full"></div>
+                <span class="text-gray-600 dark:text-gray-400">Valid temporary status</span>
+              </div>
+            </div>
+            
+            <!-- Processing Time -->
+            <div class="bg-green-50 dark:bg-green-900/20 rounded-xl p-4 mb-6">
+              <div class="text-center">
+                <div class="text-2xl font-bold text-green-600 dark:text-green-400">4-6 months</div>
+                <div class="text-sm text-green-600 dark:text-green-400">Processing Time</div>
+              </div>
+            </div>
+            
+            <!-- CTA -->
+            <a href="/services/federal/ee-cec?utm_source=immigratic&utm_medium=website&utm_campaign=federal_page&utm_content=cec_card" class="block w-full text-center px-6 py-3 bg-gradient-to-r from-green-600 to-blue-600 text-white font-semibold rounded-xl hover:from-green-700 hover:to-blue-700 transition-all duration-300">
+              Explore CEC Program
+            </a>
+          </div>
+        </div>
+
+        <!-- Federal Skilled Trades -->
+        <div class="group relative bg-white dark:bg-gray-800 rounded-3xl p-8 shadow-2xl border border-gray-200 dark:border-gray-700 hover:shadow-3xl transition-all duration-500 transform hover:-translate-y-4">
+          <div class="absolute inset-0 bg-gradient-to-r from-orange-500/5 to-red-500/5 rounded-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+          
+          <div class="relative z-10">
+            <!-- Program Icon -->
+            <div class="w-20 h-20 bg-gradient-to-br from-orange-500 to-red-600 rounded-2xl flex items-center justify-center text-white text-3xl font-bold mb-6 group-hover:scale-110 transition-transform duration-300">
+              🔧
+            </div>
+            
+            <!-- Program Title -->
+            <h3 class="text-2xl font-bold text-gray-900 dark:text-white mb-4">Federal Skilled Trades</h3>
+            
+            <!-- Key Requirements -->
+            <div class="space-y-3 mb-6">
+              <div class="flex items-center gap-3">
+                <div class="w-2 h-2 bg-orange-500 rounded-full"></div>
+                <span class="text-gray-600 dark:text-gray-400">2 years skilled trades experience</span>
+              </div>
+              <div class="flex items-center gap-3">
+                <div class="w-2 h-2 bg-orange-500 rounded-full"></div>
+                <span class="text-gray-600 dark:text-gray-400">CLB 5 in English/French</span>
+              </div>
+              <div class="flex items-center gap-3">
+                <div class="w-2 h-2 bg-orange-500 rounded-full"></div>
+                <span class="text-gray-600 dark:text-gray-400">Job offer or certificate</span>
+              </div>
+            </div>
+            
+            <!-- Processing Time -->
+            <div class="bg-orange-50 dark:bg-orange-900/20 rounded-xl p-4 mb-6">
+              <div class="text-center">
+                <div class="text-2xl font-bold text-orange-600 dark:text-orange-400">8-12 months</div>
+                <div class="text-sm text-orange-600 dark:text-orange-400">Processing Time</div>
+              </div>
+            </div>
+            
+            <!-- CTA -->
+            <a href="/services/federal/ee-fst?utm_source=immigratic&utm_medium=website&utm_campaign=federal_page&utm_content=fst_card" class="block w-full text-center px-6 py-3 bg-gradient-to-r from-orange-600 to-red-600 text-white font-semibold rounded-xl hover:from-orange-700 hover:to-red-700 transition-all duration-300">
+              Explore FST Program
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Targeted Categories Section -->
+  <section class="py-24 bg-gradient-to-br from-gray-50 to-blue-50 dark:from-gray-800 dark:to-blue-900/20 relative">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <!-- Section Header -->
+      <div class="text-center mb-20">
+        <h2 class="text-4xl md:text-6xl font-bold text-gray-900 dark:text-white mb-6">
+          Priority
+          <span class="bg-gradient-to-r from-green-600 to-blue-600 bg-clip-text text-transparent">
+            Targeted Categories
+          </span>
+        </h2>
+        <p class="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
+          Strategic draws targeting specific skills and backgrounds for faster processing and higher success rates.
+        </p>
+      </div>
+
+      <!-- Categories Grid -->
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-16">
+        <!-- STEM -->
+        <div class="bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2">
+          <div class="flex items-center gap-4 mb-4">
+            <div class="w-12 h-12 bg-gradient-to-br from-blue-500 to-purple-600 rounded-xl flex items-center justify-center text-white text-xl">
+              🧬
+            </div>
+            <div>
+              <h3 class="text-lg font-bold text-gray-900 dark:text-white">STEM</h3>
+              <p class="text-sm text-gray-600 dark:text-gray-400">Science, Technology, Engineering, Math</p>
+            </div>
+          </div>
+          <div class="text-center">
+            <div class="text-2xl font-bold text-blue-600 dark:text-blue-400 mb-1">CRS 481</div>
+            <div class="text-xs text-gray-500">Last Draw: Aug 8, 2025</div>
+          </div>
+        </div>
+
+        <!-- Healthcare -->
+        <div class="bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2">
+          <div class="flex items-center gap-4 mb-4">
+            <div class="w-12 h-12 bg-gradient-to-br from-green-500 to-blue-600 rounded-xl flex items-center justify-center text-white text-xl">
+              🏥
+            </div>
+            <div>
+              <h3 class="text-lg font-bold text-gray-900 dark:text-white">Healthcare</h3>
+              <p class="text-sm text-gray-600 dark:text-gray-400">Medical & Health Professionals</p>
+            </div>
+          </div>
+          <div class="text-center">
+            <div class="text-2xl font-bold text-green-600 dark:text-green-400 mb-1">CRS 463</div>
+            <div class="text-xs text-gray-500">Last Draw: Jul 25, 2025</div>
+          </div>
+        </div>
+
+        <!-- French Language -->
+        <div class="bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2">
+          <div class="flex items-center gap-4 mb-4">
+            <div class="w-12 h-12 bg-gradient-to-br from-purple-500 to-pink-600 rounded-xl flex items-center justify-center text-white text-xl">
+              🇫🇷
+            </div>
+            <div>
+              <h3 class="text-lg font-bold text-gray-900 dark:text-white">French Language</h3>
+              <p class="text-sm text-gray-600 dark:text-gray-400">Bilingual Advantage</p>
+            </div>
+          </div>
+          <div class="text-center">
+            <div class="text-2xl font-bold text-purple-600 dark:text-purple-400 mb-1">CRS 481</div>
+            <div class="text-xs text-gray-500">Last Draw: Aug 8, 2025</div>
+          </div>
+        </div>
+
+        <!-- Trade -->
+        <div class="bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2">
+          <div class="flex items-center gap-4 mb-4">
+            <div class="w-12 h-12 bg-gradient-to-br from-orange-500 to-red-600 rounded-xl flex items-center justify-center text-white text-xl">
+              🔨
+            </div>
+            <div>
+              <h3 class="text-lg font-bold text-gray-900 dark:text-white">Skilled Trades</h3>
+              <p class="text-sm text-gray-600 dark:text-gray-400">Construction & Industrial</p>
+            </div>
+          </div>
+          <div class="text-center">
+            <div class="text-2xl font-bold text-orange-600 dark:text-orange-400 mb-1">CRS 445</div>
+            <div class="text-xs text-gray-500">Last Draw: Jul 18, 2025</div>
+          </div>
+        </div>
+
+        <!-- Agriculture -->
+        <div class="bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2">
+          <div class="flex items-center gap-4 mb-4">
+            <div class="w-12 h-12 bg-gradient-to-br from-green-500 to-yellow-600 rounded-xl flex items-center justify-center text-white text-xl">
+              🌾
+            </div>
+            <div>
+              <h3 class="text-lg font-bold text-gray-900 dark:text-white">Agriculture</h3>
+              <p class="text-sm text-gray-600 dark:text-gray-400">Food Production & Farming</p>
+            </div>
+          </div>
+          <div class="text-center">
+            <div class="text-2xl font-bold text-green-600 dark:text-green-400 mb-1">CRS 425</div>
+            <div class="text-xs text-gray-500">Last Draw: Jul 11, 2025</div>
+          </div>
+        </div>
+
+        <!-- Education -->
+        <div class="bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2">
+          <div class="flex items-center gap-4 mb-4">
+            <div class="w-12 h-12 bg-gradient-to-br from-indigo-500 to-purple-600 rounded-xl flex items-center justify-center text-white text-xl">
+              📚
+            </div>
+            <div>
+              <h3 class="text-lg font-bold text-gray-900 dark:text-white">Education</h3>
+              <p class="text-sm text-gray-600 dark:text-gray-400">Teaching & Academic</p>
+            </div>
+          </div>
+          <div class="text-center">
+            <div class="text-2xl font-bold text-indigo-600 dark:text-indigo-400 mb-1">CRS 458</div>
+            <div class="text-xs text-gray-500">Last Draw: Jul 28, 2025</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- CTA Section -->
+      <div class="text-center">
+        <a href="https://intake.immigratic.com/ma?utm_source=immigratic&utm_medium=website&utm_campaign=federal_page&utm_content=targeted_categories" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-3 px-8 py-4 bg-gradient-to-r from-green-600 to-blue-600 text-white font-bold rounded-2xl hover:from-green-700 hover:to-blue-700 transition-all duration-300 transform hover:scale-105 shadow-2xl">
+          <span>Check Your Category Eligibility</span>
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6"/>
+          </svg>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Final CTA Section -->
+  <section class="py-24 bg-gradient-to-br from-blue-900 to-purple-900 relative">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      <h2 class="text-4xl md:text-5xl font-bold text-white mb-6">
+        Ready to Start Your
+        <span class="bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent">
+          Express Entry Journey?
+        </span>
+      </h2>
+      <p class="text-xl text-blue-100 mb-12 max-w-2xl mx-auto">
+        Join thousands of successful immigrants who chose Immigratic for their path to Canadian permanent residency.
+      </p>
+      
+      <div class="flex flex-col sm:flex-row gap-6 justify-center">
+        <a href="https://intake.immigratic.com/ma?utm_source=immigratic&utm_medium=website&utm_campaign=federal_page&utm_content=final_assessment" target="_blank" rel="noopener noreferrer" class="px-8 py-4 bg-white text-blue-900 font-bold rounded-2xl hover:bg-gray-100 transition-all duration-300 transform hover:scale-105 shadow-2xl">
+          Start Free Assessment
+        </a>
+        <a href="https://try.immigratic.com/meetings/immicare/165?utm_source=immigratic&utm_medium=website&utm_campaign=federal_page&utm_content=final_consultation" target="_blank" rel="noopener noreferrer" class="px-8 py-4 border-2 border-white/30 text-white font-bold rounded-2xl hover:bg-white/10 transition-all duration-300 backdrop-blur-sm">
+          Book Expert Consultation
+        </a>
+      </div>
+    </div>
+  </section>
+</Layout>
+
+<style>
+  .particle {
+    position: absolute;
+    width: 4px;
+    height: 4px;
+    background: rgba(255, 255, 255, 0.3);
+    border-radius: 50%;
+    animation: float var(--duration) linear infinite;
+    animation-delay: var(--delay);
+    left: var(--x);
+    top: var(--y);
+  }
+
+  @keyframes float {
+    0% {
+      transform: translateY(0) rotate(0deg);
+      opacity: 0;
+    }
+    10% {
+      opacity: 1;
+    }
+    90% {
+      opacity: 1;
+    }
+    100% {
+      transform: translateY(-100vh) rotate(360deg);
+      opacity: 0;
+    }
+  }
+
+  @keyframes animate-gradient-shift {
+    0%, 100% {
+      background-position: 0% 50%;
+    }
+    50% {
+      background-position: 100% 50%;
+    }
+  }
+
+  .animate-gradient-shift {
+    background-size: 200% 200%;
+    animation: animate-gradient-shift 3s ease infinite;
+  }
+</style>
+
+<script>
+  // Live CRS Counter Animation
+  function animateCounter(element, target, duration = 2000) {
+    let start = 0;
+    const increment = target / (duration / 16);
+    
+    const timer = setInterval(() => {
+      start += increment;
+      if (start >= target) {
+        element.textContent = target;
+        clearInterval(timer);
+      } else {
+        element.textContent = Math.floor(start);
+      }
+    }, 16);
+  }
+
+  // Initialize counters when page loads
+  document.addEventListener('DOMContentLoaded', function() {
+    const crsElement = document.getElementById('liveCRS');
+    if (crsElement) {
+      animateCounter(crsElement, 534);
+    }
+  });
+
+  // Intersection Observer for animations
+  const observerOptions = {
+    threshold: 0.1,
+    rootMargin: '0px 0px -50px 0px'
+  };
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.style.opacity = '1';
+        entry.target.style.transform = 'translateY(0)';
+      }
+    });
+  }, observerOptions);
+
+  // Observe all animated elements
+  document.querySelectorAll('.animate-fade-in-up').forEach(el => {
+    observer.observe(el);
+  });
+</script>
