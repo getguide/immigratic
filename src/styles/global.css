@@ -284,7 +284,7 @@
 }
 
 .animate-typing {
-  animation: typing 2s steps(40, end), blink-caret 0.75s step-end infinite;
+  animation: typing 2s steps(40, end) 30s infinite, blink-caret 0.75s step-end infinite;
   white-space: nowrap;
   overflow: hidden;
   border-right: 3px solid;
