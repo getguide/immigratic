@@ -2,26 +2,43 @@
 import Layout from '../../../layouts/Layout.astro';
 
 export const metadata = {
-  title: 'Permanent Residency Programs | Express Entry, PNP, Family Sponsorship | Immigratic',
-  description: 'Explore all Canadian permanent residency programs including Express Entry, Provincial Nominee Programs, Family Sponsorship, and more. Expert guidance for your path to Canadian PR.',
-  image: '/images/permanent-residency-programs.jpg',
-  canonical: 'https://immigratic.com/services/pr'
+  title: 'Permanent Residency Programs | Immigratic',
+  description: 'Explore Canada\'s top Permanent Residency programs: Express Entry, Provincial Nominee Programs, and Family Sponsorship. Expert guidance for your PR journey.',
+  keywords: 'permanent residency, express entry, PNP, family sponsorship, Canada immigration, PR programs',
+  openGraph: {
+    title: 'Permanent Residency Programs | Immigratic',
+    description: 'Explore Canada\'s top Permanent Residency programs: Express Entry, Provincial Nominee Programs, and Family Sponsorship.',
+    image: '/og-image-pr.jpg',
+    url: 'https://immigratic.com/services/pr'
+  }
 };
 ---
 
-<Layout title="Permanent Residency Programs | Express Entry, PNP, Family Sponsorship | Immigratic">
+<Layout>
   <!-- Hero Section -->
-  <section class="relative min-h-screen bg-gradient-to-br from-green-900 via-blue-900 to-indigo-900 overflow-hidden">
+  <section class="relative min-h-screen bg-gradient-to-br from-blue-900 via-purple-900 to-indigo-900 overflow-hidden">
     <!-- Animated Background -->
     <div class="absolute inset-0">
-      <div class="absolute top-20 left-20 w-72 h-72 bg-green-500/20 rounded-full blur-3xl animate-pulse"></div>
-      <div class="absolute bottom-20 right-20 w-96 h-96 bg-blue-500/20 rounded-full blur-3xl animate-pulse" style="animation-delay: 2s;"></div>
-      <div class="absolute top-1/2 left-1/2 w-64 h-64 bg-indigo-500/20 rounded-full blur-3xl animate-pulse" style="animation-delay: 4s;"></div>
+      <div class="absolute inset-0 bg-gradient-to-r from-blue-600/20 to-purple-600/20"></div>
+      <div class="absolute top-0 left-0 w-full h-full">
+        <div class="absolute top-20 left-20 w-72 h-72 bg-blue-500/10 rounded-full blur-3xl animate-pulse"></div>
+        <div class="absolute top-40 right-20 w-96 h-96 bg-purple-500/10 rounded-full blur-3xl animate-pulse" style="animation-delay: 2s;"></div>
+        <div class="absolute bottom-20 left-1/3 w-80 h-80 bg-indigo-500/10 rounded-full blur-3xl animate-pulse" style="animation-delay: 4s;"></div>
+      </div>
     </div>
 
+    <!-- Floating Navigation Particles -->
+    <div class="absolute inset-0 overflow-hidden pointer-events-none">
+      <div class="floating-nav-particle absolute top-1/4 left-1/4 w-2 h-2 bg-blue-400 rounded-full opacity-60"></div>
+      <div class="floating-nav-particle absolute top-1/3 right-1/3 w-1 h-1 bg-purple-400 rounded-full opacity-40" style="animation-delay: 1s;"></div>
+      <div class="floating-nav-particle absolute top-2/3 left-1/2 w-3 h-3 bg-indigo-400 rounded-full opacity-50" style="animation-delay: 2s;"></div>
+      <div class="floating-nav-particle absolute bottom-1/4 right-1/4 w-1.5 h-1.5 bg-blue-300 rounded-full opacity-70" style="animation-delay: 3s;"></div>
+    </div>
+
+    <!-- Content -->
     <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-32 pb-20">
-      <!-- Breadcrumb -->
-      <nav class="flex items-center gap-2 text-white/80 mb-8">
+      <!-- Breadcrumbs -->
+      <nav class="flex items-center gap-2 text-white/70 mb-8">
         <a href="/" class="hover:text-white transition-colors">Home</a>
         <span class="text-white/50">→</span>
         <a href="/services" class="hover:text-white transition-colors">Services</a>
@@ -31,194 +48,470 @@ export const metadata = {
 
       <!-- Hero Content -->
       <div class="text-center mb-16">
-        <div class="inline-flex items-center gap-3 mb-6">
-          <div class="w-3 h-3 bg-gradient-to-r from-green-400 to-blue-400 rounded-full animate-pulse"></div>
-          <span class="text-green-300 font-semibold text-sm uppercase tracking-wider">Permanent Residency</span>
-          <div class="w-3 h-3 bg-gradient-to-r from-blue-400 to-indigo-400 rounded-full animate-pulse" style="animation-delay: 1s;"></div>
+        <div class="inline-flex items-center gap-3 mb-6 opacity-0 animate-fade-in-up" style="animation-delay: 0.2s; animation-fill-mode: forwards;">
+          <div class="w-3 h-3 bg-gradient-to-r from-blue-500 to-purple-600 rounded-full animate-pulse"></div>
+          <span class="text-blue-400 font-semibold text-sm uppercase tracking-wider">Permanent Residency</span>
+          <div class="w-3 h-3 bg-gradient-to-r from-purple-500 to-pink-600 rounded-full animate-pulse" style="animation-delay: 1s;"></div>
         </div>
         
-        <h1 class="text-5xl md:text-7xl font-bold text-white mb-6">
-          Your Path to
-          <span class="block bg-gradient-to-r from-green-400 via-blue-400 to-indigo-400 bg-clip-text text-transparent">
-            Canadian Citizenship
+        <h1 class="text-5xl md:text-7xl font-bold text-white mb-8 opacity-0 animate-fade-in-up" style="animation-delay: 0.4s; animation-fill-mode: forwards;">
+          <span class="slide-reveal-text" style="animation-delay: 0.6s;">
+            Your Path to Permanent Residency in <span class="text-red-400 animate-bounce">Canada</span>
           </span>
         </h1>
         
-        <p class="text-xl md:text-2xl text-blue-100 max-w-4xl mx-auto mb-12">
-          Comprehensive permanent residency solutions through Express Entry, Provincial Nominee Programs, and Family Sponsorship pathways.
+        <p class="text-xl md:text-2xl text-blue-100 max-w-4xl mx-auto opacity-0 animate-fade-in-up" style="animation-delay: 0.8s; animation-fill-mode: forwards;">
+          Navigate the complex world of Canadian immigration with our interactive pathways and real-time guidance.
         </p>
+      </div>
 
-        <!-- CTA Buttons -->
-        <div class="flex flex-col sm:flex-row gap-4 justify-center">
-          <a href="https://intake.immigratic.com/ma?utm_source=immigratic&utm_medium=website&utm_campaign=pr_page&utm_content=hero_assessment" target="_blank" rel="noopener noreferrer" class="px-8 py-4 bg-gradient-to-r from-green-500 to-blue-600 text-white font-bold rounded-2xl hover:from-green-600 hover:to-blue-700 transition-all duration-300 transform hover:scale-105 shadow-2xl">
-            Start PR Assessment
-          </a>
-          <a href="https://try.immigratic.com/meetings/immicare/165?utm_source=immigratic&utm_medium=website&utm_campaign=pr_page&utm_content=hero_consultation" target="_blank" rel="noopener noreferrer" class="px-8 py-4 border-2 border-white/30 text-white font-bold rounded-2xl hover:bg-white/10 transition-all duration-300 backdrop-blur-sm">
-            Book Expert Consultation
-          </a>
+      <!-- Live Immigration Data Stream -->
+      <div class="max-w-4xl mx-auto opacity-0 animate-fade-in-up" style="animation-delay: 1s; animation-fill-mode: forwards;">
+        <div class="bg-white/10 backdrop-blur-lg rounded-2xl border border-white/20 p-6">
+          <div class="flex items-center justify-between mb-4">
+            <h3 class="text-lg font-semibold text-white">Live Immigration Data</h3>
+            <div class="flex items-center gap-2">
+              <div class="w-2 h-2 bg-green-400 rounded-full animate-pulse"></div>
+              <span class="text-sm text-green-300">Live</span>
+            </div>
+          </div>
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+            <div class="text-center">
+              <div class="text-2xl font-bold text-white">534</div>
+              <div class="text-sm text-blue-200">Latest CRS Cutoff</div>
+            </div>
+            <div class="text-center">
+              <div class="text-2xl font-bold text-white">91%</div>
+              <div class="text-sm text-blue-200">Success Rate</div>
+            </div>
+            <div class="text-center">
+              <div class="text-2xl font-bold text-white">6-12</div>
+              <div class="text-sm text-blue-200">Processing Months</div>
+            </div>
+          </div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- PR Programs Overview -->
-  <section class="py-24 bg-white dark:bg-gray-900">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+  <!-- Floating Page Navigation -->
+  <div class="sticky top-4 z-50 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-8">
+    <nav class="bg-white/90 dark:bg-gray-800/90 backdrop-blur-lg rounded-2xl border border-white/20 dark:border-gray-700/50 shadow-2xl p-4">
+      <div class="flex flex-wrap items-center justify-center gap-4 md:gap-8">
+        <a href="#express-entry" class="flex items-center gap-2 px-4 py-2 rounded-xl hover:bg-blue-50 dark:hover:bg-blue-900/30 transition-all duration-300 group">
+          <div class="w-2 h-2 bg-blue-500 rounded-full group-hover:scale-150 transition-transform"></div>
+          <span class="font-semibold text-gray-700 dark:text-gray-300 group-hover:text-blue-600 dark:group-hover:text-blue-400">Express Entry</span>
+        </a>
+        <a href="#provincial-nominee" class="flex items-center gap-2 px-4 py-2 rounded-xl hover:bg-green-50 dark:hover:bg-green-900/30 transition-all duration-300 group">
+          <div class="w-2 h-2 bg-green-500 rounded-full group-hover:scale-150 transition-transform"></div>
+          <span class="font-semibold text-gray-700 dark:text-gray-300 group-hover:text-green-600 dark:group-hover:text-green-400">Provincial Nominee</span>
+        </a>
+        <a href="#family-sponsorship" class="flex items-center gap-2 px-4 py-2 rounded-xl hover:bg-red-50 dark:hover:bg-red-900/30 transition-all duration-300 group">
+          <div class="w-2 h-2 bg-red-500 rounded-full group-hover:scale-150 transition-transform"></div>
+          <span class="font-semibold text-gray-700 dark:text-gray-300 group-hover:text-red-600 dark:group-hover:text-red-400">Family Sponsorship</span>
+        </a>
+      </div>
+    </nav>
+  </div>
+
+  <!-- Express Entry Section -->
+  <section id="express-entry" class="py-24 bg-gradient-to-br from-gray-50 to-blue-50 dark:from-gray-800 dark:to-gray-900 relative overflow-hidden">
+    <!-- Background Elements -->
+    <div class="absolute inset-0">
+      <div class="absolute top-0 left-0 w-full h-full bg-gradient-to-r from-blue-600/5 to-purple-600/5"></div>
+      <div class="absolute top-20 right-20 w-96 h-96 bg-blue-500/5 rounded-full blur-3xl"></div>
+    </div>
+
+    <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <!-- Section Header -->
       <div class="text-center mb-20">
-        <h2 class="text-4xl md:text-6xl font-bold text-gray-900 dark:text-white mb-6">
-          Three Main
-          <span class="bg-gradient-to-r from-green-600 to-blue-600 bg-clip-text text-transparent">
-            PR Pathways
-          </span>
+        <div class="inline-flex items-center gap-3 mb-6 opacity-0 animate-fade-in-up" style="animation-delay: 0.2s; animation-fill-mode: forwards;">
+          <div class="w-3 h-3 bg-gradient-to-r from-blue-500 to-purple-600 rounded-full animate-pulse"></div>
+          <span class="text-blue-600 dark:text-blue-400 font-semibold text-sm uppercase tracking-wider">Federal Programs</span>
+          <div class="w-3 h-3 bg-gradient-to-r from-purple-500 to-pink-600 rounded-full animate-pulse" style="animation-delay: 1s;"></div>
+        </div>
+        
+        <h2 class="text-4xl md:text-6xl font-bold text-gray-900 dark:text-white mb-6 opacity-0 animate-fade-in-up" style="animation-delay: 0.4s; animation-fill-mode: forwards;">
+          Express Entry Programs
         </h2>
-        <p class="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
-          Choose the pathway that best fits your profile and maximize your chances of success.
+        
+        <p class="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto opacity-0 animate-fade-in-up" style="animation-delay: 0.6s; animation-fill-mode: forwards;">
+          Canada's flagship immigration system for skilled workers, offering the fastest path to permanent residency.
         </p>
       </div>
 
       <!-- Programs Grid -->
-      <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-16">
-        <!-- Express Entry -->
-        <div class="group relative bg-white dark:bg-gray-800 rounded-3xl p-8 shadow-2xl border border-gray-200 dark:border-gray-700 hover:shadow-3xl transition-all duration-500 transform hover:-translate-y-4">
-          <div class="absolute inset-0 bg-gradient-to-r from-blue-500/5 to-purple-500/5 rounded-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-          
-          <div class="relative z-10">
-            <div class="w-20 h-20 bg-gradient-to-br from-blue-500 to-purple-600 rounded-2xl flex items-center justify-center text-white text-3xl font-bold mb-6 group-hover:scale-110 transition-transform duration-300">
-              🚀
-            </div>
-            
-            <h3 class="text-2xl font-bold text-gray-900 dark:text-white mb-4">Express Entry</h3>
-            
-            <div class="space-y-3 mb-6">
-              <div class="flex items-center gap-3">
-                <div class="w-2 h-2 bg-blue-500 rounded-full"></div>
-                <span class="text-gray-600 dark:text-gray-400">Federal Skilled Worker (FSW)</span>
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
+        <!-- Canadian Experience Class -->
+        <div class="group relative opacity-0 animate-fade-in-up" style="animation-delay: 0.8s; animation-fill-mode: forwards;">
+          <div class="absolute inset-0 bg-gradient-to-r from-blue-600 to-purple-600 rounded-3xl blur-xl opacity-0 group-hover:opacity-100 transition-all duration-700 scale-110"></div>
+          <div class="relative bg-white dark:bg-gray-800 rounded-3xl p-8 shadow-2xl border border-white/20 dark:border-gray-700/50 hover:shadow-3xl transition-all duration-700 transform hover:-translate-y-4 hover:scale-105 group-hover:border-blue-400/50 dark:group-hover:border-blue-500/50">
+            <div class="flex items-center gap-4 mb-6">
+              <div class="w-16 h-16 bg-gradient-to-br from-blue-500 to-purple-600 rounded-2xl flex items-center justify-center text-white group-hover:scale-110 transition-transform duration-300">
+                <svg class="w-8 h-8" fill="currentColor" viewBox="0 0 24 24">
+                  <path d="M12 2L13.09 8.26L20 9.27L14.5 14.14L16.18 21.02L12 17.77L7.82 21.02L9.5 14.14L4 9.27L10.91 8.26L12 2Z"/>
+                </svg>
               </div>
-              <div class="flex items-center gap-3">
-                <div class="w-2 h-2 bg-blue-500 rounded-full"></div>
-                <span class="text-gray-600 dark:text-gray-400">Canadian Experience Class (CEC)</span>
-              </div>
-              <div class="flex items-center gap-3">
-                <div class="w-2 h-2 bg-blue-500 rounded-full"></div>
-                <span class="text-gray-600 dark:text-gray-400">Federal Skilled Trades (FST)</span>
+              <div>
+                <h3 class="text-2xl font-bold text-gray-900 dark:text-white group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">Canadian Experience Class</h3>
+                <p class="text-gray-600 dark:text-gray-400">For temporary workers in Canada</p>
               </div>
             </div>
             
-            <div class="bg-blue-50 dark:bg-blue-900/20 rounded-xl p-4 mb-6">
-              <div class="text-center">
-                <div class="text-2xl font-bold text-blue-600 dark:text-blue-400">Latest CRS: 534</div>
-                <div class="text-sm text-blue-600 dark:text-blue-400">August 7, 2025</div>
+            <div class="space-y-4 mb-6">
+              <div class="flex items-center gap-3">
+                <div class="w-2 h-2 bg-blue-500 rounded-full"></div>
+                <span class="text-sm text-gray-600 dark:text-gray-400">Minimum 1 year skilled work experience</span>
+              </div>
+              <div class="flex items-center gap-3">
+                <div class="w-2 h-2 bg-purple-500 rounded-full"></div>
+                <span class="text-sm text-gray-600 dark:text-gray-400">CLB 7 in English/French</span>
+              </div>
+              <div class="flex items-center gap-3">
+                <div class="w-2 h-2 bg-green-500 rounded-full"></div>
+                <span class="text-sm text-gray-600 dark:text-gray-400">No minimum CRS score requirement</span>
               </div>
             </div>
-            
-            <a href="/services/pr/federal?utm_source=immigratic&utm_medium=website&utm_campaign=pr_page&utm_content=express_entry_card" class="block w-full text-center px-6 py-3 bg-gradient-to-r from-blue-600 to-purple-600 text-white font-semibold rounded-xl hover:from-blue-700 hover:to-purple-700 transition-all duration-300">
-              Explore Express Entry
-            </a>
+
+            <div class="flex gap-3">
+              <a href="/services/pr/express-entry?utm_source=immigratic&utm_medium=website&utm_campaign=pr_page&utm_content=cec" class="flex-1 px-4 py-2 bg-gradient-to-r from-blue-600 to-purple-600 text-white text-sm font-semibold rounded-xl hover:from-blue-700 hover:to-purple-700 transition-all duration-300 transform hover:scale-105 text-center">
+                Learn More
+              </a>
+              <button onclick="openEligibilityModal()" class="px-4 py-2 border border-blue-600 text-blue-600 dark:text-blue-400 text-sm font-semibold rounded-xl hover:bg-blue-600 hover:text-white transition-all duration-300">
+                Check Eligibility
+              </button>
+            </div>
           </div>
         </div>
 
-        <!-- Provincial Nominee -->
-        <div class="group relative bg-white dark:bg-gray-800 rounded-3xl p-8 shadow-2xl border border-gray-200 dark:border-gray-700 hover:shadow-3xl transition-all duration-500 transform hover:-translate-y-4">
-          <div class="absolute inset-0 bg-gradient-to-r from-green-500/5 to-blue-500/5 rounded-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-          
-          <div class="relative z-10">
-            <div class="w-20 h-20 bg-gradient-to-br from-green-500 to-blue-600 rounded-2xl flex items-center justify-center text-white text-3xl font-bold mb-6 group-hover:scale-110 transition-transform duration-300">
-              ⭐
-            </div>
-            
-            <h3 class="text-2xl font-bold text-gray-900 dark:text-white mb-4">Provincial Nominee</h3>
-            
-            <div class="space-y-3 mb-6">
-              <div class="flex items-center gap-3">
-                <div class="w-2 h-2 bg-green-500 rounded-full"></div>
-                <span class="text-gray-600 dark:text-gray-400">Ontario (OINP)</span>
+        <!-- Federal Skilled Worker -->
+        <div class="group relative opacity-0 animate-fade-in-up" style="animation-delay: 1s; animation-fill-mode: forwards;">
+          <div class="absolute inset-0 bg-gradient-to-r from-green-600 to-blue-600 rounded-3xl blur-xl opacity-0 group-hover:opacity-100 transition-all duration-700 scale-110"></div>
+          <div class="relative bg-white dark:bg-gray-800 rounded-3xl p-8 shadow-2xl border border-white/20 dark:border-gray-700/50 hover:shadow-3xl transition-all duration-700 transform hover:-translate-y-4 hover:scale-105 group-hover:border-green-400/50 dark:group-hover:border-green-500/50">
+            <div class="flex items-center gap-4 mb-6">
+              <div class="w-16 h-16 bg-gradient-to-br from-green-500 to-blue-600 rounded-2xl flex items-center justify-center text-white group-hover:scale-110 transition-transform duration-300">
+                <svg class="w-8 h-8" fill="currentColor" viewBox="0 0 24 24">
+                  <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+                </svg>
               </div>
-              <div class="flex items-center gap-3">
-                <div class="w-2 h-2 bg-green-500 rounded-full"></div>
-                <span class="text-gray-600 dark:text-gray-400">British Columbia (BCPNP)</span>
-              </div>
-              <div class="flex items-center gap-3">
-                <div class="w-2 h-2 bg-green-500 rounded-full"></div>
-                <span class="text-gray-600 dark:text-gray-400">Alberta (AAIP)</span>
+              <div>
+                <h3 class="text-2xl font-bold text-gray-900 dark:text-white group-hover:text-green-600 dark:group-hover:text-green-400 transition-colors">Federal Skilled Worker</h3>
+                <p class="text-gray-600 dark:text-gray-400">For skilled workers worldwide</p>
               </div>
             </div>
             
-            <div class="bg-green-50 dark:bg-green-900/20 rounded-xl p-4 mb-6">
-              <div class="text-center">
-                <div class="text-2xl font-bold text-green-600 dark:text-green-400">Lower CRS</div>
-                <div class="text-sm text-green-600 dark:text-green-400">Province-Specific</div>
+            <div class="space-y-4 mb-6">
+              <div class="flex items-center gap-3">
+                <div class="w-2 h-2 bg-green-500 rounded-full"></div>
+                <span class="text-sm text-gray-600 dark:text-gray-400">Minimum 1 year skilled work experience</span>
+              </div>
+              <div class="flex items-center gap-3">
+                <div class="w-2 h-2 bg-blue-500 rounded-full"></div>
+                <span class="text-sm text-gray-600 dark:text-gray-400">CLB 7 in English/French</span>
+              </div>
+              <div class="flex items-center gap-3">
+                <div class="w-2 h-2 bg-purple-500 rounded-full"></div>
+                <span class="text-sm text-gray-600 dark:text-gray-400">Education assessment required</span>
               </div>
             </div>
-            
-            <a href="/services/pr/pnp?utm_source=immigratic&utm_medium=website&utm_campaign=pr_page&utm_content=pnp_card" class="block w-full text-center px-6 py-3 bg-gradient-to-r from-green-600 to-blue-600 text-white font-semibold rounded-xl hover:from-green-700 hover:to-blue-700 transition-all duration-300">
-              Explore PNP Programs
-            </a>
+
+            <div class="flex gap-3">
+              <a href="/services/pr/express-entry?utm_source=immigratic&utm_medium=website&utm_campaign=pr_page&utm_content=fsw" class="flex-1 px-4 py-2 bg-gradient-to-r from-green-600 to-blue-600 text-white text-sm font-semibold rounded-xl hover:from-green-700 hover:to-blue-700 transition-all duration-300 transform hover:scale-105 text-center">
+                Learn More
+              </a>
+              <button onclick="openEligibilityModal()" class="px-4 py-2 border border-green-600 text-green-600 dark:text-green-400 text-sm font-semibold rounded-xl hover:bg-green-600 hover:text-white transition-all duration-300">
+                Check Eligibility
+              </button>
+            </div>
           </div>
         </div>
+              </div>
+      </div>
+    </section>
 
-        <!-- Family Sponsorship -->
-        <div class="group relative bg-white dark:bg-gray-800 rounded-3xl p-8 shadow-2xl border border-gray-200 dark:border-gray-700 hover:shadow-3xl transition-all duration-500 transform hover:-translate-y-4">
-          <div class="absolute inset-0 bg-gradient-to-r from-pink-500/5 to-red-500/5 rounded-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+    <!-- Provincial Nominee Programs Section -->
+    <section id="provincial-nominee" class="py-24 bg-white dark:bg-gray-900 relative overflow-hidden">
+      <!-- Background Elements -->
+      <div class="absolute inset-0">
+        <div class="absolute top-0 left-0 w-full h-full bg-gradient-to-r from-green-600/5 to-blue-600/5"></div>
+        <div class="absolute bottom-20 left-20 w-80 h-80 bg-green-500/5 rounded-full blur-3xl"></div>
+      </div>
+
+      <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <!-- Section Header -->
+        <div class="text-center mb-20">
+          <div class="inline-flex items-center gap-3 mb-6 opacity-0 animate-fade-in-up" style="animation-delay: 0.2s; animation-fill-mode: forwards;">
+            <div class="w-3 h-3 bg-gradient-to-r from-green-500 to-blue-600 rounded-full animate-pulse"></div>
+            <span class="text-green-600 dark:text-green-400 font-semibold text-sm uppercase tracking-wider">Provincial Programs</span>
+            <div class="w-3 h-3 bg-gradient-to-r from-blue-500 to-purple-600 rounded-full animate-pulse" style="animation-delay: 1s;"></div>
+          </div>
           
-          <div class="relative z-10">
-            <div class="w-20 h-20 bg-gradient-to-br from-pink-500 to-red-600 rounded-2xl flex items-center justify-center text-white text-3xl font-bold mb-6 group-hover:scale-110 transition-transform duration-300">
-              ❤️
+          <h2 class="text-4xl md:text-6xl font-bold text-gray-900 dark:text-white mb-6 opacity-0 animate-fade-in-up" style="animation-delay: 0.4s; animation-fill-mode: forwards;">
+            Provincial Nominee Programs
+          </h2>
+          
+          <p class="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto opacity-0 animate-fade-in-up" style="animation-delay: 0.6s; animation-fill-mode: forwards;">
+            Provincial pathways offering lower CRS requirements and targeted immigration opportunities.
+          </p>
+        </div>
+
+        <!-- Programs Grid -->
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+          <!-- Ontario (OINP) -->
+          <div class="group relative opacity-0 animate-fade-in-up" style="animation-delay: 0.8s; animation-fill-mode: forwards;">
+            <div class="absolute inset-0 bg-gradient-to-r from-blue-600 to-purple-600 rounded-3xl blur-xl opacity-0 group-hover:opacity-100 transition-all duration-700 scale-110"></div>
+            <div class="relative bg-white dark:bg-gray-800 rounded-3xl p-8 shadow-2xl border border-white/20 dark:border-gray-700/50 hover:shadow-3xl transition-all duration-700 transform hover:-translate-y-4 hover:scale-105 group-hover:border-blue-400/50 dark:group-hover:border-blue-500/50">
+              <div class="flex items-center gap-4 mb-6">
+                <div class="w-16 h-16 bg-gradient-to-br from-blue-500 to-purple-600 rounded-2xl flex items-center justify-center text-white group-hover:scale-110 transition-transform duration-300">
+                  <span class="text-2xl">🇨🇦</span>
+                </div>
+                <div>
+                  <h3 class="text-2xl font-bold text-gray-900 dark:text-white group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">Ontario (OINP)</h3>
+                  <p class="text-gray-600 dark:text-gray-400">Most popular PNP</p>
+                </div>
+              </div>
+              
+              <div class="space-y-4 mb-6">
+                <div class="flex items-center gap-3">
+                  <div class="w-2 h-2 bg-blue-500 rounded-full"></div>
+                  <span class="text-sm text-gray-600 dark:text-gray-400">Job Offer Streams</span>
+                </div>
+                <div class="flex items-center gap-3">
+                  <div class="w-2 h-2 bg-purple-500 rounded-full"></div>
+                  <span class="text-sm text-gray-600 dark:text-gray-400">Human Capital Priorities</span>
+                </div>
+                <div class="flex items-center gap-3">
+                  <div class="w-2 h-2 bg-green-500 rounded-full"></div>
+                  <span class="text-sm text-gray-600 dark:text-gray-400">Skilled Trades</span>
+                </div>
+              </div>
+
+              <div class="flex gap-3">
+                <a href="/services/pr/pnp?utm_source=immigratic&utm_medium=website&utm_campaign=pr_page&utm_content=oinp" class="flex-1 px-4 py-2 bg-gradient-to-r from-blue-600 to-purple-600 text-white text-sm font-semibold rounded-xl hover:from-blue-700 hover:to-purple-700 transition-all duration-300 transform hover:scale-105 text-center">
+                  Learn More
+                </a>
+                <button onclick="openEligibilityModal()" class="px-4 py-2 border border-blue-600 text-blue-600 dark:text-blue-400 text-sm font-semibold rounded-xl hover:bg-blue-600 hover:text-white transition-all duration-300">
+                  Check Eligibility
+                </button>
+              </div>
             </div>
-            
-            <h3 class="text-2xl font-bold text-gray-900 dark:text-white mb-4">Family Sponsorship</h3>
-            
-            <div class="space-y-3 mb-6">
-              <div class="flex items-center gap-3">
-                <div class="w-2 h-2 bg-pink-500 rounded-full"></div>
-                <span class="text-gray-600 dark:text-gray-400">Spouse & Common-law</span>
+          </div>
+
+          <!-- British Columbia (BCPNP) -->
+          <div class="group relative opacity-0 animate-fade-in-up" style="animation-delay: 1s; animation-fill-mode: forwards;">
+            <div class="absolute inset-0 bg-gradient-to-r from-green-600 to-blue-600 rounded-3xl blur-xl opacity-0 group-hover:opacity-100 transition-all duration-700 scale-110"></div>
+            <div class="relative bg-white dark:bg-gray-800 rounded-3xl p-8 shadow-2xl border border-white/20 dark:border-gray-700/50 hover:shadow-3xl transition-all duration-700 transform hover:-translate-y-4 hover:scale-105 group-hover:border-green-400/50 dark:group-hover:border-green-500/50">
+              <div class="flex items-center gap-4 mb-6">
+                <div class="w-16 h-16 bg-gradient-to-br from-green-500 to-blue-600 rounded-2xl flex items-center justify-center text-white group-hover:scale-110 transition-transform duration-300">
+                  <span class="text-2xl">🏔️</span>
+                </div>
+                <div>
+                  <h3 class="text-2xl font-bold text-gray-900 dark:text-white group-hover:text-green-600 dark:group-hover:text-green-400 transition-colors">British Columbia</h3>
+                  <p class="text-gray-600 dark:text-gray-400">Tech & skilled workers</p>
+                </div>
               </div>
-              <div class="flex items-center gap-3">
-                <div class="w-2 h-2 bg-pink-500 rounded-full"></div>
-                <span class="text-gray-600 dark:text-gray-400">Parents & Grandparents</span>
+              
+              <div class="space-y-4 mb-6">
+                <div class="flex items-center gap-3">
+                  <div class="w-2 h-2 bg-green-500 rounded-full"></div>
+                  <span class="text-sm text-gray-600 dark:text-gray-400">Tech Pilot Program</span>
+                </div>
+                <div class="flex items-center gap-3">
+                  <div class="w-2 h-2 bg-blue-500 rounded-full"></div>
+                  <span class="text-sm text-gray-600 dark:text-gray-400">Skilled Worker</span>
+                </div>
+                <div class="flex items-center gap-3">
+                  <div class="w-2 h-2 bg-purple-500 rounded-full"></div>
+                  <span class="text-sm text-gray-600 dark:text-gray-400">International Graduate</span>
+                </div>
               </div>
-              <div class="flex items-center gap-3">
-                <div class="w-2 h-2 bg-pink-500 rounded-full"></div>
-                <span class="text-gray-600 dark:text-gray-400">Dependent Children</span>
+
+              <div class="flex gap-3">
+                <a href="/services/pr/pnp?utm_source=immigratic&utm_medium=website&utm_campaign=pr_page&utm_content=bcpnp" class="flex-1 px-4 py-2 bg-gradient-to-r from-green-600 to-blue-600 text-white text-sm font-semibold rounded-xl hover:from-green-700 hover:to-blue-700 transition-all duration-300 transform hover:scale-105 text-center">
+                  Learn More
+                </a>
+                <button onclick="openEligibilityModal()" class="px-4 py-2 border border-green-600 text-green-600 dark:text-green-400 text-sm font-semibold rounded-xl hover:bg-green-600 hover:text-white transition-all duration-300">
+                  Check Eligibility
+                </button>
               </div>
             </div>
-            
-            <div class="bg-pink-50 dark:bg-pink-900/20 rounded-xl p-4 mb-6">
-              <div class="text-center">
-                <div class="text-2xl font-bold text-pink-600 dark:text-pink-400">100%</div>
-                <div class="text-sm text-pink-600 dark:text-pink-400">Success Rate</div>
+          </div>
+
+          <!-- Alberta (AAIP) -->
+          <div class="group relative opacity-0 animate-fade-in-up" style="animation-delay: 1.2s; animation-fill-mode: forwards;">
+            <div class="absolute inset-0 bg-gradient-to-r from-purple-600 to-pink-600 rounded-3xl blur-xl opacity-0 group-hover:opacity-100 transition-all duration-700 scale-110"></div>
+            <div class="relative bg-white dark:bg-gray-800 rounded-3xl p-8 shadow-2xl border border-white/20 dark:border-gray-700/50 hover:shadow-3xl transition-all duration-700 transform hover:-translate-y-4 hover:scale-105 group-hover:border-purple-400/50 dark:group-hover:border-purple-500/50">
+              <div class="flex items-center gap-4 mb-6">
+                <div class="w-16 h-16 bg-gradient-to-br from-purple-500 to-pink-600 rounded-2xl flex items-center justify-center text-white group-hover:scale-110 transition-transform duration-300">
+                  <span class="text-2xl">🌾</span>
+                </div>
+                <div>
+                  <h3 class="text-2xl font-bold text-gray-900 dark:text-white group-hover:text-purple-600 dark:group-hover:text-purple-400 transition-colors">Alberta (AAIP)</h3>
+                  <p class="text-gray-600 dark:text-gray-400">Energy & agriculture</p>
+                </div>
+              </div>
+              
+              <div class="space-y-4 mb-6">
+                <div class="flex items-center gap-3">
+                  <div class="w-2 h-2 bg-purple-500 rounded-full"></div>
+                  <span class="text-sm text-gray-600 dark:text-gray-400">Alberta Opportunity</span>
+                </div>
+                <div class="flex items-center gap-3">
+                  <div class="w-2 h-2 bg-pink-500 rounded-full"></div>
+                  <span class="text-sm text-gray-600 dark:text-gray-400">Alberta Express Entry</span>
+                </div>
+                <div class="flex items-center gap-3">
+                  <div class="w-2 h-2 bg-blue-500 rounded-full"></div>
+                  <span class="text-sm text-gray-600 dark:text-gray-400">Rural Renewal</span>
+                </div>
+              </div>
+
+              <div class="flex gap-3">
+                <a href="/services/pr/pnp?utm_source=immigratic&utm_medium=website&utm_campaign=pr_page&utm_content=aaip" class="flex-1 px-4 py-2 bg-gradient-to-r from-purple-600 to-pink-600 text-white text-sm font-semibold rounded-xl hover:from-purple-700 hover:to-pink-700 transition-all duration-300 transform hover:scale-105 text-center">
+                  Learn More
+                </a>
+                <button onclick="openEligibilityModal()" class="px-4 py-2 border border-purple-600 text-purple-600 dark:text-purple-400 text-sm font-semibold rounded-xl hover:bg-purple-600 hover:text-white transition-all duration-300">
+                  Check Eligibility
+                </button>
               </div>
             </div>
-            
-            <a href="/services/pr/family?utm_source=immigratic&utm_medium=website&utm_campaign=pr_page&utm_content=family_card" class="block w-full text-center px-6 py-3 bg-gradient-to-r from-pink-600 to-red-600 text-white font-semibold rounded-xl hover:from-pink-700 hover:to-red-700 transition-all duration-300">
-              Explore Family Sponsorship
-            </a>
           </div>
         </div>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- Final CTA -->
-  <section class="py-24 bg-gradient-to-br from-green-900 to-blue-900">
-    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-      <h2 class="text-4xl md:text-5xl font-bold text-white mb-6">
-        Ready to Start Your
-        <span class="bg-gradient-to-r from-green-400 to-blue-400 bg-clip-text text-transparent">
-          PR Journey?
-        </span>
-      </h2>
-      <p class="text-xl text-green-100 mb-12 max-w-2xl mx-auto">
-        Let our experts guide you through the best permanent residency pathway for your profile.
-      </p>
-      
-      <div class="flex flex-col sm:flex-row gap-6 justify-center">
-        <a href="https://intake.immigratic.com/ma?utm_source=immigratic&utm_medium=website&utm_campaign=pr_page&utm_content=final_assessment" target="_blank" rel="noopener noreferrer" class="px-8 py-4 bg-white text-green-900 font-bold rounded-2xl hover:bg-gray-100 transition-all duration-300 transform hover:scale-105 shadow-2xl">
-          Start Free Assessment
-        </a>
-        <a href="https://try.immigratic.com/meetings/immicare/165?utm_source=immigratic&utm_medium=website&utm_campaign=pr_page&utm_content=final_consultation" target="_blank" rel="noopener noreferrer" class="px-8 py-4 border-2 border-white/30 text-white font-bold rounded-2xl hover:bg-white/10 transition-all duration-300 backdrop-blur-sm">
-          Book Expert Consultation
-        </a>
+    <!-- Family Sponsorship Section -->
+    <section id="family-sponsorship" class="py-24 bg-gradient-to-br from-gray-50 to-red-50 dark:from-gray-800 dark:to-gray-900 relative overflow-hidden">
+      <!-- Background Elements -->
+      <div class="absolute inset-0">
+        <div class="absolute top-0 left-0 w-full h-full bg-gradient-to-r from-red-600/5 to-pink-600/5"></div>
+        <div class="absolute top-20 right-20 w-96 h-96 bg-red-500/5 rounded-full blur-3xl"></div>
       </div>
-    </div>
-  </section>
-</Layout>
+
+      <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <!-- Section Header -->
+        <div class="text-center mb-20">
+          <div class="inline-flex items-center gap-3 mb-6 opacity-0 animate-fade-in-up" style="animation-delay: 0.2s; animation-fill-mode: forwards;">
+            <div class="w-3 h-3 bg-gradient-to-r from-red-500 to-pink-600 rounded-full animate-pulse"></div>
+            <span class="text-red-600 dark:text-red-400 font-semibold text-sm uppercase tracking-wider">Family Programs</span>
+            <div class="w-3 h-3 bg-gradient-to-r from-pink-500 to-red-600 rounded-full animate-pulse" style="animation-delay: 1s;"></div>
+          </div>
+          
+          <h2 class="text-4xl md:text-6xl font-bold text-gray-900 dark:text-white mb-6 opacity-0 animate-fade-in-up" style="animation-delay: 0.4s; animation-fill-mode: forwards;">
+            Family Sponsorship
+          </h2>
+          
+          <p class="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto opacity-0 animate-fade-in-up" style="animation-delay: 0.6s; animation-fill-mode: forwards;">
+            Reunite with your loved ones through Canada's family sponsorship programs.
+          </p>
+        </div>
+
+        <!-- Programs Grid -->
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
+          <!-- Spouse & Common-law -->
+          <div class="group relative opacity-0 animate-fade-in-up" style="animation-delay: 0.8s; animation-fill-mode: forwards;">
+            <div class="absolute inset-0 bg-gradient-to-r from-red-600 to-pink-600 rounded-3xl blur-xl opacity-0 group-hover:opacity-100 transition-all duration-700 scale-110"></div>
+            <div class="relative bg-white dark:bg-gray-800 rounded-3xl p-8 shadow-2xl border border-white/20 dark:border-gray-700/50 hover:shadow-3xl transition-all duration-700 transform hover:-translate-y-4 hover:scale-105 group-hover:border-red-400/50 dark:group-hover:border-red-500/50">
+              <div class="flex items-center gap-4 mb-6">
+                <div class="w-16 h-16 bg-gradient-to-br from-red-500 to-pink-600 rounded-2xl flex items-center justify-center text-white group-hover:scale-110 transition-transform duration-300">
+                  <span class="text-2xl">💕</span>
+                </div>
+                <div>
+                  <h3 class="text-2xl font-bold text-gray-900 dark:text-white group-hover:text-red-600 dark:group-hover:text-red-400 transition-colors">Spouse & Common-law</h3>
+                  <p class="text-gray-600 dark:text-gray-400">For married & common-law partners</p>
+                </div>
+              </div>
+              
+              <div class="space-y-4 mb-6">
+                <div class="flex items-center gap-3">
+                  <div class="w-2 h-2 bg-red-500 rounded-full"></div>
+                  <span class="text-sm text-gray-600 dark:text-gray-400">Proof of relationship required</span>
+                </div>
+                <div class="flex items-center gap-3">
+                  <div class="w-2 h-2 bg-pink-500 rounded-full"></div>
+                  <span class="text-sm text-gray-600 dark:text-gray-400">Sponsor must be 18+ years old</span>
+                </div>
+                <div class="flex items-center gap-3">
+                  <div class="w-2 h-2 bg-purple-500 rounded-full"></div>
+                  <span class="text-sm text-gray-600 dark:text-gray-400">Financial support obligation</span>
+                </div>
+              </div>
+
+              <div class="flex gap-3">
+                <a href="/services/pr/family?utm_source=immigratic&utm_medium=website&utm_campaign=pr_page&utm_content=spouse" class="flex-1 px-4 py-2 bg-gradient-to-r from-red-600 to-pink-600 text-white text-sm font-semibold rounded-xl hover:from-red-700 hover:to-pink-700 transition-all duration-300 transform hover:scale-105 text-center">
+                  Learn More
+                </a>
+                <button onclick="openEligibilityModal()" class="px-4 py-2 border border-red-600 text-red-600 dark:text-red-400 text-sm font-semibold rounded-xl hover:bg-red-600 hover:text-white transition-all duration-300">
+                  Check Eligibility
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Parents & Grandparents -->
+          <div class="group relative opacity-0 animate-fade-in-up" style="animation-delay: 1s; animation-fill-mode: forwards;">
+            <div class="absolute inset-0 bg-gradient-to-r from-pink-600 to-red-600 rounded-3xl blur-xl opacity-0 group-hover:opacity-100 transition-all duration-700 scale-110"></div>
+            <div class="relative bg-white dark:bg-gray-800 rounded-3xl p-8 shadow-2xl border border-white/20 dark:border-gray-700/50 hover:shadow-3xl transition-all duration-700 transform hover:-translate-y-4 hover:scale-105 group-hover:border-pink-400/50 dark:group-hover:border-pink-500/50">
+              <div class="flex items-center gap-4 mb-6">
+                <div class="w-16 h-16 bg-gradient-to-br from-pink-500 to-red-600 rounded-2xl flex items-center justify-center text-white group-hover:scale-110 transition-transform duration-300">
+                  <span class="text-2xl">👨‍👩‍👧‍👦</span>
+                </div>
+                <div>
+                  <h3 class="text-2xl font-bold text-gray-900 dark:text-white group-hover:text-pink-600 dark:group-hover:text-pink-400 transition-colors">Parents & Grandparents</h3>
+                  <p class="text-gray-600 dark:text-gray-400">For family reunification</p>
+                </div>
+              </div>
+              
+              <div class="space-y-4 mb-6">
+                <div class="flex items-center gap-3">
+                  <div class="w-2 h-2 bg-pink-500 rounded-full"></div>
+                  <span class="text-sm text-gray-600 dark:text-gray-400">Lottery-based selection</span>
+                </div>
+                <div class="flex items-center gap-3">
+                  <div class="w-2 h-2 bg-red-500 rounded-full"></div>
+                  <span class="text-sm text-gray-600 dark:text-gray-400">Higher income requirements</span>
+                </div>
+                <div class="flex items-center gap-3">
+                  <div class="w-2 h-2 bg-purple-500 rounded-full"></div>
+                  <span class="text-sm text-gray-600 dark:text-gray-400">20-year sponsorship commitment</span>
+                </div>
+              </div>
+
+              <div class="flex gap-3">
+                <a href="/services/pr/family?utm_source=immigratic&utm_medium=website&utm_campaign=pr_page&utm_content=parents" class="flex-1 px-4 py-2 bg-gradient-to-r from-pink-600 to-red-600 text-white text-sm font-semibold rounded-xl hover:from-pink-700 hover:to-red-700 transition-all duration-300 transform hover:scale-105 text-center">
+                  Learn More
+                </a>
+                <button onclick="openEligibilityModal()" class="px-4 py-2 border border-pink-600 text-pink-600 dark:text-pink-400 text-sm font-semibold rounded-xl hover:bg-pink-600 hover:text-white transition-all duration-300">
+                  Check Eligibility
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Final CTA Section -->
+    <section class="py-24 bg-gradient-to-br from-blue-900 to-purple-900">
+      <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+        <h2 class="text-4xl md:text-5xl font-bold text-white mb-6 opacity-0 animate-fade-in-up" style="animation-delay: 0.2s; animation-fill-mode: forwards;">
+          Ready to Start Your
+          <span class="bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent">
+            PR Journey?
+          </span>
+        </h2>
+        <p class="text-xl text-blue-100 mb-12 max-w-2xl mx-auto opacity-0 animate-fade-in-up" style="animation-delay: 0.4s; animation-fill-mode: forwards;">
+          Let our experts guide you through the best permanent residency pathway for your profile.
+        </p>
+        
+        <div class="flex flex-col sm:flex-row gap-6 justify-center opacity-0 animate-fade-in-up" style="animation-delay: 0.6s; animation-fill-mode: forwards;">
+          <a href="https://intake.immigratic.com/ma?utm_source=immigratic&utm_medium=website&utm_campaign=pr_page&utm_content=final_assessment" target="_blank" rel="noopener noreferrer" class="px-8 py-4 bg-white text-blue-900 font-bold rounded-2xl hover:bg-gray-100 transition-all duration-300 transform hover:scale-105 shadow-2xl">
+            Start Free Assessment
+          </a>
+          <a href="https://try.immigratic.com/meetings/immicare/165?utm_source=immigratic&utm_medium=website&utm_campaign=pr_page&utm_content=final_consultation" target="_blank" rel="noopener noreferrer" class="px-8 py-4 border-2 border-white/30 text-white font-bold rounded-2xl hover:bg-white/10 transition-all duration-300 backdrop-blur-sm">
+            Book Expert Consultation
+          </a>
+        </div>
+      </div>
+    </section>
+  </Layout>
