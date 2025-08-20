@@ -130,363 +130,478 @@ export const metadata = {
         </p>
       </div>
 
-      <!-- Interactive Program Pathways -->
-      <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 mb-16">
-        <!-- Express Entry Programs -->
-        <div id="express-entry" class="group relative opacity-0 animate-fade-in-up" style="animation-delay: 0.8s; animation-fill-mode: forwards;">
-          <div class="absolute inset-0 bg-gradient-to-r from-blue-600 to-purple-600 rounded-3xl blur-xl opacity-0 group-hover:opacity-100 transition-all duration-700 scale-110"></div>
-          <div class="relative bg-white dark:bg-gray-800 rounded-3xl p-8 shadow-2xl border border-white/20 dark:border-gray-700/50 hover:shadow-3xl transition-all duration-700 transform hover:-translate-y-4 hover:scale-105 group-hover:border-blue-400/50 dark:group-hover:border-blue-500/50">
-            <!-- Program Header -->
-            <div class="flex items-center gap-4 mb-6">
-              <div class="w-16 h-16 bg-gradient-to-br from-blue-500 to-purple-600 rounded-2xl flex items-center justify-center text-white group-hover:scale-110 transition-transform duration-300">
-                <svg class="w-8 h-8" fill="currentColor" viewBox="0 0 24 24">
-                  <path d="M13 2.05v3.03c3.39.49 6 3.39 6 6.92 0 .9-.18 1.75-.48 2.54l2.6 1.53c.56-1.24.88-2.62.88-4.07 0-5.18-3.95-9.45-9-9.95zM12 19c-3.87 0-7-3.13-7-7 0-3.53 2.61-6.43 6-6.92V2.05c-5.05.5-9 4.76-9 9.95 0 5.52 4.47 10 9.99 10 3.31 0 6.24-1.61 8.06-4.09l-2.6-1.53C16.17 17.98 14.21 19 12 19z"/>
-                  <path d="M12 7l-3.2 9h1.9l.7-2h3.2l.7 2h1.9L12 7zm-1.15 5.65L12 9l1.15 3.65h-2.3z"/>
-                </svg>
-              </div>
-              <div>
-                <h3 class="text-2xl font-bold text-gray-900 dark:text-white group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">Express Entry</h3>
-                <p class="text-gray-600 dark:text-gray-400">Federal Immigration Programs</p>
-              </div>
-            </div>
-            
-            <!-- Program Categories -->
-            <div class="mb-6">
-              <div class="flex items-center gap-2 mb-3">
-                <span class="text-sm font-medium text-gray-700 dark:text-gray-300">Main Programs</span>
-                <span class="px-2 py-1 bg-blue-100 dark:bg-blue-900/30 text-blue-700 dark:text-blue-300 text-xs rounded-full">2 Active</span>
-              </div>
-              <div class="space-y-2">
-                <div class="flex items-center gap-2">
-                  <div class="w-2 h-2 bg-blue-500 rounded-full"></div>
-                  <span class="text-sm text-gray-600 dark:text-gray-400">Canadian Experience Class (CEC)</span>
-                </div>
-                <div class="flex items-center gap-2">
-                  <div class="w-2 h-2 bg-purple-500 rounded-full"></div>
-                  <span class="text-sm text-gray-600 dark:text-gray-400">Federal Skilled Worker (FSW)</span>
-                </div>
-              </div>
-            </div>
-            
-            <!-- Live CRS Score Tracker -->
-            <div class="mb-6 p-4 bg-gradient-to-r from-blue-50 to-purple-50 dark:from-blue-900/20 dark:to-purple-900/20 rounded-xl border border-blue-200 dark:border-blue-700">
-              <div class="flex items-center justify-between mb-2">
-                <span class="text-sm font-medium text-blue-700 dark:text-blue-300">Latest CRS Cutoff</span>
-                <span class="text-xs text-blue-600 dark:text-blue-400">Updated 2 hours ago</span>
-              </div>
-              <div class="text-3xl font-bold text-blue-600 dark:text-blue-400">534</div>
-              <div class="text-xs text-blue-600 dark:text-blue-400">Last Draw: August 7, 2025</div>
-            </div>
-            
-            <!-- Quick Actions -->
-            <div class="flex gap-3">
-              <a href="/services/pr?utm_source=immigratic&utm_medium=website&utm_campaign=services_page&utm_content=express_entry" class="flex-1 px-4 py-2 bg-gradient-to-r from-blue-600 to-purple-600 text-white text-sm font-semibold rounded-xl hover:from-blue-700 hover:to-purple-700 transition-all duration-300 transform hover:scale-105 text-center">
-                Explore Programs
-              </a>
-              <button onclick="openEligibilityModal()" class="px-4 py-2 border border-blue-600 text-blue-600 dark:text-blue-400 text-sm font-semibold rounded-xl hover:bg-blue-600 hover:text-white transition-all duration-300">
-                Eligibility Check
-              </button>
-            </div>
+      <!-- Express Entry - Enhanced Interactive Card -->
+      <div class="mb-16">
+        <div id="express-entry" class="express-entry-card group relative opacity-0 animate-fade-in-up cursor-pointer" style="animation-delay: 0.8s; animation-fill-mode: forwards;">
+          <!-- Dynamic Background Glow -->
+          <div class="absolute inset-0 bg-gradient-to-r from-blue-600 via-purple-600 to-indigo-600 rounded-3xl blur-xl opacity-0 group-hover:opacity-100 transition-all duration-1000 scale-110 animate-pulse-glow"></div>
+          
+          <!-- Floating Particles -->
+          <div class="absolute inset-0 overflow-hidden rounded-3xl pointer-events-none">
+            <div class="particle absolute top-10 left-10 w-2 h-2 bg-blue-400 rounded-full opacity-60 animate-float-particle"></div>
+            <div class="particle absolute top-20 right-20 w-1 h-1 bg-purple-400 rounded-full opacity-40 animate-float-particle" style="animation-delay: 1s;"></div>
+            <div class="particle absolute bottom-20 left-1/4 w-1.5 h-1.5 bg-indigo-400 rounded-full opacity-50 animate-float-particle" style="animation-delay: 2s;"></div>
           </div>
-        </div>
-
-        <!-- Express Entry Targeted Categories -->
-        <div class="group relative opacity-0 animate-fade-in-up" style="animation-delay: 1s; animation-fill-mode: forwards;">
-          <div class="absolute inset-0 bg-gradient-to-r from-green-600 to-blue-600 rounded-3xl blur-xl opacity-0 group-hover:opacity-100 transition-all duration-700 scale-110"></div>
-          <div class="relative bg-white dark:bg-gray-800 rounded-3xl p-8 shadow-2xl border border-white/20 dark:border-gray-700/50 hover:shadow-3xl transition-all duration-700 transform hover:-translate-y-4 hover:scale-105 group-hover:border-green-400/50 dark:group-hover:border-green-500/50">
+          
+          <div class="relative bg-white/90 dark:bg-gray-800/90 backdrop-blur-xl rounded-3xl p-10 shadow-2xl border border-white/20 dark:border-gray-700/50 hover:shadow-3xl transition-all duration-700 transform hover:-translate-y-6 hover:scale-[1.02] group-hover:border-blue-400/50 dark:group-hover:border-blue-500/50 overflow-hidden">
+            <!-- Animated Background Pattern -->
+            <div class="absolute top-0 right-0 w-64 h-64 bg-gradient-to-br from-blue-100/30 to-purple-100/30 dark:from-blue-900/10 dark:to-purple-900/10 rounded-full blur-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-1000"></div>
+            
             <!-- Program Header -->
-            <div class="flex items-center gap-4 mb-6">
-              <div class="w-16 h-16 bg-gradient-to-br from-green-500 to-blue-600 rounded-2xl flex items-center justify-center text-white group-hover:scale-110 transition-transform duration-300">
-                <svg class="w-8 h-8" fill="currentColor" viewBox="0 0 24 24">
-                  <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
-                </svg>
+            <div class="relative z-10 flex flex-col lg:flex-row items-start lg:items-center justify-between mb-8 gap-6">
+              <div class="flex items-center gap-6">
+                <div class="icon-container w-20 h-20 bg-gradient-to-br from-blue-500 via-purple-600 to-indigo-600 rounded-3xl flex items-center justify-center text-white group-hover:scale-110 group-hover:rotate-3 transition-all duration-500 shadow-2xl relative overflow-hidden">
+                  <!-- Icon Glow Effect -->
+                  <div class="absolute inset-0 bg-gradient-to-br from-blue-400 to-purple-500 rounded-3xl blur-md opacity-0 group-hover:opacity-100 transition-opacity duration-500 animate-pulse"></div>
+                  <svg class="relative z-10 w-10 h-10 group-hover:scale-110 transition-transform duration-300" fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M13 2.05v3.03c3.39.49 6 3.39 6 6.92 0 .9-.18 1.75-.48 2.54l2.6 1.53c.56-1.24.88-2.62.88-4.07 0-5.18-3.95-9.45-9-9.95zM12 19c-3.87 0-7-3.13-7-7 0-3.53 2.61-6.43 6-6.92V2.05c-5.05.5-9 4.76-9 9.95 0 5.52 4.47 10 9.99 10 3.31 0 6.24-1.61 8.06-4.09l-2.6-1.53C16.17 17.98 14.21 19 12 19z"/>
+                    <path d="M12 7l-3.2 9h1.9l.7-2h3.2l.7 2h1.9L12 7zm-1.15 5.65L12 9l1.15 3.65h-2.3z"/>
+                  </svg>
+                  <!-- Orbiting Elements -->
+                  <div class="absolute -top-1 -right-1 w-3 h-3 bg-blue-400 rounded-full animate-orbit opacity-80"></div>
+                  <div class="absolute -bottom-1 -left-1 w-2 h-2 bg-purple-400 rounded-full animate-orbit-reverse opacity-80"></div>
+                </div>
+                <div class="title-section">
+                  <h3 class="text-3xl font-bold text-gray-900 dark:text-white group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-all duration-500 group-hover:scale-105 transform-gpu">Express Entry</h3>
+                  <p class="text-lg text-gray-600 dark:text-gray-400 group-hover:text-purple-600 dark:group-hover:text-purple-400 transition-colors duration-300">Federal Immigration System - All Programs & Categories</p>
+                </div>
               </div>
-              <div>
-                <h3 class="text-2xl font-bold text-gray-900 dark:text-white group-hover:text-green-600 dark:group-hover:text-green-400 transition-colors">Express Entry</h3>
-                <p class="text-gray-600 dark:text-gray-400">Federal Priority Streams</p>
-              </div>
-            </div>
-            
-            <!-- Targeted Categories -->
-            <div class="mb-6">
-              <div class="flex items-center gap-2 mb-3">
-                <span class="text-sm font-medium text-gray-700 dark:text-gray-300">Priority Categories</span>
-                <span class="px-2 py-1 bg-green-100 dark:bg-green-900/30 text-green-700 dark:text-green-300 text-xs rounded-full">6 Active</span>
-              </div>
-              <div class="grid grid-cols-2 gap-2">
-                <div class="flex items-center gap-2">
-                  <div class="w-2 h-2 bg-green-500 rounded-full"></div>
-                  <span class="text-xs text-gray-600 dark:text-gray-400">Trade</span>
+              
+              <!-- Enhanced Live CRS Score Tracker -->
+              <div class="crs-tracker p-4 bg-gradient-to-r from-blue-50 via-purple-50 to-indigo-50 dark:from-blue-900/20 dark:via-purple-900/20 dark:to-indigo-900/20 rounded-xl border border-blue-200 dark:border-blue-700 hover:border-blue-400 dark:hover:border-blue-500 transition-all duration-500 group-hover:scale-105 transform-gpu hover:shadow-lg">
+                <div class="flex items-center justify-between mb-2">
+                  <span class="text-sm font-medium text-blue-700 dark:text-blue-300">Latest CRS Cutoff</span>
+                  <span class="text-xs text-blue-600 dark:text-blue-400 animate-pulse">🔴 Live</span>
                 </div>
-                <div class="flex items-center gap-2">
-                  <div class="w-2 h-2 bg-blue-500 rounded-full"></div>
-                  <span class="text-xs text-gray-600 dark:text-gray-400">STEM</span>
-                </div>
-                <div class="flex items-center gap-2">
-                  <div class="w-2 h-2 bg-green-500 rounded-full"></div>
-                  <span class="text-xs text-gray-600 dark:text-gray-400">Health</span>
-                </div>
-                <div class="flex items-center gap-2">
-                  <div class="w-2 h-2 bg-blue-500 rounded-full"></div>
-                  <span class="text-xs text-gray-600 dark:text-gray-400">French</span>
-                </div>
-                <div class="flex items-center gap-2">
-                  <div class="w-2 h-2 bg-green-500 rounded-full"></div>
-                  <span class="text-xs text-gray-600 dark:text-gray-400">Education</span>
-                </div>
-                <div class="flex items-center gap-2">
-                  <div class="w-2 h-2 bg-blue-500 rounded-full"></div>
-                  <span class="text-xs text-gray-600 dark:text-gray-400">Agriculture</span>
-                </div>
+                <div class="text-3xl font-bold text-blue-600 dark:text-blue-400 group-hover:scale-110 transition-transform duration-300">534</div>
+                <div class="text-xs text-blue-600 dark:text-blue-400">Last Draw: August 7, 2025</div>
               </div>
             </div>
             
-            <!-- Latest Cutoff Data -->
-            <div class="mb-6 p-4 bg-gradient-to-r from-green-50 to-blue-50 dark:from-green-900/20 dark:to-blue-900/20 rounded-xl border border-green-200 dark:border-green-700">
-              <div class="flex items-center justify-between mb-2">
-                <span class="text-sm font-medium text-green-700 dark:text-green-300">Latest French Stream Cutoff</span>
-                <span class="text-xs text-green-600 dark:text-green-400">Updated 1 day ago</span>
+            <!-- Enhanced Interactive Content Grid -->
+            <div class="relative z-10 grid grid-cols-1 lg:grid-cols-3 gap-8 mb-8">
+              <!-- Main Programs - Interactive Section -->
+              <div class="programs-section group/section hover:scale-105 transition-transform duration-500">
+                <div class="flex items-center gap-2 mb-4">
+                  <span class="text-sm font-medium text-gray-700 dark:text-gray-300 group-hover/section:text-blue-600 dark:group-hover/section:text-blue-400 transition-colors duration-300">Main Programs</span>
+                  <span class="px-2 py-1 bg-blue-100 dark:bg-blue-900/30 text-blue-700 dark:text-blue-300 text-xs rounded-full group-hover/section:scale-110 transition-transform duration-300">3 Active</span>
+                </div>
+                <div class="space-y-3">
+                  <div class="program-item flex items-center gap-3 p-2 rounded-lg transition-all duration-300 cursor-pointer group/item">
+                    <div class="w-3 h-3 bg-blue-500 rounded-full transition-all duration-300"></div>
+                    <span class="text-sm text-gray-600 dark:text-gray-400 transition-all duration-300">Canadian Experience Class (CEC)</span>
+                  </div>
+                  <div class="program-item flex items-center gap-3 p-2 rounded-lg transition-all duration-300 cursor-pointer group/item">
+                    <div class="w-3 h-3 bg-purple-500 rounded-full transition-all duration-300"></div>
+                    <span class="text-sm text-gray-600 dark:text-gray-400 transition-all duration-300">Federal Skilled Worker (FSW)</span>
+                  </div>
+                  <div class="program-item flex items-center gap-3 p-2 rounded-lg transition-all duration-300 cursor-pointer group/item">
+                    <div class="w-3 h-3 bg-green-500 rounded-full transition-all duration-300"></div>
+                    <span class="text-sm text-gray-600 dark:text-gray-400 transition-all duration-300">Federal Skilled Trades (FST)</span>
+                  </div>
+                </div>
               </div>
-              <div class="text-2xl font-bold text-green-600 dark:text-green-400 mb-1">CRS 481</div>
-              <div class="text-xs text-green-600 dark:text-green-400">Last Draw: August 8, 2025</div>
+              
+              <!-- Priority Categories - Interactive Section -->
+              <div class="categories-section group/section hover:scale-105 transition-transform duration-500">
+                <div class="flex items-center gap-2 mb-4">
+                  <span class="text-sm font-medium text-gray-700 dark:text-gray-300 group-hover/section:text-green-600 dark:group-hover/section:text-green-400 transition-colors duration-300">Priority Categories</span>
+                  <span class="px-2 py-1 bg-green-100 dark:bg-green-900/30 text-green-700 dark:text-green-300 text-xs rounded-full group-hover/section:scale-110 transition-transform duration-300">6 Active</span>
+                </div>
+                <div class="space-y-3">
+                  <div class="category-item flex items-center gap-3 p-2 rounded-lg transition-all duration-300 cursor-pointer group/item">
+                    <div class="w-3 h-3 bg-green-500 rounded-full transition-all duration-300"></div>
+                    <span class="text-sm text-gray-600 dark:text-gray-400 transition-all duration-300">Healthcare Workers</span>
+                  </div>
+                  <div class="category-item flex items-center gap-3 p-2 rounded-lg transition-all duration-300 cursor-pointer group/item">
+                    <div class="w-3 h-3 bg-blue-500 rounded-full transition-all duration-300"></div>
+                    <span class="text-sm text-gray-600 dark:text-gray-400 transition-all duration-300">STEM Occupations</span>
+                  </div>
+                  <div class="category-item flex items-center gap-3 p-2 rounded-lg transition-all duration-300 cursor-pointer group/item">
+                    <div class="w-3 h-3 bg-green-500 rounded-full transition-all duration-300"></div>
+                    <span class="text-sm text-gray-600 dark:text-gray-400 transition-all duration-300">French Language</span>
+                  </div>
+                  <div class="category-item flex items-center gap-3 p-2 rounded-lg transition-all duration-300 cursor-pointer group/item">
+                    <div class="w-3 h-3 bg-purple-500 rounded-full transition-all duration-300"></div>
+                    <span class="text-sm text-gray-600 dark:text-gray-400 transition-all duration-300">Skilled Trades</span>
+                  </div>
+                  <div class="category-item flex items-center gap-3 p-2 rounded-lg transition-all duration-300 cursor-pointer group/item">
+                    <div class="w-3 h-3 bg-blue-500 rounded-full transition-all duration-300"></div>
+                    <span class="text-sm text-gray-600 dark:text-gray-400 transition-all duration-300">Transport</span>
+                  </div>
+                  <div class="category-item flex items-center gap-3 p-2 rounded-lg transition-all duration-300 cursor-pointer group/item">
+                    <div class="w-3 h-3 bg-green-500 rounded-full transition-all duration-300"></div>
+                    <span class="text-sm text-gray-600 dark:text-gray-400 transition-all duration-300">Agriculture & Agri-food</span>
+                  </div>
+                </div>
+              </div>
+              
+              <!-- Enhanced Draw Data with Animations -->
+              <div class="draws-section group/section hover:scale-105 transition-transform duration-500">
+                <div class="flex items-center gap-2 mb-4">
+                  <span class="text-sm font-medium text-gray-700 dark:text-gray-300 group-hover/section:text-purple-600 dark:group-hover/section:text-purple-400 transition-colors duration-300">Recent Draws</span>
+                  <span class="px-2 py-1 bg-purple-100 dark:bg-purple-900/30 text-purple-700 dark:text-purple-300 text-xs rounded-full group-hover/section:scale-110 transition-transform duration-300 animate-pulse">Live Data</span>
+                </div>
+                <div class="space-y-3">
+                  <div class="draw-item rounded-xl p-3 border transition-all duration-300 cursor-pointer group/draw">
+                    <div class="flex items-center justify-between mb-1">
+                      <span class="text-xs transition-all duration-300">General Draw</span>
+                      <span class="text-lg font-bold transition-all duration-300">534</span>
+                    </div>
+                    <div class="text-xs">Aug 7, 2025</div>
+                  </div>
+                  <div class="draw-item rounded-xl p-3 border transition-all duration-300 cursor-pointer group/draw">
+                    <div class="flex items-center justify-between mb-1">
+                      <span class="text-xs transition-all duration-300">French Stream</span>
+                      <span class="text-lg font-bold transition-all duration-300">481</span>
+                    </div>
+                    <div class="text-xs">Aug 8, 2025</div>
+                  </div>
+                  <div class="draw-item rounded-xl p-3 border transition-all duration-300 cursor-pointer group/draw">
+                    <div class="flex items-center justify-between mb-1">
+                      <span class="text-xs transition-all duration-300">Healthcare</span>
+                      <span class="text-lg font-bold transition-all duration-300">463</span>
+                    </div>
+                    <div class="text-xs">Aug 6, 2025</div>
+                  </div>
+                </div>
+              </div>
             </div>
             
-            <!-- Quick Actions -->
-            <div class="flex gap-3">
-              <a href="/services/pr?utm_source=immigratic&utm_medium=website&utm_campaign=services_page&utm_content=targeted_categories" class="flex-1 px-4 py-2 bg-gradient-to-r from-green-600 to-blue-600 text-white text-sm font-semibold rounded-xl hover:from-green-700 hover:to-blue-700 transition-all duration-300 transform hover:scale-105 text-center">
-                Explore Categories
+            <!-- Enhanced Interactive CTA Buttons -->
+            <div class="relative z-10 flex flex-col sm:flex-row gap-4 justify-center">
+              <a href="/services/pr?utm_source=immigratic&utm_medium=website&utm_campaign=services_page&utm_content=express_entry" class="group/cta px-8 py-3 bg-gradient-to-r from-blue-600 via-purple-600 to-indigo-600 text-white font-semibold rounded-xl hover:from-blue-700 hover:via-purple-700 hover:to-indigo-700 transition-all duration-500 transform hover:scale-105 hover:-translate-y-1 text-center shadow-lg hover:shadow-2xl relative overflow-hidden">
+                <!-- Button Shimmer Effect -->
+                <div class="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent -translate-x-full group-hover/cta:translate-x-full transition-transform duration-1000"></div>
+                <span class="relative z-10">🚀 Explore All Express Entry Programs</span>
               </a>
-              <button onclick="openTargetedCategoriesModal()" class="px-4 py-2 border border-green-600 text-green-600 dark:text-green-400 text-sm font-semibold rounded-xl hover:bg-green-600 hover:text-white transition-all duration-300">
-                Eligibility Check
+              <button onclick="openEligibilityModal()" class="group/cta px-8 py-3 border-2 border-blue-600 text-blue-600 dark:text-blue-400 font-semibold rounded-xl hover:bg-blue-600 hover:text-white transition-all duration-500 transform hover:scale-105 hover:-translate-y-1 relative overflow-hidden">
+                <!-- Button Ripple Effect -->
+                <div class="absolute inset-0 bg-blue-600/10 scale-0 group-hover/cta:scale-100 rounded-xl transition-transform duration-500"></div>
+                <span class="relative z-10">📊 Check Your Eligibility</span>
               </button>
             </div>
           </div>
         </div>
       </div>
 
-      <!-- Family Sponsorship - Premium Hero Card -->
-      <div id="family-sponsorship" class="mb-16 opacity-0 animate-fade-in-up" style="animation-delay: 1.2s; animation-fill-mode: forwards;">
-        <div class="group relative">
-          <div class="absolute inset-0 bg-gradient-to-r from-pink-600 via-red-600 to-orange-600 rounded-3xl blur-xl opacity-0 group-hover:opacity-100 transition-all duration-700 scale-110"></div>
-          <div class="relative bg-white dark:bg-gray-800 rounded-3xl p-10 shadow-2xl border border-white/20 dark:border-gray-700/50 hover:shadow-3xl transition-all duration-700 transform hover:-translate-y-4 hover:scale-105 group-hover:border-pink-400/50 dark:group-hover:border-pink-500/50 overflow-hidden">
-            <!-- Background Pattern -->
-            <div class="absolute top-0 right-0 w-64 h-64 bg-gradient-to-br from-pink-100 to-red-100 dark:from-pink-900/20 dark:to-red-900/20 rounded-full blur-3xl opacity-50"></div>
+      <!-- Family Sponsorship - Enhanced Interactive Card -->
+      <div id="family-sponsorship" class="mb-16">
+        <div id="family-sponsorship" class="family-card group relative opacity-0 animate-fade-in-up cursor-pointer" style="animation-delay: 1s; animation-fill-mode: forwards;">
+          <!-- Dynamic Background Glow -->
+          <div class="absolute inset-0 bg-gradient-to-r from-pink-600 via-red-600 to-rose-600 rounded-3xl blur-xl opacity-0 group-hover:opacity-100 transition-all duration-1000 scale-110 animate-pulse-glow"></div>
+          
+          <!-- Floating Hearts Animation (standardized to particles) -->
+          <div class="absolute inset-0 overflow-hidden rounded-3xl pointer-events-none">
+            <div class="particle absolute top-10 left-10 text-pink-400 opacity-60 animate-float-particle">💕</div>
+            <div class="particle absolute top-20 right-20 text-red-400 opacity-40 animate-float-particle" style="animation-delay: 1.5s;">❤️</div>
+            <div class="particle absolute bottom-20 left-1/4 text-rose-400 opacity-50 animate-float-particle" style="animation-delay: 3s;">💖</div>
+          </div>
+          
+          <div class="relative bg-white/90 dark:bg-gray-800/90 backdrop-blur-xl rounded-3xl p-10 shadow-2xl border border-white/20 dark:border-gray-700/50 hover:shadow-3xl transition-all duration-700 group-hover:border-pink-400/50 dark:group-hover:border-pink-500/50 overflow-hidden">
+            <!-- Animated Background Pattern -->
+            <div class="absolute top-0 right-0 w-64 h-64 bg-gradient-to-br from-pink-100/30 to-red-100/30 dark:from-pink-900/10 dark:to-red-900/10 rounded-full blur-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-1000"></div>
             
-            <div class="relative z-10">
-              <!-- Header Section -->
-              <div class="flex flex-col lg:flex-row items-start justify-between mb-8 gap-4">
-                <div class="flex items-center gap-4 lg:gap-6">
-                  <div class="w-16 h-16 lg:w-20 lg:h-20 bg-gradient-to-br from-pink-500 to-red-600 rounded-3xl flex items-center justify-center text-white font-bold text-xl lg:text-2xl group-hover:scale-110 transition-transform duration-300 shadow-2xl">
-                    ❤️
-                  </div>
-                  <div>
-                    <h3 class="text-2xl lg:text-3xl font-bold text-gray-900 dark:text-white group-hover:text-pink-600 dark:group-hover:text-pink-400 transition-colors mb-2">Family Sponsorship</h3>
-                    <p class="text-base lg:text-lg text-gray-600 dark:text-gray-400">Your Path to Reuniting with Loved Ones</p>
-                  </div>
+            <!-- Program Header -->
+            <div class="relative z-10 flex flex-col lg:flex-row items-start lg:items-center justify-between mb-8 gap-6">
+              <div class="flex items-center gap-6">
+                <div class="icon-container w-20 h-20 bg-gradient-to-br from-pink-500 via-red-600 to-rose-600 rounded-3xl flex items-center justify-center text-white group-hover:scale-110 group-hover:rotate-3 transition-all duration-500 shadow-2xl relative overflow-hidden">
+                  <!-- Icon Glow Effect -->
+                  <div class="absolute inset-0 bg-gradient-to-br from-pink-400 to-red-500 rounded-3xl blur-md opacity-0 group-hover:opacity-100 transition-opacity duration-500 animate-pulse"></div>
+                  <span class="relative z-10 text-2xl group-hover:scale-110 transition-transform duration-300">❤️</span>
+                  <!-- Orbiting Elements -->
+                  <div class="absolute -top-1 -right-1 w-3 h-3 bg-pink-400 rounded-full animate-orbit opacity-80"></div>
+                  <div class="absolute -bottom-1 -left-1 w-2 h-2 bg-red-400 rounded-full animate-orbit-reverse opacity-80"></div>
                 </div>
-                
-                <!-- Success Badge -->
-                <div class="lg:text-right w-full lg:w-auto">
-                  <div class="inline-flex items-center gap-2 px-3 py-2 lg:px-4 lg:py-2 bg-green-100 dark:bg-green-900/30 rounded-full text-center justify-center lg:justify-start">
-                    <div class="w-2 h-2 bg-green-500 rounded-full animate-pulse"></div>
-                    <span class="text-sm font-semibold text-green-700 dark:text-green-300">100% Success Rate</span>
+                <div class="title-section">
+                  <h3 class="text-3xl font-bold text-gray-900 dark:text-white group-hover:text-pink-600 dark:group-hover:text-pink-400 transition-all duration-500 group-hover:scale-105 transform-gpu">Family Sponsorship</h3>
+                  <p class="text-lg text-gray-600 dark:text-gray-400 group-hover:text-red-600 dark:group-hover:text-red-400 transition-colors duration-300">Reunite with Your Loved Ones - All Programs</p>
+                </div>
+              </div>
+              
+              <!-- Success Rate Tracker -->
+              <div class="success-tracker p-4 bg-gradient-to-r from-pink-50 via-red-50 to-rose-50 dark:from-pink-900/20 dark:via-red-900/20 dark:to-rose-900/20 rounded-xl border border-pink-200 dark:border-pink-700 hover:border-pink-400 dark:hover:border-pink-500 transition-all duration-500 group-hover:scale-105 transform-gpu hover:shadow-lg">
+                <div class="flex items-center justify-between mb-2">
+                  <span class="text-sm font-medium text-pink-700 dark:text-pink-300">Success Rate</span>
+                  <span class="text-xs text-pink-600 dark:text-pink-400 animate-pulse">✅ Guaranteed</span>
+                </div>
+                <div class="text-3xl font-bold text-pink-600 dark:text-pink-400 group-hover:scale-110 transition-transform duration-300">100%</div>
+                <div class="text-xs text-pink-600 dark:text-pink-400">With Proper Documentation</div>
+              </div>
+            </div>
+              
+            <!-- Enhanced Interactive Content Grid -->
+            <div class="relative z-10 grid grid-cols-1 lg:grid-cols-3 gap-8 mb-8">
+              <!-- Sponsorship Programs -->
+              <div class="programs-section group/section">
+                <div class="flex items-center gap-2 mb-4">
+                  <span class="text-sm font-medium text-gray-700 dark:text-gray-300 group-hover/section:text-pink-600 dark:group-hover/section:text-pink-400 transition-colors duration-300">Sponsorship Programs</span>
+                  <span class="px-2 py-1 bg-pink-100 dark:bg-pink-900/30 text-pink-700 dark:text-pink-300 text-xs rounded-full group-hover/section:scale-110 transition-transform duration-300">4 Types</span>
+                </div>
+                <div class="space-y-3">
+                  <div class="program-item flex items-center gap-3 p-2 rounded-lg transition-all duration-300 cursor-pointer group/item">
+                    <div class="w-3 h-3 bg-pink-500 rounded-full transition-all duration-300"></div>
+                    <span class="text-sm text-gray-600 dark:text-gray-400 transition-all duration-300">Spouse/Partner</span>
+                  </div>
+                  <div class="program-item flex items-center gap-3 p-2 rounded-lg transition-all duration-300 cursor-pointer group/item">
+                    <div class="w-3 h-3 bg-red-500 rounded-full transition-all duration-300"></div>
+                    <span class="text-sm text-gray-600 dark:text-gray-400 transition-all duration-300">Children</span>
+                  </div>
+                  <div class="program-item flex items-center gap-3 p-2 rounded-lg transition-all duration-300 cursor-pointer group/item">
+                    <div class="w-3 h-3 bg-pink-500 rounded-full transition-all duration-300"></div>
+                    <span class="text-sm text-gray-600 dark:text-gray-400 transition-all duration-300">Parents & Grandparents</span>
+                  </div>
+                  <div class="program-item flex items-center gap-3 p-2 rounded-lg transition-all duration-300 cursor-pointer group/item">
+                    <div class="w-3 h-3 bg-red-500 rounded-full transition-all duration-300"></div>
+                    <span class="text-sm text-gray-600 dark:text-gray-400 transition-all duration-300">Other Eligible Relatives</span>
                   </div>
                 </div>
               </div>
               
-              <!-- Main Content Grid -->
-              <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-8 mb-8">
-                <!-- Program Categories -->
-                <div>
-                  <h4 class="text-xl font-semibold text-gray-900 dark:text-white mb-4">Available Programs</h4>
-                  <div class="space-y-4">
-                    <div class="flex items-center gap-4 p-4 bg-gradient-to-r from-pink-50 to-red-50 dark:from-pink-900/20 dark:to-red-900/20 rounded-xl border border-pink-200 dark:border-pink-700">
-                      <div class="w-12 h-12 bg-gradient-to-br from-pink-500 to-red-600 rounded-xl flex items-center justify-center text-white font-bold text-lg">
-                        💑
-                      </div>
-                      <div>
-                        <div class="font-semibold text-gray-900 dark:text-white">Spouse/Common-Law Partner</div>
-                        <div class="text-sm text-gray-600 dark:text-gray-400">In-Canada Class</div>
-                      </div>
-                    </div>
-                    
-                    <div class="flex items-center gap-4 p-4 bg-gradient-to-r from-red-50 to-orange-50 dark:from-red-900/20 dark:to-orange-900/20 rounded-xl border border-red-200 dark:border-red-700">
-                      <div class="w-12 h-12 bg-gradient-to-br from-red-500 to-orange-600 rounded-xl flex items-center justify-center text-white font-bold text-lg">
-                        👨‍👩‍👧‍👦
-                      </div>
-                      <div>
-                        <div class="font-semibold text-gray-900 dark:text-white">Family Class Sponsorship</div>
-                        <div class="text-sm text-gray-600 dark:text-gray-400">Spouse, Common-law, Parents, Grandparents and children</div>
-                      </div>
-                    </div>
-                  </div>
+              <!-- Processing Times -->
+              <div class="categories-section group/section">
+                <div class="flex items-center gap-2 mb-4">
+                  <span class="text-sm font-medium text-gray-700 dark:text-gray-300 group-hover/section:text-red-600 dark:group-hover/section:text-red-400 transition-colors duration-300">Processing Times</span>
+                  <span class="px-2 py-1 bg-red-100 dark:bg-red-900/30 text-red-700 dark:text-red-300 text-xs rounded-full group-hover/section:scale-110 transition-transform duration-300">Current</span>
                 </div>
-                
-                <!-- Why Choose Us -->
-                <div>
-                  <h4 class="text-xl font-semibold text-gray-900 dark:text-white mb-4">Why Choose Immigratic?</h4>
-                  <div class="space-y-4">
-                    <div class="flex items-center gap-3">
-                      <div class="w-8 h-8 bg-green-100 dark:bg-green-900/30 rounded-full flex items-center justify-center">
-                        <svg class="w-4 h-4 text-green-600 dark:text-green-400" fill="currentColor" viewBox="0 0 20 20">
-                          <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" />
-                        </svg>
-                      </div>
-                      <span class="text-gray-700 dark:text-gray-300">Fastest processing times in the industry</span>
-                    </div>
-                    <div class="flex items-center gap-3">
-                      <div class="w-8 h-8 bg-green-100 dark:bg-green-900/30 rounded-full flex items-center justify-center">
-                        <svg class="w-4 h-4 text-green-600 dark:text-green-400" fill="currentColor" viewBox="0 0 20 20">
-                          <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" />
-                        </svg>
-                      </div>
-                      <span class="text-gray-700 dark:text-gray-300">Specialized expertise for American clients</span>
-                    </div>
-                    <div class="flex items-center gap-3">
-                      <div class="w-8 h-8 bg-green-100 dark:bg-green-900/30 rounded-full flex items-center justify-center">
-                        <svg class="w-4 h-4 text-green-600 dark:text-green-400" fill="currentColor" viewBox="0 0 20 20">
-                          <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" />
-                        </svg>
-                      </div>
-                      <span class="text-gray-700 dark:text-gray-300">Personalized guidance throughout the process</span>
-                    </div>
+                <div class="space-y-3">
+                  <div class="category-item flex items-center gap-3 p-2 rounded-lg transition-all duration-300 cursor-pointer group/item">
+                    <div class="w-3 h-3 bg-pink-500 rounded-full transition-all duration-300"></div>
+                    <span class="text-sm text-gray-600 dark:text-gray-400 transition-all duration-300">Spouse (In-Canada): 12 months</span>
+                  </div>
+                  <div class="category-item flex items-center gap-3 p-2 rounded-lg transition-all duration-300 cursor-pointer group/item">
+                    <div class="w-3 h-3 bg-red-500 rounded-full transition-all duration-300"></div>
+                    <span class="text-sm text-gray-600 dark:text-gray-400 transition-all duration-300">Children: 15 months</span>
+                  </div>
+                  <div class="category-item flex items-center gap-3 p-2 rounded-lg transition-all duration-300 cursor-pointer group/item">
+                    <div class="w-3 h-3 bg-pink-500 rounded-full transition-all duration-300"></div>
+                    <span class="text-sm text-gray-600 dark:text-gray-400 transition-all duration-300">Parents: 20-24 months</span>
+                  </div>
+                  <div class="category-item flex items-center gap-3 p-2 rounded-lg transition-all duration-300 cursor-pointer group/item">
+                    <div class="w-3 h-3 bg-red-500 rounded-full transition-all duration-300"></div>
+                    <span class="text-sm text-gray-600 dark:text-gray-400 transition-all duration-300">Super Visa: 6-8 weeks</span>
                   </div>
                 </div>
               </div>
               
-              <!-- CTA Section -->
-              <div class="flex flex-col sm:flex-row gap-4">
-                <a href="/services/pr?utm_source=immigratic&utm_medium=website&utm_campaign=services_page&utm_content=family_sponsorship" class="flex-1 px-6 sm:px-8 py-3 sm:py-4 bg-gradient-to-r from-pink-600 to-red-600 text-white text-base sm:text-lg font-bold rounded-2xl hover:from-pink-700 hover:to-red-700 transition-all duration-300 transform hover:scale-105 text-center shadow-lg">
-                  Start Your Family Journey
-                </a>
-                <a href="/services/pr?utm_source=immigratic&utm_medium=website&utm_campaign=services_page&utm_content=family_sponsorship_learn" class="px-6 sm:px-8 py-3 sm:py-4 border-2 border-pink-600 text-pink-600 dark:text-pink-400 text-base sm:text-lg font-bold rounded-2xl hover:bg-pink-600 hover:text-white transition-all duration-300 text-center">
-                  Learn More
-                </a>
+              <!-- Key Benefits -->
+              <div class="draws-section group/section">
+                <div class="flex items-center gap-2 mb-4">
+                  <span class="text-sm font-medium text-gray-700 dark:text-gray-300 group-hover/section:text-rose-600 dark:group-hover/section:text-rose-400 transition-colors duration-300">Key Benefits</span>
+                  <span class="px-2 py-1 bg-rose-100 dark:bg-rose-900/30 text-rose-700 dark:text-rose-300 text-xs rounded-full group-hover/section:scale-110 transition-transform duration-300">Guaranteed</span>
+                </div>
+                <div class="space-y-3">
+                  <div class="draw-item rounded-xl p-3 border transition-all duration-300 cursor-pointer group/draw">
+                    <div class="flex items-center justify-between mb-1">
+                      <span class="text-xs transition-all duration-300">No Income Requirement</span>
+                      <span class="text-lg font-bold transition-all duration-300">✅</span>
+                    </div>
+                    <div class="text-xs">Spouse Sponsorship</div>
+                  </div>
+                  <div class="draw-item rounded-xl p-3 border transition-all duration-300 cursor-pointer group/draw">
+                    <div class="flex items-center justify-between mb-1">
+                      <span class="text-xs transition-all duration-300">Work Immediately</span>
+                      <span class="text-lg font-bold transition-all duration-300">🚀</span>
+                    </div>
+                    <div class="text-xs">Open Work Permit</div>
+                  </div>
+                  <div class="draw-item rounded-xl p-3 border transition-all duration-300 cursor-pointer group/draw">
+                    <div class="flex items-center justify-between mb-1">
+                      <span class="text-xs transition-all duration-300">Expert Guidance</span>
+                      <span class="text-lg font-bold transition-all duration-300">👨‍💼</span>
+                    </div>
+                    <div class="text-xs">Licensed RCIC</div>
+                  </div>
+                </div>
               </div>
+            </div>
+            
+            <!-- Enhanced Interactive CTA Buttons -->
+            <div class="relative z-10 flex flex-col sm:flex-row gap-4 justify-center">
+              <a href="/services/pr/family?utm_source=immigratic&utm_medium=website&utm_campaign=services_page&utm_content=family_sponsorship" class="group/cta px-8 py-3 bg-gradient-to-r from-pink-600 via-red-600 to-rose-600 text-white font-semibold rounded-xl hover:from-pink-700 hover:via-red-700 hover:to-rose-700 transition-all duration-500 transform hover:scale-105 hover:-translate-y-1 text-center shadow-lg hover:shadow-2xl relative overflow-hidden">
+                <!-- Button Shimmer Effect -->
+                <div class="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent -translate-x-full group-hover/cta:translate-x-full transition-transform duration-1000"></div>
+                <span class="relative z-10">💕 Explore Family Programs</span>
+              </a>
+              <button onclick="(window as any).openFamilyModal()" class="group/cta px-8 py-3 border-2 border-pink-600 text-pink-600 dark:text-pink-400 font-semibold rounded-xl hover:bg-pink-600 hover:text-white transition-all duration-500 transform hover:scale-105 hover:-translate-y-1 relative overflow-hidden">
+                <!-- Button Ripple Effect -->
+                <div class="absolute inset-0 bg-pink-600/10 scale-0 group-hover/cta:scale-100 rounded-xl transition-transform duration-500"></div>
+                <span class="relative z-10">📊 Check Eligibility</span>
+              </button>
             </div>
           </div>
         </div>
       </div>
 
-      <!-- Additional PR Programs -->
-      <div id="oinp" class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-16">
-        <!-- Provincial Nominee Program -->
-        <div class="group relative opacity-0 animate-fade-in-up" style="animation-delay: 1.4s; animation-fill-mode: forwards;">
-          <div class="absolute inset-0 bg-gradient-to-r from-green-600 to-blue-600 rounded-3xl blur-xl opacity-0 group-hover:opacity-100 transition-all duration-700 scale-110"></div>
-          <div class="relative bg-white dark:bg-gray-800 rounded-3xl p-8 shadow-2xl border border-white/20 dark:border-gray-700/50 hover:shadow-3xl transition-all duration-700 transform hover:-translate-y-4 hover:scale-105 group-hover:border-green-400/50 dark:group-hover:border-green-500/50">
-            <!-- Program Header -->
-            <div class="flex items-center gap-4 mb-6">
-              <div class="w-16 h-16 bg-gradient-to-br from-green-500 to-blue-600 rounded-2xl flex items-center justify-center text-white group-hover:scale-110 transition-transform duration-300">
-                <svg class="w-8 h-8" fill="currentColor" viewBox="0 0 24 24">
-                  <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
-                </svg>
-              </div>
-              <div>
-                <h3 class="text-2xl font-bold text-gray-900 dark:text-white group-hover:text-green-600 dark:group-hover:text-green-400 transition-colors">Ontario Immigration Programs</h3>
-                <p class="text-gray-600 dark:text-gray-400">Job Offer Streams</p>
-              </div>
-            </div>
-
-            <!-- Available Streams -->
-            <div class="mb-6">
-              <div class="flex items-center justify-between mb-3">
-                <span class="text-sm font-medium text-gray-700 dark:text-gray-300">Available Streams</span>
-                <span class="text-xs text-green-600 dark:text-green-400">3 Active</span>
-              </div>
-              <div class="space-y-2">
-                <div class="flex items-center gap-2">
-                  <div class="w-2 h-2 bg-green-500 rounded-full"></div>
-                  <span class="text-sm text-gray-600 dark:text-gray-400">Foreign Worker</span>
-                </div>
-                <div class="flex items-center gap-2">
-                  <div class="w-2 h-2 bg-blue-500 rounded-full"></div>
-                  <span class="text-sm text-gray-600 dark:text-gray-400">International Student</span>
-                </div>
-                <div class="flex items-center gap-2">
-                  <div class="w-2 h-2 bg-green-500 rounded-full"></div>
-                  <span class="text-sm text-gray-600 dark:text-gray-400">In-Demand Skills</span>
-                </div>
-              </div>
-            </div>
-
-            <!-- Latest Draw Data -->
-            <div class="mb-6 p-4 bg-gradient-to-r from-green-50 to-blue-50 dark:from-green-900/20 dark:to-blue-900/20 rounded-xl border border-green-200 dark:border-green-700">
-              <div class="flex items-center justify-between mb-2">
-                <span class="text-sm font-medium text-green-700 dark:text-green-300">Latest Ontario Draw</span>
-                <span class="text-xs text-green-600 dark:text-green-400">Updated 1 day ago</span>
-              </div>
-              <div class="text-2xl font-bold text-green-600 dark:text-green-400 mb-1">International Student</div>
-              <div class="text-xs text-green-600 dark:text-green-400">Score Cutoff: 54 | June 6, 2025</div>
-            </div>
-
-            <!-- Quick Actions -->
-            <div class="flex gap-3">
-              <a href="/services/pr?utm_source=immigratic&utm_medium=website&utm_campaign=services_page&utm_content=pnp_job_offer" class="flex-1 px-4 py-2 bg-gradient-to-r from-green-600 to-blue-600 text-white text-sm font-semibold rounded-xl hover:from-green-700 hover:to-blue-700 transition-all duration-300 transform hover:scale-105 text-center">
-                Explore Program
-              </a>
-              <button onclick="openOINPJobOfferModal()" class="px-4 py-2 border border-green-600 text-green-600 dark:text-green-400 text-sm font-semibold rounded-xl hover:bg-green-600 hover:text-white transition-all duration-300">
-                Eligibility Check
-              </button>
-            </div>
+      <!-- OINP - Enhanced Interactive Card -->
+      <div id="oinp" class="mb-16">
+        <div id="oinp" class="oinp-card group relative opacity-0 animate-fade-in-up cursor-pointer" style="animation-delay: 1.2s; animation-fill-mode: forwards;">
+          <!-- Dynamic Background Glow -->
+          <div class="absolute inset-0 bg-gradient-to-r from-orange-600 via-yellow-600 to-amber-600 rounded-3xl blur-xl opacity-0 group-hover:opacity-100 transition-all duration-1000 scale-110 animate-pulse-glow"></div>
+          
+          <!-- Floating Ontario Symbols (standardized to particles) -->
+          <div class="absolute inset-0 overflow-hidden rounded-3xl pointer-events-none">
+            <div class="particle absolute top-10 left-10 w-3 h-3 bg-orange-400 rounded-full opacity-60 animate-float-particle">🍁</div>
+            <div class="particle absolute top-20 right-20 w-2 h-2 bg-yellow-400 rounded-full opacity-40 animate-float-particle" style="animation-delay: 2s;">⭐</div>
+            <div class="particle absolute bottom-20 left-1/4 w-2.5 h-2.5 bg-amber-400 rounded-full opacity-50 animate-float-particle" style="animation-delay: 4s;">🏛️</div>
           </div>
-        </div>
-
-        <!-- Non-Job-Offer Streams -->
-        <div class="group relative opacity-0 animate-fade-in-up" style="animation-delay: 1.6s; animation-fill-mode: forwards;">
-          <div class="absolute inset-0 bg-gradient-to-r from-blue-600 to-purple-600 rounded-3xl blur-xl opacity-0 group-hover:opacity-100 transition-all duration-700 scale-110"></div>
-          <div class="relative bg-white dark:bg-gray-800 rounded-3xl p-8 shadow-2xl border border-white/20 dark:border-gray-700/50 hover:shadow-3xl transition-all duration-700 transform hover:-translate-y-4 hover:scale-105 group-hover:border-blue-400/50 dark:group-hover:border-blue-500/50">
+          
+          <div class="relative bg-white/90 dark:bg-gray-800/90 backdrop-blur-xl rounded-3xl p-10 shadow-2xl border border-white/20 dark:border-gray-700/50 hover:shadow-3xl transition-all duration-700 group-hover:border-orange-400/50 dark:group-hover:border-orange-500/50 overflow-hidden">
+            <!-- Animated Background Pattern -->
+            <div class="absolute top-0 right-0 w-64 h-64 bg-gradient-to-br from-orange-100/30 to-yellow-100/30 dark:from-orange-900/10 dark:to-yellow-900/10 rounded-full blur-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-1000"></div>
+            
             <!-- Program Header -->
-            <div class="flex items-center gap-4 mb-6">
-              <div class="w-16 h-16 bg-gradient-to-br from-blue-500 to-purple-600 rounded-2xl flex items-center justify-center text-white group-hover:scale-110 transition-transform duration-300">
-                <svg class="w-8 h-8" fill="currentColor" viewBox="0 0 24 24">
-                  <path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
-                </svg>
-              </div>
-              <div>
-                <h3 class="text-2xl font-bold text-gray-900 dark:text-white group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">Ontario Immigration Programs</h3>
-                <p class="text-gray-600 dark:text-gray-400">Non-Job-Offer Streams</p>
-              </div>
-            </div>
-
-            <!-- Available Streams -->
-            <div class="mb-6">
-              <div class="flex items-center justify-between mb-3">
-                <span class="text-sm font-medium text-gray-700 dark:text-gray-300">Available Streams</span>
-                <span class="text-xs text-blue-600 dark:text-blue-400">3 Active</span>
-              </div>
-              <div class="space-y-2">
-                <div class="flex items-center gap-2">
-                  <div class="w-2 h-2 bg-blue-500 rounded-full"></div>
-                  <span class="text-sm text-gray-600 dark:text-gray-400">Human Capital</span>
+            <div class="relative z-10 flex flex-col lg:flex-row items-start lg:items-center justify-between mb-8 gap-6">
+              <div class="flex items-center gap-6">
+                <div class="icon-container w-20 h-20 bg-gradient-to-br from-orange-500 via-yellow-600 to-amber-600 rounded-3xl flex items-center justify-center text-white group-hover:scale-110 group-hover:rotate-3 transition-all duration-500 shadow-2xl relative overflow-hidden">
+                  <!-- Icon Glow Effect -->
+                  <div class="absolute inset-0 bg-gradient-to-br from-orange-400 to-yellow-500 rounded-3xl blur-md opacity-0 group-hover:opacity-100 transition-opacity duration-500 animate-pulse"></div>
+                  <svg class="relative z-10 w-10 h-10 group-hover:scale-110 transition-transform duration-300" fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+                  </svg>
+                  <!-- Orbiting Elements -->
+                  <div class="absolute -top-1 -right-1 w-3 h-3 bg-orange-400 rounded-full animate-orbit opacity-80"></div>
+                  <div class="absolute -bottom-1 -left-1 w-2 h-2 bg-yellow-400 rounded-full animate-orbit-reverse opacity-80"></div>
                 </div>
-                <div class="flex items-center gap-2">
-                  <div class="w-2 h-2 bg-purple-500 rounded-full"></div>
-                  <span class="text-sm text-gray-600 dark:text-gray-400">Skilled Trade</span>
-                </div>
-                <div class="flex items-center gap-2">
-                  <div class="w-2 h-2 bg-blue-500 rounded-full"></div>
-                  <span class="text-sm text-gray-600 dark:text-gray-400">Graduate Streams</span>
+                <div class="title-section">
+                  <h3 class="text-3xl font-bold text-gray-900 dark:text-white group-hover:text-orange-600 dark:group-hover:text-orange-400 transition-all duration-500 group-hover:scale-105 transform-gpu">OINP</h3>
+                  <p class="text-lg text-gray-600 dark:text-gray-400 group-hover:text-yellow-600 dark:group-hover:text-yellow-400 transition-colors duration-300">Ontario Immigrant Nominee Program - All Streams</p>
                 </div>
               </div>
-            </div>
-
-            <!-- Latest Draw Data -->
-            <div class="mb-6 p-4 bg-gradient-to-r from-blue-50 to-purple-50 dark:from-blue-900/20 dark:to-purple-900/20 rounded-xl border border-blue-200 dark:border-blue-700">
-              <div class="flex items-center justify-between mb-2">
-                <span class="text-sm font-medium text-blue-700 dark:text-blue-300">Latest Ontario Draw</span>
-                <span class="text-xs text-blue-600 dark:text-blue-400">Updated 1 day ago</span>
+              
+              <!-- Enhanced Latest Draw Data -->
+              <div class="ontario-tracker p-4 bg-gradient-to-r from-orange-50 via-yellow-50 to-amber-50 dark:from-orange-900/20 dark:via-yellow-900/20 dark:to-amber-900/20 rounded-xl border border-orange-200 dark:border-orange-700 hover:border-orange-400 dark:hover:border-orange-500 transition-all duration-500 group-hover:scale-105 transform-gpu hover:shadow-lg">
+                <div class="flex items-center justify-between mb-2">
+                  <span class="text-sm font-medium text-orange-700 dark:text-orange-300">Latest Draw</span>
+                  <span class="text-xs text-orange-600 dark:text-orange-400 animate-pulse">🔴 Live</span>
+                </div>
+                <div class="text-3xl font-bold text-orange-600 dark:text-orange-400 group-hover:scale-110 transition-transform duration-300">CRS 467</div>
+                <div class="text-xs text-orange-600 dark:text-orange-400">General Stream</div>
               </div>
-              <div class="text-2xl font-bold text-blue-600 dark:text-blue-400 mb-1">Skilled Trade</div>
-              <div class="text-xs text-blue-600 dark:text-blue-400">Score Cutoff: 405 | October 17, 2024</div>
             </div>
-
-            <!-- Quick Actions -->
-            <div class="flex gap-3">
-              <a href="/services/pr?utm_source=immigratic&utm_medium=website&utm_campaign=services_page&utm_content=pnp_non_job_offer" class="flex-1 px-4 py-2 bg-gradient-to-r from-blue-600 to-purple-600 text-white text-sm font-semibold rounded-xl hover:from-blue-700 hover:to-purple-700 transition-all duration-300 transform hover:scale-105 text-center">
-                Explore Program
+            
+            <!-- Enhanced Interactive Content Grid -->
+            <div class="relative z-10 grid grid-cols-1 lg:grid-cols-3 gap-8 mb-8">
+              <!-- Job Offer Streams - Interactive Section -->
+              <div class="programs-section group/section">
+                <div class="flex items-center gap-2 mb-4">
+                  <span class="text-sm font-medium text-gray-700 dark:text-gray-300 group-hover/section:text-green-600 dark:group-hover/section:text-green-400 transition-colors duration-300">Job Offer Streams</span>
+                  <span class="px-2 py-1 bg-green-100 dark:bg-green-900/30 text-green-700 dark:text-green-300 text-xs rounded-full group-hover/section:scale-110 transition-transform duration-300">3 Active</span>
+                </div>
+                <div class="space-y-3">
+                  <div class="program-item flex items-center gap-3 p-2 rounded-lg transition-all duration-300 cursor-pointer group/item">
+                    <div class="w-3 h-3 bg-green-500 rounded-full transition-all duration-300"></div>
+                    <span class="text-sm text-gray-600 dark:text-gray-400 transition-all duration-300">Foreign Worker</span>
+                  </div>
+                  <div class="program-item flex items-center gap-3 p-2 rounded-lg transition-all duration-300 cursor-pointer group/item">
+                    <div class="w-3 h-3 bg-blue-500 rounded-full transition-all duration-300"></div>
+                    <span class="text-sm text-gray-600 dark:text-gray-400 transition-all duration-300">International Student</span>
+                  </div>
+                  <div class="program-item flex items-center gap-3 p-2 rounded-lg transition-all duration-300 cursor-pointer group/item">
+                    <div class="w-3 h-3 bg-green-500 rounded-full transition-all duration-300"></div>
+                    <span class="text-sm text-gray-600 dark:text-gray-400 transition-all duration-300">In-Demand Skills</span>
+                  </div>
+                </div>
+              </div>
+              
+              <!-- Non-Job-Offer Streams - Interactive Section -->
+              <div class="categories-section group/section">
+                <div class="flex items-center gap-2 mb-4">
+                  <span class="text-sm font-medium text-gray-700 dark:text-gray-300 group-hover/section:text-orange-600 dark:group-hover/section:text-orange-400 transition-colors duration-300">Non-Job-Offer Streams</span>
+                  <span class="px-2 py-1 bg-orange-100 dark:bg-orange-900/30 text-orange-700 dark:text-orange-300 text-xs rounded-full group-hover/section:scale-110 transition-transform duration-300">6 Active</span>
+                </div>
+                <div class="space-y-3">
+                  <div class="category-item flex items-center gap-3 p-2 rounded-lg transition-all duration-300 cursor-pointer group/item">
+                    <div class="w-3 h-3 bg-orange-500 rounded-full transition-all duration-300"></div>
+                    <span class="text-sm text-gray-600 dark:text-gray-400 transition-all duration-300">Human Capital Priority</span>
+                  </div>
+                  <div class="category-item flex items-center gap-3 p-2 rounded-lg transition-all duration-300 cursor-pointer group/item">
+                    <div class="w-3 h-3 bg-yellow-500 rounded-full transition-all duration-300"></div>
+                    <span class="text-sm text-gray-600 dark:text-gray-400 transition-all duration-300">Skilled Trades</span>
+                  </div>
+                  <div class="category-item flex items-center gap-3 p-2 rounded-lg transition-all duration-300 cursor-pointer group/item">
+                    <div class="w-3 h-3 bg-orange-500 rounded-full transition-all duration-300"></div>
+                    <span class="text-sm text-gray-600 dark:text-gray-400 transition-all duration-300">French-Speaking</span>
+                  </div>
+                  <div class="category-item flex items-center gap-3 p-2 rounded-lg transition-all duration-300 cursor-pointer group/item">
+                    <div class="w-3 h-3 bg-yellow-500 rounded-full transition-all duration-300"></div>
+                    <span class="text-sm text-gray-600 dark:text-gray-400 transition-all duration-300">Masters Graduate</span>
+                  </div>
+                  <div class="category-item flex items-center gap-3 p-2 rounded-lg transition-all duration-300 cursor-pointer group/item">
+                    <div class="w-3 h-3 bg-orange-500 rounded-full transition-all duration-300"></div>
+                    <span class="text-sm text-gray-600 dark:text-gray-400 transition-all duration-300">PhD Graduate</span>
+                  </div>
+                  <div class="category-item flex items-center gap-3 p-2 rounded-lg transition-all duration-300 cursor-pointer group/item">
+                    <div class="w-3 h-3 bg-yellow-500 rounded-full transition-all duration-300"></div>
+                    <span class="text-sm text-gray-600 dark:text-gray-400 transition-all duration-300">Entrepreneur</span>
+                  </div>
+                </div>
+              </div>
+              
+              <!-- Enhanced Draw Data with Animations -->
+              <div class="draws-section group/section">
+                <div class="flex items-center gap-2 mb-4">
+                  <span class="text-sm font-medium text-gray-700 dark:text-gray-300 group-hover/section:text-yellow-600 dark:group-hover/section:text-yellow-400 transition-colors duration-300">Recent Draws</span>
+                  <span class="px-2 py-1 bg-yellow-100 dark:bg-yellow-900/30 text-yellow-700 dark:text-yellow-300 text-xs rounded-full group-hover/section:scale-110 transition-transform duration-300 animate-pulse">Live Data</span>
+                </div>
+                <div class="space-y-3">
+                  <div class="draw-item rounded-xl p-3 border transition-all duration-300 cursor-pointer group/draw">
+                    <div class="flex items-center justify-between mb-1">
+                      <span class="text-xs transition-all duration-300">General Draw</span>
+                      <span class="text-lg font-bold transition-all duration-300">534</span>
+                    </div>
+                    <div class="text-xs">Aug 7, 2025</div>
+                  </div>
+                  <div class="draw-item rounded-xl p-3 border transition-all duration-300 cursor-pointer group/draw">
+                    <div class="flex items-center justify-between mb-1">
+                      <span class="text-xs transition-all duration-300">French Stream</span>
+                      <span class="text-lg font-bold transition-all duration-300">481</span>
+                    </div>
+                    <div class="text-xs">Aug 8, 2025</div>
+                  </div>
+                  <div class="draw-item rounded-xl p-3 border transition-all duration-300 cursor-pointer group/draw">
+                    <div class="flex items-center justify-between mb-1">
+                      <span class="text-xs transition-all duration-300">Healthcare</span>
+                      <span class="text-lg font-bold transition-all duration-300">463</span>
+                    </div>
+                    <div class="text-xs">Aug 6, 2025</div>
+                  </div>
+                  <div class="draw-item rounded-xl p-3 border transition-all duration-300 cursor-pointer group/draw">
+                    <div class="flex items-center justify-between mb-1">
+                      <span class="text-xs transition-all duration-300">International Student</span>
+                      <span class="text-lg font-bold transition-all duration-300">54</span>
+                    </div>
+                    <div class="text-xs">June 6, 2025</div>
+                  </div>
+                  <div class="draw-item rounded-xl p-3 border transition-all duration-300 cursor-pointer group/draw">
+                    <div class="flex items-center justify-between mb-1">
+                      <span class="text-xs transition-all duration-300">Skilled Trades</span>
+                      <span class="text-lg font-bold transition-all duration-300">405</span>
+                    </div>
+                    <div class="text-xs">Oct 17, 2024</div>
+                  </div>
+                  <div class="draw-item rounded-xl p-3 border transition-all duration-300 cursor-pointer group/draw">
+                    <div class="flex items-center justify-between mb-1">
+                      <span class="text-xs transition-all duration-300">Express Entry</span>
+                      <span class="text-lg font-bold transition-all duration-300">467</span>
+                    </div>
+                    <div class="text-xs">Aug 2, 2025</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            
+            <!-- Enhanced Interactive CTA Buttons -->
+            <div class="relative z-10 flex flex-col sm:flex-row gap-4 justify-center">
+              <a href="/services/pr/oinp?utm_source=immigratic&utm_medium=website&utm_campaign=services_page&utm_content=oinp" class="group/cta px-8 py-3 bg-gradient-to-r from-orange-600 via-yellow-600 to-amber-600 text-white font-semibold rounded-xl hover:from-orange-700 hover:via-yellow-700 hover:to-amber-700 transition-all duration-500 transform hover:scale-105 hover:-translate-y-1 text-center shadow-lg hover:shadow-2xl relative overflow-hidden">
+                <!-- Button Shimmer Effect -->
+                <div class="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent -translate-x-full group-hover/cta:translate-x-full transition-transform duration-1000"></div>
+                <span class="relative z-10">🚀 Explore All OINP Streams</span>
               </a>
-              <button onclick="openOINPNonJobOfferModal()" class="px-4 py-2 border border-blue-600 text-blue-600 dark:text-blue-400 text-sm font-semibold rounded-xl hover:bg-blue-600 hover:text-white transition-all duration-300">
-                Eligibility Check
+              <button onclick="(window as any).openOINPModal()" class="group/cta px-8 py-3 border-2 border-orange-600 text-orange-600 dark:text-orange-400 font-semibold rounded-xl hover:bg-orange-600 hover:text-white transition-all duration-500 transform hover:scale-105 hover:-translate-y-1 relative overflow-hidden">
+                <!-- Button Ripple Effect -->
+                <div class="absolute inset-0 bg-orange-600/10 scale-0 group-hover/cta:scale-100 rounded-xl transition-transform duration-500"></div>
+                <span class="relative z-10">📊 Check Your Eligibility</span>
               </button>
             </div>
           </div>
@@ -599,7 +714,7 @@ export const metadata = {
               <a href="/services/tr?utm_source=immigratic&utm_medium=website&utm_campaign=services_page&utm_content=work_permit_tfwp" class="flex-1 px-4 py-2 bg-gradient-to-r from-blue-600 to-purple-600 text-white text-sm font-semibold rounded-xl hover:from-blue-700 hover:to-purple-700 transition-all duration-300 transform hover:scale-105 text-center">
                 Explore Program
               </a>
-              <button onclick="openWorkPermitTFWPModal()" class="px-4 py-2 border border-blue-600 text-blue-600 dark:text-blue-400 text-sm font-semibold rounded-xl hover:bg-blue-600 hover:text-white transition-all duration-300">
+              <button onclick="(window as any).openWorkPermitTFWPModal()" class="px-4 py-2 border border-blue-600 text-blue-600 dark:text-blue-400 text-sm font-semibold rounded-xl hover:bg-blue-600 hover:text-white transition-all duration-300">
                 Eligibility Check
               </button>
             </div>
@@ -657,7 +772,7 @@ export const metadata = {
               <a href="/services/tr?utm_source=immigratic&utm_medium=website&utm_campaign=services_page&utm_content=work_permit_imp" class="flex-1 px-4 py-2 bg-gradient-to-r from-green-600 to-blue-600 text-white text-sm font-semibold rounded-xl hover:from-green-700 hover:to-blue-700 transition-all duration-300 transform hover:scale-105 text-center">
                 Explore Program
               </a>
-              <button onclick="openWorkPermitIMPModal()" class="px-4 py-2 border border-green-600 text-green-600 dark:text-green-400 text-sm font-semibold rounded-xl hover:bg-green-600 hover:text-white transition-all duration-300">
+              <button onclick="(window as any).openWorkPermitIMPModal()" class="px-4 py-2 border border-green-600 text-green-600 dark:text-green-400 text-sm font-semibold rounded-xl hover:bg-green-600 hover:text-white transition-all duration-300">
                 Eligibility Check
               </button>
             </div>
@@ -706,7 +821,7 @@ export const metadata = {
               <a href="/services/tr?utm_source=immigratic&utm_medium=website&utm_campaign=services_page&utm_content=study_permit" class="flex-1 px-4 py-2 bg-gradient-to-r from-indigo-600 to-purple-600 text-white text-sm font-semibold rounded-xl hover:from-indigo-700 hover:to-purple-700 transition-all duration-300 transform hover:scale-105 text-center">
                 Explore Program
               </a>
-              <button onclick="openStudyPermitModal()" class="px-4 py-2 border border-indigo-600 text-indigo-600 dark:text-indigo-400 text-sm font-semibold rounded-xl hover:bg-indigo-600 hover:text-white transition-all duration-300">
+              <button onclick="(window as any).openStudyPermitModal()" class="px-4 py-2 border border-indigo-600 text-indigo-600 dark:text-indigo-400 text-sm font-semibold rounded-xl hover:bg-indigo-600 hover:text-white transition-all duration-300">
                 Eligibility Check
               </button>
             </div>
@@ -762,7 +877,7 @@ export const metadata = {
               <a href="/services/tr?utm_source=immigratic&utm_medium=website&utm_campaign=services_page&utm_content=visitor_visa" class="flex-1 px-4 py-2 bg-gradient-to-r from-yellow-600 to-orange-600 text-white text-sm font-semibold rounded-xl hover:from-yellow-700 hover:to-orange-700 transition-all duration-300 transform hover:scale-105 text-center">
                 Explore Program
               </a>
-              <button onclick="openVisitorVisaModal()" class="px-4 py-2 border border-yellow-600 text-yellow-600 dark:text-yellow-400 text-sm font-semibold rounded-xl hover:bg-yellow-600 hover:text-white transition-all duration-300">
+              <button onclick="(window as any).openVisitorVisaModal()" class="px-4 py-2 border border-yellow-600 text-yellow-600 dark:text-yellow-400 text-sm font-semibold rounded-xl hover:bg-yellow-600 hover:text-white transition-all duration-300">
                 Eligibility Check
               </button>
             </div>
@@ -829,7 +944,7 @@ export const metadata = {
                 <p class="text-gray-600 dark:text-gray-400">Check your requirements</p>
               </div>
             </div>
-            <button onclick="closeEligibilityModal()" class="text-gray-400 hover:text-gray-600 dark:hover:text-gray-300 transition-colors">
+            <button onclick="(window as any).closeEligibilityModal()" class="text-gray-400 hover:text-gray-600 dark:hover:text-gray-300 transition-colors">
               <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
               </svg>
@@ -926,7 +1041,7 @@ export const metadata = {
               Start Full Assessment
             </a>
             <a href="https://try.immigratic.com/meetings/immicare/165?utm_source=immigratic&utm_medium=website&utm_campaign=services_page&utm_content=express_entry_consultation" target="_blank" rel="noopener noreferrer" class="px-6 py-3 border border-blue-600 text-blue-600 dark:text-blue-400 font-semibold rounded-xl hover:bg-blue-600 hover:text-white transition-all duration-300 text-center">
-              Book Consultation
+          Book Consultation
             </a>
           </div>
         </div>
@@ -952,7 +1067,7 @@ export const metadata = {
                   <p class="text-gray-600 dark:text-gray-400">Check your requirements</p>
                 </div>
               </div>
-              <button onclick="closeTargetedCategoriesModal()" class="text-gray-400 hover:text-gray-600 dark:hover:text-gray-300 transition-colors">
+              <button onclick="(window as any).closeTargetedCategoriesModal()" class="text-gray-400 hover:text-gray-600 dark:hover:text-gray-300 transition-colors">
                 <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
                 </svg>
@@ -1075,7 +1190,7 @@ export const metadata = {
                   <p class="text-gray-600 dark:text-gray-400">Check your requirements</p>
                 </div>
               </div>
-              <button onclick="closeOINPJobOfferModal()" class="text-gray-400 hover:text-gray-600 dark:hover:text-gray-300 transition-colors">
+              <button onclick="(window as any).closeOINPJobOfferModal()" class="text-gray-400 hover:text-gray-600 dark:hover:text-gray-300 transition-colors">
                 <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
                 </svg>
@@ -1227,7 +1342,7 @@ export const metadata = {
                   <p class="text-gray-600 dark:text-gray-400">Check your requirements</p>
                 </div>
               </div>
-              <button onclick="closeOINPNonJobOfferModal()" class="text-gray-400 hover:text-gray-600 dark:hover:text-gray-300 transition-colors">
+              <button onclick="(window as any).closeOINPNonJobOfferModal()" class="text-gray-400 hover:text-gray-600 dark:hover:text-gray-300 transition-colors">
                 <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
                 </svg>
@@ -1377,7 +1492,7 @@ export const metadata = {
                   <p class="text-gray-600 dark:text-gray-400">Check your job match requirements</p>
                 </div>
               </div>
-              <button onclick="closeWorkPermitTFWPModal()" class="text-gray-400 hover:text-gray-600 dark:hover:text-gray-300 transition-colors">
+              <button onclick="(window as any).closeWorkPermitTFWPModal()" class="text-gray-400 hover:text-gray-600 dark:hover:text-gray-300 transition-colors">
                 <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
                 </svg>
@@ -1527,7 +1642,7 @@ export const metadata = {
                   <p class="text-gray-600 dark:text-gray-400">Check your category match requirements</p>
                 </div>
               </div>
-              <button onclick="closeWorkPermitIMPModal()" class="text-gray-400 hover:text-gray-600 dark:hover:text-gray-300 transition-colors">
+              <button onclick="(window as any).closeWorkPermitIMPModal()" class="text-gray-400 hover:text-gray-600 dark:hover:text-gray-300 transition-colors">
                 <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
                 </svg>
@@ -1677,7 +1792,7 @@ export const metadata = {
                   <p class="text-gray-600 dark:text-gray-400">Check your school match requirements</p>
                 </div>
               </div>
-              <button onclick="closeStudyPermitModal()" class="text-gray-400 hover:text-gray-600 dark:hover:text-gray-300 transition-colors">
+              <button onclick="(window as any).closeStudyPermitModal()" class="text-gray-400 hover:text-gray-600 dark:hover:text-gray-300 transition-colors">
                 <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
                 </svg>
@@ -1827,7 +1942,7 @@ export const metadata = {
                   <p class="text-gray-600 dark:text-gray-400">Check your purpose match requirements</p>
                 </div>
               </div>
-              <button onclick="closeVisitorVisaModal()" class="text-gray-400 hover:text-gray-600 dark:hover:text-gray-300 transition-colors">
+              <button onclick="(window as any).closeVisitorVisaModal()" class="text-gray-400 hover:text-gray-600 dark:hover:text-gray-300 transition-colors">
                 <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
                 </svg>
@@ -2214,5 +2329,211 @@ export const metadata = {
     25% { transform: translateY(-10px) translateX(5px); }
     50% { transform: translateY(-5px) translateX(-5px); }
     75% { transform: translateY(-15px) translateX(3px); }
+  }
+  
+  /* State-of-the-art Interactive Animations */
+  
+  /* Floating Particles */
+  @keyframes float-particle {
+    0%, 100% { 
+      transform: translateY(0px) translateX(0px) rotate(0deg); 
+      opacity: 0.6;
+    }
+    25% { 
+      transform: translateY(-10px) translateX(5px) rotate(90deg); 
+      opacity: 0.8;
+    }
+    50% { 
+      transform: translateY(-5px) translateX(-5px) rotate(180deg); 
+      opacity: 1;
+    }
+    75% { 
+      transform: translateY(-15px) translateX(10px) rotate(270deg); 
+      opacity: 0.8;
+    }
+  }
+  
+  .animate-float-particle {
+    animation: float-particle 8s ease-in-out infinite;
+  }
+  
+  /* Orbiting Elements */
+  @keyframes orbit {
+    0% { transform: rotate(0deg) translateX(35px) rotate(0deg); }
+    100% { transform: rotate(360deg) translateX(35px) rotate(-360deg); }
+  }
+  
+  @keyframes orbit-reverse {
+    0% { transform: rotate(0deg) translateX(30px) rotate(0deg); }
+    100% { transform: rotate(-360deg) translateX(30px) rotate(360deg); }
+  }
+  
+  .animate-orbit {
+    animation: orbit 4s linear infinite;
+  }
+  
+  .animate-orbit-reverse {
+    animation: orbit-reverse 6s linear infinite;
+  }
+  
+  /* Floating Hearts */
+  @keyframes float-heart {
+    0%, 100% { 
+      transform: translateY(0px) translateX(0px) rotate(0deg); 
+      opacity: 0.6;
+    }
+    25% { 
+      transform: translateY(-10px) translateX(5px) rotate(90deg); 
+      opacity: 0.8;
+    }
+    50% { 
+      transform: translateY(-5px) translateX(-5px) rotate(180deg);
+      opacity: 1;
+    }
+    75% { 
+      transform: translateY(-15px) translateX(3px) rotate(270deg); 
+      opacity: 0.7;
+    }
+  }
+  
+  .animate-float-heart {
+    animation: float-heart 6s ease-in-out infinite;
+    font-size: 0.8rem;
+  }
+  
+  /* Pulse Glow Effect */
+  @keyframes pulse-glow {
+    0%, 100% { 
+      opacity: 0;
+      transform: scale(1);
+    }
+    50% { 
+      opacity: 0.8;
+      transform: scale(1.05);
+    }
+  }
+  
+  .animate-pulse-glow {
+    animation: pulse-glow 3s ease-in-out infinite;
+  }
+  
+  /* Subtle Pulse for Dots */
+  @keyframes pulse-subtle {
+    0%, 100% { 
+      transform: scale(1);
+      opacity: 0.8;
+    }
+    50% { 
+      transform: scale(1.2);
+      opacity: 1;
+    }
+  }
+  
+  .animate-pulse-subtle {
+    animation: pulse-subtle 2s ease-in-out infinite;
+  }
+  
+  /* Orange Particles for OINP */
+  @keyframes float-orange-particle {
+    0%, 100% { 
+      transform: translateY(0px) translateX(0px) rotate(0deg); 
+      opacity: 0.6;
+    }
+    25% { 
+      transform: translateY(-10px) translateX(5px) rotate(90deg); 
+      opacity: 0.8;
+    }
+    50% { 
+      transform: translateY(-5px) translateX(-5px) rotate(180deg);
+      opacity: 1;
+    }
+    75% { 
+      transform: translateY(-15px) translateX(3px) rotate(270deg); 
+      opacity: 0.7;
+    }
+  }
+  
+  .animate-float-orange-particle {
+    animation: float-orange-particle 10s ease-in-out infinite;
+  }
+  
+  /* Subtle and Consistent 3D Tilt Effect for Cards */
+  .express-entry-card:hover,
+  .family-card:hover,
+  .oinp-card:hover {
+    transform: perspective(1000px) rotateX(0.5deg) rotateY(0.5deg) translateY(-16px) scale(1.015);
+    transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  
+  /* Ensure smooth card transformations */
+  .express-entry-card,
+  .family-card,
+  .oinp-card {
+    transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+    transform-style: preserve-3d;
+    transform: translateZ(0);
+  }
+  
+  /* Ultra-Smooth Hover Effects - No Flickering */
+  .program-item,
+  .category-item,
+  .draw-item {
+    transition: transform 0.2s ease-out, background-color 0.2s ease-out, color 0.2s ease-out;
+    transform: translateZ(0);
+    backface-visibility: hidden;
+  }
+  
+  .program-item:hover,
+  .category-item:hover,
+  .draw-item:hover {
+    transform: translateZ(0) translateX(4px);
+    background-color: rgba(59, 130, 246, 0.05);
+  }
+  
+  /* Simple dot scaling - no shadow to prevent flickering */
+  .program-item .w-3,
+  .category-item .w-3,
+  .draw-item .w-3 {
+    transition: transform 0.2s ease-out;
+  }
+  
+  .group\/item:hover .w-3 {
+    transform: scale(1.2);
+  }
+  
+  /* Simple text color transitions */
+  .program-item span,
+  .category-item span,
+  .draw-item span {
+    transition: color 0.2s ease-out, font-weight 0.2s ease-out;
+  }
+  
+  /* Remove section scaling that causes conflicts */
+  .programs-section,
+  .categories-section,
+  .draws-section {
+    transition: none;
+  }
+  
+  /* Disable all conflicting animations */
+  .animate-pulse-subtle {
+    animation: none;
+  }
+  
+  /* Shimmer Effect for Buttons */
+  .group\/cta:hover .shimmer {
+    transform: translateX(100%);
+  }
+  
+  /* Smooth GPU Acceleration */
+  .express-entry-card,
+  .family-card,
+  .oinp-card,
+  .program-item,
+  .category-item,
+  .draw-item {
+    transform: translateZ(0);
+    backface-visibility: hidden;
+    will-change: transform;
   }
 </style>
