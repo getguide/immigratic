@@ -285,10 +285,141 @@
   }
 }
 
-.slide-reveal-text {
-  display: inline-block;
-  animation: slide-reveal 1.2s ease-out forwards;
-  opacity: 0;
+  .slide-reveal-text {
+    display: inline-block;
+    animation: slide-reveal 1.2s ease-out forwards;
+    opacity: 0;
+  }
+
+  /* Progressive Timeline Animation */
+  .timeline-step, .oinp-ee-timeline-step, .oinp-direct-timeline-step {
+    opacity: 0.6;
+    transform: scale(0.95);
+    transition: all 0.5s ease-out;
+  }
+
+  .timeline-step.timeline-active, 
+  .oinp-ee-timeline-step.timeline-active, 
+  .oinp-direct-timeline-step.timeline-active {
+    opacity: 1;
+    transform: scale(1);
+  }
+
+  .timeline-step.timeline-active .w-16, 
+  .oinp-ee-timeline-step.timeline-active .w-16, 
+  .oinp-direct-timeline-step.timeline-active .w-16 {
+    box-shadow: 0 0 30px rgba(59, 130, 246, 0.5);
+    transform: scale(1.1);
+  }
+
+  /* Celebration Animations */
+  @keyframes bounce-in {
+    0% { transform: scale(0) rotate(0deg); }
+    50% { transform: scale(1.2) rotate(180deg); }
+    100% { transform: scale(1) rotate(360deg); }
+  }
+
+  @keyframes gradient-text {
+    0%, 100% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+  }
+
+  @keyframes confetti-fall {
+    0% { transform: translateY(-100vh) rotate(0deg); opacity: 1; }
+    100% { transform: translateY(100vh) rotate(720deg); opacity: 0; }
+  }
+
+  .animate-bounce-in {
+    animation: bounce-in 1.5s ease-out;
+  }
+
+  .animate-gradient-text {
+    background: linear-gradient(-45deg, #ef4444, #f97316, #eab308, #22c55e, #06b6d4, #3b82f6, #8b5cf6);
+    background-size: 400% 400%;
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: gradient-text 3s ease infinite;
+  }
+
+  .confetti-piece {
+    position: absolute;
+    width: 10px;
+    height: 10px;
+    background: #f59e0b;
+    animation: confetti-fall 3s linear infinite;
+  }
+
+  /* Active Navigation Styles */
+  #nav-express-entry.nav-active {
+    background-color: rgb(59 130 246 / 0.15) !important;
+    color: rgb(29 78 216) !important;
+  }
+
+  .dark #nav-express-entry.nav-active {
+    background-color: rgb(59 130 246 / 0.25) !important;
+    color: rgb(147 197 253) !important;
+  }
+
+  #nav-provincial-nominee.nav-active {
+    background-color: rgb(147 51 234 / 0.15) !important;
+    color: rgb(126 34 206) !important;
+  }
+
+  .dark #nav-provincial-nominee.nav-active {
+    background-color: rgb(147 51 234 / 0.25) !important;
+    color: rgb(196 181 253) !important;
+  }
+
+  #nav-family-sponsorship.nav-active {
+    background-color: rgb(244 63 94 / 0.15) !important;
+    color: rgb(225 29 72) !important;
+  }
+
+  .dark #nav-family-sponsorship.nav-active {
+  background-color: rgb(244 63 94 / 0.25) !important;
+  color: rgb(251 113 133) !important;
+}
+
+/* Active Navigation Styles for CEC Page */
+#nav-eligibility.nav-active {
+  background-color: rgb(239 68 68 / 0.15) !important; /* bg-red-500 */
+  color: rgb(185 28 28) !important;
+}
+
+.dark #nav-eligibility.nav-active {
+  background-color: rgb(239 68 68 / 0.25) !important;
+  color: rgb(248 113 113) !important;
+}
+
+#nav-success-stories.nav-active {
+  background-color: rgb(34 197 94 / 0.15) !important; /* bg-green-500 */
+  color: rgb(21 128 61) !important;
+}
+
+.dark #nav-success-stories.nav-active {
+  background-color: rgb(34 197 94 / 0.25) !important;
+  color: rgb(134 239 172) !important;
+}
+
+#nav-process.nav-active {
+  background-color: rgb(59 130 246 / 0.15) !important; /* bg-blue-500 */
+  color: rgb(29 78 216) !important;
+}
+
+.dark #nav-process.nav-active {
+  background-color: rgb(59 130 246 / 0.25) !important;
+  color: rgb(147 197 253) !important;
+}
+
+#nav-insights.nav-active {
+  background-color: rgb(147 51 234 / 0.15) !important; /* bg-purple-500 */
+  color: rgb(126 34 206) !important;
+}
+
+.dark #nav-insights.nav-active {
+  background-color: rgb(147 51 234 / 0.25) !important;
+  color: rgb(196 181 253) !important;
 }
 
 .animate-typing-loop {
@@ -967,4 +1098,186 @@ footer img:hover {
 .interactive-bullet:hover .bullet-dot {
   transform: scale(1.5);
   box-shadow: 0 0 20px currentColor;
+}
+
+/* Enhanced shadow for eligibility cards */
+.shadow-3xl {
+  box-shadow: 0 35px 60px -12px rgba(0, 0, 0, 0.25);
+}
+
+/* Enhanced shadows for dark mode */
+.dark .shadow-3xl {
+  box-shadow: 0 35px 60px -12px rgba(0, 0, 0, 0.5);
+}
+
+/* Eligibility Card Animations */
+.eligibility-card {
+  transition: all 0.7s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.eligibility-card:hover {
+  transform: scale(1.02);
+}
+
+/* Bullet Point Item Animations */
+.bullet-point-item {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.bullet-point-item:hover {
+  transform: translateX(8px);
+}
+
+/* Enhanced pulse animation for bullet points */
+.animate-pulse-subtle {
+  animation: pulse-subtle 2s ease-in-out infinite;
+}
+
+/* Staggered entrance for bullet points */
+.bullet-point-item:nth-child(1) { animation-delay: 0.1s; }
+.bullet-point-item:nth-child(2) { animation-delay: 0.2s; }
+.bullet-point-item:nth-child(3) { animation-delay: 0.3s; }
+.bullet-point-item:nth-child(4) { animation-delay: 0.4s; }
+.bullet-point-item:nth-child(5) { animation-delay: 0.5s; }
+.bullet-point-item:nth-child(6) { animation-delay: 0.6s; }
+
+/* Enhanced Insight Cards */
+.insight-card {
+  transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  overflow: hidden;
+}
+
+.insight-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+  transition: left 0.5s;
+}
+
+.insight-card:hover::before {
+  left: 100%;
+}
+
+.insight-card:hover {
+  transform: scale(1.02);
+}
+
+/* Enhanced metric hover effects */
+.group\/metric:hover {
+  transform: translateY(-2px);
+}
+
+/* Smooth transitions for all interactive elements */
+.transition-all {
+  transition-property: all;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Progressive Timeline Animations */
+.timeline-progress {
+  transition: height 1.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.mobile-timeline-progress {
+  transition: height 1.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.timeline-step {
+  opacity: 0.6;
+  transform: translateY(20px);
+  transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.timeline-step.animate-in {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.timeline-card {
+  transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.timeline-step.animate-in .timeline-card {
+  background-color: rgb(255 255 255) !important;
+  border-color: rgb(59 130 246) !important;
+}
+
+.dark .timeline-step.animate-in .timeline-card {
+  background-color: rgb(31 41 55) !important;
+  border-color: rgb(59 130 246) !important;
+}
+
+.timeline-step-number {
+  transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.timeline-step.animate-in .timeline-step-number {
+  background: linear-gradient(135deg, rgb(99 102 241), rgb(147 51 234)) !important;
+  transform: scale(1.2);
+}
+
+/* Special styling for Step 5 (success card) */
+.timeline-step[data-step="5"].animate-in .timeline-card {
+  background: linear-gradient(135deg, rgb(34 197 94), rgb(16 185 129)) !important;
+}
+
+/* Mobile Timeline Responsiveness */
+@media (max-width: 768px) {
+  .timeline-step {
+    transform: translateY(10px);
+    margin-bottom: 2rem;
+    margin-left: 2rem; /* Add space for the left progress bar */
+  }
+  
+  .timeline-step.animate-in {
+    transform: translateY(0);
+  }
+  
+  .timeline-card {
+    width: 100%;
+    margin: 0;
+  }
+  
+  /* Ensure mobile cards are properly spaced */
+  .timeline-step:not(:last-child) {
+    margin-bottom: 2rem;
+  }
+  
+  /* Mobile step numbers - show them below cards */
+  .timeline-step-number {
+    position: relative !important;
+    left: auto !important;
+    transform: none !important;
+    margin: 1rem auto;
+    display: block !important;
+  }
+  
+  .timeline-step.animate-in .timeline-step-number {
+    transform: scale(1.1) !important;
+  }
+  
+  /* Mobile timeline container adjustments */
+  .timeline-steps-container {
+    padding-left: 2rem;
+  }
+  
+  /* Add a subtle glow to the mobile progress bar */
+  .mobile-timeline-progress {
+    box-shadow: 0 0 8px rgba(99, 102, 241, 0.3);
+  }
+  
+  /* Mobile timeline container visibility */
+  .mobile-timeline-container {
+    opacity: 0;
+    transition: opacity 0.5s ease-in-out;
+  }
+  
+  .mobile-timeline-container.visible {
+    opacity: 1;
+  }
 }

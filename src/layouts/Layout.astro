@@ -391,8 +391,8 @@ const currentYear = new Date().getFullYear();
               </div>
               
               <!-- Theme Toggle -->
-              <button 
-                @click="darkMode = !darkMode; localStorage.setItem('darkMode', darkMode)"
+            <button 
+              @click="darkMode = !darkMode; localStorage.setItem('darkMode', darkMode)"
                 class="flex items-center justify-center w-full px-4 py-3 text-gray-700 dark:text-gray-300 hover:text-primary-600 dark:hover:text-primary-400 hover:bg-gray-50 dark:hover:bg-gray-800 rounded-xl transition-all duration-200 group"
               >
                 <span x-show="!darkMode" class="flex items-center">
@@ -407,7 +407,7 @@ const currentYear = new Date().getFullYear();
                   </svg>
                   Light Mode
                 </span>
-              </button>
+            </button>
                         </div>
           </div>
         </div>
@@ -504,11 +504,12 @@ const currentYear = new Date().getFullYear();
         
         // Number Counter Animation
         function animateCounters() {
-          const counters = document.querySelectorAll('.counter');
+          const counters = document.querySelectorAll('.counter, .counter-animate');
           const speed = 200; // Animation speed in milliseconds
           
           counters.forEach(counter => {
-            const target = parseInt(counter.getAttribute('data-target'));
+            const target = parseFloat(counter.getAttribute('data-target') || '0');
+            const isDecimal = counter.hasAttribute('data-decimal');
             const increment = target / (speed / 16); // 60fps
             let current = 0;
             
@@ -516,7 +517,13 @@ const currentYear = new Date().getFullYear();
               if (current < target) {
                 current += increment;
                 if (current > target) current = target;
-                counter.textContent = Math.floor(current);
+                
+                if (isDecimal) {
+                  counter.textContent = current.toFixed(1);
+                } else {
+                  counter.textContent = Math.floor(current);
+                }
+                
                 requestAnimationFrame(updateCounter);
               }
             };
@@ -546,6 +553,14 @@ const currentYear = new Date().getFullYear();
         if (industrySection) {
           observer.observe(industrySection);
         }
+        
+        // Also observe any section with counters for the final CTA section
+        const counterSections = document.querySelectorAll('section:has(.counter), section:has(.counter-animate)');
+        counterSections.forEach(section => {
+          if (section !== industrySection) {
+            observer.observe(section);
+          }
+        });
         
         // 3D Tilt Effect for Metric Boxes
         function initTiltEffect() {
@@ -756,6 +771,125 @@ const currentYear = new Date().getFullYear();
           document.addEventListener('DOMContentLoaded', initBulletPointAnimations);
         } else {
           initBulletPointAnimations();
+        }
+
+        // Progressive Timeline Animation
+        function initProgressiveTimeline() {
+          console.log('Starting progressive timeline...');
+          
+          const timelineProgress = document.querySelector('.timeline-progress');
+          const mobileTimelineProgress = document.querySelector('.mobile-timeline-progress');
+          const mobileTimelineContainer = document.querySelector('.mobile-timeline-container');
+          const timelineSteps = document.querySelectorAll('.timeline-step');
+          
+          if ((!timelineProgress && !mobileTimelineProgress) || timelineSteps.length === 0) {
+            console.log('Timeline elements not found');
+            return;
+          }
+          
+          // Show mobile timeline when entering the timeline section
+          if (mobileTimelineContainer) {
+            const timelineSection = document.querySelector('#process');
+            if (timelineSection) {
+              const sectionObserver = new IntersectionObserver((entries) => {
+                entries.forEach((entry) => {
+                  if (entry.isIntersecting) {
+                    // Show mobile timeline with fade-in
+                    mobileTimelineContainer.style.opacity = '1';
+                    console.log('Mobile timeline section entered, showing progress bar');
+                  } else {
+                    // Hide mobile timeline when leaving section
+                    mobileTimelineContainer.style.opacity = '0';
+                    console.log('Mobile timeline section left, hiding progress bar');
+                  }
+                });
+              }, {
+                threshold: 0.1,
+                rootMargin: '0px 0px -50px 0px'
+              });
+              
+              sectionObserver.observe(timelineSection);
+            }
+          }
+          
+          // Create intersection observer for timeline steps
+          const stepObserver = new IntersectionObserver((entries) => {
+            entries.forEach((entry) => {
+              if (entry.isIntersecting) {
+                const step = entry.target;
+                const stepNumber = parseInt(step.getAttribute('data-step'));
+                
+                // Animate the step
+                step.classList.add('animate-in');
+                
+                // Calculate progress for timeline lines
+                const progressPercentage = (stepNumber / timelineSteps.length) * 100;
+                
+                // Update desktop timeline (vertical)
+                if (timelineProgress) {
+                  timelineProgress.style.height = `${progressPercentage}%`;
+                }
+                
+                // Update mobile timeline (vertical)
+                if (mobileTimelineProgress) {
+                  mobileTimelineProgress.style.height = `${progressPercentage}%`;
+                }
+                
+                console.log(`Step ${stepNumber} animated, progress: ${progressPercentage}%`);
+              }
+            });
+          }, {
+            threshold: 0.3,
+            rootMargin: '0px 0px -100px 0px'
+          });
+          
+          // Observe all timeline steps
+          timelineSteps.forEach((step, index) => {
+            // Set initial state
+            step.style.transitionDelay = `${index * 200}ms`;
+            stepObserver.observe(step);
+          });
+          
+          // Initialize first step
+          setTimeout(() => {
+            if (timelineSteps[0]) {
+              timelineSteps[0].classList.add('animate-in');
+              if (timelineProgress) timelineProgress.style.height = '20%';
+              if (mobileTimelineProgress) mobileTimelineProgress.style.height = '20%';
+            }
+          }, 500);
+        }
+        
+        // Initialize progressive timeline
+        if (document.readyState === 'loading') {
+          document.addEventListener('DOMContentLoaded', initProgressiveTimeline);
+        } else {
+          initProgressiveTimeline();
+        }
+        
+        function createConfettiPiece(container) {
+          const confetti = document.createElement('div');
+          const colors = ['#ef4444', '#f97316', '#eab308', '#22c55e', '#06b6d4', '#3b82f6', '#8b5cf6', '#ec4899'];
+          
+          confetti.className = 'confetti-piece';
+          confetti.style.left = Math.random() * 100 + '%';
+          confetti.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+          confetti.style.animationDelay = Math.random() * 2 + 's';
+          confetti.style.animationDuration = (Math.random() * 2 + 2) + 's';
+          
+          // Random shapes
+          if (Math.random() > 0.5) {
+            confetti.style.borderRadius = '50%';
+          }
+          
+          container.appendChild(confetti);
+          
+          // Remove after animation
+          setTimeout(() => {
+            if (confetti.parentNode) {
+              confetti.parentNode.removeChild(confetti);
+            }
+          }, 5000);
         }
       });
     </script>
