@@ -290,67 +290,156 @@ import Layout from '../../layouts/Layout.astro';
         </p>
       </div>
 
-      <!-- Simple Before/After Comparison -->
-      <div class="max-w-4xl mx-auto">
-        <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-12">
-          <!-- Before -->
-          <div class="bg-gradient-to-br from-red-50 to-orange-50 dark:from-red-900/10 dark:to-orange-900/10 rounded-2xl p-8 border border-red-200/50 dark:border-red-800/50 opacity-0 animate-fade-in-up" style="animation-delay: 0.6s; animation-fill-mode: forwards;">
-            <div class="flex items-center mb-6">
-              <div class="w-12 h-12 bg-gradient-to-br from-red-500 to-orange-500 rounded-xl flex items-center justify-center mr-4">
-                <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
-                </svg>
-              </div>
-              <h3 class="text-2xl font-bold text-gray-900 dark:text-white">Before Immigratic</h3>
+      <!-- Professional Before/After Toggle -->
+      <div class="max-w-4xl mx-auto" x-data="{ activeTab: 'before' }">
+        
+        <!-- Modern Toggle Switch -->
+        <div class="flex justify-center mb-12">
+          <div class="bg-gray-100 dark:bg-gray-800 p-1 rounded-xl shadow-sm">
+            <div class="flex space-x-1">
+              <button 
+                @click="activeTab = 'before'"
+                :class="activeTab === 'before' ? 'bg-white dark:bg-gray-700 text-gray-900 dark:text-white shadow-sm' : 'text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-200'"
+                class="px-6 py-3 text-sm font-medium rounded-lg transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
+              >
+                Before
+              </button>
+              <button 
+                @click="activeTab = 'after'"
+                :class="activeTab === 'after' ? 'bg-white dark:bg-gray-700 text-gray-900 dark:text-white shadow-sm' : 'text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-200'"
+                class="px-6 py-3 text-sm font-medium rounded-lg transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
+              >
+                After
+              </button>
             </div>
-            
-            <div class="space-y-4">
-              <div class="flex items-center justify-between py-3 border-b border-red-200/50 dark:border-red-800/50">
-                <span class="text-gray-700 dark:text-gray-300">Processing Time</span>
-                <span class="text-red-600 dark:text-red-400 font-bold">Manual & Slow</span>
+          </div>
+        </div>
+
+        <!-- Content Container -->
+        <div class="relative min-h-[400px]">
+          
+          <!-- Before Content -->
+          <div 
+            x-show="activeTab === 'before'"
+            x-transition:enter="transition-opacity duration-300 ease-in-out"
+            x-transition:enter-start="opacity-0"
+            x-transition:enter-end="opacity-100"
+            x-transition:leave="transition-opacity duration-200 ease-in-out"
+            x-transition:leave-start="opacity-100"
+            x-transition:leave-end="opacity-0"
+            class="absolute inset-0"
+          >
+            <div class="bg-white dark:bg-gray-900 rounded-2xl p-8 shadow-lg border border-gray-200 dark:border-gray-700 hover:shadow-xl hover:scale-[1.02] transition-all duration-300 group cursor-pointer">
+              
+              <!-- Header -->
+              <div class="flex items-center mb-8">
+                <div class="w-12 h-12 bg-red-500 rounded-xl flex items-center justify-center mr-4 flex-shrink-0 group-hover:scale-110 group-hover:bg-gradient-to-br group-hover:from-red-500 group-hover:to-pink-500 transition-all duration-300">
+                  <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"></path>
+                  </svg>
+                </div>
+                <div>
+                  <h3 class="text-2xl font-bold text-gray-900 dark:text-white group-hover:text-red-600 dark:group-hover:text-red-400 transition-colors duration-300">Before Immigratic</h3>
+                  <p class="text-gray-500 dark:text-gray-400 text-sm mt-1 group-hover:text-gray-600 dark:group-hover:text-gray-300 transition-colors duration-300">Traditional manual process</p>
+                </div>
               </div>
-              <div class="flex items-center justify-between py-3 border-b border-red-200/50 dark:border-red-800/50">
-                <span class="text-gray-700 dark:text-gray-300">Student Experience</span>
-                <span class="text-red-600 dark:text-red-400 font-bold">Confusing Process</span>
-              </div>
-              <div class="flex items-center justify-between py-3 border-b border-red-200/50 dark:border-red-800/50">
-                <span class="text-gray-700 dark:text-gray-300">Compliance Risk</span>
-                <span class="text-red-600 dark:text-red-400 font-bold">High Risk</span>
-              </div>
-              <div class="flex items-center justify-between py-3">
-                <span class="text-gray-700 dark:text-gray-300">Success Rate</span>
-                <span class="text-red-600 dark:text-red-400 font-bold">Inconsistent</span>
+
+              <!-- Metrics -->
+              <div class="space-y-6">
+                <div class="flex items-center justify-between p-4 bg-red-50 dark:bg-red-900/10 rounded-lg group-hover:bg-red-100 dark:group-hover:bg-red-900/20 transition-all duration-300 hover:scale-105 cursor-pointer">
+                  <div class="flex items-center space-x-3">
+                    <span class="text-lg group-hover:animate-bounce">⏳</span>
+                    <span class="text-gray-900 dark:text-gray-100 font-medium group-hover:font-semibold transition-all duration-300">Processing Time</span>
+                  </div>
+                  <span class="text-red-600 dark:text-red-400 font-semibold group-hover:scale-110 transition-transform duration-300">😤 8-12 weeks</span>
+                </div>
+
+                <div class="flex items-center justify-between p-4 bg-red-50 dark:bg-red-900/10 rounded-lg group-hover:bg-red-100 dark:group-hover:bg-red-900/20 transition-all duration-300 hover:scale-105 cursor-pointer" style="transition-delay: 50ms;">
+                  <div class="flex items-center space-x-3">
+                    <span class="text-lg group-hover:animate-bounce" style="animation-delay: 0.1s;">😵‍💫</span>
+                    <span class="text-gray-900 dark:text-gray-100 font-medium group-hover:font-semibold transition-all duration-300">Student Experience</span>
+                  </div>
+                  <span class="text-red-600 dark:text-red-400 font-semibold group-hover:scale-110 transition-transform duration-300">😩 Frustrating</span>
+                </div>
+
+                <div class="flex items-center justify-between p-4 bg-red-50 dark:bg-red-900/10 rounded-lg group-hover:bg-red-100 dark:group-hover:bg-red-900/20 transition-all duration-300 hover:scale-105 cursor-pointer" style="transition-delay: 100ms;">
+                  <div class="flex items-center space-x-3">
+                    <span class="text-lg group-hover:animate-bounce" style="animation-delay: 0.2s;">📊</span>
+                    <span class="text-gray-900 dark:text-gray-100 font-medium group-hover:font-semibold transition-all duration-300">Success Rate</span>
+                  </div>
+                  <span class="text-red-600 dark:text-red-400 font-semibold group-hover:scale-110 transition-transform duration-300">📉 65-70%</span>
+                </div>
+
+                <div class="flex items-center justify-between p-4 bg-red-50 dark:bg-red-900/10 rounded-lg group-hover:bg-red-100 dark:group-hover:bg-red-900/20 transition-all duration-300 hover:scale-105 cursor-pointer" style="transition-delay: 150ms;">
+                  <div class="flex items-center space-x-3">
+                    <span class="text-lg group-hover:animate-bounce" style="animation-delay: 0.3s;">👥</span>
+                    <span class="text-gray-900 dark:text-gray-100 font-medium group-hover:font-semibold transition-all duration-300">Staff Workload</span>
+                  </div>
+                  <span class="text-red-600 dark:text-red-400 font-semibold group-hover:scale-110 transition-transform duration-300">🔥 Overwhelmed</span>
+                </div>
               </div>
             </div>
           </div>
 
-          <!-- After -->
-          <div class="bg-gradient-to-br from-green-50 to-blue-50 dark:from-green-900/10 dark:to-blue-900/10 rounded-2xl p-8 border border-green-200/50 dark:border-green-800/50 opacity-0 animate-fade-in-up" style="animation-delay: 0.8s; animation-fill-mode: forwards;">
-            <div class="flex items-center mb-6">
-              <div class="w-12 h-12 bg-gradient-to-br from-green-500 to-blue-500 rounded-xl flex items-center justify-center mr-4">
-                <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
-                </svg>
+          <!-- After Content -->
+          <div 
+            x-show="activeTab === 'after'"
+            x-transition:enter="transition-opacity duration-300 ease-in-out"
+            x-transition:enter-start="opacity-0"
+            x-transition:enter-end="opacity-100"
+            x-transition:leave="transition-opacity duration-200 ease-in-out"
+            x-transition:leave-start="opacity-100"
+            x-transition:leave-end="opacity-0"
+            class="absolute inset-0"
+          >
+            <div class="bg-white dark:bg-gray-900 rounded-2xl p-8 shadow-lg border border-gray-200 dark:border-gray-700 hover:shadow-xl hover:scale-[1.02] transition-all duration-300 group cursor-pointer">
+              
+              <!-- Header -->
+              <div class="flex items-center mb-8">
+                <div class="w-12 h-12 bg-green-500 rounded-xl flex items-center justify-center mr-4 flex-shrink-0 group-hover:scale-110 group-hover:bg-gradient-to-br group-hover:from-green-500 group-hover:to-blue-500 transition-all duration-300">
+                  <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"></path>
+                  </svg>
+                </div>
+                <div>
+                  <h3 class="text-2xl font-bold text-gray-900 dark:text-white group-hover:text-green-600 dark:group-hover:text-green-400 transition-colors duration-300">After Immigratic</h3>
+                  <p class="text-gray-500 dark:text-gray-400 text-sm mt-1 group-hover:text-gray-600 dark:group-hover:text-gray-300 transition-colors duration-300">AI-powered automation</p>
+                </div>
               </div>
-              <h3 class="text-2xl font-bold text-gray-900 dark:text-white">After Immigratic</h3>
-            </div>
-            
-            <div class="space-y-4">
-              <div class="flex items-center justify-between py-3 border-b border-green-200/50 dark:border-green-800/50">
-                <span class="text-gray-700 dark:text-gray-300">Processing Time</span>
-                <span class="text-green-600 dark:text-green-400 font-bold">Streamlined & Fast</span>
-              </div>
-              <div class="flex items-center justify-between py-3 border-b border-green-200/50 dark:border-green-800/50">
-                <span class="text-gray-700 dark:text-gray-300">Student Experience</span>
-                <span class="text-green-600 dark:text-green-400 font-bold">Seamless Journey</span>
-              </div>
-              <div class="flex items-center justify-between py-3 border-b border-green-200/50 dark:border-green-800/50">
-                <span class="text-gray-700 dark:text-gray-300">Compliance Risk</span>
-                <span class="text-green-600 dark:text-green-400 font-bold">Zero Risk</span>
-              </div>
-              <div class="flex items-center justify-between py-3">
-                <span class="text-gray-700 dark:text-gray-300">Success Rate</span>
-                <span class="text-green-600 dark:text-green-400 font-bold">Consistently High</span>
+
+              <!-- Metrics -->
+              <div class="space-y-6">
+                <div class="flex items-center justify-between p-4 bg-green-50 dark:bg-green-900/10 rounded-lg group-hover:bg-green-100 dark:group-hover:bg-green-900/20 transition-all duration-300 hover:scale-105 cursor-pointer">
+                  <div class="flex items-center space-x-3">
+                    <span class="text-lg group-hover:animate-bounce">⚡</span>
+                    <span class="text-gray-900 dark:text-gray-100 font-medium group-hover:font-semibold transition-all duration-300">Processing Time</span>
+                  </div>
+                  <span class="text-green-600 dark:text-green-400 font-semibold group-hover:scale-110 transition-transform duration-300">🚀 2-3 weeks</span>
+                </div>
+
+                <div class="flex items-center justify-between p-4 bg-green-50 dark:bg-green-900/10 rounded-lg group-hover:bg-green-100 dark:group-hover:bg-green-900/20 transition-all duration-300 hover:scale-105 cursor-pointer" style="transition-delay: 50ms;">
+                  <div class="flex items-center space-x-3">
+                    <span class="text-lg group-hover:animate-bounce" style="animation-delay: 0.1s;">✨</span>
+                    <span class="text-gray-900 dark:text-gray-100 font-medium group-hover:font-semibold transition-all duration-300">Student Experience</span>
+                  </div>
+                  <span class="text-green-600 dark:text-green-400 font-semibold group-hover:scale-110 transition-transform duration-300">😊 Seamless</span>
+                </div>
+
+                <div class="flex items-center justify-between p-4 bg-green-50 dark:bg-green-900/10 rounded-lg group-hover:bg-green-100 dark:group-hover:bg-green-900/20 transition-all duration-300 hover:scale-105 cursor-pointer" style="transition-delay: 100ms;">
+                  <div class="flex items-center space-x-3">
+                    <span class="text-lg group-hover:animate-bounce" style="animation-delay: 0.2s;">📈</span>
+                    <span class="text-gray-900 dark:text-gray-100 font-medium group-hover:font-semibold transition-all duration-300">Success Rate</span>
+                  </div>
+                  <span class="text-green-600 dark:text-green-400 font-semibold group-hover:scale-110 transition-transform duration-300">🎯 95-98%</span>
+                </div>
+
+                <div class="flex items-center justify-between p-4 bg-green-50 dark:bg-green-900/10 rounded-lg group-hover:bg-green-100 dark:group-hover:bg-green-900/20 transition-all duration-300 hover:scale-105 cursor-pointer" style="transition-delay: 150ms;">
+                  <div class="flex items-center space-x-3">
+                    <span class="text-lg group-hover:animate-bounce" style="animation-delay: 0.3s;">🎪</span>
+                    <span class="text-gray-900 dark:text-gray-100 font-medium group-hover:font-semibold transition-all duration-300">Staff Workload</span>
+                  </div>
+                  <span class="text-green-600 dark:text-green-400 font-semibold group-hover:scale-110 transition-transform duration-300">⚙️ Optimized</span>
+                </div>
               </div>
             </div>
           </div>
@@ -374,6 +463,124 @@ import Layout from '../../layouts/Layout.astro';
             <cite class="text-lg font-semibold text-gray-900 dark:text-white block">Tara Basiri</cite>
             <span class="text-sm text-gray-500 dark:text-gray-400">Program Manager, Passage</span>
           </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ROI Calculator -->
+  <section class="py-24 bg-white dark:bg-gray-900">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-16">
+        <h2 class="text-3xl md:text-5xl font-bold text-gray-900 dark:text-white mb-6">
+          Calculate Your
+          <span class="bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
+            ROI with Immigratic
+          </span>
+        </h2>
+        <p class="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
+          See how much additional revenue you could generate by increasing international student enrollment with our platform.
+        </p>
+      </div>
+
+      <div class="bg-gradient-to-br from-blue-50 to-purple-50 dark:from-gray-800 dark:to-gray-700 rounded-3xl p-8 shadow-2xl hover:shadow-3xl transition-all duration-500 group">
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
+          <!-- Input Section -->
+          <div>
+            <h3 class="text-2xl font-bold text-gray-900 dark:text-white mb-8 flex items-center group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors duration-300">
+              📊 Your Current Situation
+            </h3>
+            
+            <div class="space-y-6">
+              <div>
+                <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+                  🎓 Current international students per year
+                </label>
+                <input type="range" id="current-students" class="w-full" min="10" max="2000" value="200" oninput="updateStudentsValue(this.value)">
+                <div class="flex justify-between text-sm text-gray-500 dark:text-gray-400 mt-1">
+                  <span>10</span>
+                  <span id="students-value" class="font-semibold text-blue-600 dark:text-blue-400">200 students</span>
+                  <span>2,000</span>
+                </div>
+              </div>
+              
+              <div>
+                <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+                  💰 Average annual tuition per student ($)
+                </label>
+                <input type="range" id="tuition-fee" class="w-full" min="8000" max="60000" value="25000" step="1000" oninput="updateTuitionValue(this.value)">
+                <div class="flex justify-between text-sm text-gray-500 dark:text-gray-400 mt-1">
+                  <span>$8,000</span>
+                  <span id="tuition-value" class="font-semibold text-green-600 dark:text-green-400">$25,000</span>
+                  <span>$60,000</span>
+                </div>
+              </div>
+
+              <!-- Dynamic Pricing Display -->
+              <div class="bg-blue-50 dark:bg-blue-900/20 rounded-lg p-4 border border-blue-200 dark:border-blue-800 group-hover:bg-blue-100 dark:group-hover:bg-blue-900/30 group-hover:border-blue-300 dark:group-hover:border-blue-700 transition-all duration-300 hover:scale-105 cursor-pointer">
+                <div class="text-sm font-medium text-gray-700 dark:text-gray-300 mb-2 group-hover:text-blue-700 dark:group-hover:text-blue-300 transition-colors duration-300">
+                  💼 Your Immigratic Rate (Volume Pricing)
+                </div>
+                <div class="text-2xl font-bold text-blue-600 dark:text-blue-400 group-hover:text-blue-700 dark:group-hover:text-blue-300 transition-colors duration-300" id="immigratic-rate">$750 per case</div>
+                <div class="text-xs text-gray-500 dark:text-gray-400 mt-2 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors duration-300" id="pricing-tier">
+                  📊 Tier: 100-200 cases annually
+                </div>
+              </div>
+              
+              <div>
+                <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+                  📈 Target enrollment increase (%)
+                </label>
+                <input type="range" id="increase-percentage" class="w-full" min="10" max="50" value="25" oninput="updateSliderValue(this.value)">
+                <div class="flex justify-between text-sm text-gray-500 dark:text-gray-400 mt-1">
+                  <span>10%</span>
+                  <span id="slider-value" class="font-semibold text-blue-600 dark:text-blue-400">25%</span>
+                  <span>50%</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Results Section -->
+          <div>
+            <h3 class="text-2xl font-bold text-gray-900 dark:text-white mb-8 flex items-center group-hover:text-purple-600 dark:group-hover:text-purple-400 transition-colors duration-300">
+              🚀 Your Potential with Immigratic
+            </h3>
+            
+            <div class="space-y-6">
+              <div class="bg-white dark:bg-gray-800 rounded-xl p-6 shadow-lg border border-gray-200 dark:border-gray-700 hover:shadow-xl hover:scale-105 hover:border-blue-300 dark:hover:border-blue-600 transition-all duration-300 cursor-pointer group/card">
+                <div class="text-sm text-gray-600 dark:text-gray-400 mb-2 group-hover/card:text-blue-600 dark:group-hover/card:text-blue-400 transition-colors duration-300">📚 Additional Students</div>
+                <div class="text-3xl font-bold text-blue-600 dark:text-blue-400 group-hover/card:scale-110 transition-transform duration-300" id="additional-students">+50 students</div>
+              </div>
+              
+              <div class="bg-white dark:bg-gray-800 rounded-xl p-6 shadow-lg border border-gray-200 dark:border-gray-700 hover:shadow-xl hover:scale-105 hover:border-orange-300 dark:hover:border-orange-600 transition-all duration-300 cursor-pointer group/card">
+                <div class="text-sm text-gray-600 dark:text-gray-400 mb-2 group-hover/card:text-orange-600 dark:group-hover/card:text-orange-400 transition-colors duration-300">💼 Your Investment (Immigratic Fees)</div>
+                <div class="text-3xl font-bold text-orange-600 dark:text-orange-400 group-hover/card:scale-110 transition-transform duration-300" id="total-investment">$125,000</div>
+              </div>
+              
+              <div class="bg-white dark:bg-gray-800 rounded-xl p-6 shadow-lg border border-gray-200 dark:border-gray-700 hover:shadow-xl hover:scale-105 hover:border-green-300 dark:hover:border-green-600 transition-all duration-300 cursor-pointer group/card">
+                <div class="text-sm text-gray-600 dark:text-gray-400 mb-2 group-hover/card:text-green-600 dark:group-hover/card:text-green-400 transition-colors duration-300">💵 Your Additional Revenue</div>
+                <div class="text-3xl font-bold text-green-600 dark:text-green-400 group-hover/card:scale-110 transition-transform duration-300" id="additional-revenue">$1,250,000</div>
+              </div>
+              
+              <div class="bg-gradient-to-r from-blue-600 to-purple-600 rounded-xl p-6 shadow-lg text-white hover:shadow-2xl hover:scale-105 hover:from-blue-700 hover:to-purple-700 transition-all duration-300 cursor-pointer group/card">
+                <div class="text-sm text-blue-100 mb-2 group-hover/card:text-white transition-colors duration-300">🎯 Your ROI (First Year)</div>
+                <div class="text-4xl font-bold group-hover/card:scale-110 transition-transform duration-300" id="roi-percentage">1,500%</div>
+                <div class="text-sm text-blue-100 mt-1 group-hover/card:text-white transition-colors duration-300">Return on your Immigratic investment</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- CTA -->
+        <div class="text-center mt-12 pt-8 border-t border-gray-200 dark:border-gray-600">
+          <a href="/contact?utm_source=education_solution&utm_medium=roi_calculator&utm_campaign=schedule_demo" class="group inline-flex items-center px-8 py-4 bg-gradient-to-r from-blue-600 to-purple-600 text-white font-semibold rounded-full hover:from-blue-700 hover:to-purple-700 transition-all duration-300 transform hover:scale-105 hover:shadow-2xl text-lg">
+            <span>🚀 Start Your Growth Journey</span>
+            <svg class="ml-3 w-5 h-5 group-hover:translate-x-1 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
+            </svg>
+          </a>
+          <p class="text-gray-500 dark:text-gray-400 text-sm mt-3">💡 Free consultation • No commitment required</p>
         </div>
       </div>
     </div>
@@ -553,3 +760,104 @@ import Layout from '../../layouts/Layout.astro';
     box-shadow: 0 35px 60px -12px rgba(0, 0, 0, 0.25);
   }
 </style>
+
+<script>
+  // ROI Calculator Functions
+  function updateStudentsValue(value) {
+    document.getElementById('students-value').textContent = value + ' students';
+    calculateROI();
+  }
+
+  function updateTuitionValue(value) {
+    const formatted = new Intl.NumberFormat('en-US', {
+      style: 'currency',
+      currency: 'USD',
+      minimumFractionDigits: 0,
+      maximumFractionDigits: 0
+    }).format(value);
+    document.getElementById('tuition-value').textContent = formatted;
+    calculateROI();
+  }
+
+  function updateSliderValue(value) {
+    document.getElementById('slider-value').textContent = value + '%';
+    calculateROI();
+  }
+  
+  function getImmigrationFeeByVolume(totalCases) {
+    if (totalCases < 100) return { fee: 1000, tier: "Starter: Under 100 cases" };
+    if (totalCases >= 100 && totalCases <= 200) return { fee: 750, tier: "Growth: 100-200 cases" };
+    if (totalCases > 200 && totalCases <= 500) return { fee: 650, tier: "Scale: 200-500 cases" };
+    if (totalCases > 500 && totalCases <= 1000) return { fee: 550, tier: "Enterprise: 500-1000 cases" };
+    return { fee: 500, tier: "Ultra Enterprise: 1000+ cases" };
+  }
+
+  function calculateROI() {
+    const currentStudents = parseInt(document.getElementById('current-students')?.value || '200');
+    const tuitionFee = parseInt(document.getElementById('tuition-fee')?.value || '25000');
+    const increasePercentage = parseInt(document.getElementById('increase-percentage')?.value || '25');
+    
+    // Calculate additional students
+    const additionalStudents = Math.round(currentStudents * (increasePercentage / 100));
+    
+    // Get dynamic pricing based on total volume (current + additional)
+    const totalCases = currentStudents + additionalStudents;
+    const pricingInfo = getImmigrationFeeByVolume(totalCases);
+    const immigraticFee = pricingInfo.fee;
+    
+    // Calculations
+    const totalInvestment = additionalStudents * immigraticFee; // What university pays Immigratic
+    const additionalRevenue = additionalStudents * tuitionFee; // What university gains
+    const netProfit = additionalRevenue - totalInvestment; // University's net profit
+    const roi = Math.round((netProfit / totalInvestment) * 100); // True ROI calculation
+    
+    // Update pricing display
+    const immigraticRateEl = document.getElementById('immigratic-rate');
+    const pricingTierEl = document.getElementById('pricing-tier');
+    if (immigraticRateEl) immigraticRateEl.textContent = `$${immigraticFee} per case`;
+    if (pricingTierEl) pricingTierEl.textContent = `📊 ${pricingInfo.tier}`;
+    
+    // Update results display
+    const additionalStudentsEl = document.getElementById('additional-students');
+    const totalInvestmentEl = document.getElementById('total-investment');
+    const additionalRevenueEl = document.getElementById('additional-revenue');
+    const roiPercentageEl = document.getElementById('roi-percentage');
+    
+    if (additionalStudentsEl) additionalStudentsEl.textContent = `+${additionalStudents} students`;
+    if (totalInvestmentEl) totalInvestmentEl.textContent = `$${totalInvestment.toLocaleString()}`;
+    if (additionalRevenueEl) additionalRevenueEl.textContent = `$${additionalRevenue.toLocaleString()}`;
+    if (roiPercentageEl) roiPercentageEl.textContent = `${roi}%`;
+  }
+  
+  // Initialize calculator when page loads
+  document.addEventListener('DOMContentLoaded', function() {
+    const currentStudentsInput = document.getElementById('current-students');
+    const tuitionFeeInput = document.getElementById('tuition-fee');
+    const increasePercentageInput = document.getElementById('increase-percentage');
+    
+    // Set up event listeners for all sliders
+    if (currentStudentsInput) {
+      currentStudentsInput.addEventListener('input', function() {
+        updateStudentsValue(this.value);
+      });
+    }
+    
+    if (tuitionFeeInput) {
+      tuitionFeeInput.addEventListener('input', function() {
+        updateTuitionValue(this.value);
+      });
+    }
+    
+    if (increasePercentageInput) {
+      increasePercentageInput.addEventListener('input', function() {
+        updateSliderValue(this.value);
+      });
+    }
+    
+    // Set initial values and calculate
+    updateStudentsValue(document.getElementById('current-students')?.value || '200');
+    updateTuitionValue(document.getElementById('tuition-fee')?.value || '25000');
+    updateSliderValue(document.getElementById('increase-percentage')?.value || '25');
+    calculateROI();
+  });
+</script>
