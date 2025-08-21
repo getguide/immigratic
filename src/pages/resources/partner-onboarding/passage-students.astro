@@ -1,0 +1,644 @@
+---
+import Layout from '../../../layouts/Layout.astro';
+---
+
+<Layout 
+  title="Passage Students - Immigration Journey Roadmap | Immigratic"
+  description="Your complete roadmap to Canadian immigration success. Follow our proven 8-step process from intake to decision, with clear milestones and progress tracking."
+  image="/og-image.jpg"
+  imageAlt="Passage Students Immigration Journey Roadmap"
+>
+  <!-- Hero Section -->
+  <section class="relative overflow-hidden bg-gradient-to-br from-green-600 via-emerald-700 to-teal-800 dark:from-green-800 dark:via-emerald-900 dark:to-teal-900 py-24 lg:py-32">
+    <!-- Animated Background Elements -->
+    <div class="absolute inset-0 overflow-hidden">
+      <div class="absolute -top-40 -right-40 w-80 h-80 bg-green-400/20 rounded-full blur-3xl animate-pulse-slow"></div>
+      <div class="absolute -bottom-40 -left-40 w-80 h-80 bg-emerald-400/20 rounded-full blur-3xl animate-pulse-slow" style="animation-delay: 2s;"></div>
+      <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-teal-400/10 rounded-full blur-3xl animate-pulse-slow" style="animation-delay: 4s;"></div>
+    </div>
+    
+    <!-- Floating Particles -->
+    <div class="absolute inset-0">
+      <div class="absolute top-20 left-20 w-2 h-2 bg-white/30 rounded-full animate-float-gentle"></div>
+      <div class="absolute top-32 right-32 w-1 h-1 bg-white/40 rounded-full animate-float-gentle" style="animation-delay: 1s;"></div>
+      <div class="absolute bottom-32 left-32 w-3 h-3 bg-white/20 rounded-full animate-float-gentle" style="animation-delay: 2s;"></div>
+      <div class="absolute bottom-20 right-20 w-1 h-1 bg-white/50 rounded-full animate-float-gentle" style="animation-delay: 3s;"></div>
+    </div>
+
+    <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      <div class="mb-8">
+        <span class="inline-flex items-center px-4 py-2 bg-white/10 backdrop-blur-sm border border-white/20 rounded-full text-sm font-medium text-white/90">
+          🎓 Passage Students Welcome
+        </span>
+      </div>
+      
+      <h1 class="text-4xl md:text-6xl font-bold text-white mb-6 leading-tight">
+        Your Journey to
+        <span class="block bg-gradient-to-r from-green-200 to-emerald-200 bg-clip-text text-transparent">
+          Canadian Success
+        </span>
+      </h1>
+      
+      <p class="text-xl md:text-2xl text-green-100 max-w-4xl mx-auto mb-8 leading-relaxed">
+        Immigratic and Passage are partnered to help you achieve your Canadian dreams. Follow our proven 8-step process with clear milestones and progress tracking.
+      </p>
+      
+      <div class="flex flex-col sm:flex-row gap-4 justify-center">
+        <a href="#roadmap" class="inline-flex items-center px-8 py-4 bg-white text-green-600 font-semibold rounded-xl hover:bg-green-50 transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl">
+          View Your Roadmap
+          <svg class="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+          </svg>
+        </a>
+        <a href="#get-started" class="inline-flex items-center px-8 py-4 bg-transparent border-2 border-white/30 text-white font-semibold rounded-xl hover:bg-white/10 transition-all duration-300 transform hover:scale-105">
+          Get Started Today
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Sticky Navigation -->
+  <nav class="sticky top-0 z-50 bg-white/80 dark:bg-gray-900/80 backdrop-blur-xl border-b border-gray-200 dark:border-gray-700 shadow-lg">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex items-center justify-center space-x-8 py-4">
+        <a href="#roadmap" class="text-gray-700 dark:text-gray-300 hover:text-green-600 dark:hover:text-green-400 font-medium transition-colors duration-300 py-2 border-b-2 border-transparent hover:border-green-600 dark:hover:border-green-400">
+          Your Roadmap
+        </a>
+        <a href="#process" class="text-gray-700 dark:text-gray-300 hover:text-green-600 dark:hover:text-green-400 font-medium transition-colors duration-300 py-2 border-b-2 border-transparent hover:border-green-600 dark:hover:border-green-400">
+          Process Details
+        </a>
+        <a href="#what-to-expect" class="text-gray-700 dark:text-gray-300 hover:text-green-600 dark:hover:text-green-400 font-medium transition-colors duration-300 py-2 border-b-2 border-transparent hover:border-green-600 dark:hover:border-green-400">
+          What to Expect
+        </a>
+        <a href="#get-started" class="text-gray-700 dark:text-gray-300 hover:text-green-600 dark:hover:text-green-400 font-medium transition-colors duration-300 py-2 border-b-2 border-transparent hover:border-green-600 dark:hover:border-green-400">
+          Get Started
+        </a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Interactive Roadmap Section -->
+  <section id="roadmap" class="py-24 bg-white dark:bg-gray-900">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-16">
+        <h2 class="text-3xl md:text-5xl font-bold text-gray-900 dark:text-white mb-6">
+          Your Immigration
+          <span class="block bg-gradient-to-r from-green-600 to-emerald-600 bg-clip-text text-transparent">
+            Journey Roadmap
+          </span>
+        </h2>
+        <p class="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
+          Follow our proven 8-step process with clear milestones and progress tracking. Each step brings you closer to your Canadian dream.
+        </p>
+      </div>
+
+      <!-- Interactive Roadmap -->
+      <div class="relative">
+        <!-- Progress Line -->
+        <div class="absolute left-8 top-0 bottom-0 w-1 bg-gray-200 dark:bg-gray-700 transform -translate-x-1/2"></div>
+        
+        <!-- Roadmap Steps -->
+        <div class="space-y-12">
+          <!-- Step 1: Complete Immigratic Master Intake -->
+          <div class="roadmap-step group" data-step="1">
+            <div class="flex items-start">
+              <div class="roadmap-step-number">
+                <span class="text-2xl font-bold text-white">1</span>
+              </div>
+              <div class="ml-8 flex-1">
+                <div class="roadmap-step-content">
+                  <h3 class="text-2xl font-bold text-gray-900 dark:text-white mb-4 group-hover:text-green-600 dark:group-hover:text-green-400 transition-colors duration-300">
+                    Complete Immigratic Master Intake
+                  </h3>
+                  <p class="text-lg text-gray-600 dark:text-gray-300 mb-6">
+                    Your journey begins with our comprehensive intake process. We'll gather essential information about your background, goals, and immigration objectives.
+                  </p>
+                  <div class="bg-green-50 dark:bg-green-900/20 border-l-4 border-green-500 p-4 rounded-r-lg">
+                    <p class="text-green-800 dark:text-green-200 font-medium">
+                      <span class="font-bold">What happens:</span> Your Passage representative will initiate your case in the Immigratic portal, ensuring a seamless handoff.
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Step 2: Case Initiation -->
+          <div class="roadmap-step group" data-step="2">
+            <div class="flex items-start">
+              <div class="roadmap-step-number">
+                <span class="text-2xl font-bold text-white">2</span>
+              </div>
+              <div class="ml-8 flex-1">
+                <div class="roadmap-step-content">
+                  <h3 class="text-2xl font-bold text-gray-900 dark:text-white mb-4 group-hover:text-green-600 dark:group-hover:text-green-400 transition-colors duration-300">
+                    Your Passage Rep Initiates Your Case
+                  </h3>
+                  <p class="text-lg text-gray-600 dark:text-gray-300 mb-6">
+                    Your dedicated Passage representative will set up your case in our secure portal, ensuring all your information is properly transferred and organized.
+                  </p>
+                  <div class="bg-blue-50 dark:bg-blue-900/20 border-l-4 border-blue-500 p-4 rounded-r-lg">
+                    <p class="text-blue-800 dark:text-blue-200 font-medium">
+                      <span class="font-bold">Behind the scenes:</span> We're setting up your secure client portal and preparing your personalized immigration strategy.
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Step 3: Welcome Email -->
+          <div class="roadmap-step group" data-step="3">
+            <div class="flex items-start">
+              <div class="roadmap-step-number">
+                <span class="text-2xl font-bold text-white">3</span>
+              </div>
+              <div class="ml-8 flex-1">
+                <div class="roadmap-step-content">
+                  <h3 class="text-2xl font-bold text-gray-900 dark:text-white mb-4 group-hover:text-green-600 dark:group-hover:text-green-400 transition-colors duration-300">
+                    Welcome Email from Your Case Manager
+                  </h3>
+                  <p class="text-lg text-gray-600 dark:text-gray-300 mb-6">
+                    You'll receive a personalized welcome email from your dedicated case manager, introducing themselves and outlining your next steps.
+                  </p>
+                  <div class="bg-purple-50 dark:bg-purple-900/20 border-l-4 border-purple-500 p-4 rounded-r-lg">
+                    <p class="text-purple-800 dark:text-purple-200 font-medium">
+                      <span class="font-bold">Personal touch:</span> Your case manager will be your single point of contact throughout your entire immigration journey.
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Step 4: Introductory Call -->
+          <div class="roadmap-step group" data-step="4">
+            <div class="flex items-start">
+              <div class="roadmap-step-number">
+                <span class="text-2xl font-bold text-white">4</span>
+              </div>
+              <div class="ml-8 flex-1">
+                <div class="roadmap-step-content">
+                  <h3 class="text-2xl font-bold text-gray-900 dark:text-white mb-4 group-hover:text-green-600 dark:group-hover:text-green-400 transition-colors duration-300">
+                    Book Your Introductory Call
+                  </h3>
+                  <p class="text-lg text-gray-600 dark:text-gray-300 mb-6">
+                    Schedule a short introductory call so we can get to know each other and give you a comprehensive tour of your personalized dashboard.
+                  </p>
+                  <div class="bg-orange-50 dark:bg-orange-900/20 border-l-4 border-orange-500 p-4 rounded-r-lg">
+                    <p class="text-orange-800 dark:text-orange-200 font-medium">
+                      <span class="font-bold">What to expect:</span> 15-20 minute call to discuss your goals, answer questions, and walk through your portal.
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Step 5: Document Upload -->
+          <div class="roadmap-step group" data-step="5">
+            <div class="flex items-start">
+              <div class="roadmap-step-number">
+                <span class="text-2xl font-bold text-white">5</span>
+              </div>
+              <div class="ml-8 flex-1">
+                <div class="roadmap-step-content">
+                  <h3 class="text-2xl font-bold text-gray-900 dark:text-white mb-4 group-hover:text-green-600 dark:group-hover:text-green-400 transition-colors duration-300">
+                    Upload Required Documents
+                  </h3>
+                  <p class="text-lg text-gray-600 dark:text-gray-300 mb-6">
+                    Upload all required documents in your secured portal. Our system has already pre-filled most of the information needed, saving you time.
+                  </p>
+                  <div class="bg-teal-50 dark:bg-teal-900/20 border-l-4 border-teal-500 p-4 rounded-r-lg">
+                    <p class="text-teal-800 dark:text-teal-200 font-medium">
+                      <span class="font-bold">Smart system:</span> Our AI-powered platform pre-fills forms and identifies exactly what documents you need to provide.
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Step 6: Review & Confirm -->
+          <div class="roadmap-step group" data-step="6">
+            <div class="flex items-start">
+              <div class="roadmap-step-number">
+                <span class="text-2xl font-bold text-white">6</span>
+              </div>
+              <div class="ml-8 flex-1">
+                <div class="roadmap-step-content">
+                  <h3 class="text-2xl font-bold text-gray-900 dark:text-white mb-4 group-hover:text-green-600 dark:group-hover:text-green-400 transition-colors duration-300">
+                    Review and Confirm Details
+                  </h3>
+                  <p class="text-lg text-gray-600 dark:text-gray-300 mb-6">
+                    Carefully review all information and documents before final confirmation. Your case manager will guide you through this critical step.
+                  </p>
+                  <div class="bg-indigo-50 dark:bg-indigo-900/20 border-l-4 border-indigo-500 p-4 rounded-r-lg">
+                    <p class="text-indigo-800 dark:text-indigo-200 font-medium">
+                      <span class="font-bold">Quality check:</span> We'll review everything together to ensure accuracy and completeness before submission.
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Step 7: Submission -->
+          <div class="roadmap-step group" data-step="7">
+            <div class="flex items-start">
+              <div class="roadmap-step-number">
+                <span class="text-2xl font-bold text-white">7</span>
+              </div>
+              <div class="ml-8 flex-1">
+                <div class="roadmap-step-content">
+                  <h3 class="text-2xl font-bold text-gray-900 dark:text-white mb-4 group-hover:text-green-600 dark:group-hover:text-green-400 transition-colors duration-300">
+                    Official Submission
+                  </h3>
+                  <p class="text-lg text-gray-600 dark:text-gray-300 mb-6">
+                    Your application is officially submitted to the relevant immigration authorities. This is a significant milestone in your journey.
+                  </p>
+                  <div class="bg-pink-50 dark:bg-pink-900/20 border-l-4 border-pink-500 p-4 rounded-r-lg">
+                    <p class="text-pink-800 dark:text-pink-200 font-medium">
+                      <span class="font-bold">Milestone reached:</span> You'll receive confirmation of submission and your official application number.
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Step 8: Decision -->
+          <div class="roadmap-step group" data-step="8">
+            <div class="flex items-start">
+              <div class="roadmap-step-number">
+                <span class="text-2xl font-bold text-white">8</span>
+              </div>
+              <div class="ml-8 flex-1">
+                <div class="roadmap-step-content">
+                  <h3 class="text-2xl font-bold text-gray-900 dark:text-white mb-4 group-hover:text-green-600 dark:group-hover:text-green-400 transition-colors duration-300">
+                    Decision & Next Steps
+                  </h3>
+                  <p class="text-lg text-gray-600 dark:text-gray-300 mb-6">
+                    Receive your immigration decision and guidance on next steps. We'll help you plan your transition to Canada.
+                  </p>
+                  <div class="bg-emerald-50 dark:bg-emerald-900/20 border-l-4 border-emerald-500 p-4 rounded-r-lg">
+                    <p class="text-emerald-800 dark:text-emerald-200 font-medium">
+                      <span class="font-bold">Success achieved:</span> Whether approved or if additional steps are needed, we'll guide you through every next step.
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Process Details Section -->
+  <section id="process" class="py-24 bg-gray-50 dark:bg-gray-800">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-16">
+        <h2 class="text-3xl md:text-5xl font-bold text-gray-900 dark:text-white mb-6">
+          Understanding Your
+          <span class="block bg-gradient-to-r from-blue-600 to-indigo-600 bg-clip-text text-transparent">
+            Immigration Process
+          </span>
+        </h2>
+        <p class="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
+          Get detailed insights into what happens at each stage and how we ensure your success.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
+        <!-- Process Overview -->
+        <div class="space-y-8">
+          <div class="bg-white dark:bg-gray-900 rounded-2xl p-8 shadow-lg border border-gray-200 dark:border-gray-700">
+            <div class="w-16 h-16 bg-gradient-to-br from-blue-500 to-indigo-600 rounded-2xl flex items-center justify-center mb-6">
+              <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v10a2 2 0 002 2h8a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4"></path>
+              </svg>
+            </div>
+            <h3 class="text-xl font-bold text-gray-900 dark:text-white mb-4">Seamless Partnership</h3>
+            <p class="text-gray-600 dark:text-gray-300">
+              Immigratic and Passage work together seamlessly to ensure your immigration journey is smooth and successful. Your Passage representative handles the initial setup, while our immigration experts manage your case.
+            </p>
+          </div>
+
+          <div class="bg-white dark:bg-gray-900 rounded-2xl p-8 shadow-lg border border-gray-200 dark:border-gray-700">
+            <div class="w-16 h-16 bg-gradient-to-br from-green-500 to-emerald-600 rounded-2xl flex items-center justify-center mb-6">
+              <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"></path>
+              </svg>
+            </div>
+            <h3 class="text-xl font-bold text-gray-900 dark:text-white mb-4">Secure & Private</h3>
+            <p class="text-gray-600 dark:text-gray-300">
+              Your personal information and documents are protected with bank-level security. Our portal uses encryption and secure protocols to ensure your privacy throughout the entire process.
+            </p>
+          </div>
+        </div>
+
+        <!-- Timeline Expectations -->
+        <div class="space-y-8">
+          <div class="bg-white dark:bg-gray-900 rounded-2xl p-8 shadow-lg border border-gray-200 dark:border-gray-700">
+            <div class="w-16 h-16 bg-gradient-to-br from-purple-500 to-pink-600 rounded-2xl flex items-center justify-center mb-6">
+              <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+              </svg>
+            </div>
+            <h3 class="text-xl font-bold text-gray-900 dark:text-white mb-4">Timeline Expectations</h3>
+            <ul class="space-y-3 text-gray-600 dark:text-gray-300">
+              <li class="flex items-start">
+                <span class="w-2 h-2 bg-purple-500 rounded-full mt-2 mr-3 flex-shrink-0"></span>
+                <span><strong>Steps 1-3:</strong> 1-2 business days</span>
+              </li>
+              <li class="flex items-start">
+                <span class="w-2 h-2 bg-purple-500 rounded-full mt-2 mr-3 flex-shrink-0"></span>
+                <span><strong>Steps 4-6:</strong> 1-3 weeks (depending on document preparation)</span>
+              </li>
+              <li class="flex items-start">
+                <span class="w-2 h-2 bg-purple-500 rounded-full mt-2 mr-3 flex-shrink-0"></span>
+                <span><strong>Steps 7-8:</strong> Varies by immigration program</span>
+              </li>
+            </ul>
+          </div>
+
+          <div class="bg-white dark:bg-gray-900 rounded-2xl p-8 shadow-lg border border-gray-200 dark:border-gray-700">
+            <div class="w-16 h-16 bg-gradient-to-br from-orange-500 to-red-600 rounded-2xl flex items-center justify-center mb-6">
+              <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"></path>
+              </svg>
+            </div>
+            <h3 class="text-xl font-bold text-gray-900 dark:text-white mb-4">Personalized Support</h3>
+            <p class="text-gray-600 dark:text-gray-300">
+              Every student receives personalized attention from their dedicated case manager. We understand that each immigration journey is unique, and we tailor our approach to your specific needs and goals.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- What to Expect Section -->
+  <section id="what-to-expect" class="py-24 bg-white dark:bg-gray-900">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-16">
+        <h2 class="text-3xl md:text-5xl font-bold text-gray-900 dark:text-white mb-6">
+          What to Expect
+          <span class="block bg-gradient-to-r from-teal-600 to-cyan-600 bg-clip-text text-transparent">
+            Throughout Your Journey
+          </span>
+        </h2>
+        <p class="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
+          Stay informed and connected with our comprehensive communication system and progress tracking.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <!-- Email Updates -->
+        <div class="group bg-white dark:bg-gray-800 rounded-2xl p-8 shadow-lg border border-gray-200 dark:border-gray-700 hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2">
+          <div class="w-16 h-16 bg-gradient-to-br from-blue-500 to-indigo-600 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
+            <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 4.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
+            </svg>
+          </div>
+          <h3 class="text-xl font-bold text-gray-900 dark:text-white mb-4">Email Updates</h3>
+          <p class="text-gray-600 dark:text-gray-300 mb-6">
+            Receive case updates and important notifications via email at every step of your immigration journey.
+          </p>
+          <div class="text-sm text-gray-500 dark:text-gray-400">
+            <span class="font-semibold">Frequency:</span> Real-time updates for all major milestones
+          </div>
+        </div>
+
+        <!-- Telegram Bot -->
+        <div class="group bg-white dark:bg-gray-800 rounded-2xl p-8 shadow-lg border border-gray-200 dark:border-gray-700 hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2">
+          <div class="w-16 h-16 bg-gradient-to-br from-teal-500 to-cyan-600 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
+            <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"></path>
+            </svg>
+          </div>
+          <h3 class="text-xl font-bold text-gray-900 dark:text-white mb-4">Telegram Bot (Optional)</h3>
+          <p class="text-gray-600 dark:text-gray-300 mb-6">
+            Subscribe to our Telegram bot for instant notifications and quick access to case updates on the go.
+          </p>
+          <div class="text-sm text-gray-500 dark:text-gray-400">
+            <span class="font-semibold">Features:</span> Instant alerts, quick status checks, direct support
+          </div>
+        </div>
+
+        <!-- Case Logging -->
+        <div class="group bg-white dark:bg-gray-800 rounded-2xl p-8 shadow-lg border border-gray-200 dark:border-gray-700 hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2">
+          <div class="w-16 h-16 bg-gradient-to-br from-green-500 to-emerald-600 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
+            <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
+            </svg>
+          </div>
+          <h3 class="text-xl font-bold text-gray-900 dark:text-white mb-4">Complete Case Logging</h3>
+          <p class="text-gray-600 dark:text-gray-300 mb-6">
+            All interactions and case updates are logged for transparency and quality assurance purposes.
+          </p>
+          <div class="text-sm text-gray-500 dark:text-gray-400">
+            <span class="font-semibold">Benefits:</span> Full transparency, quality tracking, audit trail
+          </div>
+        </div>
+      </div>
+
+      <!-- Communication Timeline -->
+      <div class="mt-16 bg-gradient-to-br from-gray-50 to-gray-100 dark:from-gray-800 dark:to-gray-900 rounded-3xl p-8 lg:p-12">
+        <h3 class="text-2xl font-bold text-gray-900 dark:text-white mb-8 text-center">Communication Timeline</h3>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+          <div class="text-center">
+            <div class="w-16 h-16 bg-green-500 rounded-full flex items-center justify-center mx-auto mb-4">
+              <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+              </svg>
+            </div>
+            <h4 class="font-semibold text-gray-900 dark:text-white mb-2">Immediate</h4>
+            <p class="text-sm text-gray-600 dark:text-gray-300">Case initiation confirmation</p>
+          </div>
+          
+          <div class="text-center">
+            <div class="w-16 h-16 bg-blue-500 rounded-full flex items-center justify-center mx-auto mb-4">
+              <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 4.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
+              </svg>
+            </div>
+            <h4 class="font-semibold text-gray-900 dark:text-white mb-2">Within 24h</h4>
+            <p class="text-sm text-gray-600 dark:text-gray-300">Welcome email & case manager intro</p>
+          </div>
+          
+          <div class="text-center">
+            <div class="w-16 h-16 bg-purple-500 rounded-full flex items-center justify-center mx-auto mb-4">
+              <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"></path>
+              </svg>
+            </div>
+            <h4 class="font-semibold text-gray-900 dark:text-white mb-2">Weekly</h4>
+            <p class="text-sm text-gray-600 dark:text-gray-300">Progress updates & next steps</p>
+          </div>
+          
+          <div class="text-center">
+            <div class="w-16 h-16 bg-orange-500 rounded-full flex items-center justify-center mx-auto mb-4">
+              <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+              </svg>
+            </div>
+            <h4 class="font-semibold text-gray-900 dark:text-white mb-2">As Needed</h4>
+            <p class="text-sm text-gray-600 dark:text-gray-300">Important milestones & decisions</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Get Started Section -->
+  <section id="get-started" class="py-24 bg-gradient-to-br from-green-600 via-emerald-700 to-teal-800 dark:from-green-800 dark:via-emerald-900 dark:to-teal-900">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      <h2 class="text-3xl md:text-5xl font-bold text-white mb-6">
+        Ready to Begin
+        <span class="block bg-gradient-to-r from-green-200 to-emerald-200 bg-clip-text text-transparent">
+          Your Canadian Journey?
+        </span>
+      </h2>
+      <p class="text-xl text-green-100 mb-8 max-w-3xl mx-auto">
+        Your Passage representative will guide you through the first steps. If you have any questions about this process, don't hesitate to reach out.
+      </p>
+      <div class="flex flex-col sm:flex-row gap-4 justify-center">
+        <a href="/contact?utm_source=immigratic&utm_medium=website&utm_campaign=passage_onboarding&utm_content=contact_support" class="inline-flex items-center px-8 py-4 bg-white text-green-600 font-semibold rounded-xl hover:bg-green-50 transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl">
+          Contact Support
+          <svg class="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"></path>
+          </svg>
+        </a>
+        <a href="/resources?utm_source=immigratic&utm_medium=website&utm_campaign=passage_onboarding&utm_content=more_resources" class="inline-flex items-center px-8 py-4 bg-transparent border-2 border-white/30 text-white font-semibold rounded-xl hover:bg-white/10 transition-all duration-300 transform hover:scale-105">
+          More Resources
+        </a>
+      </div>
+    </div>
+  </section>
+</Layout>
+
+<style>
+  @keyframes animate-pulse-slow {
+    0%, 100% { opacity: 0.3; }
+    50% { opacity: 0.6; }
+  }
+  
+  @keyframes animate-float-gentle {
+    0%, 100% { transform: translateY(0px); }
+    50% { transform: translateY(-10px); }
+  }
+  
+  .animate-pulse-slow {
+    animation: animate-pulse-slow 4s ease-in-out infinite;
+  }
+  
+  .animate-float-gentle {
+    animation: animate-float-gentle 3s ease-in-out infinite;
+  }
+
+  /* Roadmap Step Styling */
+  .roadmap-step {
+    position: relative;
+    opacity: 0;
+    transform: translateY(30px);
+    animation: fadeInUp 0.6s ease-out forwards;
+  }
+
+  .roadmap-step:nth-child(1) { animation-delay: 0.1s; }
+  .roadmap-step:nth-child(2) { animation-delay: 0.2s; }
+  .roadmap-step:nth-child(3) { animation-delay: 0.3s; }
+  .roadmap-step:nth-child(4) { animation-delay: 0.4s; }
+  .roadmap-step:nth-child(5) { animation-delay: 0.5s; }
+  .roadmap-step:nth-child(6) { animation-delay: 0.6s; }
+  .roadmap-step:nth-child(7) { animation-delay: 0.7s; }
+  .roadmap-step:nth-child(8) { animation-delay: 0.8s; }
+
+  .roadmap-step-number {
+    position: relative;
+    z-index: 10;
+    width: 16px;
+    height: 16px;
+    background: linear-gradient(135deg, #10b981, #059669);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 12px rgba(16, 185, 129, 0.3);
+    transition: all 0.3s ease;
+  }
+
+  .roadmap-step:hover .roadmap-step-number {
+    transform: scale(1.2);
+    box-shadow: 0 6px 20px rgba(16, 185, 129, 0.4);
+  }
+
+  .roadmap-step-content {
+    transition: all 0.3s ease;
+  }
+
+  .roadmap-step:hover .roadmap-step-content {
+    transform: translateX(8px);
+  }
+
+  @keyframes fadeInUp {
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  /* Mobile Responsiveness */
+  @media (max-width: 768px) {
+    .roadmap-step-number {
+      width: 14px;
+      height: 14px;
+    }
+    
+    .roadmap-step-number span {
+      font-size: 1rem;
+    }
+  }
+</style>
+
+<script>
+  // Smooth scrolling for navigation links
+  document.addEventListener('DOMContentLoaded', function() {
+    const navLinks = document.querySelectorAll('a[href^="#"]');
+    
+    navLinks.forEach(link => {
+      link.addEventListener('click', function(e) {
+        e.preventDefault();
+        
+        const targetId = this.getAttribute('href').substring(1);
+        const targetSection = document.getElementById(targetId);
+        
+        if (targetSection) {
+          const offsetTop = targetSection.offsetTop - 100; // Account for sticky nav
+          window.scrollTo({
+            top: offsetTop,
+            behavior: 'smooth'
+          });
+        }
+      });
+    });
+
+    // Intersection Observer for roadmap steps
+    const roadmapSteps = document.querySelectorAll('.roadmap-step');
+    const stepObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.style.animationPlayState = 'running';
+        }
+      });
+    }, {
+      threshold: 0.3,
+      rootMargin: '0px 0px -50px 0px'
+    });
+
+    roadmapSteps.forEach(step => {
+      stepObserver.observe(step);
+    });
+  });
+</script>
