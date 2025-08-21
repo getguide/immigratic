@@ -350,6 +350,10 @@ import Layout from '../../../layouts/Layout.astro';
               <span class="support-text">Live chat available</span>
             </div>
           </div>
+          <div class="portal-access-note">
+            <span class="portal-icon">🔐</span>
+            <span class="portal-text">All accessible through your portal</span>
+          </div>
         </div>
       </div>
     </div>
@@ -709,6 +713,38 @@ import Layout from '../../../layouts/Layout.astro';
 
   .tag-immigratic {
     background: linear-gradient(135deg, #8b5cf6, #7c3aed);
+  }
+
+  /* Portal Access Note */
+  .portal-access-note {
+    display: flex;
+    align-items: center;
+    margin-top: 1rem;
+    padding: 0.75rem;
+    background: linear-gradient(135deg, #fef3c7, #fde68a);
+    border-radius: 0.5rem;
+    border: 1px solid #f59e0b;
+  }
+
+  .dark .portal-access-note {
+    background: linear-gradient(135deg, #451a03, #78350f);
+    border-color: #f59e0b;
+  }
+
+  .portal-icon {
+    font-size: 1rem;
+    margin-right: 0.5rem;
+    flex-shrink: 0;
+  }
+
+  .portal-text {
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: #92400e;
+  }
+
+  .dark .portal-text {
+    color: #fbbf24;
   }
 
   /* Mobile Responsiveness */
