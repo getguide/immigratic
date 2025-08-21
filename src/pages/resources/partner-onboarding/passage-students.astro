@@ -76,7 +76,25 @@ import Layout from '../../../layouts/Layout.astro';
         </p>
       </div>
 
-              <!-- Main Content with Vertical Progress Bar -->
+              <!-- Sticky Stage Navigation -->
+        <div class="sticky top-0 z-20 bg-white dark:bg-gray-900 border-b border-gray-200 dark:border-gray-700 mb-8 lg:hidden">
+          <div class="flex justify-center space-x-1 px-4 py-3">
+            <button class="stage-nav-btn active" data-stage="1">
+              <span class="text-xs font-medium text-gray-900 dark:text-white">Stage 1</span>
+              <span class="block text-xs text-gray-500 dark:text-gray-400">Onboarding</span>
+            </button>
+            <button class="stage-nav-btn" data-stage="2">
+              <span class="text-xs font-medium text-gray-900 dark:text-white">Stage 2</span>
+              <span class="block text-xs text-gray-500 dark:text-gray-400">Documents</span>
+            </button>
+            <button class="stage-nav-btn" data-stage="3">
+              <span class="text-xs font-medium text-gray-900 dark:text-white">Stage 3</span>
+              <span class="block text-xs text-xs text-gray-500 dark:text-gray-400">Filing</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- Main Content with Vertical Progress Bar -->
         <div class="relative flex">
           <!-- Vertical Progress Bar -->
           <div class="hidden lg:block sticky top-24 z-10">
@@ -388,6 +406,37 @@ import Layout from '../../../layouts/Layout.astro';
 </Layout>
 
 <style>
+  /* Sticky Navigation Styles */
+  .stage-nav-btn {
+    padding: 0.5rem 1rem;
+    border-radius: 0.5rem;
+    transition: all 0.3s ease;
+    border: 1px solid transparent;
+    background: transparent;
+    cursor: pointer;
+  }
+  
+  .stage-nav-btn:hover {
+    background: #f3f4f6;
+    border-color: #d1d5db;
+  }
+  
+  .stage-nav-btn.active {
+    background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+    color: white;
+    border-color: #10b981;
+    box-shadow: 0 2px 4px rgba(16, 185, 129, 0.2);
+  }
+  
+  .stage-nav-btn.active span {
+    color: white !important;
+  }
+  
+  .dark .stage-nav-btn:hover {
+    background: #374151;
+    border-color: #4b5563;
+  }
+  
   @keyframes animate-pulse-slow {
     0%, 100% { opacity: 0.3; }
     50% { opacity: 0.6; }
@@ -872,6 +921,23 @@ import Layout from '../../../layouts/Layout.astro';
       stageObserver.observe(section);
     });
 
+    // Sticky navigation functionality
+    const stageNavBtns = document.querySelectorAll('.stage-nav-btn');
+    
+    stageNavBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        const targetStage = btn.getAttribute('data-stage');
+        const targetSection = document.querySelector(`[data-stage="${targetStage}"]`);
+        
+        if (targetSection) {
+          targetSection.scrollIntoView({ 
+            behavior: 'smooth', 
+            block: 'start' 
+          });
+        }
+      });
+    });
+    
     // Progress bar and milestone tracking
     const progressFill = document.querySelector('.progress-fill');
     const stageIndicators = document.querySelectorAll('.stage-indicator');
@@ -911,16 +977,31 @@ import Layout from '../../../layouts/Layout.astro';
           stageIndicators[0].classList.add('active');
           stageIndicators[1].classList.remove('active');
           stageIndicators[2].classList.remove('active');
+          
+          // Update sticky navigation
+          stageNavBtns[0].classList.add('active');
+          stageNavBtns[1].classList.remove('active');
+          stageNavBtns[2].classList.remove('active');
         } else if (currentProgress >= 33 && currentProgress < 66) {
           // Stage 2: 33-66%
           stageIndicators[0].classList.add('active');
           stageIndicators[1].classList.add('active');
           stageIndicators[2].classList.remove('active');
+          
+          // Update sticky navigation
+          stageNavBtns[0].classList.remove('active');
+          stageNavBtns[1].classList.add('active');
+          stageNavBtns[2].classList.remove('active');
         } else if (currentProgress >= 66) {
           // Stage 3: 66-100%
           stageIndicators[0].classList.add('active');
           stageIndicators[1].classList.add('active');
           stageIndicators[2].classList.add('active');
+          
+          // Update sticky navigation
+          stageNavBtns[0].classList.remove('active');
+          stageNavBtns[1].classList.remove('active');
+          stageNavBtns[2].classList.add('active');
         }
       }, {
         threshold: 0.1,
