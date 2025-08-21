@@ -479,57 +479,71 @@ import Layout from '../layouts/Layout.astro';
 
 <!-- ROI Calculator Functions -->
 <script>
-  // Educational Institutions ROI Calculator
+  // ROI Calculator Functions - WORKING VERSION FROM EDUCATIONAL INSTITUTIONS PAGE
   function updateStudentsValue(value) {
-    const element = document.getElementById('students-value');
-    if (element) {
-      element.textContent = value + ' students';
-      calculateEducationROI();
-    }
+    document.getElementById('students-value').textContent = value + ' students';
+    calculateROI();
   }
-  
+
   function updateTuitionValue(value) {
-    const element = document.getElementById('tuition-value');
-    if (element) {
-      element.textContent = '$' + parseInt(value).toLocaleString();
-      calculateEducationROI();
-    }
+    const formatted = new Intl.NumberFormat('en-US', {
+      style: 'currency',
+      currency: 'USD',
+      minimumFractionDigits: 0,
+      maximumFractionDigits: 0
+    }).format(value);
+    document.getElementById('tuition-value').textContent = formatted;
+    calculateROI();
   }
-  
+
   function updateSliderValue(value) {
-    const element = document.getElementById('slider-value');
-    if (element) {
-      element.textContent = value + '%';
-      calculateEducationROI();
-    }
+    document.getElementById('slider-value').textContent = value + '%';
+    calculateROI();
   }
   
-  function calculateEducationROI() {
-    const currentStudentsEl = document.getElementById('current-students');
-    const tuitionFeeEl = document.getElementById('tuition-fee');
-    const increasePercentageEl = document.getElementById('increase-percentage');
+  function getImmigrationFeeByVolume(totalCases) {
+    if (totalCases < 100) return { fee: 1000, tier: "Starter: Under 100 cases" };
+    if (totalCases >= 100 && totalCases <= 200) return { fee: 750, tier: "Growth: 100-200 cases" };
+    if (totalCases > 200 && totalCases <= 500) return { fee: 650, tier: "Scale: 200-500 cases" };
+    if (totalCases > 500 && totalCases <= 1000) return { fee: 550, tier: "Enterprise: 500-1000 cases" };
+    return { fee: 500, tier: "Ultra Enterprise: 1000+ cases" };
+  }
+
+  function calculateROI() {
+    const currentStudents = parseInt(document.getElementById('current-students')?.value || '200');
+    const tuitionFee = parseInt(document.getElementById('tuition-fee')?.value || '25000');
+    const increasePercentage = parseInt(document.getElementById('increase-percentage')?.value || '25');
     
-    if (!currentStudentsEl || !tuitionFeeEl || !increasePercentageEl) return;
-    
-    const currentStudents = parseInt(currentStudentsEl.value) || 200;
-    const tuitionFee = parseInt(tuitionFeeEl.value) || 25000;
-    const increasePercentage = parseInt(increasePercentageEl.value) || 25;
-    
+    // Calculate additional students
     const additionalStudents = Math.round(currentStudents * (increasePercentage / 100));
-    const additionalRevenue = additionalStudents * tuitionFee;
-    const totalInvestment = additionalStudents * 650; // Immigratic fee per case (updated to match working version)
-    const roi = Math.round((additionalRevenue / totalInvestment) * 100);
     
-    // Update display elements
+    // Get dynamic pricing based on total volume (current + additional)
+    const totalCases = currentStudents + additionalStudents;
+    const pricingInfo = getImmigrationFeeByVolume(totalCases);
+    const immigraticFee = pricingInfo.fee;
+    
+    // Calculations
+    const totalInvestment = additionalStudents * immigraticFee; // What university pays Immigratic
+    const additionalRevenue = additionalStudents * tuitionFee; // What university gains
+    const netProfit = additionalRevenue - totalInvestment; // University's net profit
+    const roi = Math.round((netProfit / totalInvestment) * 100); // True ROI calculation
+    
+    // Update pricing display
+    const immigraticRateEl = document.getElementById('immigratic-rate');
+    const pricingTierEl = document.getElementById('pricing-tier');
+    if (immigraticRateEl) immigraticRateEl.textContent = `$${immigraticFee} per case`;
+    if (pricingTierEl) pricingTierEl.textContent = `📊 ${pricingInfo.tier}`;
+    
+    // Update results display
     const additionalStudentsEl = document.getElementById('additional-students');
     const totalInvestmentEl = document.getElementById('total-investment');
     const additionalRevenueEl = document.getElementById('additional-revenue');
     const roiPercentageEl = document.getElementById('roi-percentage');
     
-    if (additionalStudentsEl) additionalStudentsEl.textContent = '+' + additionalStudents + ' students';
-    if (totalInvestmentEl) totalInvestmentEl.textContent = '$' + totalInvestment.toLocaleString();
-    if (additionalRevenueEl) additionalRevenueEl.textContent = '$' + additionalRevenue.toLocaleString();
-    if (roiPercentageEl) roiPercentageEl.textContent = roi + '%';
+    if (additionalStudentsEl) additionalStudentsEl.textContent = `+${additionalStudents} students`;
+    if (totalInvestmentEl) totalInvestmentEl.textContent = `$${totalInvestment.toLocaleString()}`;
+    if (additionalRevenueEl) additionalRevenueEl.textContent = `$${additionalRevenue.toLocaleString()}`;
+    if (roiPercentageEl) roiPercentageEl.textContent = `${roi}%`;
   }
   
   // Immigration Agencies ROI Calculator
@@ -582,12 +596,35 @@ import Layout from '../layouts/Layout.astro';
     if (annualPotentialEl) annualPotentialEl.textContent = '$' + annualPotential.toLocaleString();
   }
   
-  // Initialize calculators when DOM is loaded
+  // Initialize calculator when page loads - WORKING VERSION
   document.addEventListener('DOMContentLoaded', function() {
-    // Wait a bit for all elements to be rendered
-    setTimeout(() => {
-      calculateEducationROI();
-      calculateAgencyROI();
-    }, 100);
+    const currentStudentsInput = document.getElementById('current-students');
+    const tuitionFeeInput = document.getElementById('tuition-fee');
+    const increasePercentageInput = document.getElementById('increase-percentage');
+    
+    // Set up event listeners for all sliders
+    if (currentStudentsInput) {
+      currentStudentsInput.addEventListener('input', function() {
+        updateStudentsValue(this.value);
+      });
+    }
+    
+    if (tuitionFeeInput) {
+      tuitionFeeInput.addEventListener('input', function() {
+        updateTuitionValue(this.value);
+      });
+    }
+    
+    if (increasePercentageInput) {
+      increasePercentageInput.addEventListener('input', function() {
+        updateSliderValue(this.value);
+      });
+    }
+    
+    // Set initial values and calculate
+    updateStudentsValue(document.getElementById('current-students')?.value || '200');
+    updateTuitionValue(document.getElementById('tuition-fee')?.value || '25000');
+    updateSliderValue(document.getElementById('increase-percentage')?.value || '25');
+    calculateROI();
   });
 </script>
