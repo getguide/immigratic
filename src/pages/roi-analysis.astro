@@ -1,0 +1,518 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout title="ROI Analysis - Calculate Your Return on Investment | Immigratic">
+  <!-- Hero Section -->
+  <section class="relative min-h-screen flex items-center justify-center overflow-hidden bg-gradient-to-br from-blue-900 via-purple-900 to-green-900">
+    <!-- Animated Background -->
+    <div class="absolute inset-0 opacity-20">
+      <div class="absolute top-20 left-20 w-96 h-96 bg-blue-500/30 rounded-full blur-3xl animate-pulse-slow"></div>
+      <div class="absolute bottom-20 right-20 w-80 h-80 bg-purple-500/30 rounded-full blur-3xl animate-pulse-slow" style="animation-delay: 2s;"></div>
+      <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-64 h-64 bg-green-500/20 rounded-full blur-2xl animate-float-gentle"></div>
+    </div>
+
+    <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      <div class="inline-flex items-center px-4 py-2 bg-white/20 rounded-full text-white text-sm font-medium mb-8 opacity-0 animate-fade-in-up" style="animation-delay: 0.1s; animation-fill-mode: forwards;">
+        📊 ROI Analysis
+      </div>
+
+      <h1 class="text-5xl md:text-7xl font-bold text-white mb-8 opacity-0 animate-fade-in-up" style="animation-delay: 0.2s; animation-fill-mode: forwards;">
+        Calculate Your
+        <span class="block mt-2 bg-gradient-to-r from-blue-400 via-purple-400 to-green-400 bg-clip-text text-transparent animate-gradient-flow">
+          ROI with Immigratic
+        </span>
+      </h1>
+      
+      <p class="text-xl md:text-2xl text-gray-300 max-w-4xl mx-auto mb-12 opacity-0 animate-fade-in-up" style="animation-delay: 0.6s; animation-fill-mode: forwards;">
+        Discover exactly how much additional revenue and growth you can achieve by partnering with Canada's leading immigration platform.
+      </p>
+
+      <!-- ROI Stats -->
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12 opacity-0 animate-fade-in-up" style="animation-delay: 1.0s; animation-fill-mode: forwards;">
+        <div class="text-center">
+          <div class="text-3xl md:text-4xl font-bold text-blue-400 mb-2">1,500%</div>
+          <div class="text-gray-300 text-sm">Average ROI for Educational Institutions</div>
+        </div>
+        <div class="text-center">
+          <div class="text-3xl md:text-4xl font-bold text-purple-400 mb-2">12x</div>
+          <div class="text-gray-300 text-sm">Revenue Multiplier for Immigration Agencies</div>
+        </div>
+        <div class="text-center">
+          <div class="text-3xl md:text-4xl font-bold text-green-400 mb-2">96%</div>
+          <div class="text-gray-300 text-sm">Success Rate Improvement</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Sticky Navigation Bar -->
+  <nav class="sticky top-0 z-50 bg-white/80 dark:bg-gray-900/80 backdrop-blur-xl border-b border-gray-200 dark:border-gray-700 shadow-lg">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex justify-center space-x-8 py-4">
+        <a href="#educational-institutions" class="nav-link text-gray-600 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 font-medium transition-colors duration-300 border-b-2 border-transparent hover:border-blue-600 dark:hover:border-blue-400 pb-2">
+          Educational Institutions
+        </a>
+        <a href="#immigration-agencies" class="nav-link text-gray-600 dark:text-gray-300 hover:text-purple-600 dark:hover:text-purple-400 font-medium transition-colors duration-300 border-b-2 border-transparent hover:border-purple-600 dark:hover:border-purple-400 pb-2">
+          Immigration Agencies
+        </a>
+        <a href="#comparison" class="nav-link text-gray-600 dark:text-gray-300 hover:text-green-600 dark:hover:text-green-400 font-medium transition-colors duration-300 border-b-2 border-transparent hover:border-green-600 dark:hover:border-green-400 pb-2">
+          Compare Results
+        </a>
+        <a href="#get-started" class="nav-link text-gray-600 dark:text-gray-300 hover:text-orange-600 dark:hover:text-orange-400 font-medium transition-colors duration-300 border-b-2 border-transparent hover:border-orange-600 dark:hover:border-orange-400 pb-2">
+          Get Started
+        </a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Educational Institutions ROI Calculator -->
+  <section id="educational-institutions" class="py-24 bg-gradient-to-br from-blue-50 to-purple-50 dark:from-gray-800 dark:to-gray-900">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-16">
+        <h2 class="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white mb-6">
+          Educational Institutions
+          <span class="bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
+            ROI Calculator
+          </span>
+        </h2>
+        <p class="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
+          Calculate how much additional revenue you could generate by increasing international student enrollment with our platform.
+        </p>
+      </div>
+
+      <div class="bg-white dark:bg-gray-800 rounded-3xl p-8 shadow-2xl border border-gray-200 dark:border-gray-700">
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
+          <!-- Input Section -->
+          <div>
+            <h3 class="text-2xl font-bold text-gray-900 dark:text-white mb-8">📊 Your Current Situation</h3>
+            
+            <div class="space-y-6">
+              <div>
+                <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+                  🎓 Current international students per year
+                </label>
+                <input type="range" id="current-students" class="w-full" min="10" max="2000" value="200" oninput="updateStudentsValue(this.value)">
+                <div class="flex justify-between text-sm text-gray-500 dark:text-gray-400 mt-1">
+                  <span>10</span>
+                  <span id="students-value" class="font-semibold text-blue-600 dark:text-blue-400">200 students</span>
+                  <span>2,000</span>
+                </div>
+              </div>
+              
+              <div>
+                <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+                  💰 Average annual tuition per student ($)
+                </label>
+                <input type="range" id="tuition-fee" class="w-full" min="8000" max="60000" value="25000" step="1000" oninput="updateTuitionValue(this.value)">
+                <div class="flex justify-between text-sm text-gray-500 dark:text-gray-400 mt-1">
+                  <span>$8,000</span>
+                  <span id="tuition-value" class="font-semibold text-green-600 dark:text-green-400">$25,000</span>
+                  <span>$60,000</span>
+                </div>
+              </div>
+
+              <div>
+                <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+                  📈 Target enrollment increase (%)
+                </label>
+                <input type="range" id="increase-percentage" class="w-full" min="10" max="50" value="25" oninput="updateSliderValue(this.value)">
+                <div class="flex justify-between text-sm text-gray-500 dark:text-gray-400 mt-1">
+                  <span>10%</span>
+                  <span id="slider-value" class="font-semibold text-blue-600 dark:text-blue-400">25%</span>
+                  <span>50%</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Results Section -->
+          <div>
+            <h3 class="text-2xl font-bold text-gray-900 dark:text-white mb-8">🚀 Your Potential with Immigratic</h3>
+            
+            <div class="space-y-6">
+              <div class="bg-blue-50 dark:bg-blue-900/20 rounded-xl p-6 border border-blue-200 dark:border-blue-800">
+                <div class="text-sm text-gray-600 dark:text-gray-400 mb-2">📚 Additional Students</div>
+                <div class="text-3xl font-bold text-blue-600 dark:text-blue-400" id="additional-students">+50 students</div>
+              </div>
+              
+              <div class="bg-green-50 dark:bg-green-900/20 rounded-xl p-6 border border-green-200 dark:border-green-800">
+                <div class="text-sm text-gray-600 dark:text-gray-400 mb-2">💵 Your Additional Revenue</div>
+                <div class="text-3xl font-bold text-green-600 dark:text-green-400" id="additional-revenue">$1,250,000</div>
+              </div>
+              
+              <div class="bg-gradient-to-r from-blue-600 to-purple-600 rounded-xl p-6 text-white">
+                <div class="text-sm text-blue-100 mb-2">🎯 Your ROI (First Year)</div>
+                <div class="text-4xl font-bold" id="roi-percentage">1,500%</div>
+                <div class="text-sm text-blue-100 mt-1">Return on your Immigratic investment</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Immigration Agencies ROI Calculator -->
+  <section id="immigration-agencies" class="py-24 bg-gradient-to-br from-purple-50 to-green-50 dark:from-gray-900 dark:to-gray-800">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-16">
+        <h2 class="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white mb-6">
+          Immigration Agencies
+          <span class="bg-gradient-to-r from-purple-600 to-green-600 bg-clip-text text-transparent">
+            ROI Calculator
+          </span>
+        </h2>
+        <p class="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
+          See how much more you could earn per client with long-term relationships vs one-time services.
+        </p>
+      </div>
+
+      <div class="bg-white dark:bg-gray-800 rounded-3xl p-8 shadow-2xl border border-gray-200 dark:border-gray-700">
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
+          <!-- Input Section -->
+          <div>
+            <h3 class="text-2xl font-bold text-gray-900 dark:text-white mb-8">📊 Your Current Practice</h3>
+            
+            <div class="space-y-6">
+              <div>
+                <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+                  📋 Cases per month
+                </label>
+                <input type="range" id="cases-per-month" class="w-full" min="5" max="200" value="50" oninput="updateCasesValue(this.value)">
+                <div class="flex justify-between text-sm text-gray-500 dark:text-gray-400 mt-1">
+                  <span>5</span>
+                  <span id="cases-value" class="font-semibold text-purple-600 dark:text-purple-400">50 cases</span>
+                  <span>200</span>
+                </div>
+              </div>
+              
+              <div>
+                <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+                  💰 Your current fee per case ($)
+                </label>
+                <input type="range" id="current-fee" class="w-full" min="200" max="1500" value="500" step="50" oninput="updateCurrentFeeValue(this.value)">
+                <div class="flex justify-between text-sm text-gray-500 dark:text-gray-400 mt-1">
+                  <span>$200</span>
+                  <span id="current-fee-value" class="font-semibold text-red-600 dark:text-red-400">$500</span>
+                  <span>$1,500</span>
+                </div>
+              </div>
+              
+              <div>
+                <label class="text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+                  📈 Your current visa approval rate (%)
+                </label>
+                <input type="range" id="current-success-rate" class="w-full" min="1" max="85" value="30" oninput="updateCurrentSuccessValue(this.value)">
+                <div class="flex justify-between text-sm text-gray-500 dark:text-gray-400 mt-1">
+                  <span>1%</span>
+                  <span id="current-success-value" class="font-semibold text-red-600 dark:text-red-400">30%</span>
+                  <span>85%</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Results Section -->
+          <div>
+            <h3 class="text-2xl font-bold text-gray-900 dark:text-white mb-8">💰 Revenue Comparison</h3>
+            
+            <div class="space-y-6">
+              <div class="bg-red-50 dark:bg-red-900/20 rounded-xl p-6 border border-red-200 dark:border-red-800">
+                <div class="text-sm text-gray-600 dark:text-gray-400 mb-2">😤 Your Current Way (Per Client)</div>
+                <div class="text-3xl font-bold text-red-600 dark:text-red-400" id="current-revenue">$500</div>
+                <div class="text-xs text-gray-500 dark:text-gray-400 mt-1">One-time service, then client is gone</div>
+              </div>
+              
+              <div class="bg-green-50 dark:bg-green-900/20 rounded-xl p-6 border border-green-200 dark:border-green-800">
+                <div class="text-sm text-gray-600 dark:text-gray-400 mb-2">🚀 With Immigratic Network (Per Client)</div>
+                <div class="text-3xl font-bold text-green-600 dark:text-green-400" id="immigratic-revenue">$6,000+</div>
+                <div class="text-xs text-gray-500 dark:text-gray-400 mt-1">TRV → PR → Family → Ongoing commissions</div>
+              </div>
+              
+              <div class="bg-gradient-to-r from-purple-600 to-green-600 rounded-xl p-6 text-white">
+                <div class="text-sm text-white/80 mb-2">💎 Annual Revenue Potential</div>
+                <div class="text-4xl font-bold" id="annual-potential">$3,600,000</div>
+                <div class="text-xs text-white/80 mt-1">Based on your monthly case volume</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Comparison Section -->
+  <section id="comparison" class="py-24 bg-gradient-to-br from-gray-50 to-blue-50 dark:from-gray-800 dark:to-gray-900">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-16">
+        <h2 class="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white mb-6">
+          ROI
+          <span class="bg-gradient-to-r from-blue-600 to-green-600 bg-clip-text text-transparent">
+            Comparison
+          </span>
+        </h2>
+        <p class="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
+          See how both educational institutions and immigration agencies achieve remarkable returns with Immigratic.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+        <!-- Educational Institutions Summary -->
+        <div class="bg-white dark:bg-gray-800 rounded-3xl p-8 shadow-2xl border border-gray-200 dark:border-gray-700">
+          <div class="text-center mb-6">
+            <div class="w-16 h-16 bg-gradient-to-br from-blue-500 to-purple-600 rounded-full flex items-center justify-center mx-auto mb-4">
+              <span class="text-2xl">🎓</span>
+            </div>
+            <h3 class="text-2xl font-bold text-gray-900 dark:text-white">Educational Institutions</h3>
+          </div>
+          
+          <div class="space-y-4">
+            <div class="flex justify-between items-center">
+              <span class="text-gray-600 dark:text-gray-400">Average ROI</span>
+              <span class="text-2xl font-bold text-blue-600">1,500%</span>
+            </div>
+            <div class="flex justify-between items-center">
+              <span class="text-gray-600 dark:text-gray-400">Enrollment Increase</span>
+              <span class="text-xl font-semibold text-green-600">25-50%</span>
+            </div>
+            <div class="flex justify-between items-center">
+              <span class="text-gray-600 dark:text-gray-400">Revenue Growth</span>
+              <span class="text-xl font-semibold text-purple-600">$1M+ annually</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Immigration Agencies Summary -->
+        <div class="bg-white dark:bg-gray-800 rounded-3xl p-8 shadow-2xl border border-gray-200 dark:border-gray-700">
+          <div class="text-center mb-6">
+            <div class="w-16 h-16 bg-gradient-to-br from-purple-500 to-green-600 rounded-full flex items-center justify-center mx-auto mb-4">
+              <span class="text-2xl">💼</span>
+            </div>
+            <h3 class="text-2xl font-bold text-gray-900 dark:text-white">Immigration Agencies</h3>
+          </div>
+          
+          <div class="space-y-4">
+            <div class="flex justify-between items-center">
+              <span class="text-gray-600 dark:text-gray-400">Revenue Multiplier</span>
+              <span class="text-2xl font-bold text-purple-600">12x</span>
+            </div>
+            <div class="flex justify-between items-center">
+              <span class="text-gray-600 dark:text-gray-400">Success Rate Improvement</span>
+              <span class="text-xl font-semibold text-green-600">+15-25%</span>
+            </div>
+            <div class="flex justify-between items-center">
+              <span class="text-gray-600 dark:text-gray-400">Annual Potential</span>
+              <span class="text-xl font-semibold text-green-600">$3.6M+</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Get Started Section -->
+  <section id="get-started" class="py-24 bg-gradient-to-br from-blue-900 via-purple-900 to-green-900 relative overflow-hidden">
+    <div class="absolute inset-0">
+      <div class="absolute top-0 left-0 w-full h-full bg-gradient-to-r from-blue-600/20 to-green-600/20"></div>
+      <div class="absolute top-20 right-20 w-96 h-96 bg-purple-500/10 rounded-full blur-3xl"></div>
+      <div class="absolute bottom-20 left-20 w-80 h-80 bg-green-500/10 rounded-full blur-3xl"></div>
+    </div>
+
+    <div class="relative z-10 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      <h2 class="text-4xl md:text-5xl font-bold text-white mb-8">
+        Ready to Calculate
+        <span class="bg-gradient-to-r from-blue-400 via-purple-400 to-green-400 bg-clip-text text-transparent">
+          Your ROI?
+        </span>
+      </h2>
+      
+      <p class="text-xl text-gray-300 mb-12 max-w-3xl mx-auto">
+        Get a personalized ROI analysis for your specific situation. Our team will provide detailed insights and recommendations.
+      </p>
+
+      <div class="flex flex-col sm:flex-row gap-4 justify-center">
+        <a href="https://intake.immigratic.com/partnership?utm_source=roi_analysis&utm_medium=cta&utm_campaign=get_started" class="group inline-flex items-center px-8 py-4 bg-gradient-to-r from-blue-600 to-purple-600 text-white font-semibold rounded-full hover:from-blue-700 hover:to-purple-700 transition-all duration-300 transform hover:scale-105 hover:shadow-2xl">
+          <span>Get Personalized Analysis</span>
+          <svg class="ml-3 w-5 h-5 group-hover:translate-x-1 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
+          </svg>
+        </a>
+        
+        <a href="https://try.immigratic.com/meetings/immicare/165?utm_source=roi_analysis&utm_medium=cta&utm_campaign=consultation" class="group inline-flex items-center px-8 py-4 bg-transparent border-2 border-white/30 text-white font-semibold rounded-full hover:bg-white/10 hover:border-white/50 transition-all duration-300 transform hover:scale-105">
+          <span>Schedule Consultation</span>
+          <svg class="ml-3 w-5 h-5 group-hover:translate-x-1 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+          </svg>
+        </a>
+      </div>
+    </div>
+  </section>
+</Layout>
+
+<style>
+  @keyframes fade-in-up {
+    from {
+      opacity: 0;
+      transform: translateY(30px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  @keyframes gradient-flow {
+    0%, 100% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+  }
+  
+  @keyframes pulse-slow {
+    0%, 100% { opacity: 0.3; transform: scale(1); }
+    50% { opacity: 0.6; transform: scale(1.05); }
+  }
+  
+  @keyframes float-gentle {
+    0%, 100% { transform: translateY(0px) rotate(0deg); }
+    33% { transform: translateY(-10px) rotate(1deg); }
+    66% { transform: translateY(5px) rotate(-1deg); }
+  }
+  
+  .animate-fade-in-up {
+    animation: fade-in-up 0.6s ease-out forwards;
+  }
+  
+  .animate-gradient-flow {
+    background-size: 200% 200%;
+    animation: gradient-flow 3s ease infinite;
+  }
+  
+  .animate-pulse-slow {
+    animation: pulse-slow 4s ease-in-out infinite;
+  }
+  
+  .animate-float-gentle {
+    animation: float-gentle 6s ease-in-out infinite;
+  }
+
+  /* Navigation styles */
+  .nav-link {
+    position: relative;
+  }
+
+  .nav-link::after {
+    content: '';
+    position: absolute;
+    bottom: -8px;
+    left: 50%;
+    width: 0;
+    height: 2px;
+    background: linear-gradient(to right, #2563eb, #7c3aed);
+    transition: all 0.3s ease;
+    transform: translateX(-50%);
+  }
+
+  .nav-link:hover::after {
+    width: 100%;
+  }
+
+  /* Smooth scrolling */
+  html {
+    scroll-behavior: smooth;
+  }
+</style>
+
+<!-- Smooth Scrolling Script -->
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    const navLinks = document.querySelectorAll('.nav-link');
+    
+    navLinks.forEach(link => {
+      link.addEventListener('click', function(e) {
+        e.preventDefault();
+        
+        const targetId = this.getAttribute('href').substring(1);
+        const targetSection = document.getElementById(targetId);
+        
+        if (targetSection) {
+          const offsetTop = targetSection.offsetTop - 80; // Account for sticky nav height
+          window.scrollTo({
+            top: offsetTop,
+            behavior: 'smooth'
+          });
+        }
+      });
+    });
+  });
+</script>
+
+<!-- ROI Calculator Functions -->
+<script>
+  // Educational Institutions ROI Calculator
+  function updateStudentsValue(value) {
+    document.getElementById('students-value').textContent = value + ' students';
+    calculateEducationROI();
+  }
+  
+  function updateTuitionValue(value) {
+    document.getElementById('tuition-value').textContent = '$' + parseInt(value).toLocaleString();
+    calculateEducationROI();
+  }
+  
+  function updateSliderValue(value) {
+    document.getElementById('slider-value').textContent = value + '%';
+    calculateEducationROI();
+  }
+  
+  function calculateEducationROI() {
+    const currentStudents = parseInt(document.getElementById('current-students').value);
+    const tuitionFee = parseInt(document.getElementById('tuition-fee').value);
+    const increasePercentage = parseInt(document.getElementById('increase-percentage').value);
+    
+    const additionalStudents = Math.round(currentStudents * (increasePercentage / 100));
+    const additionalRevenue = additionalStudents * tuitionFee;
+    const totalInvestment = additionalStudents * 750; // Immigratic fee per case
+    const roi = Math.round((additionalRevenue / totalInvestment) * 100);
+    
+    document.getElementById('additional-students').textContent = '+' + additionalStudents + ' students';
+    document.getElementById('additional-revenue').textContent = '$' + additionalRevenue.toLocaleString();
+    document.getElementById('roi-percentage').textContent = roi + '%';
+  }
+  
+  // Immigration Agencies ROI Calculator
+  function updateCasesValue(value) {
+    document.getElementById('cases-value').textContent = value + ' cases';
+    calculateAgencyROI();
+  }
+  
+  function updateCurrentFeeValue(value) {
+    document.getElementById('current-fee-value').textContent = '$' + parseInt(value).toLocaleString();
+    calculateAgencyROI();
+  }
+  
+  function updateCurrentSuccessValue(value) {
+    document.getElementById('current-success-value').textContent = value + '%';
+    calculateAgencyROI();
+  }
+  
+  function calculateAgencyROI() {
+    const casesPerMonth = parseInt(document.getElementById('cases-per-month').value);
+    const currentFee = parseInt(document.getElementById('current-fee').value);
+    const currentSuccessRate = parseInt(document.getElementById('current-success-rate').value);
+    
+    const currentRevenue = casesPerMonth * currentFee;
+    const immigraticRevenue = casesPerMonth * 2000; // $2,000+ per client with Immigratic
+    const revenueMultiplier = Math.round(immigraticRevenue / currentRevenue);
+    const annualPotential = immigraticRevenue * 12;
+    
+    document.getElementById('current-revenue').textContent = '$' + currentRevenue.toLocaleString();
+    document.getElementById('immigratic-revenue').textContent = '$' + immigraticRevenue.toLocaleString() + '+';
+    document.getElementById('annual-potential').textContent = '$' + annualPotential.toLocaleString();
+  }
+  
+  // Initialize calculators
+  document.addEventListener('DOMContentLoaded', function() {
+    calculateEducationROI();
+    calculateAgencyROI();
+  });
+</script>
