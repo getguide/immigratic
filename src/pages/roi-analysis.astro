@@ -450,69 +450,111 @@ import Layout from '../layouts/Layout.astro';
 <script>
   // Educational Institutions ROI Calculator
   function updateStudentsValue(value) {
-    document.getElementById('students-value').textContent = value + ' students';
-    calculateEducationROI();
+    const element = document.getElementById('students-value');
+    if (element) {
+      element.textContent = value + ' students';
+      calculateEducationROI();
+    }
   }
   
   function updateTuitionValue(value) {
-    document.getElementById('tuition-value').textContent = '$' + parseInt(value).toLocaleString();
-    calculateEducationROI();
+    const element = document.getElementById('tuition-value');
+    if (element) {
+      element.textContent = '$' + parseInt(value).toLocaleString();
+      calculateEducationROI();
+    }
   }
   
   function updateSliderValue(value) {
-    document.getElementById('slider-value').textContent = value + '%';
-    calculateEducationROI();
+    const element = document.getElementById('slider-value');
+    if (element) {
+      element.textContent = value + '%';
+      calculateEducationROI();
+    }
   }
   
   function calculateEducationROI() {
-    const currentStudents = parseInt(document.getElementById('current-students').value);
-    const tuitionFee = parseInt(document.getElementById('tuition-fee').value);
-    const increasePercentage = parseInt(document.getElementById('increase-percentage').value);
+    const currentStudentsEl = document.getElementById('current-students');
+    const tuitionFeeEl = document.getElementById('tuition-fee');
+    const increasePercentageEl = document.getElementById('increase-percentage');
+    
+    if (!currentStudentsEl || !tuitionFeeEl || !increasePercentageEl) return;
+    
+    const currentStudents = parseInt(currentStudentsEl.value) || 200;
+    const tuitionFee = parseInt(tuitionFeeEl.value) || 25000;
+    const increasePercentage = parseInt(increasePercentageEl.value) || 25;
     
     const additionalStudents = Math.round(currentStudents * (increasePercentage / 100));
     const additionalRevenue = additionalStudents * tuitionFee;
     const totalInvestment = additionalStudents * 750; // Immigratic fee per case
     const roi = Math.round((additionalRevenue / totalInvestment) * 100);
     
-    document.getElementById('additional-students').textContent = '+' + additionalStudents + ' students';
-    document.getElementById('additional-revenue').textContent = '$' + additionalRevenue.toLocaleString();
-    document.getElementById('roi-percentage').textContent = roi + '%';
+    // Update display elements
+    const additionalStudentsEl = document.getElementById('additional-students');
+    const additionalRevenueEl = document.getElementById('additional-revenue');
+    const roiPercentageEl = document.getElementById('roi-percentage');
+    
+    if (additionalStudentsEl) additionalStudentsEl.textContent = '+' + additionalStudents + ' students';
+    if (additionalRevenueEl) additionalRevenueEl.textContent = '$' + additionalRevenue.toLocaleString();
+    if (roiPercentageEl) roiPercentageEl.textContent = roi + '%';
   }
   
   // Immigration Agencies ROI Calculator
   function updateCasesValue(value) {
-    document.getElementById('cases-value').textContent = value + ' cases';
-    calculateAgencyROI();
+    const element = document.getElementById('cases-value');
+    if (element) {
+      element.textContent = value + ' cases';
+      calculateAgencyROI();
+    }
   }
   
   function updateCurrentFeeValue(value) {
-    document.getElementById('current-fee-value').textContent = '$' + parseInt(value).toLocaleString();
-    calculateAgencyROI();
+    const element = document.getElementById('current-fee-value');
+    if (element) {
+      element.textContent = '$' + parseInt(value).toLocaleString();
+      calculateAgencyROI();
+    }
   }
   
   function updateCurrentSuccessValue(value) {
-    document.getElementById('current-success-value').textContent = value + '%';
-    calculateAgencyROI();
+    const element = document.getElementById('current-success-value');
+    if (element) {
+      element.textContent = value + '%';
+      calculateAgencyROI();
+    }
   }
   
   function calculateAgencyROI() {
-    const casesPerMonth = parseInt(document.getElementById('cases-per-month').value);
-    const currentFee = parseInt(document.getElementById('current-fee').value);
-    const currentSuccessRate = parseInt(document.getElementById('current-success-rate').value);
+    const casesPerMonthEl = document.getElementById('cases-per-month');
+    const currentFeeEl = document.getElementById('current-fee');
+    const currentSuccessRateEl = document.getElementById('current-success-rate');
+    
+    if (!casesPerMonthEl || !currentFeeEl || !currentSuccessRateEl) return;
+    
+    const casesPerMonth = parseInt(casesPerMonthEl.value) || 50;
+    const currentFee = parseInt(currentFeeEl.value) || 500;
+    const currentSuccessRate = parseInt(currentSuccessRateEl.value) || 30;
     
     const currentRevenue = casesPerMonth * currentFee;
     const immigraticRevenue = casesPerMonth * 2000; // $2,000+ per client with Immigratic
-    const revenueMultiplier = Math.round(immigraticRevenue / currentRevenue);
     const annualPotential = immigraticRevenue * 12;
     
-    document.getElementById('current-revenue').textContent = '$' + currentRevenue.toLocaleString();
-    document.getElementById('immigratic-revenue').textContent = '$' + immigraticRevenue.toLocaleString() + '+';
-    document.getElementById('annual-potential').textContent = '$' + annualPotential.toLocaleString();
+    // Update display elements
+    const currentRevenueEl = document.getElementById('current-revenue');
+    const immigraticRevenueEl = document.getElementById('immigratic-revenue');
+    const annualPotentialEl = document.getElementById('annual-potential');
+    
+    if (currentRevenueEl) currentRevenueEl.textContent = '$' + currentRevenue.toLocaleString();
+    if (immigraticRevenueEl) immigraticRevenueEl.textContent = '$' + immigraticRevenue.toLocaleString() + '+';
+    if (annualPotentialEl) annualPotentialEl.textContent = '$' + annualPotential.toLocaleString();
   }
   
-  // Initialize calculators
+  // Initialize calculators when DOM is loaded
   document.addEventListener('DOMContentLoaded', function() {
-    calculateEducationROI();
-    calculateAgencyROI();
+    // Wait a bit for all elements to be rendered
+    setTimeout(() => {
+      calculateEducationROI();
+      calculateAgencyROI();
+    }, 100);
   });
 </script>
