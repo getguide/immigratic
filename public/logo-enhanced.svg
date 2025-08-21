@@ -1,0 +1,58 @@
+<svg width="400" height="55" viewBox="0 0 400 55" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Enhanced Background with Gradient -->
+  <defs>
+    <linearGradient id="logoGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#2563eb;stop-opacity:0.1" />
+      <stop offset="50%" style="stop-color:#7c3aed;stop-opacity:0.05" />
+      <stop offset="100%" style="stop-color:#16a34a;stop-opacity:0.1" />
+    </linearGradient>
+    
+    <linearGradient id="iconGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#2563eb" />
+      <stop offset="50%" style="stop-color:#7c3aed" />
+      <stop offset="100%" style="stop-color:#16a34a" />
+    </linearGradient>
+    
+    <filter id="glow" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="2" result="coloredBlur"/>
+      <feMerge> 
+        <feMergeNode in="coloredBlur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+  
+  <!-- Subtle Background -->
+  <rect x="0" y="0" width="400" height="55" rx="8" fill="url(#logoGradient)" opacity="0.3"/>
+  
+  <!-- Enhanced Logo Mark with Gradient -->
+  <g transform="translate(5, 5)">
+    <!-- Main Icon Background -->
+    <rect width="20" height="20" rx="6" fill="url(#iconGradient)" filter="url(#glow)"/>
+    
+    <!-- Enhanced "I" with better typography -->
+    <text x="10" y="15" font-family="Arial, sans-serif" font-size="14" font-weight="bold" text-anchor="middle" fill="white" filter="url(#glow)">I</text>
+    
+    <!-- Subtle accent elements -->
+    <circle cx="6" cy="6" r="1" fill="white" opacity="0.6"/>
+    <circle cx="26" cy="26" r="1" fill="white" opacity="0.4"/>
+  </g>
+  
+  <!-- Enhanced Typography with Gradient -->
+  <g transform="translate(35, 0)">
+    <!-- Main "Immigratic" text with gradient -->
+    <text x="0" y="35" font-family="Arial, sans-serif" font-size="28" font-weight="bold" fill="url(#iconGradient)" filter="url(#glow)">
+      Immigratic
+    </text>
+    
+    <!-- Subtle tagline -->
+    <text x="0" y="48" font-family="Arial, sans-serif" font-size="10" font-weight="normal" fill="#6b7280" opacity="0.7">
+      Canada's Leading Immigration Platform
+    </text>
+  </g>
+  
+  <!-- Decorative gradient elements -->
+  <circle cx="350" cy="15" r="3" fill="url(#iconGradient)" opacity="0.3"/>
+  <circle cx="370" cy="40" r="2" fill="url(#iconGradient)" opacity="0.2"/>
+  <circle cx="380" cy="25" r="1.5" fill="url(#iconGradient)" opacity="0.4"/>
+</svg>
