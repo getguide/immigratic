@@ -255,17 +255,25 @@ import Layout from '../layouts/Layout.astro';
                 <div class="text-xs text-gray-500 dark:text-gray-400 mt-1">One-time service, then client is gone</div>
               </div>
               
-              <div class="bg-green-50 dark:bg-green-900/20 rounded-xl p-6 border border-green-200 dark:border-green-800">
-                <div class="text-sm text-gray-600 dark:text-gray-400 mb-2">🚀 With Immigratic Network (Per Client)</div>
-                <div class="text-3xl font-bold text-green-600 dark:text-green-400" id="immigratic-revenue">$6,000+</div>
-                <div class="text-xs text-gray-500 dark:text-gray-400 mt-1">TRV → PR → Family → Ongoing commissions</div>
-              </div>
-              
-              <div class="bg-gradient-to-r from-purple-600 to-green-600 rounded-xl p-6 text-white">
-                <div class="text-sm text-white/80 mb-2">💎 Annual Revenue Potential</div>
-                <div class="text-4xl font-bold" id="annual-potential">$3,600,000</div>
-                <div class="text-xs text-white/80 mt-1">Based on your monthly case volume</div>
-              </div>
+                             <div class="bg-white dark:bg-gray-800 rounded-xl p-6 shadow-lg border border-gray-200 dark:border-gray-700 hover:shadow-xl hover:scale-105 hover:border-green-300 dark:hover:border-green-600 transition-all duration-300 cursor-pointer group/card">
+                 <div class="text-sm text-gray-600 dark:text-gray-400 mb-2 group-hover/card:text-green-600 dark:group-hover/card:text-green-400 transition-colors duration-300">🚀 With Immigratic Network (Per Client)</div>
+                 <div class="text-3xl font-bold text-green-600 dark:text-green-400 group-hover/card:scale-110 transition-transform duration-300" id="immigratic-revenue">$6,000+</div>
+                 <div class="text-xs text-gray-500 dark:text-gray-400 mt-1">TRV → PR → Family → Ongoing commissions</div>
+               </div>
+               
+               <!-- Revenue Multiplier -->
+               <div class="bg-white dark:bg-gray-800 rounded-xl p-6 shadow-lg border border-gray-200 dark:border-gray-700 hover:shadow-xl hover:scale-105 hover:border-blue-300 dark:hover:border-blue-600 transition-all duration-300 cursor-pointer group/card">
+                 <div class="text-sm text-gray-600 dark:text-gray-400 mb-2 group-hover/card:text-blue-600 dark:group-hover/card:text-blue-400 transition-colors duration-300">📊 Revenue Multiplier</div>
+                 <div class="text-3xl font-bold text-blue-600 dark:text-blue-400 group-hover/card:scale-110 transition-transform duration-300" id="revenue-multiplier">12x</div>
+                 <div class="text-xs text-gray-500 dark:text-gray-400 mt-1">How much more you earn per client</div>
+               </div>
+               
+               <!-- Annual Potential -->
+               <div class="bg-gradient-to-r from-purple-600 to-green-600 rounded-xl p-6 shadow-lg hover:shadow-2xl hover:scale-105 hover:from-purple-700 hover:to-green-700 transition-all duration-300 cursor-pointer group/card">
+                 <div class="text-sm text-white/80 mb-2 group-hover/card:text-white transition-colors duration-300">💎 Annual Revenue Potential</div>
+                 <div class="text-4xl font-bold text-white group-hover/card:scale-110 transition-transform duration-300" id="annual-potential">$3,600,000</div>
+                 <div class="text-xs text-white/80 mt-1 group-hover/card:text-white transition-colors duration-300">Based on your monthly case volume</div>
+               </div>
             </div>
           </div>
         </div>
@@ -546,63 +554,78 @@ import Layout from '../layouts/Layout.astro';
     if (roiPercentageEl) roiPercentageEl.textContent = `${roi}%`;
   }
   
-  // Immigration Agencies ROI Calculator
+  // Immigration Agencies ROI Calculator - WORKING VERSION
   function updateCasesValue(value) {
-    const element = document.getElementById('cases-value');
-    if (element) {
-      element.textContent = value + ' cases';
-      calculateAgencyROI();
-    }
+    document.getElementById('cases-value').textContent = value + ' cases';
+    updateROI();
   }
-  
+
   function updateCurrentFeeValue(value) {
-    const element = document.getElementById('current-fee-value');
-    if (element) {
-      element.textContent = '$' + parseInt(value).toLocaleString();
-      calculateAgencyROI();
-    }
+    const formatted = new Intl.NumberFormat('en-US', {
+      style: 'currency',
+      currency: 'USD',
+      minimumFractionDigits: 0,
+      maximumFractionDigits: 0
+    }).format(value);
+    document.getElementById('current-fee-value').textContent = formatted;
+    updateROI();
   }
-  
+
   function updateCurrentSuccessValue(value) {
-    const element = document.getElementById('current-success-value');
-    if (element) {
-      element.textContent = value + '%';
-      calculateAgencyROI();
-    }
+    document.getElementById('current-success-value').textContent = value + '%';
+    updateROI();
   }
-  
-  function calculateAgencyROI() {
-    const casesPerMonthEl = document.getElementById('cases-per-month');
+
+  // Revenue Comparison Calculator - WORKING VERSION
+  function updateROI() {
+    const casesEl = document.getElementById('cases-per-month');
     const currentFeeEl = document.getElementById('current-fee');
-    const currentSuccessRateEl = document.getElementById('current-success-rate');
+    const currentSuccessEl = document.getElementById('current-success-rate');
     
-    if (!casesPerMonthEl || !currentFeeEl || !currentSuccessRateEl) return;
+    const monthlyClientVolume = parseInt(casesEl?.value || '0') || 0;
+    const currentWayPerClient = parseInt(currentFeeEl?.value || '0') || 500; // User's current fee
+    const currentSuccessRate = parseInt(currentSuccessEl?.value || '0') / 100 || 0.65; // User's current success rate
     
-    const casesPerMonth = parseInt(casesPerMonthEl.value) || 50;
-    const currentFee = parseInt(currentFeeEl.value) || 500;
-    const currentSuccessRate = parseInt(currentSuccessRateEl.value) || 30;
+    // Success rate improvements with Immigratic (realistic 15-25% improvement)
+    const improvementRate = 0.20; // 20% average improvement
+    const immigraticSuccessRate = Math.min(currentSuccessRate + improvementRate, 0.95); // Cap at 95%
+    const immigraticWayPerClient = 2000; // Conservative total commission potential
     
-    const currentRevenue = casesPerMonth * currentFee;
-    const immigraticRevenue = casesPerMonth * 2000; // $2,000+ per client with Immigratic
-    const annualPotential = immigraticRevenue * 12;
+    // Annual calculations factoring in success rates
+    const annualClients = monthlyClientVolume * 12;
     
-    // Update display elements
+    // Current way: Limited by current success rate
+    const currentSuccessfulClients = Math.round(annualClients * currentSuccessRate);
+    const currentWayAnnual = currentSuccessfulClients * currentWayPerClient;
+    
+    // Immigratic way: Improved success rate + long-term commissions (40% need additional services)
+    const immigraticSuccessfulClients = Math.round(annualClients * immigraticSuccessRate);
+    const longTermConversionRate = 0.4; // 40% of successful clients need additional services
+    const immigraticWayAnnual = (immigraticSuccessfulClients * currentWayPerClient) + 
+                               (immigraticSuccessfulClients * longTermConversionRate * (immigraticWayPerClient - currentWayPerClient));
+    
+    const revenueMultiplier = Math.round(immigraticWayAnnual / currentWayAnnual);
+    
+    // Update display
     const currentRevenueEl = document.getElementById('current-revenue');
     const immigraticRevenueEl = document.getElementById('immigratic-revenue');
+    const revenueMultiplierEl = document.getElementById('revenue-multiplier');
     const annualPotentialEl = document.getElementById('annual-potential');
     
-    if (currentRevenueEl) currentRevenueEl.textContent = '$' + currentRevenue.toLocaleString();
-    if (immigraticRevenueEl) immigraticRevenueEl.textContent = '$' + immigraticRevenue.toLocaleString() + '+';
-    if (annualPotentialEl) annualPotentialEl.textContent = '$' + annualPotential.toLocaleString();
+    if (currentRevenueEl) currentRevenueEl.textContent = `$${currentWayPerClient.toLocaleString()}`;
+    if (immigraticRevenueEl) immigraticRevenueEl.textContent = `$${immigraticWayPerClient.toLocaleString()}+`;
+    if (revenueMultiplierEl) revenueMultiplierEl.textContent = `${revenueMultiplier}x`;
+    if (annualPotentialEl) annualPotentialEl.textContent = `$${Math.round(immigraticWayAnnual).toLocaleString()}`;
   }
   
   // Initialize calculator when page loads - WORKING VERSION
   document.addEventListener('DOMContentLoaded', function() {
+    // Educational Institutions Calculator Setup
     const currentStudentsInput = document.getElementById('current-students');
     const tuitionFeeInput = document.getElementById('tuition-fee');
     const increasePercentageInput = document.getElementById('increase-percentage');
     
-    // Set up event listeners for all sliders
+    // Set up event listeners for education sliders
     if (currentStudentsInput) {
       currentStudentsInput.addEventListener('input', function() {
         updateStudentsValue(this.value);
@@ -621,10 +644,38 @@ import Layout from '../layouts/Layout.astro';
       });
     }
     
-    // Set initial values and calculate
+    // Immigration Agencies Calculator Setup
+    const casesInput = document.getElementById('cases-per-month');
+    const currentFeeInput = document.getElementById('current-fee');
+    const currentSuccessInput = document.getElementById('current-success-rate');
+    
+    if (casesInput) {
+      casesInput.addEventListener('input', function() {
+        updateCasesValue(this.value);
+      });
+    }
+    
+    if (currentFeeInput) {
+      currentFeeInput.addEventListener('input', function() {
+        updateCurrentFeeValue(this.value);
+      });
+    }
+    
+    if (currentSuccessInput) {
+      currentSuccessInput.addEventListener('input', function() {
+        updateCurrentSuccessValue(this.value);
+      });
+    }
+    
+    // Set initial values and calculate both calculators
     updateStudentsValue(document.getElementById('current-students')?.value || '200');
     updateTuitionValue(document.getElementById('tuition-fee')?.value || '25000');
     updateSliderValue(document.getElementById('increase-percentage')?.value || '25');
     calculateROI();
+    
+    updateCasesValue(casesInput?.value || '50');
+    updateCurrentFeeValue(currentFeeInput?.value || '500');
+    updateCurrentSuccessValue(currentSuccessInput?.value || '30');
+    updateROI();
   });
 </script>
