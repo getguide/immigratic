@@ -19,7 +19,7 @@ const currentYear = new Date().getFullYear();
 ---
 
 <!DOCTYPE html>
-<html lang="en" class="scroll-smooth" x-data="{ darkMode: localStorage.getItem('darkMode') === 'true', mobileMenuOpen: false, toggleState: 'our-way' }" :class="{ 'dark': darkMode }">
+<html lang="en" class="scroll-smooth" x-data="{ darkMode: localStorage.getItem('darkMode') === 'true', mobileMenuOpen: false, toggleState: 'our-way' }" :class="{ 'dark': darkMode }" @closeMobileMenu.window="mobileMenuOpen = false">
   <head>
     <meta charset="UTF-8" />
     <meta name="description" content={description} />
@@ -912,6 +912,50 @@ const currentYear = new Date().getFullYear();
           }, 5000);
         }
       });
+      
+      // Mobile Menu Auto-Close on Scroll
+      function initMobileMenuAutoClose() {
+        let lastScrollTop = 0;
+        let scrollThreshold = 50; // Minimum scroll distance to trigger close
+        let isScrolling = false;
+        let scrollTimeout: number;
+        
+        window.addEventListener('scroll', function() {
+          if (!isScrolling) {
+            isScrolling = true;
+          }
+          
+          clearTimeout(scrollTimeout);
+          
+          scrollTimeout = setTimeout(function() {
+            isScrolling = false;
+          }, 150);
+          
+          const currentScrollTop = window.pageYOffset || document.documentElement.scrollTop;
+          const scrollDistance = Math.abs(currentScrollTop - lastScrollTop);
+          
+          // Check if mobile menu is open and user has scrolled enough
+          if (scrollDistance > scrollThreshold) {
+            // Close mobile menu by dispatching a custom event
+            // Alpine.js will listen for this event and close the menu
+            window.dispatchEvent(new CustomEvent('closeMobileMenu'));
+          }
+          
+          lastScrollTop = currentScrollTop;
+        });
+        
+        // Also close menu on touch move (mobile swipe)
+        document.addEventListener('touchmove', function() {
+          window.dispatchEvent(new CustomEvent('closeMobileMenu'));
+        }, { passive: true });
+      }
+      
+      // Initialize mobile menu auto-close
+      if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', initMobileMenuAutoClose);
+      } else {
+        initMobileMenuAutoClose();
+      }
     </script>
   </body>
 </html> 
