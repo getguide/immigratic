@@ -11,115 +11,179 @@ export const metadata = {
 
 <Layout title={metadata.title} description={metadata.description} image={metadata.image} canonical={metadata.canonical}>
   <!-- Hero Section -->
-  <section class="py-24 bg-gradient-to-br from-blue-50 via-purple-50 to-blue-50 dark:from-gray-800 dark:via-blue-900/20 dark:to-purple-900/20 relative overflow-hidden">
+  <section class="py-32 bg-gradient-to-br from-blue-600 via-purple-700 to-indigo-800 dark:from-blue-800 dark:via-purple-900 dark:to-indigo-900 relative overflow-hidden">
+    <!-- Animated Background Elements -->
     <div class="absolute inset-0">
-      <div class="absolute top-10 left-10 w-72 h-72 bg-blue-500/5 rounded-full blur-3xl animate-float"></div>
-      <div class="absolute bottom-10 right-10 w-96 h-96 bg-purple-500/5 rounded-full blur-3xl animate-float" style="animation-delay: 2s;"></div>
+      <div class="absolute top-20 left-20 w-96 h-96 bg-white/10 rounded-full blur-3xl animate-float"></div>
+      <div class="absolute bottom-20 right-20 w-80 h-80 bg-purple-400/20 rounded-full blur-3xl animate-float" style="animation-delay: 2s;"></div>
+      <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-gradient-to-r from-blue-400/20 to-purple-400/20 rounded-full blur-3xl animate-pulse-slow"></div>
+    </div>
+    
+    <!-- Floating Particles -->
+    <div class="absolute inset-0">
+      <div class="absolute top-1/4 left-1/4 w-2 h-2 bg-white/30 rounded-full animate-ping" style="animation-delay: 0s;"></div>
+      <div class="absolute top-1/3 right-1/3 w-1.5 h-1.5 bg-purple-300/40 rounded-full animate-ping" style="animation-delay: 1s;"></div>
+      <div class="absolute bottom-1/4 left-1/3 w-1 h-1 bg-blue-300/50 rounded-full animate-ping" style="animation-delay: 2s;"></div>
+      <div class="absolute top-1/2 right-1/4 w-2.5 h-2.5 bg-white/20 rounded-full animate-ping" style="animation-delay: 3s;"></div>
     </div>
     
     <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-      <h1 class="text-5xl md:text-6xl lg:text-7xl font-bold text-gray-900 dark:text-white mb-8 opacity-0 animate-fade-in-up" style="animation-delay: 0.2s; animation-fill-mode: forwards;">
+      <!-- Main Headline -->
+      <h1 class="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-white mb-4 md:mb-6 leading-tight opacity-0 animate-fade-in-up" style="animation-delay: 0.2s; animation-fill-mode: forwards;">
         <span class="block">Master Assessment</span>
-        <span class="block bg-gradient-to-r from-blue-600 via-purple-600 to-blue-600 bg-clip-text text-transparent">
+        <span class="block bg-gradient-to-r from-blue-400 via-purple-400 to-blue-400 bg-clip-text text-transparent">
           Revolution
         </span>
       </h1>
       
-      <p class="text-xl md:text-2xl text-gray-600 dark:text-gray-300 max-w-4xl mx-auto mb-12 opacity-0 animate-fade-in-up" style="animation-delay: 0.6s; animation-fill-mode: forwards;">
-        The world's first <strong>Unified Immigration Assessment Platform</strong> that evaluates ALL major Canadian immigration pathways simultaneously, delivering real-time eligibility and ImmiReport insights.
+      <!-- Subtitle -->
+      <p class="text-lg sm:text-xl md:text-2xl text-gray-300 mb-8 md:mb-12 max-w-4xl mx-auto leading-relaxed px-4 opacity-0 animate-fade-in-up" style="animation-delay: 0.8s; animation-fill-mode: forwards;">
+        <span class="bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent font-semibold">ImmiReport</span> - The New Immigration Standard
       </p>
       
-      <div class="flex flex-col sm:flex-row gap-4 justify-center opacity-0 animate-fade-in-up" style="animation-delay: 1s; animation-fill-mode: forwards;">
-        <a href="https://intake.immigratic.com/ma?utm_source=immigratic&utm_medium=website&utm_campaign=master_assessment&utm_content=start_assessment" target="_blank" rel="noopener noreferrer" class="px-8 py-4 bg-gradient-to-r from-blue-600 to-purple-600 text-white font-semibold rounded-2xl hover:from-blue-700 hover:to-purple-700 transition-all duration-300 transform hover:scale-105 hover:shadow-2xl shadow-lg">
-          Start Free Assessment
+      <!-- CTA Buttons -->
+      <div class="flex flex-col sm:flex-row gap-4 sm:gap-6 justify-center mb-12 md:mb-16 opacity-0 animate-fade-in-up px-4" style="animation-delay: 1.4s; animation-fill-mode: forwards;">
+        <a href="https://intake.immigratic.com/ma?utm_source=immigratic&utm_medium=website&utm_campaign=master_assessment&utm_content=start_assessment" target="_blank" rel="noopener noreferrer" class="group relative px-6 sm:px-8 py-3 sm:py-4 bg-gradient-to-r from-blue-600 to-purple-600 text-white font-semibold rounded-2xl hover:from-blue-700 hover:to-purple-700 transition-all duration-300 transform hover:scale-105 hover:shadow-2xl text-center">
+          <span class="relative z-10">Start Free Assessment</span>
+          <div class="absolute inset-0 bg-gradient-to-r from-blue-600 to-purple-600 rounded-2xl blur opacity-75 group-hover:opacity-100 transition-opacity"></div>
         </a>
-        <a href="#how-it-works" class="px-8 py-4 border-2 border-blue-600 text-blue-600 dark:text-blue-400 font-semibold rounded-2xl hover:bg-blue-600 hover:text-white transition-all duration-300">
+        <a href="#how-it-works" class="px-6 sm:px-8 py-3 sm:py-4 border-2 border-white/30 text-white font-semibold rounded-2xl hover:bg-white/10 hover:border-white/50 transition-all duration-300 backdrop-blur-sm text-center">
           See How It Works
         </a>
       </div>
     </div>
   </section>
 
+  <!-- Sticky Navigation -->
+  <nav class="sticky top-0 z-50 bg-white/80 dark:bg-gray-900/80 backdrop-blur-xl border-b border-gray-200 dark:border-gray-700 shadow-lg">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex justify-center space-x-8 py-4">
+        <a href="#features" class="nav-link text-gray-600 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 font-medium transition-colors duration-300">
+          Features
+        </a>
+        <a href="#how-it-works" class="nav-link text-gray-600 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 font-medium transition-colors duration-300">
+          How It Works
+        </a>
+        <a href="#scenarios" class="nav-link text-gray-600 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 font-medium transition-colors duration-300">
+          Scenario Analyzer
+        </a>
+        <a href="#commercial" class="nav-link text-gray-600 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 font-medium transition-colors duration-300">
+          Commercial Use
+        </a>
+      </div>
+    </div>
+  </nav>
+
   <!-- What Makes Us Different Section -->
-  <section class="py-24 bg-white dark:bg-gray-900">
+  <section id="features" class="py-24 bg-white dark:bg-gray-900">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="text-center mb-20">
-        <h2 class="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white mb-6">
+        <h2 class="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white mb-6 cursor-pointer hover:scale-105 transition-transform duration-300" id="revolutionary-title">
           Why Our Master Assessment is
-          <span class="bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
+          <span class="bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent hover:from-purple-600 hover:to-blue-600 transition-all duration-500">
             Revolutionary
           </span>
         </h2>
-        <p class="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
+        <p class="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto hover:text-gray-800 dark:hover:text-gray-200 transition-colors duration-300">
           While others force you through multiple forms and outdated systems, we've built something that changes everything.
         </p>
       </div>
       
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-        <!-- Unified Platform -->
-        <div class="bg-gradient-to-br from-blue-50 to-blue-100 dark:from-blue-900/20 dark:to-blue-800/20 rounded-3xl p-8 border border-blue-200 dark:border-blue-700">
-          <div class="w-16 h-16 bg-blue-600 rounded-2xl flex items-center justify-center mb-6">
-            <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+        <!-- ImmiReport Standard -->
+        <div class="feature-card bg-gradient-to-br from-blue-50 to-blue-100 dark:from-blue-900/20 dark:to-blue-800/20 rounded-3xl p-8 border border-blue-200 dark:border-blue-700 cursor-pointer transform transition-all duration-500 hover:scale-105 hover:shadow-2xl hover:-translate-y-2 group" data-feature="immi-report">
+          <div class="w-16 h-16 bg-blue-600 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 group-hover:rotate-3 transition-all duration-500">
+            <svg class="w-8 h-8 text-white group-hover:scale-110 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
             </svg>
           </div>
-          <h3 class="text-xl font-bold text-gray-900 dark:text-white mb-4">Unified Platform</h3>
-          <p class="text-gray-600 dark:text-gray-300">One assessment form evaluates Express Entry, OINP, BCPNP, AAIP, and 30+ more programs simultaneously. No more multiple tabs or forms.</p>
+          <h3 class="text-xl font-bold text-gray-900 dark:text-white mb-4 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors duration-300">ImmiReport Standard</h3>
+          <p class="text-gray-600 dark:text-gray-300 group-hover:text-gray-800 dark:group-hover:text-gray-200 transition-colors duration-300">The new industry standard for immigration assessment. Your ImmiReport works with any immigration advisor and stays updated automatically across all programs.</p>
+          <div class="mt-4 opacity-0 group-hover:opacity-100 transition-opacity duration-500">
+            <div class="w-full bg-blue-200 dark:bg-blue-700 rounded-full h-1">
+              <div class="bg-blue-600 h-1 rounded-full animate-pulse" style="width: 85%"></div>
+            </div>
+          </div>
         </div>
         
         <!-- Real-Time Updates -->
-        <div class="bg-gradient-to-br from-green-50 to-green-100 dark:from-green-900/20 dark:to-green-800/20 rounded-3xl p-8 border border-green-200 dark:border-green-700">
-          <div class="w-16 h-16 bg-green-600 rounded-2xl flex items-center justify-center mb-6">
-            <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <div class="feature-card bg-gradient-to-br from-green-50 to-green-100 dark:from-green-900/20 dark:to-green-800/20 rounded-3xl p-8 border border-green-200 dark:border-green-700 cursor-pointer transform transition-all duration-500 hover:scale-105 hover:shadow-2xl hover:-translate-y-2 group" data-feature="real-time">
+          <div class="w-16 h-16 bg-green-600 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 group-hover:rotate-3 transition-all duration-500">
+            <svg class="w-8 h-8 text-white group-hover:scale-110 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
             </svg>
           </div>
-          <h3 class="text-xl font-bold text-gray-900 dark:text-white mb-4">Real-Time Updates</h3>
-          <p class="text-gray-600 dark:text-gray-300">As your profile changes - age increases, experience grows, timelines expire - our system automatically recalculates eligibility across all programs.</p>
+          <h3 class="text-xl font-bold text-gray-900 dark:text-white mb-4 group-hover:text-green-600 dark:group-hover:text-green-400 transition-colors duration-300">Real-Time Updates</h3>
+          <p class="text-gray-600 dark:text-gray-300 group-hover:text-gray-800 dark:group-hover:text-gray-200 transition-colors duration-300">As your profile changes - age increases, experience grows, timelines expire - our system automatically recalculates eligibility across all programs.</p>
+          <div class="mt-4 opacity-0 group-hover:opacity-100 transition-opacity duration-500">
+            <div class="w-full bg-green-200 dark:bg-green-700 rounded-full h-1">
+              <div class="bg-green-600 h-1 rounded-full animate-pulse" style="width: 92%"></div>
+            </div>
+          </div>
         </div>
         
         <!-- Live Draw Comparisons -->
-        <div class="bg-gradient-to-br from-purple-50 to-purple-100 dark:from-purple-900/20 dark:to-purple-800/20 rounded-3xl p-8 border border-purple-200 dark:border-purple-700">
-          <div class="w-16 h-16 bg-purple-600 rounded-2xl flex items-center justify-center mb-6">
-            <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <div class="feature-card bg-gradient-to-br from-purple-50 to-purple-100 dark:from-purple-900/20 dark:to-purple-800/20 rounded-3xl p-8 border border-purple-200 dark:border-purple-700 cursor-pointer transform transition-all duration-500 hover:scale-105 hover:shadow-2xl hover:-translate-y-2 group" data-feature="live-draws">
+          <div class="w-16 h-16 bg-purple-600 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 group-hover:rotate-3 transition-all duration-500">
+            <svg class="w-8 h-8 text-white group-hover:scale-110 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"></path>
             </svg>
           </div>
-          <h3 class="text-xl font-bold text-gray-900 dark:text-white mb-4">Live Draw Comparisons</h3>
-          <p class="text-gray-600 dark:text-gray-300">Compare your score with the most recent draws across all programs in real-time. 99% assessment accuracy guaranteed with our constantly updated database.</p>
+          <h3 class="text-xl font-bold text-gray-900 dark:text-white mb-4 group-hover:text-purple-600 dark:group-hover:text-purple-400 transition-colors duration-300">Live Draw Comparisons</h3>
+          <p class="text-gray-600 dark:text-gray-300 group-hover:text-gray-800 dark:group-hover:text-gray-200 transition-colors duration-300">Compare your score with the most recent draws across all programs in real-time. 99% assessment accuracy guaranteed with our constantly updated database.</p>
+          <div class="mt-4 opacity-0 group-hover:opacity-100 transition-opacity duration-500">
+            <div class="w-full bg-purple-200 dark:bg-purple-700 rounded-full h-1">
+              <div class="bg-purple-600 h-1 rounded-full animate-pulse" style="width: 99%"></div>
+            </div>
+          </div>
         </div>
         
         <!-- NOC Integration -->
-        <div class="bg-gradient-to-br from-orange-50 to-orange-100 dark:from-orange-900/20 dark:to-orange-800/20 rounded-3xl p-8 border border-orange-200 dark:border-orange-700">
-          <div class="w-16 h-16 bg-orange-600 rounded-2xl flex items-center justify-center mb-6">
-            <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <div class="feature-card bg-gradient-to-br from-orange-50 to-orange-100 dark:from-orange-900/20 dark:to-orange-800/20 rounded-3xl p-8 border border-orange-200 dark:border-orange-700 cursor-pointer transform transition-all duration-500 hover:scale-105 hover:shadow-2xl hover:-translate-y-2 group" data-feature="noc-integration">
+          <div class="w-16 h-16 bg-orange-600 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 group-hover:rotate-3 transition-all duration-500">
+            <svg class="w-8 h-8 text-white group-hover:scale-110 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"></path>
             </svg>
           </div>
-          <h3 class="text-xl font-bold text-gray-900 dark:text-white mb-4">NOC System Integration</h3>
-          <p class="text-gray-600 dark:text-gray-300">Our algorithm has the complete NOC system embedded, automatically matching your experience with the most appropriate occupational codes for maximum scoring.</p>
+          <h3 class="text-xl font-bold text-gray-900 dark:text-white mb-4 group-hover:text-orange-600 dark:group-hover:text-orange-400 transition-colors duration-300">NOC System Integration</h3>
+          <p class="text-gray-600 dark:text-gray-300 group-hover:text-gray-800 dark:group-hover:text-gray-200 transition-colors duration-300">Our algorithm has the complete NOC system embedded, automatically matching your experience with the most appropriate occupational codes for maximum scoring.</p>
+          <div class="mt-4 opacity-0 group-hover:opacity-100 transition-opacity duration-500">
+            <div class="w-full bg-orange-200 dark:bg-orange-700 rounded-full h-1">
+              <div class="bg-orange-600 h-1 rounded-full animate-pulse" style="width: 88%"></div>
+            </div>
+          </div>
         </div>
         
         <!-- 10x Faster -->
-        <div class="bg-gradient-to-br from-red-50 to-red-100 dark:from-red-900/20 dark:to-red-800/20 rounded-3xl p-8 border border-red-200 dark:border-red-700">
-          <div class="w-16 h-16 bg-red-600 rounded-2xl flex items-center justify-center mb-6">
-            <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <div class="feature-card bg-gradient-to-br from-red-50 to-red-100 dark:from-red-900/20 dark:to-red-800/20 rounded-3xl p-8 border border-red-200 dark:border-red-700 cursor-pointer transform transition-all duration-500 hover:scale-105 hover:shadow-2xl hover:-translate-y-2 group" data-feature="faster-assessment">
+          <div class="w-16 h-16 bg-red-600 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 group-hover:rotate-3 transition-all duration-500">
+            <svg class="w-8 h-8 text-white group-hover:scale-110 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
             </svg>
           </div>
-          <h3 class="text-xl font-bold text-gray-900 dark:text-white mb-4">10x Faster Assessment</h3>
-          <p class="text-gray-600 dark:text-gray-300">What takes hours with traditional methods takes minutes with our system. Instant eligibility results across all programs with one submission.</p>
+          <h3 class="text-xl font-bold text-gray-900 dark:text-white mb-4 group-hover:text-red-600 dark:group-hover:text-red-400 transition-colors duration-300">10x Faster Assessment</h3>
+          <p class="text-gray-600 dark:text-gray-300 group-hover:text-gray-800 dark:group-hover:text-gray-200 transition-colors duration-300">What takes hours with traditional methods takes minutes with our system. Instant eligibility results across all programs with one submission.</p>
+          <div class="mt-4 opacity-0 group-hover:opacity-100 transition-opacity duration-500">
+            <div class="w-full bg-red-200 dark:bg-red-700 rounded-full h-1">
+              <div class="bg-red-600 h-1 rounded-full animate-pulse" style="width: 95%"></div>
+            </div>
+          </div>
         </div>
         
         <!-- Data-Driven -->
-        <div class="bg-gradient-to-br from-indigo-50 to-indigo-100 dark:from-indigo-900/20 dark:to-indigo-800/20 rounded-3xl p-8 border border-indigo-200 dark:border-indigo-700">
-          <div class="w-16 h-16 bg-indigo-600 rounded-2xl flex items-center justify-center mb-6">
-            <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <div class="feature-card bg-gradient-to-br from-indigo-50 to-indigo-100 dark:from-indigo-900/20 dark:to-indigo-800/20 rounded-3xl p-8 border border-indigo-200 dark:border-indigo-700 cursor-pointer transform transition-all duration-500 hover:scale-105 hover:shadow-2xl hover:-translate-y-2 group" data-feature="data-driven">
+          <div class="w-16 h-16 bg-indigo-600 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 group-hover:rotate-3 transition-all duration-500">
+            <svg class="w-8 h-8 text-white group-hover:scale-110 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"></path>
             </svg>
           </div>
-          <h3 class="text-xl font-bold text-gray-900 dark:text-white mb-4">Data-Driven Accuracy</h3>
-          <p class="text-gray-600 dark:text-gray-300">Our system is constantly updated with the latest immigration data, draw results, and program changes to ensure 99% assessment accuracy across all programs.</p>
+          <h3 class="text-xl font-bold text-gray-900 dark:text-white mb-4 group-hover:text-indigo-600 dark:group-hover:text-indigo-400 transition-colors duration-300">Data-Driven Accuracy</h3>
+          <p class="text-gray-600 dark:text-gray-300 group-hover:text-gray-800 dark:group-hover:text-gray-200 transition-colors duration-300">Our system is constantly updated with the latest immigration data, draw results, and program changes to ensure 99% assessment accuracy across all programs.</p>
+          <div class="mt-4 opacity-0 group-hover:opacity-100 transition-opacity duration-500">
+            <div class="w-full bg-indigo-200 dark:bg-indigo-700 rounded-full h-1">
+              <div class="bg-indigo-600 h-1 rounded-full animate-pulse" style="width: 99%"></div>
+            </div>
+          </div>
         </div>
       </div>
     </div>
@@ -142,39 +206,151 @@ export const metadata = {
       
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
         <!-- Step 1 -->
-        <div class="text-center">
-          <div class="w-20 h-20 bg-gradient-to-br from-blue-500 to-purple-600 rounded-full flex items-center justify-center mx-auto mb-6 text-3xl font-bold text-white">
-            1
+        <div class="process-step-card group cursor-pointer transform transition-all duration-700 hover:scale-105 hover:-translate-y-3" data-step="1">
+          <div class="relative">
+            <!-- Animated Background -->
+            <div class="absolute inset-0 bg-gradient-to-br from-blue-500/10 to-purple-600/10 rounded-3xl blur-xl opacity-0 group-hover:opacity-100 transition-all duration-700 scale-110"></div>
+            
+            <!-- Main Card -->
+            <div class="relative bg-white dark:bg-gray-800 rounded-3xl p-8 shadow-xl border border-gray-200 dark:border-gray-700 group-hover:shadow-2xl group-hover:border-blue-300 dark:group-hover:border-blue-600 transition-all duration-500">
+              
+              <!-- Step Number with Animation -->
+              <div class="relative mb-8">
+                <div class="w-24 h-24 bg-gradient-to-br from-blue-500 to-purple-600 rounded-full flex items-center justify-center mx-auto text-4xl font-bold text-white group-hover:scale-110 group-hover:rotate-3 transition-all duration-500 shadow-lg group-hover:shadow-2xl">
+                  1
+                </div>
+                <!-- Floating Particles -->
+                <div class="absolute -top-2 -right-2 w-3 h-3 bg-blue-400 rounded-full animate-ping opacity-75"></div>
+                <div class="absolute -bottom-2 -left-2 w-2 h-2 bg-purple-400 rounded-full animate-ping opacity-75" style="animation-delay: 0.5s;"></div>
+              </div>
+              
+              <!-- Content -->
+              <h3 class="text-xl font-bold text-gray-900 dark:text-white mb-4 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors duration-300">Complete Intake Process</h3>
+              <p class="text-gray-600 dark:text-gray-300 group-hover:text-gray-800 dark:group-hover:text-gray-200 transition-colors duration-300 mb-6">Complete our comprehensive intake process with your personal, educational, and work experience details. No need to repeat information across multiple programs.</p>
+              
+              <!-- Progress Indicator -->
+              <div class="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-2 mb-4">
+                <div class="bg-gradient-to-r from-blue-500 to-purple-600 h-2 rounded-full transition-all duration-1000" style="width: 25%"></div>
+              </div>
+              
+              <!-- Step Status -->
+              <div class="flex items-center justify-center gap-2 text-sm text-blue-600 dark:text-blue-400 font-medium">
+                <div class="w-2 h-2 bg-blue-500 rounded-full animate-pulse"></div>
+                Step 1 of 4
+              </div>
+            </div>
           </div>
-          <h3 class="text-xl font-bold text-gray-900 dark:text-white mb-4">Single Form Submission</h3>
-          <p class="text-gray-600 dark:text-gray-300">Submit one comprehensive form with your personal, educational, and work experience details. No need to repeat information across multiple programs.</p>
         </div>
         
         <!-- Step 2 -->
-        <div class="text-center">
-          <div class="w-20 h-20 bg-gradient-to-br from-green-500 to-blue-600 rounded-full flex items-center justify-center mx-auto mb-6 text-3xl font-bold text-white">
-            2
+        <div class="process-step-card group cursor-pointer transform transition-all duration-700 hover:scale-105 hover:-translate-y-3" data-step="2">
+          <div class="relative">
+            <!-- Animated Background -->
+            <div class="absolute inset-0 bg-gradient-to-br from-green-500/10 to-blue-600/10 rounded-3xl blur-xl opacity-0 group-hover:opacity-100 transition-all duration-700 scale-110"></div>
+            
+            <!-- Main Card -->
+            <div class="relative bg-white dark:bg-gray-800 rounded-3xl p-8 shadow-xl border border-gray-200 dark:border-gray-700 group-hover:shadow-2xl group-hover:border-green-300 dark:group-hover:border-green-600 transition-all duration-500">
+              
+              <!-- Step Number with Animation -->
+              <div class="relative mb-8">
+                <div class="w-24 h-24 bg-gradient-to-br from-green-500 to-blue-600 rounded-full flex items-center justify-center mx-auto text-4xl font-bold text-white group-hover:scale-110 group-hover:rotate-3 transition-all duration-500 shadow-lg group-hover:shadow-2xl">
+                  2
+                </div>
+                <!-- Floating Particles -->
+                <div class="absolute -top-2 -right-2 w-3 h-3 bg-green-400 rounded-full animate-ping opacity-75"></div>
+                <div class="absolute -bottom-2 -left-2 w-2 h-2 bg-blue-400 rounded-full animate-ping opacity-75" style="animation-delay: 0.5s;"></div>
+              </div>
+              
+              <!-- Content -->
+              <h3 class="text-xl font-bold text-gray-900 dark:text-white mb-4 group-hover:text-green-600 dark:group-hover:text-green-400 transition-colors duration-300">Multi-Program Analysis</h3>
+              <p class="text-gray-600 dark:text-gray-300 group-hover:text-gray-800 dark:group-hover:text-gray-200 transition-colors duration-300 mb-6">Our AI analyzes your profile against 35+ immigration programs simultaneously, calculating scores and eligibility for each pathway.</p>
+              
+              <!-- Progress Indicator -->
+              <div class="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-2 mb-4">
+                <div class="bg-gradient-to-r from-green-500 to-blue-600 h-2 rounded-full transition-all duration-1000" style="width: 50%"></div>
+              </div>
+              
+              <!-- Step Status -->
+              <div class="flex items-center justify-center gap-2 text-sm text-green-600 dark:text-green-400 font-medium">
+                <div class="w-2 h-2 bg-green-500 rounded-full animate-pulse"></div>
+                Step 2 of 4
+              </div>
+            </div>
           </div>
-          <h3 class="text-xl font-bold text-gray-900 dark:text-white mb-4">Multi-Program Analysis</h3>
-          <p class="text-gray-600 dark:text-gray-300">Our AI analyzes your profile against 35+ immigration programs simultaneously, calculating scores and eligibility for each pathway.</p>
         </div>
         
         <!-- Step 3 -->
-        <div class="text-center">
-          <div class="w-20 h-20 bg-gradient-to-br from-purple-500 to-pink-600 rounded-full flex items-center justify-center mx-auto mb-6 text-3xl font-bold text-white">
-            3
+        <div class="process-step-card group cursor-pointer transform transition-all duration-700 hover:scale-105 hover:-translate-y-3" data-step="3">
+          <div class="relative">
+            <!-- Animated Background -->
+            <div class="absolute inset-0 bg-gradient-to-br from-purple-500/10 to-pink-600/10 rounded-3xl blur-xl opacity-0 group-hover:opacity-100 transition-all duration-700 scale-110"></div>
+            
+            <!-- Main Card -->
+            <div class="relative bg-white dark:bg-gray-800 rounded-3xl p-8 shadow-xl border border-gray-200 dark:border-gray-700 group-hover:shadow-2xl group-hover:border-purple-300 dark:group-hover:border-purple-600 transition-all duration-500">
+              
+              <!-- Step Number with Animation -->
+              <div class="relative mb-8">
+                <div class="w-24 h-24 bg-gradient-to-br from-purple-500 to-pink-600 rounded-full flex items-center justify-center mx-auto text-4xl font-bold text-white group-hover:scale-110 group-hover:rotate-3 transition-all duration-500 shadow-lg group-hover:shadow-2xl">
+                  3
+                </div>
+                <!-- Floating Particles -->
+                <div class="absolute -top-2 -right-2 w-3 h-3 bg-purple-400 rounded-full animate-ping opacity-75"></div>
+                <div class="absolute -bottom-2 -left-2 w-2 h-2 bg-pink-400 rounded-full animate-ping opacity-75" style="animation-delay: 0.5s;"></div>
+              </div>
+              
+              <!-- Content -->
+              <h3 class="text-xl font-bold text-gray-900 dark:text-white mb-4 group-hover:text-purple-600 dark:group-hover:text-purple-400 transition-colors duration-300">Real-Time Comparison</h3>
+              <p class="text-gray-600 dark:text-gray-300 group-hover:text-gray-800 dark:group-hover:text-gray-200 transition-colors duration-300 mb-6">Compare your scores with the latest draws across all programs, with live updates as draw results are published.</p>
+              
+              <!-- Progress Indicator -->
+              <div class="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-2 mb-4">
+                <div class="bg-gradient-to-r from-purple-500 to-pink-600 h-2 rounded-full transition-all duration-1000" style="width: 75%"></div>
+              </div>
+              
+              <!-- Step Status -->
+              <div class="flex items-center justify-center gap-2 text-sm text-purple-600 dark:text-purple-400 font-medium">
+                <div class="w-2 h-2 bg-purple-500 rounded-full animate-pulse"></div>
+                Step 3 of 4
+              </div>
+            </div>
           </div>
-          <h3 class="text-xl font-bold text-gray-900 dark:text-white mb-4">Real-Time Comparison</h3>
-          <p class="text-gray-600 dark:text-gray-300">Compare your scores with the latest draws across all programs, with live updates as draw results are published.</p>
         </div>
         
         <!-- Step 4 -->
-        <div class="text-center">
-          <div class="w-20 h-20 bg-gradient-to-br from-orange-500 to-red-600 rounded-full flex items-center justify-center mx-auto mb-6 text-3xl font-bold text-white">
-            4
+        <div class="process-step-card group cursor-pointer transform transition-all duration-700 hover:scale-105 hover:-translate-y-3" data-step="4">
+          <div class="relative">
+            <!-- Animated Background -->
+            <div class="absolute inset-0 bg-gradient-to-br from-orange-500/10 to-red-600/10 rounded-3xl blur-xl opacity-0 group-hover:opacity-100 transition-all duration-700 scale-110"></div>
+            
+            <!-- Main Card -->
+            <div class="relative bg-white dark:bg-gray-800 rounded-3xl p-8 shadow-xl border border-gray-200 dark:border-gray-700 group-hover:shadow-2xl group-hover:border-orange-300 dark:group-hover:border-orange-600 transition-all duration-500">
+              
+                            <!-- Step Number with Animation -->
+              <div class="relative mb-8">
+                <div class="w-24 h-24 bg-gradient-to-br from-orange-500 to-red-600 rounded-full flex items-center justify-center mx-auto text-4xl font-bold text-white group-hover:scale-110 group-hover:rotate-3 transition-all duration-500 shadow-lg group-hover:shadow-2xl">
+                  4
+                </div>
+                <!-- Floating Particles -->
+                <div class="absolute -top-2 -right-2 w-3 h-3 bg-orange-400 rounded-full animate-ping opacity-75"></div>
+                <div class="absolute -bottom-2 -left-2 w-2 h-2 bg-red-400 rounded-full animate-ping opacity-75" style="animation-delay: 0.5s;"></div>
+              </div>
+              
+              <!-- Content -->
+              <h3 class="text-xl font-bold text-gray-900 dark:text-white mb-4 group-hover:text-orange-600 dark:group-hover:text-orange-400 transition-colors duration-300">ImmiReport Generation</h3>
+              <p class="text-gray-600 dark:text-gray-300 group-hover:text-gray-800 dark:group-hover:text-gray-200 transition-colors duration-300 mb-6">Receive your comprehensive ImmiReport with detailed eligibility analysis, program recommendations, and next steps for your immigration journey.</p>
+              
+              <!-- Progress Indicator -->
+              <div class="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-2 mb-4">
+                <div class="bg-gradient-to-r from-orange-500 to-red-600 h-2 rounded-full transition-all duration-1000" style="width: 100%"></div>
+              </div>
+              
+              <!-- Step Status -->
+              <div class="flex items-center justify-center gap-2 text-sm text-orange-600 dark:text-orange-400 font-medium">
+                <div class="w-2 h-2 bg-orange-500 rounded-full animate-pulse"></div>
+                Step 4 of 4 - Complete!
+              </div>
+            </div>
           </div>
-          <h3 class="text-xl font-bold text-gray-900 dark:text-white mb-4">ImmiReport Generation</h3>
-          <p class="text-gray-600 dark:text-gray-300">Receive your comprehensive ImmiReport with detailed eligibility analysis, program recommendations, and next steps for your immigration journey.</p>
         </div>
       </div>
     </div>
@@ -251,7 +427,7 @@ export const metadata = {
                 <div class="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-2">
                   <div class="bg-blue-600 h-2 rounded-full" style="width: 75%"></div>
                 </div>
-                <p class="text-sm text-gray-600 dark:text-gray-400 mt-1">Above recent draw thresholds</p>
+                <p class="text-sm text-gray-600 dark:text-gray-400 mt-1">✅ Eligible - Above recent thresholds</p>
               </div>
               
               <div class="bg-white dark:bg-gray-800 rounded-2xl p-4">
@@ -262,7 +438,7 @@ export const metadata = {
                 <div class="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-2">
                   <div class="bg-green-600 h-2 rounded-full" style="width: 85%"></div>
                 </div>
-                <p class="text-sm text-gray-600 dark:text-gray-400 mt-1">Eligible for nomination</p>
+                <p class="text-sm text-gray-600 dark:text-gray-400 mt-1">✅ Eligible - Ready for nomination</p>
               </div>
               
               <div class="bg-white dark:bg-gray-800 rounded-2xl p-4">
@@ -273,7 +449,242 @@ export const metadata = {
                 <div class="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-2">
                   <div class="bg-purple-600 h-2 rounded-full" style="width: 60%"></div>
                 </div>
-                <p class="text-sm text-gray-600 dark:text-gray-400 mt-1">Additional points needed</p>
+                <p class="text-sm text-gray-600 dark:text-gray-400 mt-1">⚠️ Needs 8 more points</p>
+              </div>
+
+              <div class="bg-white dark:bg-gray-800 rounded-2xl p-4">
+                <div class="flex justify-between items-center mb-2">
+                  <span class="font-semibold text-gray-900 dark:text-white">AAIP (Alberta)</span>
+                  <span class="text-2xl font-bold text-orange-600">350</span>
+                </div>
+                <div class="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-2">
+                  <div class="bg-orange-600 h-2 rounded-full" style="width: 90%"></div>
+                </div>
+                <p class="text-sm text-gray-600 dark:text-gray-400 mt-1">✅ Eligible - High priority</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Advanced Scenarios Section -->
+  <section id="scenarios" class="py-24 bg-gray-50 dark:bg-gray-800">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-20">
+        <h2 class="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white mb-6">
+          Interactive
+          <span class="bg-gradient-to-r from-green-600 to-blue-600 bg-clip-text text-transparent">
+            Scenario Analyzer
+          </span>
+        </h2>
+        <p class="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
+          Play with different factors and see real-time changes in your immigration eligibility and scores across all programs.
+        </p>
+      </div>
+      
+      <!-- Scenario Controls -->
+      <div class="bg-white dark:bg-gray-900 rounded-3xl p-8 shadow-xl border border-gray-200 dark:border-gray-700 mb-12">
+        <div class="text-center mb-6">
+          <h3 class="text-2xl font-bold text-gray-900 dark:text-white mb-3">What If Scenarios</h3>
+          <div class="inline-flex items-center gap-2 px-3 py-1 bg-yellow-100 dark:bg-yellow-900/30 text-yellow-800 dark:text-yellow-300 text-sm font-medium rounded-full border border-yellow-200 dark:border-yellow-700">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+            </svg>
+            Demo Only - Points for Illustration
+          </div>
+        </div>
+        
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+          <!-- CLB Level Toggle -->
+          <div class="text-center">
+            <div class="w-16 h-16 bg-gradient-to-br from-blue-500 to-purple-600 rounded-2xl flex items-center justify-center mx-auto mb-4">
+              <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"></path>
+              </svg>
+            </div>
+            <h4 class="font-semibold text-gray-900 dark:text-white mb-3">Language Level</h4>
+            <div class="flex justify-center space-x-2">
+              <button id="clb7" class="scenario-btn active px-4 py-2 rounded-lg text-sm font-medium transition-all duration-300" data-factor="clb" data-value="7">
+                CLB 7
+              </button>
+              <button id="clb8" class="scenario-btn px-4 py-2 rounded-lg text-sm font-medium transition-all duration-300" data-factor="clb" data-value="8">
+                CLB 8
+              </button>
+              <button id="clb9" class="scenario-btn px-4 py-2 rounded-lg text-sm font-medium transition-all duration-300" data-factor="clb" data-value="9">
+                CLB 9
+              </button>
+            </div>
+          </div>
+
+          <!-- Canadian Work Experience Toggle -->
+          <div class="text-center">
+            <div class="w-16 h-16 bg-gradient-to-br from-green-500 to-blue-600 rounded-2xl flex items-center justify-center mx-auto mb-4">
+              <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2-2v2m8 0V6a2 2 0 012 2v6a2 2 0 01-2 2H8a2 2 0 01-2-2V8a2 2 0 012-2z"></path>
+              </svg>
+            </div>
+            <h4 class="font-semibold text-gray-900 dark:text-white mb-3">Canadian Experience</h4>
+            <div class="flex justify-center space-x-2">
+              <button id="exp0" class="scenario-btn active px-4 py-2 rounded-lg text-sm font-medium transition-all duration-300" data-factor="experience" data-value="0">
+                No Experience
+              </button>
+              <button id="exp1" class="scenario-btn px-4 py-2 rounded-lg text-sm font-medium transition-all duration-300" data-factor="experience" data-value="1">
+                1+ Year
+              </button>
+            </div>
+          </div>
+
+          <!-- NOC Type Toggle -->
+          <div class="text-center">
+            <div class="w-16 h-16 bg-gradient-to-br from-orange-500 to-red-600 rounded-2xl flex items-center justify-center mx-auto mb-4">
+              <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"></path>
+              </svg>
+            </div>
+            <h4 class="font-semibold text-gray-900 dark:text-white mb-3">NOC Category</h4>
+            <div class="flex justify-center space-x-2">
+              <button id="noc-regular" class="scenario-btn active px-4 py-2 rounded-lg text-sm font-medium transition-all duration-300" data-factor="noc" data-value="regular">
+                Regular
+              </button>
+              <button id="noc-trade" class="scenario-btn px-4 py-2 rounded-lg text-sm font-medium transition-all duration-300" data-factor="noc" data-value="trade">
+                Trade
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Before/After Results -->
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+        <!-- Before Scenario -->
+        <div class="bg-white dark:bg-gray-900 rounded-3xl p-8 shadow-xl border border-gray-200 dark:border-gray-700">
+          <div class="text-center mb-6">
+            <h3 class="text-2xl font-bold text-gray-900 dark:text-white mb-2">Current Profile</h3>
+            <p class="text-gray-600 dark:text-gray-400">Your baseline assessment</p>
+          </div>
+          
+          <div class="space-y-4" id="before-results">
+            <!-- Results will be populated by JavaScript -->
+          </div>
+        </div>
+
+        <!-- After Scenario -->
+        <div class="bg-gradient-to-br from-blue-50 to-purple-50 dark:from-blue-900/20 dark:to-purple-900/20 rounded-3xl p-8 shadow-xl border border-blue-200 dark:border-blue-700">
+          <div class="text-center mb-6">
+            <h3 class="text-2xl font-bold text-gray-900 dark:text-white mb-2">With Selected Factors</h3>
+            <p class="text-gray-600 dark:text-gray-400">Your enhanced profile</p>
+          </div>
+          
+          <div class="space-y-4" id="after-results">
+            <!-- Results will be populated by JavaScript -->
+          </div>
+        </div>
+      </div>
+
+      <!-- Reset Button -->
+      <div class="text-center mt-8">
+        <button id="reset-scenarios" class="px-6 py-3 bg-gray-600 text-white font-medium rounded-xl hover:bg-gray-700 transition-all duration-300">
+          Reset to Default
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Commercial Use Section -->
+  <section id="commercial" class="py-24 bg-white dark:bg-gray-900">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+        <div>
+          <div class="inline-flex items-center gap-3 mb-6">
+            <div class="w-2 h-2 bg-gradient-to-r from-blue-500 to-purple-500 rounded-full animate-pulse"></div>
+            <span class="text-blue-600 dark:text-blue-400 font-semibold text-sm uppercase tracking-wider">For Immigration Professionals</span>
+            <div class="w-2 h-2 bg-gradient-to-purple-500 to-pink-500 rounded-full animate-pulse" style="animation-delay: 1s;"></div>
+          </div>
+          
+          <h2 class="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white mb-6">
+            Commercial
+            <span class="block bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
+              Lead Generation
+            </span>
+          </h2>
+          
+          <p class="text-xl text-gray-600 dark:text-gray-300 mb-8">
+            Use our Master Assessment as your one-point lead generation and funnel system. Generate qualified leads, provide value to prospects, and grow your immigration practice.
+          </p>
+          
+          <div class="space-y-4 mb-8">
+            <div class="flex items-center gap-3">
+              <div class="w-2 h-2 bg-green-500 rounded-full"></div>
+              <span class="text-gray-700 dark:text-gray-300">Qualified lead generation</span>
+            </div>
+            <div class="flex items-center gap-3">
+              <div class="w-2 h-2 bg-blue-500 rounded-full"></div>
+              <span class="text-gray-700 dark:text-gray-300">Professional assessment tool</span>
+            </div>
+            <div class="flex items-center gap-3">
+              <div class="w-2 h-2 bg-purple-500 rounded-full"></div>
+              <span class="text-gray-700 dark:text-gray-300">Client engagement platform</span>
+            </div>
+            <div class="flex items-center gap-3">
+              <div class="w-2 h-2 bg-orange-500 rounded-full"></div>
+              <span class="text-gray-700 dark:text-gray-300">Revenue partnership opportunities</span>
+            </div>
+          </div>
+          
+          <a href="/solutions?utm_source=immigratic&utm_medium=website&utm_campaign=master_assessment&utm_content=commercial_use" class="inline-flex items-center px-8 py-4 bg-gradient-to-r from-blue-600 to-purple-600 text-white font-semibold rounded-2xl hover:from-blue-700 hover:to-purple-700 transition-all duration-300 transform hover:scale-105 hover:shadow-2xl shadow-lg">
+            Explore Partnership Models
+            <svg class="ml-3 w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+            </svg>
+          </a>
+        </div>
+        
+        <div class="relative">
+          <div class="bg-gradient-to-br from-blue-50 to-purple-50 dark:from-blue-900/20 dark:to-purple-900/20 rounded-3xl p-8 border border-blue-200 dark:border-blue-700">
+            <div class="text-center mb-6">
+              <div class="w-20 h-20 bg-gradient-to-br from-blue-500 to-purple-600 rounded-2xl flex items-center justify-center mx-auto mb-4">
+                <svg class="w-10 h-10 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197m13.5-9a2.5 2.5 0 11-5 0 2.5 2.5 0 015 0z"></path>
+                </svg>
+              </div>
+              <h3 class="text-2xl font-bold text-gray-900 dark:text-white mb-2">Professional Use</h3>
+              <p class="text-gray-600 dark:text-gray-300">Generate leads and grow your practice</p>
+            </div>
+            
+            <div class="space-y-4">
+              <div class="bg-white dark:bg-gray-800 rounded-2xl p-4">
+                <div class="flex justify-between items-center mb-2">
+                  <span class="font-semibold text-gray-900 dark:text-white">Lead Quality</span>
+                  <span class="text-2xl font-bold text-green-600">95%</span>
+                </div>
+                <div class="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-2">
+                  <div class="bg-green-600 h-2 rounded-full" style="width: 95%"></div>
+                </div>
+                <p class="text-sm text-gray-600 dark:text-gray-400 mt-1">Qualified immigration prospects</p>
+              </div>
+              
+              <div class="bg-white dark:bg-gray-800 rounded-2xl p-4">
+                <div class="flex justify-between items-center mb-2">
+                  <span class="font-semibold text-gray-900 dark:text-white">Conversion Rate</span>
+                  <span class="text-2xl font-bold text-blue-600">68%</span>
+                </div>
+                <div class="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-2">
+                  <div class="bg-blue-600 h-2 rounded-full" style="width: 68%"></div>
+                </div>
+                <p class="text-sm text-gray-600 dark:text-gray-400 mt-1">Higher than industry average</p>
+              </div>
+              
+              <div class="bg-white dark:bg-gray-800 rounded-2xl p-4">
+                <div class="flex justify-between items-center mb-2">
+                  <span class="font-semibold text-gray-900 dark:text-white">Revenue Potential</span>
+                  <span class="text-2xl font-bold text-purple-600">$5K+</span>
+                </div>
+                <div class="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-2">
+                  <div class="bg-purple-600 h-2 rounded-full" style="width: 80%"></div>
+                </div>
+                <p class="text-sm text-gray-600 dark:text-gray-400 mt-1">Per qualified client</p>
               </div>
             </div>
           </div>
@@ -303,3 +714,485 @@ export const metadata = {
     </div>
   </section>
 </Layout>
+
+<style>
+  /* Custom Animations */
+  @keyframes float {
+    0%, 100% { transform: translateY(0px); }
+    50% { transform: translateY(-20px); }
+  }
+  
+  @keyframes pulse-slow {
+    0%, 100% { opacity: 0.2; transform: scale(1); }
+    50% { opacity: 0.4; transform: scale(1.05); }
+  }
+  
+  .animate-float {
+    animation: float 6s ease-in-out infinite;
+  }
+  
+  .animate-pulse-slow {
+    animation: pulse-slow 4s ease-in-out infinite;
+  }
+  
+  /* Ripple Effect Animation */
+  @keyframes ripple {
+    to {
+      transform: scale(4);
+      opacity: 0;
+    }
+  }
+  
+  .ripple-effect {
+    position: absolute;
+    border-radius: 50%;
+    background: rgba(59, 130, 246, 0.3);
+    transform: scale(0);
+    animation: ripple 0.6s linear;
+    pointer-events: none;
+  }
+  
+  /* Process Step Card Animations */
+  .process-step-card {
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .process-step-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+    transition: left 0.5s;
+  }
+  
+  .process-step-card:hover::before {
+    left: 100%;
+  }
+  
+  .process-step-card:nth-child(1) .bg-gradient-to-br {
+    animation: float-gentle 3s ease-in-out infinite;
+  }
+  
+  .process-step-card:nth-child(2) .bg-gradient-to-br {
+    animation: float-gentle 3s ease-in-out infinite 0.5s;
+  }
+  
+  .process-step-card:nth-child(3) .bg-gradient-to-br {
+    animation: float-gentle 3s ease-in-out infinite 1s;
+  }
+  
+  .process-step-card:nth-child(4) .bg-gradient-to-br {
+    animation: float-gentle 3s ease-in-out infinite 1.5s;
+  }
+  
+  @keyframes float-gentle {
+    0%, 100% { transform: translateY(0px); }
+    50% { transform: translateY(-10px); }
+  }
+  
+  .scenario-btn {
+    @apply bg-gray-100 text-gray-700 border border-gray-300;
+  }
+  
+  .scenario-btn.active {
+    @apply bg-gradient-to-r from-blue-600 to-purple-600 text-white border-transparent shadow-lg;
+  }
+  
+  .scenario-btn:hover:not(.active) {
+    @apply bg-gray-200 border-gray-400;
+  }
+  
+  .result-card {
+    @apply bg-white dark:bg-gray-800 rounded-2xl p-4 border border-gray-200 dark:border-gray-700;
+  }
+  
+  .eligible {
+    @apply border-green-200 bg-green-50 dark:bg-green-900/20;
+  }
+  
+  .not-eligible {
+    @apply border-red-200 bg-red-50 dark:bg-red-900/20;
+  }
+  
+  .score-change {
+    @apply transition-all duration-500 ease-in-out;
+  }
+  
+  .score-increase {
+    @apply text-green-600 font-bold;
+  }
+  
+  .score-decrease {
+    @apply text-red-600 font-bold;
+  }
+</style>
+
+<script>
+  // Scenario Analyzer JavaScript
+  document.addEventListener('DOMContentLoaded', function() {
+    // Initial profile data
+    let currentProfile = {
+      clb: 7,
+      experience: 0,
+      noc: 'regular'
+    };
+
+    // Base scores for different programs
+    const baseScores = {
+      'cec': { score: 432, eligible: false, threshold: 470, requiresExperience: true },
+      'oinp': { score: 58, eligible: false, threshold: 65, requiresExperience: false },
+      'bcpnp': { score: 98, eligible: false, threshold: 110, requiresExperience: false },
+      'aaip': { score: 320, eligible: false, threshold: 350, requiresExperience: false }
+    };
+
+    // Score multipliers for different factors
+    const scoreMultipliers = {
+      clb: { 7: 0, 8: 25, 9: 50 },
+      experience: { 0: 0, 1: 50 },
+      noc: { 'regular': 0, 'trade': 50 }
+    };
+
+    // Initialize the scenario analyzer
+    function initScenarioAnalyzer() {
+      updateResults();
+      setupEventListeners();
+    }
+
+    // Setup event listeners for scenario buttons
+    function setupEventListeners() {
+      // CLB level buttons
+      document.querySelectorAll('[data-factor="clb"]').forEach(btn => {
+        btn.addEventListener('click', function() {
+          document.querySelectorAll('[data-factor="clb"]').forEach(b => b.classList.remove('active'));
+          this.classList.add('active');
+          currentProfile.clb = parseInt(this.dataset.value);
+          updateResults();
+        });
+      });
+
+      // Experience buttons
+      document.querySelectorAll('[data-factor="experience"]').forEach(btn => {
+        btn.addEventListener('click', function() {
+          document.querySelectorAll('[data-factor="experience"]').forEach(b => b.classList.remove('active'));
+          this.classList.add('active');
+          currentProfile.experience = parseInt(this.dataset.value);
+          updateResults();
+        });
+      });
+
+      // NOC type buttons
+      document.querySelectorAll('[data-factor="noc"]').forEach(btn => {
+        btn.addEventListener('click', function() {
+          document.querySelectorAll('[data-factor="noc"]').forEach(b => b.classList.remove('active'));
+          this.classList.add('active');
+          currentProfile.noc = this.dataset.value;
+          updateResults();
+        });
+      });
+
+      // Reset button
+      document.getElementById('reset-scenarios').addEventListener('click', function() {
+        resetToDefault();
+      });
+    }
+
+    // Calculate enhanced scores based on selected factors
+    function calculateEnhancedScores() {
+      const enhanced = {};
+      
+      Object.keys(baseScores).forEach(program => {
+        const base = baseScores[program];
+        let enhancedScore = base.score;
+        
+        // Add CLB points
+        enhancedScore += scoreMultipliers.clb[currentProfile.clb];
+        
+        // Add experience points
+        enhancedScore += scoreMultipliers.experience[currentProfile.experience];
+        
+        // Add NOC points
+        enhancedScore += scoreMultipliers.noc[currentProfile.noc];
+        
+        // Special eligibility logic for CEC
+        let isEligible = enhancedScore >= base.threshold;
+        if (base.requiresExperience && currentProfile.experience === 0) {
+          isEligible = false; // CEC requires Canadian experience regardless of score
+        }
+        
+        enhanced[program] = {
+          score: enhancedScore,
+          eligible: isEligible,
+          threshold: base.threshold,
+          baseScore: base.score,
+          requiresExperience: base.requiresExperience
+        };
+      });
+      
+      return enhanced;
+    }
+
+    // Update the results display
+    function updateResults() {
+      const enhancedScores = calculateEnhancedScores();
+      
+      // Update before results (baseline)
+      updateResultsDisplay('before-results', baseScores, false);
+      
+      // Update after results (enhanced)
+      updateResultsDisplay('after-results', enhancedScores, true);
+    }
+
+    // Update a specific results container
+    function updateResultsDisplay(containerId, scores, showChanges) {
+      const container = document.getElementById(containerId);
+      container.innerHTML = '';
+      
+      Object.entries(scores).forEach(([program, data]) => {
+        const programName = getProgramDisplayName(program);
+        const programColor = getProgramColor(program);
+        const isEligible = data.eligible;
+        
+        const resultCard = document.createElement('div');
+        resultCard.className = `result-card ${isEligible ? 'eligible' : 'not-eligible'}`;
+        
+        const scoreChange = showChanges && data.baseScore ? data.score - data.baseScore : 0;
+        const changeText = scoreChange > 0 ? `+${scoreChange}` : scoreChange < 0 ? `${scoreChange}` : '';
+        const changeClass = scoreChange > 0 ? 'score-increase' : scoreChange < 0 ? 'score-decrease' : '';
+        
+        resultCard.innerHTML = `
+          <div class="flex justify-between items-center mb-2">
+            <span class="font-semibold text-gray-900 dark:text-white">${programName}</span>
+            <div class="text-right">
+              <span class="text-2xl font-bold ${programColor} score-change">${data.score}</span>
+              ${showChanges && changeText ? `<span class="ml-2 text-sm ${changeClass}">(${changeText})</span>` : ''}
+            </div>
+          </div>
+          <div class="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-2 mb-2">
+            <div class="${programColor} h-2 rounded-full transition-all duration-500" style="width: ${Math.min((data.score / data.threshold) * 100, 100)}%"></div>
+          </div>
+          <div class="flex items-center justify-between">
+            <span class="text-sm text-gray-600 dark:text-gray-400">
+              ${isEligible ? '✅ Eligible' : '⚠️ Not Eligible'}
+            </span>
+            <span class="text-xs text-gray-500 dark:text-gray-400">
+              Threshold: ${data.threshold}
+            </span>
+          </div>
+        `;
+        
+        container.appendChild(resultCard);
+      });
+    }
+
+    // Get program display names
+    function getProgramDisplayName(program) {
+      const names = {
+        'cec': 'Canadian Experience Class',
+        'oinp': 'OINP Points',
+        'bcpnp': 'BCPNP Score',
+        'aaip': 'AAIP (Alberta)'
+      };
+      return names[program] || program;
+    }
+
+    // Get program colors
+    function getProgramColor(program) {
+      const colors = {
+        'cec': 'text-blue-600',
+        'oinp': 'text-green-600',
+        'bcpnp': 'text-purple-600',
+        'aaip': 'text-orange-600'
+      };
+      return colors[program] || 'text-gray-600';
+    }
+
+    // Reset to default scenario
+    function resetToDefault() {
+      currentProfile = { clb: 7, experience: 0, noc: 'regular' };
+      
+      // Reset button states
+      document.querySelectorAll('[data-factor="clb"]').forEach(btn => {
+        btn.classList.toggle('active', btn.dataset.value === '7');
+      });
+      document.querySelectorAll('[data-factor="experience"]').forEach(btn => {
+        btn.classList.toggle('active', btn.dataset.value === '0');
+      });
+      document.querySelectorAll('[data-factor="noc"]').forEach(btn => {
+        btn.classList.toggle('active', btn.dataset.value === 'regular');
+      });
+      
+      updateResults();
+    }
+
+    // Initialize the analyzer
+    initScenarioAnalyzer();
+  });
+
+  // Smooth scrolling for navigation links
+  document.addEventListener('DOMContentLoaded', function() {
+    const navLinks = document.querySelectorAll('.nav-link');
+    
+    navLinks.forEach(link => {
+      link.addEventListener('click', function(e) {
+        e.preventDefault();
+        
+        const targetId = this.getAttribute('href').substring(1);
+        const targetSection = document.getElementById(targetId);
+        
+        if (targetSection) {
+          const offsetTop = targetSection.offsetTop - 80; // Account for sticky nav height
+          window.scrollTo({
+            top: offsetTop,
+            behavior: 'smooth'
+          });
+        }
+      });
+    });
+
+    // Interactive animations for Revolutionary section
+    initRevolutionaryAnimations();
+    
+    // Interactive animations for Process Steps section
+    initProcessStepAnimations();
+  });
+
+  // Revolutionary section interactive animations
+  function initRevolutionaryAnimations() {
+    const title = document.getElementById('revolutionary-title');
+    const featureCards = document.querySelectorAll('.feature-card');
+    
+    // Title click animation
+    if (title) {
+      title.addEventListener('click', function() {
+        this.style.transform = 'scale(1.1) rotate(2deg)';
+        this.style.filter = 'brightness(1.2)';
+        
+        setTimeout(() => {
+          this.style.transform = 'scale(1) rotate(0deg)';
+          this.style.filter = 'brightness(1)';
+        }, 300);
+      });
+    }
+    
+    // Feature card interactions
+    featureCards.forEach(card => {
+      // Click animation
+      card.addEventListener('click', function() {
+        const feature = this.dataset.feature;
+        this.style.transform = 'scale(0.95)';
+        
+        // Add ripple effect
+        const ripple = document.createElement('div');
+        ripple.className = 'ripple-effect';
+        ripple.style.cssText = `
+          position: absolute;
+          border-radius: 50%;
+          background: rgba(59, 130, 246, 0.3);
+          transform: scale(0);
+          animation: ripple 0.6s linear;
+          pointer-events: none;
+        `;
+        
+        const rect = this.getBoundingClientRect();
+        const size = Math.max(rect.width, rect.height);
+        ripple.style.width = ripple.style.height = size + 'px';
+        ripple.style.left = (rect.width / 2 - size / 2) + 'px';
+        ripple.style.top = (rect.height / 2 - size / 2) + 'px';
+        
+        this.appendChild(ripple);
+        
+        setTimeout(() => {
+          this.style.transform = 'scale(1)';
+          ripple.remove();
+        }, 300);
+        
+        // Log feature interaction
+        console.log(`Feature card clicked: ${feature}`);
+      });
+      
+      // Hover sound effect simulation (visual feedback)
+      card.addEventListener('mouseenter', function() {
+        this.style.borderColor = 'rgba(59, 130, 246, 0.5)';
+        this.style.boxShadow = '0 20px 40px rgba(59, 130, 246, 0.15)';
+      });
+      
+      card.addEventListener('mouseleave', function() {
+        this.style.borderColor = '';
+        this.style.boxShadow = '';
+      });
+    });
+  }
+  
+  // Process Step Card Interactive Animations
+  function initProcessStepAnimations() {
+    const processCards = document.querySelectorAll('.process-step-card');
+    
+    processCards.forEach((card, index) => {
+      // Add staggered entrance animation
+      card.style.opacity = '0';
+      card.style.transform = 'translateY(30px)';
+      
+      setTimeout(() => {
+        card.style.transition = 'all 0.8s ease-out';
+        card.style.opacity = '1';
+        card.style.transform = 'translateY(0)';
+      }, index * 200);
+      
+      // Click interactions
+      card.addEventListener('click', function() {
+        const step = this.dataset.step;
+        
+        // Add click animation
+        this.style.transform = 'scale(0.95) rotate(1deg)';
+        
+        // Add success effect for completion
+        if (step === '4') {
+          this.style.boxShadow = '0 0 30px rgba(34, 197, 94, 0.5)';
+          this.style.borderColor = 'rgb(34, 197, 94)';
+          
+          setTimeout(() => {
+            this.style.boxShadow = '';
+            this.style.borderColor = '';
+          }, 1000);
+        }
+        
+        // Reset transform
+        setTimeout(() => {
+          this.style.transform = '';
+        }, 300);
+        
+        // Log step interaction
+        console.log(`Process step ${step} clicked`);
+        
+        // Show step details (could be expanded later)
+        showStepDetails(step);
+      });
+      
+      // Hover sound effect simulation
+      card.addEventListener('mouseenter', function() {
+        this.style.zIndex = '10';
+      });
+      
+      card.addEventListener('mouseleave', function() {
+        this.style.zIndex = '1';
+      });
+    });
+  }
+  
+  // Show step details (placeholder for future expansion)
+  function showStepDetails(step) {
+    const stepNames = {
+      '1': 'Complete Intake Process',
+      '2': 'Multi-Program Analysis', 
+      '3': 'Real-Time Comparison',
+      '4': 'ImmiReport Generation'
+    };
+    
+    // Could show modal, tooltip, or expand card
+    console.log(`Showing details for: ${stepNames[step]}`);
+  }
+</script>
