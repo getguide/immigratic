@@ -1,0 +1,23 @@
+User-agent: *
+Allow: /
+
+# Sitemap
+Sitemap: https://immigratic.vercel.app/sitemap.xml
+
+# Disallow sensitive paths
+Disallow: /admin/
+Disallow: /api/
+Disallow: /.env
+Disallow: /config/
+Disallow: /logs/
+
+# Allow important pages
+Allow: /solutions/
+Allow: /services/
+Allow: /tools/
+Allow: /about/
+Allow: /contact/
+Allow: /roi-analysis/
+
+# Crawl delay (be respectful)
+Crawl-delay: 1
