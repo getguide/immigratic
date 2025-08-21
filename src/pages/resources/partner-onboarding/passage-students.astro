@@ -708,42 +708,46 @@ import Layout from '../../../layouts/Layout.astro';
     
     if (progressFill && allMilestones.length > 0) {
       const milestoneObserver = new IntersectionObserver((entries) => {
-        let visibleMilestones = 0;
+        // Calculate progress based on which milestone is most centered in viewport
+        let currentProgress = 0;
+        let maxVisibility = 0;
         
-        // Count how many milestones are currently visible
-        allMilestones.forEach(milestone => {
-          if (milestone.classList.contains('visible')) {
-            visibleMilestones++;
+        allMilestones.forEach((milestone, index) => {
+          const rect = milestone.getBoundingClientRect();
+          const viewportHeight = window.innerHeight;
+          const centerY = rect.top + rect.height / 2;
+          const distanceFromCenter = Math.abs(centerY - viewportHeight / 2);
+          const visibility = 1 - (distanceFromCenter / (viewportHeight / 2));
+          
+          if (visibility > maxVisibility) {
+            maxVisibility = visibility;
+            currentProgress = (index / (allMilestones.length - 1)) * 100;
           }
         });
         
-        // Calculate progress percentage based on visible milestones
-        const totalMilestones = allMilestones.length;
-        const progressPercentage = (visibleMilestones / totalMilestones) * 100;
-        
         // Update progress bar smoothly
-        progressFill.style.height = progressPercentage + '%';
+        progressFill.style.height = currentProgress + '%';
         
-        // Update stage indicators based on progress
-        if (progressPercentage >= 0 && progressPercentage < 33) {
+        // Update stage indicators based on current progress
+        if (currentProgress >= 0 && currentProgress < 33) {
           // Stage 1: 0-33%
           stageIndicators[0].classList.add('active');
           stageIndicators[1].classList.remove('active');
           stageIndicators[2].classList.remove('active');
-        } else if (progressPercentage >= 33 && progressPercentage < 66) {
+        } else if (currentProgress >= 33 && currentProgress < 66) {
           // Stage 2: 33-66%
           stageIndicators[0].classList.add('active');
           stageIndicators[1].classList.add('active');
           stageIndicators[2].classList.remove('active');
-        } else if (progressPercentage >= 66) {
+        } else if (currentProgress >= 66) {
           // Stage 3: 66-100%
           stageIndicators[0].classList.add('active');
           stageIndicators[1].classList.add('active');
           stageIndicators[2].classList.add('active');
         }
       }, {
-        threshold: 0.3,
-        rootMargin: '0px 0px -50px 0px'
+        threshold: 0.1,
+        rootMargin: '0px 0px -100px 0px'
       });
       
       // Observe all milestones for progress tracking
