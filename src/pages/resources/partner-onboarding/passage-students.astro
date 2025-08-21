@@ -701,36 +701,54 @@ import Layout from '../../../layouts/Layout.astro';
       stageObserver.observe(section);
     });
 
-    // Progress bar and stage indicator updates
+    // Progress bar and milestone tracking
     const progressFill = document.querySelector('.progress-fill');
     const stageIndicators = document.querySelectorAll('.stage-indicator');
+    const allMilestones = document.querySelectorAll('.milestone-card');
     
-    if (progressFill && stageIndicators.length > 0) {
-      const progressObserver = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-          if (entry.isIntersecting) {
-            const stage = parseInt(entry.target.dataset.stage);
-            const progressPercentage = (stage / 3) * 100;
-            
-            // Update progress bar
-            progressFill.style.height = progressPercentage + '%';
-            
-            // Update stage indicators
-            stageIndicators.forEach((indicator, index) => {
-              if (index < stage) {
-                indicator.classList.add('active');
-              } else {
-                indicator.classList.remove('active');
-              }
-            });
+    if (progressFill && allMilestones.length > 0) {
+      const milestoneObserver = new IntersectionObserver((entries) => {
+        let visibleMilestones = 0;
+        
+        // Count how many milestones are currently visible
+        allMilestones.forEach(milestone => {
+          if (milestone.classList.contains('visible')) {
+            visibleMilestones++;
           }
         });
+        
+        // Calculate progress percentage based on visible milestones
+        const totalMilestones = allMilestones.length;
+        const progressPercentage = (visibleMilestones / totalMilestones) * 100;
+        
+        // Update progress bar smoothly
+        progressFill.style.height = progressPercentage + '%';
+        
+        // Update stage indicators based on progress
+        if (progressPercentage >= 0 && progressPercentage < 33) {
+          // Stage 1: 0-33%
+          stageIndicators[0].classList.add('active');
+          stageIndicators[1].classList.remove('active');
+          stageIndicators[2].classList.remove('active');
+        } else if (progressPercentage >= 33 && progressPercentage < 66) {
+          // Stage 2: 33-66%
+          stageIndicators[0].classList.add('active');
+          stageIndicators[1].classList.add('active');
+          stageIndicators[2].classList.remove('active');
+        } else if (progressPercentage >= 66) {
+          // Stage 3: 66-100%
+          stageIndicators[0].classList.add('active');
+          stageIndicators[1].classList.add('active');
+          stageIndicators[2].classList.add('active');
+        }
       }, {
-        threshold: 0.5
+        threshold: 0.3,
+        rootMargin: '0px 0px -50px 0px'
       });
       
-      stageSections.forEach(section => {
-        progressObserver.observe(section);
+      // Observe all milestones for progress tracking
+      allMilestones.forEach(milestone => {
+        milestoneObserver.observe(milestone);
       });
     }
   });
