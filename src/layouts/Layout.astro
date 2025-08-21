@@ -19,7 +19,7 @@ const currentYear = new Date().getFullYear();
 ---
 
 <!DOCTYPE html>
-<html lang="en" class="scroll-smooth" x-data="{ darkMode: localStorage.getItem('darkMode') === 'true', mobileMenuOpen: false, toggleState: 'our-way' }" :class="{ 'dark': darkMode }" @closeMobileMenu.window="mobileMenuOpen = false">
+<html lang="en" class="scroll-smooth" x-data="{ darkMode: localStorage.getItem('darkMode') === 'true', mobileMenuOpen: false, toggleState: 'our-way' }" :class="{ 'dark': darkMode }">
   <head>
     <meta charset="UTF-8" />
     <meta name="description" content={description} />
@@ -916,37 +916,42 @@ const currentYear = new Date().getFullYear();
       // Mobile Menu Auto-Close on Scroll
       function initMobileMenuAutoClose() {
         let lastScrollTop = 0;
-        let scrollThreshold = 50; // Minimum scroll distance to trigger close
-        let isScrolling = false;
-        let scrollTimeout: number;
+        let scrollThreshold = 15; // Very responsive threshold
         
-        window.addEventListener('scroll', function() {
-          if (!isScrolling) {
-            isScrolling = true;
+        function closeMobileMenu() {
+          // Direct approach: hide the mobile menu element
+          const mobileMenu = document.querySelector('[x-show="mobileMenuOpen"]');
+          if (mobileMenu) {
+            mobileMenu.style.display = 'none';
           }
           
-          clearTimeout(scrollTimeout);
-          
-          scrollTimeout = setTimeout(function() {
-            isScrolling = false;
-          }, 150);
-          
+          // Also try to reset the Alpine.js state
+          const htmlElement = document.documentElement as any;
+          if (htmlElement && htmlElement.__x && htmlElement.__x.$data) {
+            htmlElement.__x.$data.mobileMenuOpen = false;
+          }
+        }
+        
+        // Close menu on scroll
+        window.addEventListener('scroll', function() {
           const currentScrollTop = window.pageYOffset || document.documentElement.scrollTop;
           const scrollDistance = Math.abs(currentScrollTop - lastScrollTop);
           
-          // Check if mobile menu is open and user has scrolled enough
           if (scrollDistance > scrollThreshold) {
-            // Close mobile menu by dispatching a custom event
-            // Alpine.js will listen for this event and close the menu
-            window.dispatchEvent(new CustomEvent('closeMobileMenu'));
+            closeMobileMenu();
           }
           
           lastScrollTop = currentScrollTop;
-        });
+        }, { passive: true });
         
-        // Also close menu on touch move (mobile swipe)
+        // Close menu on touch move (mobile swipe)
         document.addEventListener('touchmove', function() {
-          window.dispatchEvent(new CustomEvent('closeMobileMenu'));
+          closeMobileMenu();
+        }, { passive: true });
+        
+        // Close menu on wheel events (for desktop testing)
+        document.addEventListener('wheel', function() {
+          closeMobileMenu();
         }, { passive: true });
       }
       
