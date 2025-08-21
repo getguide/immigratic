@@ -7,11 +7,12 @@ import vercel from '@astrojs/vercel/static';
 export default defineConfig({
   site: 'https://immigratic.ca',
   output: 'static',
-  adapter: vercel({
+  outDir: process.env.VERCEL ? '.vercel/output/static' : 'dist',
+  adapter: process.env.VERCEL ? vercel({
     webAnalytics: {
       enabled: true
     }
-  }),
+  }) : undefined,
   integrations: [tailwind()],
   build: {
     inlineStylesheets: 'auto'
