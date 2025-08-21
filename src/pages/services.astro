@@ -266,17 +266,12 @@ export const metadata = {
             </div>
             
             <!-- Enhanced Interactive CTA Buttons -->
-            <div class="relative z-10 flex flex-col sm:flex-row gap-4 justify-center">
+            <div class="relative z-10 flex justify-center">
               <a href="/services/pr?utm_source=immigratic&utm_medium=website&utm_campaign=services_page&utm_content=express_entry" class="group/cta px-8 py-3 bg-gradient-to-r from-blue-600 via-purple-600 to-indigo-600 text-white font-semibold rounded-xl hover:from-blue-700 hover:via-purple-700 hover:to-indigo-700 transition-all duration-500 transform hover:scale-105 hover:-translate-y-1 text-center shadow-lg hover:shadow-2xl relative overflow-hidden">
                 <!-- Button Shimmer Effect -->
                 <div class="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent -translate-x-full group-hover/cta:translate-x-full transition-transform duration-1000"></div>
                 <span class="relative z-10">🚀 Explore All Express Entry Programs</span>
               </a>
-              <button onclick="openEligibilityModal()" class="group/cta px-8 py-3 border-2 border-blue-600 text-blue-600 dark:text-blue-400 font-semibold rounded-xl hover:bg-blue-600 hover:text-white transition-all duration-500 transform hover:scale-105 hover:-translate-y-1 relative overflow-hidden">
-                <!-- Button Ripple Effect -->
-                <div class="absolute inset-0 bg-blue-600/10 scale-0 group-hover/cta:scale-100 rounded-xl transition-transform duration-500"></div>
-                <span class="relative z-10">📊 Check Your Eligibility</span>
-              </button>
             </div>
           </div>
         </div>
@@ -879,128 +874,9 @@ export const metadata = {
   </section>
 
   <!-- Eligibility Check Modal -->
-  <div id="eligibilityModal" class="fixed inset-0 bg-black/50 backdrop-blur-sm z-50 hidden">
-    <div class="min-h-screen flex items-center justify-center p-4">
-              <div class="bg-white dark:bg-gray-800 rounded-3xl shadow-2xl max-w-2xl w-full max-h-[90vh] overflow-y-auto mx-4">
-        <!-- Modal Header -->
-        <div class="p-6 border-b border-gray-200 dark:border-gray-700">
-          <div class="flex items-center justify-between">
-            <div class="flex items-center gap-4">
-              <div class="w-12 h-12 bg-gradient-to-br from-blue-500 to-purple-600 rounded-xl flex items-center justify-center text-white">
-                <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
-                  <path d="M13 2.05v3.03c3.39.49 6 3.39 6 6.92 0 .9-.18 1.75-.48 2.54l2.6 1.53c.56-1.24.88-2.62.88-4.07 0-5.18-3.95-9.45-9-9.95zM12 19c-3.87 0-7-3.13-7-7 0-3.53 2.61-6.43 6-6.92V2.05c-5.05.5-9 4.76-9 9.95 0 5.52 4.47 10 9.99 10 3.31 0 6.24-1.61 8.06-4.09l-2.6-1.53C16.17 17.98 14.21 19 12 19z"/>
-                    <path d="M12 7l-3.2 9h1.9l.7-2h3.2l.7 2h1.9L12 7zm-1.15 5.65L12 9l1.15 3.65h-2.3z"/>
-                </svg>
-              </div>
-              <div>
-                <h3 class="text-2xl font-bold text-gray-900 dark:text-white">Express Entry Eligibility</h3>
-                <p class="text-gray-600 dark:text-gray-400">Check your requirements</p>
-              </div>
-            </div>
-            <button onclick="closeEligibilityModal()" class="text-gray-400 hover:text-gray-600 dark:hover:text-gray-300 transition-colors">
-              <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
-              </svg>
-            </button>
-          </div>
-        </div>
 
-        <!-- Modal Content -->
-        <div class="p-6">
-          <!-- Eligibility Assessment Form -->
-          <div class="mb-6">
-            <h4 class="text-lg font-semibold text-gray-900 dark:text-white mb-4">Quick Eligibility Check</h4>
-            <p class="text-sm text-gray-600 dark:text-gray-400 mb-4">Answer a few questions to see if you meet Express Entry requirements</p>
-            
-            <form id="eligibilityForm" class="space-y-4">
-              <!-- Age -->
-              <div>
-                <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Age</label>
-                <select id="age" class="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700 text-gray-900 dark:text-white focus:ring-2 focus:ring-blue-500 focus:border-transparent">
-                  <option value="">Select your age</option>
-                  <option value="18-35">18-35 years (110 points)</option>
-                  <option value="36">36 years (109 points)</option>
-                  <option value="37">37 years (107 points)</option>
-                  <option value="38">38 years (105 points)</option>
-                  <option value="39">39 years (103 points)</option>
-                  <option value="40">40 years (101 points)</option>
-                  <option value="41">41 years (99 points)</option>
-                  <option value="42">42 years (97 points)</option>
-                  <option value="43">43 years (95 points)</option>
-                  <option value="44">44 years (93 points)</option>
-                  <option value="45">45 years (91 points)</option>
-                  <option value="46">46 years (89 points)</option>
-                  <option value="47">47 years (87 points)</option>
-                  <option value="48">48 years (85 points)</option>
-                  <option value="49">49 years (83 points)</option>
-                  <option value="50">50 years (81 points)</option>
-                  <option value="51+">51+ years (0 points)</option>
-                </select>
-              </div>
 
-              <!-- Education -->
-              <div>
-                <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Education Level</label>
-                <select id="education" class="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700 text-gray-900 dark:text-white focus:ring-2 focus:ring-blue-500 focus:border-transparent">
-                  <option value="">Select your education</option>
-                  <option value="high-school">High school diploma (30 points)</option>
-                  <option value="one-year">One-year post-secondary (90 points)</option>
-                  <option value="two-year">Two-year post-secondary (98 points)</option>
-                  <option value="three-year">Three-year post-secondary (120 points)</option>
-                  <option value="bachelor">Bachelor's degree (120 points)</option>
-                  <option value="master">Master's degree (135 points)</option>
-                  <option value="phd">PhD (150 points)</option>
-                </select>
-              </div>
 
-              <!-- Work Experience -->
-              <div>
-                <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Skilled Work Experience</label>
-                <select id="workExperience" class="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700 text-gray-900 dark:text-white focus:ring-2 focus:ring-blue-500 focus:border-transparent">
-                  <option value="">Select your experience</option>
-                  <option value="none">No experience (0 points)</option>
-                  <option value="1-year">1 year (40 points)</option>
-                  <option value="2-years">2 years (53 points)</option>
-                  <option value="3-years">3 years (64 points)</option>
-                  <option value="4-years">4 years (72 points)</option>
-                  <option value="5-years">5 years (80 points)</option>
-                  <option value="6+">6+ years (80 points)</option>
-                </select>
-              </div>
-
-              <!-- Language Skills -->
-              <div>
-                <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Language Skills (CLB Level)</label>
-                <select id="languageSkills" class="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700 text-gray-900 dark:text-white focus:ring-2 focus:ring-blue-500 focus:border-transparent">
-                  <option value="">Select your CLB level</option>
-                  <option value="clb-4">CLB 4 (0 points)</option>
-                  <option value="clb-5">CLB 5 (6 points)</option>
-                  <option value="clb-6">CLB 6 (9 points)</option>
-                  <option value="clb-7">CLB 7 (17 points)</option>
-                  <option value="clb-8">CLB 8 (23 points)</option>
-                  <option value="clb-9">CLB 9 (31 points)</option>
-                  <option value="clb-10">CLB 10 (34 points)</option>
-                  <option value="clb-11">CLB 11 (34 points)</option>
-                  <option value="clb-12">CLB 12 (34 points)</option>
-                </select>
-              </div>
-
-              <!-- Job Offer -->
-              <div>
-                <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Valid Job Offer</label>
-                <select id="jobOffer" class="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700 text-gray-900 dark:text-white focus:ring-2 focus:ring-blue-500 focus:border-transparent">
-                  <option value="">Select your status</option>
-                  <option value="no">No job offer (0 points)</option>
-                  <option value="yes">Yes, valid job offer (200 points)</option>
-                </select>
-              </div>
-
-              <!-- Calculate Button -->
-              <button type="button" onclick="calculateEligibility()" class="w-full px-6 py-3 bg-gradient-to-r from-blue-600 to-purple-600 text-white font-semibold rounded-xl hover:from-blue-700 hover:to-purple-700 transition-all duration-300 transform hover:scale-105">
-                Calculate My Score
-              </button>
-            </form>
-          </div>
 
           <!-- Results Section (Hidden by default) -->
           <div id="eligibilityResults" class="hidden mb-6">
@@ -1150,7 +1026,7 @@ export const metadata = {
               Start Full Assessment
             </a>
             <a href="https://try.immigratic.com/meetings/immicare/165?utm_source=immigratic&utm_medium=website&utm_campaign=services_page&utm_content=express_entry_consultation" target="_blank" rel="noopener noreferrer" class="px-6 py-3 border border-blue-600 text-blue-600 dark:text-blue-400 font-semibold rounded-xl hover:bg-blue-600 hover:text-white transition-all duration-300 text-center">
-          Book Consultation
+              Book Consultation
             </a>
           </div>
         </div>
@@ -2186,123 +2062,7 @@ export const metadata = {
     </div>
 
     <script>
-      // Eligibility Modal Functions
-      window.openEligibilityModal = function() {
-        const modal = document.getElementById('eligibilityModal');
-        if (modal) {
-          modal.classList.remove('hidden');
-          document.body.style.overflow = 'hidden';
-        }
-      }
 
-      window.closeEligibilityModal = function() {
-        const modal = document.getElementById('eligibilityModal');
-        if (modal) {
-          modal.classList.add('hidden');
-          document.body.style.overflow = 'auto';
-        }
-      }
-
-      // Calculate eligibility based on user input
-      window.calculateEligibility = function() {
-        const age = document.getElementById('age').value;
-        const education = document.getElementById('education').value;
-        const workExperience = document.getElementById('workExperience').value;
-        const languageSkills = document.getElementById('languageSkills').value;
-        const jobOffer = document.getElementById('jobOffer').value;
-
-        // Validate all fields are selected
-        if (!age || !education || !workExperience || !languageSkills || !jobOffer) {
-          alert('Please fill in all fields to calculate your score.');
-          return;
-        }
-
-        // Calculate scores based on selections
-        let ageScore = 0;
-        let educationScore = 0;
-        let workScore = 0;
-        let languageScore = 0;
-        let jobOfferScore = 0;
-
-        // Age scoring
-        if (age === '18-35') ageScore = 110;
-        else if (age === '36') ageScore = 109;
-        else if (age === '37') ageScore = 107;
-        else if (age === '38') ageScore = 105;
-        else if (age === '39') ageScore = 103;
-        else if (age === '40') ageScore = 101;
-        else if (age === '41') ageScore = 99;
-        else if (age === '42') ageScore = 97;
-        else if (age === '43') ageScore = 95;
-        else if (age === '44') ageScore = 93;
-        else if (age === '45') ageScore = 91;
-        else if (age === '46') ageScore = 89;
-        else if (age === '47') ageScore = 87;
-        else if (age === '48') ageScore = 85;
-        else if (age === '49') ageScore = 83;
-        else if (age === '50') ageScore = 81;
-
-        // Education scoring
-        if (education === 'high-school') educationScore = 30;
-        else if (education === 'one-year') educationScore = 90;
-        else if (education === 'two-year') educationScore = 98;
-        else if (education === 'three-year') educationScore = 120;
-        else if (education === 'bachelor') educationScore = 120;
-        else if (education === 'master') educationScore = 135;
-        else if (education === 'phd') educationScore = 150;
-
-        // Work experience scoring
-        if (workExperience === '1-year') workScore = 40;
-        else if (workExperience === '2-years') workScore = 53;
-        else if (workExperience === '3-years') workScore = 64;
-        else if (workExperience === '4-years') workScore = 72;
-        else if (workExperience === '5-years') workScore = 80;
-        else if (workExperience === '6+') workScore = 80;
-
-        // Language skills scoring
-        if (languageSkills === 'clb-5') languageScore = 6;
-        else if (languageSkills === 'clb-6') languageScore = 9;
-        else if (languageSkills === 'clb-7') languageScore = 17;
-        else if (languageSkills === 'clb-8') languageScore = 23;
-        else if (languageSkills === 'clb-9') languageScore = 31;
-        else if (languageSkills === 'clb-10') languageScore = 34;
-        else if (languageSkills === 'clb-11') languageScore = 34;
-        else if (languageSkills === 'clb-12') languageScore = 34;
-
-        // Job offer scoring
-        if (jobOffer === 'yes') jobOfferScore = 200;
-
-        // Calculate total score
-        const totalScore = ageScore + educationScore + workScore + languageScore + jobOfferScore;
-
-        // Update the results display
-        document.getElementById('ageScore').textContent = ageScore;
-        document.getElementById('educationScore').textContent = educationScore;
-        document.getElementById('workScore').textContent = workScore;
-        document.getElementById('languageScore').textContent = languageScore;
-        document.getElementById('totalScore').textContent = totalScore;
-
-        // Show/hide job offer bonus
-        if (jobOfferScore > 0) {
-          document.getElementById('jobOfferBonus').classList.remove('hidden');
-          document.getElementById('jobOfferScore').textContent = jobOfferScore;
-        } else {
-          document.getElementById('jobOfferBonus').classList.add('hidden');
-        }
-
-        // Update score status
-        const scoreStatus = document.getElementById('scoreStatus');
-        if (totalScore >= 534) {
-          scoreStatus.textContent = '🎉 You meet the current cutoff!';
-          scoreStatus.className = 'text-lg font-medium text-green-600 dark:text-green-400';
-        } else {
-          scoreStatus.textContent = '📊 Below current cutoff - consider improving your profile';
-          scoreStatus.className = 'text-lg font-medium text-orange-600 dark:text-orange-400';
-        }
-
-        // Show results
-        document.getElementById('eligibilityResults').classList.remove('hidden');
-      }
 
       window.openTargetedCategoriesModal = function() {
         const modal = document.getElementById('targetedCategoriesModal');
@@ -2418,16 +2178,10 @@ export const metadata = {
 
       // Close modal when clicking outside
       document.addEventListener('DOMContentLoaded', function() {
-        const eligibilityModal = document.getElementById('eligibilityModal');
+
         const targetedCategoriesModal = document.getElementById('targetedCategoriesModal');
         
-        if (eligibilityModal) {
-          eligibilityModal.addEventListener('click', function(e) {
-            if (e.target === eligibilityModal) {
-              window.closeEligibilityModal();
-            }
-          });
-        }
+
         
         if (targetedCategoriesModal) {
           targetedCategoriesModal.addEventListener('click', function(e) {
@@ -2497,9 +2251,7 @@ export const metadata = {
         // Close modals with Escape key
         document.addEventListener('keydown', function(e) {
           if (e.key === 'Escape') {
-            if (eligibilityModal && !eligibilityModal.classList.contains('hidden')) {
-              window.closeEligibilityModal();
-            }
+
             if (targetedCategoriesModal && !targetedCategoriesModal.classList.contains('hidden')) {
               window.closeTargetedCategoriesModal();
             }
