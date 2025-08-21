@@ -63,10 +63,10 @@ import Layout from '../../../layouts/Layout.astro';
 
   <!-- Navigation Bar -->
   <nav class="sticky top-0 z-50 bg-white/95 dark:bg-gray-900/95 backdrop-blur-xl border-b border-gray-200 dark:border-gray-700 shadow-lg">
-    <div class="flex items-center justify-center space-x-8 py-4">
-      <a href="#stage-1" class="nav-link text-gray-700 dark:text-gray-300 hover:text-green-600 dark:hover:text-green-400 font-medium transition-colors duration-300">Stage 1: Onboarding</a>
-      <a href="#stage-2" class="nav-link text-gray-700 dark:text-gray-300 hover:text-green-600 dark:hover:text-green-400 font-medium transition-colors duration-300">Stage 2: Documents</a>
-      <a href="#stage-3" class="nav-link text-gray-700 dark:text-gray-300 hover:text-green-600 dark:hover:text-green-400 font-medium transition-colors duration-300">Stage 3: Filing</a>
+    <div class="flex items-center justify-center space-x-2 sm:space-x-4 md:space-x-6 lg:space-x-8 py-3 sm:py-4">
+      <a href="#stage-1" class="nav-link text-xs sm:text-sm md:text-base text-gray-700 dark:text-gray-300 hover:text-green-600 dark:hover:text-green-400 font-medium transition-colors duration-300 px-2 sm:px-3">Stage 1: Onboarding</a>
+      <a href="#stage-2" class="nav-link text-xs sm:text-sm md:text-base text-gray-700 dark:text-gray-300 hover:text-green-600 dark:hover:text-green-400 font-medium transition-colors duration-300 px-2 sm:px-3">Stage 2: Documents</a>
+      <a href="#stage-3" class="nav-link text-xs sm:text-sm md:text-base text-gray-700 dark:text-gray-300 hover:text-green-600 dark:hover:text-green-400 font-medium transition-colors duration-300 px-2 sm:px-3">Stage 3: Filing</a>
     </div>
   </nav>
 
@@ -403,6 +403,7 @@ import Layout from '../../../layouts/Layout.astro';
   .nav-link {
     position: relative;
     text-decoration: none;
+    white-space: nowrap;
   }
   
   .nav-link::after {
@@ -422,6 +423,21 @@ import Layout from '../../../layouts/Layout.astro';
   
   .nav-link.active::after {
     width: 100%;
+  }
+  
+  /* Mobile Navigation Adjustments */
+  @media (max-width: 640px) {
+    .nav-link::after {
+      bottom: -6px;
+      height: 1px;
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .nav-link {
+      font-size: 0.75rem;
+      padding: 0.25rem 0.5rem;
+    }
   }
   
   @keyframes animate-pulse-slow {
