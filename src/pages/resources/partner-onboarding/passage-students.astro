@@ -124,6 +124,9 @@ import Layout from '../../../layouts/Layout.astro';
                   <h4 class="milestone-title">Complete the Immigratic Master Intake</h4>
                   <p class="milestone-description">Provide your initial details so we can set up your case profile.</p>
                 </div>
+                <div class="milestone-tags">
+                  <span class="tag tag-you">You</span>
+                </div>
               </div>
 
               <!-- Milestone 1.2 -->
@@ -136,6 +139,9 @@ import Layout from '../../../layouts/Layout.astro';
                 <div class="milestone-content">
                   <h4 class="milestone-title">Case Initiation</h4>
                   <p class="milestone-description">Your Passage Representative will open your file in the Immigratic Portal.</p>
+                </div>
+                <div class="milestone-tags">
+                  <span class="tag tag-passage">Passage</span>
                 </div>
               </div>
 
@@ -150,6 +156,9 @@ import Layout from '../../../layouts/Layout.astro';
                   <h4 class="milestone-title">Welcome Email</h4>
                   <p class="milestone-description">You will be introduced to your dedicated case manager, who will guide you throughout the process.</p>
                 </div>
+                <div class="milestone-tags">
+                  <span class="tag tag-immigratic">Immigratic</span>
+                </div>
               </div>
 
               <!-- Milestone 1.4 -->
@@ -162,6 +171,10 @@ import Layout from '../../../layouts/Layout.astro';
                 <div class="milestone-content">
                   <h4 class="milestone-title">Introductory Call</h4>
                   <p class="milestone-description">Schedule a brief call to get acquainted and receive a walkthrough of your secure client dashboard.</p>
+                </div>
+                <div class="milestone-tags">
+                  <span class="tag tag-immigratic">Immigratic</span>
+                  <span class="tag tag-you">You</span>
                 </div>
               </div>
             </div>
@@ -189,6 +202,9 @@ import Layout from '../../../layouts/Layout.astro';
                   <h4 class="milestone-title">Secure Document Upload</h4>
                   <p class="milestone-description">Submit the required documents through your client portal. Our system will have already pre-filled much of the necessary information for your convenience.</p>
                 </div>
+                <div class="milestone-tags">
+                  <span class="tag tag-you">You</span>
+                </div>
               </div>
 
               <!-- Milestone 2.2 -->
@@ -201,6 +217,10 @@ import Layout from '../../../layouts/Layout.astro';
                 <div class="milestone-content">
                   <h4 class="milestone-title">Review & Confirmation</h4>
                   <p class="milestone-description">Together, we will verify and finalize the details to ensure accuracy before submission.</p>
+                </div>
+                <div class="milestone-tags">
+                  <span class="tag tag-immigratic">Immigratic</span>
+                  <span class="tag tag-you">You</span>
                 </div>
               </div>
             </div>
@@ -228,6 +248,9 @@ import Layout from '../../../layouts/Layout.astro';
                   <h4 class="milestone-title">Application Submission</h4>
                   <p class="milestone-description">Once everything is complete and approved, your application will be formally submitted.</p>
                 </div>
+                <div class="milestone-tags">
+                  <span class="tag tag-immigratic">Immigratic</span>
+                </div>
               </div>
 
               <!-- Milestone 3.2 -->
@@ -240,6 +263,10 @@ import Layout from '../../../layouts/Layout.astro';
                 <div class="milestone-content">
                   <h4 class="milestone-title">Decision & Next Steps</h4>
                   <p class="milestone-description">Receive your immigration decision and guidance on next steps. We'll help you plan your transition to Canada.</p>
+                </div>
+                <div class="milestone-tags">
+                  <span class="tag tag-you">You</span>
+                  <span class="tag tag-passage">Passage</span>
                 </div>
               </div>
             </div>
@@ -644,6 +671,44 @@ import Layout from '../../../layouts/Layout.astro';
 
   .dark .support-text {
     color: #d1d5db;
+  }
+
+  /* Milestone Tags */
+  .milestone-card {
+    position: relative;
+  }
+
+  .milestone-tags {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    display: flex;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+  }
+
+  .tag {
+    padding: 0.25rem 0.75rem;
+    border-radius: 9999px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: white;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  }
+
+  .tag-you {
+    background: linear-gradient(135deg, #10b981, #059669);
+  }
+
+  .tag-passage {
+    background: linear-gradient(135deg, #3b82f6, #1d4ed8);
+  }
+
+  .tag-immigratic {
+    background: linear-gradient(135deg, #8b5cf6, #7c3aed);
   }
 
   /* Mobile Responsiveness */
