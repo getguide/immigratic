@@ -4,7 +4,7 @@ import Layout from '../../../layouts/Layout.astro';
 
 <Layout 
   title="Passage Students - Immigration Journey Roadmap | Immigratic"
-  description="Your complete roadmap to Canadian immigration success. Follow our proven 8-step process from intake to decision, with clear milestones and progress tracking."
+  description="Your complete roadmap to Canadian immigration success. Follow our proven 3-stage process from intake to decision, with clear milestones and progress tracking."
   image="/og-image.jpg"
   imageAlt="Passage Students Immigration Journey Roadmap"
 >
@@ -35,7 +35,7 @@ import Layout from '../../../layouts/Layout.astro';
       <h1 class="text-4xl md:text-6xl font-bold text-white mb-6 leading-tight">
         Simple
         <span class="block bg-gradient-to-r from-green-200 to-emerald-200 bg-clip-text text-transparent">
-          8-Step Process
+          3-Stage Process
         </span>
       </h1>
       
@@ -44,8 +44,8 @@ import Layout from '../../../layouts/Layout.astro';
       </p>
       
       <div class="flex flex-col sm:flex-row gap-4 justify-center">
-        <a href="#roadmap" class="inline-flex items-center px-8 py-4 bg-white text-green-600 font-semibold rounded-xl hover:bg-green-50 transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl">
-          View Your Path
+        <a href="#journey" class="inline-flex items-center px-8 py-4 bg-white text-green-600 font-semibold rounded-xl hover:bg-green-50 transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl">
+          View Your Journey
           <svg class="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
           </svg>
@@ -54,8 +54,8 @@ import Layout from '../../../layouts/Layout.astro';
     </div>
   </section>
 
-  <!-- Visual Roadmap Section -->
-  <section id="roadmap" class="py-24 bg-white dark:bg-gray-900">
+  <!-- Journey Section with Vertical Progress Bar -->
+  <section id="journey" class="py-24 bg-white dark:bg-gray-900 relative">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="text-center mb-16">
         <h2 class="text-3xl md:text-5xl font-bold text-gray-900 dark:text-white mb-6">
@@ -65,162 +65,192 @@ import Layout from '../../../layouts/Layout.astro';
           </span>
         </h2>
         <p class="text-xl text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
-          Follow the path below - each step brings you closer to Canada
+          Follow the path below - each stage brings you closer to Canada
         </p>
       </div>
 
-      <!-- Visual Progress Bar -->
-      <div class="mb-16">
-        <div class="relative">
-          <!-- Progress Line -->
-          <div class="w-full h-3 bg-gray-200 dark:bg-gray-700 rounded-full overflow-hidden">
-            <div class="h-full bg-gradient-to-r from-green-500 to-emerald-600 rounded-full progress-bar" style="width: 0%"></div>
+      <!-- Main Content with Vertical Progress Bar -->
+      <div class="relative flex">
+        <!-- Vertical Progress Bar -->
+        <div class="hidden lg:block fixed left-8 top-1/2 transform -translate-y-1/2 z-10">
+          <div class="relative">
+            <!-- Progress Track -->
+            <div class="w-3 h-96 bg-gray-200 dark:bg-gray-700 rounded-full relative">
+              <!-- Progress Fill -->
+              <div class="absolute bottom-0 left-0 w-full bg-gradient-to-t from-green-500 via-blue-500 to-purple-600 rounded-full transition-all duration-1000 ease-out progress-fill" style="height: 0%"></div>
+            </div>
+            
+            <!-- Stage Indicators -->
+            <div class="absolute -left-2 top-0 w-7 h-7 bg-green-500 rounded-full border-4 border-white dark:border-gray-900 shadow-lg stage-indicator" data-stage="1"></div>
+            <div class="absolute -left-2 top-1/2 transform -translate-y-1/2 w-7 h-7 bg-gray-300 dark:bg-gray-600 rounded-full border-4 border-white dark:border-gray-900 shadow-lg stage-indicator" data-stage="2"></div>
+            <div class="absolute -left-2 bottom-0 w-7 h-7 bg-gray-300 dark:bg-gray-600 rounded-full border-4 border-white dark:border-gray-900 shadow-lg stage-indicator" data-stage="3"></div>
+            
+            <!-- Stage Labels -->
+            <div class="absolute -left-32 top-0 transform -translate-y-1/2">
+              <span class="text-sm font-semibold text-green-600 dark:text-green-400">Stage 1</span>
+            </div>
+            <div class="absolute -left-32 top-1/2 transform -translate-y-1/2">
+              <span class="text-sm font-semibold text-gray-500 dark:text-gray-400">Stage 2</span>
+            </div>
+            <div class="absolute -left-32 bottom-0 transform translate-y-1/2">
+              <span class="text-sm font-semibold text-gray-500 dark:text-gray-400">Stage 3</span>
+            </div>
           </div>
-          
-          <!-- Progress Labels -->
-          <div class="flex justify-between mt-4 text-sm text-gray-600 dark:text-gray-400">
-            <span>Start</span>
-            <span>25%</span>
-            <span>50%</span>
-            <span>75%</span>
-            <span>Finish</span>
+        </div>
+
+        <!-- Content Area -->
+        <div class="w-full lg:ml-32">
+          <!-- Stage 1: Onboarding & Case Initiation -->
+          <div class="stage-section mb-32" data-stage="1">
+            <div class="stage-header">
+              <div class="stage-number">1</div>
+              <div class="stage-content">
+                <h3 class="stage-title">Onboarding & Case Initiation</h3>
+                <p class="stage-description">Get started with your immigration journey</p>
+              </div>
+            </div>
+
+            <div class="milestones-container">
+              <!-- Milestone 1.1 -->
+              <div class="milestone-card" data-milestone="1.1">
+                <div class="milestone-icon">
+                  <svg class="w-8 h-8 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
+                  </svg>
+                </div>
+                <div class="milestone-content">
+                  <h4 class="milestone-title">Complete the Immigratic Master Intake</h4>
+                  <p class="milestone-description">Provide your initial details so we can set up your case profile.</p>
+                </div>
+              </div>
+
+              <!-- Milestone 1.2 -->
+              <div class="milestone-card" data-milestone="1.2">
+                <div class="milestone-icon">
+                  <svg class="w-8 h-8 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 100 4m0-4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 100 4m0-4v2m0-6V4"></path>
+                  </svg>
+                </div>
+                <div class="milestone-content">
+                  <h4 class="milestone-title">Case Initiation</h4>
+                  <p class="milestone-description">Your Passage Representative will open your file in the Immigratic Portal.</p>
+                </div>
+              </div>
+
+              <!-- Milestone 1.3 -->
+              <div class="milestone-card" data-milestone="1.3">
+                <div class="milestone-icon">
+                  <svg class="w-8 h-8 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 4.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
+                  </svg>
+                </div>
+                <div class="milestone-content">
+                  <h4 class="milestone-title">Welcome Email</h4>
+                  <p class="milestone-description">You will be introduced to your dedicated case manager, who will guide you throughout the process.</p>
+                </div>
+              </div>
+
+              <!-- Milestone 1.4 -->
+              <div class="milestone-card" data-milestone="1.4">
+                <div class="milestone-icon">
+                  <svg class="w-8 h-8 text-indigo-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"></path>
+                  </svg>
+                </div>
+                <div class="milestone-content">
+                  <h4 class="milestone-title">Introductory Call</h4>
+                  <p class="milestone-description">Schedule a brief call to get acquainted and receive a walkthrough of your secure client dashboard.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Stage 2: Document Collection & Review -->
+          <div class="stage-section mb-32" data-stage="2">
+            <div class="stage-header">
+              <div class="stage-number">2</div>
+              <div class="stage-content">
+                <h3 class="stage-title">Document Collection & Review</h3>
+                <p class="stage-description">Prepare and verify your application materials</p>
+              </div>
+            </div>
+
+            <div class="milestones-container">
+              <!-- Milestone 2.1 -->
+              <div class="milestone-card" data-milestone="2.1">
+                <div class="milestone-icon">
+                  <svg class="w-8 h-8 text-orange-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12"></path>
+                  </svg>
+                </div>
+                <div class="milestone-content">
+                  <h4 class="milestone-title">Secure Document Upload</h4>
+                  <p class="milestone-description">Submit the required documents through your client portal. Our system will have already pre-filled much of the necessary information for your convenience.</p>
+                </div>
+              </div>
+
+              <!-- Milestone 2.2 -->
+              <div class="milestone-card" data-milestone="2.2">
+                <div class="milestone-icon">
+                  <svg class="w-8 h-8 text-teal-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v10a2 2 0 002 2h8a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4"></path>
+                  </svg>
+                </div>
+                <div class="milestone-content">
+                  <h4 class="milestone-title">Review & Confirmation</h4>
+                  <p class="milestone-description">Together, we will verify and finalize the details to ensure accuracy before submission.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Stage 3: Filing & Decision -->
+          <div class="stage-section mb-32" data-stage="3">
+            <div class="stage-header">
+              <div class="stage-number">3</div>
+              <div class="stage-content">
+                <h3 class="stage-title">Filing & Decision</h3>
+                <p class="stage-description">Submit your application and await the decision</p>
+              </div>
+            </div>
+
+            <div class="milestones-container">
+              <!-- Milestone 3.1 -->
+              <div class="milestone-card" data-milestone="3.1">
+                <div class="milestone-icon">
+                  <svg class="w-8 h-8 text-pink-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
+                  </svg>
+                </div>
+                <div class="milestone-content">
+                  <h4 class="milestone-title">Application Submission</h4>
+                  <p class="milestone-description">Once everything is complete and approved, your application will be formally submitted.</p>
+                </div>
+              </div>
+
+              <!-- Milestone 3.2 -->
+              <div class="milestone-card" data-milestone="3.2">
+                <div class="milestone-icon">
+                  <svg class="w-8 h-8 text-emerald-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                  </svg>
+                </div>
+                <div class="milestone-content">
+                  <h4 class="milestone-title">Decision & Next Steps</h4>
+                  <p class="milestone-description">Receive your immigration decision and guidance on next steps. We'll help you plan your transition to Canada.</p>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </div>
+    </div>
+  </section>
 
-      <!-- Visual Steps Grid -->
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-        <!-- Step 1: Intake -->
-        <div class="step-card group" data-step="1">
-          <div class="relative">
-            <div class="step-number">1</div>
-            <div class="step-icon">
-              <svg class="w-12 h-12 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
-              </svg>
-            </div>
-            <h3 class="step-title">Complete Intake</h3>
-            <div class="step-description">
-              <span class="text-green-600 font-semibold">Passage starts your case</span>
-            </div>
-          </div>
-        </div>
-
-        <!-- Step 2: Welcome -->
-        <div class="step-card group" data-step="2">
-          <div class="relative">
-            <div class="step-number">2</div>
-            <div class="step-icon">
-              <svg class="w-12 h-12 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 4.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
-              </svg>
-            </div>
-            <h3 class="step-title">Welcome Email</h3>
-            <div class="step-description">
-              <span class="text-blue-600 font-semibold">Case manager introduces themselves</span>
-            </div>
-          </div>
-        </div>
-
-        <!-- Step 3: Call -->
-        <div class="step-card group" data-step="3">
-          <div class="relative">
-            <div class="step-number">3</div>
-            <div class="step-icon">
-              <svg class="w-12 h-12 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"></path>
-              </svg>
-            </div>
-            <h3 class="step-title">Intro Call</h3>
-            <div class="step-description">
-              <span class="text-purple-600 font-semibold">15-min chat + portal tour</span>
-            </div>
-          </div>
-        </div>
-
-        <!-- Step 4: Documents -->
-        <div class="step-card group" data-step="4">
-          <div class="relative">
-            <div class="step-number">4</div>
-            <div class="step-icon">
-              <svg class="w-12 h-12 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
-              </svg>
-            </div>
-            <h3 class="step-title">Upload Docs</h3>
-            <div class="step-description">
-              <span class="text-orange-600 font-semibold">System pre-fills most info</span>
-            </div>
-          </div>
-        </div>
-
-        <!-- Step 5: Review -->
-        <div class="step-card group" data-step="5">
-          <div class="relative">
-            <div class="step-number">5</div>
-            <div class="step-icon">
-              <svg class="w-12 h-12 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v10a2 2 0 002 2h8a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4"></path>
-              </svg>
-            </div>
-            <h3 class="step-title">Review & Confirm</h3>
-            <div class="step-description">
-              <span class="text-indigo-600 font-semibold">Check everything together</span>
-            </div>
-          </div>
-        </div>
-
-        <!-- Step 6: Submit -->
-        <div class="step-card group" data-step="6">
-          <div class="relative">
-            <div class="step-number">6</div>
-            <div class="step-icon">
-              <svg class="w-12 h-12 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
-              </svg>
-            </div>
-            <h3 class="step-title">Submit</h3>
-            <div class="step-description">
-              <span class="text-pink-600 font-semibold">Official application sent</span>
-            </div>
-          </div>
-        </div>
-
-        <!-- Step 7: Wait -->
-        <div class="step-card group" data-step="7">
-          <div class="relative">
-            <div class="step-number">7</div>
-            <div class="step-icon">
-              <svg class="w-12 h-12 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
-              </svg>
-            </div>
-            <h3 class="step-title">Wait for Decision</h3>
-            <div class="step-description">
-              <span class="text-teal-600 font-semibold">Get updates via email</span>
-            </div>
-          </div>
-        </div>
-
-        <!-- Step 8: Success -->
-        <div class="step-card group" data-step="8">
-          <div class="relative">
-            <div class="step-number">8</div>
-            <div class="step-icon">
-              <svg class="w-12 h-12 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
-              </svg>
-            </div>
-            <h3 class="step-title">Decision</h3>
-            <div class="step-description">
-              <span class="text-emerald-600 font-semibold">Welcome to Canada!</span>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- Quick Info Cards -->
-      <div class="mt-20 grid grid-cols-1 md:grid-cols-3 gap-8">
+  <!-- Quick Info Section -->
+  <section class="py-24 bg-gray-50 dark:bg-gray-800">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
         <!-- Timeline -->
         <div class="info-card">
           <div class="info-icon">
@@ -228,19 +258,19 @@ import Layout from '../../../layouts/Layout.astro';
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
             </svg>
           </div>
-          <h3 class="info-title">How Long?</h3>
+          <h3 class="info-title">Timeline Expectations</h3>
           <div class="info-content">
             <div class="timeline-item">
               <span class="timeline-dot bg-green-500"></span>
-              <span class="timeline-text"><strong>Steps 1-3:</strong> 1-2 days</span>
+              <span class="timeline-text"><strong>Stage 1:</strong> 1-2 days</span>
             </div>
             <div class="timeline-item">
               <span class="timeline-dot bg-blue-500"></span>
-              <span class="timeline-text"><strong>Steps 4-6:</strong> 1-3 weeks</span>
+              <span class="timeline-text"><strong>Stage 2:</strong> 1-3 weeks</span>
             </div>
             <div class="timeline-item">
               <span class="timeline-dot bg-purple-500"></span>
-              <span class="timeline-text"><strong>Steps 7-8:</strong> Varies by program</span>
+              <span class="timeline-text"><strong>Stage 3:</strong> Varies by program</span>
             </div>
           </div>
         </div>
@@ -336,89 +366,164 @@ import Layout from '../../../layouts/Layout.astro';
     animation: animate-float-gentle 3s ease-in-out infinite;
   }
 
-  /* Progress Bar Animation */
-  .progress-bar {
-    transition: width 2s ease-in-out;
-    animation: progressFill 3s ease-out forwards;
-  }
-
-  @keyframes progressFill {
-    from { width: 0%; }
-    to { width: 100%; }
-  }
-
-  /* Step Cards */
-  .step-card {
-    text-align: center;
-    padding: 2rem 1rem;
-    border-radius: 1.5rem;
-    background: white;
-    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
-    border: 2px solid transparent;
-    transition: all 0.3s ease;
+  /* Stage Sections */
+  .stage-section {
     opacity: 0;
     transform: translateY(30px);
-    animation: fadeInUp 0.6s ease-out forwards;
+    transition: all 0.8s ease-out;
   }
 
-  .step-card:nth-child(1) { animation-delay: 0.1s; }
-  .step-card:nth-child(2) { animation-delay: 0.2s; }
-  .step-card:nth-child(3) { animation-delay: 0.3s; }
-  .step-card:nth-child(4) { animation-delay: 0.4s; }
-  .step-card:nth-child(5) { animation-delay: 0.5s; }
-  .step-card:nth-child(6) { animation-delay: 0.6s; }
-  .step-card:nth-child(7) { animation-delay: 0.7s; }
-  .step-card:nth-child(8) { animation-delay: 0.8s; }
+  .stage-section.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
 
-  .step-card:hover {
-    transform: translateY(-8px);
-    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+  /* Stage Headers */
+  .stage-header {
+    display: flex;
+    align-items: center;
+    margin-bottom: 3rem;
+    padding: 2rem;
+    background: linear-gradient(135deg, #f8fafc, #e2e8f0);
+    border-radius: 1.5rem;
+    border: 2px solid transparent;
+    transition: all 0.3s ease;
+  }
+
+  .stage-header:hover {
     border-color: #10b981;
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
   }
 
-  .step-number {
-    width: 3rem;
-    height: 3rem;
+  .dark .stage-header {
+    background: linear-gradient(135deg, #1f2937, #374151);
+  }
+
+  .stage-number {
+    width: 4rem;
+    height: 4rem;
     background: linear-gradient(135deg, #10b981, #059669);
     border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
-    margin: 0 auto 1rem;
     color: white;
     font-size: 1.5rem;
     font-weight: bold;
-    box-shadow: 0 4px 12px rgba(16, 185, 129, 0.3);
+    margin-right: 2rem;
+    box-shadow: 0 8px 25px rgba(16, 185, 129, 0.3);
   }
 
-  .step-icon {
-    width: 4rem;
-    height: 4rem;
-    background: linear-gradient(135deg, #6b7280, #4b5563);
+  .stage-content h3 {
+    font-size: 1.875rem;
+    font-weight: bold;
+    color: #1f2937;
+    margin-bottom: 0.5rem;
+  }
+
+  .stage-content p {
+    font-size: 1.125rem;
+    color: #6b7280;
+  }
+
+  .dark .stage-content h3 {
+    color: #f9fafb;
+  }
+
+  .dark .stage-content p {
+    color: #d1d5db;
+  }
+
+  /* Milestones Container */
+  .milestones-container {
+    display: grid;
+    gap: 1.5rem;
+    margin-left: 2rem;
+  }
+
+  /* Milestone Cards */
+  .milestone-card {
+    display: flex;
+    align-items: flex-start;
+    padding: 1.5rem;
+    background: white;
     border-radius: 1rem;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+    border: 2px solid transparent;
+    transition: all 0.3s ease;
+    opacity: 0;
+    transform: translateX(-20px);
+  }
+
+  .milestone-card.visible {
+    opacity: 1;
+    transform: translateX(0);
+  }
+
+  .milestone-card:hover {
+    border-color: #10b981;
+    transform: translateY(-4px);
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+  }
+
+  .dark .milestone-card {
+    background: #1f2937;
+  }
+
+  .milestone-icon {
+    width: 3rem;
+    height: 3rem;
+    background: #f3f4f6;
+    border-radius: 0.75rem;
     display: flex;
     align-items: center;
     justify-content: center;
-    margin: 0 auto 1rem;
+    margin-right: 1.5rem;
+    flex-shrink: 0;
     transition: all 0.3s ease;
   }
 
-  .step-card:hover .step-icon {
+  .milestone-card:hover .milestone-icon {
     transform: scale(1.1);
-    background: linear-gradient(135deg, #10b981, #059669);
   }
 
-  .step-title {
+  .dark .milestone-icon {
+    background: #374151;
+  }
+
+  .milestone-content h4 {
     font-size: 1.25rem;
     font-weight: bold;
     color: #1f2937;
     margin-bottom: 0.5rem;
   }
 
-  .step-description {
-    font-size: 0.875rem;
+  .milestone-content p {
     color: #6b7280;
-    line-height: 1.4;
+    line-height: 1.6;
+  }
+
+  .dark .milestone-content h4 {
+    color: #f9fafb;
+  }
+
+  .dark .milestone-content p {
+    color: #d1d5db;
+  }
+
+  /* Progress Bar Styling */
+  .progress-fill {
+    transition: height 1s ease-out;
+  }
+
+  .stage-indicator {
+    transition: all 0.5s ease;
+  }
+
+  .stage-indicator.active {
+    background: #10b981;
+    transform: scale(1.2);
+    box-shadow: 0 0 20px rgba(16, 185, 129, 0.5);
   }
 
   /* Info Cards */
@@ -436,6 +541,11 @@ import Layout from '../../../layouts/Layout.astro';
     box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
   }
 
+  .dark .info-card {
+    background: #1f2937;
+    border-color: #374151;
+  }
+
   .info-icon {
     width: 3rem;
     height: 3rem;
@@ -447,11 +557,19 @@ import Layout from '../../../layouts/Layout.astro';
     margin-bottom: 1rem;
   }
 
+  .dark .info-icon {
+    background: #374151;
+  }
+
   .info-title {
     font-size: 1.125rem;
     font-weight: bold;
     color: #1f2937;
     margin-bottom: 1rem;
+  }
+
+  .dark .info-title {
+    color: #f9fafb;
   }
 
   .info-content {
@@ -478,6 +596,10 @@ import Layout from '../../../layouts/Layout.astro';
     color: #6b7280;
   }
 
+  .dark .timeline-text {
+    color: #d1d5db;
+  }
+
   /* Update Items */
   .update-item {
     display: flex;
@@ -494,6 +616,10 @@ import Layout from '../../../layouts/Layout.astro';
   .update-text {
     font-size: 0.875rem;
     color: #6b7280;
+  }
+
+  .dark .update-text {
+    color: #d1d5db;
   }
 
   /* Support Items */
@@ -514,103 +640,98 @@ import Layout from '../../../layouts/Layout.astro';
     color: #6b7280;
   }
 
-  @keyframes fadeInUp {
-    to {
-      opacity: 1;
-      transform: translateY(0);
-    }
-  }
-
-  /* Dark Mode */
-  .dark .step-card {
-    background: #1f2937;
-    color: white;
-  }
-
-  .dark .step-title {
-    color: #f9fafb;
-  }
-
-  .dark .step-description {
-    color: #d1d5db;
-  }
-
-  .dark .info-card {
-    background: #1f2937;
-    border-color: #374151;
-  }
-
-  .dark .info-title {
-    color: #f9fafb;
-  }
-
-  .dark .timeline-text,
-  .dark .update-text,
   .dark .support-text {
     color: #d1d5db;
   }
 
-  .dark .info-icon {
-    background: #374151;
+  /* Mobile Responsiveness */
+  @media (max-width: 1024px) {
+    .stage-header {
+      flex-direction: column;
+      text-align: center;
+    }
+
+    .stage-number {
+      margin-right: 0;
+      margin-bottom: 1rem;
+    }
+
+    .milestones-container {
+      margin-left: 0;
+    }
   }
 
-  /* Mobile Responsiveness */
   @media (max-width: 768px) {
-    .step-card {
-      padding: 1.5rem 1rem;
+    .milestone-card {
+      flex-direction: column;
+      text-align: center;
     }
-    
-    .step-number {
-      width: 2.5rem;
-      height: 2.5rem;
-      font-size: 1.25rem;
-    }
-    
-    .step-icon {
-      width: 3rem;
-      height: 3rem;
-    }
-    
-    .step-icon svg {
-      width: 1.5rem;
-      height: 1.5rem;
+
+    .milestone-icon {
+      margin-right: 0;
+      margin-bottom: 1rem;
     }
   }
 </style>
 
 <script>
   document.addEventListener('DOMContentLoaded', function() {
-    // Intersection Observer for step cards
-    const stepCards = document.querySelectorAll('.step-card');
-    const cardObserver = new IntersectionObserver((entries) => {
+    // Intersection Observer for stage sections
+    const stageSections = document.querySelectorAll('.stage-section');
+    const stageObserver = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
-          entry.target.style.animationPlayState = 'running';
+          entry.target.classList.add('visible');
+          
+          // Animate milestones within this stage
+          const milestones = entry.target.querySelectorAll('.milestone-card');
+          milestones.forEach((milestone, index) => {
+            setTimeout(() => {
+              milestone.classList.add('visible');
+            }, index * 200);
+          });
         }
       });
     }, {
       threshold: 0.3,
-      rootMargin: '0px 0px -50px 0px'
+      rootMargin: '0px 0px -100px 0px'
     });
 
-    stepCards.forEach(card => {
-      cardObserver.observe(card);
+    stageSections.forEach(section => {
+      stageObserver.observe(section);
     });
 
-    // Progress bar animation on scroll
-    const progressBar = document.querySelector('.progress-bar');
-    if (progressBar) {
+    // Progress bar and stage indicator updates
+    const progressFill = document.querySelector('.progress-fill');
+    const stageIndicators = document.querySelectorAll('.stage-indicator');
+    
+    if (progressFill && stageIndicators.length > 0) {
       const progressObserver = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
           if (entry.isIntersecting) {
-            progressBar.style.width = '100%';
+            const stage = parseInt(entry.target.dataset.stage);
+            const progressPercentage = (stage / 3) * 100;
+            
+            // Update progress bar
+            progressFill.style.height = progressPercentage + '%';
+            
+            // Update stage indicators
+            stageIndicators.forEach((indicator, index) => {
+              if (index < stage) {
+                indicator.classList.add('active');
+              } else {
+                indicator.classList.remove('active');
+              }
+            });
           }
         });
       }, {
         threshold: 0.5
       });
       
-      progressObserver.observe(progressBar);
+      stageSections.forEach(section => {
+        progressObserver.observe(section);
+      });
     }
   });
 </script>
