@@ -897,7 +897,7 @@ export const metadata = {
                 <p class="text-gray-600 dark:text-gray-400">Check your requirements</p>
               </div>
             </div>
-            <button onclick="(window as any).closeEligibilityModal()" class="text-gray-400 hover:text-gray-600 dark:hover:text-gray-300 transition-colors">
+            <button onclick="closeEligibilityModal()" class="text-gray-400 hover:text-gray-600 dark:hover:text-gray-300 transition-colors">
               <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
               </svg>
@@ -907,9 +907,165 @@ export const metadata = {
 
         <!-- Modal Content -->
         <div class="p-6">
-          <!-- CRS Score Breakdown -->
+          <!-- Eligibility Assessment Form -->
           <div class="mb-6">
-            <h4 class="text-lg font-semibold text-gray-900 dark:text-white mb-4">CRS Score Breakdown</h4>
+            <h4 class="text-lg font-semibold text-gray-900 dark:text-white mb-4">Quick Eligibility Check</h4>
+            <p class="text-sm text-gray-600 dark:text-gray-400 mb-4">Answer a few questions to see if you meet Express Entry requirements</p>
+            
+            <form id="eligibilityForm" class="space-y-4">
+              <!-- Age -->
+              <div>
+                <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Age</label>
+                <select id="age" class="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700 text-gray-900 dark:text-white focus:ring-2 focus:ring-blue-500 focus:border-transparent">
+                  <option value="">Select your age</option>
+                  <option value="18-35">18-35 years (110 points)</option>
+                  <option value="36">36 years (109 points)</option>
+                  <option value="37">37 years (107 points)</option>
+                  <option value="38">38 years (105 points)</option>
+                  <option value="39">39 years (103 points)</option>
+                  <option value="40">40 years (101 points)</option>
+                  <option value="41">41 years (99 points)</option>
+                  <option value="42">42 years (97 points)</option>
+                  <option value="43">43 years (95 points)</option>
+                  <option value="44">44 years (93 points)</option>
+                  <option value="45">45 years (91 points)</option>
+                  <option value="46">46 years (89 points)</option>
+                  <option value="47">47 years (87 points)</option>
+                  <option value="48">48 years (85 points)</option>
+                  <option value="49">49 years (83 points)</option>
+                  <option value="50">50 years (81 points)</option>
+                  <option value="51+">51+ years (0 points)</option>
+                </select>
+              </div>
+
+              <!-- Education -->
+              <div>
+                <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Education Level</label>
+                <select id="education" class="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700 text-gray-900 dark:text-white focus:ring-2 focus:ring-blue-500 focus:border-transparent">
+                  <option value="">Select your education</option>
+                  <option value="high-school">High school diploma (30 points)</option>
+                  <option value="one-year">One-year post-secondary (90 points)</option>
+                  <option value="two-year">Two-year post-secondary (98 points)</option>
+                  <option value="three-year">Three-year post-secondary (120 points)</option>
+                  <option value="bachelor">Bachelor's degree (120 points)</option>
+                  <option value="master">Master's degree (135 points)</option>
+                  <option value="phd">PhD (150 points)</option>
+                </select>
+              </div>
+
+              <!-- Work Experience -->
+              <div>
+                <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Skilled Work Experience</label>
+                <select id="workExperience" class="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700 text-gray-900 dark:text-white focus:ring-2 focus:ring-blue-500 focus:border-transparent">
+                  <option value="">Select your experience</option>
+                  <option value="none">No experience (0 points)</option>
+                  <option value="1-year">1 year (40 points)</option>
+                  <option value="2-years">2 years (53 points)</option>
+                  <option value="3-years">3 years (64 points)</option>
+                  <option value="4-years">4 years (72 points)</option>
+                  <option value="5-years">5 years (80 points)</option>
+                  <option value="6+">6+ years (80 points)</option>
+                </select>
+              </div>
+
+              <!-- Language Skills -->
+              <div>
+                <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Language Skills (CLB Level)</label>
+                <select id="languageSkills" class="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700 text-gray-900 dark:text-white focus:ring-2 focus:ring-blue-500 focus:border-transparent">
+                  <option value="">Select your CLB level</option>
+                  <option value="clb-4">CLB 4 (0 points)</option>
+                  <option value="clb-5">CLB 5 (6 points)</option>
+                  <option value="clb-6">CLB 6 (9 points)</option>
+                  <option value="clb-7">CLB 7 (17 points)</option>
+                  <option value="clb-8">CLB 8 (23 points)</option>
+                  <option value="clb-9">CLB 9 (31 points)</option>
+                  <option value="clb-10">CLB 10 (34 points)</option>
+                  <option value="clb-11">CLB 11 (34 points)</option>
+                  <option value="clb-12">CLB 12 (34 points)</option>
+                </select>
+              </div>
+
+              <!-- Job Offer -->
+              <div>
+                <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Valid Job Offer</label>
+                <select id="jobOffer" class="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700 text-gray-900 dark:text-white focus:ring-2 focus:ring-blue-500 focus:border-transparent">
+                  <option value="">Select your status</option>
+                  <option value="no">No job offer (0 points)</option>
+                  <option value="yes">Yes, valid job offer (200 points)</option>
+                </select>
+              </div>
+
+              <!-- Calculate Button -->
+              <button type="button" onclick="calculateEligibility()" class="w-full px-6 py-3 bg-gradient-to-r from-blue-600 to-purple-600 text-white font-semibold rounded-xl hover:from-blue-700 hover:to-purple-700 transition-all duration-300 transform hover:scale-105">
+                Calculate My Score
+              </button>
+            </form>
+          </div>
+
+          <!-- Results Section (Hidden by default) -->
+          <div id="eligibilityResults" class="hidden mb-6">
+            <h4 class="text-lg font-semibold text-gray-900 dark:text-white mb-4">Your CRS Score</h4>
+            <div class="text-center mb-4">
+              <div id="totalScore" class="text-2xl font-bold text-blue-600 dark:text-blue-400 mb-2">0</div>
+              <div id="scoreStatus" class="text-lg font-medium text-gray-700 dark:text-gray-300"></div>
+            </div>
+            
+            <!-- Score Breakdown -->
+            <div class="grid grid-cols-2 gap-4 mb-4">
+              <div class="bg-blue-50 dark:bg-blue-900/20 rounded-xl p-4">
+                <div id="ageScore" class="text-2xl font-bold text-blue-600 dark:text-blue-400">0</div>
+                <div class="text-sm text-blue-600 dark:text-blue-400">Age</div>
+              </div>
+              <div class="bg-purple-50 dark:bg-purple-900/20 rounded-xl p-4">
+                <div id="educationScore" class="text-2xl font-bold text-purple-600 dark:text-purple-400">0</div>
+                <div class="text-sm text-blue-600 dark:text-blue-400">Education</div>
+              </div>
+              <div class="bg-green-50 dark:bg-green-900/20 rounded-xl p-4">
+                <div id="workScore" class="text-2xl font-bold text-green-600 dark:text-green-400">0</div>
+                <div class="text-sm text-green-600 dark:text-green-400">Work Experience</div>
+              </div>
+              <div class="bg-orange-50 dark:bg-orange-900/20 rounded-xl p-4">
+                <div id="languageScore" class="text-2xl font-bold text-orange-600 dark:text-orange-400">0</div>
+                <div class="text-sm text-orange-600 dark:text-orange-400">Language Skills</div>
+              </div>
+            </div>
+
+            <!-- Job Offer Bonus -->
+            <div id="jobOfferBonus" class="bg-green-50 dark:bg-green-900/20 rounded-xl p-4 mb-4 hidden">
+              <div class="text-center">
+                <div id="jobOfferScore" class="text-2xl font-bold text-green-600 dark:text-green-400">0</div>
+                <div class="text-sm text-green-600 dark:text-green-400">Job Offer Bonus</div>
+              </div>
+            </div>
+
+            <!-- Current Cutoff -->
+            <div class="text-center">
+              <div class="text-sm text-gray-600 dark:text-gray-400">Current Express Entry Cutoff: <span class="font-semibold text-red-600 dark:text-red-400">534</span></div>
+            </div>
+          </div>
+
+          <!-- Next Steps -->
+          <div class="mb-6">
+            <h4 class="text-lg font-semibold text-gray-900 dark:text-white mb-4">Next Steps</h4>
+            <div class="space-y-3">
+              <div class="flex items-center gap-3">
+                <div class="w-6 h-6 bg-blue-100 dark:bg-blue-900/30 rounded-full flex items-center justify-center">
+                  <svg class="w-4 h-4 text-blue-600 dark:text-blue-400" fill="currentColor" viewBox="0 0 20 20">
+                    <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" />
+                  </svg>
+                </div>
+                <span class="text-gray-700 dark:text-gray-300">Take our comprehensive Master Assessment for detailed analysis</span>
+              </div>
+              <div class="flex items-center gap-3">
+                <div class="w-6 h-6 bg-purple-100 dark:bg-purple-900/30 rounded-full flex items-center justify-center">
+                  <svg class="w-4 h-4 text-purple-600 dark:text-purple-400" fill="currentColor" viewBox="0 0 20 20">
+                    <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" />
+                  </svg>
+                </div>
+                <span class="text-gray-700 dark:text-gray-300">Book consultation with our immigration experts</span>
+              </div>
+            </div>
+          </div>
             <div class="grid grid-cols-2 gap-4">
               <div class="bg-blue-50 dark:bg-blue-900/20 rounded-xl p-4">
                 <div class="text-2xl font-bold text-blue-600 dark:text-blue-400">110</div>
@@ -2045,6 +2201,107 @@ export const metadata = {
           modal.classList.add('hidden');
           document.body.style.overflow = 'auto';
         }
+      }
+
+      // Calculate eligibility based on user input
+      window.calculateEligibility = function() {
+        const age = document.getElementById('age').value;
+        const education = document.getElementById('education').value;
+        const workExperience = document.getElementById('workExperience').value;
+        const languageSkills = document.getElementById('languageSkills').value;
+        const jobOffer = document.getElementById('jobOffer').value;
+
+        // Validate all fields are selected
+        if (!age || !education || !workExperience || !languageSkills || !jobOffer) {
+          alert('Please fill in all fields to calculate your score.');
+          return;
+        }
+
+        // Calculate scores based on selections
+        let ageScore = 0;
+        let educationScore = 0;
+        let workScore = 0;
+        let languageScore = 0;
+        let jobOfferScore = 0;
+
+        // Age scoring
+        if (age === '18-35') ageScore = 110;
+        else if (age === '36') ageScore = 109;
+        else if (age === '37') ageScore = 107;
+        else if (age === '38') ageScore = 105;
+        else if (age === '39') ageScore = 103;
+        else if (age === '40') ageScore = 101;
+        else if (age === '41') ageScore = 99;
+        else if (age === '42') ageScore = 97;
+        else if (age === '43') ageScore = 95;
+        else if (age === '44') ageScore = 93;
+        else if (age === '45') ageScore = 91;
+        else if (age === '46') ageScore = 89;
+        else if (age === '47') ageScore = 87;
+        else if (age === '48') ageScore = 85;
+        else if (age === '49') ageScore = 83;
+        else if (age === '50') ageScore = 81;
+
+        // Education scoring
+        if (education === 'high-school') educationScore = 30;
+        else if (education === 'one-year') educationScore = 90;
+        else if (education === 'two-year') educationScore = 98;
+        else if (education === 'three-year') educationScore = 120;
+        else if (education === 'bachelor') educationScore = 120;
+        else if (education === 'master') educationScore = 135;
+        else if (education === 'phd') educationScore = 150;
+
+        // Work experience scoring
+        if (workExperience === '1-year') workScore = 40;
+        else if (workExperience === '2-years') workScore = 53;
+        else if (workExperience === '3-years') workScore = 64;
+        else if (workExperience === '4-years') workScore = 72;
+        else if (workExperience === '5-years') workScore = 80;
+        else if (workExperience === '6+') workScore = 80;
+
+        // Language skills scoring
+        if (languageSkills === 'clb-5') languageScore = 6;
+        else if (languageSkills === 'clb-6') languageScore = 9;
+        else if (languageSkills === 'clb-7') languageScore = 17;
+        else if (languageSkills === 'clb-8') languageScore = 23;
+        else if (languageSkills === 'clb-9') languageScore = 31;
+        else if (languageSkills === 'clb-10') languageScore = 34;
+        else if (languageSkills === 'clb-11') languageScore = 34;
+        else if (languageSkills === 'clb-12') languageScore = 34;
+
+        // Job offer scoring
+        if (jobOffer === 'yes') jobOfferScore = 200;
+
+        // Calculate total score
+        const totalScore = ageScore + educationScore + workScore + languageScore + jobOfferScore;
+
+        // Update the results display
+        document.getElementById('ageScore').textContent = ageScore;
+        document.getElementById('educationScore').textContent = educationScore;
+        document.getElementById('workScore').textContent = workScore;
+        document.getElementById('languageScore').textContent = languageScore;
+        document.getElementById('totalScore').textContent = totalScore;
+
+        // Show/hide job offer bonus
+        if (jobOfferScore > 0) {
+          document.getElementById('jobOfferBonus').classList.remove('hidden');
+          document.getElementById('jobOfferScore').textContent = jobOfferScore;
+        } else {
+          document.getElementById('jobOfferBonus').classList.add('hidden');
+        }
+
+        // Update score status
+        const scoreStatus = document.getElementById('scoreStatus');
+        if (totalScore >= 534) {
+          scoreStatus.textContent = '🎉 You meet the current cutoff!';
+          scoreStatus.className = 'text-lg font-medium text-green-600 dark:text-green-400';
+        } else {
+          scoreStatus.textContent = '📊 Below current cutoff - consider improving your profile';
+          scoreStatus.className = 'text-lg font-medium text-orange-600 dark:text-orange-400';
+        }
+
+        // Show results
+        document.getElementById('eligibilityResults').classList.remove('hidden');
       }
 
       window.openTargetedCategoriesModal = function() {
