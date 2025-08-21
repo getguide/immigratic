@@ -86,21 +86,19 @@ export const metadata = {
     </div>
   </section>
 
-  <!-- Floating Page Navigation -->
-  <div class="sticky top-4 z-50 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-8">
-    <nav class="bg-white/90 dark:bg-gray-800/90 backdrop-blur-lg rounded-2xl border border-white/20 dark:border-gray-700/50 shadow-2xl p-3 sm:p-4">
-      <div class="flex flex-col sm:flex-row items-center justify-center gap-2 sm:gap-4 md:gap-8">
-        <a href="#permanent-residency" class="flex items-center gap-2 px-3 sm:px-4 py-2 rounded-xl hover:bg-blue-50 dark:hover:bg-blue-900/30 transition-all duration-300 group w-full sm:w-auto justify-center">
-          <div class="w-2 h-2 bg-blue-500 rounded-full group-hover:scale-150 transition-transform"></div>
-          <span class="font-semibold text-gray-700 dark:text-gray-300 group-hover:text-blue-600 dark:group-hover:text-blue-400 text-sm sm:text-base">🚀 Permanent Residency</span>
+  <!-- Sticky Navigation Bar -->
+  <nav class="sticky top-0 z-50 bg-white/80 dark:bg-gray-900/80 backdrop-blur-xl border-b border-gray-200 dark:border-gray-700 shadow-lg">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex justify-center space-x-8 py-4">
+        <a href="#permanent-residency" class="nav-link text-gray-600 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 font-medium transition-colors duration-300 border-b-2 border-transparent hover:border-blue-600 dark:hover:border-blue-400 pb-2">
+          Permanent Residency
         </a>
-        <a href="#temporary-residence" class="flex items-center gap-2 px-3 sm:px-4 py-2 rounded-xl hover:bg-green-50 dark:hover:bg-green-900/30 transition-all duration-300 group w-full sm:w-auto justify-center">
-          <div class="w-2 h-2 bg-green-500 rounded-full group-hover:scale-150 transition-transform"></div>
-          <span class="font-semibold text-gray-700 dark:text-gray-300 group-hover:text-green-600 dark:group-hover:text-green-400 text-sm sm:text-base">🎯 Temporary Residence</span>
+        <a href="#temporary-residence" class="nav-link text-gray-600 dark:text-gray-300 hover:text-green-600 dark:hover:text-green-400 font-medium transition-colors duration-300 border-b-2 border-transparent hover:border-green-600 dark:hover:border-green-400 pb-2">
+          Temporary Residence
         </a>
       </div>
     </nav>
-  </div>
+  </nav>
 
   <!-- PR Programs Section - Interactive Immigration Pathways -->
   <section id="permanent-residency" class="py-24 bg-gradient-to-br from-gray-50 to-blue-50 dark:from-gray-800 dark:to-gray-900 relative overflow-hidden">
@@ -2537,3 +2535,27 @@ export const metadata = {
     will-change: transform;
   }
 </style>
+
+<!-- Smooth Scrolling Script -->
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    const navLinks = document.querySelectorAll('.nav-link');
+    
+    navLinks.forEach(link => {
+      link.addEventListener('click', function(e) {
+        e.preventDefault();
+        
+        const targetId = this.getAttribute('href').substring(1);
+        const targetSection = document.getElementById(targetId);
+        
+        if (targetSection) {
+          const offsetTop = targetSection.offsetTop - 80; // Account for sticky nav height
+          window.scrollTo({
+            top: offsetTop,
+            behavior: 'smooth'
+          });
+        }
+      });
+    });
+  });
+</script>

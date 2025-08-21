@@ -31,8 +31,28 @@ export const metadata = {
     </div>
   </section>
 
+  <!-- Sticky Navigation Bar -->
+  <nav class="sticky top-0 z-50 bg-white/80 dark:bg-gray-900/80 backdrop-blur-xl border-b border-gray-200 dark:border-gray-700 shadow-lg">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex justify-center space-x-8 py-4">
+        <a href="#master-assessment" class="nav-link text-gray-600 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 font-medium transition-colors duration-300 border-b-2 border-transparent hover:border-blue-600 dark:hover:border-blue-400 pb-2">
+          Master Assessment
+        </a>
+        <a href="#navigators" class="nav-link text-gray-600 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 font-medium transition-colors duration-300 border-b-2 border-transparent hover:border-blue-600 dark:hover:border-blue-400 pb-2">
+          Navigators
+        </a>
+        <a href="#all-tools" class="nav-link text-gray-600 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 font-medium transition-colors duration-300 border-b-2 border-transparent hover:border-blue-600 dark:hover:border-blue-400 pb-2">
+          All Tools
+        </a>
+        <a href="#get-started" class="nav-link text-gray-600 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 font-medium transition-colors duration-300 border-b-2 border-transparent hover:border-blue-600 dark:hover:border-blue-400 pb-2">
+          Get Started
+        </a>
+      </div>
+    </div>
+  </nav>
+
   <!-- Master Assessment Section -->
-  <section class="py-24 bg-white dark:bg-gray-900">
+  <section id="master-assessment" class="py-24 bg-white dark:bg-gray-900">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
         <div>
@@ -132,7 +152,7 @@ export const metadata = {
   </section>
 
   <!-- Navigators Section -->
-  <section class="py-24 bg-gray-50 dark:bg-gray-800">
+  <section id="navigators" class="py-24 bg-gray-50 dark:bg-gray-800">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="text-center mb-20">
         <h2 class="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white mb-6">
@@ -237,7 +257,7 @@ export const metadata = {
   </section>
 
   <!-- All Tools Grid -->
-  <section class="py-24 bg-white dark:bg-gray-900">
+  <section id="all-tools" class="py-24 bg-white dark:bg-gray-900">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="text-center mb-20">
         <h2 class="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white mb-6">
@@ -318,7 +338,7 @@ export const metadata = {
   </section>
 
   <!-- CTA Section -->
-  <section class="py-24 bg-gradient-to-br from-blue-600 to-purple-600 text-white">
+  <section id="get-started" class="py-24 bg-gradient-to-br from-blue-600 to-purple-600 text-white">
     <div class="max-w-4xl mx-auto text-center px-4 sm:px-6 lg:px-8">
       <h2 class="text-4xl md:text-5xl font-bold mb-6">
         Ready to Use Our
@@ -337,4 +357,28 @@ export const metadata = {
       </div>
     </div>
   </section>
+
+  <!-- Smooth Scrolling Script -->
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      const navLinks = document.querySelectorAll('.nav-link');
+      
+      navLinks.forEach(link => {
+        link.addEventListener('click', function(e) {
+          e.preventDefault();
+          
+          const targetId = this.getAttribute('href').substring(1);
+          const targetSection = document.getElementById(targetId);
+          
+          if (targetSection) {
+            const offsetTop = targetSection.offsetTop - 80; // Account for sticky nav height
+            window.scrollTo({
+              top: offsetTop,
+              behavior: 'smooth'
+            });
+          }
+        });
+      });
+    });
+  </script>
 </Layout>
