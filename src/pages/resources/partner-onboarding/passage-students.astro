@@ -708,22 +708,28 @@ import Layout from '../../../layouts/Layout.astro';
     
     if (progressFill && allMilestones.length > 0) {
       const milestoneObserver = new IntersectionObserver((entries) => {
-        // Calculate progress based on which milestone is most centered in viewport
+        // Calculate progress based on current scroll position relative to milestones
+        const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+        const viewportHeight = window.innerHeight;
         let currentProgress = 0;
-        let maxVisibility = 0;
         
+        // Find which milestone the user is currently viewing
         allMilestones.forEach((milestone, index) => {
           const rect = milestone.getBoundingClientRect();
-          const viewportHeight = window.innerHeight;
-          const centerY = rect.top + rect.height / 2;
-          const distanceFromCenter = Math.abs(centerY - viewportHeight / 2);
-          const visibility = 1 - (distanceFromCenter / (viewportHeight / 2));
+          const milestoneTop = rect.top + scrollTop;
+          const milestoneBottom = milestoneTop + rect.height;
           
-          if (visibility > maxVisibility) {
-            maxVisibility = visibility;
-            currentProgress = (index / (allMilestones.length - 1)) * 100;
+          // Check if milestone is in viewport
+          if (scrollTop + viewportHeight >= milestoneTop && scrollTop <= milestoneBottom) {
+            // Calculate progress within this milestone
+            const milestoneProgress = (scrollTop + viewportHeight - milestoneTop) / (milestoneBottom - milestoneTop);
+            const milestoneWeight = 100 / allMilestones.length;
+            currentProgress = (index * milestoneWeight) + (milestoneProgress * milestoneWeight);
           }
         });
+        
+        // Ensure progress stays within bounds
+        currentProgress = Math.min(Math.max(currentProgress, 0), 100);
         
         // Update progress bar smoothly
         progressFill.style.height = currentProgress + '%';
