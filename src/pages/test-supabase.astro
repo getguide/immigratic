@@ -1,6 +1,7 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import { supabase } from '../lib/supabase';
+import { getLatestDrawsForAllPrograms, transformDrawData } from '../lib/immigration-data';
 
 // Test Supabase connection
 let connectionStatus = 'Testing...';
@@ -8,11 +9,11 @@ let immigrationData = null;
 let error = null;
 
 try {
-  // Test basic connection
+  // Test basic connection - get ALL rows to see the full data
   const { data, error: connectionError } = await supabase
     .from('Recent-Draws')
     .select('*')
-    .limit(1);
+    .order('draw_date_most_recent', { ascending: false });
 
   if (connectionError) {
     connectionStatus = 'Connection Failed';
@@ -113,6 +114,42 @@ try {
           <p class="text-yellow-700 dark:text-yellow-300">
             The connection is working, but no immigration draw data was found in the 'Recent-Draws' table.
           </p>
+        </div>
+      )}
+
+      <!-- Transformed Data Display -->
+      {immigrationData && immigrationData.length > 0 && (
+        <div class="bg-green-50 dark:bg-green-900/20 border border-green-200 dark:border-green-800 rounded-lg p-6 mt-8">
+          <h2 class="text-2xl font-semibold text-green-800 dark:text-green-200 mb-4">
+            Transformed Data (User-Friendly)
+          </h2>
+          <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+            {immigrationData.slice(0, 6).map((row) => {
+              const transformed = transformDrawData(row);
+              return (
+                <div class="bg-white dark:bg-gray-800 rounded-lg p-4 border border-green-200 dark:border-green-700">
+                  <div class="text-sm font-medium text-green-800 dark:text-green-200 mb-2">
+                    {transformed.province} - {transformed.scoringSystem}
+                  </div>
+                  <div class="text-lg font-bold text-gray-900 dark:text-white mb-1">
+                    {transformed.programName}
+                  </div>
+                  <div class="text-sm text-gray-600 dark:text-gray-400 mb-2">
+                    {transformed.drawDate}
+                  </div>
+                  <div class="text-sm text-gray-700 dark:text-gray-300">
+                    <span class="font-medium">Score:</span> {transformed.cutoffScore}
+                  </div>
+                  <div class="text-sm text-gray-700 dark:text-gray-300">
+                    <span class="font-medium">Region:</span> {transformed.region}
+                  </div>
+                </div>
+              );
+            })}
+          </div>
+          <div class="mt-4 text-sm text-green-700 dark:text-green-300">
+            Showing first 6 rows of {immigrationData.length} total rows
+          </div>
         </div>
       )}
 
