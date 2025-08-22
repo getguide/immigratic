@@ -145,6 +145,66 @@ export async function getAverageCRSForProgram(
 }
 
 /**
+ * Get total CEC invitations for 2025
+ */
+export async function getCECTotalInvitations2025(): Promise<number> {
+  try {
+    const { data, error } = await supabase
+      .from('ImmiWatch')
+      .select('invitation')
+      .eq('program', 'EE-CEC')
+      .gte('draw_date_most_recent', '2025-01-01')
+      .lte('draw_date_most_recent', '2025-12-31')
+
+    if (error) {
+      console.error('Error fetching CEC total invitations 2025:', error)
+      return 0
+    }
+
+    const total = data?.reduce((sum, row) => sum + (row.invitation || 0), 0) || 0
+    console.log(`Total CEC invitations 2025: ${total}`)
+    return total
+  } catch (error) {
+    console.error('Error calculating CEC total invitations 2025:', error)
+    return 0
+  }
+}
+
+/**
+ * Get weighted average CRS for CEC in 2025
+ * Formula: SUM(score * invitation) / SUM(invitation)
+ */
+export async function getCECWeightedAverageCRS2025(): Promise<number> {
+  try {
+    const { data, error } = await supabase
+      .from('ImmiWatch')
+      .select('score, invitation')
+      .eq('program', 'EE-CEC')
+      .gte('draw_date_most_recent', '2025-01-01')
+      .lte('draw_date_most_recent', '2025-12-31')
+
+    if (error) {
+      console.error('Error fetching CEC weighted average CRS 2025:', error)
+      return 0
+    }
+
+    if (!data || data.length === 0) return 0
+
+    const totalWeightedScore = data.reduce((sum, row) => sum + ((row.score || 0) * (row.invitation || 0)), 0)
+    const totalInvitations = data.reduce((sum, row) => sum + (row.invitation || 0), 0)
+
+    if (totalInvitations === 0) return 0
+
+    const weightedAverage = Math.round(totalWeightedScore / totalInvitations)
+    console.log(`Weighted average CRS for CEC 2025: ${weightedAverage}`)
+    return weightedAverage
+  } catch (error) {
+    console.error('Error calculating CEC weighted average CRS 2025:', error)
+    return 0
+  }
+}
+
+/**
  * Transform raw ImmiWatch data to user-friendly format
  */
 export function transformImmiWatchData(draw: ImmiWatchDraw): DisplayImmiWatchDraw {
