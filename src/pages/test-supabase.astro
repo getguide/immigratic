@@ -10,7 +10,7 @@ let error = null;
 try {
   // Test basic connection
   const { data, error: connectionError } = await supabase
-    .from('immigration_draws')
+    .from('Recent-Draws')
     .select('*')
     .limit(1);
 
@@ -111,7 +111,7 @@ try {
             No Data Found
           </h3>
           <p class="text-yellow-700 dark:text-yellow-300">
-            The connection is working, but no immigration draw data was found in the 'immigration_draws' table.
+            The connection is working, but no immigration draw data was found in the 'Recent-Draws' table.
           </p>
         </div>
       )}
