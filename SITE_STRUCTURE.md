@@ -1,7 +1,7 @@
 # Immigratic Website Structure & SEO Strategy
 
 ## 🌐 Site Overview
-**Domain:** https://immigratic.vercel.app  
+**Domain:** https://immigratic.com  
 **Platform:** Astro.js with Tailwind CSS  
 **Purpose:** Canada's Leading Immigration Platform  
 **Target Audience:** Immigration applicants, professionals, and institutions  
