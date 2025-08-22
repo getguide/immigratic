@@ -57,19 +57,20 @@ export const metadata = {
   <!-- Sticky Navigation -->
   <nav class="sticky top-0 z-50 bg-white/80 dark:bg-gray-900/80 backdrop-blur-xl border-b border-gray-200 dark:border-gray-700 shadow-lg">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="flex justify-center space-x-8 py-4">
-        <a href="#features" class="nav-link text-gray-600 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 font-medium transition-colors duration-300">
-          Features
-        </a>
-        <a href="#how-it-works" class="nav-link text-gray-600 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 font-medium transition-colors duration-300">
-          How It Works
-        </a>
-        <a href="#scenarios" class="nav-link text-gray-600 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 font-medium transition-colors duration-300">
-          Scenario Analyzer
-        </a>
-        <a href="#commercial" class="nav-link text-gray-600 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 font-medium transition-colors duration-300">
-          Commercial Use
-        </a>
+      <!-- Mobile: 2x2 Grid Layout -->
+      <div class="grid grid-cols-2 gap-3 py-3 md:hidden">
+        <a href="#features" class="nav-link text-sm text-gray-600 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 font-medium transition-colors duration-300 px-3 py-2 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-800 text-center">Features</a>
+        <a href="#how-it-works" class="nav-link text-sm text-gray-600 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 font-medium transition-colors duration-300 px-3 py-2 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-800 text-center">How It Works</a>
+        <a href="#scenarios" class="nav-link text-sm text-gray-600 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 font-medium transition-colors duration-300 px-3 py-2 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-800 text-center">Scenario Analyzer</a>
+        <a href="#commercial" class="nav-link text-sm text-gray-600 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 font-medium transition-colors duration-300 px-3 py-2 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-800 text-center">Commercial Use</a>
+      </div>
+      
+      <!-- Desktop: Single Line Layout -->
+      <div class="hidden md:flex justify-center space-x-6 lg:space-x-8 py-4">
+        <a href="#features" class="nav-link text-base text-gray-600 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 font-medium transition-colors duration-300 px-3 py-2 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-800">Features</a>
+        <a href="#how-it-works" class="nav-link text-base text-gray-600 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 font-medium transition-colors duration-300 px-3 py-2 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-800">How It Works</a>
+        <a href="#scenarios" class="nav-link text-base text-gray-600 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 font-medium transition-colors duration-300 px-3 py-2 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-800">Scenario Analyzer</a>
+        <a href="#commercial" class="nav-link text-base text-gray-600 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 font-medium transition-colors duration-300 px-3 py-2 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-800">Commercial Use</a>
       </div>
     </div>
   </nav>
