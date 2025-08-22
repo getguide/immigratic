@@ -9,6 +9,11 @@ try {
   console.log('LiveCECData - Component loaded successfully');
   console.log('LiveCECData - Data type:', typeof latestCECDraw);
   console.log('LiveCECData - Has data:', !!latestCECDraw);
+  
+  // Force console output with alert for debugging
+  if (typeof window !== 'undefined') {
+    alert(`DEBUG: CEC Data loaded! Score: ${latestCECDraw?.cutoffScore}, Date: ${latestCECDraw?.drawDate}`);
+  }
 } catch (error) {
   console.error('LiveCECData - Error fetching data:', error);
   latestCECDraw = null;
@@ -18,6 +23,13 @@ try {
 <!-- Latest Express Entry Draw - Live Data -->
 <!-- DEBUG: Component is rendering -->
 <div class="insight-card bg-white dark:bg-gray-800 rounded-3xl border-2 border-gray-300 dark:border-gray-600 p-8 hover:border-yellow-400 dark:hover:border-yellow-500 transition-all duration-500 shadow-xl hover:shadow-3xl hover:scale-[1.02] transform group">
+  <!-- DEBUG INFO - VISIBLE ON PAGE -->
+  <div class="mb-4 p-3 bg-yellow-100 border border-yellow-300 rounded-lg text-xs">
+    <strong>DEBUG:</strong> Component loaded at {new Date().toLocaleTimeString()}
+    <br>Data: {latestCECDraw ? 'FOUND' : 'NOT FOUND'}
+    <br>CRS Score: {latestCECDraw?.cutoffScore || 'N/A'}
+    <br>Date: {latestCECDraw?.drawDate || 'N/A'}
+  </div>
   <div class="flex items-center gap-4 mb-6">
     <div class="w-16 h-16 bg-gradient-to-br from-yellow-500 to-orange-600 rounded-2xl flex items-center justify-center group-hover:scale-110 group-hover:rotate-3 transition-all duration-500 animate-float-gentle">
       <span class="text-2xl group-hover:scale-110 transition-transform duration-500">📊</span>
