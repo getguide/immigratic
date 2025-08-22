@@ -312,9 +312,15 @@ const currentYear = new Date().getFullYear();
         >
           <!-- Menu Content -->
           <div class="mobile-menu-dropdown bg-white dark:bg-gray-900 shadow-2xl border-t border-gray-200 dark:border-gray-700 rounded-b-3xl">
-                      <!-- Header with Close Button -->
+                      <!-- Header with Logo, Menu Title, and Close Button -->
             <div class="flex items-center justify-between p-6 border-b border-gray-200 dark:border-gray-700">
-              <h3 class="text-lg font-semibold text-gray-900 dark:text-white">Menu</h3>
+              <!-- Logo -->
+              <div class="flex items-center space-x-2">
+                <img src="/logo-new.png" alt="Immigratic Logo" class="h-6 w-auto" />
+                <span class="text-lg font-semibold text-gray-900 dark:text-white">IMMIGRATIC</span>
+              </div>
+              
+              <!-- Close Button -->
               <button 
                 @click="mobileMenuOpen = false"
                 class="p-2 rounded-full hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors"
