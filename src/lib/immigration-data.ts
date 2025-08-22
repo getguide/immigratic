@@ -6,7 +6,7 @@ import { supabase, type ImmigrationDraw } from './supabase'
 export async function getLatestDraw(program: string): Promise<ImmigrationDraw | null> {
   try {
     const { data, error } = await supabase
-      .from('immigration_draws')
+      .from('Recent-Draws')
       .select('*')
       .eq('program', program)
       .order('draw_date', { ascending: false })
@@ -31,7 +31,7 @@ export async function getLatestDraw(program: string): Promise<ImmigrationDraw | 
 export async function getDrawHistory(program: string, limit: number = 10): Promise<ImmigrationDraw[]> {
   try {
     const { data, error } = await supabase
-      .from('immigration_draws')
+      .from('Recent-Draws')
       .select('*')
       .eq('program', program)
       .order('draw_date', { ascending: false })
