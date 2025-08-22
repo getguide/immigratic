@@ -107,8 +107,8 @@ export function transformDrawData(draw: ImmigrationDraw): DisplayDraw {
     drawDate: formatDrawDate(draw.draw_date_most_recent),
     category: draw.category,
     scoringSystem: draw.scoring_system,
-    cutoffScore: draw.score,
-    invitationsIssued: draw.score, // Assuming score field contains invitations for now
+    cutoffScore: draw.score, // This is the CRS cutoff score
+    invitationsIssued: null, // We don't have this data yet
     region: draw.region,
     province: draw.filter_by_program
   }
@@ -126,7 +126,11 @@ export function getProgramDisplayName(technicalName: string): string {
     'draw.oinp.in-demand-skills': 'Ontario In-Demand Skills Stream',
     'draw.oinp.french': 'Ontario French-Speaking Skilled Worker Stream',
     'draw.oinp.human-capital': 'Ontario Human Capital Priorities Stream',
-    'draw.oinp.trade': 'Ontario Skilled Trades Stream'
+    'draw.oinp.trade': 'Ontario Skilled Trades Stream',
+    'draw.ee.cec': 'Canadian Experience Class',
+    'draw.ee.fsw': 'Federal Skilled Worker',
+    'draw.ee.fst': 'Federal Skilled Trades',
+    'draw.ee.pnp': 'Provincial Nominee Program'
   }
   
   return programNames[technicalName] || technicalName

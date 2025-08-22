@@ -3,6 +3,9 @@ import { getLatestCECDraw } from '../lib/immigration-data';
 
 // Fetch latest CEC draw data
 const latestCECDraw = await getLatestCECDraw();
+
+// Debug: Log what we're getting
+console.log('LiveCECData - Raw data:', latestCECDraw);
 ---
 
 <!-- Latest Express Entry Draw - Live Data -->
@@ -35,15 +38,15 @@ const latestCECDraw = await getLatestCECDraw();
       <div class="flex items-center justify-between p-4 bg-gray-50 dark:bg-gray-700 border border-gray-200 dark:border-gray-600 rounded-2xl hover:bg-green-50 dark:hover:bg-green-900/20 hover:border-green-300 dark:hover:border-green-600 transition-all duration-300 group/metric">
         <span class="text-gray-700 dark:text-gray-300 group-hover/metric:text-green-700 dark:group-hover/metric:text-green-300 transition-colors duration-300">Invitations Issued</span>
         <span class="text-2xl font-bold text-green-600 group-hover/metric:scale-110 group-hover/metric:text-green-700 transition-all duration-300">
-          {latestCECDraw.invitationsIssued || 'N/A'}
+          Coming Soon
         </span>
       </div>
       
-      <!-- CEC Invitations -->
+      <!-- Program Type -->
       <div class="flex items-center justify-between p-4 bg-gray-50 dark:bg-gray-700 border border-gray-200 dark:border-gray-600 rounded-2xl hover:bg-blue-50 dark:hover:bg-blue-900/20 hover:border-blue-300 dark:hover:border-blue-600 transition-all duration-300 group/metric">
-        <span class="text-gray-700 dark:text-gray-300 group-hover/metric:text-blue-700 dark:group-hover/metric:text-blue-300 transition-colors duration-300">CEC Invitations</span>
+        <span class="text-gray-700 dark:text-gray-300 group-hover/metric:text-blue-700 dark:group-hover/metric:text-blue-300 transition-colors duration-300">Program Type</span>
         <span class="text-2xl font-bold text-blue-600 group-hover/metric:scale-110 group-hover/metric:text-blue-700 transition-all duration-300">
-          {latestCECDraw.invitationsIssued || 'N/A'}
+          {latestCECDraw.scoringSystem || 'CEC'}
         </span>
       </div>
     </div>
@@ -59,7 +62,7 @@ const latestCECDraw = await getLatestCECDraw();
         <div class="w-16 h-4 bg-gray-300 dark:bg-gray-600 rounded animate-pulse"></div>
       </div>
       <div class="flex items-center justify-between p-4 bg-gray-50 dark:bg-gray-700 border border-gray-200 dark:border-gray-600 rounded-2xl">
-        <span class="text-gray-700 dark:text-gray-300">CEC Invitations</span>
+        <span class="text-gray-700 dark:text-gray-300">Program Type</span>
         <div class="w-16 h-4 bg-gray-300 dark:bg-gray-600 rounded animate-pulse"></div>
       </div>
     </div>
