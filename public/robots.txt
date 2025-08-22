@@ -4,20 +4,41 @@ Allow: /
 # Sitemap
 Sitemap: https://immigratic.vercel.app/sitemap.xml
 
+# Allow important sections
+Allow: /services/
+Allow: /solutions/
+Allow: /tools/
+Allow: /resources/
+Allow: /about/
+Allow: /contact/
+Allow: /roi-analysis/
+
+# Allow new tool pages
+Allow: /tools/noc-navigator
+Allow: /tools/clb-navigator
+
+# Allow new resource pages
+Allow: /resources/immigration-guides
+Allow: /resources/document-templates
+Allow: /resources/policy-updates
+Allow: /resources/partner-onboarding/
+
 # Disallow sensitive paths
 Disallow: /admin/
 Disallow: /api/
 Disallow: /.env
 Disallow: /config/
 Disallow: /logs/
-
-# Allow important pages
-Allow: /solutions/
-Allow: /services/
-Allow: /tools/
-Allow: /about/
-Allow: /contact/
-Allow: /roi-analysis/
+Disallow: /index_backup
+Disallow: /node_modules/
+Disallow: /.git/
+Disallow: /package.json
+Disallow: /package-lock.json
 
 # Crawl delay (be respectful)
 Crawl-delay: 1
+
+# Additional SEO directives
+# Allow search engines to index all content
+# Focus on immigration services and tools
+# Prioritize user-facing content
