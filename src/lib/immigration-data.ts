@@ -73,6 +73,31 @@ export async function getLatestDrawsForAllPrograms(): Promise<DisplayDraw[]> {
 }
 
 /**
+ * Get the latest CEC draw specifically
+ */
+export async function getLatestCECDraw(): Promise<DisplayDraw | null> {
+  try {
+    const { data, error } = await supabase
+      .from('Recent-Draws')
+      .select('*')
+      .eq('name', 'draw.ee.cec')
+      .order('draw_date_most_recent', { ascending: false })
+      .limit(1)
+      .single()
+
+    if (error) {
+      console.error('Error fetching latest CEC draw:', error)
+      return null
+    }
+
+    return data ? transformDrawData(data) : null
+  } catch (error) {
+    console.error('Error fetching latest CEC draw:', error)
+    return null
+  }
+}
+
+/**
  * Transform raw immigration draw data to user-friendly format
  */
 export function transformDrawData(draw: ImmigrationDraw): DisplayDraw {
