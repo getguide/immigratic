@@ -161,7 +161,7 @@ const currentYear = new Date().getFullYear();
       "url": "https://immigratic.ca",
       "logo": "https://immigratic.ca/logo-new.png",
       "image": image,
-      "description": "Canada's most innovative immigration services platform",
+      "description": "Canada's leading immigration services platform",
       "address": {
         "@type": "PostalAddress",
         "addressCountry": "CA",
@@ -764,10 +764,10 @@ const currentYear = new Date().getFullYear();
           
           bulletDots.forEach(dot => {
             const delay = parseFloat(dot.getAttribute('data-delay') || '0');
-            dot.style.animationDelay = delay + 's';
+            (dot as HTMLElement).style.animationDelay = delay + 's';
             
             // Ensure all dots start with the same animation state
-            dot.style.animationPlayState = 'running';
+            (dot as HTMLElement).style.animationPlayState = 'running';
           });
         }
         
@@ -800,11 +800,11 @@ const currentYear = new Date().getFullYear();
                 entries.forEach((entry) => {
                   if (entry.isIntersecting) {
                     // Show mobile timeline with fade-in
-                    mobileTimelineContainer.style.opacity = '1';
+                    (mobileTimelineContainer as HTMLElement).style.opacity = '1';
                     console.log('Mobile timeline section entered, showing progress bar');
                   } else {
                     // Hide mobile timeline when leaving section
-                    mobileTimelineContainer.style.opacity = '0';
+                    (mobileTimelineContainer as HTMLElement).style.opacity = '0';
                     console.log('Mobile timeline section left, hiding progress bar');
                   }
                 });
@@ -832,12 +832,12 @@ const currentYear = new Date().getFullYear();
                 
                 // Update desktop timeline (vertical)
                 if (timelineProgress) {
-                  timelineProgress.style.height = `${progressPercentage}%`;
+                  (timelineProgress as HTMLElement).style.height = `${progressPercentage}%`;
                 }
                 
                 // Update mobile timeline (vertical)
                 if (mobileTimelineProgress) {
-                  mobileTimelineProgress.style.height = `${progressPercentage}%`;
+                  (mobileTimelineProgress as HTMLElement).style.height = `${progressPercentage}%`;
                 }
                 
                 console.log(`Step ${stepNumber} animated, progress: ${progressPercentage}%`);
@@ -851,7 +851,7 @@ const currentYear = new Date().getFullYear();
           // Observe all timeline steps
           timelineSteps.forEach((step, index) => {
             // Set initial state
-            step.style.transitionDelay = `${index * 200}ms`;
+            (step as HTMLElement).style.transitionDelay = `${index * 200}ms`;
             stepObserver.observe(step);
           });
           
@@ -859,8 +859,8 @@ const currentYear = new Date().getFullYear();
           setTimeout(() => {
             if (timelineSteps[0]) {
               timelineSteps[0].classList.add('animate-in');
-              if (timelineProgress) timelineProgress.style.height = '20%';
-              if (mobileTimelineProgress) mobileTimelineProgress.style.height = '20%';
+              if (timelineProgress) (timelineProgress as HTMLElement).style.height = '20%';
+              if (mobileTimelineProgress) (mobileTimelineProgress as HTMLElement).style.height = '20%';
             }
           }, 500);
         }
@@ -901,17 +901,32 @@ const currentYear = new Date().getFullYear();
       // Mobile Menu Auto-Close on Scroll
       function initMobileMenuAutoClose() {
         let lastScrollTop = 0;
-        let scrollThreshold = 15; // Very responsive threshold
+        let scrollThreshold = 5; // Very responsive threshold
         
+        // Function to close mobile menu - multiple approaches for reliability
         function closeMobileMenu() {
-          // Reset the Alpine.js state directly
+          // Method 1: Direct Alpine.js state manipulation
           const htmlElement = document.documentElement as any;
           if (htmlElement && htmlElement.__x && htmlElement.__x.$data) {
             htmlElement.__x.$data.mobileMenuOpen = false;
           }
+          
+          // Method 2: Trigger click on hamburger button if menu is open
+          const mobileMenu = document.querySelector('[x-show="mobileMenuOpen"]');
+          if (mobileMenu && (mobileMenu as HTMLElement).style.display !== 'none') {
+            const hamburgerButton = document.querySelector('[aria-label="Toggle mobile menu"]') as HTMLElement;
+            if (hamburgerButton) {
+              hamburgerButton.click();
+            }
+          }
+          
+          // Method 3: Force hide the menu element
+          if (mobileMenu) {
+            mobileMenu.setAttribute('style', 'display: none !important');
+          }
         }
         
-        // Close menu on scroll
+        // Close menu on scroll - more aggressive approach
         window.addEventListener('scroll', function() {
           const currentScrollTop = window.pageYOffset || document.documentElement.scrollTop;
           const scrollDistance = Math.abs(currentScrollTop - lastScrollTop);
@@ -932,6 +947,26 @@ const currentYear = new Date().getFullYear();
         document.addEventListener('wheel', function() {
           closeMobileMenu();
         }, { passive: true });
+        
+        // Close menu on window resize (mobile orientation change)
+        window.addEventListener('resize', function() {
+          closeMobileMenu();
+        });
+        
+        // Close menu when clicking outside
+        document.addEventListener('click', function(event) {
+          const mobileMenu = document.querySelector('[x-show="mobileMenuOpen"]');
+          const hamburgerButton = document.querySelector('[aria-label="Toggle mobile menu"]');
+          
+          if (mobileMenu && hamburgerButton) {
+            if (!mobileMenu.contains(event.target as Node) && !hamburgerButton.contains(event.target as Node)) {
+              closeMobileMenu();
+            }
+          }
+        });
+        
+        // Debug logging
+        console.log('Mobile menu auto-close initialized');
       }
       
       // Initialize mobile menu auto-close
