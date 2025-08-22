@@ -9,17 +9,30 @@ if (!supabaseAnonKey) {
 
 export const supabase = createClient(supabaseUrl, supabaseAnonKey)
 
-// Types for immigration draw data
+// Types for immigration draw data - matches actual Supabase table
 export interface ImmigrationDraw {
   id: string
-  draw_type: string // 'draw.oinp.fws', etc.
-  draw_date: string
+  name: string // 'draw.oinp.fws', etc.
+  draw_date_most_recent: string // '2025-06-06'
   category: string // 'All', etc.
-  program: string // 'PNP', 'CEC', 'FSW', etc.
-  invitations_issued: number
-  additional_field?: string | null
+  scoring_system: string // 'PNP', 'CEC', 'FSW', etc.
+  score: number // cutoff score or invitation count
+  number_of_draws_in_12_months?: number | null
   region: string // 'Northern Ontario', etc.
-  province_program: string // 'OINP', etc.
+  filter_by_program: string // 'OINP', etc.
+}
+
+// User-friendly display interface
+export interface DisplayDraw {
+  id: string
+  programName: string // 'Ontario Foreign Worker Stream'
+  drawDate: string // 'June 6, 2025'
+  category: string // 'All'
+  scoringSystem: string // 'PNP'
+  cutoffScore?: number // if available
+  invitationsIssued?: number // if available
+  region: string // 'Northern Ontario'
+  province: string // 'OINP'
 }
 
 // Types for NOC codes
