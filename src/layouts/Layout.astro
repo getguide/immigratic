@@ -307,25 +307,10 @@ const currentYear = new Date().getFullYear();
           x-transition:leave="transition ease-in duration-200"
           x-transition:leave-start="opacity-100 transform translate-y-0"
           x-transition:leave-end="opacity-0 transform -translate-y-2"
-
           style="display: none;"
         >
           <!-- Menu Content -->
           <div class="mobile-menu-dropdown bg-white dark:bg-gray-900 shadow-2xl border-t border-gray-200 dark:border-gray-700 rounded-b-3xl">
-                      <!-- Header with Close Button -->
-            <div class="flex items-center justify-between p-6 border-b border-gray-200 dark:border-gray-700">
-              <h3 class="text-lg font-semibold text-gray-900 dark:text-white">Menu</h3>
-              <button 
-                @click="mobileMenuOpen = false"
-                class="p-2 rounded-full hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors"
-                aria-label="Close menu"
-              >
-                <svg class="w-5 h-5 text-gray-500 dark:text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
-                </svg>
-              </button>
-            </div>
-            
             <!-- Navigation Links -->
             <div class="p-6 space-y-2">
               <a href="/solutions?utm_source=immigratic&utm_medium=website&utm_campaign=mobile_nav&utm_content=solutions" class="mobile-menu-item flex items-center px-4 py-3 text-gray-700 dark:text-gray-300 hover:text-primary-600 dark:hover:text-primary-400 hover:bg-gray-50 dark:hover:bg-gray-800 rounded-xl transition-all duration-200 group">
@@ -919,13 +904,7 @@ const currentYear = new Date().getFullYear();
         let scrollThreshold = 15; // Very responsive threshold
         
         function closeMobileMenu() {
-          // Direct approach: hide the mobile menu element
-          const mobileMenu = document.querySelector('[x-show="mobileMenuOpen"]');
-          if (mobileMenu) {
-            mobileMenu.style.display = 'none';
-          }
-          
-          // Also try to reset the Alpine.js state
+          // Reset the Alpine.js state directly
           const htmlElement = document.documentElement as any;
           if (htmlElement && htmlElement.__x && htmlElement.__x.$data) {
             htmlElement.__x.$data.mobileMenuOpen = false;
