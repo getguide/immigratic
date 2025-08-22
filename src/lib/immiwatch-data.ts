@@ -205,6 +205,55 @@ export async function getCECWeightedAverageCRS2025(): Promise<number> {
 }
 
 /**
+ * Get total invitations for ALL Express Entry programs in 2025
+ * Includes: EE-CEC, EE-FSW, EE-FST, EE-PNP
+ */
+export async function getAllEETotalInvitations2025(): Promise<number> {
+  try {
+    const { data, error } = await supabase
+      .from('ImmiWatch')
+      .select('invitation')
+      .in('program', ['EE-CEC', 'EE-FSW', 'EE-FST', 'EE-PNP'])
+      .gte('draw_date_most_recent', '2025-01-01')
+      .lte('draw_date_most_recent', '2025-12-31')
+
+    if (error) {
+      console.error('Error fetching all EE total invitations 2025:', error)
+      return 0
+    }
+
+    const total = data?.reduce((sum, row) => sum + (row.invitation || 0), 0) || 0
+    console.log(`Total all EE invitations 2025: ${total}`)
+    return total
+  } catch (error) {
+    console.error('Error calculating all EE total invitations 2025:', error)
+    return 0
+  }
+}
+
+/**
+ * Calculate real capacity used with 1.6x coefficient
+ * Formula: Total Invitations × 1.6
+ */
+export async function getRealCapacityUsed2025(): Promise<number> {
+  const totalInvitations = await getAllEETotalInvitations2025()
+  const realCapacityUsed = Math.round(totalInvitations * 1.6)
+  console.log(`Real capacity used 2025 (with 1.6x): ${realCapacityUsed}`)
+  return realCapacityUsed
+}
+
+/**
+ * Calculate capacity remaining from 62,000 total allocation
+ * Formula: 62,000 - Real Capacity Used
+ */
+export async function getCapacityRemaining2025(): Promise<number> {
+  const realCapacityUsed = await getRealCapacityUsed2025()
+  const capacityRemaining = 62000 - realCapacityUsed
+  console.log(`Capacity remaining 2025: ${capacityRemaining}`)
+  return capacityRemaining
+}
+
+/**
  * Transform raw ImmiWatch data to user-friendly format
  */
 export function transformImmiWatchData(draw: ImmiWatchDraw): DisplayImmiWatchDraw {
