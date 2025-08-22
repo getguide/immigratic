@@ -1,0 +1,81 @@
+---
+import { getLatestCECDraw } from '../lib/immigration-data';
+
+// Fetch latest CEC draw data
+const latestCECDraw = await getLatestCECDraw();
+---
+
+<!-- Latest Express Entry Draw - Live Data -->
+<div class="insight-card bg-white dark:bg-gray-800 rounded-3xl border-2 border-gray-300 dark:border-gray-600 p-8 hover:border-yellow-400 dark:hover:border-yellow-500 transition-all duration-500 shadow-xl hover:shadow-3xl hover:scale-[1.02] transform group">
+  <div class="flex items-center gap-4 mb-6">
+    <div class="w-16 h-16 bg-gradient-to-br from-yellow-500 to-orange-600 rounded-2xl flex items-center justify-center group-hover:scale-110 group-hover:rotate-3 transition-all duration-500 animate-float-gentle">
+      <span class="text-2xl group-hover:scale-110 transition-transform duration-500">📊</span>
+    </div>
+    <div>
+      <h3 class="text-2xl font-bold text-gray-900 dark:text-white">Latest Express Entry Draw</h3>
+      {latestCECDraw ? (
+        <p class="text-gray-600 dark:text-gray-300">Updated {latestCECDraw.drawDate}</p>
+      ) : (
+        <p class="text-gray-600 dark:text-gray-300">Data loading...</p>
+      )}
+    </div>
+  </div>
+  
+  {latestCECDraw ? (
+    <div class="space-y-4">
+      <!-- CRS Cutoff Score -->
+      <div class="flex items-center justify-between p-4 bg-gray-50 dark:bg-gray-700 border border-gray-200 dark:border-gray-600 rounded-2xl hover:bg-yellow-50 dark:hover:bg-yellow-900/20 hover:border-yellow-300 dark:hover:border-yellow-600 transition-all duration-300 group/metric">
+        <span class="text-gray-700 dark:text-gray-300 group-hover/metric:text-yellow-700 dark:group-hover/metric:text-yellow-300 transition-colors duration-300">CRS Cutoff Score</span>
+        <span class="text-2xl font-bold text-yellow-600 group-hover/metric:scale-110 group-hover/metric:text-yellow-700 transition-all duration-300">
+          {latestCECDraw.cutoffScore || 'N/A'}
+        </span>
+      </div>
+      
+      <!-- Invitations Issued -->
+      <div class="flex items-center justify-between p-4 bg-gray-50 dark:bg-gray-700 border border-gray-200 dark:border-gray-600 rounded-2xl hover:bg-green-50 dark:hover:bg-green-900/20 hover:border-green-300 dark:hover:border-green-600 transition-all duration-300 group/metric">
+        <span class="text-gray-700 dark:text-gray-300 group-hover/metric:text-green-700 dark:group-hover/metric:text-green-300 transition-colors duration-300">Invitations Issued</span>
+        <span class="text-2xl font-bold text-green-600 group-hover/metric:scale-110 group-hover/metric:text-green-700 transition-all duration-300">
+          {latestCECDraw.invitationsIssued || 'N/A'}
+        </span>
+      </div>
+      
+      <!-- CEC Invitations -->
+      <div class="flex items-center justify-between p-4 bg-gray-50 dark:bg-gray-700 border border-gray-200 dark:border-gray-600 rounded-2xl hover:bg-blue-50 dark:hover:bg-blue-900/20 hover:border-blue-300 dark:hover:border-blue-600 transition-all duration-300 group/metric">
+        <span class="text-gray-700 dark:text-gray-300 group-hover/metric:text-blue-700 dark:group-hover/metric:text-blue-300 transition-colors duration-300">CEC Invitations</span>
+        <span class="text-2xl font-bold text-blue-600 group-hover/metric:scale-110 group-hover/metric:text-blue-700 transition-all duration-300">
+          {latestCECDraw.invitationsIssued || 'N/A'}
+        </span>
+      </div>
+    </div>
+  ) : (
+    <!-- Loading State -->
+    <div class="space-y-4">
+      <div class="flex items-center justify-between p-4 bg-gray-50 dark:bg-gray-700 border border-gray-200 dark:border-gray-600 rounded-2xl">
+        <span class="text-gray-700 dark:text-gray-300">CRS Cutoff Score</span>
+        <div class="w-16 h-4 bg-gray-300 dark:bg-gray-600 rounded animate-pulse"></div>
+      </div>
+      <div class="flex items-center justify-between p-4 bg-gray-50 dark:bg-gray-700 border border-gray-200 dark:border-gray-600 rounded-2xl">
+        <span class="text-gray-700 dark:text-gray-300">Invitations Issued</span>
+        <div class="w-16 h-4 bg-gray-300 dark:bg-gray-600 rounded animate-pulse"></div>
+      </div>
+      <div class="flex items-center justify-between p-4 bg-gray-50 dark:bg-gray-700 border border-gray-200 dark:border-gray-600 rounded-2xl">
+        <span class="text-gray-700 dark:text-gray-300">CEC Invitations</span>
+        <div class="w-16 h-4 bg-gray-300 dark:bg-gray-600 rounded animate-pulse"></div>
+      </div>
+    </div>
+  )}
+  
+  <!-- Trend Analysis -->
+  <div class="mt-6 p-4 bg-green-100 dark:bg-green-900/30 rounded-2xl border border-green-300 dark:border-green-700 hover:bg-green-200 dark:hover:bg-green-900/40 hover:border-green-400 dark:hover:border-green-600 transition-all duration-300 group/trend">
+    <div class="flex items-center gap-2 mb-2">
+      <span class="text-green-600 group-hover/trend:scale-110 transition-transform duration-300">📈</span>
+      <span class="font-semibold text-green-700 dark:text-green-300">Live Data</span>
+    </div>
+    <p class="text-sm text-green-700 dark:text-green-300">
+      {latestCECDraw ? 
+        `Real-time data from latest CEC draw on ${latestCECDraw.drawDate}` : 
+        'Connecting to live immigration data...'
+      }
+    </p>
+  </div>
+</div>
