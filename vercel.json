@@ -36,6 +36,11 @@
       "source": "/products/noc-navigator",
       "destination": "/tools/noc-navigator",
       "permanent": true
+    },
+    {
+      "source": "/contact-us",
+      "destination": "/contact",
+      "permanent": true
     }
   ]
 }
