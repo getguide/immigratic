@@ -98,7 +98,8 @@ export const metadata = {
   <!-- Sticky Navigation Bar -->
   <nav class="sticky top-0 z-50 bg-white/80 dark:bg-gray-900/80 backdrop-blur-xl border-b border-gray-200 dark:border-gray-700 shadow-lg">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="flex justify-center space-x-8 py-4">
+      <!-- Desktop Navigation -->
+      <div class="hidden md:flex justify-center space-x-8 py-4">
         <a href="#master-assessment" class="nav-link text-gray-600 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 font-medium transition-colors duration-300 border-b-2 border-transparent hover:border-blue-600 dark:hover:border-blue-400 pb-2">
           Master Assessment
         </a>
@@ -112,13 +113,41 @@ export const metadata = {
           Get Started
         </a>
       </div>
+      
+      <!-- Mobile Navigation -->
+      <div class="md:hidden py-3">
+        <div class="flex justify-between items-center">
+          <span class="text-sm font-medium text-gray-600 dark:text-gray-300">Tools Navigation</span>
+          <button id="mobileNavToggle" class="p-2 text-gray-600 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+            </svg>
+          </button>
+        </div>
+        
+        <!-- Mobile Navigation Dropdown -->
+        <div id="mobileNavDropdown" class="hidden mt-3 space-y-2 border-t border-gray-200 dark:border-gray-700 pt-3">
+          <a href="#master-assessment" class="mobile-nav-link block py-2 px-3 text-gray-600 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 hover:bg-gray-50 dark:hover:bg-gray-800 rounded-lg transition-colors duration-200">
+            Master Assessment
+          </a>
+          <a href="#navigators" class="mobile-nav-link block py-2 px-3 text-gray-600 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 hover:bg-gray-50 dark:hover:bg-gray-800 rounded-lg transition-colors duration-200">
+            Navigators
+          </a>
+          <a href="#all-tools" class="mobile-nav-link block py-2 px-3 text-gray-600 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 hover:bg-gray-50 dark:hover:bg-gray-800 rounded-lg transition-colors duration-200">
+            All Tools
+          </a>
+          <a href="#get-started" class="mobile-nav-link block py-2 px-3 text-gray-600 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 hover:bg-gray-50 dark:hover:bg-gray-800 rounded-lg transition-colors duration-200">
+            Get Started
+          </a>
+        </div>
+      </div>
     </div>
   </nav>
 
   <!-- Master Assessment Section -->
-  <section id="master-assessment" class="py-24 bg-white dark:bg-gray-900">
+  <section id="master-assessment" class="py-16 sm:py-20 lg:py-24 bg-white dark:bg-gray-900">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center">
         <div>
           <div class="inline-flex items-center gap-3 mb-6">
             <div class="w-2 h-2 bg-gradient-to-r from-blue-500 to-purple-500 rounded-full animate-pulse"></div>
@@ -216,9 +245,9 @@ export const metadata = {
   </section>
 
   <!-- Navigators Section -->
-  <section id="navigators" class="py-24 bg-gray-50 dark:bg-gray-800">
+  <section id="navigators" class="py-16 sm:py-20 lg:py-24 bg-gray-50 dark:bg-gray-800">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="text-center mb-20">
+              <div class="text-center mb-12 sm:mb-16 lg:mb-20">
         <h2 class="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white mb-6">
           Our
           <span class="bg-gradient-to-r from-green-600 to-blue-600 bg-clip-text text-transparent">
@@ -230,7 +259,7 @@ export const metadata = {
         </p>
       </div>
       
-      <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12">
         <!-- CLB Navigator -->
         <div class="group relative">
           <div class="absolute inset-0 bg-gradient-to-r from-green-600 to-blue-600 rounded-3xl blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
@@ -321,9 +350,9 @@ export const metadata = {
   </section>
 
   <!-- All Tools Grid -->
-  <section id="all-tools" class="py-24 bg-white dark:bg-gray-900">
+  <section id="all-tools" class="py-16 sm:py-20 lg:py-24 bg-white dark:bg-gray-900">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="text-center mb-20">
+              <div class="text-center mb-12 sm:mb-16 lg:mb-20">
         <h2 class="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white mb-6">
           Complete
           <span class="bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
@@ -335,7 +364,7 @@ export const metadata = {
         </p>
       </div>
       
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
         <!-- Master Assessment -->
         <div class="group relative">
           <div class="absolute inset-0 bg-gradient-to-r from-blue-600 to-purple-600 rounded-3xl blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
@@ -488,7 +517,7 @@ export const metadata = {
   </section>
 
   <!-- CTA Section -->
-  <section id="get-started" class="py-24 bg-gradient-to-br from-blue-600 to-purple-600 text-white">
+  <section id="get-started" class="py-16 sm:py-20 lg:py-24 bg-gradient-to-br from-blue-600 to-purple-600 text-white">
     <div class="max-w-4xl mx-auto text-center px-4 sm:px-6 lg:px-8">
       <h2 class="text-4xl md:text-5xl font-bold mb-6">
         Ready to Use Our
@@ -511,21 +540,39 @@ export const metadata = {
   <!-- Smooth Scrolling Script -->
   <script>
     document.addEventListener('DOMContentLoaded', function() {
-      const navLinks = document.querySelectorAll('.nav-link');
+      const navLinks = document.querySelectorAll('.nav-link, .mobile-nav-link');
       
+      // Mobile navigation toggle
+      const mobileNavToggle = document.getElementById('mobileNavToggle');
+      const mobileNavDropdown = document.getElementById('mobileNavDropdown');
+      
+      if (mobileNavToggle && mobileNavDropdown) {
+        mobileNavToggle.addEventListener('click', function() {
+          mobileNavDropdown.classList.toggle('hidden');
+        });
+      }
+      
+      // Smooth scrolling for all navigation links
       navLinks.forEach(link => {
-        link.addEventListener('click', function(e) {
+        link.addEventListener('click', function(e: Event) {
           e.preventDefault();
           
-          const targetId = this.getAttribute('href').substring(1);
-          const targetSection = document.getElementById(targetId);
+          // Close mobile dropdown if open
+          if (mobileNavDropdown && !mobileNavDropdown.classList.contains('hidden')) {
+            mobileNavDropdown.classList.add('hidden');
+          }
           
-          if (targetSection) {
-            const offsetTop = targetSection.offsetTop - 80; // Account for sticky nav height
-            window.scrollTo({
-              top: offsetTop,
-              behavior: 'smooth'
-            });
+          const targetId = (this as HTMLAnchorElement).getAttribute('href')?.substring(1);
+          if (targetId) {
+            const targetSection = document.getElementById(targetId);
+            
+            if (targetSection) {
+              const offsetTop = targetSection.offsetTop - 80; // Account for sticky nav height
+              window.scrollTo({
+                top: offsetTop,
+                behavior: 'smooth'
+              });
+            }
           }
         });
       });
