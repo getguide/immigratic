@@ -77,6 +77,8 @@ export async function getLatestDrawsForAllPrograms(): Promise<DisplayDraw[]> {
  */
 export async function getLatestCECDraw(): Promise<DisplayDraw | null> {
   try {
+    console.log('getLatestCECDraw: Starting to fetch CEC data...');
+    
     const { data, error } = await supabase
       .from('Recent-Draws')
       .select('*')
@@ -85,12 +87,22 @@ export async function getLatestCECDraw(): Promise<DisplayDraw | null> {
       .limit(1)
       .single()
 
+    console.log('getLatestCECDraw: Supabase response:', { data, error });
+
     if (error) {
       console.error('Error fetching latest CEC draw:', error)
       return null
     }
 
-    return data ? transformDrawData(data) : null
+    if (!data) {
+      console.log('getLatestCECDraw: No CEC data found in database');
+      return null;
+    }
+
+    console.log('getLatestCECDraw: Found CEC data:', data);
+    const transformed = transformDrawData(data);
+    console.log('getLatestCECDraw: Transformed data:', transformed);
+    return transformed;
   } catch (error) {
     console.error('Error fetching latest CEC draw:', error)
     return null
