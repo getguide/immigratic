@@ -1,13 +1,14 @@
 ---
-import { getCECTotalInvitations2025, getCECWeightedAverageCRS2025 } from '../lib/immiwatch-data';
+import { getCECTotalInvitations2025, getCECWeightedAverageCRS2025, getCapacityRemaining2025, getRealCapacityUsed2025 } from '../lib/immiwatch-data';
 
 // Fetch aggregated CEC data for 2025
 const totalInvitations = await getCECTotalInvitations2025();
 const averageCRS = await getCECWeightedAverageCRS2025();
 
-// Calculate capacity remaining (assuming 62,000 total capacity for 2025)
+// Calculate capacity with 1.6x coefficient
 const totalCapacity = 62000;
-const capacityRemaining = totalCapacity - totalInvitations;
+const realCapacityUsed = await getRealCapacityUsed2025();
+const capacityRemaining = await getCapacityRemaining2025();
 const capacityPercentage = Math.round((capacityRemaining / totalCapacity) * 100);
 ---
 
@@ -60,9 +61,7 @@ const capacityPercentage = Math.round((capacityRemaining / totalCapacity) * 100)
       <span class="font-semibold text-blue-700 dark:text-blue-300">Live Data</span>
     </div>
     <div class="text-xs text-blue-600 dark:text-blue-400 font-medium">
-      *Data pulled from ImmiWatch table in real-time
-      <br>*Average CRS is weighted by invitation count
-      <br>*Capacity based on 62,000 total 2025 allocation
+      *Capacity remaining is based on 1.6x coefficient
     </div>
   </div>
 </div>
