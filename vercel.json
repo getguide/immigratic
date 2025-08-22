@@ -30,5 +30,12 @@
         }
       ]
     }
+  ],
+  "redirects": [
+    {
+      "source": "/products/noc-navigator",
+      "destination": "/tools/noc-navigator",
+      "permanent": true
+    }
   ]
 }
