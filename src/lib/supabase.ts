@@ -12,13 +12,14 @@ export const supabase = createClient(supabaseUrl, supabaseAnonKey)
 // Types for immigration draw data
 export interface ImmigrationDraw {
   id: string
-  program: string // 'CEC', 'FSW', 'PNP', etc.
+  draw_type: string // 'draw.oinp.fws', etc.
   draw_date: string
-  cutoff_score: number
+  category: string // 'All', etc.
+  program: string // 'PNP', 'CEC', 'FSW', etc.
   invitations_issued: number
-  tie_breaking_rule?: string
-  created_at: string
-  updated_at: string
+  additional_field?: string | null
+  region: string // 'Northern Ontario', etc.
+  province_program: string // 'OINP', etc.
 }
 
 // Types for NOC codes
