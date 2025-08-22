@@ -27,7 +27,7 @@ This guide provides step-by-step instructions for implementing comprehensive SEO
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://immigratic.vercel.app/</loc>
+    <loc>https://immigratic.com/</loc>
     <lastmod>2024-12-19</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
@@ -51,7 +51,7 @@ User-agent: *
 Allow: /
 
 # Sitemap
-Sitemap: https://immigratic.vercel.app/sitemap.xml
+Sitemap: https://immigratic.com/sitemap.xml
 
 # Allow important sections
 Allow: /services/
@@ -103,8 +103,8 @@ Crawl-delay: 1
 <!-- Add to each page for social media sharing -->
 <meta property="og:title" content="[Page Title]">
 <meta property="og:description" content="[Page Description]">
-<meta property="og:image" content="https://immigratic.vercel.app/og-image.jpg">
-<meta property="og:url" content="https://immigratic.vercel.app[page-url]">
+<meta property="og:image" content="https://immigratic.com/og-image.jpg">
+<meta property="og:url" content="https://immigratic.com[page-url]">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Immigratic">
 ```
@@ -115,7 +115,7 @@ Crawl-delay: 1
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="[Page Title]">
 <meta name="twitter:description" content="[Page Description]">
-<meta name="twitter:image" content="https://immigratic.vercel.app/twitter-image.jpg">
+<meta name="twitter:image" content="https://immigratic.com/twitter-image.jpg">
 <meta name="twitter:site" content="@immigratic">
 ```
 
@@ -201,8 +201,8 @@ Crawl-delay: 1
   "@type": "Organization",
   "name": "Immigratic",
   "description": "Canada's Leading Immigration Platform",
-  "url": "https://immigratic.vercel.app",
-  "logo": "https://immigratic.vercel.app/logo.svg",
+  "url": "https://immigratic.com",
+  "logo": "https://immigratic.com/logo.svg",
   "contactPoint": {
     "@type": "ContactPoint",
     "contactType": "customer service",
@@ -372,7 +372,7 @@ Crawl-delay: 1
 <html lang="en-CA">
 <head>
   <meta http-equiv="content-language" content="en-CA">
-  <link rel="alternate" hreflang="fr-CA" href="https://immigratic.vercel.app/fr/">
+  <link rel="alternate" hreflang="fr-CA" href="https://immigratic.com/fr/">
 </head>
 ```
 
