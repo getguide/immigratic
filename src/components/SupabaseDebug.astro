@@ -1,0 +1,57 @@
+---
+import { supabase } from '../lib/supabase';
+
+// Simple query to see ALL data without filters
+const { data: allData, error } = await supabase
+  .from('ImmiWatch')
+  .select('*')
+  .order('draw_date_most_recent', { ascending: false });
+
+console.log('🔍 DEBUG: All data from ImmiWatch:', allData);
+console.log('🔍 DEBUG: Total records found:', allData?.length || 0);
+
+// Check specific programs
+const healthData = allData?.filter(row => row.program === 'EE-HEALTH') || [];
+const frenchData = allData?.filter(row => row.program === 'EE-French') || [];
+const tradeData = allData?.filter(row => row.program === 'EE-Trade') || [];
+const educationData = allData?.filter(row => row.program === 'EE-Education') || [];
+const agricultureData = allData?.filter(row => row.program === 'EE-Agriculture') || [];
+
+console.log('🔍 DEBUG: EE-HEALTH records:', healthData.length);
+console.log('🔍 DEBUG: EE-FRENCH records:', frenchData.length);
+console.log('🔍 DEBUG: EE-TRADE records:', tradeData.length);
+console.log('🔍 DEBUG: EE-EDUCATION records:', educationData.length);
+console.log('🔍 DEBUG: EE-AGRICULTURE records:', agricultureData.length);
+
+// Sum invitations for each program
+const healthTotal = healthData.reduce((sum, row) => sum + (row.invitation || 0), 0);
+const frenchTotal = frenchData.reduce((sum, row) => sum + (row.invitation || 0), 0);
+const tradeTotal = tradeData.reduce((sum, row) => sum + (row.invitation || 0), 0);
+const educationTotal = educationData.reduce((sum, row) => sum + (row.invitation || 0), 0);
+const agricultureTotal = agricultureData.reduce((sum, row) => sum + (row.invitation || 0), 0);
+
+console.log('🔍 DEBUG: EE-HEALTH total invitations:', healthTotal);
+console.log('🔍 DEBUG: EE-FRENCH total invitations:', frenchTotal);
+console.log('🔍 DEBUG: EE-TRADE total invitations:', tradeTotal);
+console.log('🔍 DEBUG: EE-EDUCATION total invitations:', educationTotal);
+console.log('🔍 DEBUG: EE-AGRICULTURE total invitations:', agricultureTotal);
+---
+
+<!-- SUPABASE DEBUG INFO - TEMPORARY -->
+<div class="mt-4 p-4 bg-yellow-100 dark:bg-yellow-900/30 rounded-2xl border border-yellow-300 dark:border-yellow-700">
+  <div class="text-yellow-800 dark:text-yellow-200 font-mono text-sm">
+    <div><strong>SUPABASE DEBUG:</strong></div>
+    <div>Total Records: {allData?.length || 0}</div>
+    <div class="mt-2">
+      <div><strong>Program Breakdown:</strong></div>
+      <div>EE-HEALTH: {healthData.length} records, {healthTotal.toLocaleString()} invitations</div>
+      <div>EE-French: {frenchData.length} records, {frenchTotal.toLocaleString()} invitations</div>
+      <div>EE-Trade: {tradeData.length} records, {tradeTotal.toLocaleString()} invitations</div>
+      <div>EE-Education: {educationData.length} records, {educationTotal.toLocaleString()} invitations</div>
+      <div>EE-Agriculture: {agricultureData.length} records, {agricultureTotal.toLocaleString()} invitations</div>
+    </div>
+    <div class="mt-2">
+      <div><strong>Grand Total:</strong> {(healthTotal + frenchTotal + tradeTotal + educationTotal + agricultureTotal).toLocaleString()}</div>
+    </div>
+  </div>
+</div>
