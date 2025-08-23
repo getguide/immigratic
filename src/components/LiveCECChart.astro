@@ -1,0 +1,180 @@
+---
+import { getCECDrawsForChart2025 } from '../lib/immiwatch-data';
+
+// Fetch chart data
+const chartData = await getCECDrawsForChart2025();
+
+// Prepare data for Chart.js
+const labels = chartData.map(item => item.date);
+const crsScores = chartData.map(item => item.crsScore);
+const invitations = chartData.map(item => item.invitations);
+---
+
+<!-- CEC Trends Chart 2025 -->
+<div class="insight-card bg-white dark:bg-gray-800 rounded-3xl border-2 border-gray-300 dark:border-gray-600 p-8 hover:border-indigo-400 dark:hover:border-indigo-500 transition-all duration-500 shadow-xl hover:shadow-3xl hover:scale-[1.02] transform group">
+  <div class="flex items-center gap-4 mb-6">
+    <div class="w-16 h-16 bg-gradient-to-br from-indigo-500 to-purple-600 rounded-2xl flex items-center justify-center group-hover:scale-110 group-hover:rotate-3 transition-all duration-500 animate-float-gentle" style="animation-delay: 1s;">
+      <span class="text-2xl group-hover:scale-110 transition-transform duration-500">📈</span>
+    </div>
+    <div>
+      <h3 class="text-2xl font-bold text-gray-900 dark:text-white">CEC Trends 2025</h3>
+      <p class="text-gray-600 dark:text-gray-300">CRS Scores & Invitations Over Time</p>
+    </div>
+  </div>
+
+  {chartData.length > 0 ? (
+    <div class="space-y-4">
+      <!-- Chart Container -->
+      <div class="relative h-64 bg-gray-50 dark:bg-gray-700 rounded-2xl p-4">
+        <canvas id="cecChart" class="w-full h-full"></canvas>
+      </div>
+
+      <!-- Chart Legend -->
+      <div class="flex items-center justify-center gap-6 text-sm">
+        <div class="flex items-center gap-2">
+          <div class="w-4 h-4 bg-blue-500 rounded-full"></div>
+          <span class="text-gray-700 dark:text-gray-300">CRS Score</span>
+        </div>
+        <div class="flex items-center gap-2">
+          <div class="w-4 h-4 bg-green-500 rounded-full"></div>
+          <span class="text-gray-700 dark:text-gray-300">Invitations</span>
+        </div>
+      </div>
+
+      <!-- Data Summary -->
+      <div class="grid grid-cols-2 gap-4 text-center">
+        <div class="bg-blue-50 dark:bg-blue-900/20 rounded-xl p-3">
+          <div class="text-2xl font-bold text-blue-600 dark:text-blue-400">
+            {Math.min(...crsScores)} - {Math.max(...crsScores)}
+          </div>
+          <div class="text-xs text-gray-600 dark:text-gray-400">CRS Range</div>
+        </div>
+        <div class="bg-green-50 dark:bg-green-900/20 rounded-xl p-3">
+          <div class="text-2xl font-bold text-green-600 dark:text-green-400">
+            {chartData.length}
+          </div>
+          <div class="text-xs text-gray-600 dark:text-gray-400">Total Draws</div>
+        </div>
+      </div>
+    </div>
+  ) : (
+    <!-- No Data State -->
+    <div class="text-center py-12">
+      <div class="text-4xl mb-4">📊</div>
+      <p class="text-gray-500 dark:text-gray-400">No CEC draw data available for 2025</p>
+    </div>
+  )}
+
+  <!-- Chart Info -->
+  <div class="mt-6 p-4 bg-indigo-100 dark:bg-indigo-900/30 rounded-2xl border border-indigo-300 dark:border-indigo-700">
+    <div class="flex items-center gap-2 mb-2">
+      <span class="text-indigo-600">💡</span>
+      <span class="font-semibold text-indigo-700 dark:text-indigo-300">Trend Analysis</span>
+    </div>
+    <p class="text-sm text-indigo-700 dark:text-indigo-300">
+      Track CRS score trends and invitation volumes across all CEC draws in 2025
+    </p>
+  </div>
+</div>
+
+<!-- Chart.js Script -->
+<script>
+  import Chart from 'chart.js/auto';
+
+  // Wait for DOM to be ready
+  document.addEventListener('DOMContentLoaded', function() {
+    const ctx = document.getElementById('cecChart');
+    if (!ctx) return;
+
+    const chartData = {
+      labels: <%- JSON.stringify(labels) %>,
+      datasets: [
+        {
+          label: 'CRS Score',
+          data: <%- JSON.stringify(crsScores) %>,
+          borderColor: '#3b82f6',
+          backgroundColor: 'rgba(59, 130, 246, 0.1)',
+          yAxisID: 'y',
+          type: 'line',
+          tension: 0.4,
+          pointRadius: 6,
+          pointHoverRadius: 8
+        },
+        {
+          label: 'Invitations',
+          data: <%- JSON.stringify(invitations) %>,
+          backgroundColor: 'rgba(34, 197, 94, 0.8)',
+          borderColor: '#22c55e',
+          yAxisID: 'y1',
+          type: 'bar',
+          borderRadius: 4
+        }
+      ]
+    };
+
+    const config = {
+      type: 'line',
+      data: chartData,
+      options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        interaction: {
+          mode: 'index',
+          intersect: false,
+        },
+        scales: {
+          x: {
+            display: true,
+            title: {
+              display: true,
+              text: 'Draw Date'
+            },
+            grid: {
+              color: 'rgba(156, 163, 175, 0.2)'
+            }
+          },
+          y: {
+            type: 'linear',
+            display: true,
+            position: 'left',
+            title: {
+              display: true,
+              text: 'CRS Score'
+            },
+            grid: {
+              color: 'rgba(156, 163, 175, 0.2)'
+            },
+            min: Math.min(...<%- JSON.stringify(crsScores) %>) - 10
+          },
+          y1: {
+            type: 'linear',
+            display: true,
+            position: 'right',
+            title: {
+              display: true,
+              text: 'Invitations'
+            },
+            grid: {
+              drawOnChartArea: false,
+            },
+            min: 0
+          }
+        },
+        plugins: {
+          legend: {
+            display: false
+          },
+          tooltip: {
+            backgroundColor: 'rgba(0, 0, 0, 0.8)',
+            titleColor: 'white',
+            bodyColor: 'white',
+            borderColor: 'rgba(59, 130, 246, 0.5)',
+            borderWidth: 1
+          }
+        }
+      }
+    };
+
+    new Chart(ctx, config);
+  });
+</script>
