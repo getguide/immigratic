@@ -12,9 +12,37 @@ export const metadata = {
     url: 'https://immigratic.com/services/pr'
   }
 };
+
+
 ---
 
 <Layout title="Permanent Residency Services | Immigratic">
+
+<!-- Global JavaScript for Eligibility Modal -->
+<script>
+  window.openEligibilityModal = function() {
+    const modal = document.getElementById('cecEligibilityModal');
+    if (modal) {
+      modal.style.display = 'flex';
+      modal.classList.add('items-center', 'justify-center');
+      document.body.style.overflow = 'hidden';
+    }
+  }
+
+  window.closeEligibilityModal = function() {
+    console.log('Close function called!');
+    const modal = document.getElementById('cecEligibilityModal');
+    console.log('Modal element:', modal);
+    if (modal) {
+      modal.style.display = 'none';
+      modal.classList.remove('items-center', 'justify-center');
+      document.body.style.overflow = 'auto';
+      console.log('Modal should be hidden now!');
+    } else {
+      console.log('Modal element not found!');
+    }
+  }
+</script>
   <!-- Hero Section -->
   <section class="relative min-h-screen bg-gradient-to-br from-blue-900 via-purple-900 to-indigo-900 overflow-hidden">
     <!-- Animated Background -->
@@ -257,7 +285,7 @@ export const metadata = {
                 <a href="/services/pr/ee-cec?utm_source=immigratic&utm_medium=website&utm_campaign=pr_page&utm_content=cec" class="px-8 py-3 bg-gradient-to-r from-blue-600 to-purple-600 text-white font-semibold rounded-xl hover:from-blue-700 hover:to-purple-700 transition-all duration-300 text-center">
                   Learn More
                 </a>
-                <button onclick="openEligibilityModal()" class="px-8 py-3 border border-blue-600 text-blue-600 dark:text-blue-400 font-semibold rounded-xl hover:bg-blue-600 hover:text-white transition-all duration-300">
+                <button onclick="window.openEligibilityModal()" class="px-8 py-3 border border-blue-600 text-blue-600 dark:text-blue-400 font-semibold rounded-xl hover:bg-blue-600 hover:text-white transition-all duration-300">
                   Check My Eligibility
                 </button>
               </div>
@@ -304,7 +332,7 @@ export const metadata = {
                 <a href="/services/pr/express-entry?utm_source=immigratic&utm_medium=website&utm_campaign=pr_page&utm_content=fsw_smart" class="px-8 py-3 bg-gradient-to-r from-green-600 to-blue-600 text-white font-semibold rounded-xl hover:from-green-700 hover:to-blue-700 transition-all duration-300 text-center">
                   Learn About FSW
                 </a>
-                <button onclick="openEligibilityModal()" class="px-8 py-3 border border-green-600 text-green-600 dark:text-green-400 font-semibold rounded-xl hover:bg-green-600 hover:text-white transition-all duration-300">
+                <button onclick="window.openEligibilityModal()" class="px-8 py-3 border border-green-600 text-green-600 dark:text-green-400 font-semibold rounded-xl hover:bg-green-600 hover:text-white transition-all duration-300">
                   Check My Eligibility
                 </button>
               </div>
@@ -414,27 +442,7 @@ export const metadata = {
         </div>
       </div>
 
-      <!-- Federal Skilled Trades (Not Offered) -->
-      <div class="mb-16 opacity-0 animate-fade-in-up" style="animation-delay: 1.2s; animation-fill-mode: forwards;">
-        <div class="bg-gray-50 dark:bg-gray-800/50 rounded-3xl p-8 border-2 border-dashed border-gray-300 dark:border-gray-600">
-          <div class="flex items-center gap-4 mb-4">
-            <div class="w-16 h-16 bg-gray-300 dark:bg-gray-600 rounded-2xl flex items-center justify-center">
-              <svg class="w-8 h-8 text-gray-500 dark:text-gray-400" fill="currentColor" viewBox="0 0 24 24">
-                <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
-              </svg>
-            </div>
-            <div>
-              <h3 class="text-2xl font-bold text-gray-500 dark:text-gray-400">Federal Skilled Trades</h3>
-              <p class="text-gray-500 dark:text-gray-400">Currently not offered</p>
-            </div>
-          </div>
-          <div class="text-center">
-            <span class="px-4 py-2 bg-gray-200 dark:bg-gray-700 text-gray-600 dark:text-gray-300 text-sm font-semibold rounded-full">
-              ❌ Not Currently Offered
-            </span>
-          </div>
-        </div>
-      </div>
+
 
       <!-- Targeted Categories Section -->
       <div class="mb-16">
@@ -1619,6 +1627,132 @@ export const metadata = {
         </div>
       </div>
     </section>
+
+    <!-- CEC Eligibility Modal -->
+    <div id="cecEligibilityModal" class="fixed inset-0 bg-black bg-opacity-50 z-50 p-4" style="display: none;" onclick="window.closeEligibilityModal()">
+      <div class="bg-white dark:bg-gray-800 rounded-3xl shadow-2xl max-w-2xl w-full max-h-[90vh] overflow-y-auto" onclick="event.stopPropagation()">
+        <!-- Header -->
+        <div class="flex items-center justify-between p-6 border-b border-gray-200 dark:border-gray-700">
+          <div class="flex items-center gap-3">
+            <div class="w-10 h-10 bg-gradient-to-br from-blue-500 to-purple-600 rounded-xl flex items-center justify-center">
+              <span class="text-xl">🇨🇦</span>
+            </div>
+            <h2 class="text-2xl font-bold text-gray-900 dark:text-white">CEC Eligibility</h2>
+          </div>
+          <button onclick="window.closeEligibilityModal()" class="w-8 h-8 bg-gray-100 dark:bg-gray-700 rounded-full flex items-center justify-center hover:bg-gray-200 dark:hover:bg-gray-600 transition-colors">
+            <svg class="w-5 h-5 text-gray-600 dark:text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+            </svg>
+          </button>
+        </div>
+
+        <!-- Content -->
+        <div class="p-6">
+          <div class="text-center mb-6">
+            <h3 class="text-xl font-semibold text-gray-900 dark:text-white mb-2">Canadian Experience Class Requirements</h3>
+            <p class="text-gray-600 dark:text-gray-400">High-level eligibility criteria for CEC pathway</p>
+          </div>
+
+          <!-- Eligibility Grid -->
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-8">
+            <!-- Work Experience -->
+            <div class="bg-blue-50 dark:bg-blue-900/20 rounded-xl p-4 border border-blue-200 dark:border-blue-700">
+              <div class="flex items-center gap-3 mb-2">
+                <div class="w-8 h-8 bg-blue-100 dark:bg-blue-800 rounded-lg flex items-center justify-center">
+                  <span class="text-lg">💼</span>
+                </div>
+                <h4 class="font-semibold text-gray-900 dark:text-white">Work Experience</h4>
+              </div>
+              <p class="text-sm text-gray-600 dark:text-gray-400">12 months skilled work in Canada (TEER 0, 1, 2, 3)</p>
+            </div>
+
+            <!-- Language -->
+            <div class="bg-purple-50 dark:bg-purple-900/20 rounded-xl p-4 border border-purple-200 dark:border-purple-700">
+              <div class="flex items-center gap-3 mb-2">
+                <div class="w-8 h-8 bg-purple-100 dark:bg-purple-800 rounded-lg flex items-center justify-center">
+                  <span class="text-lg">🗣️</span>
+                </div>
+                <h4 class="font-semibold text-gray-900 dark:text-white">Language</h4>
+              </div>
+              <p class="text-sm text-gray-600 dark:text-gray-400">CLB 7 (TEER 0/1) or CLB 5 (TEER 2/3)</p>
+            </div>
+
+            <!-- Legal Status -->
+            <div class="bg-green-50 dark:bg-green-900/20 rounded-xl p-4 border border-green-200 dark:border-green-700">
+              <div class="flex items-center gap-3 mb-2">
+                <div class="w-8 h-8 bg-green-100 dark:bg-green-800 rounded-lg flex items-center justify-center">
+                  <span class="text-lg">📋</span>
+                </div>
+                <h4 class="font-semibold text-gray-900 dark:text-white">Legal Status</h4>
+              </div>
+              <p class="text-sm text-gray-600 dark:text-gray-400">Valid work permit during experience</p>
+            </div>
+
+            <!-- Residence -->
+            <div class="bg-orange-50 dark:bg-orange-900/20 rounded-xl p-4 border border-orange-200 dark:border-orange-700">
+              <div class="flex items-center gap-3 mb-2">
+                <div class="w-8 h-8 bg-orange-100 dark:bg-orange-800 rounded-lg flex items-center justify-center">
+                  <span class="text-lg">🏠</span>
+                </div>
+                <h4 class="font-semibold text-gray-900 dark:text-white">Residence</h4>
+              </div>
+              <p class="text-sm text-gray-600 dark:text-gray-400">Must be physically in Canada</p>
+            </div>
+
+            <!-- Intent -->
+            <div class="bg-red-50 dark:bg-red-900/20 rounded-xl p-4 border border-red-200 dark:border-red-700">
+              <div class="flex items-center gap-3 mb-2">
+                <div class="w-8 h-8 bg-red-100 dark:bg-red-800 rounded-lg flex items-center justify-center">
+                  <span class="text-lg">🎯</span>
+                </div>
+                <h4 class="font-semibold text-gray-900 dark:text-white">Intent</h4>
+              </div>
+              <p class="text-sm text-gray-600 dark:text-gray-400">Plan to live outside Quebec</p>
+            </div>
+
+            <!-- Admissibility -->
+            <div class="bg-indigo-50 dark:bg-indigo-900/20 rounded-xl p-4 border border-indigo-200 dark:border-indigo-700">
+              <div class="flex items-center gap-3 mb-2">
+                <div class="w-8 h-8 bg-indigo-100 dark:bg-indigo-800 rounded-lg flex items-center justify-center">
+                  <span class="text-lg">✅</span>
+                </div>
+                <h4 class="font-semibold text-gray-900 dark:text-white">Admissibility</h4>
+              </div>
+              <p class="text-sm text-gray-600 dark:text-gray-400">No criminal/security/medical barriers</p>
+            </div>
+          </div>
+
+          <!-- Note -->
+          <div class="bg-gray-50 dark:bg-gray-700/50 rounded-xl p-4 mb-6">
+            <p class="text-sm text-gray-600 dark:text-gray-400 text-center">
+              <strong>Note:</strong> This is a high-level overview. For detailed requirements and personalized assessment, use our comprehensive tools.
+            </p>
+          </div>
+
+          <!-- CTAs -->
+          <div class="flex flex-col sm:flex-row gap-3 justify-center">
+            <a href="/services/pr/ee-cec?utm_source=immigratic&utm_medium=website&utm_campaign=pr_page&utm_content=cec_eligibility_modal" 
+               class="px-6 py-3 bg-gradient-to-r from-blue-600 to-purple-600 text-white font-semibold rounded-xl hover:from-blue-700 hover:to-purple-700 transition-all duration-300 text-center">
+              Learn More About CEC
+            </a>
+            <a href="/tools/master-assessment?utm_source=immigratic&utm_medium=website&utm_campaign=pr_page&utm_content=cec_eligibility_modal" 
+               class="px-6 py-3 border border-blue-600 text-blue-600 dark:text-blue-400 font-semibold rounded-xl hover:bg-blue-600 hover:text-white transition-all duration-300 text-center">
+              Full Assessment
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Modal JavaScript -->
+    <script>
+      // Close modal with ESC key
+      document.addEventListener('keydown', function(event) {
+        if (event.key === 'Escape') {
+          (window as any).closeEligibilityModal();
+        }
+      });
+    </script>
   </Layout>
 
 <script>
