@@ -82,6 +82,205 @@ export async function getLatestPNPDraw(): Promise<DisplayImmiWatchDraw | null> {
 }
 
 /**
+ * Get the latest HEALTH draw
+ */
+export async function getLatestHealthDraw(): Promise<DisplayImmiWatchDraw | null> {
+  return getLatestDrawForProgram('EE-HEALTH');
+}
+
+/**
+ * Get total HEALTH invitations for 2025
+ */
+export async function getHealthTotalInvitations2025(): Promise<number> {
+  try {
+    const { data, error } = await supabase
+      .from('ImmiWatch')
+      .select('invitation')
+      .eq('program', 'EE-HEALTH')
+      .gte('draw_date_most_recent', '2025-01-01')
+      .lte('draw_date_most_recent', '2025-12-31')
+
+    if (error) {
+      console.error('Error fetching HEALTH total invitations 2025:', error)
+      return 0
+    }
+
+    const total = data?.reduce((sum, row) => sum + (row.invitation || 0), 0) || 0
+    console.log(`Total HEALTH invitations 2025: ${total}`)
+    return total
+  } catch (error) {
+    console.error('Error calculating HEALTH total invitations 2025:', error)
+    return 0
+  }
+}
+
+/**
+ * Get weighted average CRS for HEALTH in 2025
+ * Formula: SUM(score * invitation) / SUM(invitation)
+ */
+export async function getHealthWeightedAverageCRS2025(): Promise<number> {
+  try {
+    const { data, error } = await supabase
+      .from('ImmiWatch')
+      .select('score, invitation')
+      .eq('program', 'EE-HEALTH')
+      .gte('draw_date_most_recent', '2025-01-01')
+      .lte('draw_date_most_recent', '2025-12-31')
+
+    if (error) {
+      console.error('Error fetching HEALTH weighted average CRS 2025:', error)
+      return 0
+    }
+
+    if (!data || data.length === 0) return 0
+
+    const totalWeightedScore = data.reduce((sum, row) => sum + ((row.score || 0) * (row.invitation || 0)), 0)
+    const totalInvitations = data.reduce((sum, row) => sum + (row.invitation || 0), 0)
+
+    if (totalInvitations === 0) return 0
+
+    const weightedAverage = Math.round(totalWeightedScore / totalInvitations)
+    console.log(`Weighted average CRS for HEALTH 2025: ${weightedAverage}`)
+    return weightedAverage
+  } catch (error) {
+    console.error('Error calculating HEALTH weighted average CRS 2025:', error)
+    return 0
+  }
+}
+
+/**
+ * Get total invitations for ALL category-based programs in 2025
+ * Includes: EE-HEALTH, EE-TRADE, EE-EDUCATION, EE-FRENCH, EE-AGRICULTURE
+ */
+export async function getAllCategoryProgramsTotalInvitations2025(): Promise<number> {
+  try {
+    const { data, error } = await supabase
+      .from('ImmiWatch')
+      .select('invitation')
+      .in('program', ['EE-HEALTH', 'EE-TRADE', 'EE-EDUCATION', 'EE-FRENCH', 'EE-AGRICULTURE'])
+      .gte('draw_date_most_recent', '2025-01-01')
+      .lte('draw_date_most_recent', '2025-12-31')
+
+    if (error) {
+      console.error('Error fetching all category programs total invitations 2025:', error)
+      return 0
+    }
+
+    const total = data?.reduce((sum, row) => sum + (row.invitation || 0), 0) || 0
+    console.log(`Total all category programs invitations 2025: ${total}`)
+    return total
+  } catch (error) {
+    console.error('Error calculating all category programs total invitations 2025:', error)
+    return 0
+  }
+}
+
+/**
+ * Calculate real capacity used for category-based programs with 1.6x coefficient
+ * Formula: Total Invitations × 1.6
+ */
+export async function getCategoryProgramsRealCapacityUsed2025(): Promise<number> {
+  const totalInvitations = await getAllCategoryProgramsTotalInvitations2025()
+  const realCapacityUsed = Math.round(totalInvitations * 1.6)
+  console.log(`Real capacity used for category programs 2025 (with 1.6x): ${realCapacityUsed}`)
+  return realCapacityUsed
+}
+
+/**
+ * Calculate capacity remaining from 62,000 total allocation for category programs
+ * Formula: 62,000 - Real Capacity Used
+ */
+export async function getCategoryProgramsCapacityRemaining2025(): Promise<number> {
+  const realCapacityUsed = await getCategoryProgramsRealCapacityUsed2025()
+  const capacityRemaining = 62000 - realCapacityUsed
+  console.log(`Category programs capacity remaining 2025: ${capacityRemaining}`)
+  return capacityRemaining
+}
+
+/**
+ * Get CRS trend comparison between latest and previous HEALTH draw
+ * Shows score difference and trend direction
+ */
+export async function getHealthCRSTrend(): Promise<{
+  currentScore: number
+  previousScore: number | null
+  difference: number | null
+  trend: 'up' | 'down' | 'same' | 'first'
+  trendText: string
+  trendIcon: string
+  trendColor: string
+} | null> {
+  try {
+    // Get latest 2 HEALTH draws
+    const { data, error } = await supabase
+      .from('ImmiWatch')
+      .select('score, draw_date_most_recent')
+      .eq('program', 'EE-HEALTH')
+      .order('draw_date_most_recent', { ascending: false })
+      .limit(2)
+
+    if (error) {
+      console.error('Error fetching HEALTH CRS trend:', error)
+      return null
+    }
+
+    if (!data || data.length === 0) return null
+
+    const currentScore = data[0]?.score || 0
+    const previousScore = data.length > 1 ? data[1]?.score : null
+
+    if (!previousScore) {
+      return {
+        currentScore,
+        previousScore: null,
+        difference: null,
+        trend: 'first',
+        trendText: 'First draw of 2025',
+        trendIcon: '→',
+        trendColor: 'text-gray-500'
+      }
+    }
+
+    const difference = currentScore - previousScore
+    let trend: 'up' | 'down' | 'same'
+    let trendText: string
+    let trendIcon: string
+    let trendColor: string
+
+    if (difference > 0) {
+      trend = 'up'
+      trendIcon = '↑'
+      trendText = `${difference}`
+      trendColor = 'text-green-600'
+    } else if (difference < 0) {
+      trend = 'down'
+      trendIcon = '↓'
+      trendText = `${Math.abs(difference)}`
+      trendColor = 'text-red-600'
+    } else {
+      trend = 'same'
+      trendIcon = '→'
+      trendText = '0'
+      trendColor = 'text-gray-500'
+    }
+
+    console.log(`HEALTH CRS trend: ${currentScore} (${trendIcon} ${trendText})`)
+    return {
+      currentScore,
+      previousScore,
+      difference,
+      trend,
+      trendText,
+      trendIcon,
+      trendColor
+    }
+  } catch (error) {
+    console.error('Error calculating HEALTH CRS trend:', error)
+    return null
+  }
+}
+
+/**
  * Get total invitations for a program in a time period
  */
 export async function getTotalInvitationsForProgram(
@@ -397,7 +596,12 @@ export function getProgramDisplayName(programCode: string): string {
     'EE-CEC': 'Canadian Experience Class',
     'EE-FSW': 'Federal Skilled Worker',
     'EE-PNP': 'Provincial Nominee Program',
-    'EE-FST': 'Federal Skilled Trades'
+    'EE-FST': 'Federal Skilled Trades',
+    'EE-HEALTH': 'Healthcare Workers',
+    'EE-TRADE': 'Skilled Trades',
+    'EE-EDUCATION': 'Education Workers',
+    'EE-FRENCH': 'French-Speaking Workers',
+    'EE-AGRICULTURE': 'Agriculture Workers'
   }
   
   return programNames[programCode] || programCode
