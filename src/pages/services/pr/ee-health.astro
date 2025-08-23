@@ -802,46 +802,9 @@ export const metadata = {
         <!-- Latest Healthcare Draw Data -->
         <LiveHealthData />
 
-        <!-- CEC Program Metrics 2025 -->
-        <div class="insight-card bg-white dark:bg-gray-800 rounded-3xl border-2 border-gray-300 dark:border-gray-600 p-8 hover:border-purple-400 dark:hover:border-purple-500 transition-all duration-500 shadow-xl hover:shadow-3xl hover:scale-[1.02] transform group">
-          <div class="flex items-center gap-4 mb-6">
-            <div class="w-16 h-16 bg-gradient-to-br from-purple-500 to-pink-600 rounded-2xl flex items-center justify-center group-hover:scale-110 group-hover:rotate-3 transition-all duration-500 animate-float-gentle" style="animation-delay: 0.5s;">
-              <span class="text-2xl group-hover:scale-110 transition-transform duration-500">📊</span>
-            </div>
-            <div>
-              <h3 class="text-2xl font-bold text-gray-900 dark:text-white">CEC Program Metrics</h3>
-              <p class="text-gray-600 dark:text-gray-300">2025 Performance Overview</p>
-            </div>
-          </div>
-          
-          <div class="space-y-4">
-            <div class="flex items-center justify-between p-4 bg-purple-50 dark:bg-purple-900/20 border border-purple-200 dark:border-purple-700 rounded-2xl hover:bg-purple-100 dark:hover:bg-purple-900/30 hover:border-purple-300 dark:hover:border-purple-600 transition-all duration-300 group/metric">
-              <span class="text-gray-700 dark:text-gray-300 group-hover/metric:text-purple-700 dark:group-hover/metric:text-purple-300 transition-colors duration-300">Invitations So Far</span>
-              <span class="text-2xl font-bold text-purple-600 dark:text-purple-400 group-hover/metric:scale-110 group-hover/metric:text-purple-700 dark:group-hover/metric:text-purple-300 transition-all duration-300">19,850</span>
-            </div>
-            <div class="flex items-center justify-between p-4 bg-blue-50 dark:bg-blue-900/20 border border-blue-200 dark:border-blue-700 rounded-2xl hover:bg-blue-100 dark:hover:bg-blue-900/30 hover:border-blue-300 dark:hover:border-blue-600 transition-all duration-300 group/metric">
-              <span class="text-gray-700 dark:text-gray-300 group-hover/metric:text-blue-700 dark:group-hover/metric:text-blue-300 transition-colors duration-300">Average CRS</span>
-              <span class="text-2xl font-bold text-blue-600 dark:text-blue-400 group-hover/metric:scale-110 group-hover/metric:text-blue-700 dark:group-hover/metric:text-blue-300 transition-all duration-300">530</span>
-            </div>
-            <div class="flex items-center justify-between p-4 bg-emerald-50 dark:bg-emerald-900/20 border border-emerald-200 dark:border-emerald-700 rounded-2xl hover:bg-emerald-100 dark:hover:bg-emerald-900/30 hover:border-emerald-300 dark:hover:border-emerald-600 transition-all duration-300 group/metric">
-              <span class="text-gray-700 dark:text-gray-300 group-hover/metric:text-emerald-700 dark:group-hover/metric:text-emerald-300 transition-colors duration-300">Capacity Remaining</span>
-              <div class="text-right">
-                <span class="text-2xl font-bold text-emerald-600 dark:text-emerald-400 group-hover/metric:scale-110 group-hover/metric:text-emerald-700 dark:group-hover/metric:text-emerald-300 transition-all duration-300">30%</span>
-                <div class="text-sm text-gray-500 dark:text-gray-400 group-hover/metric:text-emerald-600 dark:group-hover/metric:text-emerald-400 transition-colors duration-300">18,800 / 62,000</div>
-              </div>
-            </div>
-          </div>
-          
-          <div class="mt-6 p-4 bg-blue-100 dark:bg-blue-900/30 rounded-2xl border border-blue-300 dark:border-blue-700 hover:bg-blue-200 dark:hover:bg-blue-900/40 hover:border-blue-400 dark:hover:border-blue-600 transition-all duration-300 group/tip">
-            <div class="flex items-center gap-2 mb-2">
-              <span class="text-blue-600 group-hover/tip:scale-110 transition-transform duration-300">💡</span>
-              <span class="font-semibold text-blue-700 dark:text-blue-300">Pro Tip</span>
-            </div>
-            <div class="text-xs text-blue-600 dark:text-blue-400 font-medium">
-              *Capacity remaining is based on 1.6x coefficient
-            </div>
-          </div>
-        </div>
+        <!-- Healthcare Program Metrics 2025 -->
+        <LiveHealthMetrics />
+
         
         <!-- Healthcare Trends Chart -->
         <LiveHealthChart />
