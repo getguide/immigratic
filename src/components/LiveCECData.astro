@@ -58,9 +58,18 @@ try {
       <!-- CRS Trend -->
       <div class="flex items-center justify-between p-4 bg-blue-50 dark:bg-blue-900/20 border border-blue-200 dark:border-blue-700 rounded-2xl hover:bg-blue-100 dark:hover:bg-blue-900/30 hover:border-blue-300 dark:hover:border-blue-600 transition-all duration-300 group/metric">
         <span class="text-gray-700 dark:text-gray-300 group-hover/metric:text-blue-700 dark:group-hover/metric:text-blue-300 transition-colors duration-300">CRS Trend</span>
-        <span class="text-2xl font-bold text-blue-600 group-hover/metric:scale-110 group-hover/metric:text-blue-700 transition-all duration-300">
-          {crsTrend ? crsTrend.trendText : 'N/A'}
-        </span>
+        <div class="flex items-center gap-2">
+          {crsTrend ? (
+            <>
+              <span class="text-3xl">{crsTrend.trendIcon}</span>
+              <span class={`text-2xl font-bold group-hover/metric:scale-110 transition-all duration-300 ${crsTrend.trendColor}`}>
+                {crsTrend.trendText}
+              </span>
+            </>
+          ) : (
+            <span class="text-2xl font-bold text-blue-600">N/A</span>
+          )}
+        </div>
       </div>
     </div>
   ) : (
