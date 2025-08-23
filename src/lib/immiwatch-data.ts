@@ -342,17 +342,17 @@ export async function getCECCRSTrend(): Promise<{
 
     if (difference > 0) {
       trend = 'up'
-      trendIcon = '↗️'
+      trendIcon = '↑'
       trendText = `${difference}`
       trendColor = 'text-green-600'
     } else if (difference < 0) {
       trend = 'down'
-      trendIcon = '↘️'
+      trendIcon = '↓'
       trendText = `${Math.abs(difference)}`
       trendColor = 'text-red-600'
     } else {
       trend = 'same'
-      trendIcon = '➡️'
+      trendIcon = '→'
       trendText = '0'
       trendColor = 'text-gray-500'
     }
