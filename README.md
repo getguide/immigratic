@@ -1,4 +1,4 @@
-# 🚀 Immigratic - Canada's Most Innovative Immigration Platform
+# 🚀 Immigratic - Canada's Leading Immigration Platform
 
 A state-of-the-art website built with modern web technologies, featuring interactive elements, smooth animations, and a conversion-focused design.
 
