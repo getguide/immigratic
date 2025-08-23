@@ -243,12 +243,12 @@ export async function getRealCapacityUsed2025(): Promise<number> {
 }
 
 /**
- * Calculate capacity remaining from 62,000 total allocation
- * Formula: 62,000 - Real Capacity Used
+ * Calculate capacity remaining from 89,000 total allocation
+ * Formula: 89,000 - Real Capacity Used
  */
 export async function getCapacityRemaining2025(): Promise<number> {
   const realCapacityUsed = await getRealCapacityUsed2025()
-  const capacityRemaining = 62000 - realCapacityUsed
+  const capacityRemaining = 89000 - realCapacityUsed
   console.log(`Capacity remaining 2025: ${capacityRemaining}`)
   return capacityRemaining
 }

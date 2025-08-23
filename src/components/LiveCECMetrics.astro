@@ -6,7 +6,7 @@ const totalInvitations = await getCECTotalInvitations2025();
 const averageCRS = await getCECWeightedAverageCRS2025();
 
 // Calculate capacity with 1.6x coefficient
-const totalCapacity = 62000;
+const totalCapacity = 89000;
 const realCapacityUsed = await getRealCapacityUsed2025();
 const capacityRemaining = await getCapacityRemaining2025();
 const capacityPercentage = Math.round((capacityRemaining / totalCapacity) * 100);
