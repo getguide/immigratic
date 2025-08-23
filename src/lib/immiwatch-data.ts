@@ -281,6 +281,48 @@ export async function getHealthCRSTrend(): Promise<{
 }
 
 /**
+ * Get HEALTH draws for chart visualization in 2025
+ * Returns array of draws with date, score, and invitations
+ */
+export async function getHealthDrawsForChart2025(): Promise<{
+  drawDate: string
+  crsScore: number
+  invitationsIssued: number
+}[]> {
+  try {
+    const { data, error } = await supabase
+      .from('ImmiWatch')
+      .select('draw_date_most_recent, score, invitation')
+      .eq('program', 'EE-HEALTH')
+      .gte('draw_date_most_recent', '2025-01-01')
+      .lte('draw_date_most_recent', '2025-12-31')
+      .order('draw_date_most_recent', { ascending: true })
+
+    if (error) {
+      console.error('Error fetching HEALTH draws for chart 2025:', error)
+      return []
+    }
+
+    if (!data || data.length === 0) return []
+
+    const chartData = data.map(row => ({
+      drawDate: new Date(row.draw_date_most_recent).toLocaleDateString('en-US', { 
+        month: 'short', 
+        day: 'numeric' 
+      }),
+      crsScore: row.score || 0,
+      invitationsIssued: row.invitation || 0
+    }))
+
+    console.log(`HEALTH chart data 2025: ${chartData.length} draws`)
+    return chartData
+  } catch (error) {
+    console.error('Error preparing HEALTH chart data 2025:', error)
+    return []
+  }
+}
+
+/**
  * Get total invitations for a program in a time period
  */
 export async function getTotalInvitationsForProgram(

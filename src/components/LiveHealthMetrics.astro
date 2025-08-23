@@ -1,0 +1,68 @@
+---
+import { getHealthTotalInvitations2025, getHealthWeightedAverageCRS2025, getCategoryProgramsRealCapacityUsed2025, getCategoryProgramsCapacityRemaining2025 } from '../lib/immiwatch-data';
+
+// Fetch aggregated HEALTH program metrics for 2025
+const totalInvitations = await getHealthTotalInvitations2025();
+const averageCRS = await getHealthWeightedAverageCRS2025();
+
+// Calculate capacity with 1.6x coefficient for category programs
+const totalCapacity = 62000; // Category-based programs capacity
+const realCapacityUsed = await getCategoryProgramsRealCapacityUsed2025();
+const capacityRemaining = await getCategoryProgramsCapacityRemaining2025();
+const capacityPercentage = Math.round((capacityRemaining / totalCapacity) * 100);
+---
+
+<!-- Healthcare Program Metrics 2025 - Live Data -->
+<div class="insight-card bg-white dark:bg-gray-800 rounded-3xl border-2 border-gray-300 dark:border-gray-600 p-8 hover:border-green-400 dark:hover:border-green-500 transition-all duration-500 shadow-xl hover:shadow-3xl hover:scale-[1.02] transform group">
+  <div class="flex items-center gap-4 mb-6">
+    <div class="w-16 h-16 bg-gradient-to-br from-green-500 to-emerald-600 rounded-2xl flex items-center justify-center group-hover:scale-110 group-hover:rotate-3 transition-all duration-500 animate-float-gentle">
+      <span class="text-2xl group-hover:scale-110 transition-transform duration-500">📊</span>
+    </div>
+    <div>
+      <h3 class="text-2xl font-bold text-gray-900 dark:text-white">Healthcare Program Metrics 2025</h3>
+      <p class="text-gray-600 dark:text-gray-300">Performance Overview</p>
+    </div>
+  </div>
+
+  <div class="space-y-4">
+    <!-- Invitations So Far -->
+    <div class="flex items-center justify-between p-4 bg-gray-50 dark:bg-gray-700 border border-gray-200 dark:border-gray-600 rounded-2xl hover:bg-green-50 dark:hover:bg-green-900/20 hover:border-green-300 dark:hover:border-green-600 transition-all duration-300 group/metric">
+      <span class="text-gray-700 dark:text-gray-300 group-hover/metric:text-green-700 dark:group-hover/metric:text-green-300 transition-colors duration-300">Invitations So Far</span>
+      <span class="text-2xl font-bold text-green-600 group-hover/metric:scale-110 group-hover/metric:text-green-700 transition-all duration-300">
+        {totalInvitations.toLocaleString()}
+      </span>
+    </div>
+
+    <!-- Average CRS -->
+    <div class="flex items-center justify-between p-4 bg-gray-50 dark:bg-gray-700 border border-gray-200 dark:border-gray-600 rounded-2xl hover:bg-emerald-50 dark:hover:bg-emerald-900/20 hover:border-emerald-300 dark:hover:border-emerald-600 transition-all duration-300 group/metric">
+      <span class="text-gray-700 dark:text-gray-300 group-hover/metric:text-emerald-700 dark:group-hover/metric:text-emerald-300 transition-colors duration-300">Average CRS</span>
+      <span class="text-2xl font-bold text-emerald-600 group-hover/metric:scale-110 group-hover/metric:text-emerald-700 transition-all duration-300">
+        {averageCRS}
+      </span>
+    </div>
+
+    <!-- Category Programs Capacity Remaining -->
+    <div class="flex items-center justify-between p-4 bg-blue-50 dark:bg-blue-900/20 border border-blue-200 dark:border-blue-700 rounded-2xl hover:bg-blue-100 dark:hover:bg-blue-900/30 hover:border-blue-300 dark:hover:border-blue-600 transition-all duration-300 group/metric">
+      <span class="text-gray-700 dark:text-gray-300 group-hover/metric:text-blue-700 dark:group-hover/metric:text-blue-300 transition-colors duration-300">Capacity Remaining</span>
+      <div class="text-right">
+        <div class="text-2xl font-bold text-blue-600 group-hover/metric:scale-110 group-hover/metric:text-blue-700 transition-all duration-300">
+          {capacityPercentage}%
+        </div>
+        <div class="text-sm text-blue-600 dark:text-blue-400">
+          {capacityRemaining.toLocaleString()} / {totalCapacity.toLocaleString()}
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Capacity Info -->
+  <div class="mt-6 p-4 bg-blue-100 dark:bg-blue-900/30 rounded-2xl border border-blue-300 dark:border-blue-700 hover:bg-blue-200 dark:hover:bg-blue-900/40 hover:border-blue-400 dark:hover:border-blue-600 transition-all duration-300 group/info">
+    <div class="flex items-center gap-2 mb-2">
+      <span class="text-blue-600 group-hover/info:scale-110 transition-transform duration-300">💡</span>
+      <span class="font-semibold text-blue-700 dark:text-blue-300">Capacity Info</span>
+    </div>
+    <p class="text-sm text-blue-700 dark:text-blue-300">
+      *Capacity remaining is based on 1.6x coefficient for all category-based programs (Healthcare, Trade, Education, French, Agriculture)
+    </p>
+  </div>
+</div>
