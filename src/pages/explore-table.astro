@@ -21,14 +21,12 @@ try {
   console.log('Could not fetch table names, will try direct table access');
 }
 
-// Try to access common table names for Express Entry draws
+// Try to access the ImmiWatch table
 const possibleTableNames = [
-  'express_entry_draws',
-  'ee_draws', 
-  'express_entry',
-  'ee_data',
-  'draws',
-  'immigration_draws'
+  'ImmiWatch',
+  'immiwatch',
+  'immwatch',
+  'immi_watch'
 ];
 
 for (const name of possibleTableNames) {
