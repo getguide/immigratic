@@ -150,14 +150,16 @@ export async function getHealthWeightedAverageCRS2025(): Promise<number> {
 
 /**
  * Get total invitations for ALL category-based programs in 2025
- * Includes: EE-HEALTH, EE-TRADE, EE-EDUCATION, EE-FRENCH, EE-AGRICULTURE
+ * Includes: EE-HEALTH, EE-Trade, EE-Education, EE-French, EE-Agriculture
  */
 export async function getAllCategoryProgramsTotalInvitations2025(): Promise<number> {
   try {
+    console.log('🔍 DEBUG: Starting category programs total calculation...')
+    
     const { data, error } = await supabase
       .from('ImmiWatch')
-      .select('invitation')
-      .in('program', ['EE-HEALTH', 'EE-TRADE', 'EE-EDUCATION', 'EE-FRENCH', 'EE-AGRICULTURE'])
+      .select('program, invitation, draw_date_most_recent')
+      .in('program', ['EE-HEALTH', 'EE-Trade', 'EE-Education', 'EE-French', 'EE-Agriculture'])
       .gte('draw_date_most_recent', '2025-01-01')
       .lte('draw_date_most_recent', '2025-12-31')
 
@@ -166,8 +168,23 @@ export async function getAllCategoryProgramsTotalInvitations2025(): Promise<numb
       return 0
     }
 
-    const total = data?.reduce((sum, row) => sum + (row.invitation || 0), 0) || 0
-    console.log(`Total all category programs invitations 2025: ${total}`)
+    console.log('🔍 DEBUG: Raw data from Supabase:', data)
+    console.log('🔍 DEBUG: Number of records found:', data?.length || 0)
+    
+    if (data && data.length > 0) {
+      console.log('🔍 DEBUG: Sample records:')
+      data.slice(0, 5).forEach((row, index) => {
+        console.log(`  Record ${index + 1}: Program=${row.program}, Invitations=${row.invitation}, Date=${row.draw_date_most_recent}`)
+      })
+    }
+
+    const total = data?.reduce((sum, row) => {
+      const invitationCount = row.invitation || 0
+      console.log(`🔍 DEBUG: Adding ${invitationCount} from ${row.program}`)
+      return sum + invitationCount
+    }, 0) || 0
+    
+    console.log(`🔍 DEBUG: Final total: ${total}`)
     return total
   } catch (error) {
     console.error('Error calculating all category programs total invitations 2025:', error)
