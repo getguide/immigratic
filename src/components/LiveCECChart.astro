@@ -87,11 +87,11 @@ const invitations = chartData.map(item => item.invitations);
     if (!ctx) return;
 
     const chartData = {
-      labels: <%- JSON.stringify(labels) %>,
+      labels: JSON.parse(document.getElementById('chartLabels').textContent),
       datasets: [
         {
           label: 'CRS Score',
-          data: <%- JSON.stringify(crsScores) %>,
+          data: JSON.parse(document.getElementById('chartCRS').textContent),
           borderColor: '#3b82f6',
           backgroundColor: 'rgba(59, 130, 246, 0.1)',
           yAxisID: 'y',
@@ -102,7 +102,7 @@ const invitations = chartData.map(item => item.invitations);
         },
         {
           label: 'Invitations',
-          data: <%- JSON.stringify(invitations) %>,
+          data: JSON.parse(document.getElementById('chartInvitations').textContent),
           backgroundColor: 'rgba(34, 197, 94, 0.8)',
           borderColor: '#22c55e',
           yAxisID: 'y1',
@@ -111,6 +111,9 @@ const invitations = chartData.map(item => item.invitations);
         }
       ]
     };
+
+    const crsScores = JSON.parse(document.getElementById('chartCRS').textContent);
+    const minCRS = Math.min(...crsScores);
 
     const config = {
       type: 'line',
@@ -144,7 +147,7 @@ const invitations = chartData.map(item => item.invitations);
             grid: {
               color: 'rgba(156, 163, 175, 0.2)'
             },
-            min: Math.min(...<%- JSON.stringify(crsScores) %>) - 10
+            min: minCRS - 10
           },
           y1: {
             type: 'linear',
@@ -178,3 +181,8 @@ const invitations = chartData.map(item => item.invitations);
     new Chart(ctx, config);
   });
 </script>
+
+<!-- Hidden data elements for Chart.js -->
+<div id="chartLabels" style="display: none;">{JSON.stringify(labels)}</div>
+<div id="chartCRS" style="display: none;">{JSON.stringify(crsScores)}</div>
+<div id="chartInvitations" style="display: none;">{JSON.stringify(invitations)}</div>
