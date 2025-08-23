@@ -1,0 +1,56 @@
+---
+import { getRecentExpressEntryDraws } from '../lib/immiwatch-data';
+
+// Fetch 3 most recent Express Entry draws
+const recentDraws = await getRecentExpressEntryDraws();
+
+// Helper function to format program name for display
+function getProgramDisplayName(programName: string): string {
+  // Extract the category part (e.g., "EE-HEALTH" -> "Healthcare")
+  const parts = programName.split(' ');
+  if (parts.length > 1) {
+    return parts.slice(1).join(' '); // Return everything after the first part
+  }
+  return programName;
+}
+
+// Helper function to format date
+function formatDate(dateString: string): string {
+  const date = new Date(dateString);
+  return date.toLocaleDateString('en-US', {
+    month: 'short',
+    day: 'numeric',
+    year: 'numeric'
+  });
+}
+---
+
+<!-- Enhanced Draw Data with Animations -->
+<div class="draws-section group/section hover:scale-105 transition-transform duration-500">
+  <div class="flex items-center gap-2 mb-4">
+    <span class="text-sm font-medium text-gray-700 dark:text-gray-300 group-hover/section:text-purple-600 dark:group-hover/section:text-purple-400 transition-colors duration-300">Recent Draws</span>
+    <span class="px-2 py-1 bg-purple-100 dark:bg-purple-900/30 text-purple-700 dark:text-purple-300 text-xs rounded-full group-hover/section:scale-110 transition-transform duration-300 animate-pulse">Live Data</span>
+  </div>
+  
+  {recentDraws.length > 0 ? (
+    <div class="space-y-3">
+      {recentDraws.map((draw, index) => (
+        <div class="draw-item rounded-xl p-3 border transition-all duration-300 cursor-pointer group/draw hover:border-purple-300 dark:hover:border-purple-600">
+          <div class="flex items-center justify-between mb-1">
+            <span class="text-xs transition-all duration-300">{getProgramDisplayName(draw.programName)}</span>
+            <span class="text-lg font-bold transition-all duration-300">{draw.crsScore}</span>
+          </div>
+          <div class="text-xs text-gray-600 dark:text-gray-400">{formatDate(draw.drawDate)}</div>
+        </div>
+      ))}
+    </div>
+  ) : (
+    <!-- No Data State -->
+    <div class="space-y-3">
+      <div class="draw-item rounded-xl p-3 border border-dashed border-gray-300 dark:border-gray-600 text-center">
+        <div class="text-sm text-gray-500 dark:text-gray-400">No recent draws available</div>
+        <div class="text-xs text-gray-400 dark:text-gray-500">Check back soon for updates</div>
+      </div>
+    </div>
+  )}
+</div>

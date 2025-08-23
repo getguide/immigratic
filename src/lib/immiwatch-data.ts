@@ -124,6 +124,40 @@ export async function getLatestExpressEntryDraw(): Promise<DisplayImmiWatchDraw 
 }
 
 /**
+ * Get the 3 most recent Express Entry draws
+ */
+export async function getRecentExpressEntryDraws(): Promise<DisplayImmiWatchDraw[]> {
+  try {
+    console.log('getRecentExpressEntryDraws: Fetching 3 most recent Express Entry draws...');
+    
+    const { data, error } = await supabase
+      .from('ImmiWatch')
+      .select('*')
+      .eq('filter_by_program', 'Express Entry')
+      .order('draw_date_most_recent', { ascending: false })
+      .limit(3)
+
+    if (error) {
+      console.error('Error fetching recent Express Entry draws:', error)
+      return []
+    }
+
+    if (!data || data.length === 0) {
+      console.log('No Express Entry data found in ImmiWatch table');
+      return []
+    }
+
+    console.log(`Found ${data.length} recent Express Entry draws:`, data);
+    const transformed = data.map(transformImmiWatchData);
+    console.log('Transformed recent Express Entry draws:', transformed);
+    return transformed;
+  } catch (error) {
+    console.error('Error fetching recent Express Entry draws:', error)
+    return []
+  }
+}
+
+/**
  * Get total HEALTH invitations for 2025
  */
 export async function getHealthTotalInvitations2025(): Promise<number> {
