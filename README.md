@@ -29,7 +29,7 @@ A state-of-the-art website built with modern web technologies, featuring interac
 ### **Installation**
 ```bash
 # Clone the repository
-git clone https://github.com/your-username/immigratic.git
+git clone https://github.com/getguide/immigratic.git
 cd immigratic
 
 # Install dependencies
