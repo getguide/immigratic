@@ -5,13 +5,21 @@ import { getRecentExpressEntryDraws } from '../lib/immiwatch-data';
 const recentDraws = await getRecentExpressEntryDraws();
 
 // Helper function to format program name for display
-function getProgramDisplayName(programName: string): string {
-  // Extract the category part (e.g., "EE-HEALTH" -> "Healthcare")
-  const parts = programName.split(' ');
-  if (parts.length > 1) {
-    return parts.slice(1).join(' '); // Return everything after the first part
+function getProgramDisplayName(programCode: string): string {
+  // Create better abbreviations for program codes
+  const programAbbreviations: Record<string, string> = {
+    'EE-CEC': 'CEC',
+    'EE-FSW': 'FSW',
+    'EE-PNP': 'PNP',
+    'EE-FST': 'FST',
+    'EE-HEALTH': 'Health',
+    'EE-TRADE': 'Trade',
+    'EE-EDUCATION': 'Education',
+    'EE-FRENCH': 'French',
+    'EE-AGRICULTURE': 'Agriculture'
   }
-  return programName;
+  
+  return programAbbreviations[programCode] || programCode;
 }
 
 // Helper function to format date
@@ -37,7 +45,7 @@ function formatDate(dateString: string): string {
       {recentDraws.map((draw, index) => (
         <div class="draw-item rounded-xl p-3 border transition-all duration-300 cursor-pointer group/draw hover:border-purple-300 dark:hover:border-purple-600">
           <div class="flex items-center justify-between mb-1">
-            <span class="text-xs transition-all duration-300">{getProgramDisplayName(draw.programName)}</span>
+            <span class="text-xs transition-all duration-300">{getProgramDisplayName(draw.programCode)}</span>
             <span class="text-lg font-bold transition-all duration-300">{draw.crsScore}</span>
           </div>
           <div class="text-xs text-gray-600 dark:text-gray-400">{formatDate(draw.drawDate)}</div>
