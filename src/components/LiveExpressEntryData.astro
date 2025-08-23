@@ -1,0 +1,39 @@
+---
+import { getLatestExpressEntryDraw } from '../lib/immiwatch-data';
+
+// Fetch latest Express Entry draw data
+const latestDraw = await getLatestExpressEntryDraw();
+
+// Format the date
+const formattedDate = latestDraw ? new Date(latestDraw.drawDate).toLocaleDateString('en-US', {
+  year: 'numeric',
+  month: 'long',
+  day: 'numeric'
+}) : 'No data available';
+
+// Get program abbreviation (e.g., "EE-CEC" -> "EE-CEC")
+const programAbbr = latestDraw ? latestDraw.programName.split(' ')[0] : 'N/A';
+---
+
+<!-- Enhanced Live CRS Score Tracker -->
+<div class="crs-tracker p-4 bg-gradient-to-r from-blue-50 via-purple-50 to-indigo-50 dark:from-blue-900/20 dark:via-purple-900/20 dark:to-indigo-900/20 rounded-xl border border-blue-200 dark:border-blue-700 hover:border-blue-400 dark:hover:border-blue-500 transition-all duration-500 group-hover:scale-105 transform-gpu hover:shadow-lg">
+  <!-- Latest Draw Name -->
+  <div class="flex items-center justify-between mb-2">
+    <span class="text-sm font-medium text-blue-700 dark:text-blue-300">Latest Draw</span>
+    <span class="text-xs text-blue-600 dark:text-blue-400 animate-pulse">🔴 Live</span>
+  </div>
+  <div class="text-lg font-semibold text-blue-800 dark:text-blue-200 mb-2">{programAbbr}</div>
+  
+  <!-- CRS Score -->
+  <div class="flex items-center justify-between mb-2">
+    <span class="text-sm font-medium text-blue-700 dark:text-blue-300">Latest CRS Cutoff</span>
+  </div>
+  <div class="text-3xl font-bold text-blue-600 dark:text-blue-400 group-hover:scale-110 transition-transform duration-300">
+    {latestDraw ? latestDraw.crsScore : 'N/A'}
+  </div>
+  
+  <!-- Draw Date -->
+  <div class="text-xs text-blue-600 dark:text-blue-400">
+    Last Draw: {formattedDate}
+  </div>
+</div>
