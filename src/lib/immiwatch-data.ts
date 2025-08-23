@@ -17,6 +17,7 @@ export interface ImmiWatchDraw {
 export interface DisplayImmiWatchDraw {
   id: string
   programName: string // "Provincial Nominee Program"
+  programCode: string // "EE-PNP" (original code)
   drawDate: string // "February 4, 2025"
   crsScore: number // 802
   invitationsIssued: number // 455
@@ -707,6 +708,7 @@ export function transformImmiWatchData(draw: ImmiWatchDraw): DisplayImmiWatchDra
   return {
     id: draw.whalesync_postgres_id,
     programName: getProgramDisplayName(draw.program),
+    programCode: draw.program,
     drawDate: formatDrawDate(draw.draw_date_most_recent),
     crsScore: draw.score,
     invitationsIssued: draw.invitation,
