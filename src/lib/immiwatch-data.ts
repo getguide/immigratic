@@ -159,6 +159,75 @@ export async function getRecentExpressEntryDraws(): Promise<DisplayImmiWatchDraw
 }
 
 /**
+ * Get the latest OINP draw (any stream)
+ */
+export async function getLatestOINPDraw(): Promise<DisplayImmiWatchDraw | null> {
+  try {
+    console.log('getLatestOINPDraw: Fetching latest OINP draw...');
+    
+    const { data, error } = await supabase
+      .from('ImmiWatch')
+      .select('*')
+      .eq('filter_by_program', 'OINP')
+      .order('draw_date_most_recent', { ascending: false })
+      .limit(1)
+      .single()
+
+    if (error) {
+      console.error('Error fetching latest OINP draw:', error)
+      return null
+    }
+
+    if (!data) {
+      console.log('No OINP data found in ImmiWatch table');
+      return null
+    }
+
+    console.log('Found OINP data:', data);
+    const transformed = transformImmiWatchData(data);
+    console.log('Transformed OINP data:', transformed);
+    return transformed;
+  } catch (error) {
+    console.error('Error fetching latest OINP draw:', error)
+    return null
+  }
+}
+
+/**
+ * Get the 3 most recent OINP draws
+ */
+export async function getRecentOINPDraws(): Promise<DisplayImmiWatchDraw[]> {
+  try {
+    console.log('getRecentOINPDraws: Fetching 3 most recent OINP draws...');
+    
+    const { data, error } = await supabase
+      .from('ImmiWatch')
+      .select('*')
+      .eq('filter_by_program', 'OINP')
+      .order('draw_date_most_recent', { ascending: false })
+      .limit(3)
+
+    if (error) {
+      console.error('Error fetching recent OINP draws:', error)
+      return []
+    }
+
+    if (!data || data.length === 0) {
+      console.log('No OINP data found in ImmiWatch table');
+      return []
+    }
+
+    console.log(`Found ${data.length} recent OINP draws:`, data);
+    const transformed = data.map(transformImmiWatchData);
+    console.log('Transformed recent OINP draws:', transformed);
+    return transformed;
+  } catch (error) {
+    console.error('Error fetching recent OINP draws:', error)
+    return []
+  }
+}
+
+/**
  * Get total HEALTH invitations for 2025
  */
 export async function getHealthTotalInvitations2025(): Promise<number> {
@@ -731,7 +800,15 @@ export function getProgramDisplayName(programCode: string): string {
     'EE-TRADE': 'Skilled Trades',
     'EE-EDUCATION': 'Education Workers',
     'EE-FRENCH': 'French-Speaking Workers',
-    'EE-AGRICULTURE': 'Agriculture Workers'
+    'EE-AGRICULTURE': 'Agriculture Workers',
+    'OINP-International Students': 'International Students',
+    'OINP-In-Demand': 'In-Demand Skills',
+    'OINP-FWS': 'Foreign Worker',
+    'OINP-Masters Stream': 'Masters Graduate',
+    'OINP-Trade': 'Skilled Trades',
+    'OINP-French': 'French-Speaking',
+    'OINP-Human Capital': 'Human Capital',
+    'OINP-PhD Stream': 'PhD Graduate'
   }
   
   return programNames[programCode] || programCode
