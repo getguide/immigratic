@@ -337,25 +337,35 @@ export async function getCECCRSTrend(): Promise<{
     const difference = currentScore - previousScore
     let trend: 'up' | 'down' | 'same'
     let trendText: string
+    let trendIcon: string
+    let trendColor: string
 
     if (difference > 0) {
       trend = 'up'
-      trendText = `↑${difference} from last draw`
+      trendIcon = '↗️'
+      trendText = `${difference}`
+      trendColor = 'text-green-600'
     } else if (difference < 0) {
       trend = 'down'
-      trendText = `↓${Math.abs(difference)} from last draw`
+      trendIcon = '↘️'
+      trendText = `${Math.abs(difference)}`
+      trendColor = 'text-red-600'
     } else {
       trend = 'same'
-      trendText = 'Same as last draw'
+      trendIcon = '➡️'
+      trendText = '0'
+      trendColor = 'text-gray-500'
     }
 
-    console.log(`CEC CRS trend: ${currentScore} (${trendText})`)
+    console.log(`CEC CRS trend: ${currentScore} (${trendIcon} ${trendText})`)
     return {
       currentScore,
       previousScore,
       difference,
       trend,
-      trendText
+      trendText,
+      trendIcon,
+      trendColor
     }
   } catch (error) {
     console.error('Error calculating CEC CRS trend:', error)
