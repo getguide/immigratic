@@ -295,6 +295,75 @@ export async function getCECDrawsForChart2025(): Promise<Array<{
 }
 
 /**
+ * Get CRS trend comparison between latest and previous CEC draw
+ * Shows score difference and trend direction
+ */
+export async function getCECCRSTrend(): Promise<{
+  currentScore: number
+  previousScore: number | null
+  difference: number | null
+  trend: 'up' | 'down' | 'same' | 'first'
+  trendText: string
+} | null> {
+  try {
+    // Get latest 2 CEC draws
+    const { data, error } = await supabase
+      .from('ImmiWatch')
+      .select('score, draw_date_most_recent')
+      .eq('program', 'EE-CEC')
+      .order('draw_date_most_recent', { ascending: false })
+      .limit(2)
+
+    if (error) {
+      console.error('Error fetching CEC CRS trend:', error)
+      return null
+    }
+
+    if (!data || data.length === 0) return null
+
+    const currentScore = data[0]?.score || 0
+    const previousScore = data.length > 1 ? data[1]?.score : null
+
+    if (!previousScore) {
+      return {
+        currentScore,
+        previousScore: null,
+        difference: null,
+        trend: 'first',
+        trendText: 'First draw of 2025'
+      }
+    }
+
+    const difference = currentScore - previousScore
+    let trend: 'up' | 'down' | 'same'
+    let trendText: string
+
+    if (difference > 0) {
+      trend = 'up'
+      trendText = `↑${difference} from last draw`
+    } else if (difference < 0) {
+      trend = 'down'
+      trendText = `↓${Math.abs(difference)} from last draw`
+    } else {
+      trend = 'same'
+      trendText = 'Same as last draw'
+    }
+
+    console.log(`CEC CRS trend: ${currentScore} (${trendText})`)
+    return {
+      currentScore,
+      previousScore,
+      difference,
+      trend,
+      trendText
+    }
+  } catch (error) {
+    console.error('Error calculating CEC CRS trend:', error)
+    return null
+  }
+}
+
+/**
  * Transform raw ImmiWatch data to user-friendly format
  */
 export function transformImmiWatchData(draw: ImmiWatchDraw): DisplayImmiWatchDraw {
