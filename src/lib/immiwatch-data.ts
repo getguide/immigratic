@@ -254,6 +254,47 @@ export async function getCapacityRemaining2025(): Promise<number> {
 }
 
 /**
+ * Get all CEC draws in 2025 for charting
+ * Returns data sorted by date for trend analysis
+ */
+export async function getCECDrawsForChart2025(): Promise<Array<{
+  date: string
+  crsScore: number
+  invitations: number
+  drawName: string
+}>> {
+  try {
+    const { data, error } = await supabase
+      .from('ImmiWatch')
+      .select('draw_date_most_recent, score, invitation, name')
+      .eq('program', 'EE-CEC')
+      .gte('draw_date_most_recent', '2025-01-01')
+      .lte('draw_date_most_recent', '2025-12-31')
+      .order('draw_date_most_recent', { ascending: true })
+
+    if (error) {
+      console.error('Error fetching CEC draws for chart 2025:', error)
+      return []
+    }
+
+    if (!data || data.length === 0) return []
+
+    const chartData = data.map(row => ({
+      date: formatDrawDate(row.draw_date_most_recent),
+      crsScore: row.score || 0,
+      invitations: row.invitation || 0,
+      drawName: row.name || ''
+    }))
+
+    console.log(`Fetched ${chartData.length} CEC draws for chart 2025`)
+    return chartData
+  } catch (error) {
+    console.error('Error processing CEC draws for chart 2025:', error)
+    return []
+  }
+}
+
+/**
  * Transform raw ImmiWatch data to user-friendly format
  */
 export function transformImmiWatchData(draw: ImmiWatchDraw): DisplayImmiWatchDraw {

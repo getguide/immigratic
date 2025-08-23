@@ -2,6 +2,7 @@
 import Layout from '../../../layouts/Layout.astro';
 import LiveCECData from '../../../components/LiveCECData.astro';
 import LiveCECMetrics from '../../../components/LiveCECMetrics.astro';
+import LiveCECChart from '../../../components/LiveCECChart.astro';
 
 export const metadata = {
   title: 'Canadian Experience Class (CEC) | Express Entry | Immigratic',
@@ -785,12 +786,15 @@ export const metadata = {
       </div>
 
       <!-- Insights Dashboard -->
-      <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-16">
+      <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-16">
         <!-- Latest Draw Data - Live from Supabase -->
         <LiveCECData />
 
         <!-- CEC Program Metrics 2025 - Live Data -->
         <LiveCECMetrics />
+        
+        <!-- CEC Trends Chart 2025 -->
+        <LiveCECChart />
       </div>
 
       <!-- Data Attribution -->
