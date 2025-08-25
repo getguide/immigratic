@@ -4107,9 +4107,9 @@ try {
       position: static !important;
     }
     
-    /* FORCE mobile custom dropdown to show, hide native select */
+    /* Custom dropdown styles for mobile */
     .custom-dropdown-container {
-      position: relative !important;
+      position: relative;
     }
     
     .mobile-only {
@@ -4119,10 +4119,16 @@ try {
     .desktop-only {
       display: none !important;
     }
-    
-    /* FORCE hide native select on mobile */
-    select.form-input {
+  }
+  
+  /* Desktop styles - show native select, hide custom dropdown */
+  @media (min-width: 641px) {
+    .mobile-only {
       display: none !important;
+    }
+    
+    .desktop-only {
+      display: block !important;
     }
     
     .custom-dropdown {
@@ -4222,22 +4228,6 @@ try {
     .dark .dropdown-option.selected {
       background-color: #1e3a8a;
       color: #93c5fd;
-    }
-  }
-  
-  /* Desktop styles - restore native select */
-  @media (min-width: 641px) {
-    .mobile-only {
-      display: none !important;
-    }
-    
-    .desktop-only {
-      display: block !important;
-    }
-    
-    /* Show native select on desktop */
-    select.form-input {
-      display: block !important;
     }
     
     /* Improve mobile form layout */
