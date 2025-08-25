@@ -1049,6 +1049,73 @@ try {
                   First Official Language (English or French) *
                 </label>
                 
+                <!-- Language Test Type -->
+                <div class="mb-6">
+                  <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+                    Language Test Type *
+                  </label>
+                  <select id="fsw-language-test" class="w-full p-3 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700 text-gray-900 dark:text-white focus:ring-2 focus:ring-green-500 focus:border-green-500">
+                    <option value="">Select your language test</option>
+                    <option value="IELTS">IELTS General Training</option>
+                    <option value="CELPIP">CELPIP-General</option>
+                    <option value="PTE">PTE Core</option>
+                    <option value="TEF_NEW">TEF Canada (Current - after Dec 10, 2023)</option>
+                    <option value="TCF">TCF Canada (French)</option>
+                  </select>
+                </div>
+
+                <!-- Raw Score Inputs (Hidden by default) -->
+                <div id="fsw-score-inputs" class="mb-6" style="display: none;">
+                  <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+                    <div class="form-group">
+                      <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+                        🗣️ Speaking Score *
+                      </label>
+                      <input type="number" id="fsw-speaking-score" step="0.5" min="0" max="9" class="w-full p-3 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700 text-gray-900 dark:text-white focus:ring-2 focus:ring-green-500 focus:border-green-500" placeholder="e.g. 7.5">
+                      <div class="mt-1 text-xs text-green-600 dark:text-green-400" style="display: none;">
+                        CLB: <span class="clb-result font-semibold">-</span> | Points: <span class="points-value font-semibold">0</span>
+                      </div>
+                    </div>
+
+                    <div class="form-group">
+                      <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+                        👂 Listening Score *
+                      </label>
+                      <input type="number" id="fsw-listening-score" step="0.5" min="0" max="9" class="w-full p-3 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700 text-gray-900 dark:text-white focus:ring-2 focus:ring-green-500 focus:border-green-500" placeholder="e.g. 8.0">
+                      <div class="mt-1 text-xs text-green-600 dark:text-green-400" style="display: none;">
+                        CLB: <span class="clb-result font-semibold">-</span> | Points: <span class="points-value font-semibold">0</span>
+                      </div>
+                    </div>
+
+                    <div class="form-group">
+                      <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+                        📖 Reading Score *
+                      </label>
+                      <input type="number" id="fsw-reading-score" step="0.5" min="0" max="9" class="w-full p-3 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700 text-gray-900 dark:text-white focus:ring-2 focus:ring-green-500 focus:border-green-500" placeholder="e.g. 6.5">
+                      <div class="mt-1 text-xs text-green-600 dark:text-green-400" style="display: none;">
+                        CLB: <span class="clb-result font-semibold">-</span> | Points: <span class="points-value font-semibold">0</span>
+                      </div>
+                    </div>
+
+                    <div class="form-group">
+                      <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+                        ✍️ Writing Score *
+                      </label>
+                      <input type="number" id="fsw-writing-score" step="0.5" min="0" max="9" class="w-full p-3 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700 text-gray-900 dark:text-white focus:ring-2 focus:ring-green-500 focus:border-green-500" placeholder="e.g. 7.0">
+                      <div class="mt-1 text-xs text-green-600 dark:text-green-400" style="display: none;">
+                        CLB: <span class="clb-result font-semibold">-</span> | Points: <span class="points-value font-semibold">0</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- TEF Info Note (Hidden by default) -->
+                <div id="fsw-tef-info" class="mb-4 p-3 bg-blue-50 dark:bg-blue-900/20 border border-blue-200 dark:border-blue-700 rounded-lg text-sm text-blue-800 dark:text-blue-200" style="display: none !important;">
+                  <strong>TEF Canada:</strong> Using current scoring system (valid for tests taken after December 10, 2023)
+                </div>
+
+                <!-- CLB Level Dropdowns (Hidden by default, for compatibility) -->
+                <div id="fsw-clb-dropdowns" style="display: none;">
                 <!-- Language Skills Grid -->
                 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mb-4">
                   <div class="form-group">
@@ -1103,6 +1170,7 @@ try {
                     </select>
                   </div>
                 </div>
+                </div>
 
                 <!-- Language Points Display -->
                 <div class="bg-green-50 dark:bg-green-900/20 border border-green-200 dark:border-green-700 rounded-lg p-4 mb-4">
@@ -1111,7 +1179,7 @@ try {
                     <span class="font-bold text-green-600 dark:text-green-400" id="fsw-first-lang-breakdown">0/24 points</span>
                   </div>
                   <div class="mt-2 text-xs text-green-700 dark:text-green-300" id="fsw-skill-breakdown">
-                    Speaking: 0 | Listening: 0 | Reading: 0 | Writing: 0
+                    Speaking: CLB - (0 pts) | Listening: CLB - (0 pts) | Reading: CLB - (0 pts) | Writing: CLB - (0 pts)
                   </div>
                 </div>
 
@@ -3717,6 +3785,219 @@ try {
   function setupFSWCalculator() {
     let fswCurrentStep = 1;
     const fswTotalSteps = 6;
+    let selectedFswLanguageTest: string | null = null;
+    
+    // CLB Conversion Data (same as CRS calculator)
+    const fswClbData = {
+      "IELTS": {
+        "reading": [
+          {"clb_level": 10, "score": 8.0},
+          {"clb_level": 9, "score": 7.0},
+          {"clb_level": 8, "score": 6.5},
+          {"clb_level": 7, "score": 6.0},
+          {"clb_level": 6, "score": 5.0},
+          {"clb_level": 5, "score": 4.0},
+          {"clb_level": 4, "score": 3.5}
+        ],
+        "writing": [
+          {"clb_level": 10, "score": 7.5},
+          {"clb_level": 9, "score": 7.0},
+          {"clb_level": 8, "score": 6.5},
+          {"clb_level": 7, "score": 6.0},
+          {"clb_level": 6, "score": 5.5},
+          {"clb_level": 5, "score": 5.0},
+          {"clb_level": 4, "score": 4.0}
+        ],
+        "listening": [
+          {"clb_level": 10, "score": 8.5},
+          {"clb_level": 9, "score": 8.0},
+          {"clb_level": 8, "score": 7.5},
+          {"clb_level": 7, "score": 6.0},
+          {"clb_level": 6, "score": 5.5},
+          {"clb_level": 5, "score": 5.0},
+          {"clb_level": 4, "score": 4.5}
+        ],
+        "speaking": [
+          {"clb_level": 10, "score": 7.5},
+          {"clb_level": 9, "score": 7.0},
+          {"clb_level": 8, "score": 6.5},
+          {"clb_level": 7, "score": 6.0},
+          {"clb_level": 6, "score": 5.5},
+          {"clb_level": 5, "score": 5.0},
+          {"clb_level": 4, "score": 4.0}
+        ]
+      },
+      "CELPIP": {
+        "reading": [
+          {"clb_level": 10, "score": 10},
+          {"clb_level": 9, "score": 9},
+          {"clb_level": 8, "score": 8},
+          {"clb_level": 7, "score": 7},
+          {"clb_level": 6, "score": 6},
+          {"clb_level": 5, "score": 5},
+          {"clb_level": 4, "score": 4}
+        ],
+        "writing": [
+          {"clb_level": 10, "score": 10},
+          {"clb_level": 9, "score": 9},
+          {"clb_level": 8, "score": 8},
+          {"clb_level": 7, "score": 7},
+          {"clb_level": 6, "score": 6},
+          {"clb_level": 5, "score": 5},
+          {"clb_level": 4, "score": 4}
+        ],
+        "listening": [
+          {"clb_level": 10, "score": 10},
+          {"clb_level": 9, "score": 9},
+          {"clb_level": 8, "score": 8},
+          {"clb_level": 7, "score": 7},
+          {"clb_level": 6, "score": 6},
+          {"clb_level": 5, "score": 5},
+          {"clb_level": 4, "score": 4}
+        ],
+        "speaking": [
+          {"clb_level": 10, "score": 10},
+          {"clb_level": 9, "score": 9},
+          {"clb_level": 8, "score": 8},
+          {"clb_level": 7, "score": 7},
+          {"clb_level": 6, "score": 6},
+          {"clb_level": 5, "score": 5},
+          {"clb_level": 4, "score": 4}
+        ]
+      },
+      "PTE": {
+        "reading": [
+          {"clb_level": 10, "score": 88},
+          {"clb_level": 9, "score": 78},
+          {"clb_level": 8, "score": 69},
+          {"clb_level": 7, "score": 60},
+          {"clb_level": 6, "score": 51},
+          {"clb_level": 5, "score": 42},
+          {"clb_level": 4, "score": 33}
+        ],
+        "writing": [
+          {"clb_level": 10, "score": 90},
+          {"clb_level": 9, "score": 79},
+          {"clb_level": 8, "score": 69},
+          {"clb_level": 7, "score": 60},
+          {"clb_level": 6, "score": 51},
+          {"clb_level": 5, "score": 42},
+          {"clb_level": 4, "score": 32}
+        ],
+        "listening": [
+          {"clb_level": 10, "score": 89},
+          {"clb_level": 9, "score": 82},
+          {"clb_level": 8, "score": 71},
+          {"clb_level": 7, "score": 60},
+          {"clb_level": 6, "score": 50},
+          {"clb_level": 5, "score": 39},
+          {"clb_level": 4, "score": 28}
+        ],
+        "speaking": [
+          {"clb_level": 10, "score": 89},
+          {"clb_level": 9, "score": 84},
+          {"clb_level": 8, "score": 76},
+          {"clb_level": 7, "score": 68},
+          {"clb_level": 6, "score": 59},
+          {"clb_level": 5, "score": 51},
+          {"clb_level": 4, "score": 42}
+        ]
+      },
+      "TEF_NEW": {
+        "reading": [
+          {"clb_level": 10, "score": 263},
+          {"clb_level": 9, "score": 248},
+          {"clb_level": 8, "score": 233},
+          {"clb_level": 7, "score": 207},
+          {"clb_level": 6, "score": 181},
+          {"clb_level": 5, "score": 151},
+          {"clb_level": 4, "score": 121}
+        ],
+        "writing": [
+          {"clb_level": 10, "score": 393},
+          {"clb_level": 9, "score": 371},
+          {"clb_level": 8, "score": 349},
+          {"clb_level": 7, "score": 310},
+          {"clb_level": 6, "score": 271},
+          {"clb_level": 5, "score": 226},
+          {"clb_level": 4, "score": 181}
+        ],
+        "listening": [
+          {"clb_level": 10, "score": 316},
+          {"clb_level": 9, "score": 298},
+          {"clb_level": 8, "score": 280},
+          {"clb_level": 7, "score": 249},
+          {"clb_level": 6, "score": 217},
+          {"clb_level": 5, "score": 181},
+          {"clb_level": 4, "score": 145}
+        ],
+        "speaking": [
+          {"clb_level": 10, "score": 393},
+          {"clb_level": 9, "score": 371},
+          {"clb_level": 8, "score": 349},
+          {"clb_level": 7, "score": 310},
+          {"clb_level": 6, "score": 271},
+          {"clb_level": 5, "score": 226},
+          {"clb_level": 4, "score": 181}
+        ]
+      },
+      "TCF": {
+        "reading": [
+          {"clb_level": 10, "score": 549},
+          {"clb_level": 9, "score": 524},
+          {"clb_level": 8, "score": 499},
+          {"clb_level": 7, "score": 453},
+          {"clb_level": 6, "score": 406},
+          {"clb_level": 5, "score": 375},
+          {"clb_level": 4, "score": 342}
+        ],
+        "writing": [
+          {"clb_level": 10, "score": 16},
+          {"clb_level": 9, "score": 14},
+          {"clb_level": 8, "score": 12},
+          {"clb_level": 7, "score": 10},
+          {"clb_level": 6, "score": 8},
+          {"clb_level": 5, "score": 6},
+          {"clb_level": 4, "score": 4}
+        ],
+        "listening": [
+          {"clb_level": 10, "score": 549},
+          {"clb_level": 9, "score": 523},
+          {"clb_level": 8, "score": 503},
+          {"clb_level": 7, "score": 458},
+          {"clb_level": 6, "score": 398},
+          {"clb_level": 5, "score": 369},
+          {"clb_level": 4, "score": 331}
+        ],
+        "speaking": [
+          {"clb_level": 10, "score": 16},
+          {"clb_level": 9, "score": 14},
+          {"clb_level": 8, "score": 12},
+          {"clb_level": 7, "score": 10},
+          {"clb_level": 6, "score": 8},
+          {"clb_level": 5, "score": 6},
+          {"clb_level": 4, "score": 4}
+        ]
+      }
+    };
+    
+    // CLB conversion function
+    function convertFswScoreToCLB(testType: string, skill: string, score: number): number {
+      const testData = fswClbData[testType as keyof typeof fswClbData];
+      if (!testData) return 0;
+      
+      const skillData = testData[skill as keyof typeof testData];
+      if (!skillData) return 0;
+      
+      // Find the highest CLB level where the score meets or exceeds the requirement
+      for (const level of skillData) {
+        if (score >= level.score) {
+          return level.clb_level;
+        }
+      }
+      
+      return 0; // Below minimum
+    }
     const fswData = {
       "language_proficiency": {
         "first_official_language": {
@@ -3786,6 +4067,11 @@ try {
     };
 
     // Get FSW elements
+    const fswLanguageTest = document.getElementById('fsw-language-test') as HTMLSelectElement;
+    const fswSpeakingScore = document.getElementById('fsw-speaking-score') as HTMLInputElement;
+    const fswListeningScore = document.getElementById('fsw-listening-score') as HTMLInputElement;
+    const fswReadingScore = document.getElementById('fsw-reading-score') as HTMLInputElement;
+    const fswWritingScore = document.getElementById('fsw-writing-score') as HTMLInputElement;
     const fswSpeaking = document.getElementById('fsw-speaking') as HTMLSelectElement;
     const fswListening = document.getElementById('fsw-listening') as HTMLSelectElement;
     const fswReading = document.getElementById('fsw-reading') as HTMLSelectElement;
@@ -3880,25 +4166,189 @@ try {
 
     // Initialize FSW step display
     updateFSWStep(1);
+    
+    // Setup FSW language test selection
+    setupFswLanguageTest();
+    
+    function setupFswLanguageTest() {
+      if (fswLanguageTest) {
+        fswLanguageTest.addEventListener('change', function() {
+          selectedFswLanguageTest = this.value;
+          
+          const scoreInputs = document.getElementById('fsw-score-inputs');
+          const clbDropdowns = document.getElementById('fsw-clb-dropdowns');
+          const tefInfo = document.getElementById('fsw-tef-info');
+          
+          if (selectedFswLanguageTest) {
+            // Show score inputs, hide CLB dropdowns
+            if (scoreInputs) scoreInputs.style.display = 'block';
+            if (clbDropdowns) clbDropdowns.style.display = 'none';
+            
+            // Show TEF info if TEF is selected
+            if (tefInfo) {
+              if (selectedFswLanguageTest === 'TEF_NEW') {
+                tefInfo.style.display = 'block';
+                tefInfo.style.setProperty('display', 'block', 'important');
+              } else {
+                tefInfo.style.display = 'none';
+                tefInfo.style.setProperty('display', 'none', 'important');
+              }
+            }
+          } else {
+            // Hide both sections if no test selected
+            if (scoreInputs) scoreInputs.style.display = 'none';
+            if (clbDropdowns) clbDropdowns.style.display = 'none';
+            if (tefInfo) {
+              tefInfo.style.display = 'none';
+              tefInfo.style.setProperty('display', 'none', 'important');
+            }
+          }
+          
+          // Reset scores when changing test type
+          resetFswLanguageScores();
+        });
+      }
+    }
+    
+    function resetFswLanguageScores() {
+      const scoreInputs = [fswSpeakingScore, fswListeningScore, fswReadingScore, fswWritingScore];
+      scoreInputs.forEach(input => {
+        if (input) {
+          input.value = '';
+          // Hide CLB display
+          const clbContainer = input.parentElement?.querySelector('.mt-1');
+          if (clbContainer) (clbContainer as HTMLElement).style.display = 'none';
+        }
+      });
+      
+      // Reset calculation
+      calculateFSWLanguage();
+    }
+    
+    // Setup FSW score input handlers
+    function setupFswLanguageScoreInputs() {
+      const scoreInputs = [
+        { input: fswSpeakingScore, skill: 'speaking' },
+        { input: fswListeningScore, skill: 'listening' },
+        { input: fswReadingScore, skill: 'reading' },
+        { input: fswWritingScore, skill: 'writing' }
+      ];
+      
+      scoreInputs.forEach(({ input, skill }) => {
+        if (input) {
+          input.addEventListener('input', function() {
+            const score = parseFloat(this.value);
+            
+            if (!isNaN(score) && selectedFswLanguageTest) {
+              const clbLevel = convertFswScoreToCLB(selectedFswLanguageTest, skill, score);
+              const points = getFswSkillPointsFromCLB(clbLevel);
+              
+              // Update CLB and points display under the input
+              const clbContainer = this.parentElement?.querySelector('.mt-1') as HTMLElement;
+              if (clbContainer) {
+                const clbResult = clbContainer.querySelector('.clb-result');
+                const pointsValue = clbContainer.querySelector('.points-value');
+                
+                if (clbResult) clbResult.textContent = clbLevel.toString();
+                if (pointsValue) pointsValue.textContent = points.toString();
+                
+                clbContainer.style.display = 'block';
+              }
+              
+              // Update hidden CLB dropdown for compatibility
+              const hiddenSelect = document.getElementById(`fsw-${skill}`) as HTMLSelectElement;
+              if (hiddenSelect) {
+                hiddenSelect.value = getFswCLBValue(clbLevel);
+              }
+            } else {
+              // Hide CLB display if no score
+              const clbContainer = this.parentElement?.querySelector('.mt-1') as HTMLElement;
+              if (clbContainer) clbContainer.style.display = 'none';
+            }
+            
+            // Recalculate total
+            calculateFSWLanguage();
+          });
+        }
+      });
+    }
+    
+    function getFswSkillPointsFromCLB(clbLevel: number): number {
+      if (clbLevel >= 9) return 6;
+      if (clbLevel === 8) return 5;
+      if (clbLevel === 7) return 4;
+      return 0;
+    }
+    
+    function getFswCLBValue(clbLevel: number): string {
+      if (clbLevel >= 9) return 'CLB_9_or_higher';
+      if (clbLevel === 8) return 'CLB_8';
+      if (clbLevel === 7) return 'CLB_7';
+      return 'CLB_6_or_less';
+    }
+    
+    // Initialize score input handlers
+    setupFswLanguageScoreInputs();
 
     function calculateFSWLanguage() {
-      // Get individual skill levels
-      const speaking = fswSpeaking?.value || '';
-      const listening = fswListening?.value || '';
-      const reading = fswReading?.value || '';
-      const writing = fswWriting?.value || '';
-      const secondLang = fswSecondLang?.value || '';
+      let speakingPoints = 0, listeningPoints = 0, readingPoints = 0, writingPoints = 0;
+      let speakingCLB = '-', listeningCLB = '-', readingCLB = '-', writingCLB = '-';
       
-      // Calculate points for each skill
-      const speakingPoints = getSkillPoints(speaking);
-      const listeningPoints = getSkillPoints(listening);
-      const readingPoints = getSkillPoints(reading);
-      const writingPoints = getSkillPoints(writing);
+      // Check if using raw scores or CLB dropdowns
+      if (selectedFswLanguageTest && fswSpeakingScore?.value) {
+        // Using raw scores - convert to CLB and calculate points
+        const speakingScore = parseFloat(fswSpeakingScore.value);
+        const listeningScore = parseFloat(fswListeningScore?.value || '0');
+        const readingScore = parseFloat(fswReadingScore?.value || '0');
+        const writingScore = parseFloat(fswWritingScore?.value || '0');
+        
+        if (!isNaN(speakingScore)) {
+          const clbLevel = convertFswScoreToCLB(selectedFswLanguageTest, 'speaking', speakingScore);
+          speakingCLB = clbLevel.toString();
+          speakingPoints = getFswSkillPointsFromCLB(clbLevel);
+        }
+        
+        if (!isNaN(listeningScore)) {
+          const clbLevel = convertFswScoreToCLB(selectedFswLanguageTest, 'listening', listeningScore);
+          listeningCLB = clbLevel.toString();
+          listeningPoints = getFswSkillPointsFromCLB(clbLevel);
+        }
+        
+        if (!isNaN(readingScore)) {
+          const clbLevel = convertFswScoreToCLB(selectedFswLanguageTest, 'reading', readingScore);
+          readingCLB = clbLevel.toString();
+          readingPoints = getFswSkillPointsFromCLB(clbLevel);
+        }
+        
+        if (!isNaN(writingScore)) {
+          const clbLevel = convertFswScoreToCLB(selectedFswLanguageTest, 'writing', writingScore);
+          writingCLB = clbLevel.toString();
+          writingPoints = getFswSkillPointsFromCLB(clbLevel);
+        }
+      } else {
+        // Using CLB dropdowns (fallback)
+        const speaking = fswSpeaking?.value || '';
+        const listening = fswListening?.value || '';
+        const reading = fswReading?.value || '';
+        const writing = fswWriting?.value || '';
+        
+        speakingPoints = getSkillPoints(speaking);
+        listeningPoints = getSkillPoints(listening);
+        readingPoints = getSkillPoints(reading);
+        writingPoints = getSkillPoints(writing);
+        
+        // Extract CLB levels from dropdown values
+        speakingCLB = extractCLBFromValue(speaking);
+        listeningCLB = extractCLBFromValue(listening);
+        readingCLB = extractCLBFromValue(reading);
+        writingCLB = extractCLBFromValue(writing);
+      }
       
       // Calculate first language total
       const firstLangTotal = speakingPoints + listeningPoints + readingPoints + writingPoints;
       
       // Calculate second language points
+      const secondLang = fswSecondLang?.value || '';
       const secondLangData = fswData.language_proficiency.second_official_language[secondLang as keyof typeof fswData.language_proficiency.second_official_language];
       const secondPoints = secondLangData?.total || 0;
       
@@ -3917,10 +4367,18 @@ try {
       }
       
       if (skillBreakdown) {
-        skillBreakdown.textContent = `Speaking: ${speakingPoints} | Listening: ${listeningPoints} | Reading: ${readingPoints} | Writing: ${writingPoints}`;
+        skillBreakdown.textContent = `Speaking: CLB ${speakingCLB} (${speakingPoints} pts) | Listening: CLB ${listeningCLB} (${listeningPoints} pts) | Reading: CLB ${readingCLB} (${readingPoints} pts) | Writing: CLB ${writingCLB} (${writingPoints} pts)`;
       }
       
       updateFSWTotal();
+    }
+    
+    function extractCLBFromValue(value: string): string {
+      if (value.includes('CLB_9')) return '9+';
+      if (value.includes('CLB_8')) return '8';
+      if (value.includes('CLB_7')) return '7';
+      if (value.includes('CLB_6')) return '6-';
+      return '-';
     }
     
     function getSkillPoints(skillLevel: string): number {
@@ -3998,17 +4456,38 @@ try {
       
       // Check critical eligibility requirements
       const workExp = fswWorkExp?.value || '';
-      const speaking = fswSpeaking?.value || '';
-      const listening = fswListening?.value || '';
-      const reading = fswReading?.value || '';
-      const writing = fswWriting?.value || '';
       
-      // Critical deal-breakers - ALL skills must be CLB 7 or higher
+      // Check language eligibility - use raw scores if available, otherwise CLB dropdowns
+      let hasMinimumLanguage = false;
+      
+      if (selectedFswLanguageTest && fswSpeakingScore?.value) {
+        // Using raw scores - check CLB conversion
+        const speakingScore = parseFloat(fswSpeakingScore.value);
+        const listeningScore = parseFloat(fswListeningScore?.value || '0');
+        const readingScore = parseFloat(fswReadingScore?.value || '0');
+        const writingScore = parseFloat(fswWritingScore?.value || '0');
+        
+        const speakingCLB = !isNaN(speakingScore) ? convertFswScoreToCLB(selectedFswLanguageTest, 'speaking', speakingScore) : 0;
+        const listeningCLB = !isNaN(listeningScore) ? convertFswScoreToCLB(selectedFswLanguageTest, 'listening', listeningScore) : 0;
+        const readingCLB = !isNaN(readingScore) ? convertFswScoreToCLB(selectedFswLanguageTest, 'reading', readingScore) : 0;
+        const writingCLB = !isNaN(writingScore) ? convertFswScoreToCLB(selectedFswLanguageTest, 'writing', writingScore) : 0;
+        
+        hasMinimumLanguage = speakingCLB >= 7 && listeningCLB >= 7 && readingCLB >= 7 && writingCLB >= 7;
+      } else {
+        // Using CLB dropdowns (fallback)
+        const speaking = fswSpeaking?.value || '';
+        const listening = fswListening?.value || '';
+        const reading = fswReading?.value || '';
+        const writing = fswWriting?.value || '';
+        
+        hasMinimumLanguage = (speaking === 'CLB_7' || speaking === 'CLB_8' || speaking === 'CLB_9_or_higher') &&
+                            (listening === 'CLB_7' || listening === 'CLB_8' || listening === 'CLB_9_or_higher') &&
+                            (reading === 'CLB_7' || reading === 'CLB_8' || reading === 'CLB_9_or_higher') &&
+                            (writing === 'CLB_7' || writing === 'CLB_8' || writing === 'CLB_9_or_higher');
+      }
+      
+      // Critical deal-breakers
       const hasMinimumWork = workExp !== 'less_than_1' && workExp !== '';
-      const hasMinimumLanguage = (speaking === 'CLB_7' || speaking === 'CLB_8' || speaking === 'CLB_9_or_higher') &&
-                                (listening === 'CLB_7' || listening === 'CLB_8' || listening === 'CLB_9_or_higher') &&
-                                (reading === 'CLB_7' || reading === 'CLB_8' || reading === 'CLB_9_or_higher') &&
-                                (writing === 'CLB_7' || writing === 'CLB_8' || writing === 'CLB_9_or_higher');
       
       // Update eligibility status
       if (fswEligibilityStatus) {
@@ -4025,6 +4504,11 @@ try {
     }
 
     // Event listeners for FSW calculator
+    if (fswLanguageTest) fswLanguageTest.addEventListener('change', calculateFSWLanguage);
+    if (fswSpeakingScore) fswSpeakingScore.addEventListener('input', calculateFSWLanguage);
+    if (fswListeningScore) fswListeningScore.addEventListener('input', calculateFSWLanguage);
+    if (fswReadingScore) fswReadingScore.addEventListener('input', calculateFSWLanguage);
+    if (fswWritingScore) fswWritingScore.addEventListener('input', calculateFSWLanguage);
     if (fswSpeaking) fswSpeaking.addEventListener('change', calculateFSWLanguage);
     if (fswListening) fswListening.addEventListener('change', calculateFSWLanguage);
     if (fswReading) fswReading.addEventListener('change', calculateFSWLanguage);
