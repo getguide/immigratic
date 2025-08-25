@@ -2,8 +2,8 @@
 import Layout from '../../layouts/Layout.astro';
 
 export const metadata = {
-  title: 'Immigration Tools - Master Assessment, CLB Navigator, NOC Navigator | Immigratic',
-  description: 'Access our comprehensive suite of immigration tools: Master Assessment for 35+ programs, CLB Navigator, NOC Navigator, and AI-powered generators.',
+  title: 'Immigration Tools - CRS Calculator, Master Assessment, CLB Navigator, NOC Navigator | Immigratic',
+  description: 'Access our comprehensive suite of immigration tools: CRS Calculator, Master Assessment for 35+ programs, CLB Navigator, NOC Navigator, and AI-powered generators.',
   image: 'https://20597210.fs1.hubspotusercontent-na1.net/hubfs/20597210/logo%20banner.jpg',
   canonical: 'https://immigratic.com/tools'
 };
@@ -214,15 +214,58 @@ export const metadata = {
         <h2 class="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white mb-6">
           Our
           <span class="bg-gradient-to-r from-green-600 to-blue-600 bg-clip-text text-transparent">
-            Navigators
+            Core Tools
           </span>
         </h2>
         <p class="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
-          Specialized tools designed to guide you through the complexities of Canadian immigration requirements and classifications.
+          Essential tools to calculate your immigration scores and navigate Canadian immigration requirements and classifications.
         </p>
       </div>
       
-      <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
+      <div class="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-12">
+        <!-- Immigration Calculators -->
+        <div class="group relative">
+          <div class="absolute inset-0 bg-gradient-to-r from-orange-600 to-red-600 rounded-3xl blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+          <div class="relative bg-white dark:bg-gray-800 rounded-3xl p-8 shadow-xl border border-gray-200 dark:border-gray-700 hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2">
+            <div class="w-20 h-20 bg-gradient-to-br from-orange-500 to-red-600 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
+              <svg class="w-10 h-10 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 7h6m0 10v-3m-3 3h.01M9 17h.01M9 14h.01M12 14h.01M15 11h.01M12 11h.01M9 11h.01M7 21h10a2 2 0 002-2V5a2 2 0 00-2-2H7a2 2 0 00-2 2v14a2 2 0 002 2z"></path>
+              </svg>
+            </div>
+            
+            <h3 class="text-2xl font-bold text-gray-900 dark:text-white mb-4">Immigration Calculators</h3>
+            <p class="text-gray-600 dark:text-gray-300 mb-6 leading-relaxed">
+              Calculate your scores for various immigration programs including CRS, FSW, and Provincial Nominee Programs. 
+              Get real-time updates, detailed breakdowns, and compare with latest draw results.
+            </p>
+            
+            <div class="space-y-3 mb-6">
+              <div class="flex items-center gap-3">
+                <div class="w-2 h-2 bg-orange-500 rounded-full"></div>
+                <span class="text-gray-700 dark:text-gray-300 text-sm">CRS Calculator for Express Entry</span>
+              </div>
+              <div class="flex items-center gap-3">
+                <div class="w-2 h-2 bg-red-500 rounded-full"></div>
+                <span class="text-gray-700 dark:text-gray-300 text-sm">FSW Points Calculator</span>
+              </div>
+              <div class="flex items-center gap-3">
+                <div class="w-2 h-2 bg-yellow-500 rounded-full"></div>
+                <span class="text-gray-700 dark:text-gray-300 text-sm">Provincial Nominee Programs</span>
+              </div>
+              <div class="flex items-center gap-3">
+                <div class="w-2 h-2 bg-pink-500 rounded-full"></div>
+                <span class="text-gray-700 dark:text-gray-300 text-sm">Live draw comparisons</span>
+              </div>
+            </div>
+            
+            <div class="flex justify-center">
+              <a href="/tools/calculators?utm_source=immigratic&utm_medium=website&utm_campaign=tools_page&utm_content=calculators_nav" class="px-8 py-3 bg-gradient-to-r from-orange-600 to-red-600 text-white font-semibold rounded-xl hover:from-orange-700 hover:to-red-700 transition-all duration-300 transform hover:scale-105">
+                Explore Calculators
+              </a>
+            </div>
+          </div>
+        </div>
+
         <!-- CLB Navigator -->
         <div class="group relative">
           <div class="absolute inset-0 bg-gradient-to-r from-green-600 to-blue-600 rounded-3xl blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
@@ -388,6 +431,66 @@ export const metadata = {
           </div>
         </div>
 
+        <!-- CRS Calculator -->
+        <div class="group relative">
+          <div class="absolute inset-0 bg-gradient-to-r from-orange-600 to-red-600 rounded-3xl blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+          <div class="relative bg-white dark:bg-gray-800 rounded-3xl p-8 shadow-xl border border-gray-200 dark:border-gray-700 hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2">
+            <div class="w-16 h-16 bg-gradient-to-br from-orange-500 to-red-600 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
+              <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 7h6m0 10v-3m-3 3h.01M9 17h.01M9 14h.01M12 14h.01M15 11h.01M12 11h.01M9 11h.01M7 21h10a2 2 0 002-2V5a2 2 0 00-2-2H7a2 2 0 00-2 2v14a2 2 0 002 2z"></path>
+              </svg>
+            </div>
+            <h3 class="text-xl font-bold text-gray-900 dark:text-white mb-3">CRS Calculator</h3>
+            <p class="text-gray-600 dark:text-gray-300 mb-6 leading-relaxed">Calculate your Comprehensive Ranking System (CRS) score for Express Entry with real-time updates and detailed breakdown.</p>
+            <a href="/tools/calculators?utm_source=immigratic&utm_medium=website&utm_campaign=tools_page&utm_content=crs_calculator" class="inline-flex items-center text-orange-600 dark:text-orange-400 font-semibold hover:text-orange-700 dark:hover:text-orange-300 transition-colors">
+              Explore Tool
+              <svg class="w-4 h-4 ml-2 transform group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+              </svg>
+            </a>
+          </div>
+        </div>
+
+        <!-- FSW Calculator -->
+        <div class="group relative">
+          <div class="absolute inset-0 bg-gradient-to-r from-teal-600 to-cyan-600 rounded-3xl blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+          <div class="relative bg-white dark:bg-gray-800 rounded-3xl p-8 shadow-xl border border-gray-200 dark:border-gray-700 hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2">
+            <div class="w-16 h-16 bg-gradient-to-br from-teal-500 to-cyan-600 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
+              <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
+              </svg>
+            </div>
+            <h3 class="text-xl font-bold text-gray-900 dark:text-white mb-3">FSW Calculator</h3>
+            <p class="text-gray-600 dark:text-gray-300 mb-6 leading-relaxed">Calculate your Federal Skilled Worker (FSW) points to determine eligibility for Express Entry programs.</p>
+            <a href="/tools/calculators?utm_source=immigratic&utm_medium=website&utm_campaign=tools_page&utm_content=fsw_calculator" class="inline-flex items-center text-teal-600 dark:text-teal-400 font-semibold hover:text-teal-700 dark:hover:text-teal-300 transition-colors">
+              Explore Tool
+              <svg class="w-4 h-4 ml-2 transform group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+              </svg>
+            </a>
+          </div>
+        </div>
+
+        <!-- OINP Calculator -->
+        <div class="group relative">
+          <div class="absolute inset-0 bg-gradient-to-r from-indigo-600 to-blue-600 rounded-3xl blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+          <div class="relative bg-white dark:bg-gray-800 rounded-3xl p-8 shadow-xl border border-gray-200 dark:border-gray-700 hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2">
+            <div class="w-16 h-16 bg-gradient-to-br from-indigo-500 to-blue-600 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
+              <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path>
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path>
+              </svg>
+            </div>
+            <h3 class="text-xl font-bold text-gray-900 dark:text-white mb-3">OINP Calculator</h3>
+            <p class="text-gray-600 dark:text-gray-300 mb-6 leading-relaxed">Calculate your Ontario Immigrant Nominee Program (OINP) eligibility and points across different streams.</p>
+            <a href="/tools/calculators?utm_source=immigratic&utm_medium=website&utm_campaign=tools_page&utm_content=oinp_calculator" class="inline-flex items-center text-indigo-600 dark:text-indigo-400 font-semibold hover:text-indigo-700 dark:hover:text-indigo-300 transition-colors">
+              Coming Soon
+              <svg class="w-4 h-4 ml-2 transform group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+              </svg>
+            </a>
+          </div>
+        </div>
 
       </div>
     </div>
@@ -506,11 +609,11 @@ export const metadata = {
       const navLinks = document.querySelectorAll('.nav-link');
       
       navLinks.forEach(link => {
-        link.addEventListener('click', function(e) {
+        link.addEventListener('click', function(this: HTMLAnchorElement, e) {
           e.preventDefault();
           
-          const targetId = this.getAttribute('href').substring(1);
-          const targetSection = document.getElementById(targetId);
+          const targetId = this.getAttribute('href')?.substring(1);
+          const targetSection = targetId ? document.getElementById(targetId) : null;
           
           if (targetSection) {
             const offsetTop = targetSection.offsetTop - 80; // Account for sticky nav height

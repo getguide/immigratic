@@ -1,161 +1,890 @@
 ---
 import Layout from '../../layouts/Layout.astro';
+
+export const metadata = {
+  title: 'CLB Navigator - Convert Language Test Scores to CLB Levels',
+  description: 'Convert your IELTS, CELPIP, PTE, TEF, or TCF language test scores to Canadian Language Benchmark (CLB) levels for Express Entry and immigration applications. Free, accurate, instant conversion.',
+  keywords: 'CLB calculator, CLB converter, IELTS to CLB, CELPIP to CLB, PTE to CLB, TEF to CLB, TCF to CLB, Canadian Language Benchmark, language test conversion, Express Entry language requirements',
+  image: 'https://20597210.fs1.hubspotusercontent-na1.net/hubfs/20597210/logo%20banner.jpg',
+  canonical: 'https://immigratic.com/tools/clb-navigator'
+};
 ---
 
-<Layout title="CLB Navigator - Immigratic">
-  <!-- Full Screen Hero -->
-  <section class="min-h-screen bg-gradient-to-br from-green-50 via-white to-blue-50 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900 flex items-center justify-center relative overflow-hidden">
-    <!-- Background Elements -->
-    <div class="absolute inset-0">
-      <div class="absolute top-20 left-20 w-96 h-96 bg-green-500/5 rounded-full blur-3xl animate-float"></div>
-      <div class="absolute bottom-20 right-20 w-80 h-80 bg-blue-500/5 rounded-full blur-3xl animate-float" style="animation-delay: 2s;"></div>
-      <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-gradient-to-r from-green-400/10 to-blue-400/10 rounded-full blur-3xl animate-pulse-slow"></div>
-      
-      <!-- Floating Particles -->
-      <div class="absolute top-1/4 left-1/4 w-2 h-2 bg-green-400/30 rounded-full animate-float-gentle" style="animation-delay: 0s;"></div>
-      <div class="absolute top-1/3 right-1/3 w-1.5 h-1.5 bg-blue-300/40 rounded-full animate-float-gentle" style="animation-delay: 1s;"></div>
-      <div class="absolute bottom-1/4 left-1/3 w-1 h-1 bg-emerald-300/50 rounded-full animate-float-gentle" style="animation-delay: 2s;"></div>
-      <div class="absolute top-1/2 right-1/4 w-2.5 h-2.5 bg-teal-400/20 rounded-full animate-float-gentle" style="animation-delay: 3s;"></div>
-    </div>
+<Layout title={metadata.title} description={metadata.description}>
+  
+  <!-- Hero Section -->
+  <section class="relative py-20 bg-gradient-to-br from-green-600 via-teal-700 to-blue-800 dark:from-green-800 dark:via-teal-900 dark:to-blue-900 overflow-hidden">
+    <div class="absolute inset-0 bg-black/20"></div>
     
-    <!-- Main Content -->
-    <div class="relative z-10 text-center px-4 sm:px-6 lg:px-8 max-w-4xl mx-auto">
-      <!-- Icon -->
-      <div class="mb-8 flex justify-center">
-        <div class="w-24 h-24 bg-gradient-to-br from-green-500 to-blue-600 rounded-3xl flex items-center justify-center shadow-2xl animate-float-gentle">
-          <svg class="w-12 h-12 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"></path>
-          </svg>
+    <!-- Floating Elements -->
+    <div class="absolute top-10 left-10 w-20 h-20 bg-white/10 rounded-full animate-pulse"></div>
+    <div class="absolute top-32 right-20 w-16 h-16 bg-white/10 rounded-full animate-pulse delay-1000"></div>
+    <div class="absolute bottom-20 left-1/4 w-12 h-12 bg-white/10 rounded-full animate-pulse delay-500"></div>
+    
+    <div class="relative max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      <div class="inline-flex items-center gap-3 mb-6">
+        <div class="w-16 h-16 bg-white/20 backdrop-blur-sm rounded-2xl flex items-center justify-center">
+          <span class="text-3xl">🗣️</span>
         </div>
+        <h1 class="text-4xl md:text-6xl font-bold text-white">CLB Navigator</h1>
       </div>
       
-      <!-- Coming Soon Badge -->
-      <div class="inline-flex items-center px-4 py-2 bg-gradient-to-r from-green-500 to-blue-600 text-white text-sm font-medium rounded-full mb-6 shadow-lg">
-        <span class="w-2 h-2 bg-white rounded-full mr-2 animate-pulse"></span>
-        Coming Soon
-      </div>
-      
-      <!-- Main Heading -->
-      <h1 class="text-5xl md:text-7xl font-bold text-gray-900 dark:text-white mb-6 leading-tight">
-        <span class="block">CLB</span>
-        <span class="block bg-gradient-to-r from-green-600 to-blue-600 bg-clip-text text-transparent">Navigator</span>
-      </h1>
-      
-      <!-- Subheading -->
-      <p class="text-xl md:text-2xl text-gray-600 dark:text-gray-300 mb-8 max-w-3xl mx-auto leading-relaxed">
-        Master the Canadian Language Benchmark system. Assess your language skills, understand CLB levels, and discover how they impact your immigration journey.
+      <p class="text-xl md:text-2xl text-white/90 mb-8 max-w-3xl mx-auto">
+        Convert your language test scores to Canadian Language Benchmark (CLB) levels instantly
       </p>
       
-      <!-- Launch Date -->
-      <div class="bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-xl border border-gray-200 dark:border-gray-700 mb-8">
-        <div class="text-sm text-gray-500 dark:text-gray-400 mb-2">Estimated Launch</div>
-        <div class="text-2xl font-bold text-gray-900 dark:text-white">Q1 2026</div>
-      </div>
-      
-      <!-- Features Preview -->
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
-        <div class="bg-white/50 dark:bg-gray-800/50 backdrop-blur-sm rounded-xl p-6 border border-gray-200 dark:border-gray-700">
-          <div class="w-12 h-12 bg-green-100 dark:bg-green-900/20 rounded-xl flex items-center justify-center mb-4 mx-auto">
-            <svg class="w-6 h-6 text-green-600 dark:text-green-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
-            </svg>
-          </div>
-          <h3 class="font-semibold text-gray-900 dark:text-white mb-2">Language Assessment</h3>
-          <p class="text-sm text-gray-600 dark:text-gray-400">Evaluate your skills across all four language domains</p>
-        </div>
-        
-        <div class="bg-white/50 dark:bg-gray-800/50 backdrop-blur-sm rounded-xl p-6 border border-gray-200 dark:border-gray-700">
-          <div class="w-12 h-12 bg-blue-100 dark:bg-blue-900/20 rounded-xl flex items-center justify-center mb-4 mx-auto">
-            <svg class="w-6 h-6 text-blue-600 dark:text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
-            </svg>
-          </div>
-          <h3 class="font-semibold text-gray-900 dark:text-white mb-2">CLB Level Mapping</h3>
-          <p class="text-sm text-gray-600 dark:text-gray-400">See how your scores translate to CLB levels</p>
-        </div>
-        
-        <div class="bg-white/50 dark:bg-gray-800/50 backdrop-blur-sm rounded-xl p-6 border border-gray-200 dark:border-gray-700">
-          <div class="w-12 h-12 bg-emerald-100 dark:bg-emerald-900/20 rounded-xl flex items-center justify-center mb-4 mx-auto">
-            <svg class="w-6 h-6 text-emerald-600 dark:text-emerald-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v10a2 2 0 002 2h8a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"></path>
-            </svg>
-          </div>
-          <h3 class="font-semibold text-gray-900 dark:text-white mb-2">Program Eligibility</h3>
-          <p class="text-sm text-gray-600 dark:text-gray-400">Check which programs accept your CLB level</p>
+      <div class="flex flex-col sm:flex-row gap-4 justify-center items-center mb-12">
+        <button onclick="scrollToNavigator()" class="btn-primary text-lg px-8 py-4 bg-white text-green-700 hover:bg-gray-100">
+          🚀 Start Converting
+        </button>
+        <a href="/tools" class="btn-secondary text-lg px-8 py-4 bg-white/10 backdrop-blur-sm text-white border-2 border-white/30 hover:bg-white/20">
+          🛠️ All Tools
+        </a>
+        <div class="text-sm text-white/80">
+          ✓ IELTS • ✓ CELPIP • ✓ PTE • ✓ TEF • ✓ TCF
         </div>
       </div>
-      
-      <!-- CTA -->
-      <div class="flex flex-col sm:flex-row gap-4 justify-center">
-        <a href="/tools" class="inline-flex items-center px-8 py-4 bg-gradient-to-r from-green-600 to-blue-600 text-white font-semibold rounded-xl hover:from-green-700 hover:to-blue-700 transition-all duration-300 transform hover:scale-105 shadow-lg">
-          <span>Explore Other Tools</span>
-          <svg class="ml-2 w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
-          </svg>
-        </a>
-        
-        <a href="/contact" class="inline-flex items-center px-8 py-4 bg-white dark:bg-gray-800 text-gray-900 dark:text-white font-semibold rounded-xl border-2 border-gray-200 dark:border-gray-700 hover:border-green-500 dark:hover:border-green-500 transition-all duration-300 transform hover:scale-105 shadow-lg">
-          <span>Get Notified</span>
-          <svg class="ml-2 w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 17h5l-5 5v-5z"></path>
-          </svg>
-        </a>
+
+      <!-- Stats -->
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-6 max-w-4xl mx-auto">
+        <div class="bg-white/10 backdrop-blur-sm rounded-xl p-4">
+          <div class="text-2xl font-bold text-white">5</div>
+          <div class="text-sm text-white/80">Test Types</div>
+        </div>
+        <div class="bg-white/10 backdrop-blur-sm rounded-xl p-4">
+          <div class="text-2xl font-bold text-white">4</div>
+          <div class="text-sm text-white/80">Language Skills</div>
+        </div>
+        <div class="bg-white/10 backdrop-blur-sm rounded-xl p-4">
+          <div class="text-2xl font-bold text-white">10</div>
+          <div class="text-sm text-white/80">CLB Levels</div>
+        </div>
+        <div class="bg-white/10 backdrop-blur-sm rounded-xl p-4">
+          <div class="text-2xl font-bold text-white">100%</div>
+          <div class="text-sm text-white/80">Accurate</div>
+        </div>
       </div>
     </div>
   </section>
+
+  <!-- CLB Navigator Section -->
+  <section id="clb-navigator" class="py-16 bg-white dark:bg-gray-800">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <!-- Navigator Header -->
+      <div class="text-center mb-12">
+        <div class="inline-flex items-center gap-3 mb-4">
+          <div class="w-12 h-12 bg-green-500 rounded-xl flex items-center justify-center">
+            <span class="text-2xl">🧭</span>
+          </div>
+          <h2 class="text-3xl font-bold text-gray-900 dark:text-white">CLB Score Navigator</h2>
+        </div>
+        <p class="text-lg text-gray-600 dark:text-gray-300">
+          Select your language test and enter your scores to get your CLB levels
+        </p>
+      </div>
+
+      <!-- Navigator Form -->
+      <div class="bg-gray-50 dark:bg-gray-900 rounded-2xl p-8 shadow-inner">
+        
+        <!-- Test Selection -->
+        <div class="mb-8">
+          <h3 class="text-xl font-semibold text-gray-900 dark:text-white mb-6">Step 1: Select Your Language Test</h3>
+          <div class="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-4">
+            
+            <!-- IELTS -->
+            <div class="test-card cursor-pointer bg-white dark:bg-gray-800 rounded-xl p-4 border-2 border-gray-200 dark:border-gray-700 hover:border-green-500 hover:shadow-lg transition-all duration-300" data-test="IELTS">
+              <div class="text-center">
+                <div class="w-12 h-12 bg-blue-100 dark:bg-blue-900/20 rounded-lg flex items-center justify-center mx-auto mb-3">
+                  <span class="text-2xl">🇬🇧</span>
+                </div>
+                <h4 class="font-semibold text-gray-900 dark:text-white">IELTS</h4>
+                <p class="text-xs text-gray-600 dark:text-gray-400 mt-1">General Training</p>
+              </div>
+            </div>
+
+            <!-- CELPIP -->
+            <div class="test-card cursor-pointer bg-white dark:bg-gray-800 rounded-xl p-4 border-2 border-gray-200 dark:border-gray-700 hover:border-green-500 hover:shadow-lg transition-all duration-300" data-test="CELPIP">
+              <div class="text-center">
+                <div class="w-12 h-12 bg-red-100 dark:bg-red-900/20 rounded-lg flex items-center justify-center mx-auto mb-3">
+                  <span class="text-2xl">🇨🇦</span>
+                </div>
+                <h4 class="font-semibold text-gray-900 dark:text-white">CELPIP</h4>
+                <p class="text-xs text-gray-600 dark:text-gray-400 mt-1">General</p>
+              </div>
+            </div>
+
+            <!-- PTE -->
+            <div class="test-card cursor-pointer bg-white dark:bg-gray-800 rounded-xl p-4 border-2 border-gray-200 dark:border-gray-700 hover:border-green-500 hover:shadow-lg transition-all duration-300" data-test="PTE">
+              <div class="text-center">
+                <div class="w-12 h-12 bg-orange-100 dark:bg-orange-900/20 rounded-lg flex items-center justify-center mx-auto mb-3">
+                  <span class="text-2xl">🇦🇺</span>
+                </div>
+                <h4 class="font-semibold text-gray-900 dark:text-white">PTE</h4>
+                <p class="text-xs text-gray-600 dark:text-gray-400 mt-1">Core</p>
+              </div>
+            </div>
+
+            <!-- TEF -->
+            <div class="test-card cursor-pointer bg-white dark:bg-gray-800 rounded-xl p-4 border-2 border-gray-200 dark:border-gray-700 hover:border-green-500 hover:shadow-lg transition-all duration-300" data-test="TEF">
+              <div class="text-center">
+                <div class="w-12 h-12 bg-purple-100 dark:bg-purple-900/20 rounded-lg flex items-center justify-center mx-auto mb-3">
+                  <span class="text-2xl">🇫🇷</span>
+                </div>
+                <h4 class="font-semibold text-gray-900 dark:text-white">TEF</h4>
+                <p class="text-xs text-gray-600 dark:text-gray-400 mt-1">French Test</p>
+              </div>
+            </div>
+
+            <!-- TCF -->
+            <div class="test-card cursor-pointer bg-white dark:bg-gray-800 rounded-xl p-4 border-2 border-gray-200 dark:border-gray-700 hover:border-green-500 hover:shadow-lg transition-all duration-300" data-test="TCF">
+              <div class="text-center">
+                <div class="w-12 h-12 bg-indigo-100 dark:bg-indigo-900/20 rounded-lg flex items-center justify-center mx-auto mb-3">
+                  <span class="text-2xl">🇫🇷</span>
+                </div>
+                <h4 class="font-semibold text-gray-900 dark:text-white">TCF</h4>
+                <p class="text-xs text-gray-600 dark:text-gray-400 mt-1">French Test</p>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- TEF Period Selection (Hidden by default) -->
+        <div id="tef-period-selection" class="mb-8" style="display: none;">
+          <h4 class="text-lg font-semibold text-gray-900 dark:text-white mb-4">Select TEF Test Period</h4>
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div class="period-card cursor-pointer bg-white dark:bg-gray-800 rounded-xl p-4 border-2 border-gray-200 dark:border-gray-700 hover:border-purple-500 transition-all duration-300" data-period="old">
+              <h5 class="font-semibold text-gray-900 dark:text-white">Oct 1, 2019 - Dec 10, 2023</h5>
+              <p class="text-sm text-gray-600 dark:text-gray-400 mt-1">Older TEF scoring system</p>
+            </div>
+            <div class="period-card cursor-pointer bg-white dark:bg-gray-800 rounded-xl p-4 border-2 border-gray-200 dark:border-gray-700 hover:border-purple-500 transition-all duration-300" data-period="new">
+              <h5 class="font-semibold text-gray-900 dark:text-white">After Dec 10, 2023</h5>
+              <p class="text-sm text-gray-600 dark:text-gray-400 mt-1">Current TEF scoring system</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Score Input Section -->
+        <div id="score-input-section" class="mb-8" style="display: none;">
+          <h3 class="text-xl font-semibold text-gray-900 dark:text-white mb-6">Step 2: Enter Your Test Scores</h3>
+          
+          <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+            
+            <!-- Reading -->
+            <div class="score-input-group">
+              <label class="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2">
+                📖 Reading
+              </label>
+              <input type="number" id="reading-score" class="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-xl bg-white dark:bg-gray-800 text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-400 focus:ring-2 focus:ring-green-500 focus:border-transparent transition-all duration-200" placeholder="Enter score" step="0.1">
+              <div class="mt-2 p-2 bg-green-50 dark:bg-green-900/20 rounded-lg border border-green-200 dark:border-green-700" style="display: none;">
+                <div class="text-sm font-semibold text-green-700 dark:text-green-300">CLB Level: <span class="clb-result">-</span></div>
+              </div>
+            </div>
+
+            <!-- Writing -->
+            <div class="score-input-group">
+              <label class="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2">
+                ✍️ Writing
+              </label>
+              <input type="number" id="writing-score" class="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-xl bg-white dark:bg-gray-800 text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-400 focus:ring-2 focus:ring-green-500 focus:border-transparent transition-all duration-200" placeholder="Enter score" step="0.1">
+              <div class="mt-2 p-2 bg-green-50 dark:bg-green-900/20 rounded-lg border border-green-200 dark:border-green-700" style="display: none;">
+                <div class="text-sm font-semibold text-green-700 dark:text-green-300">CLB Level: <span class="clb-result">-</span></div>
+              </div>
+            </div>
+
+            <!-- Listening -->
+            <div class="score-input-group">
+              <label class="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2">
+                👂 Listening
+              </label>
+              <input type="number" id="listening-score" class="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-xl bg-white dark:bg-gray-800 text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-400 focus:ring-2 focus:ring-green-500 focus:border-transparent transition-all duration-200" placeholder="Enter score" step="0.1">
+              <div class="mt-2 p-2 bg-green-50 dark:bg-green-900/20 rounded-lg border border-green-200 dark:border-green-700" style="display: none;">
+                <div class="text-sm font-semibold text-green-700 dark:text-green-300">CLB Level: <span class="clb-result">-</span></div>
+              </div>
+            </div>
+
+            <!-- Speaking -->
+            <div class="score-input-group">
+              <label class="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2">
+                🗣️ Speaking
+              </label>
+              <input type="number" id="speaking-score" class="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-xl bg-white dark:bg-gray-800 text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-400 focus:ring-2 focus:ring-green-500 focus:border-transparent transition-all duration-200" placeholder="Enter score" step="0.1">
+              <div class="mt-2 p-2 bg-green-50 dark:bg-green-900/20 rounded-lg border border-green-200 dark:border-green-700" style="display: none;">
+                <div class="text-sm font-semibold text-green-700 dark:text-green-300">CLB Level: <span class="clb-result">-</span></div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- Results Section -->
+        <div id="results-section" class="mt-8" style="display: none;">
+          <h3 class="text-xl font-semibold text-gray-900 dark:text-white mb-6">Your CLB Results</h3>
+          
+          <!-- Overall CLB Level -->
+          <div class="bg-gradient-to-r from-green-50 to-teal-50 dark:from-green-900/20 dark:to-teal-900/20 rounded-xl p-6 border border-green-200 dark:border-green-700 mb-6">
+            <div class="text-center">
+              <h4 class="text-lg font-semibold text-gray-700 dark:text-gray-300 mb-2">Overall CLB Level</h4>
+              <div class="text-5xl font-bold text-green-600 dark:text-green-400" id="overall-clb">-</div>
+              <div class="text-sm text-gray-600 dark:text-gray-400 mt-2">Based on your lowest skill score</div>
+            </div>
+          </div>
+
+          <!-- Detailed Breakdown -->
+          <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+            
+            <div class="bg-white dark:bg-gray-800 rounded-xl p-4 border border-gray-200 dark:border-gray-700">
+              <div class="text-center">
+                <div class="text-2xl mb-2">📖</div>
+                <h5 class="font-semibold text-gray-900 dark:text-white">Reading</h5>
+                <div class="text-2xl font-bold text-blue-600 dark:text-blue-400 mt-2" id="reading-clb">-</div>
+              </div>
+            </div>
+
+            <div class="bg-white dark:bg-gray-800 rounded-xl p-4 border border-gray-200 dark:border-gray-700">
+              <div class="text-center">
+                <div class="text-2xl mb-2">✍️</div>
+                <h5 class="font-semibold text-gray-900 dark:text-white">Writing</h5>
+                <div class="text-2xl font-bold text-purple-600 dark:text-purple-400 mt-2" id="writing-clb">-</div>
+              </div>
+            </div>
+
+            <div class="bg-white dark:bg-gray-800 rounded-xl p-4 border border-gray-200 dark:border-gray-700">
+              <div class="text-center">
+                <div class="text-2xl mb-2">👂</div>
+                <h5 class="font-semibold text-gray-900 dark:text-white">Listening</h5>
+                <div class="text-2xl font-bold text-orange-600 dark:text-orange-400 mt-2" id="listening-clb">-</div>
+              </div>
+            </div>
+
+            <div class="bg-white dark:bg-gray-800 rounded-xl p-4 border border-gray-200 dark:border-gray-700">
+              <div class="text-center">
+                <div class="text-2xl mb-2">🗣️</div>
+                <h5 class="font-semibold text-gray-900 dark:text-white">Speaking</h5>
+                <div class="text-2xl font-bold text-green-600 dark:text-green-400 mt-2" id="speaking-clb">-</div>
+              </div>
+            </div>
+
+          </div>
+
+          <!-- Action Buttons -->
+          <div class="flex flex-col sm:flex-row gap-4 justify-center mt-8">
+            <button onclick="resetNavigator()" class="btn-secondary">
+              🔄 Calculate Another Score
+            </button>
+            <a href="/tools/calculators" class="btn-primary">
+              🎯 Use in CRS Calculator
+            </a>
+            <a href="/tools/noc-navigator" class="btn-secondary">
+              💼 NOC Navigator
+            </a>
+            <a href="/tools" class="btn-secondary">
+              🛠️ All Tools
+            </a>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Info Section -->
+  <section class="py-16 bg-gray-50 dark:bg-gray-900">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <div class="text-center mb-12">
+        <h2 class="text-3xl font-bold text-gray-900 dark:text-white mb-4">About CLB Levels</h2>
+        <p class="text-lg text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
+          Canadian Language Benchmarks (CLB) are the national standards for describing and measuring English language proficiency in Canada
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        
+        <div class="bg-white dark:bg-gray-800 rounded-xl p-6 shadow-lg">
+          <div class="w-12 h-12 bg-blue-100 dark:bg-blue-900/20 rounded-lg flex items-center justify-center mb-4">
+            <span class="text-2xl">📊</span>
+          </div>
+          <h3 class="text-xl font-bold text-gray-900 dark:text-white mb-3">CLB Scale</h3>
+          <p class="text-gray-600 dark:text-gray-400">
+            CLB levels range from 1 (basic) to 12 (advanced). Most immigration programs require CLB 7+ for skilled workers.
+          </p>
+        </div>
+
+        <div class="bg-white dark:bg-gray-800 rounded-xl p-6 shadow-lg">
+          <div class="w-12 h-12 bg-green-100 dark:bg-green-900/20 rounded-lg flex items-center justify-center mb-4">
+            <span class="text-2xl">🎯</span>
+          </div>
+          <h3 class="text-xl font-bold text-gray-900 dark:text-white mb-3">Express Entry</h3>
+          <p class="text-gray-600 dark:text-gray-400">
+            Your CLB levels directly impact your CRS score. Higher CLB levels mean more points for language proficiency.
+          </p>
+        </div>
+
+        <div class="bg-white dark:bg-gray-800 rounded-xl p-6 shadow-lg">
+          <div class="w-12 h-12 bg-purple-100 dark:bg-purple-900/20 rounded-lg flex items-center justify-center mb-4">
+            <span class="text-2xl">🔄</span>
+          </div>
+          <h3 class="text-xl font-bold text-gray-900 dark:text-white mb-3">Test Conversion</h3>
+          <p class="text-gray-600 dark:text-gray-400">
+            Different language tests use different scoring systems. This tool converts them all to the standard CLB format.
+          </p>
+        </div>
+
+      </div>
+
+      <!-- Additional CTAs -->
+      <div class="text-center mt-12">
+        <h3 class="text-2xl font-bold text-gray-900 dark:text-white mb-6">Ready to Calculate Your Immigration Score?</h3>
+        <div class="flex flex-col sm:flex-row gap-4 justify-center">
+          <a href="/tools/calculators" class="btn-primary">
+            🎯 CRS Calculator
+          </a>
+          <a href="/tools/noc-navigator" class="btn-secondary">
+            💼 NOC Navigator
+          </a>
+          <a href="/tools/master-assessment" class="btn-secondary">
+            📋 Master Assessment
+          </a>
+          <a href="/tools" class="btn-secondary">
+            🛠️ View All Tools
+          </a>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
 </Layout>
 
+<script>
+  // Smooth scroll function
+  function scrollToNavigator() {
+    const element = document.getElementById('clb-navigator');
+    if (element) {
+      element.scrollIntoView({ 
+        behavior: 'smooth',
+        block: 'start'
+      });
+    }
+  }
+
+  // Make scroll function globally available
+  (window as any).scrollToNavigator = scrollToNavigator;
+
+  // CLB Navigator functionality
+  document.addEventListener('DOMContentLoaded', function() {
+    let selectedTest: string | null = null;
+    let selectedPeriod: string | null = null;
+    
+    // CLB Data from JSON (simplified for key tests)
+    const clbData = {
+      "IELTS": {
+        "reading": [
+          {"clb_level": 10, "score": 8.0},
+          {"clb_level": 9, "score": 7.0},
+          {"clb_level": 8, "score": 6.5},
+          {"clb_level": 7, "score": 6.0},
+          {"clb_level": 6, "score": 5.0},
+          {"clb_level": 5, "score": 4.0},
+          {"clb_level": 4, "score": 3.5},
+          {"clb_level": 3, "score_range": {"min": 0, "max": 3.0}}
+        ],
+        "writing": [
+          {"clb_level": 10, "score": 7.5},
+          {"clb_level": 9, "score": 7.0},
+          {"clb_level": 8, "score": 6.5},
+          {"clb_level": 7, "score": 6.0},
+          {"clb_level": 6, "score": 5.5},
+          {"clb_level": 5, "score": 5.0},
+          {"clb_level": 4, "score": 4.0},
+          {"clb_level": 3, "score_range": {"min": 0, "max": 3.5}}
+        ],
+        "listening": [
+          {"clb_level": 10, "score": 8.5},
+          {"clb_level": 9, "score": 8.0},
+          {"clb_level": 8, "score": 7.5},
+          {"clb_level": 7, "score": 6.0},
+          {"clb_level": 6, "score": 5.5},
+          {"clb_level": 5, "score": 5.0},
+          {"clb_level": 4, "score": 4.5},
+          {"clb_level": 3, "score_range": {"min": 0, "max": 4.0}}
+        ],
+        "speaking": [
+          {"clb_level": 10, "score": 7.5},
+          {"clb_level": 9, "score": 7.0},
+          {"clb_level": 8, "score": 6.5},
+          {"clb_level": 7, "score": 6.0},
+          {"clb_level": 6, "score": 5.5},
+          {"clb_level": 5, "score": 5.0},
+          {"clb_level": 4, "score": 4.0},
+          {"clb_level": 3, "score_range": {"min": 0, "max": 3.5}}
+        ]
+      },
+      "CELPIP": {
+        "reading": [
+          {"clb_level": 10, "score": 10.0},
+          {"clb_level": 9, "score": 9.0},
+          {"clb_level": 8, "score": 8.0},
+          {"clb_level": 7, "score": 7.0},
+          {"clb_level": 6, "score": 6.0},
+          {"clb_level": 5, "score": 5.0},
+          {"clb_level": 4, "score": 4.0},
+          {"clb_level": 3, "score_range": {"min": 0, "max": 3.0}}
+        ],
+        "writing": [
+          {"clb_level": 10, "score": 10.0},
+          {"clb_level": 9, "score": 9.0},
+          {"clb_level": 8, "score": 8.0},
+          {"clb_level": 7, "score": 7.0},
+          {"clb_level": 6, "score": 6.0},
+          {"clb_level": 5, "score": 5.0},
+          {"clb_level": 4, "score": 4.0},
+          {"clb_level": 3, "score_range": {"min": 0, "max": 3.0}}
+        ],
+        "listening": [
+          {"clb_level": 10, "score": 10.0},
+          {"clb_level": 9, "score": 9.0},
+          {"clb_level": 8, "score": 8.0},
+          {"clb_level": 7, "score": 7.0},
+          {"clb_level": 6, "score": 6.0},
+          {"clb_level": 5, "score": 5.0},
+          {"clb_level": 4, "score": 4.0},
+          {"clb_level": 3, "score_range": {"min": 0, "max": 3.0}}
+        ],
+        "speaking": [
+          {"clb_level": 10, "score": 10.0},
+          {"clb_level": 9, "score": 9.0},
+          {"clb_level": 8, "score": 8.0},
+          {"clb_level": 7, "score": 7.0},
+          {"clb_level": 6, "score": 6.0},
+          {"clb_level": 5, "score": 5.0},
+          {"clb_level": 4, "score": 4.0},
+          {"clb_level": 3, "score_range": {"min": 0, "max": 3.0}}
+        ]
+      },
+      "PTE": {
+        "reading": [
+          {"clb_level": 10, "score_range": {"min": 88, "max": 90}},
+          {"clb_level": 9, "score_range": {"min": 78, "max": 87}},
+          {"clb_level": 8, "score_range": {"min": 69, "max": 77}},
+          {"clb_level": 7, "score_range": {"min": 60, "max": 68}},
+          {"clb_level": 6, "score_range": {"min": 51, "max": 59}},
+          {"clb_level": 5, "score_range": {"min": 42, "max": 50}},
+          {"clb_level": 4, "score_range": {"min": 33, "max": 41}},
+          {"clb_level": 3, "score_range": {"min": 24, "max": 32}}
+        ],
+        "writing": [
+          {"clb_level": 10, "score": 90},
+          {"clb_level": 9, "score_range": {"min": 88, "max": 89}},
+          {"clb_level": 8, "score_range": {"min": 79, "max": 87}},
+          {"clb_level": 7, "score_range": {"min": 69, "max": 78}},
+          {"clb_level": 6, "score_range": {"min": 60, "max": 68}},
+          {"clb_level": 5, "score_range": {"min": 51, "max": 59}},
+          {"clb_level": 4, "score_range": {"min": 41, "max": 50}},
+          {"clb_level": 3, "score_range": {"min": 32, "max": 40}}
+        ],
+        "listening": [
+          {"clb_level": 10, "score_range": {"min": 89, "max": 90}},
+          {"clb_level": 9, "score_range": {"min": 82, "max": 88}},
+          {"clb_level": 8, "score_range": {"min": 71, "max": 81}},
+          {"clb_level": 7, "score_range": {"min": 60, "max": 70}},
+          {"clb_level": 6, "score_range": {"min": 50, "max": 59}},
+          {"clb_level": 5, "score_range": {"min": 39, "max": 49}},
+          {"clb_level": 4, "score_range": {"min": 28, "max": 38}},
+          {"clb_level": 3, "score_range": {"min": 18, "max": 27}}
+        ],
+        "speaking": [
+          {"clb_level": 10, "score_range": {"min": 89, "max": 90}},
+          {"clb_level": 9, "score_range": {"min": 84, "max": 88}},
+          {"clb_level": 8, "score_range": {"min": 76, "max": 83}},
+          {"clb_level": 7, "score_range": {"min": 68, "max": 75}},
+          {"clb_level": 6, "score_range": {"min": 59, "max": 67}},
+          {"clb_level": 5, "score_range": {"min": 51, "max": 58}},
+          {"clb_level": 4, "score_range": {"min": 42, "max": 50}},
+          {"clb_level": 3, "score_range": {"min": 34, "max": 41}}
+        ]
+      },
+      "TEF_OLD": {
+        "reading": [
+          {"clb_level": 10, "score_range": {"min": 566, "max": 699}},
+          {"clb_level": 9, "score_range": {"min": 533, "max": 565}},
+          {"clb_level": 8, "score_range": {"min": 500, "max": 532}},
+          {"clb_level": 7, "score_range": {"min": 450, "max": 499}},
+          {"clb_level": 6, "score_range": {"min": 400, "max": 449}},
+          {"clb_level": 5, "score_range": {"min": 350, "max": 399}},
+          {"clb_level": 4, "score_range": {"min": 300, "max": 349}},
+          {"clb_level": 3, "score_range": {"min": 0, "max": 299}}
+        ],
+        "writing": [
+          {"clb_level": 10, "score_range": {"min": 566, "max": 699}},
+          {"clb_level": 9, "score_range": {"min": 533, "max": 565}},
+          {"clb_level": 8, "score_range": {"min": 500, "max": 532}},
+          {"clb_level": 7, "score_range": {"min": 450, "max": 499}},
+          {"clb_level": 6, "score_range": {"min": 400, "max": 449}},
+          {"clb_level": 5, "score_range": {"min": 350, "max": 399}},
+          {"clb_level": 4, "score_range": {"min": 300, "max": 349}},
+          {"clb_level": 3, "score_range": {"min": 0, "max": 299}}
+        ],
+        "listening": [
+          {"clb_level": 10, "score_range": {"min": 566, "max": 699}},
+          {"clb_level": 9, "score_range": {"min": 533, "max": 565}},
+          {"clb_level": 8, "score_range": {"min": 500, "max": 532}},
+          {"clb_level": 7, "score_range": {"min": 450, "max": 499}},
+          {"clb_level": 6, "score_range": {"min": 400, "max": 449}},
+          {"clb_level": 5, "score_range": {"min": 350, "max": 399}},
+          {"clb_level": 4, "score_range": {"min": 300, "max": 349}},
+          {"clb_level": 3, "score_range": {"min": 0, "max": 299}}
+        ],
+        "speaking": [
+          {"clb_level": 10, "score_range": {"min": 566, "max": 699}},
+          {"clb_level": 9, "score_range": {"min": 533, "max": 565}},
+          {"clb_level": 8, "score_range": {"min": 500, "max": 532}},
+          {"clb_level": 7, "score_range": {"min": 450, "max": 499}},
+          {"clb_level": 6, "score_range": {"min": 400, "max": 449}},
+          {"clb_level": 5, "score_range": {"min": 350, "max": 399}},
+          {"clb_level": 4, "score_range": {"min": 300, "max": 349}},
+          {"clb_level": 3, "score_range": {"min": 0, "max": 299}}
+        ]
+      },
+      "TEF_NEW": {
+        "reading": [
+          {"clb_level": 10, "score_range": {"min": 546, "max": 699}},
+          {"clb_level": 9, "score_range": {"min": 503, "max": 545}},
+          {"clb_level": 8, "score_range": {"min": 462, "max": 502}},
+          {"clb_level": 7, "score_range": {"min": 434, "max": 461}},
+          {"clb_level": 6, "score_range": {"min": 393, "max": 433}},
+          {"clb_level": 5, "score_range": {"min": 352, "max": 392}},
+          {"clb_level": 4, "score_range": {"min": 306, "max": 351}},
+          {"clb_level": 3, "score_range": {"min": 0, "max": 305}}
+        ],
+        "writing": [
+          {"clb_level": 10, "score_range": {"min": 558, "max": 699}},
+          {"clb_level": 9, "score_range": {"min": 512, "max": 557}},
+          {"clb_level": 8, "score_range": {"min": 472, "max": 511}},
+          {"clb_level": 7, "score_range": {"min": 428, "max": 471}},
+          {"clb_level": 6, "score_range": {"min": 379, "max": 427}},
+          {"clb_level": 5, "score_range": {"min": 330, "max": 378}},
+          {"clb_level": 4, "score_range": {"min": 268, "max": 329}},
+          {"clb_level": 3, "score_range": {"min": 0, "max": 267}}
+        ],
+        "listening": [
+          {"clb_level": 10, "score_range": {"min": 546, "max": 699}},
+          {"clb_level": 9, "score_range": {"min": 503, "max": 545}},
+          {"clb_level": 8, "score_range": {"min": 462, "max": 502}},
+          {"clb_level": 7, "score_range": {"min": 434, "max": 461}},
+          {"clb_level": 6, "score_range": {"min": 393, "max": 433}},
+          {"clb_level": 5, "score_range": {"min": 352, "max": 392}},
+          {"clb_level": 4, "score_range": {"min": 306, "max": 351}},
+          {"clb_level": 3, "score_range": {"min": 0, "max": 305}}
+        ],
+        "speaking": [
+          {"clb_level": 10, "score_range": {"min": 556, "max": 699}},
+          {"clb_level": 9, "score_range": {"min": 518, "max": 555}},
+          {"clb_level": 8, "score_range": {"min": 494, "max": 517}},
+          {"clb_level": 7, "score_range": {"min": 456, "max": 493}},
+          {"clb_level": 6, "score_range": {"min": 422, "max": 455}},
+          {"clb_level": 5, "score_range": {"min": 387, "max": 421}},
+          {"clb_level": 4, "score_range": {"min": 328, "max": 386}},
+          {"clb_level": 3, "score_range": {"min": 0, "max": 327}}
+        ]
+      },
+      "TCF": {
+        "reading": [
+          {"clb_level": 10, "score_range": {"min": 549, "max": 699}},
+          {"clb_level": 9, "score_range": {"min": 524, "max": 548}},
+          {"clb_level": 8, "score_range": {"min": 499, "max": 523}},
+          {"clb_level": 7, "score_range": {"min": 453, "max": 498}},
+          {"clb_level": 6, "score_range": {"min": 406, "max": 452}},
+          {"clb_level": 5, "score_range": {"min": 375, "max": 405}},
+          {"clb_level": 4, "score_range": {"min": 342, "max": 374}},
+          {"clb_level": 3, "score_range": {"min": 0, "max": 341}}
+        ],
+        "writing": [
+          {"clb_level": 10, "score_range": {"min": 16, "max": 20}},
+          {"clb_level": 9, "score_range": {"min": 14, "max": 15}},
+          {"clb_level": 8, "score_range": {"min": 12, "max": 13}},
+          {"clb_level": 7, "score_range": {"min": 10, "max": 11}},
+          {"clb_level": 6, "score_range": {"min": 7, "max": 9}},
+          {"clb_level": 5, "score": 6},
+          {"clb_level": 4, "score_range": {"min": 4, "max": 5}},
+          {"clb_level": 3, "score_range": {"min": 0, "max": 3}}
+        ],
+        "listening": [
+          {"clb_level": 10, "score_range": {"min": 549, "max": 699}},
+          {"clb_level": 9, "score_range": {"min": 523, "max": 548}},
+          {"clb_level": 8, "score_range": {"min": 503, "max": 522}},
+          {"clb_level": 7, "score_range": {"min": 458, "max": 502}},
+          {"clb_level": 6, "score_range": {"min": 398, "max": 457}},
+          {"clb_level": 5, "score_range": {"min": 369, "max": 397}},
+          {"clb_level": 4, "score_range": {"min": 331, "max": 368}},
+          {"clb_level": 3, "score_range": {"min": 0, "max": 330}}
+        ],
+        "speaking": [
+          {"clb_level": 10, "score_range": {"min": 16, "max": 20}},
+          {"clb_level": 9, "score_range": {"min": 14, "max": 15}},
+          {"clb_level": 8, "score_range": {"min": 12, "max": 13}},
+          {"clb_level": 7, "score_range": {"min": 10, "max": 11}},
+          {"clb_level": 6, "score_range": {"min": 7, "max": 9}},
+          {"clb_level": 5, "score": 6},
+          {"clb_level": 4, "score_range": {"min": 4, "max": 5}},
+          {"clb_level": 3, "score_range": {"min": 0, "max": 3}}
+        ]
+      }
+    };
+
+    // Test selection
+    const testCards = document.querySelectorAll('.test-card');
+    testCards.forEach(card => {
+      card.addEventListener('click', function(this: HTMLElement) {
+        // Check if this is a different test than currently selected
+        const newTest = this.dataset.test || null;
+        const isTestChange = selectedTest !== null && selectedTest !== newTest;
+        
+        // Remove active state from all cards
+        testCards.forEach(c => c.classList.remove('border-green-500', 'bg-green-50', 'dark:bg-green-900/20'));
+        
+        // Add active state to clicked card
+        this.classList.add('border-green-500', 'bg-green-50', 'dark:bg-green-900/20');
+        
+        selectedTest = newTest;
+        
+        // Reset entries and results if switching tests
+        if (isTestChange) {
+          resetEntriesAndResults();
+        }
+        
+        // Show TEF period selection if TEF is selected
+        const tefPeriodSection = document.getElementById('tef-period-selection');
+        if (selectedTest === 'TEF') {
+          if (tefPeriodSection) tefPeriodSection.style.display = 'block';
+          const scoreSection = document.getElementById('score-input-section');
+          if (scoreSection) scoreSection.style.display = 'none';
+        } else {
+          if (tefPeriodSection) tefPeriodSection.style.display = 'none';
+          showScoreInputs();
+        }
+      });
+    });
+
+    // TEF period selection
+    const periodCards = document.querySelectorAll('.period-card');
+    periodCards.forEach(card => {
+      card.addEventListener('click', function(this: HTMLElement) {
+        // Check if this is a different period than currently selected
+        const newPeriod = this.dataset.period || null;
+        const isPeriodChange = selectedPeriod !== null && selectedPeriod !== newPeriod;
+        
+        // Remove active state from all period cards
+        periodCards.forEach(c => c.classList.remove('border-purple-500', 'bg-purple-50', 'dark:bg-purple-900/20'));
+        
+        // Add active state to clicked card
+        this.classList.add('border-purple-500', 'bg-purple-50', 'dark:bg-purple-900/20');
+        
+        selectedPeriod = newPeriod;
+        
+        // Reset entries and results if switching periods (different scoring systems)
+        if (isPeriodChange) {
+          resetEntriesAndResults();
+        }
+        
+        showScoreInputs();
+      });
+    });
+
+    function showScoreInputs() {
+      const scoreSection = document.getElementById('score-input-section');
+      if (scoreSection) scoreSection.style.display = 'block';
+      setupScoreInputs();
+    }
+
+    function setupScoreInputs() {
+      const scoreInputs = ['reading-score', 'writing-score', 'listening-score', 'speaking-score'];
+      
+      scoreInputs.forEach(inputId => {
+        const input = document.getElementById(inputId) as HTMLInputElement;
+        if (input) {
+          input.addEventListener('input', function() {
+            calculateCLB(inputId.replace('-score', ''), parseFloat(this.value));
+            updateOverallCLB();
+          });
+        }
+      });
+    }
+
+    function calculateCLB(skill: string, score: number) {
+      if (!selectedTest || isNaN(score)) return;
+
+      let testKey = selectedTest;
+      if (selectedTest === 'TEF') {
+        testKey = selectedPeriod === 'old' ? 'TEF_OLD' : 'TEF_NEW';
+      }
+
+      const testData = (clbData as any)[testKey];
+      if (!testData || !testData[skill]) return;
+
+      const skillData = testData[skill];
+      let clbLevel = 3; // Default to CLB 3
+
+      for (const entry of skillData) {
+        if (entry.score !== undefined) {
+          // Exact score match
+          if (score >= entry.score) {
+            clbLevel = entry.clb_level;
+            break;
+          }
+        } else if (entry.score_range) {
+          // Score range match
+          if (score >= entry.score_range.min && score <= entry.score_range.max) {
+            clbLevel = entry.clb_level;
+            break;
+          }
+        }
+      }
+
+      // Update individual skill display
+      const skillGroup = document.querySelector(`#${skill}-score`)?.closest('.score-input-group');
+      const resultDiv = skillGroup?.querySelector('.mt-2') as HTMLElement;
+      const clbResult = resultDiv?.querySelector('.clb-result');
+      
+      if (clbResult) clbResult.textContent = clbLevel.toString();
+      if (resultDiv) resultDiv.style.display = 'block';
+
+      // Update detailed breakdown
+      const detailedResult = document.getElementById(`${skill}-clb`);
+      if (detailedResult) {
+        detailedResult.textContent = clbLevel.toString();
+      }
+    }
+
+    function updateOverallCLB() {
+      const clbLevels: number[] = [];
+      const skills = ['reading', 'writing', 'listening', 'speaking'];
+      
+      skills.forEach(skill => {
+        const resultElement = document.getElementById(`${skill}-clb`);
+        if (resultElement && resultElement.textContent !== '-' && resultElement.textContent) {
+          clbLevels.push(parseInt(resultElement.textContent));
+        }
+      });
+
+      if (clbLevels.length === 4) {
+        const overallCLB = Math.min(...clbLevels);
+        const overallElement = document.getElementById('overall-clb');
+        const resultsSection = document.getElementById('results-section');
+        if (overallElement) overallElement.textContent = overallCLB.toString();
+        if (resultsSection) resultsSection.style.display = 'block';
+      }
+    }
+
+    // Reset entries and results when switching tests
+    function resetEntriesAndResults() {
+      // Reset all score inputs
+      const inputs = document.querySelectorAll('input[type="number"]') as NodeListOf<HTMLInputElement>;
+      inputs.forEach(input => {
+        input.value = '';
+      });
+      
+      // Hide individual skill result cards
+      const resultDivs = document.querySelectorAll('.score-input-group .mt-2') as NodeListOf<HTMLElement>;
+      resultDivs.forEach(div => {
+        div.style.display = 'none';
+      });
+      
+      // Reset detailed breakdown CLB values
+      const clbResults = document.querySelectorAll('[id$="-clb"]');
+      clbResults.forEach(result => {
+        result.textContent = '-';
+      });
+      
+      // Reset overall CLB and hide results section
+      const overallElement = document.getElementById('overall-clb');
+      const resultsSection = document.getElementById('results-section');
+      if (overallElement) overallElement.textContent = '-';
+      if (resultsSection) resultsSection.style.display = 'none';
+    }
+
+    // Reset function
+    (window as any).resetNavigator = function() {
+      selectedTest = null;
+      selectedPeriod = null;
+      
+      // Reset test cards
+      testCards.forEach(card => {
+        card.classList.remove('border-green-500', 'bg-green-50', 'dark:bg-green-900/20');
+      });
+      
+      // Reset period cards
+      periodCards.forEach(card => {
+        card.classList.remove('border-purple-500', 'bg-purple-50', 'dark:bg-purple-900/20');
+      });
+      
+      // Hide sections
+      const tefSection = document.getElementById('tef-period-selection');
+      const scoreSection = document.getElementById('score-input-section');
+      const resultsSection = document.getElementById('results-section');
+      if (tefSection) tefSection.style.display = 'none';
+      if (scoreSection) scoreSection.style.display = 'none';
+      if (resultsSection) resultsSection.style.display = 'none';
+      
+      // Reset inputs
+      const inputs = document.querySelectorAll('input[type="number"]') as NodeListOf<HTMLInputElement>;
+      inputs.forEach(input => {
+        input.value = '';
+      });
+      
+      // Reset results
+      const resultDivs = document.querySelectorAll('.score-input-group .mt-2') as NodeListOf<HTMLElement>;
+      resultDivs.forEach(div => {
+        div.style.display = 'none';
+      });
+      
+      const clbResults = document.querySelectorAll('[id$="-clb"]');
+      clbResults.forEach(result => {
+        result.textContent = '-';
+      });
+      
+      const overallElement = document.getElementById('overall-clb');
+      if (overallElement) overallElement.textContent = '-';
+    };
+
+    console.log('CLB Navigator initialized successfully!');
+  });
+</script>
+
 <style>
-  @keyframes animate-float {
-    0%, 100% {
-      transform: translateY(0px) scale(1);
-      opacity: 0.5;
-    }
-    50% {
-      transform: translateY(-20px) scale(1.05);
-      opacity: 0.8;
-    }
+  /* Button Styles */
+  .btn-primary {
+    @apply inline-flex items-center justify-center px-6 py-3 border border-transparent text-base font-medium rounded-xl text-white bg-gradient-to-r from-green-600 to-teal-600 hover:from-green-700 hover:to-teal-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500 transition-all duration-200 shadow-lg hover:shadow-xl;
   }
 
-  .animate-float {
-    animation: animate-float 6s ease-in-out infinite;
+  .btn-secondary {
+    @apply inline-flex items-center justify-center px-6 py-3 border-2 border-gray-300 dark:border-gray-600 text-base font-medium rounded-xl text-gray-700 dark:text-gray-300 bg-white dark:bg-gray-800 hover:bg-gray-50 dark:hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500 transition-all duration-200;
   }
 
-  @keyframes animate-float-gentle {
-    0%, 100% {
-      transform: translateY(0px) translateX(0px);
-      opacity: 0.3;
-    }
-    25% {
-      transform: translateY(-10px) translateX(5px);
-      opacity: 0.5;
-    }
-    50% {
-      transform: translateY(-15px) translateX(-3px);
-      opacity: 0.7;
-    }
-    75% {
-      transform: translateY(-8px) translateX(8px);
-      opacity: 0.4;
-    }
+  /* Animation Classes */
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
   }
 
-  .animate-float-gentle {
-    animation: animate-float-gentle 4s ease-in-out infinite;
+  .animate-fadeIn {
+    animation: fadeIn 0.5s ease-out;
   }
 
-  @keyframes animate-pulse-slow {
-    0%, 100% {
-      opacity: 0.1;
-      transform: scale(1);
-    }
-    50% {
-      opacity: 0.2;
-      transform: scale(1.1);
-    }
+  /* Card Hover Effects */
+  .test-card:hover {
+    transform: translateY(-2px);
   }
 
-  .animate-pulse-slow {
-    animation: animate-pulse-slow 8s ease-in-out infinite;
+  .period-card:hover {
+    transform: translateY(-2px);
+  }
+
+  /* Smooth Scrolling */
+  html {
+    scroll-behavior: smooth;
   }
 </style>
