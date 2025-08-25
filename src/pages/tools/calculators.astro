@@ -639,7 +639,7 @@ try {
                 <option value="secondary_diploma">Secondary diploma (high school graduation)</option>
                 <option value="one_year_post_secondary">One-year degree, diploma or certificate</option>
                 <option value="two_year_post_secondary">Two-year program at university, college, trade or technical school</option>
-                <option value="bachelors_or_three_year_post_secondary">Bachelor's degree OR three or more year program</option>
+                <option value="bachelors_or_three_year_post_secondary" selected>Bachelor's degree OR three or more year program</option>
                 <option value="two_or_more_post_secondary_one_at_least_three_years">Two or more certificates, diplomas, or degrees (one must be 3+ years)</option>
                 <option value="masters_or_professional_degree">Master's degree, or professional degree needed to practice</option>
                 <option value="doctoral">Doctoral level university degree (PhD)</option>
@@ -655,18 +655,7 @@ try {
             <div class="form-group mb-8">
               <h4 class="text-lg font-semibold text-gray-900 dark:text-white mb-4">Spouse's Language Proficiency</h4>
               
-              <div class="form-group mb-4">
-                <label class="form-label" for="spouse-language-test">
-                  <span class="label-text">Language Test Type</span>
-                </label>
-                <select id="spouse-language-test" name="spouse-language-test" class="form-input">
-                  <option value="">Select test type</option>
-                  <option value="IELTS">IELTS General Training</option>
-                  <option value="CELPIP">CELPIP-General</option>
-                  <option value="TEF">TEF Canada (French)</option>
-                  <option value="TCF">TCF Canada (French)</option>
-                </select>
-              </div>
+
 
               <!-- Spouse Language Skills Grid -->
               <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
@@ -678,7 +667,7 @@ try {
                     <option value="">Select CLB level</option>
                     <option value="CLB_4_or_less">CLB 4 or less</option>
                     <option value="CLB_5">CLB 5</option>
-                    <option value="CLB_6">CLB 6</option>
+                    <option value="CLB_6" selected>CLB 6</option>
                     <option value="CLB_7">CLB 7</option>
                     <option value="CLB_8">CLB 8</option>
                     <option value="CLB_9">CLB 9</option>
@@ -694,7 +683,7 @@ try {
                     <option value="">Select CLB level</option>
                     <option value="CLB_4_or_less">CLB 4 or less</option>
                     <option value="CLB_5">CLB 5</option>
-                    <option value="CLB_6">CLB 6</option>
+                    <option value="CLB_6" selected>CLB 6</option>
                     <option value="CLB_7">CLB 7</option>
                     <option value="CLB_8">CLB 8</option>
                     <option value="CLB_9">CLB 9</option>
@@ -710,7 +699,7 @@ try {
                     <option value="">Select CLB level</option>
                     <option value="CLB_4_or_less">CLB 4 or less</option>
                     <option value="CLB_5">CLB 5</option>
-                    <option value="CLB_6">CLB 6</option>
+                    <option value="CLB_6" selected>CLB 6</option>
                     <option value="CLB_7">CLB 7</option>
                     <option value="CLB_8">CLB 8</option>
                     <option value="CLB_9">CLB 9</option>
@@ -726,7 +715,7 @@ try {
                     <option value="">Select CLB level</option>
                     <option value="CLB_4_or_less">CLB 4 or less</option>
                     <option value="CLB_5">CLB 5</option>
-                    <option value="CLB_6">CLB 6</option>
+                    <option value="CLB_6" selected>CLB 6</option>
                     <option value="CLB_7">CLB 7</option>
                     <option value="CLB_8">CLB 8</option>
                     <option value="CLB_9">CLB 9</option>
@@ -747,7 +736,7 @@ try {
               </label>
               <select id="spouse-canadian-experience" name="spouse-canadian-experience" class="form-input">
                 <option value="">Select spouse's Canadian work experience</option>
-                <option value="none">No Canadian work experience</option>
+                <option value="none" selected>No Canadian work experience</option>
                 <option value="less_than_1_year">Less than 1 year</option>
                 <option value="1_year">1 year</option>
                 <option value="2_years">2 years</option>
@@ -2929,6 +2918,59 @@ try {
       }
     }
 
+    // Function to trigger default spouse calculations on page load
+    function triggerDefaultSpouseCalculations() {
+      // Trigger spouse education calculation for default value (Bachelor's degree)
+      const spouseEducationSelect = document.getElementById('spouse-education') as HTMLSelectElement;
+      if (spouseEducationSelect && spouseEducationSelect.value === 'bachelors_or_three_year_post_secondary') {
+        const education = spouseEducationSelect.value;
+        const points = getSpouseEducationPoints(education);
+        
+        const pointsDisplay = document.getElementById('spouse-education-points');
+        if (pointsDisplay) {
+          pointsDisplay.style.display = 'block';
+          pointsDisplay.style.visibility = 'visible';
+          
+          const pointsValue = pointsDisplay.querySelector('.points-value');
+          if (pointsValue) {
+            pointsValue.textContent = points.toString();
+          }
+        }
+      }
+
+      // Trigger spouse language calculation for default values (CLB 6 for all skills)
+      const languageSkills = ['spouse-speaking', 'spouse-listening', 'spouse-reading', 'spouse-writing'];
+      languageSkills.forEach(skillId => {
+        const skillSelect = document.getElementById(skillId) as HTMLSelectElement;
+        if (skillSelect && skillSelect.value === 'CLB_6') {
+          // Trigger change event to calculate points
+          const changeEvent = new Event('change', { bubbles: true });
+          skillSelect.dispatchEvent(changeEvent);
+        }
+      });
+
+      // Trigger spouse work experience calculation for default value (No Canadian work experience)
+      const spouseWorkSelect = document.getElementById('spouse-canadian-experience') as HTMLSelectElement;
+      if (spouseWorkSelect && spouseWorkSelect.value === 'none') {
+        const experience = spouseWorkSelect.value;
+        const points = getSpouseWorkPoints(experience);
+        
+        const pointsDisplay = document.getElementById('spouse-work-points');
+        if (pointsDisplay) {
+          pointsDisplay.style.display = 'block';
+          pointsDisplay.style.visibility = 'visible';
+          
+          const pointsValue = pointsDisplay.querySelector('.points-value');
+          if (pointsValue) {
+            pointsValue.textContent = points.toString();
+          }
+        }
+      }
+
+      // Update spouse total after all default calculations
+      updateSpouseTotal();
+    }
+
     function updateSpouseTotal() {
       const educationPoints = parseInt((document.querySelector('#spouse-education-points .points-value') as HTMLElement)?.textContent || '0');
       const languagePoints = parseInt((document.querySelector('#spouse-language-points .points-value') as HTMLElement)?.textContent || '0');
@@ -3035,6 +3077,9 @@ try {
     setupSpouseCalculations();
     setupAdditionalFactorsCalculations();
     setupNavigation();
+    
+    // Trigger default spouse calculations
+    triggerDefaultSpouseCalculations();
     
     // Setup work experience calculations
     function setupExperienceCalculation() {
