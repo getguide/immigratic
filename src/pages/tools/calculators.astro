@@ -3313,15 +3313,23 @@ try {
       const downloadPdfBtn = document.getElementById('download-pdf-btn');
       if (downloadPdfBtn) {
         downloadPdfBtn.addEventListener('click', function() {
+          // Store original title
+          const originalTitle = document.title;
+          
+          // Update title for PDF branding
+          const totalScore = parseInt((document.querySelector('#total-score .points-value') as HTMLElement)?.textContent || '0');
+          document.title = `Immigratic CRS Score Report - ${totalScore} Points - ${new Date().toISOString().split('T')[0]}`;
+          
           // Hide action buttons for cleaner PDF
           const actionButtons = document.querySelector('.flex.gap-3') as HTMLElement;
           if (actionButtons) actionButtons.style.display = 'none';
           
           setTimeout(() => {
             window.print();
-            // Restore buttons after print dialog
+            // Restore buttons and title after print dialog
             setTimeout(() => {
               if (actionButtons) (actionButtons as HTMLElement).style.display = 'flex';
+              document.title = originalTitle;
             }, 1000);
           }, 100);
         });
@@ -3625,7 +3633,7 @@ try {
       if (link.download !== undefined) {
         const url = URL.createObjectURL(blob);
         link.setAttribute('href', url);
-        link.setAttribute('download', `CRS-Score-Breakdown-${new Date().toISOString().split('T')[0]}.csv`);
+        link.setAttribute('download', `Immigratic-CRS-Score-Breakdown-${new Date().toISOString().split('T')[0]}.csv`);
         link.style.visibility = 'hidden';
         document.body.appendChild(link);
         link.click();
@@ -4012,6 +4020,32 @@ try {
       }
     }
 
+    // PDF Export functionality
+    const fswDownloadPDF = document.getElementById('fsw-download-pdf') as HTMLButtonElement;
+    if (fswDownloadPDF) {
+      fswDownloadPDF.addEventListener('click', function() {
+        // Store original title
+        const originalTitle = document.title;
+        
+        // Update title for PDF branding
+        const totalScore = fswScores.language + fswScores.education + fswScores.work + fswScores.age + fswScores.job + fswScores.adaptability;
+        document.title = `Immigratic FSW Assessment Report - ${totalScore} Points - ${new Date().toISOString().split('T')[0]}`;
+        
+        // Hide action buttons for cleaner PDF
+        const actionButtons = document.querySelector('.flex.gap-4.justify-center') as HTMLElement;
+        if (actionButtons) actionButtons.style.display = 'none';
+        
+        setTimeout(() => {
+          window.print();
+          // Restore buttons and title after print dialog
+          setTimeout(() => {
+            if (actionButtons) actionButtons.style.display = 'flex';
+            document.title = originalTitle;
+          }, 1000);
+        }, 100);
+      });
+    }
+
     // CSV Export functionality
     const fswExportCSV = document.getElementById('fsw-export-csv') as HTMLButtonElement;
     if (fswExportCSV) {
@@ -4032,7 +4066,7 @@ try {
         const url = URL.createObjectURL(blob);
         const a = document.createElement('a');
         a.href = url;
-        a.download = 'fsw-assessment-results.csv';
+        a.download = `Immigratic-FSW-Assessment-Results-${new Date().toISOString().split('T')[0]}.csv`;
         document.body.appendChild(a);
         a.click();
         document.body.removeChild(a);
