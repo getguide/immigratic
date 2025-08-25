@@ -4032,30 +4032,58 @@ try {
       font-size: 16px; /* Prevent zoom on iOS */
     }
     
-    /* Mobile select elements - use native styling for better UX */
+    /* Mobile select elements - force proper positioning */
     select.form-input {
-      /* Keep native appearance for proper mobile dropdown behavior */
-      -webkit-appearance: menulist;
-      -moz-appearance: menulist;
-      appearance: menulist;
+      /* Reset all custom styling that might interfere */
+      -webkit-appearance: menulist-button !important;
+      -moz-appearance: menulist-button !important;
+      appearance: menulist-button !important;
       
-      /* Ensure proper positioning */
-      position: relative;
-      z-index: 1;
+      /* Force static positioning to prevent conflicts */
+      position: static !important;
+      z-index: auto !important;
       
-      /* Better mobile styling */
-      border-radius: 0.75rem; /* 12px */
-      border-width: 2px;
+      /* Remove any transforms that might cause positioning issues */
+      transform: none !important;
+      -webkit-transform: none !important;
       
-      /* Ensure dropdown appears in correct position */
-      transform: translateZ(0);
-      -webkit-transform: translateZ(0);
+      /* Ensure proper display */
+      display: block !important;
+      
+      /* Basic styling only */
+      border-radius: 8px !important;
+      border: 2px solid #d1d5db !important;
+      background-color: white !important;
+      
+      /* Remove any background images */
+      background-image: none !important;
+      padding-right: 1rem !important;
     }
     
-    /* Remove custom arrows on mobile - let native handle it */
-    select.form-input {
-      background-image: none;
-      padding-right: 1rem;
+    /* Dark mode adjustments */
+    .dark select.form-input {
+      background-color: #374151 !important;
+      border-color: #4b5563 !important;
+      color: white !important;
+    }
+    
+    /* Additional mobile dropdown fixes */
+    select.form-input:focus {
+      /* Ensure focus doesn't change positioning */
+      position: static !important;
+      transform: none !important;
+      -webkit-transform: none !important;
+    }
+    
+    /* Force body and html to not interfere */
+    body, html {
+      overflow-x: visible !important;
+    }
+    
+    /* Ensure viewport doesn't clip dropdowns */
+    .container, .max-w-7xl, .mx-auto {
+      overflow: visible !important;
+      position: static !important;
     }
     
     /* Improve mobile form layout */
@@ -4068,10 +4096,24 @@ try {
     /* Ensure form containers don't clip dropdowns */
     .calculator-step {
       overflow: visible !important;
+      position: static !important;
     }
     
     .bg-gray-50 {
-      overflow: visible;
+      overflow: visible !important;
+      position: static !important;
+    }
+    
+    /* Reset any problematic container styles on mobile */
+    .rounded-2xl {
+      position: static !important;
+      overflow: visible !important;
+    }
+    
+    /* Ensure the main form container doesn't interfere */
+    #crs-calculator-form {
+      position: static !important;
+      overflow: visible !important;
     }
     
     /* Better mobile label spacing */
