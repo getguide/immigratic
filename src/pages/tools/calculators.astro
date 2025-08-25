@@ -184,8 +184,8 @@ try {
       <div class="bg-gray-50 dark:bg-gray-900 rounded-2xl p-8 shadow-inner">
         
         <!-- Step Indicator -->
-        <div class="flex justify-center mb-8">
-          <div class="flex items-center space-x-4">
+        <div class="flex justify-center mb-8 overflow-x-auto">
+          <div class="flex items-center space-x-2 sm:space-x-4 min-w-max px-4">
             <div class="step-indicator active" data-step="1">
               <span class="step-number">1</span>
               <span class="step-label">Personal</span>
@@ -1006,8 +1006,8 @@ try {
         </div>
 
         <!-- Step Indicator -->
-        <div class="flex justify-center mb-8">
-          <div class="flex items-center space-x-4">
+        <div class="flex justify-center mb-8 overflow-x-auto">
+          <div class="flex items-center space-x-2 sm:space-x-4 min-w-max px-4">
             <div class="fsw-step-indicator active" data-step="1">
               <span class="step-number">1</span>
               <span class="step-label">Language</span>
@@ -4041,15 +4041,15 @@ try {
   
   /* Step Indicator Styles */
   .step-indicator {
-    @apply flex flex-col items-center space-y-2 text-center;
+    @apply flex flex-col items-center space-y-1 sm:space-y-2 text-center;
   }
   
   .step-number {
-    @apply w-10 h-10 rounded-full border-2 border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800 text-gray-500 dark:text-gray-400 flex items-center justify-center font-bold text-sm transition-all duration-300;
+    @apply w-8 h-8 sm:w-10 sm:h-10 rounded-full border-2 border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800 text-gray-500 dark:text-gray-400 flex items-center justify-center font-bold text-xs sm:text-sm transition-all duration-300;
   }
   
   .step-label {
-    @apply text-xs text-gray-500 dark:text-gray-400 font-medium;
+    @apply text-xs sm:text-xs text-gray-500 dark:text-gray-400 font-medium whitespace-nowrap;
   }
   
   .step-indicator.active .step-number {
@@ -4068,8 +4068,37 @@ try {
     @apply text-green-600 dark:text-green-400;
   }
   
+  /* FSW Step Indicators (same styling as CRS) */
+  .fsw-step-indicator {
+    @apply flex flex-col items-center space-y-1 sm:space-y-2 text-center;
+  }
+  
+  .fsw-step-indicator .step-number {
+    @apply w-8 h-8 sm:w-10 sm:h-10 rounded-full border-2 border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800 text-gray-500 dark:text-gray-400 flex items-center justify-center font-bold text-xs sm:text-sm transition-all duration-300;
+  }
+  
+  .fsw-step-indicator .step-label {
+    @apply text-xs sm:text-xs text-gray-500 dark:text-gray-400 font-medium whitespace-nowrap;
+  }
+  
+  .fsw-step-indicator.active .step-number {
+    @apply border-blue-500 bg-blue-500 text-white;
+  }
+  
+  .fsw-step-indicator.active .step-label {
+    @apply text-blue-600 dark:text-blue-400;
+  }
+  
+  .fsw-step-indicator.completed .step-number {
+    @apply border-green-500 bg-green-500 text-white;
+  }
+  
+  .fsw-step-indicator.completed .step-label {
+    @apply text-green-600 dark:text-green-400;
+  }
+  
   .step-line {
-    @apply w-12 h-0.5 bg-gray-300 dark:bg-gray-600;
+    @apply w-6 sm:w-12 h-0.5 bg-gray-300 dark:bg-gray-600;
   }
   
   /* Animation Classes */
