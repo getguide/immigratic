@@ -412,8 +412,8 @@ try {
                 
                 <!-- Hidden points displays that the total calculation system uses -->
                 <div id="speaking-points" class="points-display">
-                  <span class="points-text">Points: <strong class="points-value">0</strong></span>
-                </div>
+                    <span class="points-text">Points: <strong class="points-value">0</strong></span>
+                  </div>
                 <div id="listening-points" class="points-display">
                   <span class="points-text">Points: <strong class="points-value">0</strong></span>
                 </div>
@@ -4030,28 +4030,48 @@ try {
     .form-input {
       @apply py-4; /* Larger touch target on mobile */
       font-size: 16px; /* Prevent zoom on iOS */
-      -webkit-appearance: none;
-      -moz-appearance: none;
-      appearance: none;
     }
     
-    /* Custom dropdown arrow for mobile */
+    /* Mobile select elements - use native styling for better UX */
     select.form-input {
-      background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%236b7280' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='m6 8 4 4 4-4'/%3e%3c/svg%3e");
-      background-position: right 0.75rem center;
-      background-repeat: no-repeat;
-      background-size: 1.5em 1.5em;
-      padding-right: 2.5rem;
+      /* Keep native appearance for proper mobile dropdown behavior */
+      -webkit-appearance: menulist;
+      -moz-appearance: menulist;
+      appearance: menulist;
+      
+      /* Ensure proper positioning */
+      position: relative;
+      z-index: 1;
+      
+      /* Better mobile styling */
+      border-radius: 0.75rem; /* 12px */
+      border-width: 2px;
+      
+      /* Ensure dropdown appears in correct position */
+      transform: translateZ(0);
+      -webkit-transform: translateZ(0);
     }
     
-    /* Dark mode dropdown arrow */
-    .dark select.form-input {
-      background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%9ca3af' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='m6 8 4 4 4-4'/%3e%3c/svg%3e");
+    /* Remove custom arrows on mobile - let native handle it */
+    select.form-input {
+      background-image: none;
+      padding-right: 1rem;
     }
     
     /* Improve mobile form layout */
     .form-group {
       @apply mb-6; /* More space between form fields on mobile */
+      position: relative;
+      overflow: visible; /* Ensure dropdowns can extend outside */
+    }
+    
+    /* Ensure form containers don't clip dropdowns */
+    .calculator-step {
+      overflow: visible !important;
+    }
+    
+    .bg-gray-50 {
+      overflow: visible;
     }
     
     /* Better mobile label spacing */
