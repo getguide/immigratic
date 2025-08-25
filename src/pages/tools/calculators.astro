@@ -1,0 +1,3546 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import { getLatestExpressEntryDraw } from '../../lib/immiwatch-data';
+
+export const metadata = {
+  title: 'CRS Calculator & FSW Points Calculator - Free Express Entry Tools',
+  description: 'Calculate your CRS score for Express Entry and FSW points with our comprehensive calculators. Get real-time scoring, detailed breakdowns, live draw comparisons, and eligibility assessment for Canadian immigration.',
+  keywords: 'CRS calculator, FSW calculator, Express Entry calculator, Comprehensive Ranking System, Federal Skilled Worker, Canada immigration points, Express Entry score, immigration calculator',
+  image: 'https://20597210.fs1.hubspotusercontent-na1.net/hubfs/20597210/logo%20banner.jpg',
+  canonical: 'https://immigratic.com/tools/calculators'
+};
+
+// Fetch latest draw data at build time
+let latestDrawData = null;
+try {
+  latestDrawData = await getLatestExpressEntryDraw();
+  console.log('Server-side draw data fetched:', latestDrawData);
+} catch (error) {
+  console.error('Error fetching latest draw:', error);
+}
+---
+
+<Layout title={metadata.title} description={metadata.description}>
+  
+  <!-- Hero Section -->
+  <section class="relative py-32 min-h-[85vh] flex items-center bg-gradient-to-br from-blue-600 via-purple-700 to-indigo-800 dark:from-blue-800 dark:via-purple-900 dark:to-indigo-900 overflow-hidden">
+    <div class="absolute inset-0 bg-black/20"></div>
+    
+    <!-- Floating Background Elements -->
+    <div class="absolute top-20 left-10 w-20 h-20 bg-white/10 rounded-full blur-xl animate-pulse"></div>
+    <div class="absolute bottom-20 right-10 w-32 h-32 bg-purple-300/20 rounded-full blur-2xl animate-pulse" style="animation-delay: 2s;"></div>
+    <div class="absolute top-1/2 left-1/3 w-16 h-16 bg-blue-300/20 rounded-full blur-xl animate-pulse" style="animation-delay: 4s;"></div>
+    
+    <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      <h1 class="text-4xl md:text-6xl font-bold text-white mb-6">
+        Immigration
+        <span class="block bg-gradient-to-r from-blue-200 to-purple-200 bg-clip-text text-transparent">
+          Calculators
+        </span>
+      </h1>
+      <p class="text-xl md:text-2xl text-blue-100 mb-8 max-w-4xl mx-auto">
+        Calculate your CRS score, program eligibility, and immigration prospects with our comprehensive, accurate calculators.
+      </p>
+      
+      <!-- Primary CTA -->
+      <div class="flex flex-col sm:flex-row gap-4 justify-center">
+        <button onclick="scrollToCalculators()" class="inline-flex items-center px-8 py-4 bg-white text-blue-600 font-semibold rounded-xl hover:bg-blue-50 transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl">
+          🧮 Start Calculating
+          <svg class="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+          </svg>
+        </button>
+        <a href="/tools/master-assessment" class="inline-flex items-center px-8 py-4 bg-transparent border-2 border-white/30 text-white font-semibold rounded-xl hover:bg-white/10 transition-all duration-300 transform hover:scale-105">
+          📋 Full Assessment
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Calculator Selection Section -->
+  <section id="calculators" class="py-16 bg-gray-50 dark:bg-gray-900">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <!-- Section Header -->
+      <div class="text-center mb-12">
+        <h2 class="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-4">
+          Choose Your Calculator
+        </h2>
+        <p class="text-lg text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
+          Click on a calculator below to get started. Each calculator is designed to give you accurate, up-to-date scoring based on current IRCC guidelines.
+        </p>
+      </div>
+
+      <!-- Calculator Cards Grid -->
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12">
+        
+        <!-- CRS Calculator -->
+        <div class="calculator-card group bg-white dark:bg-gray-800 rounded-2xl p-8 shadow-lg border border-gray-200 dark:border-gray-700 hover:shadow-2xl hover:scale-105 hover:border-blue-300 dark:hover:border-blue-600 transition-all duration-500 cursor-pointer" data-calculator="crs">
+          <div class="text-center">
+            <div class="w-20 h-20 bg-gradient-to-br from-blue-500 to-purple-600 rounded-2xl flex items-center justify-center mx-auto mb-6 group-hover:rotate-12 group-hover:scale-110 transition-transform duration-300 shadow-lg">
+              <span class="text-3xl">🎯</span>
+            </div>
+            <h3 class="text-2xl font-bold text-gray-900 dark:text-white mb-3 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">
+              CRS Calculator
+            </h3>
+            <p class="text-gray-600 dark:text-gray-400 mb-6">
+              Calculate your Comprehensive Ranking System score for Express Entry. Get your exact points breakdown.
+            </p>
+            <div class="flex items-center justify-center gap-2 text-sm text-blue-600 dark:text-blue-400 font-medium">
+              <span>Most Popular</span>
+              <div class="w-2 h-2 bg-blue-500 rounded-full animate-pulse"></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- FSW Calculator -->
+        <div class="calculator-card group bg-white dark:bg-gray-800 rounded-2xl p-8 shadow-lg border border-gray-200 dark:border-gray-700 hover:shadow-2xl hover:scale-105 hover:border-green-300 dark:hover:border-green-600 transition-all duration-500 cursor-pointer" data-calculator="fsw">
+          <div class="text-center">
+            <div class="w-20 h-20 bg-gradient-to-br from-green-500 to-emerald-600 rounded-2xl flex items-center justify-center mx-auto mb-6 group-hover:rotate-12 group-hover:scale-110 transition-transform duration-300 shadow-lg">
+              <span class="text-3xl">🌍</span>
+            </div>
+            <h3 class="text-2xl font-bold text-gray-900 dark:text-white mb-3 group-hover:text-green-600 dark:group-hover:text-green-400 transition-colors">
+              FSW Calculator
+            </h3>
+            <p class="text-gray-600 dark:text-gray-400 mb-6">
+              Federal Skilled Worker eligibility calculator. Check if you meet the minimum requirements and calculate your points.
+            </p>
+            <div class="flex items-center justify-center gap-2 text-sm text-green-600 dark:text-green-400 font-medium">
+              <span>Available Now</span>
+              <div class="w-2 h-2 bg-green-500 rounded-full animate-pulse"></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- OINP Calculator -->
+        <div class="calculator-card group bg-white dark:bg-gray-800 rounded-2xl p-8 shadow-lg border border-gray-200 dark:border-gray-700 hover:shadow-2xl hover:scale-105 hover:border-purple-300 dark:hover:border-purple-600 transition-all duration-500 cursor-pointer" data-calculator="oinp">
+          <div class="text-center">
+            <div class="w-20 h-20 bg-gradient-to-br from-purple-500 to-pink-600 rounded-2xl flex items-center justify-center mx-auto mb-6 group-hover:rotate-12 group-hover:scale-110 transition-transform duration-300 shadow-lg">
+              <span class="text-3xl">🏛️</span>
+            </div>
+            <h3 class="text-2xl font-bold text-gray-900 dark:text-white mb-3 group-hover:text-purple-600 dark:group-hover:text-purple-400 transition-colors">
+              OINP Calculator
+            </h3>
+            <p class="text-gray-600 dark:text-gray-400 mb-6">
+              Ontario Immigrant Nominee Program eligibility for various streams and categories.
+            </p>
+            <div class="flex items-center justify-center gap-2 text-sm text-gray-500 dark:text-gray-400">
+              <span>Coming Soon</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Additional Calculators Preview -->
+      <div class="text-center">
+        <h3 class="text-xl font-bold text-gray-900 dark:text-white mb-4">More Provincial Calculators Coming Soon</h3>
+        <div class="flex flex-wrap justify-center gap-4">
+          <span class="px-4 py-2 bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-400 rounded-full text-sm">🏔️ BCPNP Calculator</span>
+          <span class="px-4 py-2 bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-400 rounded-full text-sm">🛢️ Alberta AINP Calculator</span>
+          <span class="px-4 py-2 bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-400 rounded-full text-sm">🌾 Saskatchewan SINP Calculator</span>
+          <span class="px-4 py-2 bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-400 rounded-full text-sm">⚜️ Quebec QSW Calculator</span>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- CRS Calculator Section -->
+  <section id="crs-calculator" class="py-16 bg-white dark:bg-gray-800" style="display: none;">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <!-- Calculator Header -->
+      <div class="text-center mb-12">
+        <div class="inline-flex items-center gap-3 mb-4">
+          <div class="w-12 h-12 bg-blue-500 rounded-xl flex items-center justify-center">
+            <span class="text-2xl">🎯</span>
+          </div>
+          <h2 class="text-3xl font-bold text-gray-900 dark:text-white">CRS Score Calculator</h2>
+        </div>
+        <p class="text-lg text-gray-600 dark:text-gray-300 mb-6">
+          Calculate your Comprehensive Ranking System (CRS) score for Express Entry
+        </p>
+        
+        <!-- Progress Bar -->
+        <div class="bg-gray-200 dark:bg-gray-700 rounded-full h-2 mb-4">
+          <div id="progress-bar" class="bg-gradient-to-r from-blue-500 to-purple-600 h-2 rounded-full transition-all duration-300" style="width: 0%"></div>
+        </div>
+        <div class="text-sm text-gray-500 dark:text-gray-400">
+          <span id="progress-text">Step 1 of 6</span>
+        </div>
+        
+        <!-- Total Score Display -->
+        <div id="total-score-display" class="mt-6 text-center bg-gradient-to-r from-blue-50 to-purple-50 dark:from-blue-900/20 dark:to-purple-900/20 rounded-xl p-4 border border-blue-200 dark:border-blue-700" style="display: none;">
+          <div class="text-sm text-gray-600 dark:text-gray-400 mb-1">Current CRS Score</div>
+          <div class="text-3xl font-bold text-blue-600 dark:text-blue-400">
+            <span id="total-score-value">0</span>
+          </div>
+          <div class="text-xs text-gray-500 dark:text-gray-400">out of ~600 maximum</div>
+        </div>
+      </div>
+
+      <!-- Calculator Form Container -->
+      <div class="bg-gray-50 dark:bg-gray-900 rounded-2xl p-8 shadow-inner">
+        
+        <!-- Step Indicator -->
+        <div class="flex justify-center mb-8">
+          <div class="flex items-center space-x-4">
+            <div class="step-indicator active" data-step="1">
+              <span class="step-number">1</span>
+              <span class="step-label">Personal</span>
+            </div>
+            <div class="step-line"></div>
+            <div class="step-indicator" data-step="2">
+              <span class="step-number">2</span>
+              <span class="step-label">Education</span>
+            </div>
+            <div class="step-line"></div>
+            <div class="step-indicator" data-step="3">
+              <span class="step-number">3</span>
+              <span class="step-label">Language</span>
+            </div>
+            <div class="step-line"></div>
+            <div class="step-indicator" data-step="4">
+              <span class="step-number">4</span>
+              <span class="step-label">Experience</span>
+            </div>
+            <div class="step-line"></div>
+            <div class="step-indicator" data-step="5">
+              <span class="step-number">5</span>
+              <span class="step-label">Spouse</span>
+            </div>
+            <div class="step-line"></div>
+            <div class="step-indicator" data-step="6">
+              <span class="step-number">6</span>
+              <span class="step-label">Additional</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Calculator Form -->
+        <form id="crs-calculator-form" class="space-y-8">
+          
+          <!-- Step 1: Personal Information -->
+          <div class="calculator-step active" data-step="1">
+            <h3 class="text-2xl font-bold text-gray-900 dark:text-white mb-6 text-center">Personal Information</h3>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <!-- Age -->
+              <div class="form-group">
+                <label class="form-label" for="age">
+                  <span class="label-text">Your Age</span>
+                  <span class="label-required">*</span>
+                </label>
+                <input type="number" id="age" name="age" class="form-input" min="17" max="50" placeholder="Enter your age">
+                <div class="form-help">Age on the date you submit your Express Entry application</div>
+                <div id="age-points" class="points-display" style="display: none;">
+                  <span class="points-text">Points: <strong class="points-value">0</strong></span>
+                </div>
+              </div>
+
+              <!-- Marital Status -->
+              <div class="form-group">
+                <label class="form-label" for="marital-status">
+                  <span class="label-text">Marital Status</span>
+                  <span class="label-required">*</span>
+                </label>
+                <select id="marital-status" name="marital-status" class="form-input">
+                  <option value="">Select your marital status</option>
+                  <option value="single">Single / Never married</option>
+                  <option value="married">Married / Common-law partner</option>
+                </select>
+                <div class="form-help">Common-law means living together for 1+ years</div>
+              </div>
+            </div>
+
+            <!-- Spouse Accompanying Question -->
+            <div id="spouse-accompanying-section" class="mt-6" style="display: none;">
+              <div class="form-group">
+                <label class="form-label">
+                  <span class="label-text">Will your spouse/partner accompany you to Canada?</span>
+                  <span class="label-required">*</span>
+                </label>
+                <div class="radio-group">
+                  <label class="radio-option">
+                    <input type="radio" name="spouse-accompanying" value="yes" class="radio-input">
+                    <span class="radio-label">Yes, they will accompany me</span>
+                  </label>
+                  <label class="radio-option">
+                    <input type="radio" name="spouse-accompanying" value="no" class="radio-input">
+                    <span class="radio-label">No, they will not accompany me</span>
+                  </label>
+                </div>
+                <div class="form-help">This affects your scoring - you may get more points as single applicant</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Step 2: Education -->
+          <div class="calculator-step" data-step="2" style="display: none;">
+            <h3 class="text-2xl font-bold text-gray-900 dark:text-white mb-6 text-center">Education</h3>
+            
+            <div class="form-group">
+              <label class="form-label" for="education">
+                <span class="label-text">Highest Level of Education</span>
+                <span class="label-required">*</span>
+              </label>
+              <select id="education" name="education" class="form-input">
+                <option value="">Select your highest education level</option>
+                <option value="less_than_secondary" selected>Less than secondary school (high school)</option>
+                <option value="secondary_diploma">Secondary diploma (high school graduation)</option>
+                <option value="one_year_post_secondary">One-year post-secondary program</option>
+                <option value="two_year_post_secondary">Two-year post-secondary program</option>
+                <option value="bachelors_or_three_year_post_secondary">Bachelor's degree OR three-year post-secondary program</option>
+                <option value="two_or_more_post_secondary_one_at_least_three_years">Two or more post-secondary programs (one at least 3 years)</option>
+                <option value="masters_or_professional_degree">Master's degree OR professional degree</option>
+                <option value="doctoral">Doctoral level university degree (PhD)</option>
+              </select>
+              <div class="form-help">Choose the Canadian equivalent of your highest education</div>
+              <div id="education-points" class="points-display" style="display: none;">
+                <span class="points-text">Points: <strong class="points-value">0</strong></span>
+              </div>
+            </div>
+
+                    <!-- ECA Info (Simplified) -->
+        <div class="text-xs text-gray-500 dark:text-gray-400 mt-2">
+          💡 Need ECA if studied outside Canada: WES, ICAS, CES, PEBC, MCC, NNAS
+        </div>
+          </div>
+
+          <!-- Step 3: Language Proficiency -->
+          <div class="calculator-step" data-step="3" style="display: none;">
+            <h3 class="text-2xl font-bold text-gray-900 dark:text-white mb-6 text-center">Language Proficiency</h3>
+            
+            <!-- First Official Language -->
+            <div class="form-group mb-8">
+              <h4 class="text-lg font-semibold text-gray-900 dark:text-white mb-4">First Official Language (English or French)</h4>
+              
+              <!-- Language Test Type -->
+              <div class="form-group mb-4">
+                <label class="form-label" for="first-language-test">
+                  <span class="label-text">Language Test</span>
+                  <span class="label-required">*</span>
+                </label>
+                <select id="first-language-test" name="first-language-test" class="form-input">
+                  <option value="">Select your language test</option>
+                  <option value="ielts">IELTS General Training</option>
+                  <option value="celpip">CELPIP-General</option>
+                  <option value="pte">PTE Core</option>
+                  <option value="tef">TEF Canada (French)</option>
+                  <option value="tcf">TCF Canada (French)</option>
+                </select>
+              </div>
+
+              <!-- Language Skills Grid -->
+              <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+                <div class="form-group">
+                  <label class="form-label" for="speaking">
+                    <span class="label-text">Speaking</span>
+                    <span class="label-required">*</span>
+                  </label>
+                  <select id="speaking" name="speaking" class="form-input">
+                    <option value="">Select CLB level</option>
+                    <option value="CLB_4_or_5">CLB 4-5</option>
+                    <option value="CLB_6">CLB 6</option>
+                    <option value="CLB_7">CLB 7</option>
+                    <option value="CLB_8">CLB 8</option>
+                    <option value="CLB_9">CLB 9</option>
+                    <option value="CLB_10_or_more">CLB 10+</option>
+                  </select>
+                  <div id="speaking-points" class="points-display" style="display: none;">
+                    <span class="points-text">Points: <strong class="points-value">0</strong></span>
+                  </div>
+                </div>
+
+                <div class="form-group">
+                  <label class="form-label" for="listening">
+                    <span class="label-text">Listening</span>
+                    <span class="label-required">*</span>
+                  </label>
+                  <select id="listening" name="listening" class="form-input">
+                    <option value="">Select CLB level</option>
+                    <option value="CLB_4_or_5">CLB 4-5</option>
+                    <option value="CLB_6">CLB 6</option>
+                    <option value="CLB_7">CLB 7</option>
+                    <option value="CLB_8">CLB 8</option>
+                    <option value="CLB_9">CLB 9</option>
+                    <option value="CLB_10_or_more">CLB 10+</option>
+                  </select>
+                  <div id="listening-points" class="points-display" style="display: none;">
+                    <span class="points-text">Points: <strong class="points-value">0</strong></span>
+                  </div>
+                </div>
+
+                <div class="form-group">
+                  <label class="form-label" for="reading">
+                    <span class="label-text">Reading</span>
+                    <span class="label-required">*</span>
+                  </label>
+                  <select id="reading" name="reading" class="form-input">
+                    <option value="">Select CLB level</option>
+                    <option value="CLB_4_or_5">CLB 4-5</option>
+                    <option value="CLB_6">CLB 6</option>
+                    <option value="CLB_7">CLB 7</option>
+                    <option value="CLB_8">CLB 8</option>
+                    <option value="CLB_9">CLB 9</option>
+                    <option value="CLB_10_or_more">CLB 10+</option>
+                  </select>
+                  <div id="reading-points" class="points-display" style="display: none;">
+                    <span class="points-text">Points: <strong class="points-value">0</strong></span>
+                  </div>
+                </div>
+
+                <div class="form-group">
+                  <label class="form-label" for="writing">
+                    <span class="label-text">Writing</span>
+                    <span class="label-required">*</span>
+                  </label>
+                  <select id="writing" name="writing" class="form-input">
+                    <option value="">Select CLB level</option>
+                    <option value="CLB_4_or_5">CLB 4-5</option>
+                    <option value="CLB_6">CLB 6</option>
+                    <option value="CLB_7">CLB 7</option>
+                    <option value="CLB_8">CLB 8</option>
+                    <option value="CLB_9">CLB 9</option>
+                    <option value="CLB_10_or_more">CLB 10+</option>
+                  </select>
+                  <div id="writing-points" class="points-display" style="display: none;">
+                    <span class="points-text">Points: <strong class="points-value">0</strong></span>
+                  </div>
+                </div>
+              </div>
+
+              <div id="first-language-total" class="points-summary mt-4" style="display: none;">
+                <span class="text-lg font-semibold text-gray-900 dark:text-white">
+                  First Language Total: <strong class="text-blue-600 dark:text-blue-400 points-value">0</strong> points
+                </span>
+              </div>
+            </div>
+
+            <!-- Second Official Language -->
+            <div class="form-group">
+              <h4 class="text-lg font-semibold text-gray-900 dark:text-white mb-4">Second Official Language (Optional)</h4>
+              
+              <div class="form-group mb-4">
+                <label class="radio-option">
+                  <input type="checkbox" id="has-second-language" name="has-second-language" class="checkbox-input">
+                  <span class="checkbox-label">I have taken a second official language test</span>
+                </label>
+                <div class="form-help">Taking both English and French tests can give you bonus points</div>
+              </div>
+
+              <div id="second-language-section" style="display: none;">
+                <!-- Language Type Selection -->
+                <div class="form-group mb-4">
+                  <label class="form-label" for="second-language-type">
+                    <span class="label-text">Second Language Type</span>
+                  </label>
+                  <select id="second-language-type" name="second-language-type" class="form-input">
+                    <option value="">Select language type</option>
+                    <option value="english">English (if French is first language)</option>
+                    <option value="french">French (if English is first language)</option>
+                  </select>
+                </div>
+
+                <!-- Second Language Skills Grid -->
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+                  <div class="form-group">
+                    <label class="form-label" for="second-speaking">
+                      <span class="label-text">Speaking</span>
+                    </label>
+                    <select id="second-speaking" name="second-speaking" class="form-input">
+                      <option value="">Select level</option>
+                      <option value="CLB_4_or_less">CLB/NCLC 4 or less</option>
+                      <option value="CLB_5_or_6">CLB/NCLC 5-6</option>
+                      <option value="CLB_7_or_8">CLB/NCLC 7-8</option>
+                      <option value="CLB_9_or_more">CLB/NCLC 9+</option>
+                    </select>
+                  </div>
+
+                  <div class="form-group">
+                    <label class="form-label" for="second-listening">
+                      <span class="label-text">Listening</span>
+                    </label>
+                    <select id="second-listening" name="second-listening" class="form-input">
+                      <option value="">Select level</option>
+                      <option value="CLB_4_or_less">CLB/NCLC 4 or less</option>
+                      <option value="CLB_5_or_6">CLB/NCLC 5-6</option>
+                      <option value="CLB_7_or_8">CLB/NCLC 7-8</option>
+                      <option value="CLB_9_or_more">CLB/NCLC 9+</option>
+                    </select>
+                  </div>
+
+                  <div class="form-group">
+                    <label class="form-label" for="second-reading">
+                      <span class="label-text">Reading</span>
+                    </label>
+                    <select id="second-reading" name="second-reading" class="form-input">
+                      <option value="">Select level</option>
+                      <option value="CLB_4_or_less">CLB/NCLC 4 or less</option>
+                      <option value="CLB_5_or_6">CLB/NCLC 5-6</option>
+                      <option value="CLB_7_or_8">CLB/NCLC 7-8</option>
+                      <option value="CLB_9_or_more">CLB/NCLC 9+</option>
+                    </select>
+                  </div>
+
+                  <div class="form-group">
+                    <label class="form-label" for="second-writing">
+                      <span class="label-text">Writing</span>
+                    </label>
+                    <select id="second-writing" name="second-writing" class="form-input">
+                      <option value="">Select level</option>
+                      <option value="CLB_4_or_less">CLB/NCLC 4 or less</option>
+                      <option value="CLB_5_or_6">CLB/NCLC 5-6</option>
+                      <option value="CLB_7_or_8">CLB/NCLC 7-8</option>
+                      <option value="CLB_9_or_more">CLB/NCLC 9+</option>
+                    </select>
+                  </div>
+                </div>
+
+                <div id="second-language-total" class="points-summary mt-4" style="display: none;">
+                  <span class="text-lg font-semibold text-gray-900 dark:text-white">
+                    Second Language Total: <strong class="text-green-600 dark:text-green-400 points-value">0</strong> points
+                  </span>
+                </div>
+
+                <div id="french-additional-points" class="points-summary mt-4" style="display: none;">
+                  <span class="text-lg font-semibold text-gray-900 dark:text-white">
+                    French Additional Points: <strong class="text-blue-600 dark:text-blue-400 points-value">0</strong> points
+                  </span>
+                  <div class="text-sm text-gray-500 dark:text-gray-400 mt-1">
+                    Bonus points for French proficiency (included in Additional Factors)
+                  </div>
+                </div>
+              </div>
+            </div>
+
+                    <!-- Language Test Info (Simplified) -->
+        <div class="text-xs text-gray-500 dark:text-gray-400 mt-4">
+          💡 Minimum CLB 7 required • Test results valid for 2 years
+        </div>
+          </div>
+
+          <div class="calculator-step" data-step="4" style="display: none;">
+            <h3 class="text-2xl font-bold text-gray-900 dark:text-white mb-6 text-center">Work Experience</h3>
+            
+            <!-- Canadian Work Experience -->
+            <div class="form-group mb-8">
+              <label class="form-label" for="canadian-experience">
+                <span class="label-text">Canadian Work Experience</span>
+                <span class="label-required">*</span>
+              </label>
+              <select id="canadian-experience" name="canadian-experience" class="form-input">
+                <option value="">Select your Canadian work experience</option>
+                <option value="none">No Canadian work experience</option>
+                <option value="less_than_1_year" selected>Less than 1 year</option>
+                <option value="1_year">1 year</option>
+                <option value="2_years">2 years</option>
+                <option value="3_years">3 years</option>
+                <option value="4_years">4 years</option>
+                <option value="5_or_more_years">5 or more years</option>
+              </select>
+              <div class="form-help">Full-time work experience in Canada (NOC TEER 0, 1, 2, or 3)</div>
+              <div id="canadian-experience-points" class="points-display" style="display: none;">
+                <span class="points-text">Points: <strong class="points-value">0</strong></span>
+              </div>
+            </div>
+
+            <!-- Foreign Work Experience -->
+            <div class="form-group mb-8">
+              <label class="form-label" for="foreign-experience">
+                <span class="label-text">Foreign Work Experience</span>
+                <span class="label-required">*</span>
+              </label>
+              <select id="foreign-experience" name="foreign-experience" class="form-input">
+                <option value="">Select your foreign work experience</option>
+                <option value="none">No foreign work experience</option>
+                <option value="less_than_1_year" selected>Less than 1 year</option>
+                <option value="1_year">1 year</option>
+                <option value="2_years">2 years</option>
+                <option value="3_or_more_years">3 or more years</option>
+              </select>
+              <div class="form-help">Full-time work experience outside Canada in your primary occupation</div>
+              <div id="foreign-experience-points" class="points-display" style="display: none;">
+                <span class="points-text">Points: <strong class="points-value">0</strong></span>
+              </div>
+            </div>
+
+            <!-- Certificate of Qualification (Trade Certificate) -->
+            <div class="form-group mb-8">
+              <label class="form-label" for="trade-certificate">
+                <span class="label-text">Certificate of Qualification (Trade Certificate)</span>
+              </label>
+              <select id="trade-certificate" name="trade-certificate" class="form-input">
+                <option value="">Select if you have a trade certificate</option>
+                <option value="none" selected>No certificate of qualification</option>
+                <option value="has_certificate">Yes, I have a certificate of qualification</option>
+              </select>
+              <div class="form-help">Provincial/territorial certificate of qualification in a skilled trade</div>
+            </div>
+
+            <!-- Skill Transferability Bonus -->
+            <div id="skill-transferability-bonus" class="points-summary mt-6" style="display: none;">
+              <span class="text-lg font-semibold text-gray-900 dark:text-white">
+                Skill Transferability Bonus: <strong class="text-purple-600 dark:text-purple-400 points-value">0</strong> points
+              </span>
+              <div class="text-xs text-gray-500 dark:text-gray-400 mt-1">
+                Bonus for combinations of education, language, and experience
+              </div>
+            </div>
+
+            <!-- Experience Total -->
+            <div id="experience-total" class="points-summary mt-6" style="display: none;">
+              <span class="text-lg font-semibold text-gray-900 dark:text-white">
+                Work Experience Total: <strong class="text-orange-600 dark:text-orange-400 points-value">0</strong> points
+              </span>
+            </div>
+
+            <!-- Experience Info -->
+            <div class="text-xs text-gray-500 dark:text-gray-400 mt-4">
+              💡 Must be paid, full-time (30+ hrs/week), continuous work in NOC TEER 0, 1, 2, or 3<br/>
+              🎯 <strong>Bonus Points:</strong> Education+Experience, Language+Experience, Foreign+Canadian combinations can add 50+ points!
+            </div>
+          </div>
+
+          <div class="calculator-step" data-step="5" style="display: none;">
+            <h3 class="text-2xl font-bold text-gray-900 dark:text-white mb-6 text-center">Spouse Information</h3>
+            
+            <div class="text-center text-gray-500 dark:text-gray-400 mb-8">
+              💡 Complete this section only if you're married/common-law and your spouse will accompany you to Canada
+            </div>
+
+            <!-- Spouse Education -->
+            <div class="form-group mb-8">
+              <label class="form-label" for="spouse-education">
+                <span class="label-text">Spouse's Highest Level of Education</span>
+              </label>
+              <select id="spouse-education" name="spouse-education" class="form-input">
+                <option value="">Select spouse's education level</option>
+                <option value="less_than_secondary">Less than secondary school</option>
+                <option value="secondary_diploma">Secondary diploma (high school graduation)</option>
+                <option value="one_year_post_secondary">One-year degree, diploma or certificate</option>
+                <option value="two_year_post_secondary">Two-year program at university, college, trade or technical school</option>
+                <option value="bachelors_or_three_year_post_secondary">Bachelor's degree OR three or more year program</option>
+                <option value="two_or_more_post_secondary_one_at_least_three_years">Two or more certificates, diplomas, or degrees (one must be 3+ years)</option>
+                <option value="masters_or_professional_degree">Master's degree, or professional degree needed to practice</option>
+                <option value="doctoral">Doctoral level university degree (PhD)</option>
+              </select>
+              <div class="form-help">Must have Educational Credential Assessment (ECA) for foreign education</div>
+              
+              <div id="spouse-education-points" class="points-display" style="display: none;">
+                <span class="points-text">Education Points: <strong class="text-blue-600 dark:text-blue-400 points-value">0</strong></span>
+              </div>
+            </div>
+
+            <!-- Spouse Language Proficiency -->
+            <div class="form-group mb-8">
+              <h4 class="text-lg font-semibold text-gray-900 dark:text-white mb-4">Spouse's Language Proficiency</h4>
+              
+              <div class="form-group mb-4">
+                <label class="form-label" for="spouse-language-test">
+                  <span class="label-text">Language Test Type</span>
+                </label>
+                <select id="spouse-language-test" name="spouse-language-test" class="form-input">
+                  <option value="">Select test type</option>
+                  <option value="IELTS">IELTS General Training</option>
+                  <option value="CELPIP">CELPIP-General</option>
+                  <option value="TEF">TEF Canada (French)</option>
+                  <option value="TCF">TCF Canada (French)</option>
+                </select>
+              </div>
+
+              <!-- Spouse Language Skills Grid -->
+              <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+                <div class="form-group">
+                  <label class="form-label" for="spouse-speaking">
+                    <span class="label-text">Speaking</span>
+                  </label>
+                  <select id="spouse-speaking" name="spouse-speaking" class="form-input">
+                    <option value="">Select CLB level</option>
+                    <option value="CLB_4_or_less">CLB 4 or less</option>
+                    <option value="CLB_5">CLB 5</option>
+                    <option value="CLB_6">CLB 6</option>
+                    <option value="CLB_7">CLB 7</option>
+                    <option value="CLB_8">CLB 8</option>
+                    <option value="CLB_9">CLB 9</option>
+                    <option value="CLB_10_or_more">CLB 10+</option>
+                  </select>
+                </div>
+
+                <div class="form-group">
+                  <label class="form-label" for="spouse-listening">
+                    <span class="label-text">Listening</span>
+                  </label>
+                  <select id="spouse-listening" name="spouse-listening" class="form-input">
+                    <option value="">Select CLB level</option>
+                    <option value="CLB_4_or_less">CLB 4 or less</option>
+                    <option value="CLB_5">CLB 5</option>
+                    <option value="CLB_6">CLB 6</option>
+                    <option value="CLB_7">CLB 7</option>
+                    <option value="CLB_8">CLB 8</option>
+                    <option value="CLB_9">CLB 9</option>
+                    <option value="CLB_10_or_more">CLB 10+</option>
+                  </select>
+                </div>
+
+                <div class="form-group">
+                  <label class="form-label" for="spouse-reading">
+                    <span class="label-text">Reading</span>
+                  </label>
+                  <select id="spouse-reading" name="spouse-reading" class="form-input">
+                    <option value="">Select CLB level</option>
+                    <option value="CLB_4_or_less">CLB 4 or less</option>
+                    <option value="CLB_5">CLB 5</option>
+                    <option value="CLB_6">CLB 6</option>
+                    <option value="CLB_7">CLB 7</option>
+                    <option value="CLB_8">CLB 8</option>
+                    <option value="CLB_9">CLB 9</option>
+                    <option value="CLB_10_or_more">CLB 10+</option>
+                  </select>
+                </div>
+
+                <div class="form-group">
+                  <label class="form-label" for="spouse-writing">
+                    <span class="label-text">Writing</span>
+                  </label>
+                  <select id="spouse-writing" name="spouse-writing" class="form-input">
+                    <option value="">Select CLB level</option>
+                    <option value="CLB_4_or_less">CLB 4 or less</option>
+                    <option value="CLB_5">CLB 5</option>
+                    <option value="CLB_6">CLB 6</option>
+                    <option value="CLB_7">CLB 7</option>
+                    <option value="CLB_8">CLB 8</option>
+                    <option value="CLB_9">CLB 9</option>
+                    <option value="CLB_10_or_more">CLB 10+</option>
+                  </select>
+                </div>
+              </div>
+
+              <div id="spouse-language-points" class="points-display" style="display: none;">
+                <span class="points-text">Language Points: <strong class="text-blue-600 dark:text-blue-400 points-value">0</strong></span>
+              </div>
+            </div>
+
+            <!-- Spouse Canadian Work Experience -->
+            <div class="form-group mb-8">
+              <label class="form-label" for="spouse-canadian-experience">
+                <span class="label-text">Spouse's Canadian Work Experience</span>
+              </label>
+              <select id="spouse-canadian-experience" name="spouse-canadian-experience" class="form-input">
+                <option value="">Select spouse's Canadian work experience</option>
+                <option value="none">No Canadian work experience</option>
+                <option value="less_than_1_year">Less than 1 year</option>
+                <option value="1_year">1 year</option>
+                <option value="2_years">2 years</option>
+                <option value="3_years">3 years</option>
+                <option value="4_years">4 years</option>
+                <option value="5_or_more_years">5 or more years</option>
+              </select>
+              <div class="form-help">Must be skilled work experience (NOC TEER 0, 1, 2, or 3)</div>
+              
+              <div id="spouse-work-points" class="points-display" style="display: none;">
+                <span class="points-text">Work Experience Points: <strong class="text-blue-600 dark:text-blue-400 points-value">0</strong></span>
+              </div>
+            </div>
+
+            <div id="spouse-total" class="points-summary mt-6">
+              <span class="text-xl font-semibold text-gray-900 dark:text-white">
+                Spouse Total: <strong class="text-green-600 dark:text-green-400 points-value">0</strong> points
+              </span>
+            </div>
+          </div>
+
+          <div class="calculator-step" data-step="6" style="display: none;">
+            <h3 class="text-2xl font-bold text-gray-900 dark:text-white mb-6 text-center">Additional Factors</h3>
+            
+            <div class="text-center text-gray-500 dark:text-gray-400 mb-8">
+              🎯 These factors can significantly boost your CRS score!
+            </div>
+
+            <!-- Sibling in Canada -->
+            <div class="form-group mb-8">
+              <h4 class="text-lg font-semibold text-gray-900 dark:text-white mb-4">Sibling in Canada</h4>
+              <div class="radio-group">
+                <label class="radio-option">
+                  <input type="radio" name="sibling-canada" value="yes" class="radio-input">
+                  <span class="radio-label">Yes, I have a sibling who is a Canadian citizen or permanent resident</span>
+                </label>
+                <label class="radio-option">
+                  <input type="radio" name="sibling-canada" value="no" class="radio-input" checked>
+                  <span class="radio-label">No sibling in Canada</span>
+                </label>
+              </div>
+              <div class="form-help">Sibling must be 18+ years old and living in Canada</div>
+              
+              <div id="sibling-points" class="points-display" style="display: none;">
+                <span class="points-text">Sibling Points: <strong class="text-blue-600 dark:text-blue-400 points-value">0</strong></span>
+              </div>
+            </div>
+
+
+
+            <!-- Canadian Education -->
+            <div class="form-group mb-8">
+              <h4 class="text-lg font-semibold text-gray-900 dark:text-white mb-4">Canadian Education</h4>
+              <div class="form-group">
+                <label class="form-label" for="canadian-education">
+                  <span class="label-text">Post-Secondary Education in Canada</span>
+                </label>
+                <select id="canadian-education" name="canadian-education" class="form-input">
+                  <option value="">Select Canadian education</option>
+                  <option value="none" selected>No Canadian post-secondary education</option>
+                  <option value="one_or_two_year">1-2 year credential from Canadian post-secondary institution</option>
+                  <option value="three_year_or_more">3+ year credential from Canadian post-secondary institution</option>
+                </select>
+                <div class="form-help">Must be from a Canadian post-secondary institution</div>
+              </div>
+              
+              <div id="canadian-education-points" class="points-display" style="display: none;">
+                <span class="points-text">Canadian Education Points: <strong class="text-blue-600 dark:text-blue-400 points-value">0</strong></span>
+              </div>
+            </div>
+
+
+
+            <!-- Provincial Nomination -->
+            <div class="form-group mb-8">
+              <h4 class="text-lg font-semibold text-gray-900 dark:text-white mb-4">Provincial Nomination</h4>
+              <div class="radio-group">
+                <label class="radio-option">
+                  <input type="radio" name="provincial-nomination" value="yes" class="radio-input">
+                  <span class="radio-label">Yes, I have a provincial nomination certificate</span>
+                </label>
+                <label class="radio-option">
+                  <input type="radio" name="provincial-nomination" value="no" class="radio-input" checked>
+                  <span class="radio-label">No provincial nomination</span>
+                </label>
+              </div>
+              <div class="form-help">Provincial Nominee Program (PNP) certificate from a Canadian province or territory</div>
+              
+              <div id="pnp-points" class="points-display" style="display: none;">
+                <span class="points-text">PNP Points: <strong class="text-blue-600 dark:text-blue-400 points-value">0</strong></span>
+              </div>
+            </div>
+
+            <div id="additional-total" class="points-summary mt-6">
+              <span class="text-xl font-semibold text-gray-900 dark:text-white">
+                Additional Factors Total: <strong class="text-green-600 dark:text-green-400 points-value">0</strong> points
+              </span>
+            </div>
+          </div>
+
+          <!-- Navigation Buttons -->
+          <div class="flex justify-between items-center pt-8 border-t border-gray-200 dark:border-gray-700">
+            <button type="button" id="prev-btn" class="btn-secondary" style="display: none;">
+              <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
+              </svg>
+              Previous
+            </button>
+            
+            <div class="flex-1"></div>
+            
+            <button type="button" id="next-btn" class="btn-primary">
+              Next
+              <svg class="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+              </svg>
+            </button>
+            
+            <button type="button" id="calculate-btn" class="btn-primary" style="display: none;">
+              📊 Generate Report
+            </button>
+          </div>
+
+        </form>
+
+        <!-- Results Section -->
+        <div id="results-section" class="mt-12" style="display: none;">
+          <!-- Header with Actions -->
+          <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-8 gap-4">
+            <div>
+              <h2 class="text-3xl font-bold text-gray-900 dark:text-white">Your CRS Assessment Results</h2>
+              <p class="text-gray-600 dark:text-gray-400 mt-2">Comprehensive breakdown of your Express Entry score</p>
+            </div>
+            <div class="flex gap-3">
+              <button id="print-btn" class="btn-secondary flex items-center gap-2">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 17h2a2 2 0 002-2v-4a2 2 0 00-2-2H5a2 2 0 00-2 2v4a2 2 0 002 2h2m2 4h6a2 2 0 002-2v-4a2 2 0 00-2-2H9a2 2 0 00-2 2v4a2 2 0 002 2zm8-12V5a2 2 0 00-2-2H9a2 2 0 00-2 2v4h10z"></path>
+                </svg>
+                Print
+              </button>
+              <button id="download-pdf-btn" class="btn-secondary flex items-center gap-2">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
+                </svg>
+                Download PDF
+              </button>
+              <button id="download-csv-btn" class="btn-secondary flex items-center gap-2">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
+                </svg>
+                Export CSV
+              </button>
+            </div>
+          </div>
+
+          <!-- Main Score Card -->
+          <div class="bg-gradient-to-br from-blue-50 to-purple-50 dark:from-blue-900/20 dark:to-purple-900/20 rounded-2xl p-8 border border-blue-200 dark:border-blue-700 mb-8">
+            <div class="text-center mb-8">
+              <h3 class="text-3xl font-bold text-gray-900 dark:text-white mb-4">Your CRS Score</h3>
+              <div class="text-6xl font-bold text-blue-600 dark:text-blue-400 mb-2" id="final-total-score">0</div>
+              <div class="text-lg text-gray-600 dark:text-gray-300">out of 1,200 points</div>
+              
+              <!-- Score Status -->
+              <div id="score-status" class="mt-6 p-4 rounded-xl">
+                <!-- Will be populated with competitive status -->
+              </div>
+            </div>
+            
+            <!-- Score Breakdown -->
+            <div id="detailed-breakdown" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+              <!-- Will be populated with detailed breakdown -->
+            </div>
+          </div>
+
+          <!-- Live Draw Comparison -->
+          <div id="draw-comparison" class="bg-white dark:bg-gray-800 rounded-2xl p-8 border border-gray-200 dark:border-gray-700 mb-8">
+            <h3 class="text-2xl font-bold text-gray-900 dark:text-white mb-6 flex items-center gap-3">
+              <span class="w-3 h-3 bg-green-500 rounded-full animate-pulse"></span>
+              Latest Express Entry Draw Comparison
+            </h3>
+            <div id="draw-comparison-content">
+              <!-- Will be populated with live draw data -->
+            </div>
+          </div>
+
+          <!-- Assessment CTA -->
+          <div class="bg-gradient-to-r from-green-50 to-blue-50 dark:from-green-900/20 dark:to-blue-900/20 rounded-2xl p-8 border border-green-200 dark:border-green-700 text-center">
+            <div class="max-w-3xl mx-auto">
+              <h3 class="text-2xl font-bold text-gray-900 dark:text-white mb-4">
+                🎯 Get Your Complete Immigration Assessment
+              </h3>
+              <p class="text-lg text-gray-600 dark:text-gray-400 mb-6">
+                Discover your eligibility for <strong>35+ immigration programs</strong> including Provincial Nominee Programs, 
+                Federal programs, and specialized streams. Get personalized recommendations and next steps.
+              </p>
+              <div class="flex flex-col sm:flex-row gap-4 justify-center items-center">
+                <button class="btn-primary text-lg px-8 py-4">
+                  🚀 Get Free Complete Assessment
+                </button>
+                <div class="text-sm text-gray-500 dark:text-gray-400">
+                  ✓ 35+ Programs • ✓ Instantly • ✓ 100% Free
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- New Calculation Button -->
+          <div class="text-center mt-8">
+            <button id="new-calculation-btn" class="btn-secondary">
+              🔄 Calculate Another Score
+            </button>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- FSW Calculator Section -->
+  <section id="fsw-calculator" class="py-16 bg-white dark:bg-gray-800" style="display: none;">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <!-- Calculator Header -->
+      <div class="text-center mb-12">
+        <div class="inline-flex items-center gap-3 mb-4">
+          <div class="w-12 h-12 bg-green-500 rounded-xl flex items-center justify-center">
+            <span class="text-2xl">🌍</span>
+          </div>
+          <h2 class="text-3xl font-bold text-gray-900 dark:text-white">FSW Points Calculator</h2>
+        </div>
+        <p class="text-lg text-gray-600 dark:text-gray-300 mb-6">
+          Calculate your Federal Skilled Worker eligibility points
+        </p>
+      </div>
+
+      <!-- FSW Calculator Form -->
+      <div class="bg-gray-50 dark:bg-gray-900 rounded-2xl p-8 shadow-inner">
+        
+        <!-- Progress Bar -->
+        <div class="bg-gray-200 dark:bg-gray-700 rounded-full h-2 mb-4">
+          <div id="fsw-progress-bar" class="bg-gradient-to-r from-green-500 to-emerald-600 h-2 rounded-full transition-all duration-300" style="width: 16.67%"></div>
+        </div>
+        <div class="text-sm text-gray-500 dark:text-gray-400 mb-6">
+          <span id="fsw-progress-text">Step 1 of 6</span>
+        </div>
+        
+        <!-- Total Score Display -->
+        <div id="fsw-total-score-display" class="mb-8 text-center bg-gradient-to-r from-green-50 to-emerald-50 dark:from-green-900/20 dark:to-emerald-900/20 rounded-xl p-6 border border-green-200 dark:border-green-700">
+          <div class="text-sm text-gray-600 dark:text-gray-400 mb-1">Current FSW Score</div>
+          <div class="text-4xl font-bold text-green-600 dark:text-green-400">
+            <span id="fsw-total-score-value">0</span>
+          </div>
+          <div class="text-xs text-gray-500 dark:text-gray-400 mb-2">out of 100 maximum</div>
+          <div id="fsw-eligibility-status" class="text-sm font-medium">
+            <span class="text-red-600 dark:text-red-400">❌ Below minimum (67 points required)</span>
+          </div>
+        </div>
+
+        <!-- Step Indicator -->
+        <div class="flex justify-center mb-8">
+          <div class="flex items-center space-x-4">
+            <div class="fsw-step-indicator active" data-step="1">
+              <span class="step-number">1</span>
+              <span class="step-label">Language</span>
+            </div>
+            <div class="step-line"></div>
+            <div class="fsw-step-indicator" data-step="2">
+              <span class="step-number">2</span>
+              <span class="step-label">Education</span>
+            </div>
+            <div class="step-line"></div>
+            <div class="fsw-step-indicator" data-step="3">
+              <span class="step-number">3</span>
+              <span class="step-label">Work</span>
+            </div>
+            <div class="step-line"></div>
+            <div class="fsw-step-indicator" data-step="4">
+              <span class="step-number">4</span>
+              <span class="step-label">Age</span>
+            </div>
+            <div class="step-line"></div>
+            <div class="fsw-step-indicator" data-step="5">
+              <span class="step-number">5</span>
+              <span class="step-label">Job Offer</span>
+            </div>
+            <div class="step-line"></div>
+            <div class="fsw-step-indicator" data-step="6">
+              <span class="step-number">6</span>
+              <span class="step-label">Adaptability</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- FSW Calculator Steps -->
+        <div id="fsw-calculator-sections">
+          
+          <!-- Step 1: Language Proficiency -->
+          <div class="fsw-calculator-step" data-step="1" style="display: block;">
+            <div class="bg-white dark:bg-gray-800 rounded-xl p-8 border border-gray-200 dark:border-gray-700">
+              <h3 class="text-2xl font-bold text-gray-900 dark:text-white mb-6 flex items-center gap-3">
+                🗣️ Language Proficiency
+                <span class="text-lg font-bold text-green-600 dark:text-green-400">
+                  (<span id="fsw-language-points">0</span>/28 points)
+                </span>
+              </h3>
+              
+              <!-- First Official Language -->
+              <div class="mb-8">
+                <label class="block text-lg font-medium text-gray-700 dark:text-gray-300 mb-3">
+                  First Official Language (English or French) *
+                </label>
+                <select id="fsw-first-language" class="w-full p-4 text-lg border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700 text-gray-900 dark:text-white focus:ring-2 focus:ring-green-500 focus:border-green-500">
+                  <option value="">Select your language level</option>
+                  <option value="CLB_9">CLB 9 or higher (24 points)</option>
+                  <option value="CLB_8">CLB 8 (20 points)</option>
+                  <option value="CLB_7">CLB 7 (16 points)</option>
+                  <option value="below_CLB_7">Below CLB 7 (0 points)</option>
+                </select>
+                <div class="mt-2 text-sm text-red-600 dark:text-red-400">
+                  ⚠️ Minimum CLB 7 required for FSW eligibility
+                </div>
+              </div>
+
+              <!-- Second Official Language -->
+              <div>
+                <label class="block text-lg font-medium text-gray-700 dark:text-gray-300 mb-3">
+                  Second Official Language (Optional)
+                </label>
+                <select id="fsw-second-language" class="w-full p-4 text-lg border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700 text-gray-900 dark:text-white focus:ring-2 focus:ring-green-500 focus:border-green-500">
+                  <option value="">No second language</option>
+                  <option value="CLB_5">CLB 5 or higher (4 points)</option>
+                  <option value="CLB_4">CLB 4 or lower (0 points)</option>
+                </select>
+              </div>
+            </div>
+          </div>
+
+          <!-- Step 2: Education -->
+          <div class="fsw-calculator-step" data-step="2" style="display: none;">
+            <div class="bg-white dark:bg-gray-800 rounded-xl p-8 border border-gray-200 dark:border-gray-700">
+              <h3 class="text-2xl font-bold text-gray-900 dark:text-white mb-6 flex items-center gap-3">
+                🎓 Education
+                <span class="text-lg font-bold text-green-600 dark:text-green-400">
+                  (<span id="fsw-education-points">0</span>/25 points)
+                </span>
+              </h3>
+              
+              <div>
+                <label class="block text-lg font-medium text-gray-700 dark:text-gray-300 mb-3">
+                  Highest Level of Education
+                </label>
+                <select id="fsw-education" class="w-full p-4 text-lg border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700 text-gray-900 dark:text-white focus:ring-2 focus:ring-green-500 focus:border-green-500">
+                  <option value="">Select your education level</option>
+                  <option value="doctoral">Doctoral degree (PhD) - 25 points</option>
+                  <option value="masters">Master's degree or professional degree - 23 points</option>
+                  <option value="two_or_more">Two or more post-secondary degrees (one 3+ years) - 22 points</option>
+                  <option value="bachelors">Bachelor's degree or 3+ year post-secondary - 21 points</option>
+                  <option value="two_year">Two-year post-secondary diploma/certificate - 19 points</option>
+                  <option value="one_year">One-year post-secondary diploma/certificate - 15 points</option>
+                  <option value="secondary">Secondary school diploma - 5 points</option>
+                  <option value="less_than_secondary" selected>Less than secondary school - 0 points</option>
+                </select>
+                <div class="mt-3 p-3 bg-blue-50 dark:bg-blue-900/20 rounded-lg border border-blue-200 dark:border-blue-700">
+                  <div class="text-sm text-blue-600 dark:text-blue-400">
+                    💡 Foreign education requires Educational Credential Assessment (ECA)
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Step 3: Work Experience -->
+          <div class="fsw-calculator-step" data-step="3" style="display: none;">
+            <div class="bg-white dark:bg-gray-800 rounded-xl p-8 border border-gray-200 dark:border-gray-700">
+              <h3 class="text-2xl font-bold text-gray-900 dark:text-white mb-6 flex items-center gap-3">
+                💼 Work Experience
+                <span class="text-lg font-bold text-green-600 dark:text-green-400">
+                  (<span id="fsw-work-points">0</span>/15 points)
+                </span>
+              </h3>
+              
+              <div>
+                <label class="block text-lg font-medium text-gray-700 dark:text-gray-300 mb-3">
+                  Years of Skilled Work Experience (NOC 0, A, or B) *
+                </label>
+                <select id="fsw-work-experience" class="w-full p-4 text-lg border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700 text-gray-900 dark:text-white focus:ring-2 focus:ring-green-500 focus:border-green-500">
+                  <option value="less_than_1" selected>Less than 1 year - 0 points</option>
+                  <option value="1">1 year - 9 points</option>
+                  <option value="2-3">2-3 years - 11 points</option>
+                  <option value="4-5">4-5 years - 13 points</option>
+                  <option value="6_or_more">6+ years - 15 points</option>
+                </select>
+                <div class="mt-3 p-3 bg-red-50 dark:bg-red-900/20 rounded-lg border border-red-200 dark:border-red-700">
+                  <div class="text-sm text-red-600 dark:text-red-400">
+                    ⚠️ Minimum 1 year required for FSW eligibility
+                  </div>
+                </div>
+                <div class="mt-3 p-3 bg-blue-50 dark:bg-blue-900/20 rounded-lg border border-blue-200 dark:border-blue-700">
+                  <div class="text-sm text-blue-600 dark:text-blue-400">
+                    💡 Must be continuous, full-time (30+ hours/week) or equivalent part-time
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Step 4: Age -->
+          <div class="fsw-calculator-step" data-step="4" style="display: none;">
+            <div class="bg-white dark:bg-gray-800 rounded-xl p-8 border border-gray-200 dark:border-gray-700">
+              <h3 class="text-2xl font-bold text-gray-900 dark:text-white mb-6 flex items-center gap-3">
+                🎂 Age
+                <span class="text-lg font-bold text-green-600 dark:text-green-400">
+                  (<span id="fsw-age-points">0</span>/12 points)
+                </span>
+              </h3>
+              
+              <div>
+                <label class="block text-lg font-medium text-gray-700 dark:text-gray-300 mb-3">
+                  Your Age
+                </label>
+                <input type="number" id="fsw-age" min="17" max="65" placeholder="Enter your age" class="w-full p-4 text-lg border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700 text-gray-900 dark:text-white focus:ring-2 focus:ring-green-500 focus:border-green-500">
+                <div class="mt-3 p-3 bg-blue-50 dark:bg-blue-900/20 rounded-lg border border-blue-200 dark:border-blue-700">
+                  <div class="text-sm text-blue-600 dark:text-blue-400">
+                    💡 Maximum points (12) awarded for ages 18-35
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Step 5: Arranged Employment -->
+          <div class="fsw-calculator-step" data-step="5" style="display: none;">
+            <div class="bg-white dark:bg-gray-800 rounded-xl p-8 border border-gray-200 dark:border-gray-700">
+              <h3 class="text-2xl font-bold text-gray-900 dark:text-white mb-6 flex items-center gap-3">
+                💼 Arranged Employment
+                <span class="text-lg font-bold text-green-600 dark:text-green-400">
+                  (<span id="fsw-job-points">0</span>/10 points)
+                </span>
+              </h3>
+              
+              <div>
+                <label class="block text-lg font-medium text-gray-700 dark:text-gray-300 mb-3">
+                  Valid Job Offer in Canada
+                </label>
+                <select id="fsw-job-offer" class="w-full p-4 text-lg border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700 text-gray-900 dark:text-white focus:ring-2 focus:ring-green-500 focus:border-green-500">
+                  <option value="no" selected>No valid job offer - 0 points</option>
+                  <option value="yes">Valid job offer (LMIA-supported) - 10 points</option>
+                </select>
+                <div class="mt-3 p-3 bg-blue-50 dark:bg-blue-900/20 rounded-lg border border-blue-200 dark:border-blue-700">
+                  <div class="text-sm text-blue-600 dark:text-blue-400">
+                    💡 Must be full-time, continuous, NOC 0/A/B with LMIA or LMIA-exempt
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Step 6: Adaptability -->
+          <div class="fsw-calculator-step" data-step="6" style="display: none;">
+            <div class="bg-white dark:bg-gray-800 rounded-xl p-8 border border-gray-200 dark:border-gray-700">
+              <h3 class="text-2xl font-bold text-gray-900 dark:text-white mb-6 flex items-center gap-3">
+                🏠 Adaptability
+                <span class="text-lg font-bold text-green-600 dark:text-green-400">
+                  (<span id="fsw-adaptability-points">0</span>/10 points)
+                </span>
+              </h3>
+              
+              <div class="space-y-6">
+                <div>
+                  <label class="flex items-start gap-4 p-4 border border-gray-200 dark:border-gray-600 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-700 cursor-pointer">
+                    <input type="checkbox" id="fsw-canadian-work" class="mt-1 w-5 h-5 text-green-600 bg-gray-100 border-gray-300 rounded focus:ring-green-500 dark:focus:ring-green-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+                    <div>
+                      <div class="font-medium text-gray-900 dark:text-white">Previous work in Canada</div>
+                      <div class="text-sm text-gray-600 dark:text-gray-400">At least 1 year full-time work in NOC 0, A, or B - 10 points</div>
+                    </div>
+                  </label>
+                </div>
+                
+                <div>
+                  <label class="flex items-start gap-4 p-4 border border-gray-200 dark:border-gray-600 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-700 cursor-pointer">
+                    <input type="checkbox" id="fsw-canadian-study" class="mt-1 w-5 h-5 text-green-600 bg-gray-100 border-gray-300 rounded focus:ring-green-500 dark:focus:ring-green-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+                    <div>
+                      <div class="font-medium text-gray-900 dark:text-white">Previous study in Canada</div>
+                      <div class="text-sm text-gray-600 dark:text-gray-400">At least 2 academic years full-time study - 5 points</div>
+                    </div>
+                  </label>
+                </div>
+                
+                <div>
+                  <label class="flex items-start gap-4 p-4 border border-gray-200 dark:border-gray-600 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-700 cursor-pointer">
+                    <input type="checkbox" id="fsw-spouse-language" class="mt-1 w-5 h-5 text-green-600 bg-gray-100 border-gray-300 rounded focus:ring-green-500 dark:focus:ring-green-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+                    <div>
+                      <div class="font-medium text-gray-900 dark:text-white">Spouse language proficiency</div>
+                      <div class="text-sm text-gray-600 dark:text-gray-400">Spouse has CLB 4 or higher in all four abilities - 5 points</div>
+                    </div>
+                  </label>
+                </div>
+                
+                <div>
+                  <label class="flex items-start gap-4 p-4 border border-gray-200 dark:border-gray-600 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-700 cursor-pointer">
+                    <input type="checkbox" id="fsw-relatives" class="mt-1 w-5 h-5 text-green-600 bg-gray-100 border-gray-300 rounded focus:ring-green-500 dark:focus:ring-green-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+                    <div>
+                      <div class="font-medium text-gray-900 dark:text-white">Close relatives in Canada</div>
+                      <div class="text-sm text-gray-600 dark:text-gray-400">Parent, grandparent, sibling, aunt, uncle, niece, nephew (citizen/PR, 19+) - 5 points</div>
+                    </div>
+                  </label>
+                </div>
+                
+                <div>
+                  <label class="flex items-start gap-4 p-4 border border-gray-200 dark:border-gray-600 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-700 cursor-pointer">
+                    <input type="checkbox" id="fsw-arranged-employment-adapt" class="mt-1 w-5 h-5 text-green-600 bg-gray-100 border-gray-300 rounded focus:ring-green-500 dark:focus:ring-green-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+                    <div>
+                      <div class="font-medium text-gray-900 dark:text-white">Arranged employment (additional)</div>
+                      <div class="text-sm text-gray-600 dark:text-gray-400">Additional points for arranged employment - 5 points</div>
+                    </div>
+                  </label>
+                </div>
+              </div>
+              
+              <div class="mt-6 p-4 bg-amber-50 dark:bg-amber-900/20 rounded-lg border border-amber-200 dark:border-amber-700">
+                <div class="text-sm text-amber-600 dark:text-amber-400">
+                  💡 Maximum 10 points total regardless of combinations
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Navigation Buttons -->
+        <div class="flex justify-between mt-8">
+          <button id="fsw-prev-btn" class="inline-flex items-center px-6 py-3 bg-gray-600 text-white font-semibold rounded-xl hover:bg-gray-700 transition-all duration-300" style="display: none;">
+            <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
+            </svg>
+            Previous
+          </button>
+          
+          <button id="fsw-next-btn" class="inline-flex items-center px-6 py-3 bg-gradient-to-r from-green-600 to-emerald-600 text-white font-semibold rounded-xl hover:from-green-700 hover:to-emerald-700 transition-all duration-300 ml-auto">
+            Next
+            <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+            </svg>
+          </button>
+          
+          <button id="fsw-calculate-btn" class="inline-flex items-center px-8 py-3 bg-gradient-to-r from-green-600 to-emerald-600 text-white font-semibold rounded-xl hover:from-green-700 hover:to-emerald-700 transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl ml-auto" style="display: none;">
+            📊 Generate FSW Report
+            <svg class="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+            </svg>
+          </button>
+        </div>
+
+      </div>
+
+      <!-- FSW Results Section -->
+      <div id="fsw-results" class="mt-12 bg-gradient-to-br from-green-50 to-emerald-50 dark:from-green-900/20 dark:to-emerald-900/20 rounded-2xl p-8 border border-green-200 dark:border-green-700" style="display: none;">
+        
+        <!-- Results Header -->
+        <div class="text-center mb-8">
+          <h3 class="text-2xl font-bold text-gray-900 dark:text-white mb-2">Your FSW Assessment Results</h3>
+          <p class="text-gray-600 dark:text-gray-300">Federal Skilled Worker Program Eligibility</p>
+        </div>
+
+        <!-- Action Buttons -->
+        <div class="flex flex-wrap gap-4 justify-center mb-8">
+          <button onclick="window.print()" class="inline-flex items-center px-4 py-2 bg-gray-600 text-white rounded-lg hover:bg-gray-700 transition-colors">
+            🖨️ Print Report
+          </button>
+          <button id="fsw-download-pdf" class="inline-flex items-center px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors">
+            📄 Download PDF
+          </button>
+          <button id="fsw-export-csv" class="inline-flex items-center px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 transition-colors">
+            📊 Export CSV
+          </button>
+        </div>
+
+        <!-- Main Score Card -->
+        <div class="bg-white dark:bg-gray-800 rounded-xl p-6 shadow-lg border border-green-200 dark:border-green-700 mb-8">
+          <div class="text-center">
+            <div class="text-5xl font-bold text-green-600 dark:text-green-400 mb-2">
+              <span id="fsw-final-score">0</span>/100
+            </div>
+            <div id="fsw-final-status" class="text-lg font-medium mb-4">
+              <span class="text-red-600 dark:text-red-400">❌ Not Eligible (Need 67+ points)</span>
+            </div>
+            <div class="text-sm text-gray-600 dark:text-gray-400">
+              Federal Skilled Worker Program Assessment
+            </div>
+          </div>
+        </div>
+
+        <!-- Detailed Breakdown -->
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-8" id="fsw-detailed-breakdown">
+          <!-- Breakdown items will be populated by JavaScript -->
+        </div>
+
+        <!-- Next Steps CTA -->
+        <div id="fsw-next-steps-cta" class="bg-white dark:bg-gray-800 rounded-xl p-6 text-center border border-green-200 dark:border-green-700">
+          <!-- CTA content will be populated by JavaScript based on eligibility -->
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- OINP Calculator Section -->
+  <section id="oinp-calculator" class="py-16 bg-white dark:bg-gray-800" style="display: none;">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <!-- Calculator Header -->
+      <div class="text-center mb-12">
+        <div class="inline-flex items-center gap-3 mb-4">
+          <div class="w-12 h-12 bg-orange-500 rounded-xl flex items-center justify-center">
+            <span class="text-2xl">🍁</span>
+          </div>
+          <h2 class="text-3xl font-bold text-gray-900 dark:text-white">OINP Calculator</h2>
+        </div>
+        <p class="text-lg text-gray-600 dark:text-gray-300 mb-6">
+          Calculate your Ontario Immigrant Nominee Program eligibility
+        </p>
+      </div>
+
+      <!-- Coming Soon Message -->
+      <div class="bg-gradient-to-r from-orange-50 to-red-50 dark:from-orange-900/20 dark:to-red-900/20 rounded-2xl p-12 text-center border border-orange-200 dark:border-orange-700">
+        <div class="w-20 h-20 bg-orange-500 rounded-full flex items-center justify-center mx-auto mb-6">
+          <span class="text-3xl">🚀</span>
+        </div>
+        <h3 class="text-2xl font-bold text-gray-900 dark:text-white mb-4">Coming Soon</h3>
+        <p class="text-lg text-gray-600 dark:text-gray-300 mb-6">
+          We're developing comprehensive OINP calculators for all streams. 
+          Start with our CRS Calculator to understand your Express Entry potential.
+        </p>
+        <button onclick="showCalculator('crs')" class="inline-flex items-center px-6 py-3 bg-orange-600 text-white font-semibold rounded-xl hover:bg-orange-700 transition-all duration-300">
+          Try CRS Calculator
+          <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+          </svg>
+        </button>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Features Section -->
+  <section class="py-16 bg-gray-50 dark:bg-gray-900">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-12">
+        <h2 class="text-3xl font-bold text-gray-900 dark:text-white mb-4">Why Use Our Calculators?</h2>
+        <p class="text-lg text-gray-600 dark:text-gray-300">Built with accuracy, designed for simplicity</p>
+      </div>
+      
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div class="text-center p-6 bg-white dark:bg-gray-800 rounded-2xl shadow-lg hover:shadow-xl transition-shadow duration-300">
+          <div class="w-16 h-16 bg-blue-100 dark:bg-blue-900/20 rounded-2xl flex items-center justify-center mx-auto mb-4">
+            <span class="text-2xl">✅</span>
+          </div>
+          <h3 class="text-xl font-bold text-gray-900 dark:text-white mb-3">Always Updated</h3>
+          <p class="text-gray-600 dark:text-gray-400">Calculations based on the latest IRCC guidelines and scoring systems</p>
+        </div>
+        
+        <div class="text-center p-6 bg-white dark:bg-gray-800 rounded-2xl shadow-lg hover:shadow-xl transition-shadow duration-300">
+          <div class="w-16 h-16 bg-green-100 dark:bg-green-900/20 rounded-2xl flex items-center justify-center mx-auto mb-4">
+            <span class="text-2xl">🎯</span>
+          </div>
+          <h3 class="text-xl font-bold text-gray-900 dark:text-white mb-3">Precise Results</h3>
+          <p class="text-gray-600 dark:text-gray-400">Detailed breakdowns and personalized recommendations for improvement</p>
+        </div>
+        
+        <div class="text-center p-6 bg-white dark:bg-gray-800 rounded-2xl shadow-lg hover:shadow-xl transition-shadow duration-300">
+          <div class="w-16 h-16 bg-purple-100 dark:bg-purple-900/20 rounded-2xl flex items-center justify-center mx-auto mb-4">
+            <span class="text-2xl">🔒</span>
+          </div>
+          <h3 class="text-xl font-bold text-gray-900 dark:text-white mb-3">Privacy First</h3>
+          <p class="text-gray-600 dark:text-gray-400">All calculations happen in your browser. No data is stored or shared</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</Layout>
+
+<script define:vars={{ latestDrawData }}>
+  // Inject server data
+  window.latestDrawData = latestDrawData;
+  console.log('Injected draw data:', latestDrawData);
+</script>
+
+<script>
+  // Smooth scroll function
+  function scrollToCalculators() {
+    const element = document.getElementById('calculators');
+    if (element) {
+      element.scrollIntoView({ 
+        behavior: 'smooth',
+        block: 'start'
+      });
+    }
+  }
+
+  // Calculator functionality
+  document.addEventListener('DOMContentLoaded', function() {
+    let currentStep = 1;
+    const totalSteps = 6;
+    
+    // Calculator selection
+    const calculatorCards = document.querySelectorAll('.calculator-card');
+    calculatorCards.forEach(card => {
+      card.addEventListener('click', function(this: HTMLElement) {
+        const calculatorType = this.dataset.calculator;
+        showCalculator(calculatorType || 'crs');
+      });
+    });
+
+    // Function to show specific calculator
+    function showCalculator(calculatorType: string) {
+      // Hide all calculator sections
+      const allCalculators = document.querySelectorAll('[id$="-calculator"]');
+      allCalculators.forEach(calc => {
+        (calc as HTMLElement).style.display = 'none';
+      });
+
+      // Show selected calculator
+      const selectedCalc = document.getElementById(`${calculatorType}-calculator`);
+      if (selectedCalc) {
+        selectedCalc.style.display = 'block';
+        selectedCalc.scrollIntoView({ 
+          behavior: 'smooth',
+          block: 'start'
+        });
+      }
+    }
+
+    // Make showCalculator globally available for coming soon buttons
+    (window as any).showCalculator = showCalculator;
+    
+    // Step navigation
+    const nextBtn = document.getElementById('next-btn') as HTMLButtonElement;
+    const prevBtn = document.getElementById('prev-btn') as HTMLButtonElement;
+    const calculateBtn = document.getElementById('calculate-btn') as HTMLButtonElement;
+    
+    function updateStep(step: number) {
+      // Check if we should skip spouse step
+      const shouldSkipSpouseStep = () => {
+        const maritalStatus = (document.getElementById('marital-status') as HTMLSelectElement)?.value;
+        const spouseAccompanying = document.querySelector('input[name="spouse-accompanying"]:checked') as HTMLInputElement;
+        return maritalStatus !== 'married' || spouseAccompanying?.value !== 'yes';
+      };
+
+      // Adjust step and total steps if skipping spouse section
+      let actualStep = step;
+      let actualTotalSteps = totalSteps; // Always keep 6 steps for display
+      
+      if (shouldSkipSpouseStep()) {
+        if (step > 4) {
+          actualStep = step + 1; // Jump from step 4 to step 6
+        }
+      }
+
+      // Hide all steps
+      document.querySelectorAll('.calculator-step').forEach(s => {
+        (s as HTMLElement).style.setProperty('display', 'none', 'important');
+        s.classList.remove('active');
+      });
+      
+      // Show current step
+      const currentStepEl = document.querySelector(`.calculator-step[data-step="${actualStep}"]`) as HTMLElement;
+      if (currentStepEl) {
+        currentStepEl.style.setProperty('display', 'block', 'important');
+        currentStepEl.classList.add('active');
+      }
+      
+      // Update step indicators (show all numbers, just mark appropriately)
+      document.querySelectorAll('.step-indicator').forEach((indicator, index) => {
+        indicator.classList.remove('active', 'completed');
+        
+        // Always show all step indicators
+        (indicator as HTMLElement).style.display = 'flex';
+        
+        // Mark step 5 as completed if skipping (so it appears "done")
+        if (shouldSkipSpouseStep() && index === 4 && step > 4) { // Step 5 (index 4)
+          indicator.classList.add('completed');
+        } else if (index + 1 < step || (shouldSkipSpouseStep() && index === 4 && step >= 5)) {
+          indicator.classList.add('completed');
+        } else if (index + 1 === step) {
+          indicator.classList.add('active');
+        }
+      });
+      
+      // Update progress bar
+      const progressBar = document.getElementById('progress-bar');
+      const progressText = document.getElementById('progress-text');
+      
+      // For display purposes, show the actual step we're on
+      let displayStep = step;
+      if (shouldSkipSpouseStep() && step > 4) {
+        displayStep = 6; // We're actually on step 6 (additional factors)
+      }
+      
+      const progress = (displayStep / totalSteps) * 100;
+      if (progressBar) progressBar.style.width = `${progress}%`;
+      if (progressText) progressText.textContent = `Step ${displayStep} of ${totalSteps}`;
+      
+      // Update buttons - use displayStep for logic
+      if (prevBtn) prevBtn.style.display = step > 1 ? 'flex' : 'none';
+      if (nextBtn) nextBtn.style.display = displayStep < totalSteps ? 'flex' : 'none';
+      if (calculateBtn) calculateBtn.style.display = displayStep === totalSteps ? 'flex' : 'none';
+    }
+    
+    // Navigation handled by setupNavigation() function
+    
+    // CRS Data embedded from JSON
+    const agePoints = {
+      single: { 18: 99, 19: 105, 20: 110, 21: 110, 22: 110, 23: 110, 24: 110, 25: 110, 26: 110, 27: 110, 28: 110, 29: 110, 30: 105, 31: 99, 32: 94, 33: 88, 34: 83, 35: 77, 36: 72, 37: 66, 38: 61, 39: 55, 40: 50, 41: 39, 42: 28, 43: 17, 44: 6 },
+      withSpouse: { 18: 90, 19: 95, 20: 100, 21: 100, 22: 100, 23: 100, 24: 100, 25: 100, 26: 100, 27: 100, 28: 100, 29: 100, 30: 95, 31: 90, 32: 85, 33: 80, 34: 75, 35: 70, 36: 65, 37: 60, 38: 55, 39: 50, 40: 45, 41: 35, 42: 25, 43: 15, 44: 5 }
+    };
+
+    const educationPoints = {
+      single: { 'less_than_secondary': 0, 'secondary_diploma': 30, 'one_year_post_secondary': 90, 'two_year_post_secondary': 98, 'bachelors_or_three_year_post_secondary': 120, 'two_or_more_post_secondary_one_at_least_three_years': 128, 'masters_or_professional_degree': 135, 'doctoral': 150 },
+      withSpouse: { 'less_than_secondary': 0, 'secondary_diploma': 28, 'one_year_post_secondary': 84, 'two_year_post_secondary': 91, 'bachelors_or_three_year_post_secondary': 112, 'two_or_more_post_secondary_one_at_least_three_years': 119, 'masters_or_professional_degree': 126, 'doctoral': 140 }
+    };
+
+    const languagePoints = {
+      single: { 'CLB_4_or_5': 6, 'CLB_6': 9, 'CLB_7': 17, 'CLB_8': 23, 'CLB_9': 31, 'CLB_10_or_more': 34 },
+      withSpouse: { 'CLB_4_or_5': 6, 'CLB_6': 8, 'CLB_7': 16, 'CLB_8': 22, 'CLB_9': 29, 'CLB_10_or_more': 32 }
+    };
+
+    // Work Experience Points
+    const experiencePoints = {
+      canadian: {
+        single: { none: 0, less_than_1_year: 0, "1_year": 40, "2_years": 53, "3_years": 64, "4_years": 72, "5_or_more_years": 80 },
+        withSpouse: { none: 0, less_than_1_year: 0, "1_year": 35, "2_years": 46, "3_years": 56, "4_years": 63, "5_or_more_years": 70 }
+      },
+      foreign: {
+        single: { none: 0, less_than_1_year: 0, "1_year": 13, "2_years": 25, "3_or_more_years": 37 },
+        withSpouse: { none: 0, less_than_1_year: 0, "1_year": 13, "2_years": 25, "3_or_more_years": 37 }
+      }
+    };
+
+    // Skill Transferability Factors (CORRECT CRS LOGIC)
+    const skillTransferabilityFactors = {
+      // 1. Education + Language
+      educationLanguage: {
+        CLB_7_or_8: {
+          secondary_or_less: 0,
+          one_year_post_secondary_or_more: 13,
+          two_or_more_post_secondary_one_at_least_three_years_or_masters_or_doctoral: 25
+        },
+        CLB_9_or_more: {
+          secondary_or_less: 0,
+          one_year_post_secondary_or_more: 25,
+          two_or_more_post_secondary_one_at_least_three_years_or_masters_or_doctoral: 50
+        }
+      },
+      // 2. Education + Canadian Work Experience
+      educationCanadianWork: {
+        "1_year_canadian_work": {
+          secondary_or_less: 0,
+          one_year_post_secondary_or_more: 13,
+          two_or_more_post_secondary_one_at_least_three_years_or_masters_or_doctoral: 25
+        },
+        "2_years_or_more_canadian_work": {
+          secondary_or_less: 0,
+          one_year_post_secondary_or_more: 25,
+          two_or_more_post_secondary_one_at_least_three_years_or_masters_or_doctoral: 50
+        }
+      },
+      // 3. Foreign Work Experience + Language
+      foreignWorkLanguage: {
+        CLB_7_or_8: {
+          "0_years": 0,
+          "1-2_years": 13,
+          "3_years_or_more": 25
+        },
+        CLB_9_or_more: {
+          "0_years": 0,
+          "1-2_years": 25,
+          "3_years_or_more": 50
+        }
+      },
+      // 4. Foreign Work Experience + Canadian Work Experience
+      foreignCanadianWork: {
+        "1_year_canadian_work": {
+          "0_years": 0,
+          "1-2_years": 13,
+          "3_years_or_more": 25
+        },
+        "2_years_or_more_canadian_work": {
+          "0_years": 0,
+          "1-2_years": 25,
+          "3_years_or_more": 50
+        }
+      },
+      // 5. Certificate of Qualification + Language (Trade Certificate)
+      certificateLanguage: {
+        CLB_5_or_6: {
+          with_certificate: 25
+        },
+        CLB_7_or_more: {
+          with_certificate: 50
+        }
+      }
+    };
+
+    // Spouse Points Data
+    const spousePoints = {
+      education: {
+        'less_than_secondary': 0,
+        'secondary_diploma': 2,
+        'one_year_post_secondary': 6,
+        'two_year_post_secondary': 7,
+        'bachelors_or_three_year_post_secondary': 8,
+        'two_or_more_post_secondary_one_at_least_three_years': 9,
+        'masters_or_professional_degree': 10,
+        'doctoral': 10
+      },
+      language: {
+        'CLB_4_or_less': 0,
+        'CLB_5': 1,
+        'CLB_6': 1,
+        'CLB_7': 3,
+        'CLB_8': 3,
+        'CLB_9': 5,
+        'CLB_10_or_more': 5
+      },
+      canadianWork: {
+        'none': 0,
+        'less_than_1_year': 0,
+        '1_year': 5,
+        '2_years': 7,
+        '3_years': 8,
+        '4_years': 9,
+        '5_or_more_years': 10
+      }
+    };
+
+    // Additional Factors Points Data
+    const additionalPoints = {
+      sibling: 15,
+      french: {
+        // NCLC 7+ in all French skills + CLB 4 or lower in English (or no English test): 25 points
+        strong_french_weak_english: 25,
+        // NCLC 7+ in all French skills + CLB 5+ in all English skills: 50 points
+        strong_french_strong_english: 50
+      },
+      canadianEducation: {
+        'none': 0,
+        'one_or_two_year': 15,
+        'three_year_or_more': 30
+      },
+      provincialNomination: 600
+    };
+
+    // Calculation functions
+    function getAgePoints(age: any, hasSpouse: any) {
+      const data = hasSpouse ? agePoints.withSpouse : agePoints.single;
+      return (data as any)[age] || 0;
+    }
+
+    function getEducationPoints(education: any, hasSpouse: any) {
+      const data = hasSpouse ? educationPoints.withSpouse : educationPoints.single;
+      return (data as any)[education] || 0;
+    }
+
+    function getLanguagePoints(clbLevel: any, hasSpouse: any) {
+      const data = hasSpouse ? languagePoints.withSpouse : languagePoints.single;
+      return (data as any)[clbLevel] || 0;
+    }
+
+    function getExperiencePoints(experience: any, type: 'canadian' | 'foreign', hasSpouse: any) {
+      if (type === 'foreign') {
+        // Foreign work experience has NO independent points - only contributes via skill transferability
+        return 0;
+      }
+      const data = hasSpouse ? experiencePoints[type].withSpouse : experiencePoints[type].single;
+      return (data as any)[experience] || 0;
+    }
+
+    // Calculate Skill Transferability Factors (CORRECT LOGIC)
+    function calculateSkillTransferability() {
+      let totalBonus = 0;
+      
+      // Get current values
+      const education = (document.getElementById('education') as HTMLSelectElement)?.value;
+      const canadianExp = (document.getElementById('canadian-experience') as HTMLSelectElement)?.value;
+      const foreignExp = (document.getElementById('foreign-experience') as HTMLSelectElement)?.value;
+      
+      // Get language levels (minimum of all 4 skills)
+      const speaking = (document.getElementById('speaking') as HTMLSelectElement)?.value;
+      const listening = (document.getElementById('listening') as HTMLSelectElement)?.value;
+      const reading = (document.getElementById('reading') as HTMLSelectElement)?.value;
+      const writing = (document.getElementById('writing') as HTMLSelectElement)?.value;
+      
+      // Helper functions
+      function getEducationLevel(edu: string) {
+        if (!edu || edu === 'less_than_secondary' || edu === 'secondary_diploma') {
+          return 'secondary_or_less';
+        } else if (edu === 'one_year_post_secondary' || edu === 'two_year_post_secondary' || edu === 'bachelors_or_three_year_post_secondary') {
+          return 'one_year_post_secondary_or_more';
+        } else if (edu === 'two_or_more_post_secondary_one_at_least_three_years' || edu === 'masters_or_professional_degree' || edu === 'doctoral') {
+          // Two or more post-secondary + Masters + Doctoral all get the highest points
+          return 'two_or_more_post_secondary_one_at_least_three_years_or_masters_or_doctoral';
+        } else {
+          // Default fallback
+          return 'one_year_post_secondary_or_more';
+        }
+      }
+      
+      function getLanguageLevel() {
+        if (!speaking || !listening || !reading || !writing) return null;
+        
+        const clbLevels = [speaking, listening, reading, writing];
+        const hasClb9Plus = clbLevels.every(level => level === 'CLB_9' || level === 'CLB_10_or_more');
+        const hasClb7Plus = clbLevels.every(level => ['CLB_7', 'CLB_8', 'CLB_9', 'CLB_10_or_more'].includes(level));
+        
+        if (hasClb9Plus) return 'CLB_9_or_more';
+        if (hasClb7Plus) return 'CLB_7_or_8';
+        return null;
+      }
+      
+      function getCanadianWorkLevel(exp: string) {
+        if (!exp || exp === 'none' || exp === 'less_than_1_year') return null;
+        if (exp === '1_year') return '1_year_canadian_work';
+        return '2_years_or_more_canadian_work';
+      }
+      
+      function getForeignWorkLevel(exp: string) {
+        if (!exp || exp === 'none' || exp === 'less_than_1_year') return '0_years';
+        if (exp === '1_year' || exp === '2_years') return '1-2_years';
+        return '3_years_or_more';
+      }
+      
+      // 1. Education + Language
+      const eduLevel = getEducationLevel(education);
+      const langLevel = getLanguageLevel();
+      if (eduLevel && langLevel && skillTransferabilityFactors.educationLanguage[langLevel]) {
+        totalBonus += skillTransferabilityFactors.educationLanguage[langLevel][eduLevel] || 0;
+      }
+      
+      // 2. Education + Canadian Work Experience
+      const canadianWorkLevel = getCanadianWorkLevel(canadianExp);
+      if (eduLevel && canadianWorkLevel && skillTransferabilityFactors.educationCanadianWork[canadianWorkLevel]) {
+        totalBonus += skillTransferabilityFactors.educationCanadianWork[canadianWorkLevel][eduLevel] || 0;
+      }
+      
+      // 3. Foreign Work Experience + Language
+      const foreignWorkLevel = getForeignWorkLevel(foreignExp);
+      if (langLevel && skillTransferabilityFactors.foreignWorkLanguage[langLevel]) {
+        totalBonus += skillTransferabilityFactors.foreignWorkLanguage[langLevel][foreignWorkLevel] || 0;
+      }
+      
+      // 4. Foreign Work Experience + Canadian Work Experience
+      if (canadianWorkLevel && skillTransferabilityFactors.foreignCanadianWork[canadianWorkLevel]) {
+        totalBonus += skillTransferabilityFactors.foreignCanadianWork[canadianWorkLevel][foreignWorkLevel] || 0;
+      }
+      
+      // 5. Certificate of Qualification + Language (Trade Certificate)
+      const tradeCertificate = (document.getElementById('trade-certificate') as HTMLSelectElement)?.value;
+      if (tradeCertificate === 'has_certificate') {
+        // Check if ALL four language abilities are CLB 7+
+        const clbLevels = [speaking, listening, reading, writing];
+        const allClb7Plus = clbLevels.every(level => ['CLB_7', 'CLB_8', 'CLB_9', 'CLB_10_or_more'].includes(level));
+        
+        if (allClb7Plus && skillTransferabilityFactors.certificateLanguage.CLB_7_or_more) {
+          // CLB 7+ on all four abilities = 50 points
+          totalBonus += skillTransferabilityFactors.certificateLanguage.CLB_7_or_more.with_certificate || 0;
+        } else if (skillTransferabilityFactors.certificateLanguage.CLB_5_or_6) {
+          // CLB 5+ with one or more under CLB 7 = 25 points
+          totalBonus += skillTransferabilityFactors.certificateLanguage.CLB_5_or_6.with_certificate || 0;
+        }
+      }
+      
+          // Cap at 100 points maximum as per CRS rules
+    return Math.min(totalBonus, 100);
+  }
+
+  // Spouse Calculation Functions
+  function getSpouseEducationPoints(education: any) {
+    return (spousePoints.education as any)[education] || 0;
+  }
+
+  function getSpouseLanguagePoints() {
+    const speaking = (document.getElementById('spouse-speaking') as HTMLSelectElement)?.value;
+    const listening = (document.getElementById('spouse-listening') as HTMLSelectElement)?.value;
+    const reading = (document.getElementById('spouse-reading') as HTMLSelectElement)?.value;
+    const writing = (document.getElementById('spouse-writing') as HTMLSelectElement)?.value;
+
+    if (!speaking || !listening || !reading || !writing) return 0;
+
+    // Calculate points for each skill and sum them
+    const speakingPoints = (spousePoints.language as any)[speaking] || 0;
+    const listeningPoints = (spousePoints.language as any)[listening] || 0;
+    const readingPoints = (spousePoints.language as any)[reading] || 0;
+    const writingPoints = (spousePoints.language as any)[writing] || 0;
+
+    return speakingPoints + listeningPoints + readingPoints + writingPoints;
+  }
+
+  function getSpouseWorkPoints(experience: any) {
+    return (spousePoints.canadianWork as any)[experience] || 0;
+  }
+
+  // Additional Factors Calculation Functions
+  function getSiblingPoints() {
+    const sibling = document.querySelector('input[name="sibling-canada"]:checked') as HTMLInputElement;
+    return (sibling?.value === 'yes') ? additionalPoints.sibling : 0;
+  }
+
+  function getFrenchAdditionalPoints() {
+    const hasSecondLanguage = (document.getElementById('has-second-language') as HTMLInputElement)?.checked;
+    const secondLanguageType = (document.getElementById('second-language-type') as HTMLSelectElement)?.value;
+    
+    if (!hasSecondLanguage || secondLanguageType !== 'french') return 0;
+
+    const speaking = (document.getElementById('second-speaking') as HTMLSelectElement)?.value;
+    const listening = (document.getElementById('second-listening') as HTMLSelectElement)?.value;
+    const reading = (document.getElementById('second-reading') as HTMLSelectElement)?.value;
+    const writing = (document.getElementById('second-writing') as HTMLSelectElement)?.value;
+
+    if (!speaking || !listening || !reading || !writing) return 0;
+
+    // Check if all French abilities are CLB/NCLC 7+
+    const allFrenchClb7Plus = [speaking, listening, reading, writing].every(level => 
+      ['CLB_7_or_8', 'CLB_9_or_more'].includes(level)
+    );
+    
+    if (!allFrenchClb7Plus) return 0;
+
+    // Check English abilities (from main language section)
+    const englishSpeaking = (document.getElementById('speaking') as HTMLSelectElement)?.value;
+    const englishListening = (document.getElementById('listening') as HTMLSelectElement)?.value;
+    const englishReading = (document.getElementById('reading') as HTMLSelectElement)?.value;
+    const englishWriting = (document.getElementById('writing') as HTMLSelectElement)?.value;
+
+    // Check if all English abilities are CLB 5+
+    const allEnglishClb5Plus = [englishSpeaking, englishListening, englishReading, englishWriting]
+      .every(level => ['CLB_5', 'CLB_6', 'CLB_7', 'CLB_8', 'CLB_9', 'CLB_10_or_more'].includes(level));
+
+    if (allEnglishClb5Plus) {
+      return additionalPoints.french.strong_french_strong_english; // 50 points
+    } else {
+      // CLB 4 or lower in English (or no English test)
+      return additionalPoints.french.strong_french_weak_english; // 25 points
+    }
+  }
+
+  function getCanadianEducationPoints(education: any) {
+    return (additionalPoints.canadianEducation as any)[education] || 0;
+  }
+
+
+
+  function getProvincialNominationPoints() {
+    const pnp = document.querySelector('input[name="provincial-nomination"]:checked') as HTMLInputElement;
+    return (pnp?.value === 'yes') ? additionalPoints.provincialNomination : 0;
+  }
+
+    // Basic functionality for demonstration
+
+    // Enhanced event listeners with better age calculation
+    function setupAgeCalculation() {
+      const ageInput = document.getElementById('age') as HTMLInputElement;
+      if (ageInput) {
+        ageInput.addEventListener('input', function() {
+          const age = parseInt(this.value);
+          const pointsDisplay = document.getElementById('age-points');
+          
+          if (age && age >= 18 && age <= 44 && pointsDisplay) {
+            const maritalStatus = (document.getElementById('marital-status') as HTMLSelectElement)?.value;
+            const spouseAccompanying = document.querySelector('input[name="spouse-accompanying"]:checked') as HTMLInputElement;
+            const hasSpouse = maritalStatus === 'married' && spouseAccompanying?.value === 'yes';
+            const points = getAgePoints(age, hasSpouse);
+            pointsDisplay.style.display = 'block';
+            pointsDisplay.style.visibility = 'visible';
+            
+            const pointsValue = pointsDisplay.querySelector('.points-value');
+            if (pointsValue) {
+              pointsValue.textContent = points.toString();
+            }
+            
+            console.log(`Age: ${age}, Married: ${hasSpouse}, Points: ${points}`); // Debug log
+          updateTotalScore();
+          } else if (pointsDisplay) {
+            pointsDisplay.style.display = 'none';
+          }
+        });
+        
+        // Also listen for change event
+        ageInput.addEventListener('change', function() {
+          this.dispatchEvent(new Event('input'));
+        });
+      }
+    }
+    
+    // Setup education calculation
+    function setupEducationCalculation() {
+      const educationSelect = document.getElementById('education') as HTMLSelectElement;
+      if (educationSelect) {
+        educationSelect.addEventListener('change', function() {
+          const education = this.value;
+          const pointsDisplay = document.getElementById('education-points');
+          
+          if (education && pointsDisplay) {
+            const maritalStatus = (document.getElementById('marital-status') as HTMLSelectElement)?.value;
+            const spouseAccompanying = document.querySelector('input[name="spouse-accompanying"]:checked') as HTMLInputElement;
+            const hasSpouse = maritalStatus === 'married' && spouseAccompanying?.value === 'yes';
+            const points = getEducationPoints(education, hasSpouse);
+            pointsDisplay.style.display = 'block';
+            pointsDisplay.style.visibility = 'visible';
+            
+            const pointsValue = pointsDisplay.querySelector('.points-value');
+            if (pointsValue) {
+              pointsValue.textContent = points.toString();
+            }
+            
+            console.log(`Education: ${education}, Points: ${points}`); // Debug log
+            updateExperienceTotal(); // Recalculate skill transferability
+            updateTotalScore();
+          } else if (pointsDisplay) {
+            pointsDisplay.style.display = 'none';
+          }
+        });
+      }
+    }
+
+
+    
+    // Setup marital status functionality
+    function setupMaritalStatus() {
+      const maritalSelect = document.getElementById('marital-status') as HTMLSelectElement;
+      const spouseSection = document.getElementById('spouse-accompanying-section');
+      
+      if (maritalSelect && spouseSection) {
+        maritalSelect.addEventListener('change', function() {
+          const status = this.value;
+          
+          if (status === 'married') {
+            spouseSection.style.display = 'block';
+          } else {
+            spouseSection.style.display = 'none';
+            // Clear spouse accompanying selection when not married
+            const spouseRadios = document.querySelectorAll('input[name="spouse-accompanying"]') as NodeListOf<HTMLInputElement>;
+            spouseRadios.forEach(radio => radio.checked = false);
+          }
+          
+          // Recalculate points when marital status changes
+          const ageInput = document.getElementById('age') as HTMLInputElement;
+          const educationSelect = document.getElementById('education') as HTMLSelectElement;
+          const languageSelects = ['speaking', 'listening', 'reading', 'writing'];
+          
+          if (ageInput && ageInput.value) {
+            ageInput.dispatchEvent(new Event('input'));
+          }
+          
+          if (educationSelect && educationSelect.value) {
+            educationSelect.dispatchEvent(new Event('change'));
+          }
+          
+          // Recalculate language points
+          languageSelects.forEach(skill => {
+            const select = document.getElementById(skill) as HTMLSelectElement;
+            if (select && select.value) {
+              select.dispatchEvent(new Event('change'));
+            }
+          });
+          
+          // Recalculate experience points
+          const canadianSelect = document.getElementById('canadian-experience') as HTMLSelectElement;
+          const foreignSelect = document.getElementById('foreign-experience') as HTMLSelectElement;
+          
+          if (canadianSelect && canadianSelect.value) {
+            canadianSelect.dispatchEvent(new Event('change'));
+          }
+          
+          if (foreignSelect && foreignSelect.value) {
+            foreignSelect.dispatchEvent(new Event('change'));
+          }
+          
+          updateTotalScore();
+        });
+      }
+      
+      // Add spouse accompanying radio listeners
+      const spouseRadios = document.querySelectorAll('input[name="spouse-accompanying"]') as NodeListOf<HTMLInputElement>;
+      spouseRadios.forEach(radio => {
+        radio.addEventListener('change', function() {
+          // Recalculate age, education, language, and experience points when spouse accompanying changes
+          const ageInput = document.getElementById('age') as HTMLInputElement;
+          const educationSelect = document.getElementById('education') as HTMLSelectElement;
+          const languageSelects = ['speaking', 'listening', 'reading', 'writing'];
+          
+          if (ageInput && ageInput.value) {
+            ageInput.dispatchEvent(new Event('input'));
+          }
+          
+          if (educationSelect && educationSelect.value) {
+            educationSelect.dispatchEvent(new Event('change'));
+          }
+          
+          // Recalculate language points
+          languageSelects.forEach(skill => {
+            const select = document.getElementById(skill) as HTMLSelectElement;
+            if (select && select.value) {
+              select.dispatchEvent(new Event('change'));
+            }
+          });
+          
+          // Recalculate experience points
+          const canadianSelect = document.getElementById('canadian-experience') as HTMLSelectElement;
+          const foreignSelect = document.getElementById('foreign-experience') as HTMLSelectElement;
+          
+          if (canadianSelect && canadianSelect.value) {
+            canadianSelect.dispatchEvent(new Event('change'));
+          }
+          
+          if (foreignSelect && foreignSelect.value) {
+            foreignSelect.dispatchEvent(new Event('change'));
+          }
+          
+          updateTotalScore();
+          
+          // Refresh current step to handle spouse step skipping
+          updateStep(currentStep);
+        });
+      });
+    }
+
+    // Calculate and display total score
+    function updateTotalScore() {
+      const agePoints = parseInt((document.querySelector('#age-points .points-value') as HTMLElement)?.textContent || '0');
+      const educationPoints = parseInt((document.querySelector('#education-points .points-value') as HTMLElement)?.textContent || '0');
+      const firstLanguagePoints = parseInt((document.querySelector('#first-language-total .points-value') as HTMLElement)?.textContent || '0');
+      const secondLanguagePoints = parseInt((document.querySelector('#second-language-total .points-value') as HTMLElement)?.textContent || '0');
+      const experiencePoints = parseInt((document.querySelector('#experience-total .points-value') as HTMLElement)?.textContent || '0');
+      const spousePoints = parseInt((document.querySelector('#spouse-total .points-value') as HTMLElement)?.textContent || '0');
+      const additionalFactorsPoints = parseInt((document.querySelector('#additional-total .points-value') as HTMLElement)?.textContent || '0');
+      
+      const totalScore = agePoints + educationPoints + firstLanguagePoints + secondLanguagePoints + experiencePoints + spousePoints + additionalFactorsPoints;
+      
+      // Update progress bar
+      const progressBar = document.getElementById('progress-bar');
+      const progressPercentage = Math.min((totalScore / 600) * 100, 100); // Max CRS is ~600
+      
+      if (progressBar) {
+        progressBar.style.width = `${progressPercentage}%`;
+      }
+      
+      // Update total score display
+      const totalScoreDisplay = document.getElementById('total-score-display');
+      const totalScoreValue = document.getElementById('total-score-value');
+      
+      if (totalScoreDisplay && totalScoreValue) {
+        totalScoreValue.textContent = totalScore.toString();
+        
+        if (totalScore > 0) {
+          totalScoreDisplay.style.display = 'block';
+        } else {
+          totalScoreDisplay.style.display = 'none';
+        }
+      }
+      
+      console.log('Total CRS Score so far:', totalScore);
+    }
+
+    // Setup step navigation
+    function setupNavigation() {
+      // Helper function to check if spouse step should be skipped
+      const shouldSkipSpouseStep = () => {
+        const maritalStatus = (document.getElementById('marital-status') as HTMLSelectElement)?.value;
+        const spouseAccompanying = document.querySelector('input[name="spouse-accompanying"]:checked') as HTMLInputElement;
+        return maritalStatus !== 'married' || spouseAccompanying?.value !== 'yes';
+      };
+
+      if (nextBtn) {
+        nextBtn.addEventListener('click', function() {
+          let nextStep = currentStep + 1;
+          
+          // Skip step 5 (spouse) if not applicable
+          if (shouldSkipSpouseStep() && nextStep === 5) {
+            nextStep = 6;
+          }
+          
+          const maxStep = shouldSkipSpouseStep() ? 5 : totalSteps;
+          if (currentStep < maxStep) {
+            currentStep = nextStep > totalSteps ? totalSteps : (shouldSkipSpouseStep() && nextStep === 6 ? 5 : nextStep);
+            updateStep(currentStep);
+          }
+        });
+      }
+      
+      if (prevBtn) {
+        prevBtn.addEventListener('click', function() {
+          let prevStep = currentStep - 1;
+          
+          // Skip step 5 (spouse) if not applicable when going backwards
+          if (shouldSkipSpouseStep() && currentStep === 6) {
+            prevStep = 4;
+          }
+          
+          if (currentStep > 1) {
+            currentStep = prevStep;
+            updateStep(currentStep);
+          }
+        });
+      }
+    }
+
+    // Setup language proficiency calculations
+    function setupLanguageCalculation() {
+      const languageInputs = ['speaking', 'listening', 'reading', 'writing'];
+      
+      languageInputs.forEach(skill => {
+        const select = document.getElementById(skill) as HTMLSelectElement;
+        const pointsDisplay = document.getElementById(`${skill}-points`);
+        
+        if (select && pointsDisplay) {
+          select.addEventListener('change', function() {
+            const clbLevel = this.value;
+            if (clbLevel) {
+              const maritalStatus = (document.getElementById('marital-status') as HTMLSelectElement)?.value;
+              const spouseAccompanying = document.querySelector('input[name="spouse-accompanying"]:checked') as HTMLInputElement;
+              const hasSpouse = maritalStatus === 'married' && spouseAccompanying?.value === 'yes';
+              const points = getLanguagePoints(clbLevel, hasSpouse);
+              pointsDisplay.style.display = 'block';
+              pointsDisplay.style.visibility = 'visible';
+              
+              const pointsValue = pointsDisplay.querySelector('.points-value');
+              if (pointsValue) {
+                pointsValue.textContent = points.toString();
+              }
+              
+              updateFirstLanguageTotal();
+              updateExperienceTotal(); // Recalculate skill transferability
+              updateSecondLanguageTotal(); // Recalculate French additional points
+              updateTotalScore();
+            } else {
+              pointsDisplay.style.display = 'none';
+            }
+          });
+        }
+      });
+    }
+    
+    // Calculate first language total
+    function updateFirstLanguageTotal() {
+      const skills = ['speaking', 'listening', 'reading', 'writing'];
+      let total = 0;
+      let allFilled = true;
+      
+      skills.forEach(skill => {
+        const pointsEl = document.querySelector(`#${skill}-points .points-value`) as HTMLElement;
+        if (pointsEl && pointsEl.textContent) {
+          total += parseInt(pointsEl.textContent);
+        } else {
+          allFilled = false;
+        }
+      });
+      
+      const totalDisplay = document.getElementById('first-language-total');
+      const totalValue = totalDisplay?.querySelector('.points-value');
+      
+      if (totalDisplay && totalValue && allFilled) {
+        totalValue.textContent = total.toString();
+        totalDisplay.style.display = 'block';
+      } else if (totalDisplay) {
+        totalDisplay.style.display = 'none';
+      }
+    }
+
+    // Setup Spouse Calculations
+    function setupSpouseCalculations() {
+      // Spouse Education
+      const spouseEducationSelect = document.getElementById('spouse-education') as HTMLSelectElement;
+      if (spouseEducationSelect) {
+        spouseEducationSelect.addEventListener('change', function() {
+          const education = this.value;
+          const points = getSpouseEducationPoints(education);
+          
+          const pointsDisplay = document.getElementById('spouse-education-points');
+          if (pointsDisplay) {
+            pointsDisplay.style.display = 'block';
+            pointsDisplay.style.visibility = 'visible';
+            
+            const pointsValue = pointsDisplay.querySelector('.points-value');
+            if (pointsValue) {
+              pointsValue.textContent = points.toString();
+            }
+          }
+          updateSpouseTotal();
+        });
+      }
+
+      // Spouse Language Skills
+      const spouseLanguageSkills = ['spouse-speaking', 'spouse-listening', 'spouse-reading', 'spouse-writing'];
+      spouseLanguageSkills.forEach(skillId => {
+        const skillSelect = document.getElementById(skillId) as HTMLSelectElement;
+        if (skillSelect) {
+          skillSelect.addEventListener('change', function() {
+            const totalPoints = getSpouseLanguagePoints();
+            
+            const pointsDisplay = document.getElementById('spouse-language-points');
+            if (pointsDisplay) {
+              pointsDisplay.style.display = 'block';
+              pointsDisplay.style.visibility = 'visible';
+              
+              const pointsValue = pointsDisplay.querySelector('.points-value');
+              if (pointsValue) {
+                pointsValue.textContent = totalPoints.toString();
+              }
+            }
+            updateSpouseTotal();
+          });
+        }
+      });
+
+      // Spouse Canadian Work Experience
+      const spouseWorkSelect = document.getElementById('spouse-canadian-experience') as HTMLSelectElement;
+      if (spouseWorkSelect) {
+        spouseWorkSelect.addEventListener('change', function() {
+          const experience = this.value;
+          const points = getSpouseWorkPoints(experience);
+          
+          const pointsDisplay = document.getElementById('spouse-work-points');
+          if (pointsDisplay) {
+            pointsDisplay.style.display = 'block';
+            pointsDisplay.style.visibility = 'visible';
+            
+            const pointsValue = pointsDisplay.querySelector('.points-value');
+            if (pointsValue) {
+              pointsValue.textContent = points.toString();
+            }
+          }
+          updateSpouseTotal();
+        });
+      }
+    }
+
+    function updateSpouseTotal() {
+      const educationPoints = parseInt((document.querySelector('#spouse-education-points .points-value') as HTMLElement)?.textContent || '0');
+      const languagePoints = parseInt((document.querySelector('#spouse-language-points .points-value') as HTMLElement)?.textContent || '0');
+      const workPoints = parseInt((document.querySelector('#spouse-work-points .points-value') as HTMLElement)?.textContent || '0');
+      
+      const totalPoints = educationPoints + languagePoints + workPoints;
+      
+      const spouseTotalDisplay = document.querySelector('#spouse-total .points-value') as HTMLElement;
+      if (spouseTotalDisplay) {
+        spouseTotalDisplay.textContent = totalPoints.toString();
+      }
+      
+      updateTotalScore();
+    }
+
+    // Setup Additional Factors Calculations
+    function setupAdditionalFactorsCalculations() {
+      // Sibling in Canada
+      const siblingRadios = document.querySelectorAll('input[name="sibling-canada"]');
+      siblingRadios.forEach(radio => {
+        radio.addEventListener('change', function() {
+          const points = getSiblingPoints();
+          
+          const pointsDisplay = document.getElementById('sibling-points');
+          if (pointsDisplay) {
+            pointsDisplay.style.display = 'block';
+            pointsDisplay.style.visibility = 'visible';
+            
+            const pointsValue = pointsDisplay.querySelector('.points-value');
+            if (pointsValue) {
+              pointsValue.textContent = points.toString();
+            }
+          }
+          updateAdditionalTotal();
+        });
+      });
+
+      // Canadian Education
+      const canadianEducationSelect = document.getElementById('canadian-education') as HTMLSelectElement;
+      if (canadianEducationSelect) {
+        canadianEducationSelect.addEventListener('change', function() {
+          const education = this.value;
+          const points = getCanadianEducationPoints(education);
+          
+          const pointsDisplay = document.getElementById('canadian-education-points');
+          if (pointsDisplay) {
+            pointsDisplay.style.display = 'block';
+            pointsDisplay.style.visibility = 'visible';
+            
+            const pointsValue = pointsDisplay.querySelector('.points-value');
+            if (pointsValue) {
+              pointsValue.textContent = points.toString();
+            }
+          }
+          updateAdditionalTotal();
+        });
+      }
+
+      // Provincial Nomination
+      const pnpRadios = document.querySelectorAll('input[name="provincial-nomination"]');
+      pnpRadios.forEach(radio => {
+        radio.addEventListener('change', function() {
+          const points = getProvincialNominationPoints();
+          
+          const pointsDisplay = document.getElementById('pnp-points');
+          if (pointsDisplay) {
+            pointsDisplay.style.display = 'block';
+            pointsDisplay.style.visibility = 'visible';
+            
+            const pointsValue = pointsDisplay.querySelector('.points-value');
+            if (pointsValue) {
+              pointsValue.textContent = points.toString();
+            }
+          }
+          updateAdditionalTotal();
+        });
+      });
+    }
+
+    function updateAdditionalTotal() {
+      const siblingPoints = parseInt((document.querySelector('#sibling-points .points-value') as HTMLElement)?.textContent || '0');
+      const frenchPoints = parseInt((document.querySelector('#french-additional-points .points-value') as HTMLElement)?.textContent || '0');
+      const canadianEducationPoints = parseInt((document.querySelector('#canadian-education-points .points-value') as HTMLElement)?.textContent || '0');
+      const pnpPoints = parseInt((document.querySelector('#pnp-points .points-value') as HTMLElement)?.textContent || '0');
+      
+      const totalPoints = siblingPoints + frenchPoints + canadianEducationPoints + pnpPoints;
+      
+      const additionalTotalDisplay = document.querySelector('#additional-total .points-value') as HTMLElement;
+      if (additionalTotalDisplay) {
+        additionalTotalDisplay.textContent = totalPoints.toString();
+      }
+      
+      updateTotalScore();
+    }
+
+    // Initialize all functionality
+    updateStep(currentStep);
+    setupAgeCalculation();
+    setupEducationCalculation();
+    setupMaritalStatus();
+    setupLanguageCalculation();
+    setupSecondLanguage();
+    setupExperienceCalculation();
+    setupSpouseCalculations();
+    setupAdditionalFactorsCalculations();
+    setupNavigation();
+    
+    // Setup work experience calculations
+    function setupExperienceCalculation() {
+      const canadianSelect = document.getElementById('canadian-experience') as HTMLSelectElement;
+      const foreignSelect = document.getElementById('foreign-experience') as HTMLSelectElement;
+      const tradeCertificateSelect = document.getElementById('trade-certificate') as HTMLSelectElement;
+      
+      if (canadianSelect) {
+        canadianSelect.addEventListener('change', function() {
+          const experience = this.value;
+          const pointsDisplay = document.getElementById('canadian-experience-points');
+          
+          if (experience && pointsDisplay) {
+            const maritalStatus = (document.getElementById('marital-status') as HTMLSelectElement)?.value;
+            const spouseAccompanying = document.querySelector('input[name="spouse-accompanying"]:checked') as HTMLInputElement;
+            const hasSpouse = maritalStatus === 'married' && spouseAccompanying?.value === 'yes';
+            const points = getExperiencePoints(experience, 'canadian', hasSpouse);
+            
+            pointsDisplay.style.display = 'block';
+            pointsDisplay.style.visibility = 'visible';
+            
+            const pointsValue = pointsDisplay.querySelector('.points-value');
+            if (pointsValue) {
+              pointsValue.textContent = points.toString();
+            }
+            
+            updateExperienceTotal();
+            updateTotalScore();
+          } else if (pointsDisplay) {
+            pointsDisplay.style.display = 'none';
+          }
+        });
+      }
+      
+      if (foreignSelect) {
+        foreignSelect.addEventListener('change', function() {
+          const experience = this.value;
+          const pointsDisplay = document.getElementById('foreign-experience-points');
+          
+          if (experience && pointsDisplay) {
+            const maritalStatus = (document.getElementById('marital-status') as HTMLSelectElement)?.value;
+            const spouseAccompanying = document.querySelector('input[name="spouse-accompanying"]:checked') as HTMLInputElement;
+            const hasSpouse = maritalStatus === 'married' && spouseAccompanying?.value === 'yes';
+            const points = getExperiencePoints(experience, 'foreign', hasSpouse);
+            
+            pointsDisplay.style.display = 'block';
+            pointsDisplay.style.visibility = 'visible';
+            
+            const pointsValue = pointsDisplay.querySelector('.points-value');
+            if (pointsValue) {
+              pointsValue.textContent = points.toString();
+            }
+            
+            updateExperienceTotal();
+            updateTotalScore();
+          } else if (pointsDisplay) {
+            pointsDisplay.style.display = 'none';
+          }
+        });
+      }
+      
+      if (tradeCertificateSelect) {
+        tradeCertificateSelect.addEventListener('change', function() {
+          // Trade certificate doesn't give direct points, only affects skill transferability
+          updateExperienceTotal();
+          updateTotalScore();
+        });
+      }
+    }
+    
+    // Calculate experience total
+    function updateExperienceTotal() {
+      const canadianPoints = parseInt((document.querySelector('#canadian-experience-points .points-value') as HTMLElement)?.textContent || '0');
+      const foreignPoints = parseInt((document.querySelector('#foreign-experience-points .points-value') as HTMLElement)?.textContent || '0');
+      
+      // Calculate skill transferability bonus
+      const skillBonus = calculateSkillTransferability();
+      
+      // Update skill transferability display
+      const bonusDisplay = document.getElementById('skill-transferability-bonus');
+      const bonusValue = bonusDisplay?.querySelector('.points-value');
+      
+      if (bonusDisplay && bonusValue) {
+        bonusValue.textContent = skillBonus.toString();
+        if (skillBonus > 0) {
+          bonusDisplay.style.display = 'block';
+        } else {
+          bonusDisplay.style.display = 'none';
+        }
+      }
+      
+      const total = canadianPoints + foreignPoints + skillBonus;
+      
+      const totalDisplay = document.getElementById('experience-total');
+      const totalValue = totalDisplay?.querySelector('.points-value');
+      
+      if (totalDisplay && totalValue && total > 0) {
+        totalValue.textContent = total.toString();
+        totalDisplay.style.display = 'block';
+      } else if (totalDisplay) {
+        totalDisplay.style.display = 'none';
+      }
+    }
+    
+    // Setup second language functionality
+    function setupSecondLanguage() {
+      const checkbox = document.getElementById('has-second-language') as HTMLInputElement;
+      const secondLangSection = document.getElementById('second-language-section');
+      
+      if (checkbox && secondLangSection) {
+        checkbox.addEventListener('change', function() {
+          if (this.checked) {
+            secondLangSection.style.display = 'block';
+          } else {
+            secondLangSection.style.display = 'none';
+            // Clear second language selections
+            const secondLangSelects = secondLangSection.querySelectorAll('select');
+            secondLangSelects.forEach(select => {
+              (select as HTMLSelectElement).value = '';
+            });
+            // Hide displays and reset values
+            const secondLangTotal = document.getElementById('second-language-total');
+            const frenchAdditional = document.getElementById('french-additional-points');
+            if (secondLangTotal) {
+              secondLangTotal.style.display = 'none';
+              const pointsValue = secondLangTotal.querySelector('.points-value');
+              if (pointsValue) pointsValue.textContent = '0';
+            }
+            if (frenchAdditional) {
+              frenchAdditional.style.display = 'none';
+              const pointsValue = frenchAdditional.querySelector('.points-value');
+              if (pointsValue) pointsValue.textContent = '0';
+            }
+            updateAdditionalTotal();
+            updateTotalScore();
+          }
+        });
+      }
+
+      // Setup second language type listener
+      const languageTypeSelect = document.getElementById('second-language-type') as HTMLSelectElement;
+      if (languageTypeSelect) {
+        languageTypeSelect.addEventListener('change', function() {
+          updateSecondLanguageTotal();
+          updateAdditionalTotal();
+          updateTotalScore();
+        });
+      }
+      
+      // Setup second language calculations
+      const secondLanguageInputs = ['second-speaking', 'second-listening', 'second-reading', 'second-writing'];
+      
+      secondLanguageInputs.forEach(skill => {
+        const select = document.getElementById(skill) as HTMLSelectElement;
+        
+        if (select) {
+          select.addEventListener('change', function() {
+            updateSecondLanguageTotal();
+            updateAdditionalTotal(); // Update French additional points
+            updateTotalScore();
+          });
+        }
+      });
+    }
+    
+    // Calculate second language total
+    function updateSecondLanguageTotal() {
+      const skills = ['second-speaking', 'second-listening', 'second-reading', 'second-writing'];
+      let total = 0;
+      let allFilled = true;
+      
+      skills.forEach(skill => {
+        const select = document.getElementById(skill) as HTMLSelectElement;
+        if (select && select.value) {
+          // Second language points are simpler: CLB 5-6 = 1pt, CLB 7-8 = 3pts, CLB 9+ = 6pts
+          const clbLevel = select.value;
+          if (clbLevel === 'CLB_5_or_6') {
+            total += 1;
+          } else if (clbLevel === 'CLB_7_or_8') {
+            total += 3;
+          } else if (clbLevel === 'CLB_9_or_more') {
+            total += 6;
+          }
+        } else {
+          allFilled = false;
+        }
+      });
+      
+      const totalDisplay = document.getElementById('second-language-total');
+      const totalValue = totalDisplay?.querySelector('.points-value');
+      
+      if (totalDisplay && totalValue && allFilled && total > 0) {
+        totalValue.textContent = total.toString();
+        totalDisplay.style.display = 'block';
+      } else if (totalDisplay) {
+        totalDisplay.style.display = 'none';
+      }
+
+      // Handle French additional points display
+      const languageType = (document.getElementById('second-language-type') as HTMLSelectElement)?.value;
+      const frenchAdditionalDisplay = document.getElementById('french-additional-points');
+      const frenchAdditionalValue = frenchAdditionalDisplay?.querySelector('.points-value');
+      
+      if (languageType === 'french' && allFilled && frenchAdditionalDisplay && frenchAdditionalValue) {
+        const frenchPoints = getFrenchAdditionalPoints();
+        frenchAdditionalValue.textContent = frenchPoints.toString();
+        frenchAdditionalDisplay.style.display = frenchPoints > 0 ? 'block' : 'none';
+      } else if (frenchAdditionalDisplay) {
+        frenchAdditionalDisplay.style.display = 'none';
+      }
+    }
+    
+    // Setup Calculate Button
+    if (calculateBtn) {
+      calculateBtn.addEventListener('click', function() {
+        showResults();
+      });
+    }
+
+    // Setup Results Page Actions
+    function setupResultsActions() {
+      // Print functionality
+      const printBtn = document.getElementById('print-btn');
+      if (printBtn) {
+        printBtn.addEventListener('click', function() {
+          window.print();
+        });
+      }
+
+      // Download PDF functionality (using browser print to PDF)
+      const downloadPdfBtn = document.getElementById('download-pdf-btn');
+      if (downloadPdfBtn) {
+        downloadPdfBtn.addEventListener('click', function() {
+          // Hide action buttons for cleaner PDF
+          const actionButtons = document.querySelector('.flex.gap-3') as HTMLElement;
+          if (actionButtons) actionButtons.style.display = 'none';
+          
+          setTimeout(() => {
+            window.print();
+            // Restore buttons after print dialog
+            setTimeout(() => {
+              if (actionButtons) (actionButtons as HTMLElement).style.display = 'flex';
+            }, 1000);
+          }, 100);
+        });
+      }
+
+      // CSV Export functionality
+      const downloadCsvBtn = document.getElementById('download-csv-btn');
+      if (downloadCsvBtn) {
+        downloadCsvBtn.addEventListener('click', function() {
+          exportToCSV();
+        });
+      }
+
+      // New calculation button
+      const newCalcBtn = document.getElementById('new-calculation-btn');
+      if (newCalcBtn) {
+        newCalcBtn.addEventListener('click', function() {
+          // Reset form and go back to step 1
+          const form = document.getElementById('crs-calculator-form') as HTMLFormElement;
+          if (form) form.reset();
+          currentStep = 1;
+          updateStep(currentStep);
+          document.getElementById('results-section')!.style.display = 'none';
+          document.getElementById('crs-calculator')!.scrollIntoView({ behavior: 'smooth' });
+        });
+      }
+    }
+
+    // Show Results Function
+    async function showResults() {
+      const resultsSection = document.getElementById('results-section');
+      if (!resultsSection) return;
+
+      // Get current total score
+      const totalScore = parseInt((document.getElementById('total-score-value') as HTMLElement)?.textContent || '0');
+      
+      // Update final score display
+      const finalScoreEl = document.getElementById('final-total-score');
+      if (finalScoreEl) {
+        finalScoreEl.textContent = totalScore.toString();
+      }
+
+      // Generate detailed breakdown
+      generateDetailedBreakdown();
+      
+      // Load and display draw comparison
+      await loadDrawComparison(totalScore);
+      
+      // Show results section
+      resultsSection.style.display = 'block';
+      resultsSection.scrollIntoView({ behavior: 'smooth' });
+      
+      // Setup action buttons
+      setupResultsActions();
+    }
+
+    // Generate Detailed Breakdown
+    function generateDetailedBreakdown() {
+      const breakdownContainer = document.getElementById('detailed-breakdown');
+      if (!breakdownContainer) return;
+
+      const agePoints = parseInt((document.querySelector('#age-points .points-value') as HTMLElement)?.textContent || '0');
+      const educationPoints = parseInt((document.querySelector('#education-points .points-value') as HTMLElement)?.textContent || '0');
+      const languagePoints = parseInt((document.querySelector('#first-language-total .points-value') as HTMLElement)?.textContent || '0');
+      const secondLanguagePoints = parseInt((document.querySelector('#second-language-total .points-value') as HTMLElement)?.textContent || '0');
+      const experiencePoints = parseInt((document.querySelector('#experience-total .points-value') as HTMLElement)?.textContent || '0');
+      const spousePoints = parseInt((document.querySelector('#spouse-total .points-value') as HTMLElement)?.textContent || '0');
+      const additionalPoints = parseInt((document.querySelector('#additional-total .points-value') as HTMLElement)?.textContent || '0');
+
+      const breakdown = [
+        { category: 'Age', points: agePoints, max: 110, icon: '🎂' },
+        { category: 'Education', points: educationPoints, max: 150, icon: '🎓' },
+        { category: 'First Language', points: languagePoints, max: 136, icon: '🗣️' },
+        { category: 'Second Language', points: secondLanguagePoints, max: 24, icon: '🌐' },
+        { category: 'Work Experience', points: experiencePoints, max: 180, icon: '💼' },
+        { category: 'Spouse Factors', points: spousePoints, max: 40, icon: '👥' },
+        { category: 'Additional Factors', points: additionalPoints, max: 600, icon: '⭐' }
+      ];
+
+      breakdownContainer.innerHTML = breakdown.map(item => `
+        <div class="bg-white dark:bg-gray-700 p-6 rounded-xl border border-gray-200 dark:border-gray-600">
+          <div class="flex items-center justify-between mb-4">
+            <div class="flex items-center gap-3">
+              <span class="text-2xl">${item.icon}</span>
+              <h4 class="font-semibold text-gray-900 dark:text-white">${item.category}</h4>
+            </div>
+            <div class="text-right">
+              <div class="text-2xl font-bold text-blue-600 dark:text-blue-400">${item.points}</div>
+              <div class="text-sm text-gray-500">/ ${item.max}</div>
+            </div>
+          </div>
+          <div class="w-full bg-gray-200 dark:bg-gray-600 rounded-full h-2">
+            <div class="bg-blue-600 h-2 rounded-full transition-all duration-500" style="width: ${Math.min((item.points / item.max) * 100, 100)}%"></div>
+          </div>
+        </div>
+      `).join('');
+
+      // Update score status
+      const statusEl = document.getElementById('score-status');
+      const totalScore = breakdown.reduce((sum, item) => sum + item.points, 0);
+      
+      if (statusEl) {
+        let statusClass = '';
+        let statusText = '';
+        let statusIcon = '';
+        
+        if (totalScore >= 500) {
+          statusClass = 'bg-green-100 dark:bg-green-900/20 text-green-800 dark:text-green-300 border border-green-200 dark:border-green-700';
+          statusText = 'Excellent Score! Highly Competitive';
+          statusIcon = '🎉';
+        } else if (totalScore >= 450) {
+          statusClass = 'bg-blue-100 dark:bg-blue-900/20 text-blue-800 dark:text-blue-300 border border-blue-200 dark:border-blue-700';
+          statusText = 'Good Score! Competitive for Most Draws';
+          statusIcon = '👍';
+        } else if (totalScore >= 400) {
+          statusClass = 'bg-yellow-100 dark:bg-yellow-900/20 text-yellow-800 dark:text-yellow-300 border border-yellow-200 dark:border-yellow-700';
+          statusText = 'Fair Score! Room for Improvement';
+          statusIcon = '⚡';
+        } else {
+          statusClass = 'bg-red-100 dark:bg-red-900/20 text-red-800 dark:text-red-300 border border-red-200 dark:border-red-700';
+          statusText = 'Needs Improvement! Consider Boosting Your Score';
+          statusIcon = '📈';
+        }
+        
+        statusEl.className = `mt-6 p-4 rounded-xl ${statusClass}`;
+        statusEl.innerHTML = `
+          <div class="flex items-center justify-center gap-2 font-semibold">
+            <span class="text-xl">${statusIcon}</span>
+            ${statusText}
+          </div>
+        `;
+      }
+    }
+
+    // Load Draw Comparison
+    async function loadDrawComparison(userScore: number) {
+      const comparisonContainer = document.getElementById('draw-comparison-content');
+      if (!comparisonContainer) return;
+
+      try {
+        // Use server-side fetched data or fallback
+        let latestDraw = (window as any).latestDrawData;
+        
+        // Debug log
+        console.log('Latest draw data:', latestDraw);
+        console.log('Draw data source:', latestDraw ? 'Database' : 'Fallback');
+        
+        if (!latestDraw || !latestDraw.crsScore) {
+          latestDraw = {
+            programName: "General - All Programs",
+            drawDate: "January 8, 2025",
+            crsScore: 470,
+            invitationsIssued: 2500,
+            programCode: "EE-GENERAL"
+          };
+        }
+
+        const drawScore = latestDraw.crsScore;
+        const scoreDiff = userScore - drawScore;
+        const isAboveCutoff = scoreDiff >= 0;
+
+        comparisonContainer.innerHTML = `
+          <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+            <!-- Latest Draw Info -->
+            <div class="bg-gray-50 dark:bg-gray-700 p-6 rounded-xl">
+              <div class="flex items-center justify-between mb-4">
+                <h4 class="text-lg font-semibold text-gray-900 dark:text-white">Latest Draw Details</h4>
+                <span class="text-xs px-2 py-1 rounded-full ${latestDraw === (window as any).latestDrawData ? 'bg-green-100 text-green-700 dark:bg-green-900/20 dark:text-green-400' : 'bg-yellow-100 text-yellow-700 dark:bg-yellow-900/20 dark:text-yellow-400'}">
+                  ${latestDraw === (window as any).latestDrawData ? '🟢 Live Data' : '⚠️ Sample Data'}
+                </span>
+              </div>
+              <div class="space-y-3">
+                <div class="flex justify-between">
+                  <span class="text-gray-600 dark:text-gray-400">Draw Date:</span>
+                  <span class="font-semibold text-gray-900 dark:text-white">${latestDraw.drawDate}</span>
+                </div>
+                <div class="flex justify-between">
+                  <span class="text-gray-600 dark:text-gray-400">Program:</span>
+                  <span class="font-semibold text-gray-900 dark:text-white">${latestDraw.programName}</span>
+                </div>
+                <div class="flex justify-between">
+                  <span class="text-gray-600 dark:text-gray-400">Minimum Score:</span>
+                  <span class="font-bold text-2xl text-blue-600 dark:text-blue-400">${drawScore}</span>
+                </div>
+                <div class="flex justify-between">
+                  <span class="text-gray-600 dark:text-gray-400">Invitations Issued:</span>
+                  <span class="font-semibold text-gray-900 dark:text-white">${latestDraw.invitationsIssued.toLocaleString()}</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Score Comparison -->
+            <div class="bg-gray-50 dark:bg-gray-700 p-6 rounded-xl">
+              <h4 class="text-lg font-semibold text-gray-900 dark:text-white mb-4">Your Score Comparison</h4>
+              <div class="text-center mb-4">
+                <div class="text-4xl font-bold ${isAboveCutoff ? 'text-green-600 dark:text-green-400' : 'text-red-600 dark:text-red-400'} mb-2">
+                  ${isAboveCutoff ? '+' : ''}${scoreDiff}
+                </div>
+                <div class="text-sm text-gray-600 dark:text-gray-400">points ${isAboveCutoff ? 'above' : 'below'} cutoff</div>
+              </div>
+              
+              <div class="w-full bg-gray-200 dark:bg-gray-600 rounded-full h-4 mb-4">
+                <div class="bg-gradient-to-r from-blue-500 to-purple-500 h-4 rounded-full transition-all duration-1000" 
+                     style="width: ${Math.min((userScore / 600) * 100, 100)}%"></div>
+              </div>
+              
+              <div class="p-4 rounded-lg ${isAboveCutoff ? 'bg-green-100 dark:bg-green-900/20 text-green-800 dark:text-green-300' : 'bg-red-100 dark:bg-red-900/20 text-red-800 dark:text-red-300'}">
+                <div class="flex items-center gap-2 font-semibold">
+                  <span class="text-xl">${isAboveCutoff ? '🎉' : '📈'}</span>
+                  ${isAboveCutoff 
+                    ? `Congratulations! You would have received an invitation in the latest draw!` 
+                    : `You need ${Math.abs(scoreDiff)} more points to meet the latest cutoff. Consider improving your profile!`
+                  }
+                </div>
+              </div>
+            </div>
+          </div>
+        `;
+      } catch (error) {
+        console.error('Error loading draw comparison:', error);
+        // Use fallback data even in error case
+        const fallbackDraw = {
+          programName: "General - All Programs",
+          drawDate: "January 8, 2025",
+          crsScore: 470,
+          invitationsIssued: 2500,
+          programCode: "EE-GENERAL"
+        };
+        
+        const drawScore = fallbackDraw.crsScore;
+        const scoreDiff = userScore - drawScore;
+        const isAboveCutoff = scoreDiff >= 0;
+        
+        comparisonContainer.innerHTML = `
+          <div class="bg-gradient-to-r from-blue-50 to-indigo-50 dark:from-blue-900/20 dark:to-indigo-900/20 rounded-xl p-6 border border-blue-200 dark:border-blue-700">
+            <div class="flex items-center justify-between mb-4">
+              <h4 class="text-lg font-semibold text-gray-900 dark:text-white">Latest Express Entry Draw</h4>
+              <span class="text-sm text-gray-500 dark:text-gray-400">${fallbackDraw.drawDate}</span>
+            </div>
+            
+            <div class="grid grid-cols-2 gap-4 mb-4">
+              <div class="text-center">
+                <div class="text-2xl font-bold text-blue-600 dark:text-blue-400">${fallbackDraw.crsScore}</div>
+                <div class="text-sm text-gray-600 dark:text-gray-400">Minimum CRS</div>
+              </div>
+              <div class="text-center">
+                <div class="text-2xl font-bold text-green-600 dark:text-green-400">${fallbackDraw.invitationsIssued.toLocaleString()}</div>
+                <div class="text-sm text-gray-600 dark:text-gray-400">Invitations</div>
+              </div>
+            </div>
+            
+            <div class="text-center p-4 rounded-lg ${isAboveCutoff ? 'bg-green-100 dark:bg-green-900/20 border border-green-200 dark:border-green-700' : 'bg-yellow-100 dark:bg-yellow-900/20 border border-yellow-200 dark:border-yellow-700'}">
+              <div class="text-lg font-semibold ${isAboveCutoff ? 'text-green-700 dark:text-green-300' : 'text-yellow-700 dark:text-yellow-300'}">
+                ${isAboveCutoff ? '🎉 Congratulations!' : '📈 Keep Improving!'}
+              </div>
+              <div class="text-sm ${isAboveCutoff ? 'text-green-600 dark:text-green-400' : 'text-yellow-600 dark:text-yellow-400'}">
+                Your score is ${Math.abs(scoreDiff)} points ${isAboveCutoff ? 'above' : 'below'} the latest cutoff
+              </div>
+            </div>
+          </div>
+        `;
+      }
+    }
+
+    // CSV Export Function
+    function exportToCSV() {
+      const agePoints = parseInt((document.querySelector('#age-points .points-value') as HTMLElement)?.textContent || '0');
+      const educationPoints = parseInt((document.querySelector('#education-points .points-value') as HTMLElement)?.textContent || '0');
+      const languagePoints = parseInt((document.querySelector('#first-language-total .points-value') as HTMLElement)?.textContent || '0');
+      const secondLanguagePoints = parseInt((document.querySelector('#second-language-total .points-value') as HTMLElement)?.textContent || '0');
+      const experiencePoints = parseInt((document.querySelector('#experience-total .points-value') as HTMLElement)?.textContent || '0');
+      const spousePoints = parseInt((document.querySelector('#spouse-total .points-value') as HTMLElement)?.textContent || '0');
+      const additionalPoints = parseInt((document.querySelector('#additional-total .points-value') as HTMLElement)?.textContent || '0');
+      const totalScore = agePoints + educationPoints + languagePoints + secondLanguagePoints + experiencePoints + spousePoints + additionalPoints;
+
+      const csvData = [
+        ['CRS Score Breakdown', ''],
+        ['Category', 'Points'],
+        ['Age', agePoints],
+        ['Education', educationPoints],
+        ['First Language', languagePoints],
+        ['Second Language', secondLanguagePoints],
+        ['Work Experience', experiencePoints],
+        ['Spouse Factors', spousePoints],
+        ['Additional Factors', additionalPoints],
+        ['', ''],
+        ['Total CRS Score', totalScore],
+        ['', ''],
+        ['Generated on', new Date().toLocaleDateString()],
+        ['Time', new Date().toLocaleTimeString()]
+      ];
+
+      const csvContent = csvData.map(row => row.join(',')).join('\\n');
+      const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
+      const link = document.createElement('a');
+      
+      if (link.download !== undefined) {
+        const url = URL.createObjectURL(blob);
+        link.setAttribute('href', url);
+        link.setAttribute('download', `CRS-Score-Breakdown-${new Date().toISOString().split('T')[0]}.csv`);
+        link.style.visibility = 'hidden';
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+      }
+    }
+
+    // Debug: Log when everything is set up
+    console.log('CRS Calculator initialized successfully!');
+    
+    // Debug: Simple test
+    setTimeout(() => {
+      console.log('Calculator loaded and ready!');
+    }, 500);
+
+    // FSW Calculator Logic
+    setupFSWCalculator();
+  });
+
+  // FSW Calculator Setup Function
+  function setupFSWCalculator() {
+    let fswCurrentStep = 1;
+    const fswTotalSteps = 6;
+    const fswData = {
+      "language_proficiency": {
+        "first_official_language": {
+          "CLB_7": 16,
+          "CLB_8": 20,
+          "CLB_9": 24,
+          "below_CLB_7": 0
+        },
+        "second_official_language": {
+          "CLB_5": 4,
+          "CLB_4": 0,
+          "": 0
+        }
+      },
+      "education": {
+        "less_than_secondary": 0,
+        "secondary": 5,
+        "one_year": 15,
+        "two_year": 19,
+        "bachelors": 21,
+        "two_or_more": 22,
+        "masters": 23,
+        "doctoral": 25
+      },
+      "work_experience": {
+        "less_than_1": 0,
+        "1": 9,
+        "2-3": 11,
+        "4-5": 13,
+        "6_or_more": 15
+      },
+      "age": {
+        17: 0, 18: 11, 19: 12, 20: 12, 21: 12, 22: 12, 23: 12, 24: 12, 25: 12, 26: 12, 27: 12, 28: 12, 29: 12,
+        30: 11, 31: 10, 32: 9, 33: 8, 34: 7, 35: 6, 36: 5, 37: 4, 38: 3, 39: 2, 40: 1
+      },
+      "arranged_employment": {
+        "no": 0,
+        "yes": 10
+      }
+    };
+
+    let fswScores = {
+      language: 0,
+      education: 0,
+      work: 0,
+      age: 0,
+      job: 0,
+      adaptability: 0
+    };
+
+    // Get FSW elements
+    const fswFirstLang = document.getElementById('fsw-first-language') as HTMLSelectElement;
+    const fswSecondLang = document.getElementById('fsw-second-language') as HTMLSelectElement;
+    const fswEducation = document.getElementById('fsw-education') as HTMLSelectElement;
+    const fswWorkExp = document.getElementById('fsw-work-experience') as HTMLSelectElement;
+    const fswAge = document.getElementById('fsw-age') as HTMLInputElement;
+    const fswJobOffer = document.getElementById('fsw-job-offer') as HTMLSelectElement;
+    
+    // Adaptability checkboxes
+    const fswCanadianWork = document.getElementById('fsw-canadian-work') as HTMLInputElement;
+    const fswCanadianStudy = document.getElementById('fsw-canadian-study') as HTMLInputElement;
+    const fswSpouseLanguage = document.getElementById('fsw-spouse-language') as HTMLInputElement;
+    const fswRelatives = document.getElementById('fsw-relatives') as HTMLInputElement;
+    const fswArrangedEmploymentAdapt = document.getElementById('fsw-arranged-employment-adapt') as HTMLInputElement;
+
+    // Score display elements
+    const fswTotalScore = document.getElementById('fsw-total-score-value') as HTMLElement;
+    const fswEligibilityStatus = document.getElementById('fsw-eligibility-status') as HTMLElement;
+    const fswLanguagePoints = document.getElementById('fsw-language-points') as HTMLElement;
+    const fswEducationPoints = document.getElementById('fsw-education-points') as HTMLElement;
+    const fswWorkPoints = document.getElementById('fsw-work-points') as HTMLElement;
+    const fswAgePoints = document.getElementById('fsw-age-points') as HTMLElement;
+    const fswJobPoints = document.getElementById('fsw-job-points') as HTMLElement;
+    const fswAdaptabilityPoints = document.getElementById('fsw-adaptability-points') as HTMLElement;
+
+    const fswCalculateBtn = document.getElementById('fsw-calculate-btn') as HTMLButtonElement;
+    const fswResults = document.getElementById('fsw-results') as HTMLElement;
+
+    // FSW Navigation elements
+    const fswNextBtn = document.getElementById('fsw-next-btn') as HTMLButtonElement;
+    const fswPrevBtn = document.getElementById('fsw-prev-btn') as HTMLButtonElement;
+    const fswProgressBar = document.getElementById('fsw-progress-bar') as HTMLElement;
+    const fswProgressText = document.getElementById('fsw-progress-text') as HTMLElement;
+
+    // FSW Step Navigation Functions
+    function updateFSWStep(step: number) {
+      fswCurrentStep = step;
+      
+      // Hide all steps
+      document.querySelectorAll('.fsw-calculator-step').forEach(s => {
+        (s as HTMLElement).style.display = 'none';
+        s.classList.remove('active');
+      });
+      
+      // Show current step
+      const currentStepEl = document.querySelector(`.fsw-calculator-step[data-step="${step}"]`) as HTMLElement;
+      if (currentStepEl) {
+        currentStepEl.style.display = 'block';
+        currentStepEl.classList.add('active');
+      }
+
+      // Update step indicators
+      document.querySelectorAll('.fsw-step-indicator').forEach((indicator, index) => {
+        indicator.classList.remove('active', 'completed');
+        
+        if (index + 1 < step) {
+          indicator.classList.add('completed');
+        } else if (index + 1 === step) {
+          indicator.classList.add('active');
+        }
+      });
+      
+      // Update progress bar
+      const progress = (step / fswTotalSteps) * 100;
+      if (fswProgressBar) fswProgressBar.style.width = `${progress}%`;
+      if (fswProgressText) fswProgressText.textContent = `Step ${step} of ${fswTotalSteps}`;
+      
+      // Update buttons
+      if (fswPrevBtn) fswPrevBtn.style.display = step > 1 ? 'flex' : 'none';
+      if (fswNextBtn) fswNextBtn.style.display = step < fswTotalSteps ? 'flex' : 'none';
+      if (fswCalculateBtn) fswCalculateBtn.style.display = step === fswTotalSteps ? 'flex' : 'none';
+    }
+
+    // FSW Navigation Event Listeners
+    if (fswNextBtn) {
+      fswNextBtn.addEventListener('click', function() {
+        if (fswCurrentStep < fswTotalSteps) {
+          updateFSWStep(fswCurrentStep + 1);
+        }
+      });
+    }
+
+    if (fswPrevBtn) {
+      fswPrevBtn.addEventListener('click', function() {
+        if (fswCurrentStep > 1) {
+          updateFSWStep(fswCurrentStep - 1);
+        }
+      });
+    }
+
+    // Initialize FSW step display
+    updateFSWStep(1);
+
+    function calculateFSWLanguage() {
+      const firstLang = fswFirstLang?.value || '';
+      const secondLang = fswSecondLang?.value || '';
+      
+      const firstPoints = fswData.language_proficiency.first_official_language[firstLang as keyof typeof fswData.language_proficiency.first_official_language] || 0;
+      const secondPoints = fswData.language_proficiency.second_official_language[secondLang as keyof typeof fswData.language_proficiency.second_official_language] || 0;
+      
+      fswScores.language = firstPoints + secondPoints;
+      if (fswLanguagePoints) fswLanguagePoints.textContent = fswScores.language.toString();
+      updateFSWTotal();
+    }
+
+    function calculateFSWEducation() {
+      const education = fswEducation?.value || '';
+      fswScores.education = fswData.education[education as keyof typeof fswData.education] || 0;
+      if (fswEducationPoints) fswEducationPoints.textContent = fswScores.education.toString();
+      updateFSWTotal();
+    }
+
+    function calculateFSWWork() {
+      const work = fswWorkExp?.value || '';
+      fswScores.work = fswData.work_experience[work as keyof typeof fswData.work_experience] || 0;
+      if (fswWorkPoints) fswWorkPoints.textContent = fswScores.work.toString();
+      updateFSWTotal();
+    }
+
+    function calculateFSWAge() {
+      const age = parseInt(fswAge?.value || '0');
+      let agePoints = 0;
+      
+      if (age >= 20 && age <= 29) {
+        agePoints = 12;
+      } else if (age >= 17 && age <= 40) {
+        agePoints = fswData.age[age as keyof typeof fswData.age] || 0;
+      } else if (age > 40) {
+        agePoints = 0;
+      }
+      
+      fswScores.age = agePoints;
+      if (fswAgePoints) fswAgePoints.textContent = fswScores.age.toString();
+      updateFSWTotal();
+    }
+
+    function calculateFSWJob() {
+      const job = fswJobOffer?.value || '';
+      fswScores.job = fswData.arranged_employment[job as keyof typeof fswData.arranged_employment] || 0;
+      if (fswJobPoints) fswJobPoints.textContent = fswScores.job.toString();
+      updateFSWTotal();
+    }
+
+    function calculateFSWAdaptability() {
+      let adaptPoints = 0;
+      
+      // Check each adaptability factor (max 10 points total)
+      if (fswCanadianWork?.checked) adaptPoints += 10;
+      if (fswCanadianStudy?.checked) adaptPoints += 5;
+      if (fswSpouseLanguage?.checked) adaptPoints += 5;
+      if (fswRelatives?.checked) adaptPoints += 5;
+      if (fswArrangedEmploymentAdapt?.checked) adaptPoints += 5;
+      
+      // Cap at 10 points maximum
+      fswScores.adaptability = Math.min(adaptPoints, 10);
+      if (fswAdaptabilityPoints) fswAdaptabilityPoints.textContent = fswScores.adaptability.toString();
+      updateFSWTotal();
+    }
+
+    function updateFSWTotal() {
+      const total = fswScores.language + fswScores.education + fswScores.work + fswScores.age + fswScores.job + fswScores.adaptability;
+      
+      if (fswTotalScore) fswTotalScore.textContent = total.toString();
+      
+      // Check critical eligibility requirements
+      const workExp = fswWorkExp?.value || '';
+      const firstLang = fswFirstLang?.value || '';
+      
+      // Critical deal-breakers
+      const hasMinimumWork = workExp !== 'less_than_1' && workExp !== '';
+      const hasMinimumLanguage = firstLang === 'CLB_7' || firstLang === 'CLB_8' || firstLang === 'CLB_9';
+      
+      // Update eligibility status
+      if (fswEligibilityStatus) {
+        if (!hasMinimumWork) {
+          fswEligibilityStatus.innerHTML = '<span class="text-red-600 dark:text-red-400">❌ Ineligible: Minimum 1 year work experience required</span>';
+        } else if (!hasMinimumLanguage) {
+          fswEligibilityStatus.innerHTML = '<span class="text-red-600 dark:text-red-400">❌ Ineligible: Minimum CLB 7 in first language required</span>';
+        } else if (total >= 67) {
+          fswEligibilityStatus.innerHTML = '<span class="text-green-600 dark:text-green-400">✅ Eligible for FSW Program! Ready for Express Entry</span>';
+        } else {
+          fswEligibilityStatus.innerHTML = `<span class="text-red-600 dark:text-red-400">❌ Below minimum score (${67 - total} more points needed)</span>`;
+        }
+      }
+    }
+
+    // Event listeners for FSW calculator
+    if (fswFirstLang) fswFirstLang.addEventListener('change', calculateFSWLanguage);
+    if (fswSecondLang) fswSecondLang.addEventListener('change', calculateFSWLanguage);
+    if (fswEducation) fswEducation.addEventListener('change', calculateFSWEducation);
+    if (fswWorkExp) fswWorkExp.addEventListener('change', calculateFSWWork);
+    if (fswAge) fswAge.addEventListener('input', calculateFSWAge);
+    if (fswJobOffer) fswJobOffer.addEventListener('change', calculateFSWJob);
+    
+    // Adaptability checkboxes
+    if (fswCanadianWork) fswCanadianWork.addEventListener('change', calculateFSWAdaptability);
+    if (fswCanadianStudy) fswCanadianStudy.addEventListener('change', calculateFSWAdaptability);
+    if (fswSpouseLanguage) fswSpouseLanguage.addEventListener('change', calculateFSWAdaptability);
+    if (fswRelatives) fswRelatives.addEventListener('change', calculateFSWAdaptability);
+    if (fswArrangedEmploymentAdapt) fswArrangedEmploymentAdapt.addEventListener('change', calculateFSWAdaptability);
+
+    // Generate Report button
+    if (fswCalculateBtn) {
+      fswCalculateBtn.addEventListener('click', function() {
+        generateFSWReport();
+      });
+    }
+
+    function generateFSWReport() {
+      const total = fswScores.language + fswScores.education + fswScores.work + fswScores.age + fswScores.job + fswScores.adaptability;
+      
+      // Check critical eligibility requirements
+      const workExp = fswWorkExp?.value || '';
+      const firstLang = fswFirstLang?.value || '';
+      
+      // Critical deal-breakers
+      const hasMinimumWork = workExp !== 'less_than_1' && workExp !== '';
+      const hasMinimumLanguage = firstLang === 'CLB_7' || firstLang === 'CLB_8' || firstLang === 'CLB_9';
+      const isEligible = hasMinimumWork && hasMinimumLanguage && total >= 67;
+      
+      // Update final score and status
+      const fswFinalScore = document.getElementById('fsw-final-score') as HTMLElement;
+      const fswFinalStatus = document.getElementById('fsw-final-status') as HTMLElement;
+      
+      if (fswFinalScore) fswFinalScore.textContent = total.toString();
+      
+      if (fswFinalStatus) {
+        if (!hasMinimumWork) {
+          fswFinalStatus.innerHTML = '<span class="text-red-600 dark:text-red-400">❌ Ineligible: Minimum 1 year work experience required</span>';
+        } else if (!hasMinimumLanguage) {
+          fswFinalStatus.innerHTML = '<span class="text-red-600 dark:text-red-400">❌ Ineligible: Minimum CLB 7 in first language required</span>';
+        } else if (total >= 67) {
+          fswFinalStatus.innerHTML = '<span class="text-green-600 dark:text-green-400">✅ Eligible for FSW Program! Ready for Express Entry</span>';
+        } else {
+          fswFinalStatus.innerHTML = `<span class="text-red-600 dark:text-red-400">❌ Not Eligible (Need ${67 - total}+ points)</span>`;
+        }
+      }
+
+      // Generate detailed breakdown
+      const breakdown = document.getElementById('fsw-detailed-breakdown') as HTMLElement;
+      if (breakdown) {
+        breakdown.innerHTML = `
+          <div class="bg-white dark:bg-gray-800 rounded-lg p-4 border border-gray-200 dark:border-gray-700">
+            <h5 class="font-semibold text-gray-900 dark:text-white mb-2">🗣️ Language</h5>
+            <div class="text-2xl font-bold text-green-600 dark:text-green-400">${fswScores.language}/28</div>
+          </div>
+          <div class="bg-white dark:bg-gray-800 rounded-lg p-4 border border-gray-200 dark:border-gray-700">
+            <h5 class="font-semibold text-gray-900 dark:text-white mb-2">🎓 Education</h5>
+            <div class="text-2xl font-bold text-green-600 dark:text-green-400">${fswScores.education}/25</div>
+          </div>
+          <div class="bg-white dark:bg-gray-800 rounded-lg p-4 border border-gray-200 dark:border-gray-700">
+            <h5 class="font-semibold text-gray-900 dark:text-white mb-2">💼 Work Experience</h5>
+            <div class="text-2xl font-bold text-green-600 dark:text-green-400">${fswScores.work}/15</div>
+          </div>
+          <div class="bg-white dark:bg-gray-800 rounded-lg p-4 border border-gray-200 dark:border-gray-700">
+            <h5 class="font-semibold text-gray-900 dark:text-white mb-2">🎂 Age</h5>
+            <div class="text-2xl font-bold text-green-600 dark:text-green-400">${fswScores.age}/12</div>
+          </div>
+          <div class="bg-white dark:bg-gray-800 rounded-lg p-4 border border-gray-200 dark:border-gray-700">
+            <h5 class="font-semibold text-gray-900 dark:text-white mb-2">💼 Job Offer</h5>
+            <div class="text-2xl font-bold text-green-600 dark:text-green-400">${fswScores.job}/10</div>
+          </div>
+          <div class="bg-white dark:bg-gray-800 rounded-lg p-4 border border-gray-200 dark:border-gray-700">
+            <h5 class="font-semibold text-gray-900 dark:text-white mb-2">🏠 Adaptability</h5>
+            <div class="text-2xl font-bold text-green-600 dark:text-green-400">${fswScores.adaptability}/10</div>
+          </div>
+        `;
+      }
+
+      // Update Next Steps CTA based on eligibility
+      const nextStepsCTA = document.getElementById('fsw-next-steps-cta') as HTMLElement;
+      if (nextStepsCTA) {
+        if (isEligible) {
+          nextStepsCTA.innerHTML = `
+            <h4 class="text-lg font-bold text-gray-900 dark:text-white mb-3">🎉 Congratulations! You're FSW Eligible!</h4>
+            <p class="text-gray-600 dark:text-gray-300 mb-4">
+              You qualify for the Federal Skilled Worker program and can enter the Express Entry pool. Calculate your CRS score to see your ranking!
+            </p>
+            <div class="flex flex-col sm:flex-row gap-4 justify-center">
+              <button onclick="showCalculator('crs')" class="inline-flex items-center px-6 py-3 bg-gradient-to-r from-blue-600 to-purple-600 text-white font-semibold rounded-xl hover:from-blue-700 hover:to-purple-700 transition-all duration-300">
+                🎯 Calculate CRS Score
+                <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+                </svg>
+              </button>
+              <a href="/tools/master-assessment?utm_source=fsw_calculator&utm_medium=results&utm_campaign=eligible_cta" class="inline-flex items-center px-6 py-3 bg-gradient-to-r from-green-600 to-emerald-600 text-white font-semibold rounded-xl hover:from-green-700 hover:to-emerald-700 transition-all duration-300">
+                📋 Full Assessment
+              </a>
+            </div>
+          `;
+        } else {
+          nextStepsCTA.innerHTML = `
+            <h4 class="text-lg font-bold text-gray-900 dark:text-white mb-3">Explore Other Immigration Options</h4>
+            <p class="text-gray-600 dark:text-gray-300 mb-4">
+              While you may not qualify for FSW, there are 35+ other immigration programs available. Get a comprehensive assessment to find your best path.
+            </p>
+            <a href="/tools/master-assessment?utm_source=fsw_calculator&utm_medium=results&utm_campaign=not_eligible_cta" class="inline-flex items-center px-6 py-3 bg-gradient-to-r from-blue-600 to-purple-600 text-white font-semibold rounded-xl hover:from-blue-700 hover:to-purple-700 transition-all duration-300">
+              ✓ 35+ Programs • ✓ Instantly • ✓ 100% Free
+              <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+              </svg>
+            </a>
+          `;
+        }
+      }
+
+      // Show results section
+      if (fswResults) {
+        fswResults.style.display = 'block';
+        fswResults.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+    }
+
+    // CSV Export functionality
+    const fswExportCSV = document.getElementById('fsw-export-csv') as HTMLButtonElement;
+    if (fswExportCSV) {
+      fswExportCSV.addEventListener('click', function() {
+        const total = fswScores.language + fswScores.education + fswScores.work + fswScores.age + fswScores.job + fswScores.adaptability;
+        const csvContent = `FSW Assessment Results\n` +
+          `Category,Points,Maximum\n` +
+          `Language Proficiency,${fswScores.language},28\n` +
+          `Education,${fswScores.education},25\n` +
+          `Work Experience,${fswScores.work},15\n` +
+          `Age,${fswScores.age},12\n` +
+          `Arranged Employment,${fswScores.job},10\n` +
+          `Adaptability,${fswScores.adaptability},10\n` +
+          `Total Score,${total},100\n` +
+          `Eligibility,${total >= 67 ? 'Eligible' : 'Not Eligible'},Pass: 67+`;
+        
+        const blob = new Blob([csvContent], { type: 'text/csv' });
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = 'fsw-assessment-results.csv';
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+        URL.revokeObjectURL(url);
+      });
+    }
+
+    console.log('FSW Calculator initialized successfully!');
+  }
+</script>
+
+<style>
+  /* Form Styles */
+  .form-group {
+    @apply space-y-2;
+    margin-bottom: 1.5rem !important;
+    display: block !important;
+  }
+  
+  .form-label {
+    @apply block text-sm font-semibold text-gray-700 dark:text-gray-300;
+    display: block !important;
+  }
+  
+  .label-text {
+    @apply mr-1;
+  }
+  
+  .label-required {
+    @apply text-red-500;
+  }
+  
+  .form-input {
+    @apply w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-xl bg-white dark:bg-gray-800 text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-400 focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200;
+    display: block !important;
+    width: 100% !important;
+  }
+  
+  .form-help {
+    @apply text-xs text-gray-500 dark:text-gray-400;
+    display: block !important;
+  }
+  
+  /* Button Styles */
+  .btn-primary {
+    @apply inline-flex items-center px-6 py-3 bg-gradient-to-r from-blue-600 to-purple-600 text-white font-semibold rounded-xl hover:from-blue-700 hover:to-purple-700 transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl;
+  }
+  
+  .btn-secondary {
+    @apply inline-flex items-center px-6 py-3 bg-gray-200 dark:bg-gray-700 text-gray-700 dark:text-gray-300 font-semibold rounded-xl hover:bg-gray-300 dark:hover:bg-gray-600 transition-all duration-300;
+  }
+  
+  /* Step Indicator Styles */
+  .step-indicator {
+    @apply flex flex-col items-center space-y-2 text-center;
+  }
+  
+  .step-number {
+    @apply w-10 h-10 rounded-full border-2 border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800 text-gray-500 dark:text-gray-400 flex items-center justify-center font-bold text-sm transition-all duration-300;
+  }
+  
+  .step-label {
+    @apply text-xs text-gray-500 dark:text-gray-400 font-medium;
+  }
+  
+  .step-indicator.active .step-number {
+    @apply border-blue-500 bg-blue-500 text-white;
+  }
+  
+  .step-indicator.active .step-label {
+    @apply text-blue-600 dark:text-blue-400;
+  }
+  
+  .step-indicator.completed .step-number {
+    @apply border-green-500 bg-green-500 text-white;
+  }
+  
+  .step-indicator.completed .step-label {
+    @apply text-green-600 dark:text-green-400;
+  }
+  
+  .step-line {
+    @apply w-12 h-0.5 bg-gray-300 dark:bg-gray-600;
+  }
+  
+  /* Animation Classes */
+  .calculator-step {
+    @apply transition-all duration-500 ease-in-out;
+    display: none !important;
+  }
+  
+  .calculator-step.active {
+    @apply animate-fadeIn;
+    display: block !important;
+  }
+  
+  .calculator-step[data-step="1"]:not(.hidden-by-navigation) {
+    display: block !important;
+  }
+  
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  /* Print Styles */
+  @media print {
+    body * {
+      visibility: hidden;
+    }
+    
+    #results-section, #results-section * {
+      visibility: visible;
+    }
+    
+    #results-section {
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 100%;
+    }
+    
+    .btn-secondary, .btn-primary {
+      display: none !important;
+    }
+    
+    .bg-gradient-to-br, .bg-gradient-to-r {
+      background: white !important;
+      border: 1px solid #e5e7eb !important;
+    }
+    
+    .text-blue-600, .text-green-600, .text-red-600, .text-yellow-600 {
+      color: #1f2937 !important;
+    }
+    
+    .animate-pulse {
+      animation: none !important;
+    }
+    
+    .shadow-lg, .shadow-xl {
+      box-shadow: none !important;
+      border: 1px solid #e5e7eb !important;
+    }
+    
+    .rounded-xl, .rounded-2xl {
+      border-radius: 8px !important;
+    }
+    
+    .p-8 {
+      padding: 1rem !important;
+    }
+    
+    .gap-8 {
+      gap: 1rem !important;
+    }
+    
+    .text-6xl {
+      font-size: 3rem !important;
+    }
+    
+    .text-4xl {
+      font-size: 2rem !important;
+    }
+    
+    .text-2xl {
+      font-size: 1.5rem !important;
+    }
+  }
+  
+  .animate-fadeIn {
+    animation: fadeIn 0.5s ease-out;
+  }
+
+  /* Points Display Styles */
+  .points-display {
+    @apply mt-2 p-2 bg-blue-50 dark:bg-blue-900/20 rounded-lg border border-blue-200 dark:border-blue-700;
+    opacity: 1 !important;
+    visibility: visible !important;
+  }
+  
+  .points-display[style*="display: block"] {
+    display: block !important;
+  }
+
+  .points-text {
+    @apply text-sm text-blue-700 dark:text-blue-300;
+  }
+
+  .points-summary {
+    @apply p-3 bg-gradient-to-r from-blue-50 to-purple-50 dark:from-blue-900/20 dark:to-purple-900/20 rounded-lg border border-blue-200 dark:border-blue-700;
+  }
+
+  /* Radio and Checkbox Styles */
+  .radio-group {
+    @apply space-y-3;
+  }
+
+  .radio-option {
+    @apply flex items-center space-x-3 p-3 border border-gray-200 dark:border-gray-600 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-700 cursor-pointer transition-colors;
+  }
+
+  .radio-input {
+    @apply w-4 h-4 text-blue-600 border-gray-300 dark:border-gray-600 focus:ring-blue-500;
+  }
+
+  .radio-label {
+    @apply text-sm font-medium text-gray-700 dark:text-gray-300;
+  }
+
+  .checkbox-input {
+    @apply w-4 h-4 text-blue-600 border-gray-300 dark:border-gray-600 rounded focus:ring-blue-500;
+  }
+
+  .checkbox-label {
+    @apply ml-3 text-sm font-medium text-gray-700 dark:text-gray-300;
+  }
+
+  /* Info Card Styles */
+  .info-card {
+    @apply p-4 bg-gray-50 dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700;
+  }
+</style>

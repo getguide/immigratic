@@ -1,0 +1,1150 @@
+---
+import Layout from '../../../layouts/Layout.astro';
+import { getLatestExpressEntryDraw } from '../../../lib/immiwatch-data';
+
+// Fetch latest Express Entry draw data
+const latestDraw = await getLatestExpressEntryDraw();
+
+// Format the date
+const formattedDate = latestDraw ? new Date(latestDraw.drawDate).toLocaleDateString('en-US', {
+  year: 'numeric',
+  month: 'long',
+  day: 'numeric'
+}) : 'No data available';
+---
+
+<Layout title="Express Entry Guide - Complete CRS Scoring & Application Process" description="Master Express Entry with our comprehensive guide. Learn CRS scoring, application process, required documents, and success strategies for Canadian immigration.">
+  
+  <!-- Hero Section -->
+  <section class="relative py-24 bg-gradient-to-br from-blue-600 via-purple-700 to-indigo-800 dark:from-blue-800 dark:via-purple-900 dark:to-indigo-900 overflow-hidden">
+    <div class="absolute inset-0 bg-black/20"></div>
+    <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      <h1 class="text-4xl md:text-6xl font-bold text-white mb-6">
+        Express Entry
+        <span class="block bg-gradient-to-r from-blue-200 to-purple-200 bg-clip-text text-transparent">
+          Complete Guide
+        </span>
+      </h1>
+      <p class="text-xl md:text-2xl text-blue-100 mb-8 max-w-4xl mx-auto">
+        Master Canada's flagship immigration system with comprehensive CRS scoring, step-by-step application process, and proven success strategies.
+      </p>
+      
+      <!-- Live Draw Info -->
+      <div class="mb-8">
+        <div class="bg-white/10 backdrop-blur-md rounded-2xl p-6 border border-white/20 max-w-2xl mx-auto hover:bg-white/15 hover:scale-105 transition-all duration-500 hover:shadow-2xl hover:shadow-blue-500/20 pulse-glow">
+          <div class="flex items-center justify-between mb-4">
+            <div class="flex items-center gap-2">
+              <div class="w-3 h-3 bg-green-400 rounded-full animate-pulse"></div>
+              <span class="text-green-200 text-sm font-medium">Latest Express Entry Draw</span>
+            </div>
+            <div class="text-xs text-blue-200">
+              {latestDraw ? new Date(latestDraw.drawDate).toLocaleDateString('en-US', { 
+                month: 'short', 
+                day: 'numeric',
+                year: 'numeric'
+              }) : 'Loading...'}
+            </div>
+          </div>
+          
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+            <!-- CRS Score -->
+            <div class="text-center bg-white/5 rounded-xl p-4 border border-white/10">
+              <div class="text-2xl md:text-3xl font-bold text-green-300 mb-1">
+                {latestDraw ? latestDraw.crsScore : '---'}
+              </div>
+              <div class="text-xs text-blue-200">CRS Required</div>
+            </div>
+            
+            <!-- Invitations -->
+            <div class="text-center bg-white/5 rounded-xl p-4 border border-white/10">
+              <div class="text-2xl md:text-3xl font-bold text-blue-300 mb-1">
+                {latestDraw ? (latestDraw.invitationsIssued ? latestDraw.invitationsIssued.toLocaleString() : 'N/A') : '---'}
+              </div>
+              <div class="text-xs text-blue-200">Invitations</div>
+            </div>
+            
+            <!-- Program -->
+            <div class="text-center bg-white/5 rounded-xl p-4 border border-white/10">
+              <div class="text-lg md:text-xl font-bold text-purple-300 mb-1 truncate">
+                {latestDraw ? (latestDraw.programName || 'General') : '---'}
+              </div>
+              <div class="text-xs text-blue-200">Program</div>
+            </div>
+          </div>
+          
+          <!-- Trend Indicator -->
+          {latestDraw && (
+            <div class="mt-4 text-center">
+              <div class="inline-flex items-center gap-2 bg-white/5 rounded-full px-4 py-2 border border-white/10">
+                <svg class="w-4 h-4 text-green-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"></path>
+                </svg>
+                <span class="text-xs text-green-200 font-medium">Live Data from IRCC</span>
+              </div>
+            </div>
+          )}
+        </div>
+      </div>
+      
+      <!-- Primary CTAs -->
+      <div class="flex flex-col sm:flex-row gap-4 justify-center mb-8">
+        <a href="#crs-scoring" class="inline-flex items-center px-8 py-4 bg-white text-blue-600 font-semibold rounded-xl hover:bg-blue-50 transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl">
+          Calculate CRS Score
+          <svg class="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+          </svg>
+        </a>
+        <a href="/tools/master-assessment?utm_source=immigratic&utm_medium=website&utm_campaign=express_entry_guide&utm_content=hero" class="inline-flex items-center px-8 py-4 bg-transparent border-2 border-white/30 text-white font-semibold rounded-xl hover:bg-white/10 transition-all duration-300 transform hover:scale-105">
+          Start My Assessment
+        </a>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Sticky Navigation -->
+  <nav class="sticky top-0 z-50 bg-white dark:bg-gray-900 border-b border-gray-200 dark:border-gray-700 shadow-sm backdrop-blur-sm bg-white/95 dark:bg-gray-900/95">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex items-center justify-center py-3 lg:py-4 overflow-x-auto scrollbar-hide">
+        <a href="#overview" class="flex-shrink-0 px-3 lg:px-4 py-2 text-sm lg:text-base text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 font-medium transition-colors duration-300 border-b-2 border-transparent hover:border-blue-600 dark:hover:border-blue-400 whitespace-nowrap">
+          📋 Overview
+        </a>
+        <a href="#crs-scoring" class="flex-shrink-0 px-3 lg:px-4 py-2 text-sm lg:text-base text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 font-medium transition-colors duration-300 border-b-2 border-transparent hover:border-blue-600 dark:hover:border-blue-400 whitespace-nowrap">
+          🎯 CRS Scoring
+        </a>
+        <a href="#application-process" class="flex-shrink-0 px-3 lg:px-4 py-2 text-sm lg:text-base text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 font-medium transition-colors duration-300 border-b-2 border-transparent hover:border-blue-600 dark:hover:border-blue-400 whitespace-nowrap">
+          📝 Application
+        </a>
+        <a href="#documents" class="flex-shrink-0 px-3 lg:px-4 py-2 text-sm lg:text-base text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 font-medium transition-colors duration-300 border-b-2 border-transparent hover:border-blue-600 dark:hover:border-blue-400 whitespace-nowrap">
+          📊 Documents
+        </a>
+        <a href="#strategies" class="flex-shrink-0 px-3 lg:px-4 py-2 text-sm lg:text-base text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 font-medium transition-colors duration-300 border-b-2 border-transparent hover:border-blue-600 dark:hover:border-blue-400 whitespace-nowrap">
+          🚀 Strategies
+        </a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Main Content -->
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+        
+        <!-- Overview Section -->
+        <section id="overview" class="mb-16 scroll-reveal">
+          <div class="bg-white dark:bg-gray-800 rounded-2xl p-8 shadow-lg border border-gray-200 dark:border-gray-700 hover:shadow-2xl hover:scale-[1.02] transition-all duration-500 hover:border-blue-300 dark:hover:border-blue-600">
+            <h2 class="text-3xl font-bold text-gray-900 dark:text-white mb-6">What is Express Entry?</h2>
+            <p class="text-lg text-gray-600 dark:text-gray-300 mb-6">
+              Express Entry is Canada's flagship immigration system for skilled workers. It's a points-based system that ranks candidates based on their Comprehensive Ranking System (CRS) score and invites the highest-scoring applicants to apply for permanent residence.
+            </p>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
+              <div class="text-center p-6 bg-blue-50 dark:bg-blue-900/20 rounded-xl border border-blue-200 dark:border-blue-700 hover:bg-blue-100 dark:hover:bg-blue-900/40 hover:scale-105 hover:rotate-1 transition-all duration-300 cursor-pointer group">
+                <div class="w-12 h-12 bg-blue-500 rounded-xl flex items-center justify-center mx-auto mb-4 group-hover:rotate-12 group-hover:scale-110 transition-transform duration-300">
+                  <span class="text-2xl">⚡</span>
+                </div>
+                <h3 class="font-bold text-gray-900 dark:text-white mb-2 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">Fast Processing</h3>
+                <p class="text-sm text-gray-600 dark:text-gray-400">6-8 months average processing time</p>
+              </div>
+              
+              <div class="text-center p-6 bg-green-50 dark:bg-green-900/20 rounded-xl border border-green-200 dark:border-green-700 hover:bg-green-100 dark:hover:bg-green-900/40 hover:scale-105 hover:-rotate-1 transition-all duration-300 cursor-pointer group">
+                <div class="w-12 h-12 bg-green-500 rounded-xl flex items-center justify-center mx-auto mb-4 group-hover:rotate-12 group-hover:scale-110 transition-transform duration-300">
+                  <span class="text-2xl">🎯</span>
+                </div>
+                <h3 class="font-bold text-gray-900 dark:text-white mb-2 group-hover:text-green-600 dark:group-hover:text-green-400 transition-colors">Points-Based</h3>
+                <p class="text-sm text-gray-600 dark:text-gray-400">CRS scoring system for ranking</p>
+              </div>
+              
+              <div class="text-center p-6 bg-purple-50 dark:bg-purple-900/20 rounded-xl border border-purple-200 dark:border-purple-700 hover:bg-purple-100 dark:hover:bg-purple-900/40 hover:scale-105 hover:rotate-1 transition-all duration-300 cursor-pointer group">
+                <div class="w-12 h-12 bg-purple-500 rounded-xl flex items-center justify-center mx-auto mb-4 group-hover:rotate-12 group-hover:scale-110 transition-transform duration-300">
+                  <span class="text-2xl">🌍</span>
+                </div>
+                <h3 class="font-bold text-gray-900 dark:text-white mb-2 group-hover:text-purple-600 dark:group-hover:text-purple-400 transition-colors">Three Programs</h3>
+                <p class="text-sm text-gray-600 dark:text-gray-400">FSW, CEC, and FST programs</p>
+              </div>
+
+              <div class="text-center p-6 bg-orange-50 dark:bg-orange-900/20 rounded-xl border border-orange-200 dark:border-orange-700 hover:bg-orange-100 dark:hover:bg-orange-900/40 hover:scale-105 hover:-rotate-1 transition-all duration-300 cursor-pointer group">
+                <div class="w-12 h-12 bg-orange-500 rounded-xl flex items-center justify-center mx-auto mb-4 group-hover:rotate-12 group-hover:scale-110 transition-transform duration-300">
+                  <span class="text-2xl">🎖️</span>
+                </div>
+                <h3 class="font-bold text-gray-900 dark:text-white mb-2 group-hover:text-orange-600 dark:group-hover:text-orange-400 transition-colors">Targeted Categories</h3>
+                <p class="text-sm text-gray-600 dark:text-gray-400">Health, STEM, Trade, Education, Agriculture, French</p>
+              </div>
+            </div>
+
+            <div class="bg-gradient-to-r from-blue-50 to-purple-50 dark:from-blue-900/20 dark:to-purple-900/20 rounded-xl p-6 border border-blue-200 dark:border-blue-700">
+              <h3 class="text-xl font-bold text-gray-900 dark:text-white mb-3">Key Benefits</h3>
+              <ul class="space-y-2 text-gray-700 dark:text-gray-300">
+                <li class="flex items-center gap-2"><span class="text-green-500">✓</span> No job offer required (for most streams)</li>
+                <li class="flex items-center gap-2"><span class="text-yellow-500">⚠️</span> Spouse/partner affects your score (can add or reduce points)</li>
+                <li class="flex items-center gap-2"><span class="text-green-500">✓</span> Provincial Nominee Program (PNP) integration</li>
+                <li class="flex items-center gap-2"><span class="text-green-500">✓</span> Work anywhere in Canada (except Quebec)</li>
+              </ul>
+            </div>
+          </div>
+        </section>
+
+        <!-- CRS Scoring Section -->
+        <section id="crs-scoring" class="mb-16 scroll-reveal">
+          <div class="bg-white dark:bg-gray-800 rounded-2xl p-8 shadow-lg border border-gray-200 dark:border-gray-700 hover:shadow-2xl hover:scale-[1.02] transition-all duration-500 hover:border-purple-300 dark:hover:border-purple-600">
+            <h2 class="text-3xl font-bold text-gray-900 dark:text-white mb-6">CRS Scoring Breakdown 2025</h2>
+            <p class="text-lg text-gray-600 dark:text-gray-300 mb-8">
+              The Comprehensive Ranking System (CRS) awards up to 1,200 points. Choose your situation to see the exact point breakdown:
+            </p>
+
+            <!-- Tab Navigation -->
+            <div class="flex space-x-1 bg-gray-100 dark:bg-gray-700 rounded-lg p-1 mb-8">
+              <button id="singleTab" class="flex-1 py-3 px-4 rounded-md font-medium transition-all duration-200 bg-blue-600 text-white shadow-sm">
+                👤 Single / Not Accompanying
+              </button>
+              <button id="marriedTab" class="flex-1 py-3 px-4 rounded-md font-medium transition-all duration-200 text-gray-700 dark:text-gray-300 hover:bg-white dark:hover:bg-gray-600">
+                💑 Married / Accompanying
+              </button>
+            </div>
+
+            <!-- Single Applicant CRS Breakdown -->
+            <div id="singleBreakdown" class="space-y-6">
+              <!-- Core Human Capital -->
+              <div class="bg-blue-50 dark:bg-blue-900/20 rounded-xl p-6 border border-blue-200 dark:border-blue-700">
+                <h3 class="text-xl font-bold text-gray-900 dark:text-white mb-4 flex items-center gap-2">
+                  <span class="text-blue-500">👤</span>
+                  Core Human Capital (Maximum 500 points)
+                </h3>
+                
+                <!-- Age Points -->
+                <div class="mb-6">
+                  <h4 class="font-semibold text-gray-900 dark:text-white mb-3">Age (Maximum 110 points)</h4>
+                  <div class="grid grid-cols-2 md:grid-cols-5 gap-2 text-sm">
+                    <div class="text-center p-2 bg-white dark:bg-gray-800 rounded border hover:bg-blue-50 dark:hover:bg-blue-900/20 hover:scale-110 hover:rotate-2 transition-all duration-300 cursor-pointer hover:shadow-lg">
+                      <div class="font-bold text-blue-600">20-29</div>
+                      <div class="text-gray-600 dark:text-gray-400">110 pts</div>
+                    </div>
+                    <div class="text-center p-2 bg-white dark:bg-gray-800 rounded border hover:bg-blue-50 dark:hover:bg-blue-900/20 hover:scale-110 hover:-rotate-2 transition-all duration-300 cursor-pointer hover:shadow-lg">
+                      <div class="font-bold text-blue-600">30</div>
+                      <div class="text-gray-600 dark:text-gray-400">105 pts</div>
+                    </div>
+                    <div class="text-center p-2 bg-white dark:bg-gray-800 rounded border hover:bg-blue-50 dark:hover:bg-blue-900/20 hover:scale-110 hover:rotate-2 transition-all duration-300 cursor-pointer hover:shadow-lg">
+                      <div class="font-bold text-blue-600">35</div>
+                      <div class="text-gray-600 dark:text-gray-400">77 pts</div>
+                    </div>
+                    <div class="text-center p-2 bg-white dark:bg-gray-800 rounded border hover:bg-blue-50 dark:hover:bg-blue-900/20 hover:scale-110 hover:-rotate-2 transition-all duration-300 cursor-pointer hover:shadow-lg">
+                      <div class="font-bold text-blue-600">40</div>
+                      <div class="text-gray-600 dark:text-gray-400">50 pts</div>
+                    </div>
+                    <div class="text-center p-2 bg-white dark:bg-gray-800 rounded border hover:bg-red-50 dark:hover:bg-red-900/20 hover:scale-110 hover:rotate-2 transition-all duration-300 cursor-pointer hover:shadow-lg">
+                      <div class="font-bold text-blue-600">45+</div>
+                      <div class="text-gray-600 dark:text-gray-400">0 pts</div>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Education Points -->
+                <div class="mb-6">
+                  <h4 class="font-semibold text-gray-900 dark:text-white mb-3">Education (Maximum 150 points)</h4>
+                  <div class="grid grid-cols-1 md:grid-cols-2 gap-3 text-sm">
+                    <div class="flex justify-between items-center p-3 bg-white dark:bg-gray-800 rounded border">
+                      <span>Doctoral degree</span>
+                      <span class="font-bold text-blue-600">150 pts</span>
+                    </div>
+                    <div class="flex justify-between items-center p-3 bg-white dark:bg-gray-800 rounded border">
+                      <span>Master's degree</span>
+                      <span class="font-bold text-blue-600">135 pts</span>
+                    </div>
+                    <div class="flex justify-between items-center p-3 bg-white dark:bg-gray-800 rounded border">
+                      <span>Bachelor's degree</span>
+                      <span class="font-bold text-blue-600">120 pts</span>
+                    </div>
+                    <div class="flex justify-between items-center p-3 bg-white dark:bg-gray-800 rounded border">
+                      <span>Two-year diploma</span>
+                      <span class="font-bold text-blue-600">98 pts</span>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Language Points -->
+                <div class="mb-6">
+                  <h4 class="font-semibold text-gray-900 dark:text-white mb-3">Language Proficiency (Maximum 136 points)</h4>
+                  <div class="grid grid-cols-1 md:grid-cols-2 gap-3 text-sm">
+                    <div class="flex justify-between items-center p-3 bg-white dark:bg-gray-800 rounded border">
+                      <span>CLB 10+ (All skills)</span>
+                      <span class="font-bold text-blue-600">34 pts</span>
+                    </div>
+                    <div class="flex justify-between items-center p-3 bg-white dark:bg-gray-800 rounded border">
+                      <span>CLB 9 (All skills)</span>
+                      <span class="font-bold text-blue-600">31 pts</span>
+                    </div>
+                    <div class="flex justify-between items-center p-3 bg-white dark:bg-gray-800 rounded border">
+                      <span>CLB 8 (All skills)</span>
+                      <span class="font-bold text-blue-600">23 pts</span>
+                    </div>
+                    <div class="flex justify-between items-center p-3 bg-white dark:bg-gray-800 rounded border">
+                      <span>CLB 7 (All skills)</span>
+                      <span class="font-bold text-blue-600">17 pts</span>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Canadian Work Experience -->
+                <div class="mb-4">
+                  <h4 class="font-semibold text-gray-900 dark:text-white mb-3">Canadian Work Experience (Maximum 80 points)</h4>
+                  <div class="grid grid-cols-2 md:grid-cols-5 gap-2 text-sm">
+                    <div class="text-center p-3 bg-white dark:bg-gray-800 rounded border">
+                      <div class="font-bold text-blue-600">5+ years</div>
+                      <div class="text-gray-600 dark:text-gray-400">80 pts</div>
+                    </div>
+                    <div class="text-center p-3 bg-white dark:bg-gray-800 rounded border">
+                      <div class="font-bold text-blue-600">4 years</div>
+                      <div class="text-gray-600 dark:text-gray-400">72 pts</div>
+                    </div>
+                    <div class="text-center p-3 bg-white dark:bg-gray-800 rounded border">
+                      <div class="font-bold text-blue-600">3 years</div>
+                      <div class="text-gray-600 dark:text-gray-400">64 pts</div>
+                    </div>
+                    <div class="text-center p-3 bg-white dark:bg-gray-800 rounded border">
+                      <div class="font-bold text-blue-600">2 years</div>
+                      <div class="text-gray-600 dark:text-gray-400">53 pts</div>
+                    </div>
+                    <div class="text-center p-3 bg-white dark:bg-gray-800 rounded border">
+                      <div class="font-bold text-blue-600">1 year</div>
+                      <div class="text-gray-600 dark:text-gray-400">40 pts</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Skill Transferability -->
+              <div class="bg-purple-50 dark:bg-purple-900/20 rounded-xl p-6 border border-purple-200 dark:border-purple-700">
+                <h3 class="text-xl font-bold text-gray-900 dark:text-white mb-4 flex items-center gap-2">
+                  <span class="text-purple-500">🔄</span>
+                  Skill Transferability (Maximum 100 points)
+                </h3>
+                
+                <!-- Section 1: Education (50 points max) -->
+                <div class="mb-6">
+                  <h4 class="font-semibold text-gray-900 dark:text-white mb-3 text-purple-700 dark:text-purple-300">
+                    📚 Section 1: Education (Maximum 50 points)
+                  </h4>
+                  <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm">
+                    <div class="bg-white dark:bg-gray-800 rounded-lg p-4 border border-purple-200 dark:border-purple-600">
+                      <h5 class="font-semibold text-gray-900 dark:text-white mb-2">Option A: Language + Education</h5>
+                      <p class="text-gray-600 dark:text-gray-400">Good/strong language proficiency + post-secondary degree</p>
+                      <div class="mt-2 text-purple-600 dark:text-purple-400 font-bold">50 points</div>
+                    </div>
+                    <div class="bg-white dark:bg-gray-800 rounded-lg p-4 border border-purple-200 dark:border-purple-600">
+                      <h5 class="font-semibold text-gray-900 dark:text-white mb-2">Option B: Canadian Work + Education</h5>
+                      <p class="text-gray-600 dark:text-gray-400">Canadian work experience + post-secondary degree</p>
+                      <div class="mt-2 text-purple-600 dark:text-purple-400 font-bold">50 points</div>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Section 2: Foreign Work Experience (50 points max) -->
+                <div class="mb-6">
+                  <h4 class="font-semibold text-gray-900 dark:text-white mb-3 text-purple-700 dark:text-purple-300">
+                    🌍 Section 2: Foreign Work Experience (Maximum 50 points)
+                  </h4>
+                  <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm">
+                    <div class="bg-white dark:bg-gray-800 rounded-lg p-4 border border-purple-200 dark:border-purple-600">
+                      <h5 class="font-semibold text-gray-900 dark:text-white mb-2">Option A: Language + Foreign Work</h5>
+                      <p class="text-gray-600 dark:text-gray-400">Good/strong language (CLB 7+) + foreign work experience</p>
+                      <div class="mt-2 text-purple-600 dark:text-purple-400 font-bold">50 points</div>
+                    </div>
+                    <div class="bg-white dark:bg-gray-800 rounded-lg p-4 border border-purple-200 dark:border-purple-600">
+                      <h5 class="font-semibold text-gray-900 dark:text-white mb-2">Option B: Canadian Work + Foreign Work</h5>
+                      <p class="text-gray-600 dark:text-gray-400">Canadian work experience + foreign work experience</p>
+                      <div class="mt-2 text-purple-600 dark:text-purple-400 font-bold">50 points</div>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Section 3: Certificate of Qualification (50 points max) -->
+                <div class="mb-4">
+                  <h4 class="font-semibold text-gray-900 dark:text-white mb-3 text-purple-700 dark:text-purple-300">
+                    🛠️ Section 3: Certificate of Qualification (Maximum 50 points)
+                  </h4>
+                  <div class="bg-white dark:bg-gray-800 rounded-lg p-4 border border-purple-200 dark:border-purple-600">
+                    <h5 class="font-semibold text-gray-900 dark:text-white mb-2">Trade Occupations</h5>
+                    <p class="text-gray-600 dark:text-gray-400">Good/strong language proficiency + certificate of qualification</p>
+                    <div class="mt-2 text-purple-600 dark:text-purple-400 font-bold">50 points</div>
+                  </div>
+                </div>
+
+                <!-- Important Note -->
+                <div class="mt-4 p-3 bg-purple-50 dark:bg-purple-900/20 rounded-lg border border-purple-200 dark:border-purple-600">
+                  <p class="text-sm text-purple-800 dark:text-purple-200">
+                    <strong>💡 Note:</strong> You can earn points from multiple sections, but each section has a maximum of 50 points. 
+                    Total maximum for Skill Transferability is 100 points.
+                  </p>
+                </div>
+              </div>
+
+              <!-- Additional Points -->
+              <div class="bg-orange-50 dark:bg-orange-900/20 rounded-xl p-6 border border-orange-200 dark:border-orange-700">
+                <h3 class="text-xl font-bold text-gray-900 dark:text-white mb-4 flex items-center gap-2">
+                  <span class="text-orange-500">⭐</span>
+                  Additional Points (Maximum 600 points)
+                </h3>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm">
+                  <div>
+                    <h4 class="font-semibold text-gray-900 dark:text-white mb-2">Provincial Nomination</h4>
+                    <p class="text-gray-600 dark:text-gray-400">600 points (Updated 2025)</p>
+                  </div>
+                  <div>
+                    <h4 class="font-semibold text-gray-900 dark:text-white mb-2">French Language Skills</h4>
+                    <p class="text-gray-600 dark:text-gray-400">NCLC 7+ with English CLB 5+: 50 pts</p>
+                  </div>
+                  <div>
+                    <h4 class="font-semibold text-gray-900 dark:text-white mb-2">Canadian Education</h4>
+                    <p class="text-gray-600 dark:text-gray-400">3+ years: 30 pts, 1-2 years: 15 pts</p>
+                  </div>
+                  <div>
+                    <h4 class="font-semibold text-gray-900 dark:text-white mb-2">Siblings in Canada</h4>
+                    <p class="text-gray-600 dark:text-gray-400">15 points</p>
+                  </div>
+                </div>
+                <div class="mt-4 p-3 bg-yellow-50 dark:bg-yellow-900/20 rounded-lg border border-yellow-200 dark:border-yellow-700">
+                  <p class="text-sm text-yellow-800 dark:text-yellow-200">
+                    <strong>⚠️ Important Update:</strong> Job offer points have been removed as of March 25, 2025.
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <!-- Married Applicant CRS Breakdown -->
+            <div id="marriedBreakdown" class="space-y-6" style="display: none;">
+              <!-- Core Human Capital (Married) -->
+              <div class="bg-blue-50 dark:bg-blue-900/20 rounded-xl p-6 border border-blue-200 dark:border-blue-700">
+                <h3 class="text-xl font-bold text-gray-900 dark:text-white mb-4 flex items-center gap-2">
+                  <span class="text-blue-500">💑</span>
+                  Core Human Capital (Maximum 460 points)
+                </h3>
+                
+                <!-- Age Points (Married) -->
+                <div class="mb-6">
+                  <h4 class="font-semibold text-gray-900 dark:text-white mb-3">Age (Maximum 100 points)</h4>
+                  <div class="grid grid-cols-2 md:grid-cols-5 gap-2 text-sm">
+                    <div class="text-center p-2 bg-white dark:bg-gray-800 rounded border">
+                      <div class="font-bold text-blue-600">20-29</div>
+                      <div class="text-gray-600 dark:text-gray-400">100 pts</div>
+                    </div>
+                    <div class="text-center p-2 bg-white dark:bg-gray-800 rounded border">
+                      <div class="font-bold text-blue-600">30</div>
+                      <div class="text-gray-600 dark:text-gray-400">95 pts</div>
+                    </div>
+                    <div class="text-center p-2 bg-white dark:bg-gray-800 rounded border">
+                      <div class="font-bold text-blue-600">35</div>
+                      <div class="text-gray-600 dark:text-gray-400">70 pts</div>
+                    </div>
+                    <div class="text-center p-2 bg-white dark:bg-gray-800 rounded border">
+                      <div class="font-bold text-blue-600">40</div>
+                      <div class="text-gray-600 dark:text-gray-400">45 pts</div>
+                    </div>
+                    <div class="text-center p-2 bg-white dark:bg-gray-800 rounded border">
+                      <div class="font-bold text-blue-600">45+</div>
+                      <div class="text-gray-600 dark:text-gray-400">0 pts</div>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Education Points (Married) -->
+                <div class="mb-6">
+                  <h4 class="font-semibold text-gray-900 dark:text-white mb-3">Education (Maximum 140 points)</h4>
+                  <div class="grid grid-cols-1 md:grid-cols-2 gap-3 text-sm">
+                    <div class="flex justify-between items-center p-3 bg-white dark:bg-gray-800 rounded border">
+                      <span>Doctoral degree</span>
+                      <span class="font-bold text-blue-600">140 pts</span>
+                    </div>
+                    <div class="flex justify-between items-center p-3 bg-white dark:bg-gray-800 rounded border">
+                      <span>Master's degree</span>
+                      <span class="font-bold text-blue-600">126 pts</span>
+                    </div>
+                    <div class="flex justify-between items-center p-3 bg-white dark:bg-gray-800 rounded border">
+                      <span>Bachelor's degree</span>
+                      <span class="font-bold text-blue-600">112 pts</span>
+                    </div>
+                    <div class="flex justify-between items-center p-3 bg-white dark:bg-gray-800 rounded border">
+                      <span>Two-year diploma</span>
+                      <span class="font-bold text-blue-600">91 pts</span>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Language Points (Married) -->
+                <div class="mb-6">
+                  <h4 class="font-semibold text-gray-900 dark:text-white mb-3">Language Proficiency (Maximum 128 points)</h4>
+                  <div class="grid grid-cols-1 md:grid-cols-2 gap-3 text-sm">
+                    <div class="flex justify-between items-center p-3 bg-white dark:bg-gray-800 rounded border">
+                      <span>CLB 10+ (All skills)</span>
+                      <span class="font-bold text-blue-600">32 pts</span>
+                    </div>
+                    <div class="flex justify-between items-center p-3 bg-white dark:bg-gray-800 rounded border">
+                      <span>CLB 9 (All skills)</span>
+                      <span class="font-bold text-blue-600">29 pts</span>
+                    </div>
+                    <div class="flex justify-between items-center p-3 bg-white dark:bg-gray-800 rounded border">
+                      <span>CLB 8 (All skills)</span>
+                      <span class="font-bold text-blue-600">22 pts</span>
+                    </div>
+                    <div class="flex justify-between items-center p-3 bg-white dark:bg-gray-800 rounded border">
+                      <span>CLB 7 (All skills)</span>
+                      <span class="font-bold text-blue-600">16 pts</span>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Canadian Work Experience (Married) -->
+                <div class="mb-4">
+                  <h4 class="font-semibold text-gray-900 dark:text-white mb-3">Canadian Work Experience (Maximum 70 points)</h4>
+                  <div class="grid grid-cols-2 md:grid-cols-5 gap-2 text-sm">
+                    <div class="text-center p-3 bg-white dark:bg-gray-800 rounded border">
+                      <div class="font-bold text-blue-600">5+ years</div>
+                      <div class="text-gray-600 dark:text-gray-400">70 pts</div>
+                    </div>
+                    <div class="text-center p-3 bg-white dark:bg-gray-800 rounded border">
+                      <div class="font-bold text-blue-600">4 years</div>
+                      <div class="text-gray-600 dark:text-gray-400">63 pts</div>
+                    </div>
+                    <div class="text-center p-3 bg-white dark:bg-gray-800 rounded border">
+                      <div class="font-bold text-blue-600">3 years</div>
+                      <div class="text-gray-600 dark:text-gray-400">56 pts</div>
+                    </div>
+                    <div class="text-center p-3 bg-white dark:bg-gray-800 rounded border">
+                      <div class="font-bold text-blue-600">2 years</div>
+                      <div class="text-gray-600 dark:text-gray-400">46 pts</div>
+                    </div>
+                    <div class="text-center p-3 bg-white dark:bg-gray-800 rounded border">
+                      <div class="font-bold text-blue-600">1 year</div>
+                      <div class="text-gray-600 dark:text-gray-400">35 pts</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Spouse Factors -->
+              <div class="bg-pink-50 dark:bg-pink-900/20 rounded-xl p-6 border border-pink-200 dark:border-pink-700">
+                <h3 class="text-xl font-bold text-gray-900 dark:text-white mb-4 flex items-center gap-2">
+                  <span class="text-pink-500">💕</span>
+                  Spouse Factors (Maximum 40 points)
+                </h3>
+                
+                <!-- Spouse Education -->
+                <div class="mb-4">
+                  <h4 class="font-semibold text-gray-900 dark:text-white mb-3">Spouse Education (Maximum 10 points)</h4>
+                  <div class="grid grid-cols-1 md:grid-cols-2 gap-3 text-sm">
+                    <div class="flex justify-between items-center p-3 bg-white dark:bg-gray-800 rounded border">
+                      <span>Master's/PhD</span>
+                      <span class="font-bold text-pink-600">10 pts</span>
+                    </div>
+                    <div class="flex justify-between items-center p-3 bg-white dark:bg-gray-800 rounded border">
+                      <span>Bachelor's degree</span>
+                      <span class="font-bold text-pink-600">8 pts</span>
+                    </div>
+                    <div class="flex justify-between items-center p-3 bg-white dark:bg-gray-800 rounded border">
+                      <span>Two-year diploma</span>
+                      <span class="font-bold text-pink-600">7 pts</span>
+                    </div>
+                    <div class="flex justify-between items-center p-3 bg-white dark:bg-gray-800 rounded border">
+                      <span>One-year diploma</span>
+                      <span class="font-bold text-pink-600">6 pts</span>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Spouse Language -->
+                <div class="mb-4">
+                  <h4 class="font-semibold text-gray-900 dark:text-white mb-3">Spouse Language (Maximum 20 points)</h4>
+                  <div class="grid grid-cols-1 md:grid-cols-2 gap-3 text-sm">
+                    <div class="flex justify-between items-center p-3 bg-white dark:bg-gray-800 rounded border">
+                      <span>CLB 9+ (All skills)</span>
+                      <span class="font-bold text-pink-600">20 pts</span>
+                    </div>
+                    <div class="flex justify-between items-center p-3 bg-white dark:bg-gray-800 rounded border">
+                      <span>CLB 7-8 (All skills)</span>
+                      <span class="font-bold text-pink-600">16 pts</span>
+                    </div>
+                    <div class="flex justify-between items-center p-3 bg-white dark:bg-gray-800 rounded border">
+                      <span>CLB 5-6 (All skills)</span>
+                      <span class="font-bold text-pink-600">12 pts</span>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Spouse Canadian Work Experience -->
+                <div class="mb-4">
+                  <h4 class="font-semibold text-gray-900 dark:text-white mb-3">Spouse Canadian Work (Maximum 10 points)</h4>
+                  <div class="grid grid-cols-1 md:grid-cols-2 gap-3 text-sm">
+                    <div class="flex justify-between items-center p-3 bg-white dark:bg-gray-800 rounded border">
+                      <span>3+ years</span>
+                      <span class="font-bold text-pink-600">10 pts</span>
+                    </div>
+                    <div class="flex justify-between items-center p-3 bg-white dark:bg-gray-800 rounded border">
+                      <span>2 years</span>
+                      <span class="font-bold text-pink-600">7 pts</span>
+                    </div>
+                    <div class="flex justify-between items-center p-3 bg-white dark:bg-gray-800 rounded border">
+                      <span>1 year</span>
+                      <span class="font-bold text-pink-600">5 pts</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Skill Transferability (Same as Single) -->
+              <div class="bg-purple-50 dark:bg-purple-900/20 rounded-xl p-6 border border-purple-200 dark:border-purple-700">
+                <h3 class="text-xl font-bold text-gray-900 dark:text-white mb-4 flex items-center gap-2">
+                  <span class="text-purple-500">🔄</span>
+                  Skill Transferability (Maximum 100 points)
+                </h3>
+                
+                <!-- Same 3-section breakdown as Single -->
+                <div class="mb-6">
+                  <h4 class="font-semibold text-gray-900 dark:text-white mb-3 text-purple-700 dark:text-purple-300">
+                    📚 Section 1: Education (Maximum 50 points)
+                  </h4>
+                  <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm">
+                    <div class="bg-white dark:bg-gray-800 rounded-lg p-4 border border-purple-200 dark:border-purple-600">
+                      <h5 class="font-semibold text-gray-900 dark:text-white mb-2">Option A: Language + Education</h5>
+                      <p class="text-gray-600 dark:text-gray-400">Good/strong language proficiency + post-secondary degree</p>
+                      <div class="mt-2 text-purple-600 dark:text-purple-400 font-bold">50 points</div>
+                    </div>
+                    <div class="bg-white dark:bg-gray-800 rounded-lg p-4 border border-purple-200 dark:border-purple-600">
+                      <h5 class="font-semibold text-gray-900 dark:text-white mb-2">Option B: Canadian Work + Education</h5>
+                      <p class="text-gray-600 dark:text-gray-400">Canadian work experience + post-secondary degree</p>
+                      <div class="mt-2 text-purple-600 dark:text-purple-400 font-bold">50 points</div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="mb-6">
+                  <h4 class="font-semibold text-gray-900 dark:text-white mb-3 text-purple-700 dark:text-purple-300">
+                    🌍 Section 2: Foreign Work Experience (Maximum 50 points)
+                  </h4>
+                  <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm">
+                    <div class="bg-white dark:bg-gray-800 rounded-lg p-4 border border-purple-200 dark:border-purple-600">
+                      <h5 class="font-semibold text-gray-900 dark:text-white mb-2">Option A: Language + Foreign Work</h5>
+                      <p class="text-gray-600 dark:text-gray-400">Good/strong language (CLB 7+) + foreign work experience</p>
+                      <div class="mt-2 text-purple-600 dark:text-purple-400 font-bold">50 points</div>
+                    </div>
+                    <div class="bg-white dark:bg-gray-800 rounded-lg p-4 border border-purple-200 dark:border-purple-600">
+                      <h5 class="font-semibold text-gray-900 dark:text-white mb-2">Option B: Canadian Work + Foreign Work</h5>
+                      <p class="text-gray-600 dark:text-gray-400">Canadian work experience + foreign work experience</p>
+                      <div class="mt-2 text-purple-600 dark:text-purple-400 font-bold">50 points</div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="mb-4">
+                  <h4 class="font-semibold text-gray-900 dark:text-white mb-3 text-purple-700 dark:text-purple-300">
+                    🛠️ Section 3: Certificate of Qualification (Maximum 50 points)
+                  </h4>
+                  <div class="bg-white dark:bg-gray-800 rounded-lg p-4 border border-purple-200 dark:border-purple-600">
+                    <h5 class="font-semibold text-gray-900 dark:text-white mb-2">Trade Occupations</h5>
+                    <p class="text-gray-600 dark:text-gray-400">Good/strong language proficiency + certificate of qualification</p>
+                    <div class="mt-2 text-purple-600 dark:text-purple-400 font-bold">50 points</div>
+                  </div>
+                </div>
+
+                <div class="mt-4 p-3 bg-purple-50 dark:bg-purple-900/20 rounded-lg border border-purple-200 dark:border-purple-600">
+                  <p class="text-sm text-purple-800 dark:text-purple-200">
+                    <strong>💡 Note:</strong> You can earn points from multiple sections, but each section has a maximum of 50 points. 
+                    Total maximum for Skill Transferability is 100 points.
+                  </p>
+                </div>
+              </div>
+
+              <!-- Additional Points (Same as Single) -->
+              <div class="bg-orange-50 dark:bg-orange-900/20 rounded-xl p-6 border border-orange-200 dark:border-orange-700">
+                <h3 class="text-xl font-bold text-gray-900 dark:text-white mb-4 flex items-center gap-2">
+                  <span class="text-orange-500">⭐</span>
+                  Additional Points (Maximum 600 points)
+                </h3>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm">
+                  <div>
+                    <h4 class="font-semibold text-gray-900 dark:text-white mb-2">Provincial Nomination</h4>
+                    <p class="text-gray-600 dark:text-gray-400">600 points (Updated 2025)</p>
+                  </div>
+                  <div>
+                    <h4 class="font-semibold text-gray-900 dark:text-white mb-2">French Language Skills</h4>
+                    <p class="text-gray-600 dark:text-gray-400">NCLC 7+ with English CLB 5+: 50 pts</p>
+                  </div>
+                  <div>
+                    <h4 class="font-semibold text-gray-900 dark:text-white mb-2">Canadian Education</h4>
+                    <p class="text-gray-600 dark:text-gray-400">3+ years: 30 pts, 1-2 years: 15 pts</p>
+                  </div>
+                  <div>
+                    <h4 class="font-semibold text-gray-900 dark:text-white mb-2">Siblings in Canada</h4>
+                    <p class="text-gray-600 dark:text-gray-400">15 points</p>
+                  </div>
+                </div>
+                <div class="mt-4 p-3 bg-yellow-50 dark:bg-yellow-900/20 rounded-lg border border-yellow-200 dark:border-yellow-700">
+                  <p class="text-sm text-yellow-800 dark:text-yellow-200">
+                    <strong>⚠️ Important Update:</strong> Job offer points have been removed as of March 25, 2025.
+                  </p>
+                </div>
+              </div>
+            </div>
+
+         <!-- Application Process Section -->
+         <section id="application-process" class="mb-16 scroll-reveal">
+           <div class="bg-white dark:bg-gray-800 rounded-2xl p-8 shadow-lg border border-gray-200 dark:border-gray-700 hover:shadow-2xl hover:scale-[1.02] transition-all duration-500 hover:border-green-300 dark:hover:border-green-600">
+             <h2 class="text-3xl font-bold text-gray-900 dark:text-white mb-6">Application Process</h2>
+             <p class="text-lg text-gray-600 dark:text-gray-300 mb-8">
+               The Express Entry process involves several key steps. Here's your roadmap to permanent residence:
+             </p>
+             
+             <div class="space-y-6">
+               <!-- Step 1 -->
+               <div class="flex gap-4">
+                 <div class="w-12 h-12 bg-blue-500 text-white rounded-full flex items-center justify-center font-bold text-lg flex-shrink-0">1</div>
+                 <div class="flex-1">
+                   <h3 class="text-xl font-bold text-gray-900 dark:text-white mb-2">Language Testing</h3>
+                   <p class="text-gray-600 dark:text-gray-400 mb-3">Take IELTS, CELPIP, or PTE Core. Minimum CLB 7 required for most programs.</p>
+                   <div class="bg-blue-50 dark:bg-blue-900/20 rounded-lg p-3">
+                     <p class="text-sm text-blue-800 dark:text-blue-200"><strong>Timeline:</strong> 2-4 weeks for results</p>
+                   </div>
+                 </div>
+               </div>
+
+               <!-- Step 2 -->
+               <div class="flex gap-4">
+                 <div class="w-12 h-12 bg-green-500 text-white rounded-full flex items-center justify-center font-bold text-lg flex-shrink-0">2</div>
+                 <div class="flex-1">
+                   <h3 class="text-xl font-bold text-gray-900 dark:text-white mb-2">Education Assessment</h3>
+                   <p class="text-gray-600 dark:text-gray-400 mb-3">Get your foreign education assessed by designated organizations (WES, ICAS, etc.).</p>
+                   <div class="bg-green-50 dark:bg-green-900/20 rounded-lg p-3">
+                     <p class="text-sm text-green-800 dark:text-green-200"><strong>Timeline:</strong> 4-8 weeks for assessment</p>
+                   </div>
+                 </div>
+               </div>
+
+               <!-- Step 3 -->
+               <div class="flex gap-4">
+                 <div class="w-12 h-12 bg-purple-500 text-white rounded-full flex items-center justify-center font-bold text-lg flex-shrink-0">3</div>
+                 <div class="flex-1">
+                   <h3 class="text-xl font-bold text-gray-900 dark:text-white mb-2">Create Express Entry Profile</h3>
+                   <p class="text-gray-600 dark:text-gray-400 mb-3">Submit your profile with all required information and documents.</p>
+                   <div class="bg-purple-50 dark:bg-purple-900/20 rounded-lg p-3">
+                     <p class="text-sm text-purple-800 dark:text-purple-200"><strong>Timeline:</strong> 1-2 days to complete</p>
+                   </div>
+                 </div>
+               </div>
+
+               <!-- Step 4 -->
+               <div class="flex gap-4">
+                 <div class="w-12 h-12 bg-orange-500 text-white rounded-full flex items-center justify-center font-bold text-lg flex-shrink-0">4</div>
+                 <div class="flex-1">
+                   <h3 class="text-xl font-bold text-gray-900 dark:text-white mb-2">Receive ITA</h3>
+                   <p class="text-gray-600 dark:text-gray-400 mb-3">If your CRS score meets the cutoff, you'll receive an Invitation to Apply.</p>
+                   <div class="bg-orange-50 dark:bg-orange-900/20 rounded-lg p-3">
+                     <p class="text-sm text-orange-800 dark:text-orange-200"><strong>Timeline:</strong> Varies by draw frequency</p>
+                   </div>
+                 </div>
+               </div>
+
+               <!-- Step 5 -->
+               <div class="flex gap-4">
+                 <div class="w-12 h-12 bg-red-500 text-white rounded-full flex items-center justify-center font-bold text-lg flex-shrink-0">5</div>
+                 <div class="flex-1">
+                   <h3 class="text-xl font-bold text-gray-900 dark:text-white mb-2">Submit PR Application</h3>
+                   <p class="text-gray-600 dark:text-gray-400 mb-3">Complete and submit your permanent residence application within 60 days.</p>
+                   <div class="bg-red-50 dark:bg-red-900/20 rounded-lg p-3">
+                     <p class="text-sm text-red-800 dark:text-red-200"><strong>Timeline:</strong> 60 days to submit</p>
+                   </div>
+                 </div>
+               </div>
+
+               <!-- Step 6 -->
+               <div class="flex gap-4">
+                 <div class="w-12 h-12 bg-indigo-500 text-white rounded-full flex items-center justify-center font-bold text-lg flex-shrink-0">6</div>
+                 <div class="flex-1">
+                   <h3 class="text-xl font-bold text-gray-900 dark:text-white mb-2">Processing & Approval</h3>
+                   <p class="text-gray-600 dark:text-gray-400 mb-3">Medical exams, security checks, and final processing.</p>
+                   <div class="bg-indigo-50 dark:bg-indigo-900/20 rounded-lg p-3">
+                     <p class="text-sm text-indigo-800 dark:text-indigo-200"><strong>Timeline:</strong> 6-8 months average</p>
+                   </div>
+                 </div>
+               </div>
+             </div>
+           </div>
+         </section>
+
+         <!-- Documents Section -->
+         <section id="documents" class="mb-16 scroll-reveal">
+           <div class="bg-white dark:bg-gray-800 rounded-2xl p-8 shadow-lg border border-gray-200 dark:border-gray-700 hover:shadow-2xl hover:scale-[1.02] transition-all duration-500 hover:border-orange-300 dark:hover:border-orange-600">
+             <h2 class="text-3xl font-bold text-gray-900 dark:text-white mb-6">Required Documents</h2>
+             <p class="text-lg text-gray-600 dark:text-gray-300 mb-8">
+               Having the right documents ready is crucial for a successful Express Entry application. Here's what you'll need:
+             </p>
+             
+             <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+               <!-- Essential Documents -->
+               <div class="bg-blue-50 dark:bg-blue-900/20 rounded-xl p-6 border border-blue-200 dark:border-blue-700">
+                 <h3 class="text-xl font-bold text-gray-900 dark:text-white mb-4 flex items-center gap-2">
+                   <span class="text-blue-500">📋</span>
+                   Essential Documents
+                 </h3>
+                 <ul class="space-y-2 text-sm text-gray-700 dark:text-gray-300">
+                   <li class="flex items-center gap-2"><span class="text-green-500">✓</span> Valid passport</li>
+                   <li class="flex items-center gap-2"><span class="text-green-500">✓</span> Language test results (IELTS/CELPIP/PTE Core)</li>
+                   <li class="flex items-center gap-2"><span class="text-green-500">✓</span> Education credential assessment</li>
+                   <li class="flex items-center gap-2"><span class="text-green-500">✓</span> Work experience letters</li>
+                   <li class="flex items-center gap-2"><span class="text-green-500">✓</span> Proof of funds</li>
+                 </ul>
+               </div>
+
+               <!-- Supporting Documents -->
+               <div class="bg-green-50 dark:bg-green-900/20 rounded-xl p-6 border border-green-200 dark:border-green-700">
+                 <h3 class="text-xl font-bold text-gray-900 dark:text-white mb-4 flex items-center gap-2">
+                   <span class="text-green-500">📄</span>
+                   Supporting Documents
+                 </h3>
+                 <ul class="space-y-2 text-sm text-gray-700 dark:text-gray-300">
+                   <li class="flex items-center gap-2"><span class="text-green-500">✓</span> Birth certificate</li>
+                   <li class="flex items-center gap-2"><span class="text-green-500">✓</span> Marriage certificate (if applicable)</li>
+                   <li class="flex items-center gap-2"><span class="text-green-500">✓</span> Police certificates</li>
+                   <li class="flex items-center gap-2"><span class="text-green-500">✓</span> Medical examination results</li>
+                   <li class="flex items-center gap-2"><span class="text-green-500">✓</span> Photos (passport style)</li>
+                 </ul>
+               </div>
+             </div>
+
+             <div class="mt-8 bg-yellow-50 dark:bg-yellow-900/20 rounded-xl p-6 border border-yellow-200 dark:border-yellow-700">
+               <h3 class="text-lg font-bold text-yellow-800 dark:text-yellow-200 mb-2 flex items-center gap-2">
+                 <span class="text-yellow-600">⚠️</span>
+                 Important Notes
+               </h3>
+               <ul class="text-sm text-yellow-700 dark:text-yellow-300 space-y-1">
+                 <li>• All documents must be in English or French, or include certified translations</li>
+                 <li>• Documents must be valid and not expired</li>
+                 <li>• Keep original documents safe - you may need them for verification</li>
+                 <li>• Start gathering documents early - some take weeks to obtain</li>
+               </ul>
+             </div>
+           </div>
+         </section>
+
+         <!-- Strategies Section -->
+         <section id="strategies" class="mb-16 scroll-reveal">
+           <div class="bg-white dark:bg-gray-800 rounded-2xl p-8 shadow-lg border border-gray-200 dark:border-gray-700 hover:shadow-2xl hover:scale-[1.02] transition-all duration-500 hover:border-purple-300 dark:hover:border-purple-600">
+             <h2 class="text-3xl font-bold text-gray-900 dark:text-white mb-6">Tips & Strategies for Success</h2>
+             <p class="text-lg text-gray-600 dark:text-gray-300 mb-8">
+               Maximize your CRS score and improve your chances of receiving an ITA with these proven strategies:
+             </p>
+             
+             <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+               <!-- Score Improvement -->
+               <div class="bg-gradient-to-br from-blue-50 to-purple-50 dark:from-blue-900/20 dark:to-purple-900/20 rounded-xl p-6 border border-blue-200 dark:border-blue-700">
+                 <h3 class="text-xl font-bold text-gray-900 dark:text-white mb-4">🎯 Score Improvement Strategies</h3>
+                 <ul class="space-y-3 text-sm text-gray-700 dark:text-gray-300">
+                   <li class="flex items-start gap-2">
+                     <span class="text-blue-500 mt-1">•</span>
+                     <span><strong>Improve Language Scores:</strong> Target CLB 9+ for maximum points</span>
+                   </li>
+                   <li class="flex items-start gap-2">
+                     <span class="text-blue-500 mt-1">•</span>
+                     <span><strong>Get Higher Education:</strong> Consider additional degrees or certifications</span>
+                   </li>
+                   <li class="flex items-start gap-2">
+                     <span class="text-blue-500 mt-1">•</span>
+                     <span><strong>Gain More Experience:</strong> Additional years of skilled work experience</span>
+                   </li>
+                   <li class="flex items-start gap-2">
+                     <span class="text-blue-500 mt-1">•</span>
+                     <span><strong>Learn French:</strong> Bilingual candidates get bonus points</span>
+                   </li>
+                 </ul>
+               </div>
+
+               <!-- Application Tips -->
+               <div class="bg-gradient-to-br from-green-50 to-emerald-50 dark:from-green-900/20 dark:to-emerald-900/20 rounded-xl p-6 border border-green-200 dark:border-green-700">
+                 <h3 class="text-xl font-bold text-gray-900 dark:text-white mb-4">📝 Application Tips</h3>
+                 <ul class="space-y-3 text-sm text-gray-700 dark:text-gray-300">
+                   <li class="flex items-start gap-2">
+                     <span class="text-green-500 mt-1">•</span>
+                     <span><strong>Double-check everything:</strong> Errors can cause delays or rejections</span>
+                   </li>
+                   <li class="flex items-start gap-2">
+                     <span class="text-green-500 mt-1">•</span>
+                     <span><strong>Submit early:</strong> Don't wait until the last minute</span>
+                   </li>
+                   <li class="flex items-start gap-2">
+                     <span class="text-green-500 mt-1">•</span>
+                     <span><strong>Keep copies:</strong> Document everything for your records</span>
+                   </li>
+                   <li class="flex items-start gap-2">
+                     <span class="text-green-500 mt-1">•</span>
+                     <span><strong>Stay organized:</strong> Use checklists and timelines</span>
+                   </li>
+                 </ul>
+               </div>
+             </div>
+
+             <div class="mt-8 bg-gradient-to-r from-purple-50 to-pink-50 dark:from-purple-900/20 dark:to-pink-900/20 rounded-xl p-6 border border-purple-200 dark:border-purple-700">
+               <h3 class="text-xl font-bold text-gray-900 dark:text-white mb-4">🚀 Advanced Strategies</h3>
+               <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                 <div class="text-center hover:scale-110 hover:-rotate-2 transition-all duration-300 cursor-pointer group">
+                   <div class="w-16 h-16 bg-purple-500 rounded-xl flex items-center justify-center mx-auto mb-3 group-hover:rotate-12 group-hover:scale-125 transition-transform duration-300 group-hover:shadow-lg group-hover:shadow-purple-500/50">
+                     <span class="text-2xl">🏛️</span>
+                   </div>
+                   <h4 class="font-bold text-gray-900 dark:text-white mb-2 group-hover:text-purple-600 dark:group-hover:text-purple-400 transition-colors">Provincial Nomination</h4>
+                   <p class="text-sm text-gray-600 dark:text-gray-400">Apply for PNP to get 600 bonus points</p>
+                 </div>
+                 <div class="text-center hover:scale-110 hover:rotate-2 transition-all duration-300 cursor-pointer group">
+                   <div class="w-16 h-16 bg-pink-500 rounded-xl flex items-center justify-center mx-auto mb-3 group-hover:rotate-12 group-hover:scale-125 transition-transform duration-300 group-hover:shadow-lg group-hover:shadow-pink-500/50">
+                     <span class="text-2xl">💼</span>
+                   </div>
+                   <h4 class="font-bold text-gray-900 dark:text-white mb-2 group-hover:text-pink-600 dark:group-hover:text-pink-400 transition-colors">Job Offer Strategy</h4>
+                   <p class="text-sm text-gray-600 dark:text-gray-400">Secure LMIA-approved job offer for points</p>
+                 </div>
+                 <div class="text-center hover:scale-110 hover:-rotate-2 transition-all duration-300 cursor-pointer group">
+                   <div class="w-16 h-16 bg-indigo-500 rounded-xl flex items-center justify-center mx-auto mb-3 group-hover:rotate-12 group-hover:scale-125 transition-transform duration-300 group-hover:shadow-lg group-hover:shadow-indigo-500/50">
+                     <span class="text-2xl">👨‍👩‍👧‍👦</span>
+                   </div>
+                   <h4 class="font-bold text-gray-900 dark:text-white mb-2 group-hover:text-indigo-600 dark:group-hover:text-indigo-400 transition-colors">Family Connections</h4>
+                   <p class="text-sm text-gray-600 dark:text-gray-400">Leverage siblings in Canada for points</p>
+                 </div>
+               </div>
+             </div>
+           </div>
+         </section>
+
+  </div>
+
+   <!-- Get Started CTA Section -->
+   <section class="py-24 bg-gradient-to-br from-blue-600 via-purple-700 to-indigo-800 dark:from-blue-800 dark:via-purple-900 dark:to-indigo-900">
+     <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+       <h2 class="text-3xl md:text-5xl font-bold text-white mb-6">
+         Ready to Start Your
+         <span class="block bg-gradient-to-r from-blue-200 to-purple-200 bg-clip-text text-transparent">
+           Express Entry Journey?
+         </span>
+       </h2>
+       <p class="text-xl text-blue-100 mb-8 max-w-3xl mx-auto">
+         Get personalized guidance and expert support for your Express Entry application. Our team has helped thousands achieve their Canadian dream.
+       </p>
+       <div class="flex flex-col sm:flex-row gap-4 justify-center">
+         <a href="/tools/master-assessment?utm_source=immigratic&utm_medium=website&utm_campaign=express_entry_guide&utm_content=cta" class="inline-flex items-center px-8 py-4 bg-white text-blue-600 font-semibold rounded-xl hover:bg-blue-50 transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl">
+           Start My Assessment
+           <svg class="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+           </svg>
+         </a>
+         <a href="/contact" class="inline-flex items-center px-8 py-4 bg-transparent border-2 border-white/30 text-white font-semibold rounded-xl hover:bg-white/10 transition-all duration-300 transform hover:scale-105">
+           Talk to an Expert
+         </a>
+       </div>
+     </div>
+   </section>
+ </Layout>
+
+ <script>
+     function scrollToContent() {
+    const element = document.getElementById('overview');
+    if (element) {
+      element.scrollIntoView({ 
+        behavior: 'smooth',
+        block: 'start'
+      });
+    }
+  }
+
+     // Scroll reveal animation
+  function revealOnScroll() {
+    const reveals = document.querySelectorAll('.scroll-reveal');
+    
+    reveals.forEach(reveal => {
+      const windowHeight = window.innerHeight;
+      const elementTop = reveal.getBoundingClientRect().top;
+      const elementVisible = 150;
+      
+      if (elementTop < windowHeight - elementVisible) {
+        reveal.classList.add('revealed');
+      }
+    });
+  }
+
+  // Add floating animation to hero elements
+  function addFloatingAnimations() {
+    const liveDrawCard = document.querySelector('.bg-white\\/10.backdrop-blur-md');
+    if (liveDrawCard) {
+      liveDrawCard.classList.add('float-animation');
+    }
+  }
+
+  // Add interactive hover effects to navigation items
+  function addNavHoverEffects() {
+    const navItems = document.querySelectorAll('nav a');
+    navItems.forEach(item => {
+      item.addEventListener('mouseenter', function() {
+        this.style.transform = 'translateY(-2px)';
+        this.style.textShadow = '0 2px 4px rgba(0,0,0,0.1)';
+      });
+      
+      item.addEventListener('mouseleave', function() {
+        this.style.transform = 'translateY(0)';
+        this.style.textShadow = 'none';
+      });
+    });
+  }
+
+  // Tab switching functionality for CRS scoring
+  document.addEventListener('DOMContentLoaded', function() {
+    // Initialize scroll reveal
+    revealOnScroll();
+    addFloatingAnimations();
+    addNavHoverEffects();
+    
+    // Listen for scroll events
+    window.addEventListener('scroll', revealOnScroll);
+     const singleTab = document.getElementById('singleTab');
+     const marriedTab = document.getElementById('marriedTab');
+     const singleBreakdown = document.getElementById('singleBreakdown');
+     const marriedBreakdown = document.getElementById('marriedBreakdown');
+
+     if (singleTab && marriedTab && singleBreakdown && marriedBreakdown) {
+       singleTab.addEventListener('click', function() {
+         singleTab.classList.add('bg-blue-600', 'text-white', 'shadow-sm');
+         singleTab.classList.remove('text-gray-700', 'dark:text-gray-300', 'hover:bg-white', 'dark:hover:bg-gray-600');
+         marriedTab.classList.remove('bg-blue-600', 'text-white', 'shadow-sm');
+         marriedTab.classList.add('text-gray-700', 'dark:text-gray-300', 'hover:bg-white', 'dark:hover:bg-gray-600');
+          
+         singleBreakdown.style.display = 'block';
+         marriedBreakdown.style.display = 'none';
+       });
+
+       marriedTab.addEventListener('click', function() {
+         marriedTab.classList.add('bg-blue-600', 'text-white', 'shadow-sm');
+         marriedTab.classList.remove('text-gray-700', 'dark:text-gray-300', 'hover:bg-white', 'dark:hover:bg-gray-600');
+         singleTab.classList.remove('bg-blue-600', 'text-white', 'shadow-sm');
+         singleTab.classList.add('text-gray-700', 'dark:text-gray-300', 'hover:bg-white', 'dark:hover:bg-gray-600');
+          
+         marriedBreakdown.style.display = 'block';
+         singleBreakdown.style.display = 'none';
+       });
+     }
+   });
+ </script>
+
+ <style>
+  /* Ensure sticky navigation works properly */
+  .sticky {
+    position: -webkit-sticky;
+    position: sticky;
+  }
+  
+  /* Smooth scrolling for anchor links */
+  html {
+    scroll-behavior: smooth;
+  }
+
+  /* Scroll reveal animations */
+  .scroll-reveal {
+    opacity: 0;
+    transform: translateY(50px);
+    transition: all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  }
+
+  .scroll-reveal.revealed {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* Floating animation for hero elements */
+  .float-animation {
+    animation: float 6s ease-in-out infinite;
+  }
+
+  .float-animation-delayed {
+    animation: float 6s ease-in-out infinite;
+    animation-delay: 2s;
+  }
+
+  /* Pulse effect for live indicators */
+  .pulse-glow {
+    animation: pulse-glow 2s infinite;
+  }
+
+  /* Hover tilt effect */
+  .hover-tilt {
+    transition: transform 0.3s ease;
+  }
+
+  .hover-tilt:hover {
+    transform: perspective(1000px) rotateX(5deg) rotateY(5deg) translateZ(10px);
+  }
+
+  /* Gradient text animation */
+  .gradient-text {
+    background: linear-gradient(45deg, #3b82f6, #8b5cf6, #06b6d4, #10b981);
+    background-size: 300% 300%;
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: gradient-shift 4s ease infinite;
+  }
+
+  @keyframes float {
+    0%, 100% { transform: translateY(0px); }
+    50% { transform: translateY(-20px); }
+  }
+
+  @keyframes pulse-glow {
+    0%, 100% { 
+      box-shadow: 0 0 5px rgba(34, 197, 94, 0.5);
+      transform: scale(1);
+    }
+    50% { 
+      box-shadow: 0 0 20px rgba(34, 197, 94, 0.8);
+      transform: scale(1.05);
+    }
+  }
+
+  @keyframes gradient-shift {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+  }
+
+  /* Grid layout for sidebars */
+  @media (min-width: 1024px) {
+    .grid.grid-cols-1.lg\\:grid-cols-4 {
+      display: grid !important;
+      grid-template-columns: 1fr 2fr 1fr !important;
+      gap: 2rem !important;
+    }
+    
+    .lg\\:col-span-1 {
+      grid-column: span 1 / span 1 !important;
+    }
+    
+    .lg\\:col-span-2 {
+      grid-column: span 2 / span 2 !important;
+    }
+  }
+  
+  @keyframes animate-pulse-slow {
+     0%, 100% { opacity: 0.3; }
+     50% { opacity: 0.6; }
+   }
+   
+   @keyframes animate-float-gentle {
+     0%, 100% { transform: translateY(0px); }
+     50% { transform: translateY(-10px); }
+   }
+   
+   .animate-pulse-slow {
+     animation: animate-pulse-slow 4s ease-in-out infinite;
+   }
+   
+   .animate-float-gentle {
+     animation: animate-float-gentle 3s ease-in-out infinite;
+   }
+
+   /* Hide scrollbar for mobile navigation */
+   .scrollbar-hide {
+     -ms-overflow-style: none;  /* IE and Edge */
+     scrollbar-width: none;  /* Firefox */
+   }
+   
+   .scrollbar-hide::-webkit-scrollbar {
+     display: none;  /* Chrome, Safari and Opera */
+   }
+ </style>
