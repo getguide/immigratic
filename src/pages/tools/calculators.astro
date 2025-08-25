@@ -353,10 +353,10 @@ try {
                   </label>
                   <input type="number" id="first-speaking-score" name="first-speaking-score" class="form-input" placeholder="Enter your score" step="0.1">
                   <div class="mt-2 p-2 bg-green-50 dark:bg-green-900/20 rounded-lg border border-green-200 dark:border-green-700" style="display: none;">
-                    <div class="text-sm font-semibold text-green-700 dark:text-green-300">CLB Level: <span class="clb-result">-</span></div>
-                  </div>
-                  <div id="speaking-points" class="points-display" style="display: none;">
-                    <span class="points-text">Points: <strong class="points-value">0</strong></span>
+                    <div class="text-sm font-semibold text-green-700 dark:text-green-300 flex justify-between items-center">
+                      <span>CLB Level: <span class="clb-result">-</span></span>
+                      <span class="text-blue-600 dark:text-blue-400">Points: <strong class="points-value">0</strong></span>
+                    </div>
                   </div>
                 </div>
 
@@ -367,10 +367,10 @@ try {
                   </label>
                   <input type="number" id="first-listening-score" name="first-listening-score" class="form-input" placeholder="Enter your score" step="0.1">
                   <div class="mt-2 p-2 bg-green-50 dark:bg-green-900/20 rounded-lg border border-green-200 dark:border-green-700" style="display: none;">
-                    <div class="text-sm font-semibold text-green-700 dark:text-green-300">CLB Level: <span class="clb-result">-</span></div>
-                  </div>
-                  <div id="listening-points" class="points-display" style="display: none;">
-                    <span class="points-text">Points: <strong class="points-value">0</strong></span>
+                    <div class="text-sm font-semibold text-green-700 dark:text-green-300 flex justify-between items-center">
+                      <span>CLB Level: <span class="clb-result">-</span></span>
+                      <span class="text-blue-600 dark:text-blue-400">Points: <strong class="points-value">0</strong></span>
+                    </div>
                   </div>
                 </div>
 
@@ -381,10 +381,10 @@ try {
                   </label>
                   <input type="number" id="first-reading-score" name="first-reading-score" class="form-input" placeholder="Enter your score" step="0.1">
                   <div class="mt-2 p-2 bg-green-50 dark:bg-green-900/20 rounded-lg border border-green-200 dark:border-green-700" style="display: none;">
-                    <div class="text-sm font-semibold text-green-700 dark:text-green-300">CLB Level: <span class="clb-result">-</span></div>
-                  </div>
-                  <div id="reading-points" class="points-display" style="display: none;">
-                    <span class="points-text">Points: <strong class="points-value">0</strong></span>
+                    <div class="text-sm font-semibold text-green-700 dark:text-green-300 flex justify-between items-center">
+                      <span>CLB Level: <span class="clb-result">-</span></span>
+                      <span class="text-blue-600 dark:text-blue-400">Points: <strong class="points-value">0</strong></span>
+                    </div>
                   </div>
                 </div>
 
@@ -395,20 +395,34 @@ try {
                   </label>
                   <input type="number" id="first-writing-score" name="first-writing-score" class="form-input" placeholder="Enter your score" step="0.1">
                   <div class="mt-2 p-2 bg-green-50 dark:bg-green-900/20 rounded-lg border border-green-200 dark:border-green-700" style="display: none;">
-                    <div class="text-sm font-semibold text-green-700 dark:text-green-300">CLB Level: <span class="clb-result">-</span></div>
-                  </div>
-                  <div id="writing-points" class="points-display" style="display: none;">
-                    <span class="points-text">Points: <strong class="points-value">0</strong></span>
+                    <div class="text-sm font-semibold text-green-700 dark:text-green-300 flex justify-between items-center">
+                      <span>CLB Level: <span class="clb-result">-</span></span>
+                      <span class="text-blue-600 dark:text-blue-400">Points: <strong class="points-value">0</strong></span>
+                    </div>
                   </div>
                 </div>
               </div>
 
-              <!-- Hidden CLB selects for compatibility -->
+              <!-- Hidden CLB selects and points displays for compatibility -->
               <div style="display: none;">
                 <select id="speaking" name="speaking"></select>
                 <select id="listening" name="listening"></select>
                 <select id="reading" name="reading"></select>
                 <select id="writing" name="writing"></select>
+                
+                <!-- Hidden points displays that the total calculation system uses -->
+                <div id="speaking-points" class="points-display">
+                  <span class="points-text">Points: <strong class="points-value">0</strong></span>
+                </div>
+                <div id="listening-points" class="points-display">
+                  <span class="points-text">Points: <strong class="points-value">0</strong></span>
+                </div>
+                <div id="reading-points" class="points-display">
+                  <span class="points-text">Points: <strong class="points-value">0</strong></span>
+                </div>
+                <div id="writing-points" class="points-display">
+                  <span class="points-text">Points: <strong class="points-value">0</strong></span>
+                </div>
               </div>
 
               <div id="first-language-total" class="points-summary mt-4" style="display: none;">
@@ -579,21 +593,24 @@ try {
               <div class="form-help">Provincial/territorial certificate of qualification in a skilled trade</div>
             </div>
 
-            <!-- Skill Transferability Bonus -->
-            <div id="skill-transferability-bonus" class="points-summary mt-6" style="display: none;">
+            <!-- Work Experience Total (Canadian + Foreign only) -->
+            <div id="work-experience-total" class="points-summary mt-6" style="display: none;">
+              <span class="text-lg font-semibold text-gray-900 dark:text-white">
+                Work Experience Total: <strong class="text-orange-600 dark:text-orange-400 points-value">0</strong> points
+              </span>
+              <div class="text-xs text-gray-500 dark:text-gray-400 mt-1">
+                Canadian work experience + Foreign work experience
+              </div>
+            </div>
+
+            <!-- Skill Transferability Total (separate from work experience) -->
+            <div id="transferability-total" class="points-summary mt-6" style="display: none;">
               <span class="text-lg font-semibold text-gray-900 dark:text-white">
                 Skill Transferability Bonus: <strong class="text-purple-600 dark:text-purple-400 points-value">0</strong> points
               </span>
               <div class="text-xs text-gray-500 dark:text-gray-400 mt-1">
-                Bonus for combinations of education, language, and experience
+                Education+Language, Experience+Language, and other combinations
               </div>
-            </div>
-
-            <!-- Experience Total -->
-            <div id="experience-total" class="points-summary mt-6" style="display: none;">
-              <span class="text-lg font-semibold text-gray-900 dark:text-white">
-                Work Experience Total: <strong class="text-orange-600 dark:text-orange-400 points-value">0</strong> points
-              </span>
             </div>
 
             <!-- Experience Info -->
@@ -1823,10 +1840,51 @@ try {
                 const changeEvent = new Event('change', { bubbles: true });
                 hiddenSelect.dispatchEvent(changeEvent);
               }
+              
+              // Calculate and display points in the combined CLB display
+              const maritalStatus = (document.getElementById('marital-status') as HTMLSelectElement)?.value;
+              const spouseAccompanying = document.querySelector('input[name="spouse-accompanying"]:checked') as HTMLInputElement;
+              const hasSpouse = maritalStatus === 'married' && spouseAccompanying?.value === 'yes';
+              const points = getLanguagePoints(clbToCrsValue(clbLevel), hasSpouse);
+              
+              // Update points in the combined display
+              const pointsDisplay = this.parentElement?.querySelector('.points-value');
+              if (pointsDisplay) {
+                pointsDisplay.textContent = points.toString();
+              }
+              
+              // CRITICAL: Also update the hidden points display that the system uses for totals
+              const hiddenPointsDisplay = document.getElementById(`${skill}-points`);
+              if (hiddenPointsDisplay) {
+                const hiddenPointsValue = hiddenPointsDisplay.querySelector('.points-value');
+                if (hiddenPointsValue) {
+                  hiddenPointsValue.textContent = points.toString();
+                }
+                hiddenPointsDisplay.style.display = 'block'; // Make sure it's visible to the calculation system
+              }
+              
+              // Trigger total language calculation and CRS updates
+              console.log(`BEFORE UPDATES - ${skill}: CLB ${clbLevel} = ${clbToCrsValue(clbLevel)} = ${points} points`);
+              console.log('Hidden points element:', hiddenPointsDisplay);
+              console.log('Hidden points value element:', hiddenPointsDisplay?.querySelector('.points-value'));
+              console.log('Hidden points text content:', hiddenPointsDisplay?.querySelector('.points-value')?.textContent);
+              
+              updateFirstLanguageTotal();
+              updateExperienceTotal(); // For transferability calculation
+              updateTotalScore();
+              
+              console.log('AFTER UPDATES - Language total element:', document.getElementById('first-language-total'));
+              console.log('Language total points:', document.querySelector('#first-language-total .points-value')?.textContent);
             } else {
               // Hide CLB display if no score
               const clbContainer = this.parentElement?.querySelector('.mt-2') as HTMLElement;
               if (clbContainer) clbContainer.style.display = 'none';
+              
+              // Clear points in the combined display
+              const pointsDisplay = this.parentElement?.querySelector('.points-value');
+              if (pointsDisplay) {
+                pointsDisplay.textContent = '0';
+              }
               
               // Clear hidden select
               const skill = inputId.replace('first-', '').replace('-score', '');
@@ -1836,6 +1894,21 @@ try {
                 const changeEvent = new Event('change', { bubbles: true });
                 hiddenSelect.dispatchEvent(changeEvent);
               }
+              
+              // CRITICAL: Also clear the hidden points display that the system uses for totals
+              const hiddenPointsDisplay = document.getElementById(`${skill}-points`);
+              if (hiddenPointsDisplay) {
+                const hiddenPointsValue = hiddenPointsDisplay.querySelector('.points-value');
+                if (hiddenPointsValue) {
+                  hiddenPointsValue.textContent = '0';
+                }
+                hiddenPointsDisplay.style.display = 'none';
+              }
+              
+              // Trigger total language calculation and CRS updates
+              updateFirstLanguageTotal();
+              updateExperienceTotal(); // For transferability calculation
+              updateTotalScore();
             }
           });
         }
@@ -2142,11 +2215,34 @@ try {
       const canadianExp = (document.getElementById('canadian-experience') as HTMLSelectElement)?.value;
       const foreignExp = (document.getElementById('foreign-experience') as HTMLSelectElement)?.value;
       
-      // Get language levels (minimum of all 4 skills)
-      const speaking = (document.getElementById('speaking') as HTMLSelectElement)?.value;
-      const listening = (document.getElementById('listening') as HTMLSelectElement)?.value;
-      const reading = (document.getElementById('reading') as HTMLSelectElement)?.value;
-      const writing = (document.getElementById('writing') as HTMLSelectElement)?.value;
+      // Get language levels - use actual CLB conversion instead of broken hidden selects
+      const speaking = getActualCLBLevel('speaking');
+      const listening = getActualCLBLevel('listening');
+      const reading = getActualCLBLevel('reading');
+      const writing = getActualCLBLevel('writing');
+      
+
+      
+      // Helper function to get actual CLB level from score inputs
+      function getActualCLBLevel(skill: string): string {
+        const scoreInput = document.getElementById(`first-${skill}-score`) as HTMLInputElement;
+        const languageTest = (document.getElementById('first-language-test') as HTMLSelectElement)?.value;
+        
+        if (!scoreInput || !scoreInput.value || !languageTest) {
+          return '';
+        }
+        
+        const score = parseFloat(scoreInput.value);
+        if (isNaN(score)) {
+          return '';
+        }
+        
+        // Convert score to CLB level using the same logic as the UI
+        const clbLevel = convertScoreToCLB(languageTest, skill, score);
+        
+        // Convert CLB number to the format expected by transferability calculation
+        return clbToCrsValue(clbLevel);
+      }
       
       // Helper functions
       function getEducationLevel(edu: string) {
@@ -2170,6 +2266,8 @@ try {
         const hasClb9Plus = clbLevels.every(level => level === 'CLB_9' || level === 'CLB_10_or_more');
         const hasClb7Plus = clbLevels.every(level => ['CLB_7', 'CLB_8', 'CLB_9', 'CLB_10_or_more'].includes(level));
         
+
+        
         if (hasClb9Plus) return 'CLB_9_or_more';
         if (hasClb7Plus) return 'CLB_7_or_8';
         return null;
@@ -2190,8 +2288,10 @@ try {
       // 1. Education + Language
       const eduLevel = getEducationLevel(education);
       const langLevel = getLanguageLevel();
+      
       if (eduLevel && langLevel && skillTransferabilityFactors.educationLanguage[langLevel]) {
-        totalBonus += skillTransferabilityFactors.educationLanguage[langLevel][eduLevel] || 0;
+        const points = skillTransferabilityFactors.educationLanguage[langLevel][eduLevel] || 0;
+        totalBonus += points;
       }
       
       // 2. Education + Canadian Work Experience
@@ -2488,11 +2588,12 @@ try {
       const educationPoints = parseInt((document.querySelector('#education-points .points-value') as HTMLElement)?.textContent || '0');
       const firstLanguagePoints = parseInt((document.querySelector('#first-language-total .points-value') as HTMLElement)?.textContent || '0');
       const secondLanguagePoints = parseInt((document.querySelector('#second-language-total .points-value') as HTMLElement)?.textContent || '0');
-      const experiencePoints = parseInt((document.querySelector('#experience-total .points-value') as HTMLElement)?.textContent || '0');
+      const workExperiencePoints = parseInt((document.querySelector('#work-experience-total .points-value') as HTMLElement)?.textContent || '0');
+      const transferabilityPoints = parseInt((document.querySelector('#transferability-total .points-value') as HTMLElement)?.textContent || '0');
       const spousePoints = parseInt((document.querySelector('#spouse-total .points-value') as HTMLElement)?.textContent || '0');
       const additionalFactorsPoints = parseInt((document.querySelector('#additional-total .points-value') as HTMLElement)?.textContent || '0');
       
-      const totalScore = agePoints + educationPoints + firstLanguagePoints + secondLanguagePoints + experiencePoints + spousePoints + additionalFactorsPoints;
+      const totalScore = agePoints + educationPoints + firstLanguagePoints + secondLanguagePoints + workExperiencePoints + transferabilityPoints + spousePoints + additionalFactorsPoints;
       
       // Update progress bar
       const progressBar = document.getElementById('progress-bar');
@@ -3003,7 +3104,7 @@ try {
       }
     }
     
-    // Calculate experience total
+    // Calculate experience total and transferability separately
     function updateExperienceTotal() {
       const canadianPoints = parseInt((document.querySelector('#canadian-experience-points .points-value') as HTMLElement)?.textContent || '0');
       const foreignPoints = parseInt((document.querySelector('#foreign-experience-points .points-value') as HTMLElement)?.textContent || '0');
@@ -3011,29 +3112,29 @@ try {
       // Calculate skill transferability bonus
       const skillBonus = calculateSkillTransferability();
       
-      // Update skill transferability display
-      const bonusDisplay = document.getElementById('skill-transferability-bonus');
-      const bonusValue = bonusDisplay?.querySelector('.points-value');
+
       
-      if (bonusDisplay && bonusValue) {
-        bonusValue.textContent = skillBonus.toString();
-        if (skillBonus > 0) {
-          bonusDisplay.style.display = 'block';
-        } else {
-          bonusDisplay.style.display = 'none';
-        }
+      // Skill bonus calculated above, now update displays
+      
+      // Update separate work experience total (Canadian + Foreign only)
+      const workTotal = canadianPoints + foreignPoints;
+      const workTotalDisplay = document.getElementById('work-experience-total');
+      const workTotalValue = workTotalDisplay?.querySelector('.points-value');
+      
+      if (workTotalDisplay && workTotalValue) {
+        workTotalValue.textContent = workTotal.toString();
+        // ALWAYS show work experience card in Step 4
+        workTotalDisplay.style.display = 'block';
       }
       
-      const total = canadianPoints + foreignPoints + skillBonus;
+      // Update separate transferability total
+      const transferabilityDisplay = document.getElementById('transferability-total');
+      const transferabilityValue = transferabilityDisplay?.querySelector('.points-value');
       
-      const totalDisplay = document.getElementById('experience-total');
-      const totalValue = totalDisplay?.querySelector('.points-value');
-      
-      if (totalDisplay && totalValue && total > 0) {
-        totalValue.textContent = total.toString();
-        totalDisplay.style.display = 'block';
-      } else if (totalDisplay) {
-        totalDisplay.style.display = 'none';
+      if (transferabilityDisplay && transferabilityValue) {
+        transferabilityValue.textContent = skillBonus.toString();
+        // ALWAYS show transferability card in Step 4
+        transferabilityDisplay.style.display = 'block';
       }
     }
     
@@ -3240,7 +3341,8 @@ try {
       const educationPoints = parseInt((document.querySelector('#education-points .points-value') as HTMLElement)?.textContent || '0');
       const languagePoints = parseInt((document.querySelector('#first-language-total .points-value') as HTMLElement)?.textContent || '0');
       const secondLanguagePoints = parseInt((document.querySelector('#second-language-total .points-value') as HTMLElement)?.textContent || '0');
-      const experiencePoints = parseInt((document.querySelector('#experience-total .points-value') as HTMLElement)?.textContent || '0');
+      const workExperiencePoints = parseInt((document.querySelector('#work-experience-total .points-value') as HTMLElement)?.textContent || '0');
+      const transferabilityPoints = parseInt((document.querySelector('#transferability-total .points-value') as HTMLElement)?.textContent || '0');
       const spousePoints = parseInt((document.querySelector('#spouse-total .points-value') as HTMLElement)?.textContent || '0');
       const additionalPoints = parseInt((document.querySelector('#additional-total .points-value') as HTMLElement)?.textContent || '0');
 
@@ -3249,7 +3351,8 @@ try {
         { category: 'Education', points: educationPoints, max: 150, icon: '🎓' },
         { category: 'First Language', points: languagePoints, max: 136, icon: '🗣️' },
         { category: 'Second Language', points: secondLanguagePoints, max: 24, icon: '🌐' },
-        { category: 'Work Experience', points: experiencePoints, max: 180, icon: '💼' },
+        { category: 'Work Experience', points: workExperiencePoints, max: 80, icon: '💼' },
+        { category: 'Skill Transferability', points: transferabilityPoints, max: 100, icon: '🔄' },
         { category: 'Spouse Factors', points: spousePoints, max: 40, icon: '👥' },
         { category: 'Additional Factors', points: additionalPoints, max: 600, icon: '⭐' }
       ];
@@ -3445,10 +3548,11 @@ try {
       const educationPoints = parseInt((document.querySelector('#education-points .points-value') as HTMLElement)?.textContent || '0');
       const languagePoints = parseInt((document.querySelector('#first-language-total .points-value') as HTMLElement)?.textContent || '0');
       const secondLanguagePoints = parseInt((document.querySelector('#second-language-total .points-value') as HTMLElement)?.textContent || '0');
-      const experiencePoints = parseInt((document.querySelector('#experience-total .points-value') as HTMLElement)?.textContent || '0');
+      const workExperiencePoints = parseInt((document.querySelector('#work-experience-total .points-value') as HTMLElement)?.textContent || '0');
+      const transferabilityPoints = parseInt((document.querySelector('#transferability-total .points-value') as HTMLElement)?.textContent || '0');
       const spousePoints = parseInt((document.querySelector('#spouse-total .points-value') as HTMLElement)?.textContent || '0');
       const additionalPoints = parseInt((document.querySelector('#additional-total .points-value') as HTMLElement)?.textContent || '0');
-      const totalScore = agePoints + educationPoints + languagePoints + secondLanguagePoints + experiencePoints + spousePoints + additionalPoints;
+      const totalScore = agePoints + educationPoints + languagePoints + secondLanguagePoints + workExperiencePoints + transferabilityPoints + spousePoints + additionalPoints;
 
       const csvData = [
         ['CRS Score Breakdown', ''],
@@ -3457,7 +3561,8 @@ try {
         ['Education', educationPoints],
         ['First Language', languagePoints],
         ['Second Language', secondLanguagePoints],
-        ['Work Experience', experiencePoints],
+        ['Work Experience', workExperiencePoints],
+        ['Skill Transferability', transferabilityPoints],
         ['Spouse Factors', spousePoints],
         ['Additional Factors', additionalPoints],
         ['', ''],
