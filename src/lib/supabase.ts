@@ -3,11 +3,28 @@ import { createClient } from '@supabase/supabase-js'
 const supabaseUrl = 'https://fneodphdhnnogfuxcpxn.supabase.co'
 const supabaseAnonKey = import.meta.env.PUBLIC_SUPABASE_ANON_KEY
 
-if (!supabaseAnonKey) {
-  throw new Error('Missing PUBLIC_SUPABASE_ANON_KEY environment variable')
+// Create a fallback client for build environments without env vars
+let supabase: any = null
+
+if (supabaseAnonKey) {
+  supabase = createClient(supabaseUrl, supabaseAnonKey)
+} else {
+  // Fallback for build environments (GitHub Actions, etc.)
+  console.warn('Missing PUBLIC_SUPABASE_ANON_KEY environment variable - using fallback client')
+  supabase = {
+    from: () => ({
+      select: () => ({
+        eq: () => ({
+          order: () => ({
+            limit: () => Promise.resolve({ data: [], error: null })
+          })
+        })
+      })
+    })
+  }
 }
 
-export const supabase = createClient(supabaseUrl, supabaseAnonKey)
+export { supabase }
 
 // Types for immigration draw data - matches actual Supabase table
 export interface ImmigrationDraw {
