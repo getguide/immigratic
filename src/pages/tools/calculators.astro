@@ -4025,6 +4025,52 @@ try {
     width: 100% !important;
   }
   
+  /* Mobile-specific dropdown improvements */
+  @media (max-width: 640px) {
+    .form-input {
+      @apply py-4; /* Larger touch target on mobile */
+      font-size: 16px; /* Prevent zoom on iOS */
+      -webkit-appearance: none;
+      -moz-appearance: none;
+      appearance: none;
+    }
+    
+    /* Custom dropdown arrow for mobile */
+    select.form-input {
+      background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%236b7280' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='m6 8 4 4 4-4'/%3e%3c/svg%3e");
+      background-position: right 0.75rem center;
+      background-repeat: no-repeat;
+      background-size: 1.5em 1.5em;
+      padding-right: 2.5rem;
+    }
+    
+    /* Dark mode dropdown arrow */
+    .dark select.form-input {
+      background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%9ca3af' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='m6 8 4 4 4-4'/%3e%3c/svg%3e");
+    }
+    
+    /* Improve mobile form layout */
+    .form-group {
+      @apply mb-6; /* More space between form fields on mobile */
+    }
+    
+    /* Better mobile label spacing */
+    .form-label {
+      @apply mb-3; /* More space between label and input on mobile */
+    }
+    
+    /* Mobile radio button improvements */
+    input[type="radio"] {
+      @apply w-5 h-5; /* Larger radio buttons for easier tapping */
+    }
+    
+    /* Mobile button improvements */
+    .btn-primary, .btn-secondary {
+      @apply py-4 px-6; /* Larger buttons for better touch targets */
+      min-height: 48px; /* Ensure minimum touch target size */
+    }
+  }
+  
   .form-help {
     @apply text-xs text-gray-500 dark:text-gray-400;
     display: block !important;
