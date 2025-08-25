@@ -324,91 +324,91 @@ try {
                 </label>
                 <select id="first-language-test" name="first-language-test" class="form-input">
                   <option value="">Select your language test</option>
-                  <option value="ielts">IELTS General Training</option>
-                  <option value="celpip">CELPIP-General</option>
-                  <option value="pte">PTE Core</option>
-                  <option value="tef">TEF Canada (French)</option>
-                  <option value="tcf">TCF Canada (French)</option>
+                  <option value="IELTS">IELTS General Training</option>
+                  <option value="CELPIP">CELPIP-General</option>
+                  <option value="PTE">PTE Core</option>
+                  <option value="TEF">TEF Canada (French)</option>
+                  <option value="TCF">TCF Canada (French)</option>
                 </select>
               </div>
 
-              <!-- Language Skills Grid -->
-              <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+              <!-- TEF Info Note (Hidden by default) -->
+              <div id="first-tef-info" class="form-group mb-4" style="display: none !important;">
+                <div class="p-3 bg-blue-50 dark:bg-blue-900/20 rounded-lg border border-blue-200 dark:border-blue-700">
+                  <div class="flex items-center">
+                    <span class="text-blue-600 dark:text-blue-400 mr-2">ℹ️</span>
+                    <div class="text-sm text-blue-700 dark:text-blue-300">
+                      <strong>TEF Canada:</strong> Using current scoring system (valid for tests taken after December 10, 2023)
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Language Skills Score Inputs -->
+              <div id="first-language-scores" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4" style="display: none;">
                 <div class="form-group">
-                  <label class="form-label" for="speaking">
-                    <span class="label-text">Speaking</span>
+                  <label class="form-label" for="first-speaking-score">
+                    <span class="label-text">🗣️ Speaking Score</span>
                     <span class="label-required">*</span>
                   </label>
-                  <select id="speaking" name="speaking" class="form-input">
-                    <option value="">Select CLB level</option>
-                    <option value="CLB_4_or_5">CLB 4-5</option>
-                    <option value="CLB_6">CLB 6</option>
-                    <option value="CLB_7">CLB 7</option>
-                    <option value="CLB_8">CLB 8</option>
-                    <option value="CLB_9">CLB 9</option>
-                    <option value="CLB_10_or_more">CLB 10+</option>
-                  </select>
+                  <input type="number" id="first-speaking-score" name="first-speaking-score" class="form-input" placeholder="Enter your score" step="0.1">
+                  <div class="mt-2 p-2 bg-green-50 dark:bg-green-900/20 rounded-lg border border-green-200 dark:border-green-700" style="display: none;">
+                    <div class="text-sm font-semibold text-green-700 dark:text-green-300">CLB Level: <span class="clb-result">-</span></div>
+                  </div>
                   <div id="speaking-points" class="points-display" style="display: none;">
                     <span class="points-text">Points: <strong class="points-value">0</strong></span>
                   </div>
                 </div>
 
                 <div class="form-group">
-                  <label class="form-label" for="listening">
-                    <span class="label-text">Listening</span>
+                  <label class="form-label" for="first-listening-score">
+                    <span class="label-text">👂 Listening Score</span>
                     <span class="label-required">*</span>
                   </label>
-                  <select id="listening" name="listening" class="form-input">
-                    <option value="">Select CLB level</option>
-                    <option value="CLB_4_or_5">CLB 4-5</option>
-                    <option value="CLB_6">CLB 6</option>
-                    <option value="CLB_7">CLB 7</option>
-                    <option value="CLB_8">CLB 8</option>
-                    <option value="CLB_9">CLB 9</option>
-                    <option value="CLB_10_or_more">CLB 10+</option>
-                  </select>
+                  <input type="number" id="first-listening-score" name="first-listening-score" class="form-input" placeholder="Enter your score" step="0.1">
+                  <div class="mt-2 p-2 bg-green-50 dark:bg-green-900/20 rounded-lg border border-green-200 dark:border-green-700" style="display: none;">
+                    <div class="text-sm font-semibold text-green-700 dark:text-green-300">CLB Level: <span class="clb-result">-</span></div>
+                  </div>
                   <div id="listening-points" class="points-display" style="display: none;">
                     <span class="points-text">Points: <strong class="points-value">0</strong></span>
                   </div>
                 </div>
 
                 <div class="form-group">
-                  <label class="form-label" for="reading">
-                    <span class="label-text">Reading</span>
+                  <label class="form-label" for="first-reading-score">
+                    <span class="label-text">📖 Reading Score</span>
                     <span class="label-required">*</span>
                   </label>
-                  <select id="reading" name="reading" class="form-input">
-                    <option value="">Select CLB level</option>
-                    <option value="CLB_4_or_5">CLB 4-5</option>
-                    <option value="CLB_6">CLB 6</option>
-                    <option value="CLB_7">CLB 7</option>
-                    <option value="CLB_8">CLB 8</option>
-                    <option value="CLB_9">CLB 9</option>
-                    <option value="CLB_10_or_more">CLB 10+</option>
-                  </select>
+                  <input type="number" id="first-reading-score" name="first-reading-score" class="form-input" placeholder="Enter your score" step="0.1">
+                  <div class="mt-2 p-2 bg-green-50 dark:bg-green-900/20 rounded-lg border border-green-200 dark:border-green-700" style="display: none;">
+                    <div class="text-sm font-semibold text-green-700 dark:text-green-300">CLB Level: <span class="clb-result">-</span></div>
+                  </div>
                   <div id="reading-points" class="points-display" style="display: none;">
                     <span class="points-text">Points: <strong class="points-value">0</strong></span>
                   </div>
                 </div>
 
                 <div class="form-group">
-                  <label class="form-label" for="writing">
-                    <span class="label-text">Writing</span>
+                  <label class="form-label" for="first-writing-score">
+                    <span class="label-text">✍️ Writing Score</span>
                     <span class="label-required">*</span>
                   </label>
-                  <select id="writing" name="writing" class="form-input">
-                    <option value="">Select CLB level</option>
-                    <option value="CLB_4_or_5">CLB 4-5</option>
-                    <option value="CLB_6">CLB 6</option>
-                    <option value="CLB_7">CLB 7</option>
-                    <option value="CLB_8">CLB 8</option>
-                    <option value="CLB_9">CLB 9</option>
-                    <option value="CLB_10_or_more">CLB 10+</option>
-                  </select>
+                  <input type="number" id="first-writing-score" name="first-writing-score" class="form-input" placeholder="Enter your score" step="0.1">
+                  <div class="mt-2 p-2 bg-green-50 dark:bg-green-900/20 rounded-lg border border-green-200 dark:border-green-700" style="display: none;">
+                    <div class="text-sm font-semibold text-green-700 dark:text-green-300">CLB Level: <span class="clb-result">-</span></div>
+                  </div>
                   <div id="writing-points" class="points-display" style="display: none;">
                     <span class="points-text">Points: <strong class="points-value">0</strong></span>
                   </div>
                 </div>
+              </div>
+
+              <!-- Hidden CLB selects for compatibility -->
+              <div style="display: none;">
+                <select id="speaking" name="speaking"></select>
+                <select id="listening" name="listening"></select>
+                <select id="reading" name="reading"></select>
+                <select id="writing" name="writing"></select>
               </div>
 
               <div id="first-language-total" class="points-summary mt-4" style="display: none;">
@@ -1419,21 +1419,328 @@ try {
 </script>
 
 <script>
-  // Smooth scroll function
-  function scrollToCalculators() {
+  // Smooth scroll function - make it globally accessible
+  window.scrollToCalculators = function() {
+    console.log('scrollToCalculators called'); // Debug log
     const element = document.getElementById('calculators');
+    console.log('Target element:', element); // Debug log
     if (element) {
       element.scrollIntoView({ 
         behavior: 'smooth',
         block: 'start'
       });
+    } else {
+      console.error('Element with id "calculators" not found');
     }
+  }
+
+  // CLB Conversion Data (from CLB Navigator)
+  const clbData = {
+    "IELTS": {
+      "reading": [
+        {"clb_level": 10, "score": 8.0},
+        {"clb_level": 9, "score": 7.0},
+        {"clb_level": 8, "score": 6.5},
+        {"clb_level": 7, "score": 6.0},
+        {"clb_level": 6, "score": 5.0},
+        {"clb_level": 5, "score": 4.0},
+        {"clb_level": 4, "score": 3.5},
+        {"clb_level": 3, "score_range": {"min": 0, "max": 3.0}}
+      ],
+      "writing": [
+        {"clb_level": 10, "score": 7.5},
+        {"clb_level": 9, "score": 7.0},
+        {"clb_level": 8, "score": 6.5},
+        {"clb_level": 7, "score": 6.0},
+        {"clb_level": 6, "score": 5.5},
+        {"clb_level": 5, "score": 5.0},
+        {"clb_level": 4, "score": 4.0},
+        {"clb_level": 3, "score_range": {"min": 0, "max": 3.5}}
+      ],
+      "listening": [
+        {"clb_level": 10, "score": 8.5},
+        {"clb_level": 9, "score": 8.0},
+        {"clb_level": 8, "score": 7.5},
+        {"clb_level": 7, "score": 6.0},
+        {"clb_level": 6, "score": 5.5},
+        {"clb_level": 5, "score": 5.0},
+        {"clb_level": 4, "score": 4.5},
+        {"clb_level": 3, "score_range": {"min": 0, "max": 4.0}}
+      ],
+      "speaking": [
+        {"clb_level": 10, "score": 7.5},
+        {"clb_level": 9, "score": 7.0},
+        {"clb_level": 8, "score": 6.5},
+        {"clb_level": 7, "score": 6.0},
+        {"clb_level": 6, "score": 5.5},
+        {"clb_level": 5, "score": 5.0},
+        {"clb_level": 4, "score": 4.0},
+        {"clb_level": 3, "score_range": {"min": 0, "max": 3.5}}
+      ]
+    },
+    "CELPIP": {
+      "reading": [
+        {"clb_level": 10, "score": 10.0},
+        {"clb_level": 9, "score": 9.0},
+        {"clb_level": 8, "score": 8.0},
+        {"clb_level": 7, "score": 7.0},
+        {"clb_level": 6, "score": 6.0},
+        {"clb_level": 5, "score": 5.0},
+        {"clb_level": 4, "score": 4.0},
+        {"clb_level": 3, "score_range": {"min": 0, "max": 3.0}}
+      ],
+      "writing": [
+        {"clb_level": 10, "score": 10.0},
+        {"clb_level": 9, "score": 9.0},
+        {"clb_level": 8, "score": 8.0},
+        {"clb_level": 7, "score": 7.0},
+        {"clb_level": 6, "score": 6.0},
+        {"clb_level": 5, "score": 5.0},
+        {"clb_level": 4, "score": 4.0},
+        {"clb_level": 3, "score_range": {"min": 0, "max": 3.0}}
+      ],
+      "listening": [
+        {"clb_level": 10, "score": 10.0},
+        {"clb_level": 9, "score": 9.0},
+        {"clb_level": 8, "score": 8.0},
+        {"clb_level": 7, "score": 7.0},
+        {"clb_level": 6, "score": 6.0},
+        {"clb_level": 5, "score": 5.0},
+        {"clb_level": 4, "score": 4.0},
+        {"clb_level": 3, "score_range": {"min": 0, "max": 3.0}}
+      ],
+      "speaking": [
+        {"clb_level": 10, "score": 10.0},
+        {"clb_level": 9, "score": 9.0},
+        {"clb_level": 8, "score": 8.0},
+        {"clb_level": 7, "score": 7.0},
+        {"clb_level": 6, "score": 6.0},
+        {"clb_level": 5, "score": 5.0},
+        {"clb_level": 4, "score": 4.0},
+        {"clb_level": 3, "score_range": {"min": 0, "max": 3.0}}
+      ]
+    },
+    "PTE": {
+      "reading": [
+        {"clb_level": 10, "score_range": {"min": 88, "max": 90}},
+        {"clb_level": 9, "score_range": {"min": 78, "max": 87}},
+        {"clb_level": 8, "score_range": {"min": 69, "max": 77}},
+        {"clb_level": 7, "score_range": {"min": 60, "max": 68}},
+        {"clb_level": 6, "score_range": {"min": 51, "max": 59}},
+        {"clb_level": 5, "score_range": {"min": 42, "max": 50}},
+        {"clb_level": 4, "score_range": {"min": 33, "max": 41}},
+        {"clb_level": 3, "score_range": {"min": 24, "max": 32}}
+      ],
+      "writing": [
+        {"clb_level": 10, "score": 90},
+        {"clb_level": 9, "score_range": {"min": 88, "max": 89}},
+        {"clb_level": 8, "score_range": {"min": 79, "max": 87}},
+        {"clb_level": 7, "score_range": {"min": 69, "max": 78}},
+        {"clb_level": 6, "score_range": {"min": 60, "max": 68}},
+        {"clb_level": 5, "score_range": {"min": 51, "max": 59}},
+        {"clb_level": 4, "score_range": {"min": 41, "max": 50}},
+        {"clb_level": 3, "score_range": {"min": 32, "max": 40}}
+      ],
+      "listening": [
+        {"clb_level": 10, "score_range": {"min": 89, "max": 90}},
+        {"clb_level": 9, "score_range": {"min": 82, "max": 88}},
+        {"clb_level": 8, "score_range": {"min": 71, "max": 81}},
+        {"clb_level": 7, "score_range": {"min": 60, "max": 70}},
+        {"clb_level": 6, "score_range": {"min": 50, "max": 59}},
+        {"clb_level": 5, "score_range": {"min": 39, "max": 49}},
+        {"clb_level": 4, "score_range": {"min": 28, "max": 38}},
+        {"clb_level": 3, "score_range": {"min": 18, "max": 27}}
+      ],
+      "speaking": [
+        {"clb_level": 10, "score_range": {"min": 89, "max": 90}},
+        {"clb_level": 9, "score_range": {"min": 84, "max": 88}},
+        {"clb_level": 8, "score_range": {"min": 76, "max": 83}},
+        {"clb_level": 7, "score_range": {"min": 68, "max": 75}},
+        {"clb_level": 6, "score_range": {"min": 59, "max": 67}},
+        {"clb_level": 5, "score_range": {"min": 51, "max": 58}},
+        {"clb_level": 4, "score_range": {"min": 42, "max": 50}},
+        {"clb_level": 3, "score_range": {"min": 34, "max": 41}}
+      ]
+    },
+    "TEF_OLD": {
+      "reading": [
+        {"clb_level": 10, "score_range": {"min": 566, "max": 699}},
+        {"clb_level": 9, "score_range": {"min": 533, "max": 565}},
+        {"clb_level": 8, "score_range": {"min": 500, "max": 532}},
+        {"clb_level": 7, "score_range": {"min": 450, "max": 499}},
+        {"clb_level": 6, "score_range": {"min": 400, "max": 449}},
+        {"clb_level": 5, "score_range": {"min": 350, "max": 399}},
+        {"clb_level": 4, "score_range": {"min": 300, "max": 349}},
+        {"clb_level": 3, "score_range": {"min": 0, "max": 299}}
+      ],
+      "writing": [
+        {"clb_level": 10, "score_range": {"min": 566, "max": 699}},
+        {"clb_level": 9, "score_range": {"min": 533, "max": 565}},
+        {"clb_level": 8, "score_range": {"min": 500, "max": 532}},
+        {"clb_level": 7, "score_range": {"min": 450, "max": 499}},
+        {"clb_level": 6, "score_range": {"min": 400, "max": 449}},
+        {"clb_level": 5, "score_range": {"min": 350, "max": 399}},
+        {"clb_level": 4, "score_range": {"min": 300, "max": 349}},
+        {"clb_level": 3, "score_range": {"min": 0, "max": 299}}
+      ],
+      "listening": [
+        {"clb_level": 10, "score_range": {"min": 566, "max": 699}},
+        {"clb_level": 9, "score_range": {"min": 533, "max": 565}},
+        {"clb_level": 8, "score_range": {"min": 500, "max": 532}},
+        {"clb_level": 7, "score_range": {"min": 450, "max": 499}},
+        {"clb_level": 6, "score_range": {"min": 400, "max": 449}},
+        {"clb_level": 5, "score_range": {"min": 350, "max": 399}},
+        {"clb_level": 4, "score_range": {"min": 300, "max": 349}},
+        {"clb_level": 3, "score_range": {"min": 0, "max": 299}}
+      ],
+      "speaking": [
+        {"clb_level": 10, "score_range": {"min": 566, "max": 699}},
+        {"clb_level": 9, "score_range": {"min": 533, "max": 565}},
+        {"clb_level": 8, "score_range": {"min": 500, "max": 532}},
+        {"clb_level": 7, "score_range": {"min": 450, "max": 499}},
+        {"clb_level": 6, "score_range": {"min": 400, "max": 449}},
+        {"clb_level": 5, "score_range": {"min": 350, "max": 399}},
+        {"clb_level": 4, "score_range": {"min": 300, "max": 349}},
+        {"clb_level": 3, "score_range": {"min": 0, "max": 299}}
+      ]
+    },
+    "TEF_NEW": {
+      "reading": [
+        {"clb_level": 10, "score_range": {"min": 546, "max": 699}},
+        {"clb_level": 9, "score_range": {"min": 503, "max": 545}},
+        {"clb_level": 8, "score_range": {"min": 462, "max": 502}},
+        {"clb_level": 7, "score_range": {"min": 434, "max": 461}},
+        {"clb_level": 6, "score_range": {"min": 393, "max": 433}},
+        {"clb_level": 5, "score_range": {"min": 352, "max": 392}},
+        {"clb_level": 4, "score_range": {"min": 306, "max": 351}},
+        {"clb_level": 3, "score_range": {"min": 0, "max": 305}}
+      ],
+      "writing": [
+        {"clb_level": 10, "score_range": {"min": 558, "max": 699}},
+        {"clb_level": 9, "score_range": {"min": 512, "max": 557}},
+        {"clb_level": 8, "score_range": {"min": 472, "max": 511}},
+        {"clb_level": 7, "score_range": {"min": 428, "max": 471}},
+        {"clb_level": 6, "score_range": {"min": 379, "max": 427}},
+        {"clb_level": 5, "score_range": {"min": 330, "max": 378}},
+        {"clb_level": 4, "score_range": {"min": 268, "max": 329}},
+        {"clb_level": 3, "score_range": {"min": 0, "max": 267}}
+      ],
+      "listening": [
+        {"clb_level": 10, "score_range": {"min": 546, "max": 699}},
+        {"clb_level": 9, "score_range": {"min": 503, "max": 545}},
+        {"clb_level": 8, "score_range": {"min": 462, "max": 502}},
+        {"clb_level": 7, "score_range": {"min": 434, "max": 461}},
+        {"clb_level": 6, "score_range": {"min": 393, "max": 433}},
+        {"clb_level": 5, "score_range": {"min": 352, "max": 392}},
+        {"clb_level": 4, "score_range": {"min": 306, "max": 351}},
+        {"clb_level": 3, "score_range": {"min": 0, "max": 305}}
+      ],
+      "speaking": [
+        {"clb_level": 10, "score_range": {"min": 556, "max": 699}},
+        {"clb_level": 9, "score_range": {"min": 518, "max": 555}},
+        {"clb_level": 8, "score_range": {"min": 494, "max": 517}},
+        {"clb_level": 7, "score_range": {"min": 456, "max": 493}},
+        {"clb_level": 6, "score_range": {"min": 422, "max": 455}},
+        {"clb_level": 5, "score_range": {"min": 387, "max": 421}},
+        {"clb_level": 4, "score_range": {"min": 328, "max": 386}},
+        {"clb_level": 3, "score_range": {"min": 0, "max": 327}}
+      ]
+    },
+    "TCF": {
+      "reading": [
+        {"clb_level": 10, "score_range": {"min": 549, "max": 699}},
+        {"clb_level": 9, "score_range": {"min": 524, "max": 548}},
+        {"clb_level": 8, "score_range": {"min": 499, "max": 523}},
+        {"clb_level": 7, "score_range": {"min": 453, "max": 498}},
+        {"clb_level": 6, "score_range": {"min": 406, "max": 452}},
+        {"clb_level": 5, "score_range": {"min": 375, "max": 405}},
+        {"clb_level": 4, "score_range": {"min": 342, "max": 374}},
+        {"clb_level": 3, "score_range": {"min": 0, "max": 341}}
+      ],
+      "writing": [
+        {"clb_level": 10, "score_range": {"min": 16, "max": 20}},
+        {"clb_level": 9, "score_range": {"min": 14, "max": 15}},
+        {"clb_level": 8, "score_range": {"min": 12, "max": 13}},
+        {"clb_level": 7, "score_range": {"min": 10, "max": 11}},
+        {"clb_level": 6, "score_range": {"min": 7, "max": 9}},
+        {"clb_level": 5, "score": 6},
+        {"clb_level": 4, "score_range": {"min": 4, "max": 5}},
+        {"clb_level": 3, "score_range": {"min": 0, "max": 3}}
+      ],
+      "listening": [
+        {"clb_level": 10, "score_range": {"min": 549, "max": 699}},
+        {"clb_level": 9, "score_range": {"min": 523, "max": 548}},
+        {"clb_level": 8, "score_range": {"min": 503, "max": 522}},
+        {"clb_level": 7, "score_range": {"min": 458, "max": 502}},
+        {"clb_level": 6, "score_range": {"min": 398, "max": 457}},
+        {"clb_level": 5, "score_range": {"min": 369, "max": 397}},
+        {"clb_level": 4, "score_range": {"min": 331, "max": 368}},
+        {"clb_level": 3, "score_range": {"min": 0, "max": 330}}
+      ],
+      "speaking": [
+        {"clb_level": 10, "score_range": {"min": 16, "max": 20}},
+        {"clb_level": 9, "score_range": {"min": 14, "max": 15}},
+        {"clb_level": 8, "score_range": {"min": 12, "max": 13}},
+        {"clb_level": 7, "score_range": {"min": 10, "max": 11}},
+        {"clb_level": 6, "score_range": {"min": 7, "max": 9}},
+        {"clb_level": 5, "score": 6},
+        {"clb_level": 4, "score_range": {"min": 4, "max": 5}},
+        {"clb_level": 3, "score_range": {"min": 0, "max": 3}}
+      ]
+    }
+  };
+
+  // CLB Conversion Function
+  function convertScoreToCLB(testType: string, skill: string, score: number, tefPeriod?: string): number {
+    if (!testType || isNaN(score)) return 3;
+
+    let testKey = testType;
+    if (testType === 'TEF') {
+      testKey = tefPeriod === 'old' ? 'TEF_OLD' : 'TEF_NEW';
+    }
+
+    const testData = (clbData as any)[testKey];
+    if (!testData || !testData[skill]) return 3;
+
+    const skillData = testData[skill];
+    let clbLevel = 3; // Default to CLB 3
+
+    for (const entry of skillData) {
+      if (entry.score !== undefined) {
+        // Exact score match
+        if (score >= entry.score) {
+          clbLevel = entry.clb_level;
+          break;
+        }
+      } else if (entry.score_range) {
+        // Score range match
+        if (score >= entry.score_range.min && score <= entry.score_range.max) {
+          clbLevel = entry.clb_level;
+          break;
+        }
+      }
+    }
+
+    return clbLevel;
+  }
+
+  // Convert CLB level to CRS dropdown value
+  function clbToCrsValue(clbLevel: number): string {
+    if (clbLevel >= 10) return 'CLB_10_or_more';
+    if (clbLevel === 9) return 'CLB_9';
+    if (clbLevel === 8) return 'CLB_8';
+    if (clbLevel === 7) return 'CLB_7';
+    if (clbLevel === 6) return 'CLB_6';
+    if (clbLevel >= 4) return 'CLB_4_or_5';
+    return 'CLB_4_or_5'; // Default for CLB 3 and below
   }
 
   // Calculator functionality
   document.addEventListener('DOMContentLoaded', function() {
     let currentStep = 1;
     const totalSteps = 6;
+    let selectedFirstLanguageTest: string | null = null;
+    let selectedFirstTefPeriod: string | null = null;
     
     // Calculator selection
     const calculatorCards = document.querySelectorAll('.calculator-card');
@@ -1443,6 +1750,124 @@ try {
         showCalculator(calculatorType || 'crs');
       });
     });
+
+    // Language Test Selection Handler
+    const firstLanguageTestSelect = document.getElementById('first-language-test') as HTMLSelectElement;
+    if (firstLanguageTestSelect) {
+      firstLanguageTestSelect.addEventListener('change', function() {
+        selectedFirstLanguageTest = this.value;
+        
+        // Show/hide TEF info and score sections
+        const tefInfoSection = document.getElementById('first-tef-info');
+        const scoresSection = document.getElementById('first-language-scores');
+        
+        if (selectedFirstLanguageTest === 'TEF') {
+          // Show TEF info note and scores section
+          if (tefInfoSection) {
+            tefInfoSection.style.display = 'block';
+            tefInfoSection.style.setProperty('display', 'block', 'important');
+          }
+          if (scoresSection) scoresSection.style.display = 'block';
+          selectedFirstTefPeriod = 'new'; // Always use new TEF scoring
+          setupFirstLanguageScoreInputs();
+        } else if (selectedFirstLanguageTest) {
+          // Hide TEF info, show scores section for other tests
+          if (tefInfoSection) {
+            tefInfoSection.style.display = 'none';
+            tefInfoSection.style.setProperty('display', 'none', 'important');
+          }
+          if (scoresSection) scoresSection.style.display = 'block';
+          selectedFirstTefPeriod = null;
+          setupFirstLanguageScoreInputs();
+        } else {
+          // Hide both sections if no test selected
+          if (tefInfoSection) {
+            tefInfoSection.style.display = 'none';
+            tefInfoSection.style.setProperty('display', 'none', 'important');
+          }
+          if (scoresSection) scoresSection.style.display = 'none';
+          selectedFirstTefPeriod = null;
+        }
+        
+        // Reset scores when changing test type
+        resetFirstLanguageScores();
+      });
+    }
+
+    // Setup score input handlers
+    function setupFirstLanguageScoreInputs() {
+      const scoreInputs = ['first-speaking-score', 'first-listening-score', 'first-reading-score', 'first-writing-score'];
+      
+      scoreInputs.forEach(inputId => {
+        const input = document.getElementById(inputId) as HTMLInputElement;
+        if (input) {
+          input.addEventListener('input', function() {
+            const skill = inputId.replace('first-', '').replace('-score', '');
+            const score = parseFloat(this.value);
+            
+            if (!isNaN(score) && selectedFirstLanguageTest) {
+              const clbLevel = convertScoreToCLB(selectedFirstLanguageTest, skill, score, selectedFirstTefPeriod || undefined);
+              
+              // Update CLB display
+              const clbDisplay = this.parentElement?.querySelector('.clb-result');
+              const clbContainer = this.parentElement?.querySelector('.mt-2') as HTMLElement;
+              if (clbDisplay) clbDisplay.textContent = clbLevel.toString();
+              if (clbContainer) clbContainer.style.display = 'block';
+              
+              // Update hidden select for compatibility with existing CRS logic
+              const hiddenSelect = document.getElementById(skill) as HTMLSelectElement;
+              if (hiddenSelect) {
+                hiddenSelect.value = clbToCrsValue(clbLevel);
+                
+                // Trigger change event to update points
+                const changeEvent = new Event('change', { bubbles: true });
+                hiddenSelect.dispatchEvent(changeEvent);
+              }
+            } else {
+              // Hide CLB display if no score
+              const clbContainer = this.parentElement?.querySelector('.mt-2') as HTMLElement;
+              if (clbContainer) clbContainer.style.display = 'none';
+              
+              // Clear hidden select
+              const skill = inputId.replace('first-', '').replace('-score', '');
+              const hiddenSelect = document.getElementById(skill) as HTMLSelectElement;
+              if (hiddenSelect) {
+                hiddenSelect.value = '';
+                const changeEvent = new Event('change', { bubbles: true });
+                hiddenSelect.dispatchEvent(changeEvent);
+              }
+            }
+          });
+        }
+      });
+    }
+
+    // Reset first language scores
+    function resetFirstLanguageScores() {
+      const scoreInputs = ['first-speaking-score', 'first-listening-score', 'first-reading-score', 'first-writing-score'];
+      
+      scoreInputs.forEach(inputId => {
+        const input = document.getElementById(inputId) as HTMLInputElement;
+        if (input) {
+          input.value = '';
+          
+          // Hide CLB display
+          const clbContainer = input.parentElement?.querySelector('.mt-2') as HTMLElement;
+          if (clbContainer) clbContainer.style.display = 'none';
+        }
+      });
+      
+      // Clear hidden selects
+      const skills = ['speaking', 'listening', 'reading', 'writing'];
+      skills.forEach(skill => {
+        const hiddenSelect = document.getElementById(skill) as HTMLSelectElement;
+        if (hiddenSelect) {
+          hiddenSelect.value = '';
+          const changeEvent = new Event('change', { bubbles: true });
+          hiddenSelect.dispatchEvent(changeEvent);
+        }
+      });
+    }
 
     // Function to show specific calculator
     function showCalculator(calculatorType: string) {
@@ -2103,8 +2528,143 @@ try {
         return maritalStatus !== 'married' || spouseAccompanying?.value !== 'yes';
       };
 
+      // Function to validate current step before proceeding
+      const validateCurrentStep = () => {
+        // Special validation for Step 1: Personal Info
+        if (currentStep === 1) {
+          const age = (document.getElementById('age') as HTMLSelectElement)?.value;
+          const maritalStatus = (document.getElementById('marital-status') as HTMLSelectElement)?.value;
+          
+          if (!age) {
+            showValidationError('age', 'Please select your age.');
+            return false;
+          }
+          
+          if (!maritalStatus) {
+            showValidationError('marital-status', 'Please select your marital status.');
+            return false;
+          }
+          
+          // If married, check spouse accompanying selection
+          if (maritalStatus === 'married') {
+            const spouseAccompanying = document.querySelector('input[name="spouse-accompanying"]:checked') as HTMLInputElement;
+            if (!spouseAccompanying) {
+              showValidationError('spouse-accompanying', 'Please indicate if your spouse will accompany you to Canada.');
+              return false;
+            }
+          }
+        }
+
+        // Special validation for Step 2: Education
+        if (currentStep === 2) {
+          const education = (document.getElementById('education') as HTMLSelectElement)?.value;
+          
+          if (!education) {
+            showValidationError('education', 'Please select your highest level of education.');
+            return false;
+          }
+        }
+
+        // Special validation for Step 3: Language Test
+        if (currentStep === 3) {
+          const languageTest = (document.getElementById('first-language-test') as HTMLSelectElement)?.value;
+          
+          if (!languageTest) {
+            showValidationError('first-language-test', 'Please select your language test type.');
+            return false;
+          }
+          
+          // Check if language scores are entered (for score-based system)
+          const scoreInputs = ['first-speaking-score', 'first-listening-score', 'first-reading-score', 'first-writing-score'];
+          let hasAllScores = true;
+          
+          for (const inputId of scoreInputs) {
+            const input = document.getElementById(inputId) as HTMLInputElement;
+            if (!input || !input.value || input.value.trim() === '') {
+              hasAllScores = false;
+              break;
+            }
+          }
+          
+          if (!hasAllScores) {
+            showValidationError('first-language-scores', 'Please enter your language test scores for all four skills (Speaking, Listening, Reading, Writing).');
+            return false;
+          }
+        }
+
+        // Special validation for Step 4: Work Experience
+        if (currentStep === 4) {
+          const canadianExperience = (document.getElementById('canadian-experience') as HTMLSelectElement)?.value;
+          const foreignExperience = (document.getElementById('foreign-experience') as HTMLSelectElement)?.value;
+          
+          if (!canadianExperience) {
+            showValidationError('canadian-experience', 'Please select your Canadian work experience.');
+            return false;
+          }
+          
+          if (!foreignExperience) {
+            showValidationError('foreign-experience', 'Please select your foreign work experience.');
+            return false;
+          }
+        }
+
+        return true;
+      };
+
+      // Function to show validation error
+      const showValidationError = (fieldId: string, message: string) => {
+        let targetElement: HTMLElement | null = null;
+
+        // Find target element
+        if (fieldId === 'spouse-accompanying') {
+          targetElement = document.querySelector('input[name="spouse-accompanying"]')?.closest('.form-group') as HTMLElement;
+        } else if (fieldId === 'first-language-scores') {
+          targetElement = document.getElementById('first-language-scores');
+        } else {
+          targetElement = document.getElementById(fieldId);
+        }
+
+        if (targetElement) {
+          // Remove existing error messages
+          const existingError = targetElement.parentElement?.querySelector('.validation-error');
+          if (existingError) {
+            existingError.remove();
+          }
+
+          // Create and show error message
+          const errorDiv = document.createElement('div');
+          errorDiv.className = 'validation-error mt-2 p-3 bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-700 rounded-lg text-sm text-red-600 dark:text-red-400 flex items-center';
+          errorDiv.innerHTML = `<span class="mr-2">⚠️</span>${message}`;
+          
+          // Insert error message after the field
+          if (targetElement.parentElement) {
+            targetElement.parentElement.insertBefore(errorDiv, targetElement.nextSibling);
+          }
+
+          // Scroll to the error
+          targetElement.scrollIntoView({ behavior: 'smooth', block: 'center' });
+          
+          // Focus the field if it's an input
+          if (targetElement.tagName === 'SELECT' || targetElement.tagName === 'INPUT') {
+            (targetElement as HTMLInputElement | HTMLSelectElement).focus();
+          }
+
+          // Auto-remove error after 5 seconds
+          setTimeout(() => {
+            if (errorDiv.parentElement) {
+              errorDiv.remove();
+            }
+          }, 5000);
+        }
+      };
+
       if (nextBtn) {
         nextBtn.addEventListener('click', function() {
+          // Validate current step before proceeding
+          if (!validateCurrentStep()) {
+            return; // Don't proceed if validation fails
+          }
+          
           let nextStep = currentStep + 1;
           
           // Skip step 5 (spouse) if not applicable
