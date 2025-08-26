@@ -4,7 +4,11 @@
   "devCommand": "npm run dev",
   "installCommand": "npm install",
   "framework": "astro",
-
+  "functions": {
+    "_functions/entry.mjs": {
+      "runtime": "nodejs20.x"
+    }
+  },
   "headers": [
     {
       "source": "/(.*)",
