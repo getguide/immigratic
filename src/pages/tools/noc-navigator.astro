@@ -178,5 +178,113 @@ export const metadata = {
 
     // Check mobile on resize
     window.addEventListener('resize', checkMobileDevice);
+
+    // 📊 NOC Navigator Usage Tracking System
+    const sessionId = 'noc_' + Date.now() + '_' + Math.random().toString(36).substr(2, 9);
+    let pageStartTime = Date.now();
+    
+    console.log('📊 NOC Navigator tracking initialized with session:', sessionId.substring(0, 15) + '...');
+
+    // Extract UTM parameters from URL
+    function getUTMParameters() {
+      const urlParams = new URLSearchParams(window.location.search);
+      return {
+        utmSource: urlParams.get('utm_source'),
+        utmMedium: urlParams.get('utm_medium'),
+        utmCampaign: urlParams.get('utm_campaign')
+      };
+    }
+
+    // Detect device type
+    function getDeviceType() {
+      const width = window.innerWidth;
+      if (width <= 768) return 'mobile';
+      if (width <= 1024) return 'tablet';
+      return 'desktop';
+    }
+
+    // Track usage function
+    async function trackNOCUsage(conversionEvent, calculationResult = null) {
+      const timeSpent = Math.floor((Date.now() - pageStartTime) / 1000);
+      const utm = getUTMParameters();
+      
+      const trackingData = {
+        calculatorType: 'noc_navigator',
+        sessionId: sessionId,
+        calculationResult: calculationResult,
+        timeSpentSeconds: timeSpent,
+        utmSource: utm.utmSource,
+        utmMedium: utm.utmMedium,
+        utmCampaign: utm.utmCampaign,
+        deviceType: getDeviceType(),
+        conversionEvent: conversionEvent
+      };
+
+      console.log('📊 Tracking NOC Navigator usage:', {
+        type: 'noc_navigator',
+        event: conversionEvent,
+        timeSpent: timeSpent + 's',
+        device: getDeviceType(),
+        utm: utm.utmSource || 'direct'
+      });
+
+      try {
+        const response = await fetch('/api/track-calculator-usage', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(trackingData)
+        });
+
+        if (response.ok) {
+          console.log('✅ NOC Navigator usage tracked successfully');
+        } else {
+          console.log('⚠️ Failed to track NOC Navigator usage:', response.status);
+        }
+      } catch (error) {
+        console.log('⚠️ Error tracking NOC Navigator usage:', error);
+      }
+    }
+
+    // Track page visit
+    trackNOCUsage('tool_opened');
+
+    // Track search interactions
+    document.addEventListener('input', function(e) {
+      if (e.target && e.target.id === 'search-input') {
+        const searchTerm = e.target.value;
+        if (searchTerm.length >= 3) {
+          console.log('📊 NOC search performed:', searchTerm.substring(0, 20) + '...');
+          trackNOCUsage('search_performed', { searchLength: searchTerm.length });
+        }
+      }
+    });
+
+    // Track NOC code selection (when user clicks on a NOC result)
+    document.addEventListener('click', function(e) {
+      if (e.target && e.target.closest('.noc-result-item')) {
+        const nocItem = e.target.closest('.noc-result-item');
+        const nocCode = nocItem.getAttribute('data-noc-code') || 'unknown';
+        console.log('📊 NOC code selected:', nocCode);
+        trackNOCUsage('noc_selected', { nocCode: nocCode });
+      }
+    });
+
+    // Track session end when user leaves the page
+    window.addEventListener('beforeunload', function() {
+      navigator.sendBeacon('/api/track-calculator-usage', JSON.stringify({
+        calculatorType: 'noc_navigator',
+        sessionId: sessionId,
+        timeSpentSeconds: Math.floor((Date.now() - pageStartTime) / 1000),
+        utmSource: getUTMParameters().utmSource,
+        utmMedium: getUTMParameters().utmMedium,
+        utmCampaign: getUTMParameters().utmCampaign,
+        deviceType: getDeviceType(),
+        conversionEvent: 'session_ended'
+      }));
+    });
+
+    console.log('📊 NOC Navigator tracking listeners set up successfully');
   </script>
 </Layout>

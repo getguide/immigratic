@@ -4874,6 +4874,36 @@ try {
       };
     }
 
+    // Track FSW calculation completion
+    const originalCalculateFSW = window.calculateFSW;
+    if (originalCalculateFSW) {
+      window.calculateFSW = function() {
+        const result = originalCalculateFSW();
+        
+        // Extract the final FSW score for tracking
+        setTimeout(() => {
+          // Try multiple selectors to find the FSW score
+          let fswScore = 0;
+          let fswScoreElement = document.querySelector('#fsw-total-score');
+          
+          if (!fswScoreElement) {
+            // Try alternative selectors
+            fswScoreElement = document.querySelector('.fsw-total-score, [id*="fsw-total"], [class*="fsw-total"]');
+          }
+          
+          if (fswScoreElement) {
+            fswScore = parseInt(fswScoreElement.textContent) || 0;
+            console.log('📊 FSW calculation completed with score:', fswScore);
+            trackCalculatorUsage('fsw', { fswScore: fswScore }, 'calculation_completed');
+          }
+        }, 1000); // Wait for DOM update
+        
+        return result;
+      };
+    } else {
+      console.log('📊 calculateFSW function not found, setting up alternative FSW tracking');
+    }
+
     // Track PDF downloads
     document.addEventListener('click', function(e) {
       if (e.target.textContent && e.target.textContent.includes('Download PDF')) {

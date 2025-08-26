@@ -7,10 +7,7 @@ import vercel from '@astrojs/vercel/serverless';
 export default defineConfig({
   site: 'https://www.immigratic.com',
   output: 'hybrid',
-  adapter: vercel({
-    webAnalytics: { enabled: true },
-    functionPerRoute: false
-  }),
+  adapter: vercel(),
   integrations: [tailwind()],
   build: {
     outDir: 'dist',

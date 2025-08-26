@@ -95,10 +95,15 @@ export const GET: APIRoute = async ({ url }) => {
         return Math.round(total / sessionTimes.length);
       })(),
 
-      // Top calculation results (CRS scores)
+      // Top calculation results (CRS and FSW scores)
       topScores: (() => {
-        const scores = usageData?.filter(record => {
-          if (!record.calculation_result) return false;
+        const crsScores = [];
+        const fswScores = [];
+        let fswEligibleCount = 0;
+        let totalFswCalculations = 0;
+        
+        usageData?.forEach(record => {
+          if (!record.calculation_result) return;
           
           // Handle both object and potential string formats
           let result = record.calculation_result;
@@ -106,29 +111,40 @@ export const GET: APIRoute = async ({ url }) => {
             try {
               result = JSON.parse(result);
             } catch (e) {
-              return false;
+              return;
             }
           }
           
-          return result && typeof result === 'object' && 
-                 ('crsScore' in result || 'fswScore' in result);
-        }).map(record => {
-          let result = record.calculation_result;
-          if (typeof result === 'string') {
-            result = JSON.parse(result);
+          if (!result || typeof result !== 'object') return;
+          
+          // Separate CRS and FSW scores by calculator type
+          if (record.calculator_type === 'crs' && 'crsScore' in result && result.crsScore > 0) {
+            crsScores.push(result.crsScore);
+          } else if (record.calculator_type === 'fsw' && 'fswScore' in result && result.fswScore > 0) {
+            fswScores.push(result.fswScore);
+            totalFswCalculations++;
+            if (result.fswScore >= 67) { // FSW pass mark is typically 67
+              fswEligibleCount++;
+            }
           }
-          return (result as any).crsScore || (result as any).fswScore || 0;
-        }).filter(score => score > 0) || [];
+        });
         
-        console.log(`📊 Analytics: Found ${scores.length} calculation scores:`, scores);
-        
-        if (scores.length === 0) return { avg: 0, max: 0, min: 0, count: 0 };
+        console.log(`📊 Analytics: Found ${crsScores.length} CRS scores and ${fswScores.length} FSW scores`);
         
         return {
-          avg: Math.round(scores.reduce((sum, score) => sum + score, 0) / scores.length),
-          max: Math.max(...scores),
-          min: Math.min(...scores),
-          count: scores.length
+          crs: crsScores.length > 0 ? {
+            avg: Math.round(crsScores.reduce((sum, score) => sum + score, 0) / crsScores.length),
+            max: Math.max(...crsScores),
+            min: Math.min(...crsScores),
+            count: crsScores.length
+          } : null,
+          fsw: fswScores.length > 0 ? {
+            avg: Math.round(fswScores.reduce((sum, score) => sum + score, 0) / fswScores.length),
+            max: Math.max(...fswScores),
+            min: Math.min(...fswScores),
+            count: fswScores.length,
+            eligibleRate: totalFswCalculations > 0 ? Math.round((fswEligibleCount / totalFswCalculations) * 100) : 0
+          } : null
         };
       })(),
 

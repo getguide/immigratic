@@ -20,9 +20,9 @@ export const metadata = {
         
         <!-- Time Period Selector -->
         <div class="mt-4 flex gap-2">
-          <button onclick="loadAnalytics(7)" class="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors text-sm">Last 7 Days</button>
-          <button onclick="loadAnalytics(30)" class="px-4 py-2 bg-gray-600 text-white rounded-lg hover:bg-gray-700 transition-colors text-sm">Last 30 Days</button>
-          <button onclick="loadAnalytics(90)" class="px-4 py-2 bg-gray-600 text-white rounded-lg hover:bg-gray-700 transition-colors text-sm">Last 90 Days</button>
+          <button id="btn-7" onclick="selectTimeframe(7)" class="px-4 py-2 bg-gray-200 text-gray-700 rounded-lg hover:bg-gray-300 transition-colors text-sm">Last 7 Days</button>
+          <button id="btn-30" onclick="selectTimeframe(30)" class="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors text-sm">Last 30 Days</button>
+          <button id="btn-90" onclick="selectTimeframe(90)" class="px-4 py-2 bg-gray-200 text-gray-700 rounded-lg hover:bg-gray-300 transition-colors text-sm">Last 90 Days</button>
         </div>
       </div>
 
@@ -73,8 +73,12 @@ export const metadata = {
                 </svg>
               </div>
               <div class="ml-4">
-                <p class="text-sm font-medium text-gray-600 dark:text-gray-400">Avg CRS Score</p>
-                <p id="avg-crs-score" class="text-2xl font-bold text-gray-900 dark:text-white">-</p>
+                <p class="text-sm font-medium text-gray-600 dark:text-gray-400">Calculator Scores</p>
+                <p id="avg-crs-score" class="text-xl font-bold text-gray-900 dark:text-white">CRS: -</p>
+                <p class="text-sm text-gray-600 dark:text-gray-400">
+                  FSW: <span id="avg-fsw-score" class="font-medium">-</span> | 
+                  Eligible: <span id="fsw-eligible-rate" class="font-medium">-%</span>
+                </p>
               </div>
             </div>
           </div>
@@ -177,6 +181,18 @@ export const metadata = {
     let dailyChart = null;
     let calculatorChart = null;
 
+    // Select timeframe and update UI
+    function selectTimeframe(days) {
+      // Update button styles
+      document.querySelectorAll('[id^="btn-"]').forEach(btn => {
+        btn.className = 'px-4 py-2 bg-gray-200 text-gray-700 rounded-lg hover:bg-gray-300 transition-colors text-sm';
+      });
+      document.getElementById(`btn-${days}`).className = 'px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors text-sm';
+      
+      // Load data for selected timeframe
+      loadAnalytics(days);
+    }
+
     // Load analytics data
     async function loadAnalytics(days = 30) {
       currentPeriod = days;
@@ -237,7 +253,14 @@ export const metadata = {
       const timeText = avgTime < 60 ? `${avgTime}s` : `${Math.floor(avgTime / 60)}m ${avgTime % 60}s`;
       document.getElementById('avg-session-time').textContent = timeText;
       
-      document.getElementById('avg-crs-score').textContent = data.topScores.avg || 'N/A';
+      // Update CRS and FSW scores
+      const crsAvg = data.topScores.crs?.avg || 'N/A';
+      const fswAvg = data.topScores.fsw?.avg || 'N/A';
+      const fswEligible = data.topScores.fsw?.eligibleRate || 0;
+      
+      document.getElementById('avg-crs-score').textContent = `CRS: ${crsAvg}`;
+      document.getElementById('avg-fsw-score').textContent = fswAvg;
+      document.getElementById('fsw-eligible-rate').textContent = `${fswEligible}%`;
       
       const mobileCount = data.byDevice.mobile || 0;
       const mobilePercentage = data.totalUsage > 0 ? Math.round((mobileCount / data.totalUsage) * 100) : 0;
