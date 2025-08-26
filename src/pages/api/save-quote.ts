@@ -122,10 +122,12 @@ export const POST: APIRoute = async ({ request }) => {
       
       total_price: body.quoteData?.grandTotal || body.quoteData?.totalPrice || 0,
       
-      // Marketing & session tracking - TESTING WHICH FIELD BREAKS
+      // Marketing & session tracking - SAFE FIELDS ONLY
       session_id: body.sessionData?.sessionId || 'unknown',
       time_spent_seconds: body.sessionData?.timeSpentSeconds || 0,
-      device_type: body.sessionData?.deviceType || 'unknown'
+      device_type: body.sessionData?.deviceType || 'unknown',
+      user_agent: body.sessionData?.userAgent || '',
+      ip_address: request.headers.get('x-forwarded-for') || request.headers.get('x-real-ip') || 'unknown'
     };
 
     console.log('💾 Quote API: Inserting record for:', quoteRecord.email);
