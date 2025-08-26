@@ -117,14 +117,24 @@ export const GET: APIRoute = async ({ url }) => {
           
           if (!result || typeof result !== 'object') return;
           
-          // Separate CRS and FSW scores by calculator type
+          // Separate CRS and FSW scores by calculator type with validation
           if (record.calculator_type === 'crs' && 'crsScore' in result && result.crsScore > 0) {
-            crsScores.push(result.crsScore);
+            // Validate CRS score is realistic (0-1200 range)
+            if (result.crsScore <= 1200) {
+              crsScores.push(result.crsScore);
+            } else {
+              console.log(`📊 Analytics: Filtering out invalid CRS score: ${result.crsScore}`);
+            }
           } else if (record.calculator_type === 'fsw' && 'fswScore' in result && result.fswScore > 0) {
-            fswScores.push(result.fswScore);
-            totalFswCalculations++;
-            if (result.fswScore >= 67) { // FSW pass mark is typically 67
-              fswEligibleCount++;
+            // Validate FSW score is realistic (0-100 range)
+            if (result.fswScore <= 100) {
+              fswScores.push(result.fswScore);
+              totalFswCalculations++;
+              if (result.fswScore >= 67) { // FSW pass mark is typically 67
+                fswEligibleCount++;
+              }
+            } else {
+              console.log(`📊 Analytics: Filtering out invalid FSW score: ${result.fswScore}`);
             }
           }
         });
