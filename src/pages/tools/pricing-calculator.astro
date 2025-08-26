@@ -124,6 +124,33 @@ const { immigration_pricing } = pricingData;
                     <option value="express_oinp_bundle">Express Entry + OINP Bundle</option>
                     <option value="sponsorship">Family Sponsorship</option>
                   </select>
+                  
+                  <!-- Application Type Hints -->
+                  <div id="application-hints" class="mt-3" style="display: none;">
+                    <div id="visitor-visa-hint" class="application-hint bg-blue-50 dark:bg-blue-900/20 border border-blue-200 dark:border-blue-800 rounded-lg p-3" style="display: none;">
+                      <div class="flex items-start gap-2">
+                        <svg class="w-5 h-5 text-blue-600 dark:text-blue-400 mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                          <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd"></path>
+                        </svg>
+                        <div>
+                          <div class="text-sm font-medium text-blue-800 dark:text-blue-200">Includes:</div>
+                          <div class="text-sm text-blue-700 dark:text-blue-300">Visitor visa, super visa, or visitor record applications</div>
+                        </div>
+                      </div>
+                    </div>
+                    
+                    <div id="work-permit-hint" class="application-hint bg-green-50 dark:bg-green-900/20 border border-green-200 dark:border-green-800 rounded-lg p-3" style="display: none;">
+                      <div class="flex items-start gap-2">
+                        <svg class="w-5 h-5 text-green-600 dark:text-green-400 mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                          <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd"></path>
+                        </svg>
+                        <div>
+                          <div class="text-sm font-medium text-green-800 dark:text-green-200">Includes:</div>
+                          <div class="text-sm text-green-700 dark:text-green-300">PGWP, SOWP, or public policy consideration applications</div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
                 </div>
               </div>
 
@@ -410,6 +437,30 @@ const { immigration_pricing } = pricingData;
     sponsorship: 'Family Sponsorship'
   };
 
+  // Show/hide application type hints
+  function updateApplicationHints(applicationType) {
+    const hintsContainer = document.getElementById('application-hints');
+    const visitorHint = document.getElementById('visitor-visa-hint');
+    const workPermitHint = document.getElementById('work-permit-hint');
+    
+    // Hide all hints first
+    document.querySelectorAll('.application-hint').forEach(hint => {
+      hint.style.display = 'none';
+    });
+    
+    if (applicationType === 'visitor_visa') {
+      hintsContainer.style.display = 'block';
+      visitorHint.style.display = 'block';
+    } else if (applicationType === 'work_permit') {
+      hintsContainer.style.display = 'block';
+      workPermitHint.style.display = 'block';
+    } else if (applicationType) {
+      hintsContainer.style.display = 'none';
+    } else {
+      hintsContainer.style.display = 'none';
+    }
+  }
+
   // Calculate pricing based on form inputs
   function calculatePricing() {
     const formData = new FormData(form);
@@ -418,6 +469,9 @@ const { immigration_pricing } = pricingData;
     const hasSpouse = formData.get('has_spouse') === 'yes';
     const dependentsCount = parseInt(formData.get('dependents_count') || '0');
     const priorRefusal = formData.has('prior_refusal');
+
+    // Update hints based on application type
+    updateApplicationHints(applicationType);
 
     if (!location || !applicationType) {
       showEmptyState();
