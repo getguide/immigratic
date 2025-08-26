@@ -111,7 +111,8 @@ export const POST: APIRoute = async ({ request }) => {
         'Content-Type': 'application/json',
         'Authorization': `Bearer ${serviceKey}`,
         'apikey': serviceKey,
-        'Prefer': 'return=representation'
+        'Prefer': 'return=representation',
+        'Accept': 'application/json'
       },
       body: JSON.stringify(quoteRecord)
     });
