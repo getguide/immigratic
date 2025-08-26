@@ -4808,9 +4808,7 @@ try {
           }
           
           if (crsScoreElement) {
-            const rawText = crsScoreElement.textContent || '';
-            console.log('📊 Raw CRS element text:', JSON.stringify(rawText));
-            crsScore = parseInt(rawText.trim()) || 0;
+            crsScore = parseInt(crsScoreElement.textContent?.trim() || '0') || 0;
             console.log('📊 CRS calculation completed with score:', crsScore);
             trackCalculatorUsage('crs', { crsScore: crsScore }, 'calculation_completed');
           } else {
@@ -4838,9 +4836,7 @@ try {
             }
             
             if (crsScoreElement) {
-              const rawText = crsScoreElement.textContent || '';
-              console.log('📊 Raw CRS fallback element text:', JSON.stringify(rawText));
-              crsScore = parseInt(rawText.trim()) || 0;
+              crsScore = parseInt(crsScoreElement.textContent?.trim() || '0') || 0;
               console.log('📊 Found CRS score after calculation:', crsScore);
               trackCalculatorUsage('crs', { crsScore: crsScore }, 'calculation_completed');
             }
