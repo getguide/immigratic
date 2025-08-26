@@ -90,6 +90,7 @@ export const POST: APIRoute = async ({ request }) => {
   
   try {
     const body = await request.json();
+    console.log('💾 Quote API: Full body received:', JSON.stringify(body, null, 2));
     console.log('💾 Quote API: Received data for:', body.email);
 
     // Create the record object
