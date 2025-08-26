@@ -4798,28 +4798,17 @@ try {
         
         // Extract the final CRS score for tracking
         setTimeout(() => {
-          // Try multiple selectors to find the CRS score
+          // Try correct selectors for CRS score
           let crsScore = 0;
-          let crsScoreElement = document.querySelector('#crs-total-score');
+          let crsScoreElement = document.querySelector('#final-total-score');
           
           if (!crsScoreElement) {
-            // Try alternative selectors
-            crsScoreElement = document.querySelector('.crs-total-score');
-          }
-          
-          if (!crsScoreElement) {
-            // Look for any element containing the total score
-            const scoreElements = document.querySelectorAll('[id*="total"], [class*="total"]');
-            for (let elem of scoreElements) {
-              if (elem.textContent && /^\d+$/.test(elem.textContent.trim())) {
-                crsScoreElement = elem;
-                break;
-              }
-            }
+            // Try the other CRS score element
+            crsScoreElement = document.querySelector('#total-score-value');
           }
           
           if (crsScoreElement) {
-            crsScore = parseInt(crsScoreElement.textContent.replace(/\D/g, '')) || 0;
+            crsScore = parseInt(crsScoreElement.textContent.trim()) || 0;
             console.log('📊 CRS calculation completed with score:', crsScore);
             trackCalculatorUsage('crs', { crsScore: crsScore }, 'calculation_completed');
           } else {
@@ -4838,16 +4827,18 @@ try {
       document.addEventListener('click', function(e) {
         if (e.target && (e.target.textContent.includes('Calculate') || e.target.id.includes('calculate'))) {
           setTimeout(() => {
-            // Look for any score display after calculation
-            const scoreElements = document.querySelectorAll('[id*="score"], [class*="score"], .text-6xl, .text-5xl, .text-4xl');
-            for (let elem of scoreElements) {
-              const scoreText = elem.textContent.replace(/\D/g, '');
-              if (scoreText && parseInt(scoreText) > 0) {
-                const score = parseInt(scoreText);
-                console.log('📊 Found CRS score after calculation:', score);
-                trackCalculatorUsage('crs', { crsScore: score }, 'calculation_completed');
-                break;
-              }
+            // Look for CRS score in the correct elements
+            let crsScore = 0;
+            let crsScoreElement = document.querySelector('#final-total-score');
+            
+            if (!crsScoreElement) {
+              crsScoreElement = document.querySelector('#total-score-value');
+            }
+            
+            if (crsScoreElement) {
+              crsScore = parseInt(crsScoreElement.textContent.trim()) || 0;
+              console.log('📊 Found CRS score after calculation:', crsScore);
+              trackCalculatorUsage('crs', { crsScore: crsScore }, 'calculation_completed');
             }
           }, 2000);
         }
@@ -4862,19 +4853,17 @@ try {
         
         // Extract the final FSW score for tracking
         setTimeout(() => {
-          // Try multiple selectors to find the FSW score
+          // Try correct selector for FSW score
           let fswScore = 0;
-          let fswScoreElement = document.querySelector('#fsw-total-score');
-          
-          if (!fswScoreElement) {
-            // Try alternative selectors
-            fswScoreElement = document.querySelector('.fsw-total-score, [id*="fsw-total"], [class*="fsw-total"]');
-          }
+          let fswScoreElement = document.querySelector('#fsw-total-score-value');
           
           if (fswScoreElement) {
-            fswScore = parseInt(fswScoreElement.textContent) || 0;
+            fswScore = parseInt(fswScoreElement.textContent.trim()) || 0;
             console.log('📊 FSW calculation completed with score:', fswScore);
             trackCalculatorUsage('fsw', { fswScore: fswScore }, 'calculation_completed');
+          } else {
+            console.log('📊 FSW calculation completed but score element not found');
+            trackCalculatorUsage('fsw', null, 'calculation_completed');
           }
         }, 1000); // Wait for DOM update
         
