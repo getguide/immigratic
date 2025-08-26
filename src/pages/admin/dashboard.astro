@@ -343,22 +343,37 @@ import Layout from '../../layouts/Layout.astro';
     }
   }
 
-  // Load leads from Supabase
+  // Load leads from API
   async function loadLeads() {
     try {
       showLoading(true);
 
-      const { data, error } = await supabase
-        .from('pricing_quotes')
-        .select('*')
-        .order('created_at', { ascending: false });
-
-      if (error) {
-        throw error;
+      // Get current session for auth token
+      const { data: { session } } = await supabase.auth.getSession();
+      if (!session) {
+        window.location.href = '/admin/login';
+        return;
       }
 
-      allLeads = data || [];
+      // Fetch leads from admin API
+      const response = await fetch('/api/admin/leads', {
+        method: 'GET',
+        headers: {
+          'Authorization': `Bearer ${session.access_token}`,
+          'Content-Type': 'application/json'
+        }
+      });
+
+      const result = await response.json();
+
+      if (!result.success) {
+        throw new Error(result.error || 'Failed to fetch leads');
+      }
+
+      allLeads = result.leads || [];
       filteredLeads = [...allLeads];
+      
+      console.log(`📊 Dashboard: Loaded ${allLeads.length} leads from API`);
       
       renderLeadsTable();
       updateAnalytics();
@@ -649,19 +664,37 @@ import Layout from '../../layouts/Layout.astro';
     const newStatus = statusSelect.value;
 
     try {
-      const { error } = await supabase
-        .from('pricing_quotes')
-        .update({ status: newStatus })
-        .eq('id', leadId);
+      // Get current session for auth token
+      const { data: { session } } = await supabase.auth.getSession();
+      if (!session) {
+        window.location.href = '/admin/login';
+        return;
+      }
 
-      if (error) {
-        throw error;
+      // Update lead via API
+      const response = await fetch('/api/admin/leads', {
+        method: 'PATCH',
+        headers: {
+          'Authorization': `Bearer ${session.access_token}`,
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          leadId: leadId,
+          status: newStatus
+        })
+      });
+
+      const result = await response.json();
+
+      if (!result.success) {
+        throw new Error(result.error || 'Failed to update lead');
       }
 
       // Update local data
       const leadIndex = allLeads.findIndex(l => l.id === leadId);
       if (leadIndex !== -1) {
         allLeads[leadIndex].status = newStatus;
+        allLeads[leadIndex].updated_at = new Date().toISOString();
       }
 
       // Refresh display
