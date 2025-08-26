@@ -110,15 +110,10 @@ export const POST: APIRoute = async ({ request }) => {
       
       total_price: body.quoteData?.grandTotal || body.quoteData?.totalPrice || 0,
       
-      // Marketing & session tracking
+      // Marketing & session tracking - TESTING WHICH FIELD BREAKS
       session_id: body.sessionData?.sessionId || 'unknown',
       time_spent_seconds: body.sessionData?.timeSpentSeconds || 0,
-      utm_source: body.sessionData?.utmSource || 'direct',
-      utm_medium: body.sessionData?.utmMedium || 'website',
-      utm_campaign: body.sessionData?.utmCampaign || 'pricing_calculator',
-      device_type: body.sessionData?.deviceType || 'unknown',
-      referrer_url: body.sessionData?.referrer || '',
-      landing_page: body.sessionData?.landingPage || '/tools/pricing-calculator'
+      device_type: body.sessionData?.deviceType || 'unknown'
     };
 
     console.log('💾 Quote API: Inserting record for:', quoteRecord.email);
