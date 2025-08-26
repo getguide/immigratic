@@ -1164,7 +1164,11 @@ const { immigration_pricing } = pricingData;
         })
       });
 
+      console.log('💾 Frontend: Response status:', response.status);
+      console.log('💾 Frontend: Response headers:', response.headers);
+      
       const result = await response.json();
+      console.log('💾 Frontend: Full response:', result);
 
       if (result.success) {
         console.log('💾 Quote saved successfully:', result);
@@ -1178,10 +1182,12 @@ const { immigration_pricing } = pricingData;
         quoteModal.classList.remove('hidden');
       } else {
         console.error('💾 Failed to save quote:', result.error);
+        console.error('💾 Full error response:', JSON.stringify(result, null, 2));
         alert('There was an error saving your quote. Please try again.');
       }
     } catch (error) {
       console.error('💾 Error saving quote:', error);
+      console.error('💾 Error details:', error.message, error.stack);
       alert('There was an error saving your quote. Please try again.');
     } finally {
       // Re-enable submit button
