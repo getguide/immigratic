@@ -93,12 +93,14 @@ export const POST: APIRoute = async ({ request }) => {
     console.log('💾 Quote API: Full body received:', JSON.stringify(body, null, 2));
     console.log('💾 Quote API: Received data for:', body.email);
 
-    // MINIMAL RECORD - ONLY ESSENTIAL FIELDS TO AVOID DATABASE TRIGGER ISSUES
+    // ADD MOST VALUABLE FIELDS GRADUALLY
     const quoteRecord = {
       name: body.name || 'Unknown',
       email: body.email || 'unknown@example.com',
-      application_type: 'work_permit',
-      location: 'inland',
+      application_type: body.quoteData?.applicationType || 'work_permit',
+      location: body.quoteData?.location || 'inland',
+      has_spouse: body.quoteData?.hasSpouse || false,
+      dependents_count: body.quoteData?.dependentsCount || 0,
       total_price: body.quoteData?.grandTotal || body.quoteData?.totalPrice || 0
     };
 
