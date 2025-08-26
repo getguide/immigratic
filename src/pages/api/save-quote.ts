@@ -1,366 +1,183 @@
 import type { APIRoute } from 'astro';
-import { createClient } from '@supabase/supabase-js';
 
 export const prerender = false;
 
-// Create service role client for server-side operations
-const supabaseUrl = 'https://fneodphdhnnogfuxcpxn.supabase.co';
-const supabaseServiceKey = import.meta.env.SUPABASE_SERVICE_ROLE_KEY;
-const supabaseAnonKey = import.meta.env.PUBLIC_SUPABASE_ANON_KEY;
-
-// Ensure we have the service role key for production
-if (!supabaseServiceKey) {
-  console.error('💾 Quote API: CRITICAL - SUPABASE_SERVICE_ROLE_KEY not found in environment variables');
-  console.log('💾 Quote API: Available env vars:', Object.keys(import.meta.env).filter(key => key.includes('SUPABASE')));
-}
-
-const supabaseAdmin = createClient(supabaseUrl, supabaseServiceKey || supabaseAnonKey, {
-  auth: {
-    autoRefreshToken: false,
-    persistSession: false
-  }
-});
-
-console.log('💾 Quote API: Initialized with', supabaseServiceKey ? 'service role' : 'anon key');
-
-// Slack webhook function
-async function sendSlackNotification(quoteDetails: any) {
+// Function to send Slack notification
+async function sendSlackNotification(leadDetails: any) {
   const slackWebhookUrl = import.meta.env.SLACK_WEBHOOK_URL;
   
   if (!slackWebhookUrl) {
-    console.log('🔔 Slack webhook URL not configured, skipping notification');
+    console.warn('💾 Quote API: Slack webhook URL not configured. Skipping notification.');
     return;
   }
 
+  const { name, email, application_type, total_price, location } = leadDetails;
+
+  const slackMessage = {
+    blocks: [
+      {
+        type: 'header',
+        text: {
+          type: 'plain_text',
+          text: '✨ New Quote Request! ✨',
+          emoji: true,
+        },
+      },
+      {
+        type: 'section',
+        fields: [
+          {
+            type: 'mrkdwn',
+            text: `*Name:*\n${name}`,
+          },
+          {
+            type: 'mrkdwn',
+            text: `*Email:*\n${email}`,
+          },
+          {
+            type: 'mrkdwn',
+            text: `*Application Type:*\n${application_type.replace(/_/g, ' ').split(' ').map((word: string) => word.charAt(0).toUpperCase() + word.slice(1)).join(' ')}`,
+          },
+          {
+            type: 'mrkdwn',
+            text: `*Location:*\n${location.charAt(0).toUpperCase() + location.slice(1)}`,
+          },
+          {
+            type: 'mrkdwn',
+            text: `*Total Price:*\n$${total_price.toLocaleString()}`,
+          },
+        ],
+      },
+      {
+        type: 'actions',
+        elements: [
+          {
+            type: 'button',
+            text: {
+              type: 'plain_text',
+              text: 'View in Admin Dashboard',
+              emoji: true,
+            },
+            style: 'primary',
+            url: `https://immigratic.vercel.app/admin/dashboard`,
+          },
+        ],
+      },
+    ],
+  };
+
   try {
-    const { name, email, quoteData, quoteId, leadScore, priority } = quoteDetails;
-    
-    // Format the application type for display
-    const formatApplicationType = (type: string) => {
-      const types = {
-        'work_permit': 'Work Permit',
-        'study_permit': 'Study Permit', 
-        'visitor_visa': 'Visitor Visa',
-        'express_entry': 'Express Entry (PR)',
-        'family_sponsorship': 'Family Sponsorship (PR)',
-        'oinp_ee_bundle': 'OINP + Express Entry Bundle'
-      };
-      return types[type] || type;
-    };
-
-    // Format location
-    const location = quoteData.location === 'inland' ? 'Inland' : 'Outland';
-    
-    // Build family details
-    let familyDetails = 'Single applicant';
-    if (quoteData.hasSpouse && quoteData.dependentsCount > 0) {
-      familyDetails = `Couple + ${quoteData.dependentsCount} dependent(s)`;
-    } else if (quoteData.hasSpouse) {
-      familyDetails = 'Couple';
-    } else if (quoteData.dependentsCount > 0) {
-      familyDetails = `Single + ${quoteData.dependentsCount} dependent(s)`;
-    }
-
-    // Priority emoji
-    const priorityEmoji = priority === 'high' ? '🔥' : priority === 'medium' ? '⚡' : '📝';
-    
-    const slackMessage = {
-      text: `New Immigration Quote Request! ${priorityEmoji}`,
-      blocks: [
-        {
-          type: "header",
-          text: {
-            type: "plain_text",
-            text: `🎯 New Quote Request - ${formatApplicationType(quoteData.applicationType)}`
-          }
-        },
-        {
-          type: "section",
-          fields: [
-            {
-              type: "mrkdwn",
-              text: `*👤 Name:*\n${name}`
-            },
-            {
-              type: "mrkdwn", 
-              text: `*📧 Email:*\n${email}`
-            },
-            {
-              type: "mrkdwn",
-              text: `*💰 Total Price:*\n$${quoteData.totalPrice.toLocaleString()} CAD`
-            },
-            {
-              type: "mrkdwn",
-              text: `*📊 Lead Score:*\n${leadScore}/100 (${priority})`
-            }
-          ]
-        },
-        {
-          type: "section",
-          fields: [
-            {
-              type: "mrkdwn",
-              text: `*🏠 Processing:*\n${location}`
-            },
-            {
-              type: "mrkdwn",
-              text: `*👨‍👩‍👧‍👦 Family:*\n${familyDetails}`
-            },
-            {
-              type: "mrkdwn",
-              text: `*❌ Prior Refusal:*\n${quoteData.priorRefusal ? 'Yes' : 'No'}`
-            },
-            {
-              type: "mrkdwn",
-              text: `*🆔 Quote ID:*\n${quoteId.substring(0, 8)}...`
-            }
-          ]
-        },
-        {
-          type: "actions",
-          elements: [
-            {
-              type: "button",
-              text: {
-                type: "plain_text",
-                text: "📧 Send Email"
-              },
-              style: "primary",
-              url: `mailto:${email}?subject=Re: Your Immigration Quote Request&body=Hi ${name},%0A%0AThank you for your interest in our immigration services...`
-            },
-            {
-              type: "button", 
-              text: {
-                type: "plain_text",
-                text: "📞 Schedule Call"
-              },
-              url: "https://calendly.com/immigratic"
-            }
-          ]
-        },
-        {
-          type: "context",
-          elements: [
-            {
-              type: "mrkdwn",
-              text: `⏰ Received: <!date^${Math.floor(Date.now() / 1000)}^{date_short_pretty} at {time}|just now>`
-            }
-          ]
-        }
-      ]
-    };
-
-    console.log('🔔 Sending Slack notification...');
-    
     const response = await fetch(slackWebhookUrl, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify(slackMessage)
+      body: JSON.stringify(slackMessage),
     });
 
-    if (response.ok) {
-      console.log('🔔 Slack notification sent successfully');
+    if (!response.ok) {
+      console.error('💾 Quote API: Failed to send Slack notification:', response.status, response.statusText);
     } else {
-      console.error('🔔 Failed to send Slack notification:', response.status, response.statusText);
+      console.log('💾 Quote API: Slack notification sent successfully!');
     }
-
   } catch (error) {
-    console.error('🔔 Error sending Slack notification:', error);
-    // Don't throw - we don't want Slack failures to break quote saving
+    console.error('💾 Quote API: Error sending Slack notification:', error);
   }
 }
 
 export const POST: APIRoute = async ({ request }) => {
-  console.log('💾 Quote API: Received save request');
+  console.log('💾 Quote API: Processing quote request...');
   
   try {
-    // Handle both JSON and text content types
-    let body;
-    try {
-      const rawBody = await request.text();
-      console.log('💾 Quote API: Raw body received, length:', rawBody.length);
-      
-      if (!rawBody || rawBody.trim() === '') {
-        console.error('💾 Quote API: Empty request body');
-        return new Response(JSON.stringify({ 
-          success: false, 
-          error: 'Empty request body' 
-        }), {
-          status: 400,
-          headers: { 'Content-Type': 'application/json' }
-        });
-      }
-      
-      body = JSON.parse(rawBody);
-      console.log('💾 Quote API: Successfully parsed JSON');
-    } catch (parseError) {
-      console.error('💾 Quote API: JSON parse error:', parseError);
-      return new Response(JSON.stringify({ 
-        success: false, 
-        error: 'Invalid JSON in request body' 
-      }), {
-        status: 400,
-        headers: { 'Content-Type': 'application/json' }
-      });
-    }
+    const body = await request.json();
+    console.log('💾 Quote API: Received data for:', body.email);
 
-    // Validate required fields
-    const { name, email, quoteData, sessionData } = body;
-    
-    if (!name || !email || !quoteData) {
-      console.log('💾 Quote API: Missing required fields');
-      return new Response(JSON.stringify({ 
-        success: false, 
-        error: 'Missing required fields: name, email, quoteData' 
-      }), {
-        status: 400,
-        headers: { 'Content-Type': 'application/json' }
-      });
-    }
-
-    // Extract quote data
-    const {
-      totalPrice,
-      serviceFees,
-      serviceFeesBeforeTax,
-      hstAmount,
-      governmentFees,
-      applicationType,
-      location,
-      familySize,
-      hasSpouse,
-      dependentsCount,
-      priorRefusal,
-      biometricsRequired,
-      oinpScenario,
-      governmentFeesBreakdown,
-      addOns
-    } = quoteData;
-
-    // Extract session data
-    const {
-      sessionId,
-      timeSpentSeconds,
-      utmSource,
-      utmMedium,
-      utmCampaign,
-      deviceType,
-      userAgent,
-      referrer,
-      landingPage
-    } = sessionData || {};
-
-    // Prepare the database record
+    // Create the record object
     const quoteRecord = {
-      // Contact Information
-      name: name.trim(),
-      email: email.trim().toLowerCase(),
-      
-      // Application Details
-      application_type: applicationType,
-      location: location,
-      has_spouse: hasSpouse || false,
-      dependents_count: dependentsCount || 0,
-      prior_refusal: priorRefusal || false,
-      biometrics_required: biometricsRequired !== false, // Default to true
-      oinp_scenario: oinpScenario || null,
-      
-      // Detailed Pricing Breakdown
-      service_fees_subtotal: parseFloat(serviceFeesBeforeTax) || 0,
-      hst_rate: location === 'inland' ? 0.13 : 0,
-      hst_amount: parseFloat(hstAmount) || 0,
-      service_fees_total: parseFloat(serviceFees) || 0,
-      government_fees_principal: parseFloat(governmentFeesBreakdown?.principal) || 0,
-      government_fees_spouse: parseFloat(governmentFeesBreakdown?.spouse) || 0,
-      government_fees_dependents: parseFloat(governmentFeesBreakdown?.dependents) || 0,
-      government_fees_oinp: parseFloat(governmentFeesBreakdown?.oinp) || 0,
-      government_fees_biometrics: parseFloat(governmentFeesBreakdown?.biometrics) || 0,
-      government_fees_total: parseFloat(governmentFees) || 0,
-      total_price: parseFloat(totalPrice) || 0,
-      
-      // User Journey Analytics
-      session_id: sessionId,
-      time_spent_seconds: parseInt(timeSpentSeconds) || 0,
-      calculations_performed: 1, // At least one calculation to generate quote
-      
-      // Attribution & Marketing
-      utm_source: utmSource || 'direct',
-      utm_medium: utmMedium || 'website',
-      utm_campaign: utmCampaign || 'pricing_calculator',
-      referrer_url: referrer,
-      landing_page: landingPage,
-      
-      // Device & Technical Info
-      device_type: deviceType || 'unknown',
-      user_agent: userAgent,
-      
-      // Lead Management defaults
+      name: body.name,
+      email: body.email,
+      application_type: body.quoteData?.applicationType || 'work_permit',
+      location: body.quoteData?.location || 'inland',
+      has_spouse: body.quoteData?.hasSpouse || false,
+      dependents_count: body.quoteData?.dependentsCount || 0,
+      prior_refusal: body.quoteData?.priorRefusal || false,
+      biometrics_required: body.quoteData?.biometricsRequired || true,
+      oinp_scenario: body.quoteData?.oinpScenario || null,
+      service_fees_subtotal: body.quoteData?.breakdown?.serviceFees?.subtotal || 0,
+      hst_rate: body.quoteData?.breakdown?.serviceFees?.hstRate || 0,
+      hst_amount: body.quoteData?.breakdown?.serviceFees?.hstAmount || 0,
+      service_fees_total: body.quoteData?.breakdown?.serviceFees?.total || 0,
+      government_fees_principal: body.quoteData?.breakdown?.governmentFees?.principal || 0,
+      government_fees_spouse: body.quoteData?.breakdown?.governmentFees?.spouse || 0,
+      government_fees_dependents: body.quoteData?.breakdown?.governmentFees?.dependents || 0,
+      government_fees_oinp: body.quoteData?.breakdown?.governmentFees?.oinp || 0,
+      government_fees_biometrics: body.quoteData?.breakdown?.governmentFees?.biometrics || 0,
+      government_fees_total: body.quoteData?.breakdown?.governmentFees?.total || 0,
+      total_price: body.quoteData?.breakdown?.grandTotal || body.quoteData?.totalPrice || 0,
+      session_id: body.sessionData?.sessionId || 'unknown',
+      time_spent_seconds: body.sessionData?.timeSpentSeconds || 0,
+      calculations_performed: 1,
+      utm_source: body.sessionData?.utmSource || 'direct',
+      utm_medium: body.sessionData?.utmMedium || 'website',
+      utm_campaign: body.sessionData?.utmCampaign || 'pricing_calculator',
+      referrer_url: body.sessionData?.referrer || '',
+      landing_page: body.sessionData?.landingPage || '/tools/pricing-calculator',
+      device_type: body.sessionData?.deviceType || 'unknown',
+      user_agent: body.sessionData?.userAgent || '',
       status: 'new',
-      marketing_consent: false, // Can be updated later
-      newsletter_consent: false, // Can be updated later
+      marketing_consent: body.marketingConsent || false,
+      newsletter_consent: body.newsletterConsent || false,
       preferred_contact_method: 'email'
     };
 
-    console.log('💾 Quote API: Inserting record:', JSON.stringify(quoteRecord, null, 2));
+    console.log('💾 Quote API: Inserting record for:', quoteRecord.email);
 
-    // Insert into Supabase using service role
-    console.log('💾 Quote API: Attempting to insert into pricing_quotes table...');
-    console.log('💾 Quote API: Using service key:', !!supabaseServiceKey);
-    
-    const { data, error } = await supabaseAdmin
-      .from('pricing_quotes')
-      .insert([quoteRecord])
-      .select('id, lead_score, priority')
-      .single();
+    // Direct Supabase REST API call
+    const supabaseUrl = 'https://fneodphdhnnogfuxcpxn.supabase.co';
+    const serviceKey = import.meta.env.SUPABASE_SERVICE_ROLE_KEY;
 
-    if (error) {
-      console.error('💾 Quote API: Supabase error details:', {
-        code: error.code,
-        message: error.message,
-        details: error.details,
-        hint: error.hint
-      });
-      
-      // Provide more specific error messages
-      let errorMessage = 'Database error: ' + error.message;
-      if (error.code === '42501') {
-        errorMessage = 'Database permission error. Please contact support.';
-        console.error('💾 Quote API: RLS policy violation - service role key may be missing or invalid');
-      }
-      
-      return new Response(JSON.stringify({ 
-        success: false, 
-        error: errorMessage,
-        debug: {
-          hasServiceKey: !!supabaseServiceKey,
-          errorCode: error.code
-        }
+    const response = await fetch(`${supabaseUrl}/rest/v1/pricing_quotes`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${serviceKey}`,
+        'apikey': serviceKey,
+        'Prefer': 'return=representation'
+      },
+      body: JSON.stringify(quoteRecord)
+    });
+
+    console.log('💾 Quote API: Supabase response status:', response.status);
+
+    if (!response.ok) {
+      const errorText = await response.text();
+      console.error('💾 Quote API: Supabase error:', errorText);
+      return new Response(JSON.stringify({
+        success: false,
+        error: 'Database error',
+        details: errorText
       }), {
         status: 500,
         headers: { 'Content-Type': 'application/json' }
       });
     }
 
-    console.log('💾 Quote API: Successfully saved quote:', data);
+    const result = await response.json();
+    console.log('💾 Quote API: Successfully saved quote');
 
     // Send Slack notification
     await sendSlackNotification({
-      name,
-      email,
-      quoteData,
-      quoteId: data.id,
-      leadScore: data.lead_score,
-      priority: data.priority
+      name: body.name,
+      email: body.email,
+      application_type: body.quoteData?.applicationType || 'work_permit',
+      location: body.quoteData?.location || 'inland',
+      total_price: body.quoteData?.breakdown?.grandTotal || body.quoteData?.totalPrice || 0
     });
 
-    return new Response(JSON.stringify({ 
-      success: true, 
-      quoteId: data.id,
-      leadScore: data.lead_score,
-      priority: data.priority,
-      message: 'Quote saved successfully' 
+    return new Response(JSON.stringify({
+      success: true,
+      message: 'Quote saved successfully',
+      data: result
     }), {
       status: 200,
       headers: { 'Content-Type': 'application/json' }
@@ -368,9 +185,10 @@ export const POST: APIRoute = async ({ request }) => {
 
   } catch (error) {
     console.error('💾 Quote API: Unexpected error:', error);
-    return new Response(JSON.stringify({ 
-      success: false, 
-      error: 'Internal server error' 
+    return new Response(JSON.stringify({
+      success: false,
+      error: 'Server error',
+      details: error.message
     }), {
       status: 500,
       headers: { 'Content-Type': 'application/json' }
