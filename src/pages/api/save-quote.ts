@@ -93,42 +93,14 @@ export const POST: APIRoute = async ({ request }) => {
     console.log('💾 Quote API: Full body received:', JSON.stringify(body, null, 2));
     console.log('💾 Quote API: Received data for:', body.email);
 
-    // Create the record object
+    // Create the record object - SIMPLE APPROACH THAT WORKS
     const quoteRecord = {
       name: body.name,
       email: body.email,
       application_type: body.quoteData?.applicationType || 'work_permit',
       location: body.quoteData?.location || 'inland',
       has_spouse: body.quoteData?.hasSpouse || false,
-      dependents_count: body.quoteData?.dependentsCount || 0,
-      prior_refusal: body.quoteData?.priorRefusal || false,
-      biometrics_required: body.quoteData?.biometricsRequired || true,
-      oinp_scenario: body.quoteData?.oinpScenario || null,
-      service_fees_subtotal: body.quoteData?.serviceFeesBreakdown?.subtotal || 0,
-      hst_rate: body.quoteData?.serviceFeesBreakdown?.hstRate || 0,
-      hst_amount: body.quoteData?.serviceFeesBreakdown?.hstAmount || 0,
-      service_fees_total: body.quoteData?.serviceFeesBreakdown?.total || 0,
-      government_fees_principal: body.quoteData?.governmentFeesBreakdown?.principal || 0,
-      government_fees_spouse: body.quoteData?.governmentFeesBreakdown?.spouse || 0,
-      government_fees_dependents: body.quoteData?.governmentFeesBreakdown?.dependents || 0,
-      government_fees_oinp: body.quoteData?.governmentFeesBreakdown?.oinp || 0,
-      government_fees_biometrics: body.quoteData?.governmentFeesBreakdown?.biometrics || 0,
-      government_fees_total: body.quoteData?.governmentFeesBreakdown?.total || 0,
-      total_price: body.quoteData?.grandTotal || body.quoteData?.totalPrice || 0,
-      session_id: body.sessionData?.sessionId || 'unknown',
-      time_spent_seconds: body.sessionData?.timeSpentSeconds || 0,
-      calculations_performed: 1,
-      utm_source: body.sessionData?.utmSource || 'direct',
-      utm_medium: body.sessionData?.utmMedium || 'website',
-      utm_campaign: body.sessionData?.utmCampaign || 'pricing_calculator',
-      referrer_url: body.sessionData?.referrer || '',
-      landing_page: body.sessionData?.landingPage || '/tools/pricing-calculator',
-      device_type: body.sessionData?.deviceType || 'unknown',
-      user_agent: body.sessionData?.userAgent || '',
-      status: 'new',
-      marketing_consent: body.marketingConsent || false,
-      newsletter_consent: body.newsletterConsent || false,
-      preferred_contact_method: 'email'
+      total_price: body.quoteData?.grandTotal || body.quoteData?.totalPrice || 0
     };
 
     console.log('💾 Quote API: Inserting record for:', quoteRecord.email);
