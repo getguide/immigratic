@@ -8,7 +8,8 @@ export default defineConfig({
   site: 'https://www.immigratic.com',
   output: 'hybrid',
   adapter: vercel({
-    edgeMiddleware: false
+    edgeMiddleware: false,
+    functionPerRoute: false
   }),
   integrations: [tailwind()],
   build: {
