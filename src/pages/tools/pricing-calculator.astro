@@ -478,13 +478,20 @@ const { immigration_pricing } = pricingData;
       return;
     }
 
-    // Get base fees
+    // Get service fees
     const principalFee = pricingData.base_fees.principal_applicant[location][applicationType];
     const spouseFee = hasSpouse ? pricingData.base_fees.spouse[location][applicationType] : 0;
     const dependentsFee = dependentsCount > 0 ? pricingData.base_fees.dependents[location][applicationType] * dependentsCount : 0;
     const priorRefusalFee = priorRefusal ? pricingData.add_ons.prior_refusal : 0;
 
-    const total = principalFee + spouseFee + dependentsFee + priorRefusalFee;
+    // Get government fees
+    const govPrincipalFee = pricingData.government_fees[applicationType].principal;
+    const govSpouseFee = hasSpouse ? pricingData.government_fees[applicationType].spouse : 0;
+    const govDependentsFee = dependentsCount > 0 ? pricingData.government_fees[applicationType].dependents * dependentsCount : 0;
+
+    const serviceFeeTotal = principalFee + spouseFee + dependentsFee + priorRefusalFee;
+    const governmentFeeTotal = govPrincipalFee + govSpouseFee + govDependentsFee;
+    const grandTotal = serviceFeeTotal + governmentFeeTotal;
 
     // Store calculation for quote generation
     currentCalculation = {
@@ -494,11 +501,20 @@ const { immigration_pricing } = pricingData;
       dependentsCount,
       priorRefusal,
       breakdown: {
-        principal: principalFee,
-        spouse: spouseFee,
-        dependents: dependentsFee,
-        priorRefusal: priorRefusalFee,
-        total
+        serviceFees: {
+          principal: principalFee,
+          spouse: spouseFee,
+          dependents: dependentsFee,
+          priorRefusal: priorRefusalFee,
+          total: serviceFeeTotal
+        },
+        governmentFees: {
+          principal: govPrincipalFee,
+          spouse: govSpouseFee,
+          dependents: govDependentsFee,
+          total: governmentFeeTotal
+        },
+        grandTotal: grandTotal
       }
     };
 
@@ -506,7 +522,9 @@ const { immigration_pricing } = pricingData;
     
     // Track pricing calculation
     trackPricingUsage('pricing_calculator', {
-      totalPrice: total,
+      totalPrice: grandTotal,
+      serviceFees: serviceFeeTotal,
+      governmentFees: governmentFeeTotal,
       applicationType: applicationType,
       location: location,
       familySize: 1 + (hasSpouse ? 1 : 0) + dependentsCount
@@ -519,46 +537,114 @@ const { immigration_pricing } = pricingData;
     
     let html = '';
     
-    // Principal applicant
+    // Service Fees Section
     html += `
-      <div class="flex justify-between items-center py-2">
-        <span class="text-gray-700 dark:text-gray-300">Principal Applicant</span>
-        <span class="font-semibold text-gray-900 dark:text-white">$${breakdown.principal.toLocaleString()}</span>
+      <div class="mb-4">
+        <h4 class="text-sm font-semibold text-gray-900 dark:text-white mb-3 flex items-center gap-2">
+          <svg class="w-4 h-4 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"></path>
+          </svg>
+          Service Fees
+        </h4>
+    `;
+    
+    // Principal applicant service fee
+    html += `
+      <div class="flex justify-between items-center py-2 text-sm">
+        <span class="text-gray-600 dark:text-gray-400">Principal Applicant</span>
+        <span class="font-medium text-gray-900 dark:text-white">$${breakdown.serviceFees.principal.toLocaleString()}</span>
       </div>
     `;
 
-    // Spouse
+    // Spouse service fee
     if (calculation.hasSpouse) {
       html += `
-        <div class="flex justify-between items-center py-2">
-          <span class="text-gray-700 dark:text-gray-300">Spouse/Partner</span>
-          <span class="font-semibold text-gray-900 dark:text-white">$${breakdown.spouse.toLocaleString()}</span>
+        <div class="flex justify-between items-center py-2 text-sm">
+          <span class="text-gray-600 dark:text-gray-400">Spouse/Partner</span>
+          <span class="font-medium text-gray-900 dark:text-white">$${breakdown.serviceFees.spouse.toLocaleString()}</span>
         </div>
       `;
     }
 
-    // Dependents
+    // Dependents service fee
     if (calculation.dependentsCount > 0) {
       html += `
-        <div class="flex justify-between items-center py-2">
-          <span class="text-gray-700 dark:text-gray-300">${calculation.dependentsCount} Dependent${calculation.dependentsCount > 1 ? 's' : ''}</span>
-          <span class="font-semibold text-gray-900 dark:text-white">$${breakdown.dependents.toLocaleString()}</span>
+        <div class="flex justify-between items-center py-2 text-sm">
+          <span class="text-gray-600 dark:text-gray-400">${calculation.dependentsCount} Dependent${calculation.dependentsCount > 1 ? 's' : ''}</span>
+          <span class="font-medium text-gray-900 dark:text-white">$${breakdown.serviceFees.dependents.toLocaleString()}</span>
         </div>
       `;
     }
 
-    // Prior refusal
+    // Prior refusal service fee
     if (calculation.priorRefusal) {
       html += `
-        <div class="flex justify-between items-center py-2">
-          <span class="text-gray-700 dark:text-gray-300">Prior Refusal Handling</span>
-          <span class="font-semibold text-gray-900 dark:text-white">$${breakdown.priorRefusal.toLocaleString()}</span>
+        <div class="flex justify-between items-center py-2 text-sm">
+          <span class="text-gray-600 dark:text-gray-400">Prior Refusal Handling</span>
+          <span class="font-medium text-gray-900 dark:text-white">$${breakdown.serviceFees.priorRefusal.toLocaleString()}</span>
         </div>
       `;
     }
 
+    // Service fees subtotal
+    html += `
+        <div class="flex justify-between items-center py-2 border-t border-gray-200 dark:border-gray-600 mt-2 pt-2">
+          <span class="font-medium text-gray-900 dark:text-white">Service Fees Subtotal</span>
+          <span class="font-semibold text-blue-600 dark:text-blue-400">$${breakdown.serviceFees.total.toLocaleString()}</span>
+        </div>
+      </div>
+    `;
+
+    // Government Fees Section
+    html += `
+      <div class="mb-4">
+        <h4 class="text-sm font-semibold text-gray-900 dark:text-white mb-3 flex items-center gap-2">
+          <svg class="w-4 h-4 text-red-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"></path>
+          </svg>
+          Government Fees
+        </h4>
+    `;
+
+    // Principal applicant government fee
+    html += `
+      <div class="flex justify-between items-center py-2 text-sm">
+        <span class="text-gray-600 dark:text-gray-400">Principal Applicant</span>
+        <span class="font-medium text-gray-900 dark:text-white">$${breakdown.governmentFees.principal.toLocaleString()}</span>
+      </div>
+    `;
+
+    // Spouse government fee
+    if (calculation.hasSpouse && breakdown.governmentFees.spouse > 0) {
+      html += `
+        <div class="flex justify-between items-center py-2 text-sm">
+          <span class="text-gray-600 dark:text-gray-400">Spouse/Partner</span>
+          <span class="font-medium text-gray-900 dark:text-white">$${breakdown.governmentFees.spouse.toLocaleString()}</span>
+        </div>
+      `;
+    }
+
+    // Dependents government fee
+    if (calculation.dependentsCount > 0) {
+      html += `
+        <div class="flex justify-between items-center py-2 text-sm">
+          <span class="text-gray-600 dark:text-gray-400">${calculation.dependentsCount} Dependent${calculation.dependentsCount > 1 ? 's' : ''}</span>
+          <span class="font-medium text-gray-900 dark:text-white">$${breakdown.governmentFees.dependents.toLocaleString()}</span>
+        </div>
+      `;
+    }
+
+    // Government fees subtotal
+    html += `
+        <div class="flex justify-between items-center py-2 border-t border-gray-200 dark:border-gray-600 mt-2 pt-2">
+          <span class="font-medium text-gray-900 dark:text-white">Government Fees Subtotal</span>
+          <span class="font-semibold text-red-600 dark:text-red-400">$${breakdown.governmentFees.total.toLocaleString()}</span>
+        </div>
+      </div>
+    `;
+
     priceBreakdown.innerHTML = html;
-    totalAmount.textContent = `$${breakdown.total.toLocaleString()}`;
+    totalAmount.textContent = `$${breakdown.grandTotal.toLocaleString()}`;
     totalPrice.style.display = 'block';
     generateQuoteBtn.disabled = false;
   }
@@ -617,38 +703,89 @@ const { immigration_pricing } = pricingData;
 
         <!-- Price Breakdown -->
         <div>
-          <h4 class="text-lg font-semibold text-gray-900 dark:text-white mb-3">Service Fees Breakdown</h4>
-          <div class="space-y-3">
-            <div class="flex justify-between items-center py-2 border-b border-gray-200 dark:border-gray-600">
-              <span class="text-gray-700 dark:text-gray-300">Principal Applicant</span>
-              <span class="font-semibold text-gray-900 dark:text-white">$${breakdown.principal.toLocaleString()} CAD</span>
+          <h4 class="text-lg font-semibold text-gray-900 dark:text-white mb-3">Complete Fee Breakdown</h4>
+          
+          <!-- Service Fees -->
+          <div class="mb-6">
+            <h5 class="text-md font-medium text-blue-800 dark:text-blue-200 mb-2 flex items-center gap-2">
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"></path>
+              </svg>
+              Service Fees
+            </h5>
+            <div class="space-y-2">
+              <div class="flex justify-between items-center py-1">
+                <span class="text-gray-700 dark:text-gray-300">Principal Applicant</span>
+                <span class="font-medium text-gray-900 dark:text-white">$${breakdown.serviceFees.principal.toLocaleString()} CAD</span>
+              </div>
+              
+              ${currentCalculation.hasSpouse ? `
+                <div class="flex justify-between items-center py-1">
+                  <span class="text-gray-700 dark:text-gray-300">Spouse/Partner</span>
+                  <span class="font-medium text-gray-900 dark:text-white">$${breakdown.serviceFees.spouse.toLocaleString()} CAD</span>
+                </div>
+              ` : ''}
+              
+              ${currentCalculation.dependentsCount > 0 ? `
+                <div class="flex justify-between items-center py-1">
+                  <span class="text-gray-700 dark:text-gray-300">${currentCalculation.dependentsCount} Dependent${currentCalculation.dependentsCount > 1 ? 's' : ''}</span>
+                  <span class="font-medium text-gray-900 dark:text-white">$${breakdown.serviceFees.dependents.toLocaleString()} CAD</span>
+                </div>
+              ` : ''}
+              
+              ${currentCalculation.priorRefusal ? `
+                <div class="flex justify-between items-center py-1">
+                  <span class="text-gray-700 dark:text-gray-300">Prior Refusal Handling</span>
+                  <span class="font-medium text-gray-900 dark:text-white">$${breakdown.serviceFees.priorRefusal.toLocaleString()} CAD</span>
+                </div>
+              ` : ''}
+              
+              <div class="flex justify-between items-center py-2 border-t border-gray-200 dark:border-gray-600 pt-2">
+                <span class="font-medium text-gray-900 dark:text-white">Service Fees Subtotal</span>
+                <span class="font-semibold text-blue-600 dark:text-blue-400">$${breakdown.serviceFees.total.toLocaleString()} CAD</span>
+              </div>
             </div>
-            
-            ${currentCalculation.hasSpouse ? `
-              <div class="flex justify-between items-center py-2 border-b border-gray-200 dark:border-gray-600">
-                <span class="text-gray-700 dark:text-gray-300">Spouse/Partner</span>
-                <span class="font-semibold text-gray-900 dark:text-white">$${breakdown.spouse.toLocaleString()} CAD</span>
+          </div>
+
+          <!-- Government Fees -->
+          <div class="mb-6">
+            <h5 class="text-md font-medium text-red-800 dark:text-red-200 mb-2 flex items-center gap-2">
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"></path>
+              </svg>
+              Government Fees
+            </h5>
+            <div class="space-y-2">
+              <div class="flex justify-between items-center py-1">
+                <span class="text-gray-700 dark:text-gray-300">Principal Applicant</span>
+                <span class="font-medium text-gray-900 dark:text-white">$${breakdown.governmentFees.principal.toLocaleString()} CAD</span>
               </div>
-            ` : ''}
-            
-            ${currentCalculation.dependentsCount > 0 ? `
-              <div class="flex justify-between items-center py-2 border-b border-gray-200 dark:border-gray-600">
-                <span class="text-gray-700 dark:text-gray-300">${currentCalculation.dependentsCount} Dependent${currentCalculation.dependentsCount > 1 ? 's' : ''}</span>
-                <span class="font-semibold text-gray-900 dark:text-white">$${breakdown.dependents.toLocaleString()} CAD</span>
+              
+              ${currentCalculation.hasSpouse && breakdown.governmentFees.spouse > 0 ? `
+                <div class="flex justify-between items-center py-1">
+                  <span class="text-gray-700 dark:text-gray-300">Spouse/Partner</span>
+                  <span class="font-medium text-gray-900 dark:text-white">$${breakdown.governmentFees.spouse.toLocaleString()} CAD</span>
+                </div>
+              ` : ''}
+              
+              ${currentCalculation.dependentsCount > 0 ? `
+                <div class="flex justify-between items-center py-1">
+                  <span class="text-gray-700 dark:text-gray-300">${currentCalculation.dependentsCount} Dependent${currentCalculation.dependentsCount > 1 ? 's' : ''}</span>
+                  <span class="font-medium text-gray-900 dark:text-white">$${breakdown.governmentFees.dependents.toLocaleString()} CAD</span>
+                </div>
+              ` : ''}
+              
+              <div class="flex justify-between items-center py-2 border-t border-gray-200 dark:border-gray-600 pt-2">
+                <span class="font-medium text-gray-900 dark:text-white">Government Fees Subtotal</span>
+                <span class="font-semibold text-red-600 dark:text-red-400">$${breakdown.governmentFees.total.toLocaleString()} CAD</span>
               </div>
-            ` : ''}
-            
-            ${currentCalculation.priorRefusal ? `
-              <div class="flex justify-between items-center py-2 border-b border-gray-200 dark:border-gray-600">
-                <span class="text-gray-700 dark:text-gray-300">Prior Refusal Handling</span>
-                <span class="font-semibold text-gray-900 dark:text-white">$${breakdown.priorRefusal.toLocaleString()} CAD</span>
-              </div>
-            ` : ''}
-            
-            <div class="flex justify-between items-center py-3 bg-green-50 dark:bg-green-900/20 rounded-lg px-4">
-              <span class="text-lg font-semibold text-gray-900 dark:text-white">Total Service Fee</span>
-              <span class="text-2xl font-bold text-green-600 dark:text-green-400">$${breakdown.total.toLocaleString()} CAD</span>
             </div>
+          </div>
+          
+          <!-- Grand Total -->
+          <div class="flex justify-between items-center py-4 bg-green-50 dark:bg-green-900/20 rounded-lg px-4 border-2 border-green-200 dark:border-green-800">
+            <span class="text-lg font-semibold text-gray-900 dark:text-white">Total Cost (Service + Government)</span>
+            <span class="text-2xl font-bold text-green-600 dark:text-green-400">$${breakdown.grandTotal.toLocaleString()} CAD</span>
           </div>
         </div>
 
@@ -670,7 +807,9 @@ const { immigration_pricing } = pricingData;
     
     // Track quote generation
     trackPricingUsage('pricing_calculator', {
-      totalPrice: breakdown.total,
+      totalPrice: breakdown.grandTotal,
+      serviceFees: breakdown.serviceFees.total,
+      governmentFees: breakdown.governmentFees.total,
       applicationType: currentCalculation.applicationType,
       location: currentCalculation.location
     }, 'quote_generated');
@@ -777,35 +916,72 @@ const { immigration_pricing } = pricingData;
         </div>
 
         <div class="section">
-          <div class="section-title">Service Fees Breakdown</div>
-          <div style="border: 1px solid #e5e7eb; border-radius: 8px; overflow: hidden;">
-            <div class="breakdown-item">
-              <span>Principal Applicant</span>
-              <span>$${breakdown.principal.toLocaleString()} CAD</span>
+          <div class="section-title">Complete Fee Breakdown</div>
+          
+          <!-- Service Fees -->
+          <div style="margin-bottom: 25px;">
+            <h4 style="color: #2563eb; font-weight: 600; margin-bottom: 10px; font-size: 16px;">Service Fees</h4>
+            <div style="border: 1px solid #e5e7eb; border-radius: 8px; overflow: hidden;">
+              <div class="breakdown-item">
+                <span>Principal Applicant</span>
+                <span>$${breakdown.serviceFees.principal.toLocaleString()} CAD</span>
+              </div>
+              ${currentCalculation.hasSpouse ? `
+                <div class="breakdown-item">
+                  <span>Spouse/Partner</span>
+                  <span>$${breakdown.serviceFees.spouse.toLocaleString()} CAD</span>
+                </div>
+              ` : ''}
+              ${currentCalculation.dependentsCount > 0 ? `
+                <div class="breakdown-item">
+                  <span>${currentCalculation.dependentsCount} Dependent${currentCalculation.dependentsCount > 1 ? 's' : ''}</span>
+                  <span>$${breakdown.serviceFees.dependents.toLocaleString()} CAD</span>
+                </div>
+              ` : ''}
+              ${currentCalculation.priorRefusal ? `
+                <div class="breakdown-item">
+                  <span>Prior Refusal Handling</span>
+                  <span>$${breakdown.serviceFees.priorRefusal.toLocaleString()} CAD</span>
+                </div>
+              ` : ''}
+              <div class="breakdown-item" style="background: #eff6ff; font-weight: 600;">
+                <span>Service Fees Subtotal</span>
+                <span style="color: #2563eb;">$${breakdown.serviceFees.total.toLocaleString()} CAD</span>
+              </div>
             </div>
-            ${currentCalculation.hasSpouse ? `
+          </div>
+
+          <!-- Government Fees -->
+          <div style="margin-bottom: 25px;">
+            <h4 style="color: #dc2626; font-weight: 600; margin-bottom: 10px; font-size: 16px;">Government Fees</h4>
+            <div style="border: 1px solid #e5e7eb; border-radius: 8px; overflow: hidden;">
               <div class="breakdown-item">
-                <span>Spouse/Partner</span>
-                <span>$${breakdown.spouse.toLocaleString()} CAD</span>
+                <span>Principal Applicant</span>
+                <span>$${breakdown.governmentFees.principal.toLocaleString()} CAD</span>
               </div>
-            ` : ''}
-            ${currentCalculation.dependentsCount > 0 ? `
-              <div class="breakdown-item">
-                <span>${currentCalculation.dependentsCount} Dependent${currentCalculation.dependentsCount > 1 ? 's' : ''}</span>
-                <span>$${breakdown.dependents.toLocaleString()} CAD</span>
+              ${currentCalculation.hasSpouse && breakdown.governmentFees.spouse > 0 ? `
+                <div class="breakdown-item">
+                  <span>Spouse/Partner</span>
+                  <span>$${breakdown.governmentFees.spouse.toLocaleString()} CAD</span>
+                </div>
+              ` : ''}
+              ${currentCalculation.dependentsCount > 0 ? `
+                <div class="breakdown-item">
+                  <span>${currentCalculation.dependentsCount} Dependent${currentCalculation.dependentsCount > 1 ? 's' : ''}</span>
+                  <span>$${breakdown.governmentFees.dependents.toLocaleString()} CAD</span>
+                </div>
+              ` : ''}
+              <div class="breakdown-item" style="background: #fef2f2; font-weight: 600;">
+                <span>Government Fees Subtotal</span>
+                <span style="color: #dc2626;">$${breakdown.governmentFees.total.toLocaleString()} CAD</span>
               </div>
-            ` : ''}
-            ${currentCalculation.priorRefusal ? `
-              <div class="breakdown-item">
-                <span>Prior Refusal Handling</span>
-                <span>$${breakdown.priorRefusal.toLocaleString()} CAD</span>
-              </div>
-            ` : ''}
+            </div>
           </div>
           
-          <div class="total-row" style="margin-top: 15px;">
-            <span>Total Service Fee</span>
-            <span class="total-amount">$${breakdown.total.toLocaleString()} CAD</span>
+          <!-- Grand Total -->
+          <div class="total-row" style="margin-top: 15px; background: #ecfdf5; border: 2px solid #10b981;">
+            <span>Total Cost (Service + Government)</span>
+            <span class="total-amount">$${breakdown.grandTotal.toLocaleString()} CAD</span>
           </div>
         </div>
 
