@@ -44,6 +44,18 @@ async function sendSlackNotification(leadDetails: any) {
           },
           {
             type: 'mrkdwn',
+            text: `*Service Fees:*\n$${(leadDetails.service_fees_total || 0).toLocaleString()}`,
+          },
+          {
+            type: 'mrkdwn',
+            text: `*Government Fees:*\n$${(leadDetails.government_fees_total || 0).toLocaleString()}`,
+          },
+          {
+            type: 'mrkdwn',
+            text: `*HST:*\n$${(leadDetails.hst_amount || 0).toLocaleString()}`,
+          },
+          {
+            type: 'mrkdwn',
             text: `*Total Price:*\n$${total_price.toLocaleString()}`,
           },
         ],
@@ -157,6 +169,9 @@ export const POST: APIRoute = async ({ request }) => {
       email: body.email,
       application_type: body.quoteData?.applicationType || 'work_permit',
       location: body.quoteData?.location || 'inland',
+      service_fees_total: body.quoteData?.serviceFeesBreakdown?.total || 0,
+      government_fees_total: body.quoteData?.governmentFeesBreakdown?.total || 0,
+      hst_amount: body.quoteData?.serviceFeesBreakdown?.hstAmount || 0,
       total_price: body.quoteData?.grandTotal || body.quoteData?.totalPrice || 0
     });
 
