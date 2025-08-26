@@ -72,7 +72,9 @@
       "visitor_visa": {
         "principal": 100,
         "spouse": 100,
-        "dependents": 100
+        "dependents": 100,
+        "family_max": 500,
+        "family_threshold": 5
       },
       "study_permit": {
         "principal": 150,
@@ -80,30 +82,42 @@
         "dependents": 150
       },
       "work_permit": {
-        "principal": 155,
-        "spouse": 155,
-        "dependents": 155
+        "principal": 255,
+        "spouse": 255,
+        "dependents": 255,
+        "notes": "155 work permit + 100 open work permit holder fee"
       },
       "express_entry": {
-        "principal": 1365,
-        "spouse": 550,
-        "dependents": 150
+        "principal": 1525,
+        "spouse": 1525,
+        "dependents": 260,
+        "notes": "950 processing + 575 right of PR fee"
       },
       "oinp_job_offer": {
-        "principal": 1500,
-        "spouse": 550,
-        "dependents": 150
+        "principal": 1525,
+        "spouse": 1525,
+        "dependents": 260,
+        "oinp_fee": 1500,
+        "notes": "950 processing + 575 right of PR fee + 1500 OINP (per group)"
       },
       "express_oinp_bundle": {
-        "principal": 1365,
-        "spouse": 550,
-        "dependents": 150
+        "principal": 1525,
+        "spouse": 1525,
+        "dependents": 260,
+        "oinp_fee_conditional": 1500,
+        "notes": "950 processing + 575 right of PR fee + 1500 OINP (only if OINP invitation, not federal ITA)"
       },
       "sponsorship": {
-        "principal": 1080,
+        "principal": 1205,
         "spouse": 0,
-        "dependents": 150
+        "dependents": 175,
+        "notes": "85 sponsorship + 545 processing + 575 right of PR fee"
       }
+    },
+    "biometrics_fees": {
+      "individual": 85,
+      "family_2_or_more": 170,
+      "group_3_or_more_artists": 255
     },
     "calculation_logic": {
       "total_cost": {

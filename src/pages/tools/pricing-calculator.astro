@@ -198,7 +198,7 @@ const { immigration_pricing } = pricingData;
               <div class="space-y-6">
                 <div class="flex items-center gap-3 mb-4">
                   <div class="w-8 h-8 bg-blue-600 text-white rounded-full flex items-center justify-center text-sm font-bold">3</div>
-                  <h3 class="text-xl font-semibold text-gray-900 dark:text-white">Additional Services</h3>
+                  <h3 class="text-xl font-semibold text-gray-900 dark:text-white">Additional Services & Requirements</h3>
                 </div>
 
                 <!-- Prior Refusal -->
@@ -210,6 +210,40 @@ const { immigration_pricing } = pricingData;
                       <div class="text-sm text-gray-600 dark:text-gray-400">Additional service for cases with previous refusals (+$500)</div>
                     </div>
                   </label>
+                </div>
+
+                <!-- Biometrics Required -->
+                <div>
+                  <label class="flex items-start gap-3 cursor-pointer">
+                    <input type="checkbox" name="biometrics_required" class="mt-1 w-5 h-5 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600" checked>
+                    <div>
+                      <div class="font-medium text-gray-900 dark:text-white">Biometrics Required</div>
+                      <div class="text-sm text-gray-600 dark:text-gray-400">Most applicants need to provide biometrics (fingerprints and photo)</div>
+                    </div>
+                  </label>
+                </div>
+
+                <!-- OINP Bundle Conditional -->
+                <div id="oinp-bundle-options" style="display: none;">
+                  <div class="bg-amber-50 dark:bg-amber-900/20 border border-amber-200 dark:border-amber-800 rounded-lg p-4">
+                    <h4 class="font-medium text-amber-800 dark:text-amber-200 mb-3">OINP Bundle Options</h4>
+                    <div class="space-y-3">
+                      <label class="flex items-start gap-3 cursor-pointer">
+                        <input type="radio" name="oinp_scenario" value="oinp_invitation" class="mt-1 w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600" checked>
+                        <div>
+                          <div class="font-medium text-amber-800 dark:text-amber-200">OINP Invitation Expected</div>
+                          <div class="text-sm text-amber-700 dark:text-amber-300">You expect to receive an OINP invitation (+$1,500 OINP fee)</div>
+                        </div>
+                      </label>
+                      <label class="flex items-start gap-3 cursor-pointer">
+                        <input type="radio" name="oinp_scenario" value="federal_ita" class="mt-1 w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+                        <div>
+                          <div class="font-medium text-amber-800 dark:text-amber-200">Federal ITA Expected</div>
+                          <div class="text-sm text-amber-700 dark:text-amber-300">You expect to receive a federal Express Entry invitation (no OINP fee)</div>
+                        </div>
+                      </label>
+                    </div>
+                  </div>
                 </div>
               </div>
 
@@ -437,11 +471,12 @@ const { immigration_pricing } = pricingData;
     sponsorship: 'Family Sponsorship'
   };
 
-  // Show/hide application type hints
+  // Show/hide application type hints and OINP options
   function updateApplicationHints(applicationType) {
     const hintsContainer = document.getElementById('application-hints');
     const visitorHint = document.getElementById('visitor-visa-hint');
     const workPermitHint = document.getElementById('work-permit-hint');
+    const oinpBundleOptions = document.getElementById('oinp-bundle-options');
     
     // Hide all hints first
     document.querySelectorAll('.application-hint').forEach(hint => {
@@ -459,6 +494,13 @@ const { immigration_pricing } = pricingData;
     } else {
       hintsContainer.style.display = 'none';
     }
+
+    // Show OINP bundle options only for express_oinp_bundle
+    if (applicationType === 'express_oinp_bundle') {
+      oinpBundleOptions.style.display = 'block';
+    } else {
+      oinpBundleOptions.style.display = 'none';
+    }
   }
 
   // Calculate pricing based on form inputs
@@ -469,6 +511,8 @@ const { immigration_pricing } = pricingData;
     const hasSpouse = formData.get('has_spouse') === 'yes';
     const dependentsCount = parseInt(formData.get('dependents_count') || '0');
     const priorRefusal = formData.has('prior_refusal');
+    const biometricsRequired = formData.has('biometrics_required');
+    const oinpScenario = formData.get('oinp_scenario') || 'oinp_invitation';
 
     // Update hints based on application type
     updateApplicationHints(applicationType);
@@ -493,11 +537,46 @@ const { immigration_pricing } = pricingData;
     const serviceFeeTotal = serviceFeeSubtotal + hstAmount;
 
     // Get government fees (no tax applied)
-    const govPrincipalFee = pricingData.government_fees[applicationType].principal;
-    const govSpouseFee = hasSpouse ? pricingData.government_fees[applicationType].spouse : 0;
-    const govDependentsFee = dependentsCount > 0 ? pricingData.government_fees[applicationType].dependents * dependentsCount : 0;
+    let govPrincipalFee = pricingData.government_fees[applicationType].principal;
+    let govSpouseFee = hasSpouse ? pricingData.government_fees[applicationType].spouse : 0;
+    let govDependentsFee = dependentsCount > 0 ? pricingData.government_fees[applicationType].dependents * dependentsCount : 0;
+    
+    // Handle special cases
+    let oinpFee = 0;
+    let biometricsFee = 0;
+    
+    // OINP fees
+    if (applicationType === 'oinp_job_offer') {
+      oinpFee = pricingData.government_fees[applicationType].oinp_fee || 0;
+    } else if (applicationType === 'express_oinp_bundle' && oinpScenario === 'oinp_invitation') {
+      oinpFee = pricingData.government_fees[applicationType].oinp_fee_conditional || 0;
+    }
+    
+    // Visitor visa family maximum (5+ people = max $500)
+    if (applicationType === 'visitor_visa') {
+      const totalFamilyMembers = 1 + (hasSpouse ? 1 : 0) + dependentsCount;
+      if (totalFamilyMembers >= 5) {
+        const regularTotal = govPrincipalFee + govSpouseFee + govDependentsFee;
+        const familyMax = pricingData.government_fees[applicationType].family_max || 500;
+        if (regularTotal > familyMax) {
+          govPrincipalFee = familyMax;
+          govSpouseFee = 0;
+          govDependentsFee = 0;
+        }
+      }
+    }
+    
+    // Biometrics fees
+    if (biometricsRequired) {
+      const totalFamilyMembers = 1 + (hasSpouse ? 1 : 0) + dependentsCount;
+      if (totalFamilyMembers >= 2) {
+        biometricsFee = pricingData.biometrics_fees.family_2_or_more;
+      } else {
+        biometricsFee = pricingData.biometrics_fees.individual;
+      }
+    }
 
-    const governmentFeeTotal = govPrincipalFee + govSpouseFee + govDependentsFee;
+    const governmentFeeTotal = govPrincipalFee + govSpouseFee + govDependentsFee + oinpFee + biometricsFee;
     const grandTotal = serviceFeeTotal + governmentFeeTotal;
 
     // Store calculation for quote generation
@@ -522,6 +601,8 @@ const { immigration_pricing } = pricingData;
           principal: govPrincipalFee,
           spouse: govSpouseFee,
           dependents: govDependentsFee,
+          oinp: oinpFee,
+          biometrics: biometricsFee,
           total: governmentFeeTotal
         },
         grandTotal: grandTotal
@@ -654,11 +735,31 @@ const { immigration_pricing } = pricingData;
     }
 
     // Dependents government fee
-    if (calculation.dependentsCount > 0) {
+    if (calculation.dependentsCount > 0 && breakdown.governmentFees.dependents > 0) {
       html += `
         <div class="flex justify-between items-center py-2 text-sm">
           <span class="text-gray-600 dark:text-gray-400">${calculation.dependentsCount} Dependent${calculation.dependentsCount > 1 ? 's' : ''}</span>
           <span class="font-medium text-gray-900 dark:text-white">$${breakdown.governmentFees.dependents.toLocaleString()}</span>
+        </div>
+      `;
+    }
+
+    // OINP fee
+    if (breakdown.governmentFees.oinp > 0) {
+      html += `
+        <div class="flex justify-between items-center py-2 text-sm">
+          <span class="text-gray-600 dark:text-gray-400">OINP Fee</span>
+          <span class="font-medium text-gray-900 dark:text-white">$${breakdown.governmentFees.oinp.toLocaleString()}</span>
+        </div>
+      `;
+    }
+
+    // Biometrics fee
+    if (breakdown.governmentFees.biometrics > 0) {
+      html += `
+        <div class="flex justify-between items-center py-2 text-sm">
+          <span class="text-gray-600 dark:text-gray-400">Biometrics</span>
+          <span class="font-medium text-gray-900 dark:text-white">$${breakdown.governmentFees.biometrics.toLocaleString()}</span>
         </div>
       `;
     }
