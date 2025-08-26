@@ -56,7 +56,7 @@ export const POST: APIRoute = async ({ request }) => {
     } = body;
     
     // Validate calculator type
-    const validTypes = ['crs', 'fsw', 'master_assessment', 'clb_navigator', 'noc_navigator'];
+    const validTypes = ['crs', 'fsw', 'master_assessment', 'clb_navigator', 'noc_navigator', 'pricing_calculator'];
     if (!validTypes.includes(calculatorType)) {
       return new Response(JSON.stringify({ error: 'Invalid calculator type' }), {
         status: 400,
