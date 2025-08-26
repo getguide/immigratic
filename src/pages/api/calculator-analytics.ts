@@ -119,7 +119,8 @@ export const GET: APIRoute = async ({ url }) => {
           
           // Separate CRS and FSW scores by calculator type with validation
           if (record.calculator_type === 'crs' && 'crsScore' in result && result.crsScore > 0) {
-            // Validate CRS score is realistic (0-1200 range)
+            // Validate CRS score is realistic (0-1200 range, with max 600 additional points)
+            // Core factors: max ~600, Additional points: max 600, Total: max ~1200
             if (result.crsScore <= 1200) {
               crsScores.push(result.crsScore);
             } else {

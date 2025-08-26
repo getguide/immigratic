@@ -834,6 +834,9 @@ try {
               <span class="text-xl font-semibold text-gray-900 dark:text-white">
                 Additional Factors Total: <strong class="text-green-600 dark:text-green-400 points-value">0</strong> points
               </span>
+              <div id="additional-cap-warning" class="mt-2 p-3 bg-orange-50 dark:bg-orange-900/20 border border-orange-200 dark:border-orange-700 rounded-lg text-sm text-orange-700 dark:text-orange-300" style="display: none;">
+                ⚠️ <strong>Maximum reached:</strong> Additional factors are capped at 600 points total, regardless of individual qualifications.
+              </div>
             </div>
           </div>
 
@@ -3184,11 +3187,28 @@ try {
       const canadianEducationPoints = parseInt((document.querySelector('#canadian-education-points .points-value') as HTMLElement)?.textContent || '0');
       const pnpPoints = parseInt((document.querySelector('#pnp-points .points-value') as HTMLElement)?.textContent || '0');
       
-      const totalPoints = siblingPoints + frenchPoints + canadianEducationPoints + pnpPoints;
+      const uncappedTotal = siblingPoints + frenchPoints + canadianEducationPoints + pnpPoints;
+      
+      // Cap additional points at 600 maximum
+      const totalPoints = Math.min(uncappedTotal, 600);
       
       const additionalTotalDisplay = document.querySelector('#additional-total .points-value') as HTMLElement;
+      const capWarning = document.getElementById('additional-cap-warning') as HTMLElement;
+      
       if (additionalTotalDisplay) {
         additionalTotalDisplay.textContent = totalPoints.toString();
+        
+        // Show/hide warning if points were capped
+        if (uncappedTotal > 600) {
+          console.log(`⚠️ Additional points capped: ${uncappedTotal} → ${totalPoints} (max 600)`);
+          if (capWarning) {
+            capWarning.style.display = 'block';
+          }
+        } else {
+          if (capWarning) {
+            capWarning.style.display = 'none';
+          }
+        }
       }
       
       updateTotalScore();
