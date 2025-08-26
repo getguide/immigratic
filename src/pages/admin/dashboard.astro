@@ -1,8 +1,8 @@
 ---
-import Layout from '../../layouts/Layout.astro';
+import AdminLayout from '../../layouts/AdminLayout.astro';
 ---
 
-<Layout title="Admin Dashboard - Immigratic">
+<AdminLayout title="Admin Dashboard - Immigratic">
   <!-- Auth Check Script -->
   <script>
     // Check authentication before page loads
@@ -288,7 +288,7 @@ import Layout from '../../layouts/Layout.astro';
       </div>
     </div>
   </div>
-</Layout>
+</AdminLayout>
 
 <script>
   import { createClient } from '@supabase/supabase-js';
