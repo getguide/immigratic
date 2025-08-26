@@ -1,0 +1,282 @@
+---
+import Layout from '../../layouts/Layout.astro';
+---
+
+<Layout title="Admin Setup - Immigratic">
+  <div class="min-h-screen flex items-center justify-center bg-gradient-to-br from-blue-50 to-indigo-100 dark:from-gray-900 dark:to-gray-800 py-12 px-4 sm:px-6 lg:px-8">
+    <div class="max-w-md w-full space-y-8">
+      <!-- Logo and Header -->
+      <div class="text-center">
+        <div class="mx-auto h-16 w-16 bg-gradient-to-br from-blue-500 to-purple-600 rounded-full flex items-center justify-center">
+          <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"></path>
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path>
+          </svg>
+        </div>
+        <h2 class="mt-6 text-3xl font-extrabold text-gray-900 dark:text-white">
+          Admin Setup
+        </h2>
+        <p class="mt-2 text-sm text-gray-600 dark:text-gray-400">
+          Create your first administrator account
+        </p>
+      </div>
+
+      <!-- Setup Form -->
+      <form id="setup-form" class="mt-8 space-y-6">
+        <div class="rounded-md shadow-sm -space-y-px">
+          <div>
+            <label for="email" class="sr-only">Email address</label>
+            <input 
+              id="email" 
+              name="email" 
+              type="email" 
+              autocomplete="email" 
+              required 
+              class="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 dark:border-gray-600 placeholder-gray-500 dark:placeholder-gray-400 text-gray-900 dark:text-white bg-white dark:bg-gray-700 rounded-t-md focus:outline-none focus:ring-blue-500 focus:border-blue-500 focus:z-10 sm:text-sm" 
+              placeholder="Admin email address"
+            >
+          </div>
+          <div>
+            <label for="password" class="sr-only">Password</label>
+            <input 
+              id="password" 
+              name="password" 
+              type="password" 
+              autocomplete="new-password" 
+              required 
+              minlength="8"
+              class="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 dark:border-gray-600 placeholder-gray-500 dark:placeholder-gray-400 text-gray-900 dark:text-white bg-white dark:bg-gray-700 focus:outline-none focus:ring-blue-500 focus:border-blue-500 focus:z-10 sm:text-sm" 
+              placeholder="Password (min 8 characters)"
+            >
+          </div>
+          <div>
+            <label for="confirm-password" class="sr-only">Confirm Password</label>
+            <input 
+              id="confirm-password" 
+              name="confirm-password" 
+              type="password" 
+              autocomplete="new-password" 
+              required 
+              class="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 dark:border-gray-600 placeholder-gray-500 dark:placeholder-gray-400 text-gray-900 dark:text-white bg-white dark:bg-gray-700 rounded-b-md focus:outline-none focus:ring-blue-500 focus:border-blue-500 focus:z-10 sm:text-sm" 
+              placeholder="Confirm password"
+            >
+          </div>
+        </div>
+
+        <!-- Password Requirements -->
+        <div class="text-sm text-gray-600 dark:text-gray-400">
+          <p class="font-medium mb-2">Password requirements:</p>
+          <ul class="list-disc list-inside space-y-1">
+            <li>At least 8 characters long</li>
+            <li>Use a strong, unique password</li>
+            <li>Consider using a password manager</li>
+          </ul>
+        </div>
+
+        <!-- Submit Button -->
+        <div>
+          <button 
+            type="submit" 
+            id="setup-button"
+            class="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 transition-all duration-200"
+          >
+            <span class="absolute left-0 inset-y-0 flex items-center pl-3">
+              <svg class="h-5 w-5 text-blue-300 group-hover:text-blue-200" fill="currentColor" viewBox="0 0 20 20">
+                <path d="M10 12a2 2 0 100-4 2 2 0 000 4z"></path>
+                <path fill-rule="evenodd" d="M.458 10C1.732 5.943 5.522 3 10 3s8.268 2.943 9.542 7c-1.274 4.057-5.064 7-9.542 7S1.732 14.057.458 10zM14 10a4 4 0 11-8 0 4 4 0 018 0z" clip-rule="evenodd"></path>
+              </svg>
+            </span>
+            <span id="setup-text">Create Admin Account</span>
+            <span id="setup-spinner" class="hidden">
+              <svg class="animate-spin -ml-1 mr-3 h-5 w-5 text-white" fill="none" viewBox="0 0 24 24">
+                <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+              </svg>
+              Creating account...
+            </span>
+          </button>
+        </div>
+
+        <!-- Error Message -->
+        <div id="error-message" class="hidden mt-4 p-4 bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-800 rounded-md">
+          <div class="flex">
+            <svg class="h-5 w-5 text-red-400" fill="currentColor" viewBox="0 0 20 20">
+              <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z" clip-rule="evenodd"></path>
+            </svg>
+            <div class="ml-3">
+              <p id="error-text" class="text-sm text-red-800 dark:text-red-200"></p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Success Message -->
+        <div id="success-message" class="hidden mt-4 p-4 bg-green-50 dark:bg-green-900/20 border border-green-200 dark:border-green-800 rounded-md">
+          <div class="flex">
+            <svg class="h-5 w-5 text-green-400" fill="currentColor" viewBox="0 0 20 20">
+              <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
+            </svg>
+            <div class="ml-3">
+              <p id="success-text" class="text-sm text-green-800 dark:text-green-200"></p>
+            </div>
+          </div>
+        </div>
+      </form>
+
+      <!-- Footer -->
+      <div class="text-center">
+        <p class="text-xs text-gray-500 dark:text-gray-400">
+          This setup is only needed once. Keep your credentials secure.
+        </p>
+        <p class="text-xs text-gray-500 dark:text-gray-400 mt-2">
+          Already have an account? <a href="/admin/login" class="text-blue-600 hover:text-blue-500 dark:text-blue-400">Sign in here</a>
+        </p>
+      </div>
+    </div>
+  </div>
+</Layout>
+
+<script>
+  // DOM elements
+  const setupForm = document.getElementById('setup-form');
+  const emailInput = document.getElementById('email');
+  const passwordInput = document.getElementById('password');
+  const confirmPasswordInput = document.getElementById('confirm-password');
+  const setupButton = document.getElementById('setup-button');
+  const setupText = document.getElementById('setup-text');
+  const setupSpinner = document.getElementById('setup-spinner');
+  const errorMessage = document.getElementById('error-message');
+  const errorText = document.getElementById('error-text');
+  const successMessage = document.getElementById('success-message');
+  const successText = document.getElementById('success-text');
+
+  // Show/hide messages
+  function showError(message) {
+    errorText.textContent = message;
+    errorMessage.classList.remove('hidden');
+    successMessage.classList.add('hidden');
+  }
+
+  function showSuccess(message) {
+    successText.textContent = message;
+    successMessage.classList.remove('hidden');
+    errorMessage.classList.add('hidden');
+  }
+
+  function hideMessages() {
+    errorMessage.classList.add('hidden');
+    successMessage.classList.add('hidden');
+  }
+
+  // Loading state
+  function setLoading(loading) {
+    setupButton.disabled = loading;
+    if (loading) {
+      setupText.classList.add('hidden');
+      setupSpinner.classList.remove('hidden');
+    } else {
+      setupText.classList.remove('hidden');
+      setupSpinner.classList.add('hidden');
+    }
+  }
+
+  // Validate form
+  function validateForm() {
+    const email = emailInput.value.trim();
+    const password = passwordInput.value;
+    const confirmPassword = confirmPasswordInput.value;
+
+    if (!email) {
+      showError('Please enter an email address.');
+      return false;
+    }
+
+    if (!email.includes('@')) {
+      showError('Please enter a valid email address.');
+      return false;
+    }
+
+    if (password.length < 8) {
+      showError('Password must be at least 8 characters long.');
+      return false;
+    }
+
+    if (password !== confirmPassword) {
+      showError('Passwords do not match.');
+      return false;
+    }
+
+    return true;
+  }
+
+  // Handle form submission
+  setupForm.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    hideMessages();
+
+    if (!validateForm()) {
+      return;
+    }
+
+    setLoading(true);
+
+    const email = emailInput.value.trim();
+    const password = passwordInput.value;
+
+    try {
+      const response = await fetch('/api/admin/auth', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          action: 'create_admin',
+          email,
+          password
+        })
+      });
+
+      const data = await response.json();
+
+      if (!data.success) {
+        throw new Error(data.error || 'Failed to create admin account');
+      }
+
+      showSuccess('Admin account created successfully! Redirecting to login...');
+      
+      // Redirect to login after a short delay
+      setTimeout(() => {
+        window.location.href = '/admin/login';
+      }, 2000);
+
+    } catch (error) {
+      console.error('Setup error:', error);
+      
+      let errorMessage = 'Failed to create admin account. Please try again.';
+      
+      if (error.message.includes('already registered')) {
+        errorMessage = 'An account with this email already exists. Please use the login page.';
+      } else if (error.message.includes('Invalid email')) {
+        errorMessage = 'Please enter a valid email address.';
+      } else if (error.message.includes('Password')) {
+        errorMessage = 'Password must be at least 8 characters long.';
+      }
+      
+      showError(errorMessage);
+    } finally {
+      setLoading(false);
+    }
+  });
+
+  // Real-time password validation
+  confirmPasswordInput.addEventListener('input', () => {
+    const password = passwordInput.value;
+    const confirmPassword = confirmPasswordInput.value;
+    
+    if (confirmPassword && password !== confirmPassword) {
+      confirmPasswordInput.setCustomValidity('Passwords do not match');
+    } else {
+      confirmPasswordInput.setCustomValidity('');
+    }
+  });
+</script>
+</Layout>
