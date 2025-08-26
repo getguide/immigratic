@@ -4702,6 +4702,237 @@ try {
   }
 </script>
 
+<!-- Calculator Usage Tracking Script -->
+<script>
+  // 📊 Calculator Usage Tracking System
+  
+  // Generate unique session ID for this page visit
+  const sessionId = 'calc_' + Date.now() + '_' + Math.random().toString(36).substr(2, 9);
+  let pageStartTime = Date.now();
+  
+  console.log('📊 Calculator tracking initialized with session:', sessionId.substring(0, 15) + '...');
+
+  // Extract UTM parameters from URL
+  function getUTMParameters() {
+    const urlParams = new URLSearchParams(window.location.search);
+    return {
+      utmSource: urlParams.get('utm_source'),
+      utmMedium: urlParams.get('utm_medium'),
+      utmCampaign: urlParams.get('utm_campaign')
+    };
+  }
+
+  // Detect device type
+  function getDeviceType() {
+    const userAgent = navigator.userAgent.toLowerCase();
+    if (userAgent.includes('mobile')) return 'mobile';
+    if (userAgent.includes('tablet') || userAgent.includes('ipad')) return 'tablet';
+    return 'desktop';
+  }
+
+  // Track calculator usage
+  async function trackCalculatorUsage(calculatorType, calculationResult = null, conversionEvent = null) {
+    try {
+      const timeSpent = Math.round((Date.now() - pageStartTime) / 1000); // seconds
+      const utmParams = getUTMParameters();
+      
+      const trackingData = {
+        calculatorType: calculatorType,
+        sessionId: sessionId,
+        calculationResult: calculationResult,
+        timeSpentSeconds: timeSpent,
+        utmSource: utmParams.utmSource,
+        utmMedium: utmParams.utmMedium,
+        utmCampaign: utmParams.utmCampaign,
+        deviceType: getDeviceType(),
+        conversionEvent: conversionEvent
+      };
+
+      console.log('📊 Tracking calculator usage:', {
+        type: calculatorType,
+        timeSpent: timeSpent + 's',
+        device: getDeviceType(),
+        utm: utmParams.utmSource || 'direct'
+      });
+
+      const response = await fetch('/api/track-calculator-usage', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(trackingData)
+      });
+
+      if (response.ok) {
+        console.log('✅ Calculator usage tracked successfully');
+      } else {
+        console.warn('⚠️ Failed to track calculator usage:', response.status);
+      }
+      
+    } catch (error) {
+      // Fail silently - don't interrupt user experience
+      console.log('📊 Usage tracking failed (non-critical):', error);
+    }
+  }
+
+  // Track when calculator cards are clicked (initial engagement)
+  document.addEventListener('DOMContentLoaded', function() {
+    console.log('📊 Setting up calculator tracking listeners...');
+    
+    // Track calculator card clicks
+    document.querySelectorAll('.calculator-card').forEach(card => {
+      card.addEventListener('click', function() {
+        const calculatorType = this.getAttribute('data-calculator');
+        if (calculatorType) {
+          console.log('📊 Calculator card clicked:', calculatorType);
+          trackCalculatorUsage(calculatorType, null, 'calculator_opened');
+        }
+      });
+    });
+
+    // Track CRS calculation completion
+    const originalCalculateCRS = window.calculateCRS;
+    if (originalCalculateCRS) {
+      window.calculateCRS = function() {
+        const result = originalCalculateCRS();
+        
+        // Extract the final CRS score for tracking
+        setTimeout(() => {
+          // Try multiple selectors to find the CRS score
+          let crsScore = 0;
+          let crsScoreElement = document.querySelector('#crs-total-score');
+          
+          if (!crsScoreElement) {
+            // Try alternative selectors
+            crsScoreElement = document.querySelector('.crs-total-score');
+          }
+          
+          if (!crsScoreElement) {
+            // Look for any element containing the total score
+            const scoreElements = document.querySelectorAll('[id*="total"], [class*="total"]');
+            for (let elem of scoreElements) {
+              if (elem.textContent && /^\d+$/.test(elem.textContent.trim())) {
+                crsScoreElement = elem;
+                break;
+              }
+            }
+          }
+          
+          if (crsScoreElement) {
+            crsScore = parseInt(crsScoreElement.textContent.replace(/\D/g, '')) || 0;
+            console.log('📊 CRS calculation completed with score:', crsScore);
+            trackCalculatorUsage('crs', { crsScore: crsScore }, 'calculation_completed');
+          } else {
+            console.log('📊 CRS calculation completed but score element not found');
+            trackCalculatorUsage('crs', null, 'calculation_completed');
+          }
+        }, 1500); // Wait longer for DOM update
+        
+        return result;
+      };
+    } else {
+      // If calculateCRS function doesn't exist, try to hook into form submission or button clicks
+      console.log('📊 calculateCRS function not found, setting up alternative tracking');
+      
+      // Track when calculate buttons are clicked
+      document.addEventListener('click', function(e) {
+        if (e.target && (e.target.textContent.includes('Calculate') || e.target.id.includes('calculate'))) {
+          setTimeout(() => {
+            // Look for any score display after calculation
+            const scoreElements = document.querySelectorAll('[id*="score"], [class*="score"], .text-6xl, .text-5xl, .text-4xl');
+            for (let elem of scoreElements) {
+              const scoreText = elem.textContent.replace(/\D/g, '');
+              if (scoreText && parseInt(scoreText) > 0) {
+                const score = parseInt(scoreText);
+                console.log('📊 Found CRS score after calculation:', score);
+                trackCalculatorUsage('crs', { crsScore: score }, 'calculation_completed');
+                break;
+              }
+            }
+          }, 2000);
+        }
+      });
+    }
+
+    // Track FSW calculation completion
+    const originalCalculateFSW = window.calculateFSW;
+    if (originalCalculateFSW) {
+      window.calculateFSW = function() {
+        const result = originalCalculateFSW();
+        
+        // Extract the final FSW score for tracking
+        setTimeout(() => {
+          const fswScoreElement = document.querySelector('#fsw-total-score');
+          if (fswScoreElement) {
+            const fswScore = parseInt(fswScoreElement.textContent) || 0;
+            console.log('📊 FSW calculation completed with score:', fswScore);
+            trackCalculatorUsage('fsw', { fswScore: fswScore }, 'calculation_completed');
+          }
+        }, 1000); // Wait for DOM update
+        
+        return result;
+      };
+    }
+
+    // Track PDF downloads
+    document.addEventListener('click', function(e) {
+      if (e.target.textContent && e.target.textContent.includes('Download PDF')) {
+        // Find the currently active calculator or the one being used
+        let calculatorType = document.querySelector('.calculator-card.active')?.getAttribute('data-calculator');
+        
+        // If no active card, check which calculator section is visible
+        if (!calculatorType) {
+          if (document.querySelector('#crs-calculator:not(.hidden)')) {
+            calculatorType = 'crs';
+          } else if (document.querySelector('#fsw-calculator:not(.hidden)')) {
+            calculatorType = 'fsw';
+          } else {
+            calculatorType = 'crs'; // Default to CRS
+          }
+        }
+        
+        console.log('📊 PDF download initiated for:', calculatorType);
+        trackCalculatorUsage(calculatorType, null, 'pdf_downloaded');
+      }
+    });
+
+    // Track CSV downloads
+    document.addEventListener('click', function(e) {
+      if (e.target.textContent && e.target.textContent.includes('Download CSV')) {
+        const calculatorType = document.querySelector('.calculator-card.active')?.getAttribute('data-calculator') || 'unknown';
+        console.log('📊 CSV download initiated for:', calculatorType);
+        trackCalculatorUsage(calculatorType, null, 'csv_downloaded');
+      }
+    });
+
+    console.log('✅ Calculator tracking listeners set up successfully');
+  });
+
+  // Track page unload (session end)
+  window.addEventListener('beforeunload', function() {
+    const timeSpent = Math.round((Date.now() - pageStartTime) / 1000);
+    console.log('📊 Session ending, total time spent:', timeSpent + 's');
+    
+    // Use sendBeacon for reliable tracking on page unload
+    if (navigator.sendBeacon) {
+      const utmParams = getUTMParameters();
+      const trackingData = JSON.stringify({
+        calculatorType: 'session_end',
+        sessionId: sessionId,
+        timeSpentSeconds: timeSpent,
+        utmSource: utmParams.utmSource,
+        utmMedium: utmParams.utmMedium,
+        utmCampaign: utmParams.utmCampaign,
+        deviceType: getDeviceType(),
+        conversionEvent: 'session_ended'
+      });
+      
+      navigator.sendBeacon('/api/track-calculator-usage', new Blob([trackingData], {type: 'application/json'}));
+    }
+  });
+
+</script>
+
 <style>
   /* Form Styles */
   .form-group {

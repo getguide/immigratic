@@ -1,0 +1,401 @@
+---
+import Layout from '../../layouts/Layout.astro';
+
+export const metadata = {
+  title: 'Calculator Analytics Dashboard - Immigratic',
+  description: 'Analytics dashboard for calculator usage tracking',
+  robots: 'noindex, nofollow' // Keep this private
+};
+---
+
+<Layout title={metadata.title} description={metadata.description}>
+  <!-- Analytics Dashboard -->
+  <div class="min-h-screen bg-gray-50 dark:bg-gray-900 py-8">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <!-- Header -->
+      <div class="mb-8">
+        <h1 class="text-3xl font-bold text-gray-900 dark:text-white">📊 Calculator Analytics</h1>
+        <p class="text-gray-600 dark:text-gray-400 mt-2">Track usage patterns and user engagement with your immigration calculators</p>
+        
+        <!-- Time Period Selector -->
+        <div class="mt-4 flex gap-2">
+          <button onclick="loadAnalytics(7)" class="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors text-sm">Last 7 Days</button>
+          <button onclick="loadAnalytics(30)" class="px-4 py-2 bg-gray-600 text-white rounded-lg hover:bg-gray-700 transition-colors text-sm">Last 30 Days</button>
+          <button onclick="loadAnalytics(90)" class="px-4 py-2 bg-gray-600 text-white rounded-lg hover:bg-gray-700 transition-colors text-sm">Last 90 Days</button>
+        </div>
+      </div>
+
+      <!-- Loading State -->
+      <div id="loading" class="text-center py-12">
+        <div class="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600 mx-auto"></div>
+        <p class="text-gray-600 dark:text-gray-400 mt-4">Loading analytics...</p>
+      </div>
+
+      <!-- Analytics Content -->
+      <div id="analytics-content" class="hidden">
+        
+        <!-- Key Metrics -->
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
+          <div class="bg-white dark:bg-gray-800 rounded-xl p-6 shadow-lg">
+            <div class="flex items-center">
+              <div class="p-2 bg-blue-100 dark:bg-blue-900 rounded-lg">
+                <svg class="w-6 h-6 text-blue-600 dark:text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"></path>
+                </svg>
+              </div>
+              <div class="ml-4">
+                <p class="text-sm font-medium text-gray-600 dark:text-gray-400">Total Usage</p>
+                <p id="total-usage" class="text-2xl font-bold text-gray-900 dark:text-white">-</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="bg-white dark:bg-gray-800 rounded-xl p-6 shadow-lg">
+            <div class="flex items-center">
+              <div class="p-2 bg-green-100 dark:bg-green-900 rounded-lg">
+                <svg class="w-6 h-6 text-green-600 dark:text-green-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                </svg>
+              </div>
+              <div class="ml-4">
+                <p class="text-sm font-medium text-gray-600 dark:text-gray-400">Avg Session Time</p>
+                <p id="avg-session-time" class="text-2xl font-bold text-gray-900 dark:text-white">-</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="bg-white dark:bg-gray-800 rounded-xl p-6 shadow-lg">
+            <div class="flex items-center">
+              <div class="p-2 bg-purple-100 dark:bg-purple-900 rounded-lg">
+                <svg class="w-6 h-6 text-purple-600 dark:text-purple-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 7h6m0 10v-3m-3 3h.01M9 17h.01M9 14h.01M12 14h.01M15 11h.01M12 11h.01M9 11h.01M7 21h10a2 2 0 002-2V5a2 2 0 00-2-2H7a2 2 0 00-2 2v14a2 2 0 002 2z"></path>
+                </svg>
+              </div>
+              <div class="ml-4">
+                <p class="text-sm font-medium text-gray-600 dark:text-gray-400">Avg CRS Score</p>
+                <p id="avg-crs-score" class="text-2xl font-bold text-gray-900 dark:text-white">-</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="bg-white dark:bg-gray-800 rounded-xl p-6 shadow-lg">
+            <div class="flex items-center">
+              <div class="p-2 bg-orange-100 dark:bg-orange-900 rounded-lg">
+                <svg class="w-6 h-6 text-orange-600 dark:text-orange-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 18h.01M8 21h8a2 2 0 002-2V5a2 2 0 00-2-2H8a2 2 0 00-2 2v14a2 2 0 002 2z"></path>
+                </svg>
+              </div>
+              <div class="ml-4">
+                <p class="text-sm font-medium text-gray-600 dark:text-gray-400">Mobile Users</p>
+                <p id="mobile-percentage" class="text-2xl font-bold text-gray-900 dark:text-white">-</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Charts Row -->
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-8">
+          
+          <!-- Daily Usage Chart -->
+          <div class="bg-white dark:bg-gray-800 rounded-xl p-6 shadow-lg">
+            <h3 class="text-lg font-semibold text-gray-900 dark:text-white mb-4">📈 Daily Usage (Last 7 Days)</h3>
+            <div class="relative h-64">
+              <canvas id="daily-usage-chart"></canvas>
+            </div>
+          </div>
+
+          <!-- Calculator Type Breakdown -->
+          <div class="bg-white dark:bg-gray-800 rounded-xl p-6 shadow-lg">
+            <h3 class="text-lg font-semibold text-gray-900 dark:text-white mb-4">🧮 Calculator Usage</h3>
+            <div class="relative h-64">
+              <canvas id="calculator-chart"></canvas>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Breakdown Tables -->
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-8">
+          
+          <!-- Device Breakdown -->
+          <div class="bg-white dark:bg-gray-800 rounded-xl p-6 shadow-lg">
+            <h3 class="text-lg font-semibold text-gray-900 dark:text-white mb-4">📱 Device Types</h3>
+            <div id="device-breakdown" class="space-y-2">
+              <!-- Will be populated by JavaScript -->
+            </div>
+          </div>
+
+          <!-- Traffic Sources -->
+          <div class="bg-white dark:bg-gray-800 rounded-xl p-6 shadow-lg">
+            <h3 class="text-lg font-semibold text-gray-900 dark:text-white mb-4">🚀 Traffic Sources</h3>
+            <div id="source-breakdown" class="space-y-2">
+              <!-- Will be populated by JavaScript -->
+            </div>
+          </div>
+
+          <!-- Conversion Events -->
+          <div class="bg-white dark:bg-gray-800 rounded-xl p-6 shadow-lg">
+            <h3 class="text-lg font-semibold text-gray-900 dark:text-white mb-4">🎯 User Actions</h3>
+            <div id="event-breakdown" class="space-y-2">
+              <!-- Will be populated by JavaScript -->
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Recent Activity -->
+        <div class="bg-white dark:bg-gray-800 rounded-xl p-6 shadow-lg">
+          <h3 class="text-lg font-semibold text-gray-900 dark:text-white mb-4">🕐 Recent Activity</h3>
+          <div class="overflow-x-auto">
+            <table class="min-w-full">
+              <thead>
+                <tr class="border-b border-gray-200 dark:border-gray-700">
+                  <th class="text-left py-2 px-4 text-sm font-medium text-gray-600 dark:text-gray-400">Calculator</th>
+                  <th class="text-left py-2 px-4 text-sm font-medium text-gray-600 dark:text-gray-400">Action</th>
+                  <th class="text-left py-2 px-4 text-sm font-medium text-gray-600 dark:text-gray-400">Device</th>
+                  <th class="text-left py-2 px-4 text-sm font-medium text-gray-600 dark:text-gray-400">Source</th>
+                  <th class="text-left py-2 px-4 text-sm font-medium text-gray-600 dark:text-gray-400">Time</th>
+                </tr>
+              </thead>
+              <tbody id="recent-activity">
+                <!-- Will be populated by JavaScript -->
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- Chart.js -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  
+  <script>
+    let currentPeriod = 30;
+    let dailyChart = null;
+    let calculatorChart = null;
+
+    // Load analytics data
+    async function loadAnalytics(days = 30) {
+      currentPeriod = days;
+      
+      // Update button states
+      document.querySelectorAll('button[onclick^="loadAnalytics"]').forEach(btn => {
+        btn.className = btn.onclick.toString().includes(`(${days})`) 
+          ? 'px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors text-sm'
+          : 'px-4 py-2 bg-gray-600 text-white rounded-lg hover:bg-gray-700 transition-colors text-sm';
+      });
+
+      // Show loading
+      document.getElementById('loading').classList.remove('hidden');
+      document.getElementById('analytics-content').classList.add('hidden');
+
+      try {
+        const response = await fetch(`/api/calculator-analytics?days=${days}`);
+        const data = await response.json();
+
+        if (!response.ok) {
+          throw new Error(data.error || 'Failed to fetch analytics');
+        }
+
+        console.log('📊 Analytics data loaded:', data);
+        
+        // Update metrics
+        updateMetrics(data);
+        
+        // Update charts
+        updateCharts(data);
+        
+        // Update breakdowns
+        updateBreakdowns(data);
+        
+        // Update recent activity
+        updateRecentActivity(data.recentActivity);
+
+        // Hide loading, show content
+        document.getElementById('loading').classList.add('hidden');
+        document.getElementById('analytics-content').classList.remove('hidden');
+
+      } catch (error) {
+        console.error('❌ Error loading analytics:', error);
+        document.getElementById('loading').innerHTML = `
+          <div class="text-center py-12">
+            <p class="text-red-600 dark:text-red-400">Error loading analytics: ${error.message}</p>
+            <button onclick="loadAnalytics(${days})" class="mt-4 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700">Retry</button>
+          </div>
+        `;
+      }
+    }
+
+    // Update key metrics
+    function updateMetrics(data) {
+      document.getElementById('total-usage').textContent = data.totalUsage.toLocaleString();
+      
+      const avgTime = data.avgSessionTime;
+      const timeText = avgTime < 60 ? `${avgTime}s` : `${Math.floor(avgTime / 60)}m ${avgTime % 60}s`;
+      document.getElementById('avg-session-time').textContent = timeText;
+      
+      document.getElementById('avg-crs-score').textContent = data.topScores.avg || 'N/A';
+      
+      const mobileCount = data.byDevice.mobile || 0;
+      const mobilePercentage = data.totalUsage > 0 ? Math.round((mobileCount / data.totalUsage) * 100) : 0;
+      document.getElementById('mobile-percentage').textContent = `${mobilePercentage}%`;
+    }
+
+    // Update charts
+    function updateCharts(data) {
+      // Daily usage chart
+      const dailyCtx = document.getElementById('daily-usage-chart').getContext('2d');
+      
+      if (dailyChart) {
+        dailyChart.destroy();
+      }
+      
+      dailyChart = new Chart(dailyCtx, {
+        type: 'line',
+        data: {
+          labels: data.dailyUsage.map(d => d.label),
+          datasets: [{
+            label: 'Daily Usage',
+            data: data.dailyUsage.map(d => d.count),
+            borderColor: '#3B82F6',
+            backgroundColor: 'rgba(59, 130, 246, 0.1)',
+            tension: 0.4,
+            fill: true
+          }]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          plugins: {
+            legend: {
+              display: false
+            }
+          },
+          scales: {
+            y: {
+              beginAtZero: true,
+              ticks: {
+                stepSize: 1
+              }
+            }
+          },
+          interaction: {
+            intersect: false,
+            mode: 'index'
+          }
+        }
+      });
+
+      // Calculator breakdown chart
+      const calcCtx = document.getElementById('calculator-chart').getContext('2d');
+      
+      if (calculatorChart) {
+        calculatorChart.destroy();
+      }
+
+      const calcData = Object.entries(data.byCalculator);
+      
+      calculatorChart = new Chart(calcCtx, {
+        type: 'doughnut',
+        data: {
+          labels: calcData.map(([key]) => key.toUpperCase()),
+          datasets: [{
+            data: calcData.map(([, value]) => value),
+            backgroundColor: [
+              '#3B82F6', // Blue
+              '#10B981', // Green
+              '#8B5CF6', // Purple
+              '#F59E0B', // Orange
+              '#EF4444'  // Red
+            ]
+          }]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          plugins: {
+            legend: {
+              position: 'bottom'
+            }
+          }
+        }
+      });
+    }
+
+    // Update breakdown sections
+    function updateBreakdowns(data) {
+      // Device breakdown
+      const deviceEl = document.getElementById('device-breakdown');
+      deviceEl.innerHTML = Object.entries(data.byDevice)
+        .sort(([,a], [,b]) => b - a)
+        .map(([device, count]) => {
+          const percentage = Math.round((count / data.totalUsage) * 100);
+          return `
+            <div class="flex justify-between items-center">
+              <span class="text-sm text-gray-600 dark:text-gray-400 capitalize">${device}</span>
+              <div class="flex items-center gap-2">
+                <span class="text-sm font-medium text-gray-900 dark:text-white">${count}</span>
+                <span class="text-xs text-gray-500">(${percentage}%)</span>
+              </div>
+            </div>
+          `;
+        }).join('');
+
+      // Source breakdown
+      const sourceEl = document.getElementById('source-breakdown');
+      sourceEl.innerHTML = Object.entries(data.bySource)
+        .sort(([,a], [,b]) => b - a)
+        .map(([source, count]) => {
+          const percentage = Math.round((count / data.totalUsage) * 100);
+          return `
+            <div class="flex justify-between items-center">
+              <span class="text-sm text-gray-600 dark:text-gray-400 capitalize">${source}</span>
+              <div class="flex items-center gap-2">
+                <span class="text-sm font-medium text-gray-900 dark:text-white">${count}</span>
+                <span class="text-xs text-gray-500">(${percentage}%)</span>
+              </div>
+            </div>
+          `;
+        }).join('');
+
+      // Event breakdown
+      const eventEl = document.getElementById('event-breakdown');
+      eventEl.innerHTML = Object.entries(data.byEvent)
+        .sort(([,a], [,b]) => b - a)
+        .map(([event, count]) => {
+          const percentage = Math.round((count / data.totalUsage) * 100);
+          return `
+            <div class="flex justify-between items-center">
+              <span class="text-sm text-gray-600 dark:text-gray-400">${event.replace(/_/g, ' ')}</span>
+              <div class="flex items-center gap-2">
+                <span class="text-sm font-medium text-gray-900 dark:text-white">${count}</span>
+                <span class="text-xs text-gray-500">(${percentage}%)</span>
+              </div>
+            </div>
+          `;
+        }).join('');
+    }
+
+    // Update recent activity table
+    function updateRecentActivity(activities) {
+      const tbody = document.getElementById('recent-activity');
+      tbody.innerHTML = activities.map(activity => `
+        <tr class="border-b border-gray-100 dark:border-gray-700">
+          <td class="py-2 px-4 text-sm text-gray-900 dark:text-white font-medium">${activity.calculator?.toUpperCase() || 'N/A'}</td>
+          <td class="py-2 px-4 text-sm text-gray-600 dark:text-gray-400">${activity.event?.replace(/_/g, ' ') || 'N/A'}</td>
+          <td class="py-2 px-4 text-sm text-gray-600 dark:text-gray-400 capitalize">${activity.device || 'N/A'}</td>
+          <td class="py-2 px-4 text-sm text-gray-600 dark:text-gray-400">${activity.source || 'direct'}</td>
+          <td class="py-2 px-4 text-sm text-gray-500">${activity.timeAgo}</td>
+        </tr>
+      `).join('');
+    }
+
+    // Load analytics on page load
+    document.addEventListener('DOMContentLoaded', function() {
+      loadAnalytics(30);
+    });
+  </script>
+</Layout>

@@ -5,7 +5,7 @@ import tailwind from '@astrojs/tailwind';
 // https://astro.build/config
 export default defineConfig({
   site: 'https://www.immigratic.com',
-  output: 'static',
+  output: 'hybrid',
   integrations: [tailwind()],
   build: {
     outDir: 'dist',
