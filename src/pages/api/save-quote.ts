@@ -93,7 +93,7 @@ export const POST: APIRoute = async ({ request }) => {
     console.log('💾 Quote API: Full body received:', JSON.stringify(body, null, 2));
     console.log('💾 Quote API: Received data for:', body.email);
 
-    // ADD MOST VALUABLE FIELDS GRADUALLY
+    // ADD FINANCIAL BREAKDOWN - NEXT MOST VALUABLE
     const quoteRecord = {
       name: body.name || 'Unknown',
       email: body.email || 'unknown@example.com',
@@ -101,6 +101,13 @@ export const POST: APIRoute = async ({ request }) => {
       location: body.quoteData?.location || 'inland',
       has_spouse: body.quoteData?.hasSpouse || false,
       dependents_count: body.quoteData?.dependentsCount || 0,
+      
+      // Financial breakdown
+      service_fees_subtotal: body.quoteData?.serviceFeesBreakdown?.subtotal || 0,
+      hst_amount: body.quoteData?.serviceFeesBreakdown?.hstAmount || 0,
+      service_fees_total: body.quoteData?.serviceFeesBreakdown?.total || 0,
+      government_fees_total: body.quoteData?.governmentFeesBreakdown?.total || 0,
+      
       total_price: body.quoteData?.grandTotal || body.quoteData?.totalPrice || 0
     };
 
