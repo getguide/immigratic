@@ -645,11 +645,146 @@ const { immigration_pricing } = pricingData;
     window.location.href = '/contact';
   });
 
-  // Download PDF (placeholder - would need PDF generation library)
+  // Download PDF - Create a clean print version
   document.getElementById('download-pdf').addEventListener('click', () => {
     trackPricingUsage('pricing_calculator', null, 'pdf_downloaded');
-    // For now, just print the page
-    window.print();
+    
+    if (!currentCalculation) return;
+    
+    // Create a new window with only the quote content
+    const printWindow = window.open('', '_blank', 'width=800,height=600');
+    const { breakdown } = currentCalculation;
+    const today = new Date().toLocaleDateString('en-CA');
+    
+    const printContent = `
+      <!DOCTYPE html>
+      <html>
+      <head>
+        <title>Immigratic-Immigration-Service-Quote-${today}</title>
+        <style>
+          body { 
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+          }
+          .header { text-align: center; margin-bottom: 30px; border-bottom: 2px solid #e5e7eb; padding-bottom: 20px; }
+          .logo { font-size: 24px; font-weight: bold; color: #2563eb; margin-bottom: 10px; }
+          .title { font-size: 28px; font-weight: bold; margin-bottom: 5px; }
+          .date { color: #6b7280; }
+          .section { margin: 30px 0; }
+          .section-title { font-size: 18px; font-weight: 600; margin-bottom: 15px; color: #1f2937; }
+          .detail-box { background: #f9fafb; padding: 15px; border-radius: 8px; margin-bottom: 20px; }
+          .detail-row { display: flex; justify-content: space-between; margin-bottom: 8px; }
+          .detail-label { color: #6b7280; }
+          .detail-value { font-weight: 500; }
+          .breakdown-item { display: flex; justify-content: space-between; padding: 10px 0; border-bottom: 1px solid #e5e7eb; }
+          .breakdown-item:last-child { border-bottom: none; }
+          .total-row { background: #ecfdf5; padding: 15px; border-radius: 8px; display: flex; justify-content: space-between; align-items: center; font-weight: bold; font-size: 18px; }
+          .total-amount { color: #059669; font-size: 24px; }
+          .notes { background: #eff6ff; padding: 15px; border-radius: 8px; }
+          .notes-title { font-weight: 600; color: #1e40af; margin-bottom: 10px; }
+          .notes ul { margin: 0; padding-left: 20px; }
+          .notes li { margin-bottom: 5px; color: #1e40af; }
+          @media print { 
+            body { margin: 0; padding: 15px; }
+            .header { page-break-inside: avoid; }
+          }
+        </style>
+      </head>
+      <body>
+        <div class="header">
+          <div class="logo">Immigratic</div>
+          <div class="title">Immigration Service Quote</div>
+          <div class="date">Generated on ${today}</div>
+        </div>
+
+        <div class="section">
+          <div class="section-title">Application Details</div>
+          <div class="detail-box">
+            <div class="detail-row">
+              <span class="detail-label">Application Type:</span>
+              <span class="detail-value">${applicationTypeNames[currentCalculation.applicationType]}</span>
+            </div>
+            <div class="detail-row">
+              <span class="detail-label">Processing Location:</span>
+              <span class="detail-value">${currentCalculation.location.charAt(0).toUpperCase() + currentCalculation.location.slice(1)}</span>
+            </div>
+            <div class="detail-row">
+              <span class="detail-label">Family Members:</span>
+              <span class="detail-value">
+                ${currentCalculation.hasSpouse ? 'Spouse included' : 'No spouse'}, 
+                ${currentCalculation.dependentsCount} dependent${currentCalculation.dependentsCount !== 1 ? 's' : ''}
+              </span>
+            </div>
+          </div>
+        </div>
+
+        <div class="section">
+          <div class="section-title">Service Fees Breakdown</div>
+          <div style="border: 1px solid #e5e7eb; border-radius: 8px; overflow: hidden;">
+            <div class="breakdown-item">
+              <span>Principal Applicant</span>
+              <span>$${breakdown.principal.toLocaleString()} CAD</span>
+            </div>
+            ${currentCalculation.hasSpouse ? `
+              <div class="breakdown-item">
+                <span>Spouse/Partner</span>
+                <span>$${breakdown.spouse.toLocaleString()} CAD</span>
+              </div>
+            ` : ''}
+            ${currentCalculation.dependentsCount > 0 ? `
+              <div class="breakdown-item">
+                <span>${currentCalculation.dependentsCount} Dependent${currentCalculation.dependentsCount > 1 ? 's' : ''}</span>
+                <span>$${breakdown.dependents.toLocaleString()} CAD</span>
+              </div>
+            ` : ''}
+            ${currentCalculation.priorRefusal ? `
+              <div class="breakdown-item">
+                <span>Prior Refusal Handling</span>
+                <span>$${breakdown.priorRefusal.toLocaleString()} CAD</span>
+              </div>
+            ` : ''}
+          </div>
+          
+          <div class="total-row" style="margin-top: 15px;">
+            <span>Total Service Fee</span>
+            <span class="total-amount">$${breakdown.total.toLocaleString()} CAD</span>
+          </div>
+        </div>
+
+        <div class="section">
+          <div class="notes">
+            <div class="notes-title">Important Notes:</div>
+            <ul>
+              <li>This quote is valid for 30 days from the date of generation</li>
+              <li>Government fees are not included and must be paid separately</li>
+              <li>Additional services may be required based on case complexity</li>
+              <li>All fees are in Canadian Dollars (CAD)</li>
+            </ul>
+          </div>
+        </div>
+
+        <div style="margin-top: 40px; text-align: center; color: #6b7280; font-size: 14px;">
+          <p>Immigratic - Canada's Leading Immigration Platform</p>
+          <p>Contact us: immigratic.com/contact</p>
+        </div>
+      </body>
+      </html>
+    `;
+    
+    printWindow.document.write(printContent);
+    printWindow.document.close();
+    
+    // Wait for content to load, then print and close
+    printWindow.onload = function() {
+      setTimeout(() => {
+        printWindow.print();
+        printWindow.close();
+      }, 250);
+    };
   });
 
   // Initialize
