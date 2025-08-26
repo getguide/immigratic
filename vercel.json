@@ -38,6 +38,11 @@
       "permanent": true
     },
     {
+      "source": "/products/immireport",
+      "destination": "/tools/master-assessment",
+      "permanent": true
+    },
+    {
       "source": "/contact-us",
       "destination": "/contact",
       "permanent": true
