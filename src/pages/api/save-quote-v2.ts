@@ -3,7 +3,7 @@ import type { APIRoute } from 'astro';
 export const prerender = false;
 
 export const POST: APIRoute = async ({ request }) => {
-  console.log('🚀 Quote API V2: Starting request processing...');
+  console.log('🚀 Quote API V2: Starting request processing - Updated Secret Key...');
   
   try {
     // Parse request body
