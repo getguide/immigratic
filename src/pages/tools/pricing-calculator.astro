@@ -316,6 +316,88 @@ const { immigration_pricing } = pricingData;
   const quoteContent = document.getElementById('quote-content');
 
   let currentCalculation = null;
+  let sessionId = `pricing_${Date.now()}_${Math.random().toString(36).substr(2, 9)}`;
+  let pageStartTime = Date.now();
+
+  // Tracking functions
+  function getUTMParameters() {
+    const urlParams = new URLSearchParams(window.location.search);
+    return {
+      utmSource: urlParams.get('utm_source') || 'direct',
+      utmMedium: urlParams.get('utm_medium') || 'website',
+      utmCampaign: urlParams.get('utm_campaign') || 'pricing_calculator',
+    };
+  }
+
+  function getDeviceType() {
+    const width = window.innerWidth;
+    if (width < 768) return 'mobile';
+    if (width < 1024) return 'tablet';
+    return 'desktop';
+  }
+
+  async function trackPricingUsage(calculationType, calculationResult = null, conversionEvent = null) {
+    try {
+      const timeSpent = Math.round((Date.now() - pageStartTime) / 1000);
+      const utmParams = getUTMParameters();
+      
+      const trackingData = {
+        calculatorType: calculationType,
+        sessionId: sessionId,
+        calculationResult: calculationResult,
+        timeSpentSeconds: timeSpent,
+        utmSource: utmParams.utmSource,
+        utmMedium: utmParams.utmMedium,
+        utmCampaign: utmParams.utmCampaign,
+        deviceType: getDeviceType(),
+        conversionEvent: conversionEvent
+      };
+
+      console.log('📊 Tracking pricing usage:', {
+        type: calculationType,
+        timeSpent: `${timeSpent}s`,
+        device: getDeviceType(),
+        utm: utmParams.utmSource
+      });
+
+      const response = await fetch('/api/track-calculator-usage', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(trackingData)
+      });
+
+      if (response.ok) {
+        console.log('✅ Pricing usage tracked successfully');
+      } else {
+        console.log('⚠️ Failed to track pricing usage:', response.status);
+      }
+    } catch (error) {
+      console.log('⚠️ Failed to track pricing usage:', error);
+    }
+  }
+
+  // Track session end on page unload
+  window.addEventListener('beforeunload', () => {
+    if (navigator.sendBeacon) {
+      const timeSpent = Math.round((Date.now() - pageStartTime) / 1000);
+      const utmParams = getUTMParameters();
+      
+      const trackingData = JSON.stringify({
+        calculatorType: 'pricing_calculator',
+        sessionId: sessionId,
+        timeSpentSeconds: timeSpent,
+        utmSource: utmParams.utmSource,
+        utmMedium: utmParams.utmMedium,
+        utmCampaign: utmParams.utmCampaign,
+        deviceType: getDeviceType(),
+        conversionEvent: 'session_ended'
+      });
+      
+      navigator.sendBeacon('/api/track-calculator-usage', trackingData);
+    }
+  });
 
   // Application type display names
   const applicationTypeNames = {
@@ -367,6 +449,14 @@ const { immigration_pricing } = pricingData;
     };
 
     displayPricing(currentCalculation);
+    
+    // Track pricing calculation
+    trackPricingUsage('pricing_calculator', {
+      totalPrice: total,
+      applicationType: applicationType,
+      location: location,
+      familySize: 1 + (hasSpouse ? 1 : 0) + dependentsCount
+    }, 'price_calculated');
   }
 
   // Display pricing breakdown
@@ -523,6 +613,13 @@ const { immigration_pricing } = pricingData;
 
     quoteContent.innerHTML = html;
     quoteModal.classList.remove('hidden');
+    
+    // Track quote generation
+    trackPricingUsage('pricing_calculator', {
+      totalPrice: breakdown.total,
+      applicationType: currentCalculation.applicationType,
+      location: currentCalculation.location
+    }, 'quote_generated');
   }
 
   // Event listeners
@@ -544,15 +641,20 @@ const { immigration_pricing } = pricingData;
 
   // Contact us button
   document.getElementById('contact-us').addEventListener('click', () => {
+    trackPricingUsage('pricing_calculator', null, 'contact_clicked');
     window.location.href = '/contact';
   });
 
   // Download PDF (placeholder - would need PDF generation library)
   document.getElementById('download-pdf').addEventListener('click', () => {
+    trackPricingUsage('pricing_calculator', null, 'pdf_downloaded');
     // For now, just print the page
     window.print();
   });
 
   // Initialize
   showEmptyState();
+  
+  // Track page load
+  trackPricingUsage('pricing_calculator', null, 'calculator_opened');
 </script>
