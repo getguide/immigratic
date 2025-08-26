@@ -59,7 +59,7 @@ async function sendSlackNotification(leadDetails: any) {
               emoji: true,
             },
             style: 'primary',
-            url: `https://immigratic.vercel.app/admin/dashboard`,
+            url: `https://www.immigratic.com/admin/login`,
           },
         ],
       },
