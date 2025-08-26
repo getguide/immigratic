@@ -104,17 +104,17 @@ export const POST: APIRoute = async ({ request }) => {
       prior_refusal: body.quoteData?.priorRefusal || false,
       biometrics_required: body.quoteData?.biometricsRequired || true,
       oinp_scenario: body.quoteData?.oinpScenario || null,
-      service_fees_subtotal: body.quoteData?.breakdown?.serviceFees?.subtotal || 0,
-      hst_rate: body.quoteData?.breakdown?.serviceFees?.hstRate || 0,
-      hst_amount: body.quoteData?.breakdown?.serviceFees?.hstAmount || 0,
-      service_fees_total: body.quoteData?.breakdown?.serviceFees?.total || 0,
-      government_fees_principal: body.quoteData?.breakdown?.governmentFees?.principal || 0,
-      government_fees_spouse: body.quoteData?.breakdown?.governmentFees?.spouse || 0,
-      government_fees_dependents: body.quoteData?.breakdown?.governmentFees?.dependents || 0,
-      government_fees_oinp: body.quoteData?.breakdown?.governmentFees?.oinp || 0,
-      government_fees_biometrics: body.quoteData?.breakdown?.governmentFees?.biometrics || 0,
-      government_fees_total: body.quoteData?.breakdown?.governmentFees?.total || 0,
-      total_price: body.quoteData?.breakdown?.grandTotal || body.quoteData?.totalPrice || 0,
+      service_fees_subtotal: body.quoteData?.serviceFeesBreakdown?.subtotal || 0,
+      hst_rate: body.quoteData?.serviceFeesBreakdown?.hstRate || 0,
+      hst_amount: body.quoteData?.serviceFeesBreakdown?.hstAmount || 0,
+      service_fees_total: body.quoteData?.serviceFeesBreakdown?.total || 0,
+      government_fees_principal: body.quoteData?.governmentFeesBreakdown?.principal || 0,
+      government_fees_spouse: body.quoteData?.governmentFeesBreakdown?.spouse || 0,
+      government_fees_dependents: body.quoteData?.governmentFeesBreakdown?.dependents || 0,
+      government_fees_oinp: body.quoteData?.governmentFeesBreakdown?.oinp || 0,
+      government_fees_biometrics: body.quoteData?.governmentFeesBreakdown?.biometrics || 0,
+      government_fees_total: body.quoteData?.governmentFeesBreakdown?.total || 0,
+      total_price: body.quoteData?.grandTotal || body.quoteData?.totalPrice || 0,
       session_id: body.sessionData?.sessionId || 'unknown',
       time_spent_seconds: body.sessionData?.timeSpentSeconds || 0,
       calculations_performed: 1,
@@ -172,7 +172,7 @@ export const POST: APIRoute = async ({ request }) => {
       email: body.email,
       application_type: body.quoteData?.applicationType || 'work_permit',
       location: body.quoteData?.location || 'inland',
-      total_price: body.quoteData?.breakdown?.grandTotal || body.quoteData?.totalPrice || 0
+      total_price: body.quoteData?.grandTotal || body.quoteData?.totalPrice || 0
     });
 
     return new Response(JSON.stringify({
