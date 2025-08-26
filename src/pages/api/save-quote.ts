@@ -8,16 +8,20 @@ const supabaseUrl = 'https://fneodphdhnnogfuxcpxn.supabase.co';
 const supabaseServiceKey = import.meta.env.SUPABASE_SERVICE_ROLE_KEY;
 const supabaseAnonKey = import.meta.env.PUBLIC_SUPABASE_ANON_KEY;
 
-// Use service role if available, otherwise fall back to anon key
-const supabaseKey = supabaseServiceKey || supabaseAnonKey;
-console.log('💾 Quote API: Using', supabaseServiceKey ? 'service role' : 'anon key', 'for database operations');
+// Ensure we have the service role key for production
+if (!supabaseServiceKey) {
+  console.error('💾 Quote API: CRITICAL - SUPABASE_SERVICE_ROLE_KEY not found in environment variables');
+  console.log('💾 Quote API: Available env vars:', Object.keys(import.meta.env).filter(key => key.includes('SUPABASE')));
+}
 
-const supabaseAdmin = createClient(supabaseUrl, supabaseKey, {
+const supabaseAdmin = createClient(supabaseUrl, supabaseServiceKey || supabaseAnonKey, {
   auth: {
     autoRefreshToken: false,
     persistSession: false
   }
 });
+
+console.log('💾 Quote API: Initialized with', supabaseServiceKey ? 'service role' : 'anon key');
 
 // Slack webhook function
 async function sendSlackNotification(quoteDetails: any) {
@@ -170,24 +174,27 @@ async function sendSlackNotification(quoteDetails: any) {
 
 export const POST: APIRoute = async ({ request }) => {
   console.log('💾 Quote API: Received save request');
-  console.log('💾 Quote API: Request method:', request.method);
-  console.log('💾 Quote API: Request URL:', request.url);
-  console.log('💾 Quote API: Service key available:', !!supabaseServiceKey);
-  console.log('💾 Quote API: Anon key available:', !!supabaseAnonKey);
   
   try {
-    // Log all headers for debugging
-    const headers = Object.fromEntries(request.headers.entries());
-    console.log('💾 Quote API: All headers:', headers);
-    
-    const contentType = request.headers.get('content-type') || '';
-    console.log('💾 Quote API: Content-Type:', contentType);
-    
+    // Handle both JSON and text content types
     let body;
     try {
       const rawBody = await request.text();
-      console.log('💾 Quote API: Raw body:', rawBody);
+      console.log('💾 Quote API: Raw body received, length:', rawBody.length);
+      
+      if (!rawBody || rawBody.trim() === '') {
+        console.error('💾 Quote API: Empty request body');
+        return new Response(JSON.stringify({ 
+          success: false, 
+          error: 'Empty request body' 
+        }), {
+          status: 400,
+          headers: { 'Content-Type': 'application/json' }
+        });
+      }
+      
       body = JSON.parse(rawBody);
+      console.log('💾 Quote API: Successfully parsed JSON');
     } catch (parseError) {
       console.error('💾 Quote API: JSON parse error:', parseError);
       return new Response(JSON.stringify({ 
@@ -198,7 +205,6 @@ export const POST: APIRoute = async ({ request }) => {
         headers: { 'Content-Type': 'application/json' }
       });
     }
-    console.log('💾 Quote API: Parsed body:', JSON.stringify(body, null, 2));
 
     // Validate required fields
     const { name, email, quoteData, sessionData } = body;
@@ -300,6 +306,9 @@ export const POST: APIRoute = async ({ request }) => {
     console.log('💾 Quote API: Inserting record:', JSON.stringify(quoteRecord, null, 2));
 
     // Insert into Supabase using service role
+    console.log('💾 Quote API: Attempting to insert into pricing_quotes table...');
+    console.log('💾 Quote API: Using service key:', !!supabaseServiceKey);
+    
     const { data, error } = await supabaseAdmin
       .from('pricing_quotes')
       .insert([quoteRecord])
@@ -307,10 +316,27 @@ export const POST: APIRoute = async ({ request }) => {
       .single();
 
     if (error) {
-      console.error('💾 Quote API: Supabase error:', error);
+      console.error('💾 Quote API: Supabase error details:', {
+        code: error.code,
+        message: error.message,
+        details: error.details,
+        hint: error.hint
+      });
+      
+      // Provide more specific error messages
+      let errorMessage = 'Database error: ' + error.message;
+      if (error.code === '42501') {
+        errorMessage = 'Database permission error. Please contact support.';
+        console.error('💾 Quote API: RLS policy violation - service role key may be missing or invalid');
+      }
+      
       return new Response(JSON.stringify({ 
         success: false, 
-        error: 'Database error: ' + error.message 
+        error: errorMessage,
+        debug: {
+          hasServiceKey: !!supabaseServiceKey,
+          errorCode: error.code
+        }
       }), {
         status: 500,
         headers: { 'Content-Type': 'application/json' }
