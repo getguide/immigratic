@@ -1,0 +1,114 @@
+{
+  "immigration_pricing": {
+    "last_updated": "2025-08-26",
+    "description": "Dynamic pricing structure for immigration case handling based on inland/outland status, principal applicant, spouse, and dependents",
+    "currency": "CAD",
+    "base_fees": {
+      "principal_applicant": {
+        "inland": {
+          "visitor_visa": 1000,
+          "study_permit": 1500,
+          "work_permit": 1500,
+          "express_entry": 4000,
+          "oinp_job_offer": 5500,
+          "express_oinp_bundle": 6500,
+          "sponsorship": 4000
+        },
+        "outland": {
+          "visitor_visa": 1500,
+          "study_permit": 2000,
+          "work_permit": 2500,
+          "express_entry": 4000,
+          "oinp_job_offer": 5500,
+          "express_oinp_bundle": 6500,
+          "sponsorship": 4000
+        }
+      },
+      "spouse": {
+        "inland": {
+          "visitor_visa": 500,
+          "study_permit": 1000,
+          "work_permit": 1000,
+          "express_entry": 1000,
+          "oinp_job_offer": 1000,
+          "express_oinp_bundle": 1000,
+          "sponsorship": 0
+        },
+        "outland": {
+          "visitor_visa": 500,
+          "study_permit": 1000,
+          "work_permit": 1000,
+          "express_entry": 1000,
+          "oinp_job_offer": 1000,
+          "express_oinp_bundle": 1000,
+          "sponsorship": 0
+        }
+      },
+      "dependents": {
+        "inland": {
+          "visitor_visa": 500,
+          "study_permit": 1000,
+          "work_permit": 1000,
+          "express_entry": 250,
+          "oinp_job_offer": 250,
+          "express_oinp_bundle": 250,
+          "sponsorship": 500
+        },
+        "outland": {
+          "visitor_visa": 500,
+          "study_permit": 1000,
+          "work_permit": 1000,
+          "express_entry": 250,
+          "oinp_job_offer": 250,
+          "express_oinp_bundle": 250,
+          "sponsorship": 500
+        }
+      }
+    },
+    "add_ons": {
+      "prior_refusal": 500
+    },
+    "calculation_logic": {
+      "total_cost": {
+        "description": "Total cost is the sum of the principal applicant's base fee, spouse's fee (if applicable), dependents' fees (if applicable), and any add-ons",
+        "steps": [
+          {
+            "step": "Select principal applicant type (inland or outland) and application type",
+            "base_fee": "base_fees.principal_applicant.[inland/outland].[application_type]"
+          },
+          {
+            "step": "Add spouse fee if applicable",
+            "condition": "spouse_present",
+            "base_fee": "base_fees.spouse.[inland/outland].[application_type]"
+          },
+          {
+            "step": "Add dependents' fees if applicable",
+            "condition": "dependents_present",
+            "base_fee": "base_fees.dependents.[inland/outland].[application_type] * number_of_dependents"
+          },
+          {
+            "step": "Add prior refusal fee if applicable",
+            "condition": "prior_refusal",
+            "add_on_fee": "add_ons.prior_refusal"
+          }
+        ],
+        "notes": {
+          "application_types": "visitor_visa, study_permit, work_permit, express_entry, oinp_job_offer, express_oinp_bundle, sponsorship",
+          "inland_outland": "Inland refers to applications processed within Canada; outland refers to applications processed outside Canada",
+          "dependents": "Fees for dependents are multiplied by the number of children",
+          "spouse_sponsorship": "Spouse fee is 0 for sponsorship applications",
+          "validation": "Ensure all inputs (location, application type, family details) are provided to calculate the total"
+        }
+      }
+    },
+    "example_calculation": {
+      "scenario": "Principal applicant (inland, Express Entry) with spouse and 2 dependents, no prior refusal",
+      "breakdown": {
+        "principal_applicant": 4000,
+        "spouse": 1000,
+        "dependents": 500,
+        "total": 6500
+      }
+    }
+  }
+}

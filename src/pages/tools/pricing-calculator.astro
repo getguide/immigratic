@@ -1,0 +1,558 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import pricingData from '../../data/pricing.json';
+
+const { immigration_pricing } = pricingData;
+---
+
+<Layout 
+  title="Immigration Pricing Calculator - Get Instant Quote | Immigratic"
+  description="Calculate your immigration service fees instantly. Get transparent pricing for Express Entry, work permits, study permits, and more. Generate professional quotes in seconds."
+>
+  <!-- Hero Section -->
+  <section class="relative py-20 bg-gradient-to-br from-green-600 via-blue-700 to-purple-800 dark:from-green-800 dark:via-blue-900 dark:to-purple-900 overflow-hidden">
+    <div class="absolute inset-0 bg-black/20"></div>
+    
+    <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      <div class="max-w-4xl mx-auto">
+        <h1 class="text-4xl md:text-6xl font-bold text-white mb-6">
+          Immigration Pricing Calculator
+        </h1>
+        <p class="text-xl md:text-2xl text-blue-100 mb-8 leading-relaxed">
+          Get transparent, instant pricing for your immigration case. No hidden fees, no surprises.
+        </p>
+        <div class="flex flex-col sm:flex-row gap-4 justify-center items-center">
+          <div class="flex items-center gap-2 text-green-200">
+            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+              <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+            </svg>
+            <span>Instant Quotes</span>
+          </div>
+          <div class="flex items-center gap-2 text-green-200">
+            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+              <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+            </svg>
+            <span>Transparent Pricing</span>
+          </div>
+          <div class="flex items-center gap-2 text-green-200">
+            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+              <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+            </svg>
+            <span>PDF Export</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Main Calculator Section -->
+  <section class="py-16 bg-gray-50 dark:bg-gray-900">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid lg:grid-cols-3 gap-8">
+        
+        <!-- Calculator Form -->
+        <div class="lg:col-span-2">
+          <div class="bg-white dark:bg-gray-800 rounded-2xl shadow-xl p-6 md:p-8">
+            <div class="mb-8">
+              <h2 class="text-2xl md:text-3xl font-bold text-gray-900 dark:text-white mb-4">
+                Calculate Your Service Fees
+              </h2>
+              <p class="text-gray-600 dark:text-gray-400">
+                Select your application details below to get an instant, accurate quote for our immigration services.
+              </p>
+            </div>
+
+            <form id="pricing-calculator" class="space-y-8">
+              
+              <!-- Step 1: Location & Application Type -->
+              <div class="space-y-6">
+                <div class="flex items-center gap-3 mb-4">
+                  <div class="w-8 h-8 bg-blue-600 text-white rounded-full flex items-center justify-center text-sm font-bold">1</div>
+                  <h3 class="text-xl font-semibold text-gray-900 dark:text-white">Application Details</h3>
+                </div>
+
+                <!-- Location Selection -->
+                <div>
+                  <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-3">
+                    Where will your application be processed? <span class="text-red-500">*</span>
+                  </label>
+                  <div class="grid sm:grid-cols-2 gap-4">
+                    <label class="relative cursor-pointer">
+                      <input type="radio" name="location" value="inland" class="sr-only peer" required>
+                      <div class="p-4 border-2 border-gray-200 dark:border-gray-600 rounded-xl peer-checked:border-blue-500 peer-checked:bg-blue-50 dark:peer-checked:bg-blue-900/20 hover:border-blue-300 transition-all">
+                        <div class="flex items-center gap-3">
+                          <div class="w-10 h-10 bg-green-100 dark:bg-green-900/30 rounded-lg flex items-center justify-center">
+                            <span class="text-2xl">🇨🇦</span>
+                          </div>
+                          <div>
+                            <div class="font-semibold text-gray-900 dark:text-white">Inland</div>
+                            <div class="text-sm text-gray-600 dark:text-gray-400">Processing within Canada</div>
+                          </div>
+                        </div>
+                      </div>
+                    </label>
+                    
+                    <label class="relative cursor-pointer">
+                      <input type="radio" name="location" value="outland" class="sr-only peer" required>
+                      <div class="p-4 border-2 border-gray-200 dark:border-gray-600 rounded-xl peer-checked:border-blue-500 peer-checked:bg-blue-50 dark:peer-checked:bg-blue-900/20 hover:border-blue-300 transition-all">
+                        <div class="flex items-center gap-3">
+                          <div class="w-10 h-10 bg-blue-100 dark:bg-blue-900/30 rounded-lg flex items-center justify-center">
+                            <span class="text-2xl">🌍</span>
+                          </div>
+                          <div>
+                            <div class="font-semibold text-gray-900 dark:text-white">Outland</div>
+                            <div class="text-sm text-gray-600 dark:text-gray-400">Processing outside Canada</div>
+                          </div>
+                        </div>
+                      </div>
+                    </label>
+                  </div>
+                </div>
+
+                <!-- Application Type Selection -->
+                <div>
+                  <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-3">
+                    What type of application? <span class="text-red-500">*</span>
+                  </label>
+                  <select name="application_type" id="application-type" class="w-full p-4 border border-gray-300 dark:border-gray-600 rounded-xl bg-white dark:bg-gray-700 text-gray-900 dark:text-white focus:ring-2 focus:ring-blue-500 focus:border-blue-500" required>
+                    <option value="">Select application type</option>
+                    <option value="visitor_visa">Visitor Visa</option>
+                    <option value="study_permit">Study Permit</option>
+                    <option value="work_permit">Work Permit</option>
+                    <option value="express_entry">Express Entry</option>
+                    <option value="oinp_job_offer">OINP Job Offer</option>
+                    <option value="express_oinp_bundle">Express Entry + OINP Bundle</option>
+                    <option value="sponsorship">Family Sponsorship</option>
+                  </select>
+                </div>
+              </div>
+
+              <!-- Step 2: Family Details -->
+              <div class="space-y-6">
+                <div class="flex items-center gap-3 mb-4">
+                  <div class="w-8 h-8 bg-blue-600 text-white rounded-full flex items-center justify-center text-sm font-bold">2</div>
+                  <h3 class="text-xl font-semibold text-gray-900 dark:text-white">Family Details</h3>
+                </div>
+
+                <!-- Spouse -->
+                <div>
+                  <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-3">
+                    Do you have a spouse/partner to include?
+                  </label>
+                  <div class="flex gap-4">
+                    <label class="flex items-center cursor-pointer">
+                      <input type="radio" name="has_spouse" value="yes" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+                      <span class="ml-2 text-gray-900 dark:text-white">Yes</span>
+                    </label>
+                    <label class="flex items-center cursor-pointer">
+                      <input type="radio" name="has_spouse" value="no" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600" checked>
+                      <span class="ml-2 text-gray-900 dark:text-white">No</span>
+                    </label>
+                  </div>
+                </div>
+
+                <!-- Dependents -->
+                <div>
+                  <label for="dependents-count" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-3">
+                    Number of dependent children
+                  </label>
+                  <select name="dependents_count" id="dependents-count" class="w-full p-4 border border-gray-300 dark:border-gray-600 rounded-xl bg-white dark:bg-gray-700 text-gray-900 dark:text-white focus:ring-2 focus:ring-blue-500 focus:border-blue-500">
+                    <option value="0">0 children</option>
+                    <option value="1">1 child</option>
+                    <option value="2">2 children</option>
+                    <option value="3">3 children</option>
+                    <option value="4">4 children</option>
+                    <option value="5">5+ children</option>
+                  </select>
+                </div>
+              </div>
+
+              <!-- Step 3: Additional Services -->
+              <div class="space-y-6">
+                <div class="flex items-center gap-3 mb-4">
+                  <div class="w-8 h-8 bg-blue-600 text-white rounded-full flex items-center justify-center text-sm font-bold">3</div>
+                  <h3 class="text-xl font-semibold text-gray-900 dark:text-white">Additional Services</h3>
+                </div>
+
+                <!-- Prior Refusal -->
+                <div>
+                  <label class="flex items-start gap-3 cursor-pointer">
+                    <input type="checkbox" name="prior_refusal" class="mt-1 w-5 h-5 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+                    <div>
+                      <div class="font-medium text-gray-900 dark:text-white">Prior Refusal Handling</div>
+                      <div class="text-sm text-gray-600 dark:text-gray-400">Additional service for cases with previous refusals (+$500)</div>
+                    </div>
+                  </label>
+                </div>
+              </div>
+
+            </form>
+          </div>
+        </div>
+
+        <!-- Price Summary Sidebar -->
+        <div class="lg:col-span-1">
+          <div class="bg-white dark:bg-gray-800 rounded-2xl shadow-xl p-6 sticky top-8">
+            <h3 class="text-xl font-bold text-gray-900 dark:text-white mb-6">Price Summary</h3>
+            
+            <!-- Price Breakdown -->
+            <div id="price-breakdown" class="space-y-4 mb-6">
+              <div class="text-center py-8 text-gray-500 dark:text-gray-400">
+                <div class="w-16 h-16 bg-gray-100 dark:bg-gray-700 rounded-full flex items-center justify-center mx-auto mb-4">
+                  <span class="text-2xl">💰</span>
+                </div>
+                <p>Select your application details to see pricing</p>
+              </div>
+            </div>
+
+            <!-- Total Price -->
+            <div id="total-price" class="border-t border-gray-200 dark:border-gray-700 pt-4 mb-6" style="display: none;">
+              <div class="flex justify-between items-center">
+                <span class="text-lg font-semibold text-gray-900 dark:text-white">Total</span>
+                <span class="text-2xl font-bold text-green-600 dark:text-green-400" id="total-amount">$0</span>
+              </div>
+              <div class="text-sm text-gray-600 dark:text-gray-400 mt-1">CAD (Canadian Dollars)</div>
+            </div>
+
+            <!-- Generate Quote Button -->
+            <button 
+              id="generate-quote" 
+              class="w-full bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white font-semibold py-4 px-6 rounded-xl transition-all duration-300 transform hover:scale-105 shadow-lg disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none"
+              disabled
+            >
+              <div class="flex items-center justify-center gap-2">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
+                </svg>
+                Generate Quote
+              </div>
+            </button>
+
+            <!-- Trust Indicators -->
+            <div class="mt-6 pt-6 border-t border-gray-200 dark:border-gray-700">
+              <div class="text-sm text-gray-600 dark:text-gray-400 space-y-2">
+                <div class="flex items-center gap-2">
+                  <svg class="w-4 h-4 text-green-500" fill="currentColor" viewBox="0 0 20 20">
+                    <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                  </svg>
+                  <span>No hidden fees</span>
+                </div>
+                <div class="flex items-center gap-2">
+                  <svg class="w-4 h-4 text-green-500" fill="currentColor" viewBox="0 0 20 20">
+                    <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                  </svg>
+                  <span>Transparent pricing</span>
+                </div>
+                <div class="flex items-center gap-2">
+                  <svg class="w-4 h-4 text-green-500" fill="currentColor" viewBox="0 0 20 20">
+                    <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                  </svg>
+                  <span>Professional service</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- Quote Modal -->
+  <div id="quote-modal" class="fixed inset-0 bg-black bg-opacity-50 z-50 hidden">
+    <div class="flex items-center justify-center min-h-screen p-4">
+      <div class="bg-white dark:bg-gray-800 rounded-2xl shadow-2xl max-w-2xl w-full max-h-[90vh] overflow-y-auto">
+        <div class="p-6 md:p-8">
+          <!-- Modal Header -->
+          <div class="flex justify-between items-center mb-6">
+            <h3 class="text-2xl font-bold text-gray-900 dark:text-white">Your Immigration Quote</h3>
+            <button id="close-modal" class="text-gray-400 hover:text-gray-600 dark:hover:text-gray-300">
+              <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+              </svg>
+            </button>
+          </div>
+
+          <!-- Quote Content -->
+          <div id="quote-content">
+            <!-- Will be populated by JavaScript -->
+          </div>
+
+          <!-- Modal Actions -->
+          <div class="flex flex-col sm:flex-row gap-4 mt-8">
+            <button id="download-pdf" class="flex-1 bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 px-6 rounded-xl transition-colors">
+              <div class="flex items-center justify-center gap-2">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
+                </svg>
+                Download PDF
+              </div>
+            </button>
+            <button id="contact-us" class="flex-1 bg-green-600 hover:bg-green-700 text-white font-semibold py-3 px-6 rounded-xl transition-colors">
+              <div class="flex items-center justify-center gap-2">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"></path>
+                </svg>
+                Contact Us
+              </div>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</Layout>
+
+<script define:vars={{ pricingData: immigration_pricing }}>
+  // Pricing calculator functionality
+  const form = document.getElementById('pricing-calculator');
+  const priceBreakdown = document.getElementById('price-breakdown');
+  const totalPrice = document.getElementById('total-price');
+  const totalAmount = document.getElementById('total-amount');
+  const generateQuoteBtn = document.getElementById('generate-quote');
+  const quoteModal = document.getElementById('quote-modal');
+  const closeModal = document.getElementById('close-modal');
+  const quoteContent = document.getElementById('quote-content');
+
+  let currentCalculation = null;
+
+  // Application type display names
+  const applicationTypeNames = {
+    visitor_visa: 'Visitor Visa',
+    study_permit: 'Study Permit',
+    work_permit: 'Work Permit',
+    express_entry: 'Express Entry',
+    oinp_job_offer: 'OINP Job Offer',
+    express_oinp_bundle: 'Express Entry + OINP Bundle',
+    sponsorship: 'Family Sponsorship'
+  };
+
+  // Calculate pricing based on form inputs
+  function calculatePricing() {
+    const formData = new FormData(form);
+    const location = formData.get('location');
+    const applicationType = formData.get('application_type');
+    const hasSpouse = formData.get('has_spouse') === 'yes';
+    const dependentsCount = parseInt(formData.get('dependents_count') || '0');
+    const priorRefusal = formData.has('prior_refusal');
+
+    if (!location || !applicationType) {
+      showEmptyState();
+      return;
+    }
+
+    // Get base fees
+    const principalFee = pricingData.base_fees.principal_applicant[location][applicationType];
+    const spouseFee = hasSpouse ? pricingData.base_fees.spouse[location][applicationType] : 0;
+    const dependentsFee = dependentsCount > 0 ? pricingData.base_fees.dependents[location][applicationType] * dependentsCount : 0;
+    const priorRefusalFee = priorRefusal ? pricingData.add_ons.prior_refusal : 0;
+
+    const total = principalFee + spouseFee + dependentsFee + priorRefusalFee;
+
+    // Store calculation for quote generation
+    currentCalculation = {
+      location,
+      applicationType,
+      hasSpouse,
+      dependentsCount,
+      priorRefusal,
+      breakdown: {
+        principal: principalFee,
+        spouse: spouseFee,
+        dependents: dependentsFee,
+        priorRefusal: priorRefusalFee,
+        total
+      }
+    };
+
+    displayPricing(currentCalculation);
+  }
+
+  // Display pricing breakdown
+  function displayPricing(calculation) {
+    const { breakdown } = calculation;
+    
+    let html = '';
+    
+    // Principal applicant
+    html += `
+      <div class="flex justify-between items-center py-2">
+        <span class="text-gray-700 dark:text-gray-300">Principal Applicant</span>
+        <span class="font-semibold text-gray-900 dark:text-white">$${breakdown.principal.toLocaleString()}</span>
+      </div>
+    `;
+
+    // Spouse
+    if (calculation.hasSpouse) {
+      html += `
+        <div class="flex justify-between items-center py-2">
+          <span class="text-gray-700 dark:text-gray-300">Spouse/Partner</span>
+          <span class="font-semibold text-gray-900 dark:text-white">$${breakdown.spouse.toLocaleString()}</span>
+        </div>
+      `;
+    }
+
+    // Dependents
+    if (calculation.dependentsCount > 0) {
+      html += `
+        <div class="flex justify-between items-center py-2">
+          <span class="text-gray-700 dark:text-gray-300">${calculation.dependentsCount} Dependent${calculation.dependentsCount > 1 ? 's' : ''}</span>
+          <span class="font-semibold text-gray-900 dark:text-white">$${breakdown.dependents.toLocaleString()}</span>
+        </div>
+      `;
+    }
+
+    // Prior refusal
+    if (calculation.priorRefusal) {
+      html += `
+        <div class="flex justify-between items-center py-2">
+          <span class="text-gray-700 dark:text-gray-300">Prior Refusal Handling</span>
+          <span class="font-semibold text-gray-900 dark:text-white">$${breakdown.priorRefusal.toLocaleString()}</span>
+        </div>
+      `;
+    }
+
+    priceBreakdown.innerHTML = html;
+    totalAmount.textContent = `$${breakdown.total.toLocaleString()}`;
+    totalPrice.style.display = 'block';
+    generateQuoteBtn.disabled = false;
+  }
+
+  // Show empty state
+  function showEmptyState() {
+    priceBreakdown.innerHTML = `
+      <div class="text-center py-8 text-gray-500 dark:text-gray-400">
+        <div class="w-16 h-16 bg-gray-100 dark:bg-gray-700 rounded-full flex items-center justify-center mx-auto mb-4">
+          <span class="text-2xl">💰</span>
+        </div>
+        <p>Select your application details to see pricing</p>
+      </div>
+    `;
+    totalPrice.style.display = 'none';
+    generateQuoteBtn.disabled = true;
+    currentCalculation = null;
+  }
+
+  // Generate quote content
+  function generateQuote() {
+    if (!currentCalculation) return;
+
+    const { breakdown } = currentCalculation;
+    const today = new Date().toLocaleDateString('en-CA');
+    
+    const html = `
+      <div class="space-y-6">
+        <!-- Quote Header -->
+        <div class="text-center border-b border-gray-200 dark:border-gray-700 pb-6">
+          <div class="text-3xl font-bold text-gray-900 dark:text-white mb-2">Immigration Service Quote</div>
+          <div class="text-gray-600 dark:text-gray-400">Generated on ${today}</div>
+        </div>
+
+        <!-- Application Details -->
+        <div>
+          <h4 class="text-lg font-semibold text-gray-900 dark:text-white mb-3">Application Details</h4>
+          <div class="bg-gray-50 dark:bg-gray-700 rounded-lg p-4 space-y-2">
+            <div class="flex justify-between">
+              <span class="text-gray-600 dark:text-gray-400">Application Type:</span>
+              <span class="font-medium text-gray-900 dark:text-white">${applicationTypeNames[currentCalculation.applicationType]}</span>
+            </div>
+            <div class="flex justify-between">
+              <span class="text-gray-600 dark:text-gray-400">Processing Location:</span>
+              <span class="font-medium text-gray-900 dark:text-white">${currentCalculation.location.charAt(0).toUpperCase() + currentCalculation.location.slice(1)}</span>
+            </div>
+            <div class="flex justify-between">
+              <span class="text-gray-600 dark:text-gray-400">Family Members:</span>
+              <span class="font-medium text-gray-900 dark:text-white">
+                ${currentCalculation.hasSpouse ? 'Spouse included' : 'No spouse'}, 
+                ${currentCalculation.dependentsCount} dependent${currentCalculation.dependentsCount !== 1 ? 's' : ''}
+              </span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Price Breakdown -->
+        <div>
+          <h4 class="text-lg font-semibold text-gray-900 dark:text-white mb-3">Service Fees Breakdown</h4>
+          <div class="space-y-3">
+            <div class="flex justify-between items-center py-2 border-b border-gray-200 dark:border-gray-600">
+              <span class="text-gray-700 dark:text-gray-300">Principal Applicant</span>
+              <span class="font-semibold text-gray-900 dark:text-white">$${breakdown.principal.toLocaleString()} CAD</span>
+            </div>
+            
+            ${currentCalculation.hasSpouse ? `
+              <div class="flex justify-between items-center py-2 border-b border-gray-200 dark:border-gray-600">
+                <span class="text-gray-700 dark:text-gray-300">Spouse/Partner</span>
+                <span class="font-semibold text-gray-900 dark:text-white">$${breakdown.spouse.toLocaleString()} CAD</span>
+              </div>
+            ` : ''}
+            
+            ${currentCalculation.dependentsCount > 0 ? `
+              <div class="flex justify-between items-center py-2 border-b border-gray-200 dark:border-gray-600">
+                <span class="text-gray-700 dark:text-gray-300">${currentCalculation.dependentsCount} Dependent${currentCalculation.dependentsCount > 1 ? 's' : ''}</span>
+                <span class="font-semibold text-gray-900 dark:text-white">$${breakdown.dependents.toLocaleString()} CAD</span>
+              </div>
+            ` : ''}
+            
+            ${currentCalculation.priorRefusal ? `
+              <div class="flex justify-between items-center py-2 border-b border-gray-200 dark:border-gray-600">
+                <span class="text-gray-700 dark:text-gray-300">Prior Refusal Handling</span>
+                <span class="font-semibold text-gray-900 dark:text-white">$${breakdown.priorRefusal.toLocaleString()} CAD</span>
+              </div>
+            ` : ''}
+            
+            <div class="flex justify-between items-center py-3 bg-green-50 dark:bg-green-900/20 rounded-lg px-4">
+              <span class="text-lg font-semibold text-gray-900 dark:text-white">Total Service Fee</span>
+              <span class="text-2xl font-bold text-green-600 dark:text-green-400">$${breakdown.total.toLocaleString()} CAD</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Important Notes -->
+        <div class="bg-blue-50 dark:bg-blue-900/20 rounded-lg p-4">
+          <h5 class="font-semibold text-blue-900 dark:text-blue-100 mb-2">Important Notes:</h5>
+          <ul class="text-sm text-blue-800 dark:text-blue-200 space-y-1">
+            <li>• This quote is valid for 30 days from the date of generation</li>
+            <li>• Government fees are not included and must be paid separately</li>
+            <li>• Additional services may be required based on case complexity</li>
+            <li>• All fees are in Canadian Dollars (CAD)</li>
+          </ul>
+        </div>
+      </div>
+    `;
+
+    quoteContent.innerHTML = html;
+    quoteModal.classList.remove('hidden');
+  }
+
+  // Event listeners
+  form.addEventListener('change', calculatePricing);
+  form.addEventListener('input', calculatePricing);
+  
+  generateQuoteBtn.addEventListener('click', generateQuote);
+  
+  closeModal.addEventListener('click', () => {
+    quoteModal.classList.add('hidden');
+  });
+
+  // Close modal on outside click
+  quoteModal.addEventListener('click', (e) => {
+    if (e.target === quoteModal) {
+      quoteModal.classList.add('hidden');
+    }
+  });
+
+  // Contact us button
+  document.getElementById('contact-us').addEventListener('click', () => {
+    window.location.href = '/contact';
+  });
+
+  // Download PDF (placeholder - would need PDF generation library)
+  document.getElementById('download-pdf').addEventListener('click', () => {
+    // For now, just print the page
+    window.print();
+  });
+
+  // Initialize
+  showEmptyState();
+</script>
