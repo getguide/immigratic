@@ -484,12 +484,19 @@ const { immigration_pricing } = pricingData;
     const dependentsFee = dependentsCount > 0 ? pricingData.base_fees.dependents[location][applicationType] * dependentsCount : 0;
     const priorRefusalFee = priorRefusal ? pricingData.add_ons.prior_refusal : 0;
 
-    // Get government fees
+    // Calculate service fees subtotal before tax
+    const serviceFeeSubtotal = principalFee + spouseFee + dependentsFee + priorRefusalFee;
+    
+    // Apply 13% HST only for inland processing
+    const hstRate = location === 'inland' ? 0.13 : 0;
+    const hstAmount = serviceFeeSubtotal * hstRate;
+    const serviceFeeTotal = serviceFeeSubtotal + hstAmount;
+
+    // Get government fees (no tax applied)
     const govPrincipalFee = pricingData.government_fees[applicationType].principal;
     const govSpouseFee = hasSpouse ? pricingData.government_fees[applicationType].spouse : 0;
     const govDependentsFee = dependentsCount > 0 ? pricingData.government_fees[applicationType].dependents * dependentsCount : 0;
 
-    const serviceFeeTotal = principalFee + spouseFee + dependentsFee + priorRefusalFee;
     const governmentFeeTotal = govPrincipalFee + govSpouseFee + govDependentsFee;
     const grandTotal = serviceFeeTotal + governmentFeeTotal;
 
@@ -506,6 +513,9 @@ const { immigration_pricing } = pricingData;
           spouse: spouseFee,
           dependents: dependentsFee,
           priorRefusal: priorRefusalFee,
+          subtotal: serviceFeeSubtotal,
+          hstRate: hstRate,
+          hstAmount: hstAmount,
           total: serviceFeeTotal
         },
         governmentFees: {
@@ -524,6 +534,8 @@ const { immigration_pricing } = pricingData;
     trackPricingUsage('pricing_calculator', {
       totalPrice: grandTotal,
       serviceFees: serviceFeeTotal,
+      serviceFeesBeforeTax: serviceFeeSubtotal,
+      hstAmount: hstAmount,
       governmentFees: governmentFeeTotal,
       applicationType: applicationType,
       location: location,
@@ -586,10 +598,27 @@ const { immigration_pricing } = pricingData;
       `;
     }
 
-    // Service fees subtotal
+    // Service fees subtotal and HST
     html += `
         <div class="flex justify-between items-center py-2 border-t border-gray-200 dark:border-gray-600 mt-2 pt-2">
           <span class="font-medium text-gray-900 dark:text-white">Service Fees Subtotal</span>
+          <span class="font-medium text-gray-900 dark:text-white">$${breakdown.serviceFees.subtotal.toLocaleString()}</span>
+        </div>
+    `;
+    
+    // Show HST only for inland processing
+    if (breakdown.serviceFees.hstRate > 0) {
+      html += `
+        <div class="flex justify-between items-center py-2 text-sm">
+          <span class="text-gray-600 dark:text-gray-400">HST (${(breakdown.serviceFees.hstRate * 100).toFixed(0)}%)</span>
+          <span class="font-medium text-gray-900 dark:text-white">$${breakdown.serviceFees.hstAmount.toLocaleString()}</span>
+        </div>
+      `;
+    }
+    
+    html += `
+        <div class="flex justify-between items-center py-2 border-t border-gray-200 dark:border-gray-600 mt-1 pt-2">
+          <span class="font-semibold text-gray-900 dark:text-white">Service Fees Total</span>
           <span class="font-semibold text-blue-600 dark:text-blue-400">$${breakdown.serviceFees.total.toLocaleString()}</span>
         </div>
       </div>
@@ -742,6 +771,18 @@ const { immigration_pricing } = pricingData;
               
               <div class="flex justify-between items-center py-2 border-t border-gray-200 dark:border-gray-600 pt-2">
                 <span class="font-medium text-gray-900 dark:text-white">Service Fees Subtotal</span>
+                <span class="font-medium text-gray-900 dark:text-white">$${breakdown.serviceFees.subtotal.toLocaleString()} CAD</span>
+              </div>
+              
+              ${breakdown.serviceFees.hstRate > 0 ? `
+                <div class="flex justify-between items-center py-1">
+                  <span class="text-gray-700 dark:text-gray-300">HST (${(breakdown.serviceFees.hstRate * 100).toFixed(0)}%)</span>
+                  <span class="font-medium text-gray-900 dark:text-white">$${breakdown.serviceFees.hstAmount.toLocaleString()} CAD</span>
+                </div>
+              ` : ''}
+              
+              <div class="flex justify-between items-center py-2 border-t border-gray-200 dark:border-gray-600 pt-2">
+                <span class="font-semibold text-gray-900 dark:text-white">Service Fees Total</span>
                 <span class="font-semibold text-blue-600 dark:text-blue-400">$${breakdown.serviceFees.total.toLocaleString()} CAD</span>
               </div>
             </div>
@@ -809,6 +850,8 @@ const { immigration_pricing } = pricingData;
     trackPricingUsage('pricing_calculator', {
       totalPrice: breakdown.grandTotal,
       serviceFees: breakdown.serviceFees.total,
+      serviceFeesBeforeTax: breakdown.serviceFees.subtotal,
+      hstAmount: breakdown.serviceFees.hstAmount,
       governmentFees: breakdown.governmentFees.total,
       applicationType: currentCalculation.applicationType,
       location: currentCalculation.location
@@ -944,8 +987,18 @@ const { immigration_pricing } = pricingData;
                   <span>$${breakdown.serviceFees.priorRefusal.toLocaleString()} CAD</span>
                 </div>
               ` : ''}
-              <div class="breakdown-item" style="background: #eff6ff; font-weight: 600;">
+              <div class="breakdown-item" style="background: #f8fafc; font-weight: 500;">
                 <span>Service Fees Subtotal</span>
+                <span>$${breakdown.serviceFees.subtotal.toLocaleString()} CAD</span>
+              </div>
+              ${breakdown.serviceFees.hstRate > 0 ? `
+                <div class="breakdown-item">
+                  <span>HST (${(breakdown.serviceFees.hstRate * 100).toFixed(0)}%)</span>
+                  <span>$${breakdown.serviceFees.hstAmount.toLocaleString()} CAD</span>
+                </div>
+              ` : ''}
+              <div class="breakdown-item" style="background: #eff6ff; font-weight: 600;">
+                <span>Service Fees Total</span>
                 <span style="color: #2563eb;">$${breakdown.serviceFees.total.toLocaleString()} CAD</span>
               </div>
             </div>
