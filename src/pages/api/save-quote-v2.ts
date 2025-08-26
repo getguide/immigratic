@@ -38,15 +38,12 @@ export const POST: APIRoute = async ({ request }) => {
 
     console.log('🚀 Quote API V2: Processing quote for:', body.email);
 
-    // Create the record object
+    // Create the record object - MINIMAL VERSION TO BYPASS TRIGGER ISSUES
     const quoteRecord = {
-      id: crypto.randomUUID(), // Generate UUID manually
       name: body.name,
       email: body.email,
-      phone: body.phone || null,
-      country: body.country || null,
-      application_type: body.quoteData.applicationType || 'unknown',
-      location: body.quoteData.location || 'unknown',
+      application_type: body.quoteData.applicationType || 'work_permit',
+      location: body.quoteData.location || 'inland',
       has_spouse: body.quoteData.hasSpouse || false,
       dependents_count: body.quoteData.dependentsCount || 0,
       prior_refusal: body.quoteData.priorRefusal || false,
