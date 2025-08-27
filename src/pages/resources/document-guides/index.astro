@@ -1,0 +1,344 @@
+---
+import Layout from '../../../layouts/Layout.astro';
+---
+
+<Layout 
+  title="Immigration Document Guides & Checklists | Immigratic"
+  description="Comprehensive document checklists for all Canadian immigration programs. Interactive guides with downloadable templates for Express Entry, Study Permits, Work Permits, and more."
+  image="/og-image.jpg"
+  imageAlt="Immigratic - Immigration Document Guides"
+>
+  <!-- Hero Section -->
+  <section class="relative overflow-hidden bg-gradient-to-br from-blue-600 via-purple-700 to-indigo-800 dark:from-blue-800 dark:via-purple-900 dark:to-indigo-900 py-24 lg:py-32">
+    <!-- Animated Background Elements -->
+    <div class="absolute inset-0 overflow-hidden">
+      <div class="absolute -top-40 -right-40 w-80 h-80 bg-blue-400/20 rounded-full blur-3xl animate-pulse-slow"></div>
+      <div class="absolute -bottom-40 -left-40 w-80 h-80 bg-purple-400/20 rounded-full blur-3xl animate-pulse-slow" style="animation-delay: 2s;"></div>
+      <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-indigo-400/10 rounded-full blur-3xl animate-pulse-slow" style="animation-delay: 4s;"></div>
+    </div>
+    
+    <!-- Floating Particles -->
+    <div class="absolute inset-0">
+      <div class="absolute top-20 left-20 w-2 h-2 bg-white/30 rounded-full animate-float-gentle"></div>
+      <div class="absolute top-32 right-32 w-1 h-1 bg-white/40 rounded-full animate-float-gentle" style="animation-delay: 1s;"></div>
+      <div class="absolute bottom-32 left-32 w-3 h-3 bg-white/20 rounded-full animate-float-gentle" style="animation-delay: 2s;"></div>
+      <div class="absolute bottom-20 right-20 w-1 h-1 bg-white/50 rounded-full animate-float-gentle" style="animation-delay: 3s;"></div>
+    </div>
+
+    <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      <div class="mb-8">
+        <span class="inline-flex items-center px-4 py-2 bg-white/10 backdrop-blur-sm border border-white/20 rounded-full text-sm font-medium text-white/90">
+          📋 Document Guides
+        </span>
+      </div>
+      
+      <h1 class="text-4xl md:text-6xl font-bold text-white mb-6 leading-tight">
+        Immigration
+        <span class="block bg-gradient-to-r from-blue-200 to-purple-200 bg-clip-text text-transparent">
+          Document Guides
+        </span>
+      </h1>
+      
+      <p class="text-xl md:text-2xl text-blue-100 max-w-4xl mx-auto mb-8 leading-relaxed">
+        Comprehensive checklists, downloadable templates, and interactive guides for all Canadian immigration programs. Never miss a document again.
+      </p>
+      
+      <div class="flex flex-col sm:flex-row gap-4 justify-center">
+        <a href="#programs" class="inline-flex items-center px-8 py-4 bg-white text-blue-600 font-semibold rounded-xl hover:bg-blue-50 transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl">
+          Explore Programs
+          <svg class="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+          </svg>
+        </a>
+        <a href="/tools/master-assessment?utm_source=immigratic&utm_medium=website&utm_campaign=document_guides&utm_content=hero_cta" class="inline-flex items-center px-8 py-4 bg-transparent border-2 border-white/30 text-white font-semibold rounded-xl hover:bg-white/10 transition-all duration-300 transform hover:scale-105">
+          Take Assessment
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Programs Section -->
+  <section id="programs" class="py-24 bg-white dark:bg-gray-900">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-16">
+        <h2 class="text-3xl md:text-5xl font-bold text-gray-900 dark:text-white mb-6">
+          Choose Your
+          <span class="block bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
+            Immigration Program
+          </span>
+        </h2>
+        <p class="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
+          Select your immigration pathway to access tailored document checklists, templates, and step-by-step guidance.
+        </p>
+      </div>
+
+      <!-- Temporary Residence Programs -->
+      <div class="mb-16">
+        <h3 class="text-2xl font-bold text-gray-900 dark:text-white mb-8 text-center">
+          🎯 Temporary Residence Programs
+        </h3>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+          <!-- Express Entry -->
+          <div class="group bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-lg border border-gray-200 dark:border-gray-700 hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2">
+            <div class="w-16 h-16 bg-gradient-to-br from-blue-500 to-purple-600 rounded-2xl flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform duration-300">
+              <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
+              </svg>
+            </div>
+            <h4 class="text-lg font-bold text-gray-900 dark:text-white mb-3 text-center">Express Entry</h4>
+            <p class="text-gray-600 dark:text-gray-300 mb-4 text-center text-sm">
+              Federal skilled worker, Canadian experience class, and federal skilled trades
+            </p>
+            <div class="flex items-center justify-center">
+              <a href="/resources/document-guides/express-entry" class="inline-flex items-center px-4 py-2 bg-blue-600 text-white text-sm font-medium rounded-lg hover:bg-blue-700 transition-colors">
+                View Guide
+                <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+                </svg>
+              </a>
+            </div>
+          </div>
+
+          <!-- Study Permit -->
+          <div class="group bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-lg border border-gray-200 dark:border-gray-700 hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2">
+            <div class="w-16 h-16 bg-gradient-to-br from-green-500 to-emerald-600 rounded-2xl flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform duration-300">
+              <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.746 0 3.332.477 4.5 1.253v13C19.832 18.477 18.246 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"></path>
+              </svg>
+            </div>
+            <h4 class="text-lg font-bold text-gray-900 dark:text-white mb-3 text-center">Study Permit</h4>
+            <p class="text-gray-600 dark:text-gray-300 mb-4 text-center text-sm">
+              International student applications for Canadian educational institutions
+            </p>
+            <div class="flex items-center justify-center">
+              <span class="inline-flex items-center px-4 py-2 bg-gray-100 text-gray-600 text-sm font-medium rounded-lg">
+                Coming Soon
+              </span>
+            </div>
+          </div>
+
+          <!-- Work Permit -->
+          <div class="group bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-lg border border-gray-200 dark:border-gray-700 hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2">
+            <div class="w-16 h-16 bg-gradient-to-br from-orange-500 to-red-600 rounded-2xl flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform duration-300">
+              <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M12 12h.01"></path>
+              </svg>
+            </div>
+            <h4 class="text-lg font-bold text-gray-900 dark:text-white mb-3 text-center">Work Permit</h4>
+            <p class="text-gray-600 dark:text-gray-300 mb-4 text-center text-sm">
+              Temporary work authorization including LMIA and open work permits
+            </p>
+            <div class="flex items-center justify-center">
+              <span class="inline-flex items-center px-4 py-2 bg-gray-100 text-gray-600 text-sm font-medium rounded-lg">
+                Coming Soon
+              </span>
+            </div>
+          </div>
+
+          <!-- Visitor Visa -->
+          <div class="group bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-lg border border-gray-200 dark:border-gray-700 hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2">
+            <div class="w-16 h-16 bg-gradient-to-br from-purple-500 to-pink-600 rounded-2xl flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform duration-300">
+              <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z"></path>
+              </svg>
+            </div>
+            <h4 class="text-lg font-bold text-gray-900 dark:text-white mb-3 text-center">Visitor Visa</h4>
+            <p class="text-gray-600 dark:text-gray-300 mb-4 text-center text-sm">
+              Tourism, business visits, and family visits to Canada
+            </p>
+            <div class="flex items-center justify-center">
+              <span class="inline-flex items-center px-4 py-2 bg-gray-100 text-gray-600 text-sm font-medium rounded-lg">
+                Coming Soon
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Permanent Residence Programs -->
+      <div class="mb-16">
+        <h3 class="text-2xl font-bold text-gray-900 dark:text-white mb-8 text-center">
+          🏠 Permanent Residence Programs
+        </h3>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+          <!-- PNP Programs -->
+          <div class="group bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-lg border border-gray-200 dark:border-gray-700 hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2">
+            <div class="w-16 h-16 bg-gradient-to-br from-indigo-500 to-blue-600 rounded-2xl flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform duration-300">
+              <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"></path>
+              </svg>
+            </div>
+            <h4 class="text-lg font-bold text-gray-900 dark:text-white mb-3 text-center">PNP Programs</h4>
+            <p class="text-gray-600 dark:text-gray-300 mb-4 text-center text-sm">
+              Provincial nominee programs for specific provinces and territories
+            </p>
+            <div class="flex items-center justify-center">
+              <span class="inline-flex items-center px-4 py-2 bg-gray-100 text-gray-600 text-sm font-medium rounded-lg">
+                Coming Soon
+              </span>
+            </div>
+          </div>
+
+          <!-- Family Sponsorship -->
+          <div class="group bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-lg border border-gray-200 dark:border-gray-700 hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2">
+            <div class="w-16 h-16 bg-gradient-to-br from-pink-500 to-rose-600 rounded-2xl flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform duration-300">
+              <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"></path>
+              </svg>
+            </div>
+            <h4 class="text-lg font-bold text-gray-900 dark:text-white mb-3 text-center">Family Sponsorship</h4>
+            <p class="text-gray-600 dark:text-gray-300 mb-4 text-center text-sm">
+              Spouse, children, parents, and other family member sponsorship
+            </p>
+            <div class="flex items-center justify-center">
+              <span class="inline-flex items-center px-4 py-2 bg-gray-100 text-gray-600 text-sm font-medium rounded-lg">
+                Coming Soon
+              </span>
+            </div>
+          </div>
+
+          <!-- Caregiver Programs -->
+          <div class="group bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-lg border border-gray-200 dark:border-gray-700 hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2">
+            <div class="w-16 h-16 bg-gradient-to-br from-teal-500 to-cyan-600 rounded-2xl flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform duration-300">
+              <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"></path>
+              </svg>
+            </div>
+            <h4 class="text-lg font-bold text-gray-900 dark:text-white mb-3 text-center">Caregiver Programs</h4>
+            <p class="text-gray-600 dark:text-gray-300 mb-4 text-center text-sm">
+              Home child care provider and home support worker programs
+            </p>
+            <div class="flex items-center justify-center">
+              <span class="inline-flex items-center px-4 py-2 bg-gray-100 text-gray-600 text-sm font-medium rounded-lg">
+                Coming Soon
+              </span>
+            </div>
+          </div>
+
+          <!-- Self-Employed -->
+          <div class="group bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-lg border border-gray-200 dark:border-gray-700 hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2">
+            <div class="w-16 h-16 bg-gradient-to-br from-amber-500 to-yellow-600 rounded-2xl flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform duration-300">
+              <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+              </svg>
+            </div>
+            <h4 class="text-lg font-bold text-gray-900 dark:text-white mb-3 text-center">Self-Employed</h4>
+            <p class="text-gray-600 dark:text-gray-300 mb-4 text-center text-sm">
+              Self-employed persons in cultural activities or athletics
+            </p>
+            <div class="flex items-center justify-center">
+              <span class="inline-flex items-center px-4 py-2 bg-gray-100 text-gray-600 text-sm font-medium rounded-lg">
+                Coming Soon
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Features Section -->
+      <div class="text-center mb-16">
+        <h3 class="text-2xl font-bold text-gray-900 dark:text-white mb-8">
+          ✨ What Makes Our Guides Special
+        </h3>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <div class="text-center">
+            <div class="w-16 h-16 bg-gradient-to-br from-green-500 to-emerald-600 rounded-2xl flex items-center justify-center mx-auto mb-6">
+              <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+              </svg>
+            </div>
+            <h4 class="text-lg font-bold text-gray-900 dark:text-white mb-3">Interactive Checklists</h4>
+            <p class="text-gray-600 dark:text-gray-300">Track your progress with interactive checkboxes and progress bars</p>
+          </div>
+          
+          <div class="text-center">
+            <div class="w-16 h-16 bg-gradient-to-br from-blue-500 to-indigo-600 rounded-2xl flex items-center justify-center mx-auto mb-6">
+              <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
+              </svg>
+            </div>
+            <h4 class="text-lg font-bold text-gray-900 dark:text-white mb-3">Downloadable Templates</h4>
+            <p class="text-gray-600 dark:text-gray-300">Ready-to-use document templates and sample forms</p>
+          </div>
+          
+          <div class="text-center">
+            <div class="w-16 h-16 bg-gradient-to-br from-purple-500 to-pink-600 rounded-2xl flex items-center justify-center mx-auto mb-6">
+              <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
+              </svg>
+            </div>
+            <h4 class="text-lg font-bold text-gray-900 dark:text-white mb-3">Expert Guidance</h4>
+            <p class="text-gray-600 dark:text-gray-300">Insider tips and common mistakes to avoid</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- CTA Section -->
+      <div class="text-center">
+        <div class="bg-gradient-to-r from-blue-50 to-purple-50 dark:from-blue-900/20 dark:to-purple-900/20 rounded-2xl p-8">
+          <h3 class="text-2xl font-bold text-gray-900 dark:text-white mb-4">
+            Ready to Get Started?
+          </h3>
+          <p class="text-gray-600 dark:text-gray-300 mb-6 max-w-2xl mx-auto">
+            Choose your immigration program above to access comprehensive document guides, or take our assessment to get personalized recommendations.
+          </p>
+          <div class="flex flex-col sm:flex-row gap-4 justify-center">
+            <a href="/resources/document-guides/express-entry" class="inline-flex items-center px-6 py-3 bg-blue-600 text-white font-semibold rounded-lg hover:bg-blue-700 transition-colors">
+              Start with Express Entry
+              <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+              </svg>
+            </a>
+            <a href="/tools/master-assessment?utm_source=immigratic&utm_medium=website&utm_campaign=document_guides&utm_content=cta" class="inline-flex items-center px-6 py-3 bg-transparent border-2 border-blue-600 text-blue-600 font-semibold rounded-lg hover:bg-blue-50 transition-colors">
+              Take Assessment
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</Layout>
+
+<style>
+  @keyframes animate-pulse-slow {
+    0%, 100% { opacity: 0.3; }
+    50% { opacity: 0.6; }
+  }
+  
+  @keyframes animate-float-gentle {
+    0%, 100% { transform: translateY(0px); }
+    50% { transform: translateY(-10px); }
+  }
+  
+  .animate-pulse-slow {
+    animation: animate-pulse-slow 4s ease-in-out infinite;
+  }
+  
+  .animate-float-gentle {
+    animation: animate-float-gentle 3s ease-in-out infinite;
+  }
+</style>
+
+<script>
+  // Smooth scrolling for navigation links
+  document.addEventListener('DOMContentLoaded', function() {
+    const navLinks = document.querySelectorAll('a[href^="#"]');
+    
+    navLinks.forEach(link => {
+      link.addEventListener('click', function(e) {
+        e.preventDefault();
+        
+        const targetId = this.getAttribute('href').substring(1);
+        const targetSection = document.getElementById(targetId);
+        
+        if (targetSection) {
+          const offsetTop = targetSection.offsetTop - 100;
+          window.scrollTo({
+            top: offsetTop,
+            behavior: 'smooth'
+          });
+        }
+      });
+    });
+  });
+</script>
