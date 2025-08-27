@@ -3,14 +3,119 @@
 
 ---
 
+## 🏗️ PROJECT BACKGROUND & CURRENT SYSTEM
+
+### **Current Airtable-Based Architecture**
+
+**Immigratic currently operates a sophisticated immigration assessment system built on Airtable with approximately 500+ fields across multiple interconnected tables. This system represents years of immigration expertise distilled into a comprehensive calculation engine.**
+
+#### **Master Assessment System (The Core Engine)**
+- **500+ Fields**: Comprehensive data collection covering every aspect of immigration eligibility
+- **Formula-Driven Logic**: Many fields contain complex Airtable formulas that automatically calculate eligibility scores, points, and recommendations
+- **35+ Program Assessment**: Simultaneous evaluation across all major Canadian immigration programs:
+  - Express Entry (Federal Skilled Worker, Canadian Experience Class, Federal Skilled Trades)
+  - Provincial Nominee Programs (PNP) for all provinces
+  - Quebec Immigration Programs
+  - Study Permits, Work Permits, Visitor Visas
+  - Family Sponsorship Programs
+  - Caregiver Programs
+  - Self-Employed Persons Program
+  - Start-up Visa Program
+  - Investor Programs
+
+#### **The ImmReport Concept - "Credit Report for Immigration"**
+**Vision**: Create the industry standard for immigration assessment - a comprehensive, standardized report that every prospective immigrant should have, similar to how credit reports work in finance.
+
+**Key Features**:
+- **Comprehensive Profile**: Complete immigration readiness assessment
+- **Multi-Program Analysis**: Eligibility across all 35+ programs simultaneously
+- **Scenario Planning**: "What-if" analysis (e.g., "What if you gain 1 year of work experience?")
+- **Market Intelligence**: Latest draw trends, success rates, processing times
+- **Action Plan**: Personalized roadmap to improve eligibility
+- **Shareable Format**: Standardized report consultants can use instead of multiple forms
+
+#### **Current Workflow & Business Model**
+1. **Lead Generation**: Prospects complete Master Assessment (currently via Airtable forms)
+2. **ImmReport Generation**: System processes 500+ fields through formula engine
+3. **Consultation Booking**: Qualified leads book strategy sessions
+4. **Service Conversion**: Consultation converts to full legal representation
+
+#### **Zero-Cost Lead Acquisition Strategy**
+- **Free ImmReport**: Basic assessment and eligibility overview
+- **Premium Features**: Advanced scenarios, market intelligence, detailed action plans
+- **Lead Segmentation**: Automatic scoring and routing based on assessment results
+- **Partner Ecosystem**: Revenue sharing with educational institutions, employers, other consultants
+
+### **Current System Limitations**
+1. **Airtable Constraints**: Limited calculation complexity, no real-time updates, poor user experience
+2. **Manual Processes**: Heavy manual intervention for report generation and follow-up
+3. **Scalability Issues**: Cannot handle high-volume lead generation efficiently
+4. **Integration Challenges**: Difficult to connect with marketing automation, CRM, payment systems
+5. **User Experience**: Airtable forms are not optimized for consumer-facing assessment
+
+### **The Migration Opportunity**
+**Moving from Airtable to Supabase + Astro represents a quantum leap in capabilities:**
+
+#### **Technical Advantages**
+- **PostgreSQL Power**: Complex calculations, triggers, and real-time processing
+- **Custom UI/UX**: Beautiful, mobile-optimized assessment experience
+- **Real-Time Updates**: Instant "what-if" scenario analysis
+- **API Integration**: Connect with marketing automation, payment processing, CRM systems
+- **Scalability**: Handle thousands of assessments simultaneously
+
+#### **Business Advantages**
+- **Lead Generation Machine**: Free ImmReport becomes powerful lead magnet
+- **Revenue Optimization**: Freemium model with premium feature gates
+- **Market Positioning**: First-mover advantage in standardized immigration assessment
+- **Competitive Moat**: 500-field assessment depth impossible to replicate quickly
+- **Partner Revenue**: Commission-based partnerships with institutions and consultants
+
+### **Strategic Vision: ImmReport-First Approach**
+**Instead of building a traditional CRM first, launch with the ImmReport as a standalone product:**
+
+1. **Phase 1**: Perfect the ImmReport experience (assessment + report generation)
+2. **Phase 2**: Add lead conversion systems (consultation booking, marketing automation)
+3. **Phase 3**: Layer in CRM capabilities (client management, application tracking)
+4. **Phase 4**: Scale with agent network and enterprise features
+
+**This approach prioritizes revenue generation and market validation before building complex CRM infrastructure.**
+
+### **Revenue Potential Analysis**
+- **Market Size**: 400,000+ new immigrants to Canada annually
+- **Assessment Demand**: Every prospective immigrant needs eligibility assessment
+- **Conversion Rates**: Current system shows 15-25% consultation booking rate
+- **Average Client Value**: $3,000-15,000 per immigration application
+- **Partner Revenue**: Commission sharing with 1,000+ immigration consultants
+- **Projected Annual Revenue**: $50M+ potential through lead generation + services
+
+### **Current Data Architecture (Airtable)**
+**The existing system contains years of refined immigration logic that must be preserved and enhanced:**
+
+- **Client Profiles**: Personal info, education, work experience, language scores
+- **Calculation Engine**: CRS scores, program eligibility, points calculations
+- **Program Database**: Requirements, processing times, success rates for 35+ programs
+- **Market Intelligence**: Draw history, trends, predictions
+- **Document Tracking**: Required documents per program and client situation
+- **Timeline Management**: Application stages, deadlines, milestones
+
+**This background forms the foundation for the enterprise CRM system design that follows.**
+
+---
+
 ## 📋 EXECUTIVE SUMMARY
 
-**Vision**: Transform Immigratic from a lead generation website into a full-scale immigration CRM with multi-agent support, client management, and application tracking.
+**Vision**: Transform Immigratic's existing 500-field Airtable assessment system into the industry-standard "ImmReport" - the Credit Report for Immigration - while building a scalable CRM infrastructure for enterprise growth.
+
+**Strategy**: ImmReport-First Approach
+1. **Launch ImmReport MVP** as standalone product and lead generation engine
+2. **Layer in CRM capabilities** progressively as business scales
+3. **Monetize through freemium model** and partner revenue sharing
 
 **Tech Stack**: Astro + Vercel + Supabase (maintaining current infrastructure)
-**Timeline**: 8-10 weeks for MVP (realistic), 14-18 weeks for full system
-**Budget**: MVP ~$50-100/mo, Production ~$300-500/mo (Supabase Pro + Vercel Pro)
-**Target Users**: Regional Managers, Agents, Clients
+**Timeline**: 20 weeks total (2 weeks analysis + 18 weeks development)
+**Budget**: MVP ~$100/mo, Production ~$500/mo (Supabase Pro + Vercel Pro)
+**Revenue Potential**: $50M+ annually through lead generation + services
+**Target Users**: Prospective Immigrants → Clients → Agents → Regional Managers
 
 ---
 
@@ -41,6 +146,15 @@
 
 ## 🗄️ DATABASE SCHEMA DESIGN
 
+### **ImmReport-First Database Evolution**
+
+**The database will evolve in phases, starting with the ImmReport core and progressively adding CRM layers:**
+
+**Phase 1**: Users + ImmReports + Leads (MVP)
+**Phase 2**: Consultations + Premium Transactions  
+**Phase 3**: Clients + Agent Assignment
+**Phase 4**: Full CRM (Applications, Documents, Communications)
+
 ### **Core Tables Structure**
 
 ```sql
@@ -56,6 +170,124 @@ CREATE TABLE users (
   created_at TIMESTAMP DEFAULT NOW(),
   updated_at TIMESTAMP DEFAULT NOW(),
   is_active BOOLEAN DEFAULT true
+);
+
+-- MASTER ASSESSMENTS (500+ Field Immigration Assessment)
+CREATE TABLE master_assessments (
+  id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+  user_id UUID REFERENCES users(id),
+  assessment_number VARCHAR(20) UNIQUE NOT NULL, -- 'MA-2025-001'
+  
+  -- Personal Information
+  personal_info JSONB, -- Flexible storage for 100+ personal fields
+  
+  -- Education & Credentials
+  education_info JSONB, -- Degrees, institutions, ECA status, etc.
+  
+  -- Work Experience
+  work_experience JSONB, -- Job history, NOC codes, duration, etc.
+  
+  -- Language Proficiency
+  language_scores JSONB, -- IELTS, CELPIP, TEF, etc.
+  
+  -- Family Information
+  family_info JSONB, -- Spouse, children, family in Canada
+  
+  -- Financial Information
+  financial_info JSONB, -- Funds, assets, income history
+  
+  -- Immigration History
+  immigration_history JSONB, -- Previous applications, refusals, visits
+  
+  -- Calculated Values (Formula Results)
+  calculated_values JSONB, -- CRS scores, eligibility results, etc.
+  
+  -- Assessment Metadata
+  completion_percentage DECIMAL(5,2) DEFAULT 0.00,
+  last_updated_section VARCHAR(100),
+  is_complete BOOLEAN DEFAULT false,
+  
+  -- Timestamps
+  created_at TIMESTAMP DEFAULT NOW(),
+  updated_at TIMESTAMP DEFAULT NOW(),
+  completed_at TIMESTAMP
+);
+
+-- IMMIREPORTS (Generated Assessment Reports)
+CREATE TABLE immireports (
+  id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+  master_assessment_id UUID REFERENCES master_assessments(id),
+  user_id UUID REFERENCES users(id),
+  report_number VARCHAR(20) UNIQUE NOT NULL, -- 'IR-2025-001'
+  
+  -- Report Content
+  eligibility_summary JSONB, -- Program eligibility across 35+ programs
+  crs_breakdown JSONB, -- Detailed CRS score analysis
+  program_recommendations JSONB, -- Recommended pathways
+  action_plan JSONB, -- Steps to improve eligibility
+  market_intelligence JSONB, -- Draw trends, processing times
+  
+  -- Report Settings
+  report_type VARCHAR(20) DEFAULT 'free', -- 'free', 'premium', 'enterprise'
+  includes_scenarios BOOLEAN DEFAULT false,
+  includes_market_data BOOLEAN DEFAULT false,
+  
+  -- Access Control
+  is_shareable BOOLEAN DEFAULT true,
+  share_token VARCHAR(100) UNIQUE,
+  expires_at TIMESTAMP,
+  
+  -- Generation Metadata
+  generated_at TIMESTAMP DEFAULT NOW(),
+  version INTEGER DEFAULT 1,
+  calculation_engine_version VARCHAR(10) DEFAULT '1.0'
+);
+
+-- PROGRAM ELIGIBILITY RESULTS (Detailed breakdown per program)
+CREATE TABLE program_eligibility (
+  id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+  immireport_id UUID REFERENCES immireports(id),
+  program_code VARCHAR(50), -- 'FSW', 'CEC', 'OINP_HCP', etc.
+  program_name VARCHAR(200),
+  
+  -- Eligibility Assessment
+  is_eligible BOOLEAN,
+  eligibility_score DECIMAL(5,2),
+  missing_requirements JSONB,
+  strength_areas JSONB,
+  
+  -- Calculations
+  points_breakdown JSONB,
+  estimated_processing_time VARCHAR(50),
+  success_probability DECIMAL(5,2),
+  
+  -- Market Data
+  recent_draw_score INTEGER,
+  draw_frequency VARCHAR(50),
+  annual_invitations INTEGER,
+  
+  created_at TIMESTAMP DEFAULT NOW()
+);
+
+-- ASSESSMENT SCENARIOS (What-if Analysis)
+CREATE TABLE assessment_scenarios (
+  id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+  master_assessment_id UUID REFERENCES master_assessments(id),
+  user_id UUID REFERENCES users(id),
+  
+  -- Scenario Details
+  scenario_name VARCHAR(200),
+  scenario_description TEXT,
+  changes_applied JSONB, -- What fields were modified
+  
+  -- Results
+  new_crs_score INTEGER,
+  new_eligibility JSONB,
+  improvement_summary JSONB,
+  
+  -- Metadata
+  is_premium BOOLEAN DEFAULT false, -- Premium feature gate
+  created_at TIMESTAMP DEFAULT NOW()
 );
 
 -- REGIONS & TERRITORIES
@@ -107,6 +339,8 @@ CREATE TABLE clients (
   client_number VARCHAR(20) UNIQUE NOT NULL, -- 'CL-2025-001'
   assigned_agent_id UUID REFERENCES agents(id),
   converted_from_lead_id UUID REFERENCES leads(id),
+  master_assessment_id UUID REFERENCES master_assessments(id), -- Link to their assessment
+  immireport_id UUID REFERENCES immireports(id), -- Link to their report
   source VARCHAR(50), -- 'website', 'referral', 'agent_direct'
   utm_source VARCHAR(100),
   utm_medium VARCHAR(100),
@@ -116,6 +350,130 @@ CREATE TABLE clients (
   lifetime_value DECIMAL(10,2) DEFAULT 0.00,
   created_at TIMESTAMP DEFAULT NOW(),
   updated_at TIMESTAMP DEFAULT NOW()
+);
+
+-- CONSULTATIONS (Booking and Management)
+CREATE TABLE consultations (
+  id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+  consultation_number VARCHAR(20) UNIQUE NOT NULL, -- 'CONS-2025-001'
+  user_id UUID REFERENCES users(id),
+  immireport_id UUID REFERENCES immireports(id),
+  
+  -- Consultation Details
+  consultation_type VARCHAR(50), -- 'strategy', 'follow_up', 'document_review'
+  scheduled_at TIMESTAMP,
+  duration_minutes INTEGER DEFAULT 60,
+  meeting_link VARCHAR(500),
+  
+  -- Status
+  status consultation_status DEFAULT 'scheduled', -- 'scheduled', 'completed', 'cancelled', 'no_show'
+  
+  -- Outcomes
+  consultation_notes TEXT,
+  recommended_services JSONB,
+  follow_up_required BOOLEAN DEFAULT false,
+  converted_to_client BOOLEAN DEFAULT false,
+  
+  -- Payment
+  consultation_fee DECIMAL(10,2) DEFAULT 0.00,
+  is_paid BOOLEAN DEFAULT false,
+  
+  created_at TIMESTAMP DEFAULT NOW(),
+  updated_at TIMESTAMP DEFAULT NOW()
+);
+
+-- PREMIUM TRANSACTIONS (ImmReport Premium Features)
+CREATE TABLE premium_transactions (
+  id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+  user_id UUID REFERENCES users(id),
+  immireport_id UUID REFERENCES immireports(id),
+  
+  -- Transaction Details
+  transaction_type VARCHAR(50), -- 'scenario_analysis', 'market_intelligence', 'full_premium'
+  amount DECIMAL(10,2),
+  currency VARCHAR(3) DEFAULT 'CAD',
+  
+  -- Payment Processing
+  payment_method VARCHAR(50),
+  payment_processor_id VARCHAR(100), -- Stripe/PayPal transaction ID
+  payment_status VARCHAR(20) DEFAULT 'pending', -- 'pending', 'completed', 'failed', 'refunded'
+  
+  -- Access Granted
+  features_unlocked JSONB, -- What premium features were unlocked
+  access_expires_at TIMESTAMP,
+  
+  created_at TIMESTAMP DEFAULT NOW()
+);
+
+-- USER TASKS (Action Items from ImmReport)
+CREATE TABLE user_tasks (
+  id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+  user_id UUID REFERENCES users(id),
+  immireport_id UUID REFERENCES immireports(id),
+  
+  -- Task Details
+  task_type VARCHAR(50), -- 'improve_language', 'get_eca', 'gain_experience'
+  title VARCHAR(200),
+  description TEXT,
+  priority task_priority DEFAULT 'medium', -- 'low', 'medium', 'high'
+  
+  -- Impact
+  potential_crs_increase INTEGER,
+  estimated_timeline VARCHAR(100), -- '6 months', '1 year'
+  
+  -- Status
+  status task_status DEFAULT 'pending', -- 'pending', 'in_progress', 'completed', 'dismissed'
+  completed_at TIMESTAMP,
+  
+  created_at TIMESTAMP DEFAULT NOW()
+);
+
+-- PARTNER OFFERS (Revenue Sharing Opportunities)
+CREATE TABLE offers (
+  id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+  user_id UUID REFERENCES users(id),
+  immireport_id UUID REFERENCES immireports(id),
+  
+  -- Offer Details
+  offer_type VARCHAR(50), -- 'language_course', 'eca_service', 'job_placement'
+  partner_name VARCHAR(200),
+  offer_title VARCHAR(200),
+  offer_description TEXT,
+  
+  -- Targeting
+  eligibility_criteria JSONB, -- Who should see this offer
+  crs_score_min INTEGER,
+  crs_score_max INTEGER,
+  target_programs JSONB,
+  
+  -- Commercial
+  offer_value DECIMAL(10,2),
+  commission_rate DECIMAL(5,2), -- Our commission percentage
+  tracking_link VARCHAR(500),
+  
+  -- Performance
+  impressions INTEGER DEFAULT 0,
+  clicks INTEGER DEFAULT 0,
+  conversions INTEGER DEFAULT 0,
+  
+  -- Status
+  is_active BOOLEAN DEFAULT true,
+  expires_at TIMESTAMP,
+  
+  created_at TIMESTAMP DEFAULT NOW()
+);
+
+-- AUDIT LOG (Track all system changes)
+CREATE TABLE audit_log (
+  id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+  user_id UUID REFERENCES users(id),
+  entity_type VARCHAR(50), -- 'master_assessment', 'immireport', 'user'
+  entity_id UUID,
+  action VARCHAR(50), -- 'create', 'update', 'delete', 'view'
+  changes JSONB, -- What changed
+  ip_address INET,
+  user_agent TEXT,
+  created_at TIMESTAMP DEFAULT NOW()
 );
 
 -- APPLICATIONS
@@ -205,8 +563,16 @@ CREATE TABLE revenue_records (
 
 ### **Custom Types (Enums)**
 ```sql
+-- Core System Enums
 CREATE TYPE user_role AS ENUM ('super_admin', 'regional_manager', 'agent', 'client');
 CREATE TYPE agent_status AS ENUM ('active', 'inactive', 'suspended');
+
+-- ImmReport & Assessment Enums
+CREATE TYPE consultation_status AS ENUM ('scheduled', 'completed', 'cancelled', 'no_show');
+CREATE TYPE task_priority AS ENUM ('low', 'medium', 'high');
+CREATE TYPE task_status AS ENUM ('pending', 'in_progress', 'completed', 'dismissed');
+
+-- Application & CRM Enums
 CREATE TYPE application_type AS ENUM ('work_permit', 'pr_express_entry', 'pr_pnp', 'visitor_visa', 'study_permit');
 CREATE TYPE application_stage AS ENUM ('consultation', 'document_collection', 'review', 'submitted', 'approved', 'rejected');
 CREATE TYPE priority_level AS ENUM ('low', 'normal', 'high', 'urgent');
@@ -408,35 +774,46 @@ export const protectRoute = async (request: Request, requiredRole?: string) => {
 
 ## 🚀 IMPLEMENTATION PHASES
 
-### **Phase 1: Foundation (Weeks 1-2)**
-- [ ] Database schema setup
-- [ ] Authentication system
-- [ ] Basic user roles and permissions
-- [ ] Core API endpoints
+### **Phase 0: Airtable Migration Analysis (Weeks 1-2)**
+- [ ] Export all Airtable fields, formulas, and relationships
+- [ ] Document 500+ field structure and data types
+- [ ] Map calculation logic for 35+ immigration programs
+- [ ] Create PostgreSQL migration scripts
+- [ ] Test formula conversion accuracy
 
-### **Phase 2: Agent System (Weeks 3-4)**
-- [ ] Agent registration and management
-- [ ] Agent dashboard
-- [ ] Client assignment system
-- [ ] Basic application creation
+### **Phase 1: ImmReport MVP (Weeks 3-8)**
+- [ ] Core database setup (users, master_assessments, immireports)
+- [ ] Authentication system with Supabase Auth
+- [ ] Dynamic 500-field assessment form builder
+- [ ] Calculation engine (PostgreSQL functions + TypeScript)
+- [ ] Basic ImmReport generation and display
+- [ ] Lead capture and email collection
+- [ ] Free vs Premium feature gates
 
-### **Phase 3: Client Portal (Weeks 5-6)**
-- [ ] Client registration
-- [ ] Client dashboard
-- [ ] Document upload system
-- [ ] Application status tracking
+### **Phase 2: Lead Conversion System (Weeks 9-12)**
+- [ ] Consultation booking system
+- [ ] Premium feature transactions (Stripe integration)
+- [ ] Scenario analysis ("what-if" calculations)
+- [ ] Market intelligence integration
+- [ ] Automated email sequences
+- [ ] Lead scoring and segmentation
+- [ ] Partner offer engine
 
-### **Phase 4: Advanced Features (Weeks 7-8)**
-- [ ] Communication system
-- [ ] Reporting and analytics
-- [ ] Automated notifications
-- [ ] Performance optimization
+### **Phase 3: Client Management Layer (Weeks 13-16)**
+- [ ] Client onboarding from leads
+- [ ] Basic CRM functionality
+- [ ] Agent assignment system
+- [ ] Application creation and tracking
+- [ ] Document management
+- [ ] Communication logging
 
-### **Phase 5: Enterprise Features (Weeks 9-12)**
-- [ ] Multi-region support
-- [ ] Advanced reporting
+### **Phase 4: Enterprise CRM Features (Weeks 17-20)**
+- [ ] Multi-agent dashboards
+- [ ] Regional management
+- [ ] Advanced reporting and analytics
+- [ ] Revenue tracking and commissions
 - [ ] API integrations
-- [ ] Mobile responsiveness
+- [ ] Mobile optimization
 
 ---
 
