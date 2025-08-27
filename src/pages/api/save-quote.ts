@@ -122,21 +122,12 @@ export const POST: APIRoute = async ({ request }) => {
       
       total_price: body.quoteData?.grandTotal || body.quoteData?.totalPrice || 0,
       
-      // Marketing & session tracking - NOW WITH UTM SUPPORT
+      // Marketing & session tracking - MINIMAL SAFE FIELDS ONLY
       session_id: body.sessionData?.sessionId || 'unknown',
       time_spent_seconds: body.sessionData?.timeSpentSeconds || 0,
       device_type: body.sessionData?.deviceType || 'unknown',
       user_agent: body.sessionData?.userAgent || '',
-      ip_address: request.headers.get('x-forwarded-for') || request.headers.get('x-real-ip') || 'unknown',
-      
-      // UTM parameters (now TEXT fields - no length limits!)
-      utm_source: body.sessionData?.utmSource || null,
-      utm_medium: body.sessionData?.utmMedium || null,
-      utm_campaign: body.sessionData?.utmCampaign || null,
-      
-      // URL tracking (now TEXT fields - no length limits!)
-      referrer_url: body.sessionData?.referrerUrl || null,
-      landing_page: body.sessionData?.landingPage || null
+      ip_address: request.headers.get('x-forwarded-for') || request.headers.get('x-real-ip') || 'unknown'
     };
 
     console.log('💾 Quote API: Inserting record for:', quoteRecord.email);
