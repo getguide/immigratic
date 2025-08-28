@@ -8,17 +8,121 @@ import LiveHealthChart from '../../../components/LiveHealthChart.astro';
 export const metadata = {
   title: 'Express Entry Health Category | Healthcare Workers | Immigratic',
   description: 'Master the Express Entry Health Category pathway to permanent residency. Interactive eligibility checker, CRS calculator, and expert guidance for healthcare professionals.',
-  keywords: 'Express Entry Health Category, healthcare workers, nurses, doctors, medical professionals, Express Entry, permanent residency, CRS score, immigration',
+  keywords: 'Express Entry Health Category, healthcare workers, nurses, doctors, medical professionals, Express Entry, permanent residency, CRS score, immigration, NOC 31, NOC 32, NOC 33, NOC 41, NOC 42',
   openGraph: {
     title: 'Express Entry Health Category | Healthcare Workers | Immigratic',
     description: 'Master the Express Entry Health Category pathway to permanent residency. Interactive tools and expert guidance.',
-    image: '/og-image-health.jpg',
+    image: '/og-image.jpg',
     url: 'https://immigratic.com/services/pr/ee-health'
   }
 };
 ---
 
 <Layout title="Express Entry Health Category | Healthcare Workers | Immigratic">
+
+<!-- Healthcare-Specific Schema Markup -->
+<script type="application/ld+json" set:html={JSON.stringify({
+  "@context": "https://schema.org",
+  "@type": "Service",
+  "name": "Express Entry Health Category Immigration Services",
+  "description": "Professional immigration services for healthcare workers seeking permanent residency through Express Entry Health Category pathway",
+  "provider": {
+    "@type": "Organization",
+    "name": "Immigratic",
+    "url": "https://immigratic.com",
+    "logo": "https://immigratic.com/logo-new.png",
+    "address": {
+      "@type": "PostalAddress",
+      "addressCountry": "CA",
+      "addressLocality": "Toronto",
+      "addressRegion": "ON"
+    }
+  },
+  "serviceType": "Immigration Services",
+  "category": "Healthcare Immigration",
+  "areaServed": "CA",
+  "audience": {
+    "@type": "Audience",
+    "audienceType": "Healthcare Professionals"
+  },
+  "offers": {
+    "@type": "Offer",
+    "description": "Express Entry Health Category application support",
+    "category": "Immigration Services"
+  }
+})} />
+
+<!-- FAQ Schema Markup -->
+<script type="application/ld+json" set:html={JSON.stringify({
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "What NOC codes qualify for Express Entry Health Category?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "NOC codes 31, 32, 33, 41, and 42 qualify for the Health Category. This includes medical doctors, nurses, healthcare technologists, social workers, and community service workers."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What is the minimum work experience required for Health Category?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "You need at least 6 months of work experience in a healthcare occupation within the past 3 years to qualify for the Health Category."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What language requirements are needed for Health Category?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Healthcare professionals need CLB 7+ in English or French, while healthcare technicians need CLB 5+. We recommend CLB 9+ for better CRS points and job prospects."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How do I check if I'm eligible for Health Category?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Use our interactive eligibility checker, CRS calculator, and browse our comprehensive list of 40+ eligible healthcare occupations with official NOC links."
+      }
+    }
+  ]
+})} />
+
+<!-- Breadcrumb Schema Markup -->
+<script type="application/ld+json" set:html={JSON.stringify({
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Home",
+      "item": "https://immigratic.com"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Services",
+      "item": "https://immigratic.com/services"
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": "Permanent Residency",
+      "item": "https://immigratic.com/services/pr"
+    },
+    {
+      "@type": "ListItem",
+      "position": 4,
+      "name": "Express Entry Health Category",
+      "item": "https://immigratic.com/services/pr/ee-health"
+    }
+  ]
+})} />
   <!-- Dynamic Hero Section -->
   <section class="relative min-h-screen bg-gradient-to-br from-blue-900 via-indigo-900 to-purple-900 overflow-hidden">
     <!-- Animated Background Elements -->
@@ -35,6 +139,27 @@ export const metadata = {
 
     <!-- Content -->
     <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-32 pb-20">
+      
+      <!-- Breadcrumb Navigation -->
+      <nav class="mb-8" aria-label="Breadcrumb">
+        <ol class="flex items-center space-x-2 text-sm text-blue-200">
+          <li>
+            <a href="/" class="hover:text-white transition-colors duration-200">Home</a>
+          </li>
+          <li class="flex items-center">
+            <span class="mx-2 text-blue-300">/</span>
+            <a href="/services" class="hover:text-white transition-colors duration-200">Services</a>
+          </li>
+          <li class="flex items-center">
+            <span class="mx-2 text-blue-300">/</span>
+            <a href="/services/pr" class="hover:text-white transition-colors duration-200">Permanent Residency</a>
+          </li>
+          <li class="flex items-center">
+            <span class="mx-2 text-blue-300">/</span>
+            <span class="text-white font-medium">Health Category</span>
+          </li>
+        </ol>
+      </nav>
 
 
       <!-- Hero Content -->
@@ -588,16 +713,16 @@ export const metadata = {
                 💡 Try searching for: "nurse", "NOC 31301", "pharmacist", "TEER 1", etc.
               </p>
               <div class="flex flex-wrap gap-2 mt-3">
-                <button onclick="quickSearch('nurse')" class="px-3 py-1 bg-emerald-100 dark:bg-emerald-900/30 text-emerald-700 dark:text-emerald-300 text-xs rounded-full hover:bg-emerald-200 dark:hover:bg-emerald-900/50 transition-colors">
+                <button onclick="quickSearch('registered nurses')" class="px-3 py-1 bg-emerald-100 dark:bg-emerald-900/30 text-emerald-700 dark:text-emerald-300 text-xs rounded-full hover:bg-emerald-200 dark:hover:bg-emerald-900/50 transition-colors">
                   👩‍⚕️ Nurses
                 </button>
-                <button onclick="quickSearch('NOC 31102')" class="px-3 py-1 bg-blue-100 dark:bg-blue-900/30 text-blue-700 dark:text-blue-300 text-xs rounded-full hover:bg-blue-200 dark:hover:bg-blue-900/50 transition-colors">
+                <button onclick="quickSearch('family physicians')" class="px-3 py-1 bg-blue-100 dark:bg-blue-900/30 text-blue-700 dark:text-blue-300 text-xs rounded-full hover:bg-blue-200 dark:hover:bg-blue-900/50 transition-colors">
                   🏥 Family Physicians
                 </button>
-                <button onclick="quickSearch('pharmacist')" class="px-3 py-1 bg-purple-100 dark:bg-purple-900/30 text-purple-700 dark:text-purple-300 text-xs rounded-full hover:bg-purple-200 dark:hover:bg-purple-900/50 transition-colors">
+                <button onclick="quickSearch('pharmacists')" class="px-3 py-1 bg-purple-100 dark:bg-purple-900/30 text-purple-700 dark:text-purple-300 text-xs rounded-full hover:bg-purple-200 dark:hover:bg-purple-900/50 transition-colors">
                   💊 Pharmacists
                 </button>
-                <button onclick="quickSearch('TEER 2')" class="px-3 py-1 bg-yellow-100 dark:bg-yellow-900/30 text-yellow-700 dark:text-yellow-300 text-xs rounded-full hover:bg-yellow-200 dark:hover:bg-yellow-900/50 transition-colors">
+                <button onclick="quickSearch('medical laboratory technologists')" class="px-3 py-1 bg-yellow-100 dark:bg-yellow-900/30 text-yellow-700 dark:text-yellow-300 text-xs rounded-full hover:bg-yellow-200 dark:hover:bg-yellow-900/50 transition-colors">
                   🔬 Technicians
                 </button>
               </div>
@@ -1662,6 +1787,58 @@ export const metadata = {
       </div>
     </div>
   </section>
+
+  <!-- FAQ Section with Schema Integration -->
+  <section class="py-24 bg-gradient-to-br from-gray-50 to-blue-50 dark:from-gray-800 dark:to-gray-900">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-16">
+        <h2 class="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white mb-6">
+          Frequently Asked Questions
+        </h2>
+        <p class="text-xl text-gray-600 dark:text-gray-300">
+          Get answers to the most common questions about Express Entry Health Category
+        </p>
+      </div>
+
+      <div class="space-y-6">
+        <div class="bg-white dark:bg-gray-800 rounded-2xl p-8 shadow-xl border border-gray-200 dark:border-gray-700">
+          <h3 class="text-xl font-bold text-gray-900 dark:text-white mb-4">
+            What NOC codes qualify for Express Entry Health Category?
+          </h3>
+          <p class="text-gray-600 dark:text-gray-300">
+            NOC codes 31, 32, 33, 41, and 42 qualify for the Health Category. This includes medical doctors, nurses, healthcare technologists, social workers, and community service workers.
+          </p>
+        </div>
+
+        <div class="bg-white dark:bg-gray-800 rounded-2xl p-8 shadow-xl border border-gray-200 dark:border-gray-700">
+          <h3 class="text-xl font-bold text-gray-900 dark:text-white mb-4">
+            What is the minimum work experience required for Health Category?
+          </h3>
+          <p class="text-gray-600 dark:text-gray-300">
+            You need at least 6 months of work experience in a healthcare occupation within the past 3 years to qualify for the Health Category.
+          </p>
+        </div>
+
+        <div class="bg-white dark:bg-gray-800 rounded-2xl p-8 shadow-xl border border-gray-200 dark:border-gray-700">
+          <h3 class="text-xl font-bold text-gray-900 dark:text-white mb-4">
+            What language requirements are needed for Health Category?
+          </h3>
+          <p class="text-gray-600 dark:text-gray-300">
+            Healthcare professionals need CLB 7+ in English or French, while healthcare technicians need CLB 5+. We recommend CLB 9+ for better CRS points and job prospects.
+          </p>
+        </div>
+
+        <div class="bg-white dark:bg-gray-800 rounded-2xl p-8 shadow-xl border border-gray-200 dark:border-gray-700">
+          <h3 class="text-xl font-bold text-gray-900 dark:text-white mb-4">
+            How do I check if I'm eligible for Health Category?
+          </h3>
+          <p class="text-gray-600 dark:text-gray-300">
+            Use our interactive eligibility checker, CRS calculator, and browse our comprehensive list of 40+ eligible healthcare occupations with official NOC links.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
 </Layout>
 
 <script>
@@ -1784,15 +1961,62 @@ export const metadata = {
       setTimeout(animateCounters, 1000);
     });
 
-    // Quick search function for popular searches
+    // Enhanced quick search function with card highlighting and scrolling
     function quickSearch(term) {
       const searchInput = document.getElementById('occupation-search');
       if (searchInput) {
         searchInput.value = term;
         searchInput.focus();
+        
         // Trigger the search
         const event = new Event('input');
         searchInput.dispatchEvent(event);
+        
+        // Find and highlight the relevant occupation card
+        setTimeout(() => {
+          highlightAndScrollToCard(term);
+        }, 100);
+      }
+    }
+
+    // Function to highlight and scroll to relevant occupation card
+    function highlightAndScrollToCard(searchTerm) {
+      const occupationItems = document.querySelectorAll('.occupation-item');
+      let targetItem = null;
+      
+      // Find the best matching occupation item
+      occupationItems.forEach(item => {
+        const searchText = item.getAttribute('data-search').toLowerCase();
+        const nocCode = item.getAttribute('data-noc');
+        const teerLevel = item.getAttribute('data-teer');
+        
+        if (searchText.includes(searchTerm.toLowerCase()) || 
+            nocCode.includes(searchTerm) || 
+            `teer ${teerLevel}`.includes(searchTerm.toLowerCase())) {
+          targetItem = item;
+        }
+      });
+      
+      if (targetItem) {
+        // Remove previous highlights
+        occupationItems.forEach(item => {
+          item.classList.remove('ring-4', 'ring-emerald-500', 'ring-offset-2', 'animate-pulse');
+        });
+        
+        // Highlight the target item
+        targetItem.classList.add('ring-4', 'ring-emerald-500', 'ring-offset-2', 'animate-pulse');
+        
+        // Scroll to the target item smoothly
+        targetItem.scrollIntoView({ 
+          behavior: 'smooth', 
+          block: 'center',
+          inline: 'nearest'
+        });
+        
+        // Remove highlight after 3 seconds
+        setTimeout(() => {
+          targetItem.classList.remove('ring-4', 'ring-emerald-500', 'ring-offset-2', 'animate-pulse');
+        }, 3000);
       }
     }
 
