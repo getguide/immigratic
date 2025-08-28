@@ -1922,48 +1922,10 @@ export const metadata = {
         this.style.transform = 'scale(1)';
       });
     });
-  });
-
-  // Counter animation for success metrics
-  function animateCounters() {
-    const counters = document.querySelectorAll('.counter');
-    
-    counters.forEach(counter => {
-      const target = parseFloat(counter.getAttribute('data-target'));
-      const decimal = counter.hasAttribute('data-decimal');
-      const increment = target / 100;
-      let current = 0;
-      
-      const updateCounter = () => {
-        if (current < target) {
-          current += increment;
-          if (decimal) {
-            counter.textContent = current.toFixed(1);
-          } else {
-            counter.textContent = Math.ceil(current);
-          }
-          requestAnimationFrame(updateCounter);
-        } else {
-          if (decimal) {
-            counter.textContent = target.toFixed(1);
-          } else {
-            counter.textContent = target;
-          }
-        }
-      };
-      
-      updateCounter();
-    });
-  }
-
-      // Initialize counter animation when page loads
-    document.addEventListener('DOMContentLoaded', function() {
-      setTimeout(animateCounters, 1000);
-    });
 
     // Enhanced quick search function with card highlighting and scrolling
     function quickSearch(term) {
-      const searchInput = document.getElementById('occupation-search');
+      console.log('🚀 quickSearch called with:', term);
       if (searchInput) {
         searchInput.value = term;
         searchInput.focus();
@@ -1982,7 +1944,6 @@ export const metadata = {
     // Function to highlight and scroll to relevant occupation card
     function highlightAndScrollToCard(searchTerm) {
       console.log('🔍 Searching for:', searchTerm);
-      const occupationItems = document.querySelectorAll('.occupation-item');
       console.log('📋 Found occupation items:', occupationItems.length);
       let targetItem = null;
       
@@ -2027,6 +1988,49 @@ export const metadata = {
         console.log('❌ No matching occupation found for:', searchTerm);
       }
     }
+
+    // Make quickSearch globally available
+    window.quickSearch = quickSearch;
+  });
+
+  // Counter animation for success metrics
+  function animateCounters() {
+    const counters = document.querySelectorAll('.counter');
+    
+    counters.forEach(counter => {
+      const target = parseFloat(counter.getAttribute('data-target'));
+      const decimal = counter.hasAttribute('data-decimal');
+      const increment = target / 100;
+      let current = 0;
+      
+      const updateCounter = () => {
+        if (current < target) {
+          current += increment;
+          if (decimal) {
+            counter.textContent = current.toFixed(1);
+          } else {
+            counter.textContent = Math.ceil(current);
+          }
+          requestAnimationFrame(updateCounter);
+        } else {
+          if (decimal) {
+            counter.textContent = target.toFixed(1);
+          } else {
+            counter.textContent = target;
+          }
+        }
+      };
+      
+      updateCounter();
+    });
+  }
+
+      // Initialize counter animation when page loads
+    document.addEventListener('DOMContentLoaded', function() {
+      setTimeout(animateCounters, 1000);
+    });
+
+    // Removed duplicate functions - now defined in main script block
 
     // Function to add official NOC links to all occupation items
     function addOfficialNOCLinks() {
