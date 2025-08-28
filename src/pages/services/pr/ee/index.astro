@@ -1,0 +1,473 @@
+---
+import Layout from '../../../../layouts/Layout.astro';
+import LiveExpressEntryData from '../../../../components/LiveExpressEntryData.astro';
+import LiveExpressEntryMetrics from '../../../../components/LiveExpressEntryMetrics.astro';
+import LiveExpressEntryChart from '../../../../components/LiveExpressEntryChart.astro';
+---
+
+<Layout 
+  title="Express Entry Programs | Immigratic"
+  description="Explore all Express Entry programs including CEC, FSW, and category-based streams. Check eligibility, compare programs, and track live draw data."
+  keywords="Express Entry, CEC, FSW, Health Category, French Category, STEM Category, Trade Category, Education Category, immigration programs, CRS calculator"
+  openGraph={{
+    title: "Express Entry Programs | Immigratic",
+    description: "Explore all Express Entry programs including CEC, FSW, and category-based streams. Check eligibility, compare programs, and track live draw data.",
+    image: "/og-image.jpg",
+    url: "https://immigratic.com/services/pr/ee"
+  }}
+>
+  <!-- Hero Section -->
+  <section class="relative bg-gradient-to-br from-blue-50 via-white to-emerald-50 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900 py-20 lg:py-32">
+    <div class="absolute inset-0 bg-grid-pattern opacity-5"></div>
+    <div class="container mx-auto px-4 relative z-10">
+      <div class="text-center max-w-4xl mx-auto">
+        <h1 class="text-4xl lg:text-6xl font-bold text-gray-900 dark:text-white mb-6">
+          Express Entry
+          <span class="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-emerald-600">
+            Programs
+          </span>
+        </h1>
+        <p class="text-xl lg:text-2xl text-gray-600 dark:text-gray-300 mb-8">
+          Choose your path to permanent residence through Canada's flagship immigration system
+        </p>
+        
+        <!-- Quick Eligibility Checker -->
+        <div class="bg-white dark:bg-gray-800 rounded-3xl p-8 shadow-2xl border-2 border-blue-200 dark:border-gray-600 max-w-2xl mx-auto">
+          <h3 class="text-2xl font-bold text-gray-900 dark:text-white mb-4">
+            🚀 Quick Eligibility Check
+          </h3>
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
+            <div class="text-left">
+              <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Work Experience</label>
+              <select class="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent dark:bg-gray-700 dark:text-white">
+                <option value="">Select experience</option>
+                <option value="cec">Canadian experience</option>
+                <option value="fsw">Foreign experience</option>
+                <option value="health">Healthcare</option>
+                <option value="stem">STEM</option>
+                <option value="trade">Skilled trades</option>
+                <option value="french">French language</option>
+              </select>
+            </div>
+            <div class="text-left">
+              <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Language Skills</label>
+              <select class="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent dark:bg-gray-700 dark:text-white">
+                <option value="">Select level</option>
+                <option value="clb7">CLB 7 (Good)</option>
+                <option value="clb8">CLB 8 (Very Good)</option>
+                <option value="clb9">CLB 9 (Excellent)</option>
+                <option value="french">French B2+</option>
+              </select>
+            </div>
+          </div>
+          <button class="w-full bg-gradient-to-r from-blue-600 to-emerald-600 hover:from-blue-700 hover:to-emerald-700 text-white font-bold py-4 px-8 rounded-xl transition-all duration-300 transform hover:scale-105 shadow-lg">
+            🎯 Check My Eligibility
+          </button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Programs Overview Section -->
+  <section class="py-20 bg-white dark:bg-gray-900">
+    <div class="container mx-auto px-4">
+      <div class="text-center mb-16">
+        <h2 class="text-4xl lg:text-5xl font-bold text-gray-900 dark:text-white mb-6">
+          Choose Your
+          <span class="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-emerald-600">
+            Express Entry Path
+          </span>
+        </h2>
+        <p class="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
+          Express Entry offers multiple pathways to permanent residence. Each program has unique requirements and advantages.
+        </p>
+      </div>
+
+      <!-- Program Grid -->
+      <div class="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-8">
+        
+        <!-- CEC -->
+        <div class="bg-gradient-to-br from-blue-50 to-blue-100 dark:from-blue-900/20 dark:to-blue-800/20 rounded-3xl p-8 border-2 border-blue-200 dark:border-blue-700 hover:border-blue-400 transition-all duration-300 group">
+          <div class="flex items-center gap-4 mb-6">
+            <div class="w-16 h-16 bg-gradient-to-br from-blue-500 to-blue-600 rounded-2xl flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
+              <span class="text-3xl">🇨🇦</span>
+            </div>
+            <div>
+              <h3 class="text-2xl font-bold text-gray-900 dark:text-white">Canadian Experience Class</h3>
+              <p class="text-blue-600 dark:text-blue-400 font-medium">Most Popular</p>
+            </div>
+          </div>
+          <p class="text-gray-600 dark:text-gray-300 mb-6">
+            For temporary workers with Canadian work experience. No job offer required, faster processing.
+          </p>
+          <div class="space-y-3 mb-6">
+            <div class="flex items-center gap-3">
+              <span class="w-2 h-2 bg-blue-500 rounded-full"></span>
+              <span class="text-sm text-gray-600 dark:text-gray-400">1+ year Canadian experience</span>
+            </div>
+            <div class="flex items-center gap-3">
+              <span class="w-2 h-2 bg-blue-500 rounded-full"></span>
+              <span class="text-sm text-gray-600 dark:text-gray-400">CLB 7+ in English/French</span>
+            </div>
+            <div class="flex items-center gap-3">
+              <span class="w-2 h-2 bg-blue-500 rounded-full"></span>
+              <span class="text-sm text-gray-600 dark:text-gray-400">No job offer needed</span>
+            </div>
+          </div>
+          <a href="/services/pr/ee/cec" class="inline-flex items-center gap-2 bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-xl font-medium transition-colors duration-300">
+            Learn More
+            <span class="text-lg">→</span>
+          </a>
+        </div>
+
+        <!-- FSW -->
+        <div class="bg-gradient-to-br from-emerald-50 to-emerald-100 dark:from-emerald-900/20 dark:to-emerald-800/20 rounded-3xl p-8 border-2 border-emerald-200 dark:border-emerald-700 hover:border-emerald-400 transition-all duration-300 group">
+          <div class="flex items-center gap-4 mb-6">
+            <div class="w-16 h-16 bg-gradient-to-br from-emerald-500 to-emerald-600 rounded-2xl flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
+              <span class="text-3xl">🌍</span>
+            </div>
+            <div>
+              <h3 class="text-2xl font-bold text-gray-900 dark:text-white">Federal Skilled Worker</h3>
+              <p class="text-emerald-600 dark:text-emerald-400 font-medium">Global Talent</p>
+            </div>
+          </div>
+          <p class="text-gray-600 dark:text-gray-300 mb-6">
+            For skilled workers worldwide. Points-based system with education, experience, and language factors.
+          </p>
+          <div class="space-y-3 mb-6">
+            <div class="flex items-center gap-3">
+              <span class="w-2 h-2 bg-emerald-500 rounded-full"></span>
+              <span class="text-sm text-gray-600 dark:text-gray-400">Skilled work experience</span>
+            </div>
+            <div class="flex items-center gap-3">
+              <span class="w-2 h-2 bg-emerald-500 rounded-full"></span>
+              <span class="text-sm text-gray-600 dark:text-gray-400">Post-secondary education</span>
+            </div>
+            <div class="flex items-center gap-3">
+              <span class="w-2 h-2 bg-emerald-500 rounded-full"></span>
+              <span class="text-sm text-gray-600 dark:text-gray-400">CLB 7+ language skills</span>
+            </div>
+          </div>
+          <a href="/services/pr/ee/fsw" class="inline-flex items-center gap-2 bg-emerald-600 hover:bg-emerald-700 text-white px-6 py-3 rounded-xl font-medium transition-colors duration-300">
+            Learn More
+            <span class="text-lg">→</span>
+          </a>
+        </div>
+
+        <!-- Health Category -->
+        <div class="bg-gradient-to-br from-red-50 to-red-100 dark:from-red-900/20 dark:to-red-800/20 rounded-3xl p-8 border-2 border-red-200 dark:border-red-700 hover:border-red-400 transition-all duration-300 group">
+          <div class="flex items-center gap-4 mb-6">
+            <div class="w-16 h-16 bg-gradient-to-br from-red-500 to-red-600 rounded-2xl flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
+              <span class="text-3xl">🏥</span>
+            </div>
+            <div>
+              <h3 class="text-2xl font-bold text-gray-900 dark:text-white">Health Category</h3>
+              <p class="text-red-600 dark:text-red-400 font-medium">High Demand</p>
+            </div>
+          </div>
+          <p class="text-gray-600 dark:text-gray-300 mb-6">
+            Dedicated stream for healthcare workers. Lower CRS requirements, priority processing.
+          </p>
+          <div class="space-y-3 mb-6">
+            <div class="flex items-center gap-3">
+              <span class="w-2 h-2 bg-red-500 rounded-full"></span>
+              <span class="text-sm text-gray-600 dark:text-gray-400">Healthcare occupation</span>
+            </div>
+            <div class="flex items-center gap-3">
+              <span class="w-2 h-2 bg-red-500 rounded-full"></span>
+              <span class="text-sm text-gray-600 dark:text-gray-400">6+ months experience</span>
+            </div>
+            <div class="flex items-center gap-3">
+              <span class="w-2 h-2 bg-red-500 rounded-full"></span>
+              <span class="text-sm text-gray-600 dark:text-gray-400">CLB 5+ (TEER 2-3)</span>
+            </div>
+          </div>
+          <a href="/services/pr/ee/health" class="inline-flex items-center gap-2 bg-red-600 hover:bg-red-700 text-white px-6 py-3 rounded-xl font-medium transition-colors duration-300">
+            Learn More
+            <span class="text-lg">→</span>
+          </a>
+        </div>
+
+        <!-- French Category -->
+        <div class="bg-gradient-to-br from-purple-50 to-purple-100 dark:from-purple-900/20 dark:to-purple-800/20 rounded-3xl p-8 border-2 border-purple-200 dark:border-purple-700 hover:border-purple-400 transition-all duration-300 group">
+          <div class="flex items-center gap-4 mb-6">
+            <div class="w-16 h-16 bg-gradient-to-br from-purple-500 to-purple-600 rounded-2xl flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
+              <span class="text-3xl">🇫🇷</span>
+            </div>
+            <div>
+              <h3 class="text-2xl font-bold text-gray-900 dark:text-white">French Category</h3>
+              <p class="text-purple-600 dark:text-purple-400 font-medium">Bilingual Bonus</p>
+            </div>
+          </div>
+          <p class="text-gray-600 dark:text-gray-300 mb-6">
+            For French-speaking candidates. Lower CRS requirements, additional language points.
+          </p>
+          <div class="space-y-3 mb-6">
+            <div class="flex items-center gap-3">
+              <span class="w-2 h-2 bg-purple-500 rounded-full"></span>
+              <span class="text-sm text-gray-600 dark:text-gray-400">French B2+ proficiency</span>
+            </div>
+            <div class="flex items-center gap-3">
+              <span class="w-2 h-2 bg-purple-500 rounded-full"></span>
+              <span class="text-sm text-gray-600 dark:text-gray-400">English CLB 5+</span>
+            </div>
+            <div class="flex items-center gap-3">
+              <span class="w-2 h-2 bg-purple-500 rounded-full"></span>
+              <span class="text-sm text-gray-600 dark:text-gray-400">Outside Quebec</span>
+            </div>
+          </div>
+          <a href="/services/pr/ee/french" class="inline-flex items-center gap-2 bg-purple-600 hover:bg-purple-700 text-white px-6 py-3 rounded-xl font-medium transition-colors duration-300">
+            Learn More
+            <span class="text-lg">→</span>
+          </a>
+        </div>
+
+        <!-- STEM Category -->
+        <div class="bg-gradient-to-br from-indigo-50 to-indigo-100 dark:from-indigo-900/20 dark:to-indigo-800/20 rounded-3xl p-8 border-2 border-indigo-200 dark:border-indigo-700 hover:border-indigo-400 transition-all duration-300 group">
+          <div class="flex items-center gap-4 mb-6">
+            <div class="w-16 h-16 bg-gradient-to-br from-indigo-500 to-indigo-600 rounded-2xl flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
+              <span class="text-3xl">🔬</span>
+            </div>
+            <div>
+              <h3 class="text-2xl font-bold text-gray-900 dark:text-white">STEM Category</h3>
+              <p class="text-indigo-600 dark:text-indigo-400 font-medium">Tech Talent</p>
+            </div>
+          </div>
+          <p class="text-gray-600 dark:text-gray-300 mb-6">
+            For science, technology, engineering, and mathematics professionals. High-demand fields.
+          </p>
+          <div class="space-y-3 mb-6">
+            <div class="flex items-center gap-3">
+              <span class="w-2 h-2 bg-indigo-500 rounded-full"></span>
+              <span class="text-sm text-gray-600 dark:text-gray-400">STEM occupation</span>
+            </div>
+            <div class="flex items-center gap-3">
+              <span class="w-2 h-2 bg-indigo-500 rounded-full"></span>
+              <span class="text-sm text-gray-600 dark:text-gray-400">6+ months experience</span>
+            </div>
+            <div class="flex items-center gap-3">
+              <span class="w-2 h-2 bg-indigo-500 rounded-full"></span>
+              <span class="text-sm text-gray-600 dark:text-gray-400">CLB 7+ language</span>
+            </div>
+          </div>
+          <a href="/services/pr/ee/stem" class="inline-flex items-center gap-2 bg-indigo-600 hover:bg-indigo-700 text-white px-6 py-3 rounded-xl font-medium transition-colors duration-300">
+            Learn More
+            <span class="text-lg">→</span>
+          </a>
+        </div>
+
+        <!-- Trade Category -->
+        <div class="bg-gradient-to-br from-orange-50 to-orange-100 dark:from-orange-900/20 dark:to-orange-800/20 rounded-3xl p-8 border-2 border-orange-200 dark:border-orange-700 hover:border-orange-400 transition-all duration-300 group">
+          <div class="flex items-center gap-4 mb-6">
+            <div class="w-16 h-16 bg-gradient-to-br from-orange-500 to-orange-600 rounded-2xl flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
+              <span class="text-3xl">🔧</span>
+            </div>
+            <div>
+              <h3 class="text-2xl font-bold text-gray-900 dark:text-white">Trade Category</h3>
+              <p class="text-orange-600 dark:text-orange-400 font-medium">Skilled Trades</p>
+            </div>
+          </div>
+          <p class="text-gray-600 dark:text-gray-300 mb-6">
+            For skilled trades workers. Lower education requirements, hands-on experience valued.
+          </p>
+          <div class="space-y-3 mb-6">
+            <div class="flex items-center gap-3">
+              <span class="w-2 h-2 bg-orange-500 rounded-full"></span>
+              <span class="text-sm text-gray-600 dark:text-gray-400">Skilled trade occupation</span>
+            </div>
+            <div class="flex items-center gap-3">
+              <span class="w-2 h-2 bg-orange-500 rounded-full"></span>
+              <span class="text-sm text-gray-600 dark:text-gray-400">2+ years experience</span>
+            </div>
+            <div class="flex items-center gap-3">
+              <span class="w-2 h-2 bg-orange-500 rounded-full"></span>
+              <span class="text-sm text-gray-600 dark:text-gray-400">CLB 5+ language</span>
+            </div>
+          </div>
+          <a href="/services/pr/ee/trade" class="inline-flex items-center gap-2 bg-orange-600 hover:bg-orange-700 text-white px-6 py-3 rounded-xl font-medium transition-colors duration-300">
+            Learn More
+            <span class="text-lg">→</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Targeted Occupations Section -->
+  <section class="py-20 bg-gray-50 dark:bg-gray-800">
+    <div class="container mx-auto px-4">
+      <div class="text-center mb-16">
+        <h2 class="text-4xl lg:text-5xl font-bold text-gray-900 dark:text-white mb-6">
+          Find Your
+          <span class="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-emerald-600">
+            Occupation Path
+          </span>
+        </h2>
+        <p class="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
+          Search by occupation to see which Express Entry programs you qualify for. Our interactive tool shows your eligibility across all streams.
+        </p>
+      </div>
+
+      <!-- Occupation Search Tool -->
+      <div class="bg-white dark:bg-gray-900 rounded-3xl p-8 shadow-2xl border-2 border-gray-200 dark:border-gray-700 max-w-4xl mx-auto">
+        <div class="mb-8">
+          <label class="block text-lg font-medium text-gray-900 dark:text-white mb-4">
+            🔍 Search by Occupation or NOC Code
+          </label>
+          <div class="flex gap-4">
+            <input 
+              type="text" 
+              placeholder="e.g., Software Engineer, NOC 21231, or 'nurse'"
+              class="flex-1 px-6 py-4 border border-gray-300 dark:border-gray-600 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent dark:bg-gray-700 dark:text-white text-lg"
+            >
+            <button class="px-8 py-4 bg-blue-600 hover:bg-blue-700 text-white font-bold rounded-xl transition-colors duration-300">
+              Search
+            </button>
+          </div>
+        </div>
+
+        <!-- Quick Occupation Categories -->
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8">
+          <button class="p-4 bg-blue-50 dark:bg-blue-900/20 rounded-xl border border-blue-200 dark:border-blue-700 hover:bg-blue-100 dark:hover:bg-blue-900/30 transition-colors duration-300 text-center">
+            <div class="text-2xl mb-2">👨‍⚕️</div>
+            <div class="text-sm font-medium text-gray-700 dark:text-gray-300">Healthcare</div>
+          </button>
+          <button class="p-4 bg-emerald-50 dark:bg-emerald-900/20 rounded-xl border border-emerald-200 dark:border-emerald-700 hover:bg-emerald-100 dark:hover:bg-emerald-900/30 transition-colors duration-300 text-center">
+            <div class="text-2xl mb-2">💻</div>
+            <div class="text-sm font-medium text-gray-700 dark:text-gray-300">Technology</div>
+          </button>
+          <button class="p-4 bg-purple-50 dark:bg-purple-900/20 rounded-xl border border-purple-200 dark:border-purple-700 hover:bg-purple-100 dark:hover:bg-purple-900/30 transition-colors duration-300 text-center">
+            <div class="text-2xl mb-2">🏗️</div>
+            <div class="text-sm font-medium text-gray-700 dark:text-gray-300">Construction</div>
+          </button>
+          <button class="p-4 bg-orange-50 dark:bg-orange-900/20 rounded-xl border border-orange-200 dark:border-orange-700 hover:bg-orange-100 dark:hover:bg-orange-900/30 transition-colors duration-300 text-center">
+            <div class="text-2xl mb-2">🎓</div>
+            <div class="text-sm font-medium text-gray-700 dark:text-gray-300">Education</div>
+          </button>
+        </div>
+
+        <!-- Sample Results -->
+        <div class="bg-gray-50 dark:bg-gray-800 rounded-xl p-6">
+          <h4 class="font-bold text-gray-900 dark:text-white mb-4">💡 Example: Software Engineer (NOC 21231)</h4>
+          <div class="space-y-3">
+            <div class="flex items-center justify-between p-3 bg-white dark:bg-gray-700 rounded-lg">
+              <span class="font-medium text-gray-900 dark:text-white">Federal Skilled Worker</span>
+              <span class="px-3 py-1 bg-green-100 dark:bg-green-900/30 text-green-700 dark:text-green-300 text-sm rounded-full">✅ Eligible</span>
+            </div>
+            <div class="flex items-center justify-between p-3 bg-white dark:bg-gray-700 rounded-lg">
+              <span class="font-medium text-gray-900 dark:text-white">STEM Category</span>
+              <span class="px-3 py-1 bg-green-100 dark:bg-green-900/30 text-green-700 dark:text-green-300 text-sm rounded-full">✅ Eligible</span>
+            </div>
+            <div class="flex items-center justify-between p-3 bg-white dark:bg-gray-700 rounded-lg">
+              <span class="font-medium text-gray-900 dark:text-white">Canadian Experience Class</span>
+              <span class="px-3 py-1 bg-yellow-100 dark:bg-yellow-900/30 text-yellow-700 dark:text-yellow-300 text-sm rounded-full">⚠️ Need Canadian Experience</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Live Stats & Insights Section -->
+  <section class="py-20 bg-white dark:bg-gray-900">
+    <div class="container mx-auto px-4">
+      <div class="text-center mb-16">
+        <h2 class="text-4xl lg:text-5xl font-bold text-gray-900 dark:text-white mb-6">
+          Live
+          <span class="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-emerald-600">
+            Express Entry Data
+          </span>
+        </h2>
+        <p class="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
+          Track real-time draw data, CRS trends, and program insights to optimize your application strategy.
+        </p>
+      </div>
+
+      <!-- Live Metrics -->
+      <div class="mb-12">
+        <LiveExpressEntryMetrics />
+      </div>
+
+      <!-- Live Chart -->
+      <div class="mb-12">
+        <LiveExpressEntryChart />
+      </div>
+
+      <!-- Recent Draws -->
+      <div class="mb-12">
+        <LiveExpressEntryData />
+      </div>
+
+      <!-- Program Insights -->
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+        <div class="bg-gradient-to-br from-blue-50 to-blue-100 dark:from-blue-900/20 dark:to-blue-800/20 rounded-3xl p-8 border-2 border-blue-200 dark:border-blue-700">
+          <h3 class="text-2xl font-bold text-gray-900 dark:text-white mb-4">📈 CRS Score Trends</h3>
+          <div class="space-y-4">
+            <div class="flex items-center justify-between">
+              <span class="text-gray-600 dark:text-gray-400">Health Category</span>
+              <span class="font-bold text-green-600">↓ 12 points</span>
+            </div>
+            <div class="flex items-center justify-between">
+              <span class="text-gray-600 dark:text-gray-400">STEM Category</span>
+              <span class="font-bold text-red-600">↑ 8 points</span>
+            </div>
+            <div class="flex items-center justify-between">
+              <span class="text-gray-600 dark:text-gray-400">General Draws</span>
+              <span class="font-bold text-blue-600">→ Stable</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="bg-gradient-to-br from-emerald-50 to-emerald-100 dark:from-emerald-900/20 dark:to-emerald-800/20 rounded-3xl p-8 border-2 border-emerald-200 dark:border-emerald-700">
+          <h3 class="text-2xl font-bold text-gray-900 dark:text-white mb-4">🎯 Application Tips</h3>
+          <div class="space-y-4">
+            <div class="flex items-start gap-3">
+              <span class="text-emerald-600 text-lg">💡</span>
+              <span class="text-gray-600 dark:text-gray-400">Health Category draws are becoming more frequent - apply now!</span>
+            </div>
+            <div class="flex items-start gap-3">
+              <span class="text-emerald-600 text-lg">💡</span>
+              <span class="text-gray-600 dark:text-gray-400">French language skills can boost your CRS by up to 50 points</span>
+            </div>
+            <div class="flex items-start gap-3">
+              <span class="text-emerald-600 text-lg">💡</span>
+              <span class="text-gray-600 dark:text-gray-400">Consider multiple programs to increase your chances</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA Section -->
+  <section class="py-20 bg-gradient-to-r from-blue-600 to-emerald-600">
+    <div class="container mx-auto px-4 text-center">
+      <h2 class="text-4xl lg:text-5xl font-bold text-white mb-6">
+        Ready to Start Your
+        <span class="text-transparent bg-clip-text bg-gradient-to-r from-yellow-300 to-orange-300">
+          Express Entry Journey?
+        </span>
+      </h2>
+      <p class="text-xl text-blue-100 mb-8 max-w-3xl mx-auto">
+        Get personalized guidance, CRS optimization strategies, and expert support to maximize your chances of receiving an Invitation to Apply.
+      </p>
+      <div class="flex flex-col sm:flex-row gap-4 justify-center">
+        <a href="/tools/master-assessment" class="inline-flex items-center gap-2 bg-white text-blue-600 hover:bg-gray-100 px-8 py-4 rounded-xl font-bold text-lg transition-colors duration-300">
+          📊 Calculate My CRS Score
+        </a>
+        <a href="/consultation" class="inline-flex items-center gap-2 bg-transparent border-2 border-white text-white hover:bg-white hover:text-blue-600 px-8 py-4 rounded-xl font-bold text-lg transition-colors duration-300">
+          🎯 Free Consultation
+        </a>
+      </div>
+    </div>
+  </section>
+</Layout>
+
+<style>
+  .bg-grid-pattern {
+    background-image: 
+      linear-gradient(rgba(59, 130, 246, 0.1) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(59, 130, 246, 0.1) 1px, transparent 1px);
+    background-size: 20px 20px;
+  }
+</style>
