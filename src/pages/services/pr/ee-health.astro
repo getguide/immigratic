@@ -713,16 +713,16 @@ export const metadata = {
                 💡 Try searching for: "nurse", "NOC 31301", "pharmacist", "TEER 1", etc.
               </p>
               <div class="flex flex-wrap gap-2 mt-3">
-                <button onclick="quickSearch('registered nurses and registered psychiatric nurses')" class="px-3 py-1 bg-emerald-100 dark:bg-emerald-900/30 text-emerald-700 dark:text-emerald-300 text-xs rounded-full hover:bg-emerald-200 dark:hover:bg-emerald-900/50 transition-colors">
+                <button onclick="console.log('👩‍⚕️ Nurses clicked'); quickSearch('registered nurses and registered psychiatric nurses')" class="px-3 py-1 bg-emerald-100 dark:bg-emerald-900/30 text-emerald-700 dark:text-emerald-300 text-xs rounded-full hover:bg-emerald-200 dark:hover:bg-emerald-900/50 transition-colors">
                   👩‍⚕️ Nurses
                 </button>
-                <button onclick="quickSearch('general practitioners and family physicians')" class="px-3 py-1 bg-blue-100 dark:bg-blue-900/30 text-blue-700 dark:text-blue-300 text-xs rounded-full hover:bg-blue-200 dark:hover:bg-blue-900/50 transition-colors">
+                <button onclick="console.log('🏥 Family Physicians clicked'); quickSearch('general practitioners and family physicians')" class="px-3 py-1 bg-blue-100 dark:bg-blue-900/30 text-blue-700 dark:text-blue-300 text-xs rounded-full hover:bg-blue-200 dark:hover:bg-blue-900/50 transition-colors">
                   🏥 Family Physicians
                 </button>
-                <button onclick="quickSearch('pharmacists')" class="px-3 py-1 bg-purple-100 dark:bg-purple-900/30 text-purple-700 dark:text-purple-300 text-xs rounded-full hover:bg-purple-200 dark:hover:bg-purple-900/50 transition-colors">
+                <button onclick="console.log('💊 Pharmacists clicked'); quickSearch('pharmacists')" class="px-3 py-1 bg-purple-100 dark:bg-purple-900/30 text-purple-700 dark:text-purple-300 text-xs rounded-full hover:bg-purple-200 dark:hover:bg-purple-900/50 transition-colors">
                   💊 Pharmacists
                 </button>
-                <button onclick="quickSearch('medical laboratory technologists')" class="px-3 py-1 bg-yellow-100 dark:bg-yellow-900/30 text-yellow-700 dark:text-yellow-300 text-xs rounded-full hover:bg-yellow-200 dark:hover:bg-yellow-900/50 transition-colors">
+                <button onclick="console.log('🔬 Technicians clicked'); quickSearch('medical laboratory technologists')" class="px-3 py-1 bg-yellow-100 dark:bg-yellow-900/30 text-yellow-700 dark:text-yellow-300 text-xs rounded-full hover:bg-yellow-200 dark:hover:bg-emerald-900/50 transition-colors">
                   🔬 Technicians
                 </button>
               </div>
@@ -2063,6 +2063,11 @@ export const metadata = {
     // Initialize official NOC links when page loads
     document.addEventListener('DOMContentLoaded', function() {
       setTimeout(addOfficialNOCLinks, 500);
+      
+      // Test if functions exist
+      console.log('🔧 quickSearch function exists:', typeof quickSearch);
+      console.log('🔧 highlightAndScrollToCard function exists:', typeof highlightAndScrollToCard);
+      console.log('🔧 addOfficialNOCLinks function exists:', typeof addOfficialNOCLinks);
     });
 </script>
 
