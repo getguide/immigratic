@@ -244,6 +244,12 @@ export const metadata = {
             <div class="w-2 h-2 bg-red-500 rounded-full group-hover:scale-150 transition-transform"></div>
             <span class="font-semibold text-gray-700 dark:text-gray-300 group-hover:text-red-600 dark:group-hover:text-red-400 text-xs sm:text-sm md:text-base">Eligibility</span>
           </a>
+          <a href="#occupations" 
+             id="nav-occupations"
+             class="nav-item flex items-center gap-2 px-2 sm:px-3 md:px-4 py-2 rounded-xl transition-all duration-300 group hover:bg-emerald-50 dark:hover:bg-emerald-900/30 flex-1 sm:flex-none justify-center">
+            <div class="w-2 h-2 bg-emerald-500 rounded-full group-hover:scale-150 transition-transform"></div>
+            <span class="font-semibold text-gray-700 dark:text-gray-300 group-hover:text-emerald-600 dark:group-hover:text-emerald-400 text-xs sm:text-sm md:text-base">Occupations</span>
+          </a>
           <a href="#success-stories" 
              id="nav-success-stories"
              class="nav-item flex items-center gap-2 px-2 sm:px-3 md:px-4 py-2 rounded-xl transition-all duration-300 group hover:bg-green-50 dark:hover:bg-green-900/30 flex-1 sm:flex-none justify-center">
@@ -255,12 +261,6 @@ export const metadata = {
              class="nav-item flex items-center gap-2 px-2 sm:px-3 md:px-4 py-2 rounded-xl transition-all duration-300 group hover:bg-blue-50 dark:hover:bg-blue-900/30 flex-1 sm:flex-none justify-center">
             <div class="w-2 h-2 bg-blue-500 rounded-full group-hover:scale-150 transition-transform"></div>
             <span class="font-semibold text-gray-700 dark:text-gray-300 group-hover:text-blue-600 dark:group-hover:text-blue-400 text-xs sm:text-sm md:text-base">Process</span>
-          </a>
-          <a href="#insights" 
-             id="nav-insights"
-             class="nav-item flex items-center gap-2 px-2 sm:px-3 md:px-4 py-2 rounded-xl transition-all duration-300 group hover:bg-purple-50 dark:hover:bg-purple-900/30 flex-1 sm:flex-none justify-center">
-            <div class="w-2 h-2 bg-purple-500 rounded-full group-hover:scale-150 transition-transform"></div>
-            <span class="font-semibold text-gray-700 dark:text-gray-300 group-hover:text-purple-600 dark:group-hover:text-purple-400 text-xs sm:text-sm md:text-base">Insights</span>
           </a>
         </div>
       </div>
@@ -450,7 +450,7 @@ export const metadata = {
               <h4 class="font-bold text-gray-900 dark:text-white mb-4 group-hover:text-green-700 dark:group-hover:text-green-300 transition-colors duration-300">Healthcare Technicians</h4>
               <div class="flex items-center justify-between mb-3">
                 <span class="text-gray-700 dark:text-gray-300">Minimum Required:</span>
-                <span class="font-bold text-green-600 text-lg group-hover:scale-110 transition-transform duration-300">CLB 6+</span>
+                <span class="font-bold text-green-600 text-lg group-hover:scale-110 transition-transform duration-300">CLB 5+</span>
               </div>
               <p class="text-sm text-gray-600 dark:text-gray-400">Lab techs and support staff need good technical communication</p>
               <span class="inline-block px-2 py-1 bg-green-100 dark:bg-green-900/30 text-green-700 dark:text-green-300 text-xs rounded-full mt-2">🔬 Technical Skills</span>
@@ -462,7 +462,13 @@ export const metadata = {
               <span class="text-purple-600">💡</span>
               <h5 class="font-semibold text-gray-900 dark:text-white">Healthcare Language Note</h5>
             </div>
-            <p class="text-sm text-gray-600 dark:text-gray-400">Healthcare workers often need higher language scores due to patient safety requirements. Consider aiming for CLB 8+ for better CRS points and job prospects.</p>
+            <p class="text-sm text-gray-600 dark:text-gray-400">Healthcare workers often need higher language scores due to patient safety requirements. Consider aiming for CLB 9+ for better CRS points and job prospects.</p>
+            <div class="mt-3">
+              <a href="/tools/clb-navigator" class="inline-flex items-center gap-2 text-purple-600 hover:text-purple-700 dark:text-purple-400 dark:hover:text-purple-300 font-medium text-sm transition-colors">
+                🧮 Use our CLB Navigator tool to calculate your exact score
+                <span class="text-xs">→</span>
+              </a>
+            </div>
           </div>
         </div>
 
@@ -537,7 +543,7 @@ export const metadata = {
   </section>
 
   <!-- Healthcare Occupations Section - THE INNOVATION! -->
-  <section class="py-24 bg-gradient-to-br from-emerald-50 to-teal-100 dark:from-gray-800 dark:to-gray-900">
+  <section id="occupations" class="py-24 bg-gradient-to-br from-emerald-50 to-teal-100 dark:from-gray-800 dark:to-gray-900">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <!-- Section Header -->
       <div class="text-center mb-16">
