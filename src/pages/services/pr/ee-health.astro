@@ -713,10 +713,10 @@ export const metadata = {
                 💡 Try searching for: "nurse", "NOC 31301", "pharmacist", "TEER 1", etc.
               </p>
               <div class="flex flex-wrap gap-2 mt-3">
-                <button onclick="quickSearch('registered nurses')" class="px-3 py-1 bg-emerald-100 dark:bg-emerald-900/30 text-emerald-700 dark:text-emerald-300 text-xs rounded-full hover:bg-emerald-200 dark:hover:bg-emerald-900/50 transition-colors">
+                <button onclick="quickSearch('registered nurses and registered psychiatric nurses')" class="px-3 py-1 bg-emerald-100 dark:bg-emerald-900/30 text-emerald-700 dark:text-emerald-300 text-xs rounded-full hover:bg-emerald-200 dark:hover:bg-emerald-900/50 transition-colors">
                   👩‍⚕️ Nurses
                 </button>
-                <button onclick="quickSearch('family physicians')" class="px-3 py-1 bg-blue-100 dark:bg-blue-900/30 text-blue-700 dark:text-blue-300 text-xs rounded-full hover:bg-blue-200 dark:hover:bg-blue-900/50 transition-colors">
+                <button onclick="quickSearch('general practitioners and family physicians')" class="px-3 py-1 bg-blue-100 dark:bg-blue-900/30 text-blue-700 dark:text-blue-300 text-xs rounded-full hover:bg-blue-200 dark:hover:bg-blue-900/50 transition-colors">
                   🏥 Family Physicians
                 </button>
                 <button onclick="quickSearch('pharmacists')" class="px-3 py-1 bg-purple-100 dark:bg-purple-900/30 text-purple-700 dark:text-purple-300 text-xs rounded-full hover:bg-purple-200 dark:hover:bg-purple-900/50 transition-colors">
@@ -1981,23 +1981,29 @@ export const metadata = {
 
     // Function to highlight and scroll to relevant occupation card
     function highlightAndScrollToCard(searchTerm) {
+      console.log('🔍 Searching for:', searchTerm);
       const occupationItems = document.querySelectorAll('.occupation-item');
+      console.log('📋 Found occupation items:', occupationItems.length);
       let targetItem = null;
       
       // Find the best matching occupation item
-      occupationItems.forEach(item => {
-        const searchText = item.getAttribute('data-search').toLowerCase();
+      occupationItems.forEach((item, index) => {
+        const searchText = item.getAttribute('data-search');
         const nocCode = item.getAttribute('data-noc');
         const teerLevel = item.getAttribute('data-teer');
         
-        if (searchText.includes(searchTerm.toLowerCase()) || 
-            nocCode.includes(searchTerm) || 
-            `teer ${teerLevel}`.includes(searchTerm.toLowerCase())) {
+        console.log(`Item ${index}: search="${searchText}", noc="${nocCode}", teer="${teerLevel}"`);
+        
+        if (searchText && searchText.toLowerCase().includes(searchTerm.toLowerCase()) || 
+            nocCode && nocCode.includes(searchTerm) || 
+            teerLevel && `teer ${teerLevel}`.includes(searchTerm.toLowerCase())) {
           targetItem = item;
+          console.log('✅ Found match:', searchText);
         }
       });
       
       if (targetItem) {
+        console.log('🎯 Highlighting and scrolling to:', targetItem);
         // Remove previous highlights
         occupationItems.forEach(item => {
           item.classList.remove('ring-4', 'ring-emerald-500', 'ring-offset-2', 'animate-pulse');
@@ -2017,6 +2023,8 @@ export const metadata = {
         setTimeout(() => {
           targetItem.classList.remove('ring-4', 'ring-emerald-500', 'ring-offset-2', 'animate-pulse');
         }, 3000);
+      } else {
+        console.log('❌ No matching occupation found for:', searchTerm);
       }
     }
 
