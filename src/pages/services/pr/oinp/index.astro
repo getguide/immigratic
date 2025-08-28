@@ -1,0 +1,862 @@
+---
+import Layout from '../../../../layouts/Layout.astro';
+import LiveOINPData from '../../../../components/LiveOINPData.astro';
+import LiveOINPRecentDraws from '../../../../components/LiveOINPRecentDraws.astro';
+---
+
+<Layout title="Ontario Immigrant Nominee Program (OINP) | Provincial Nomination | Immigratic">
+  <!-- Breadcrumbs - At Very Top of Page -->
+  <div class="bg-gradient-to-r from-blue-900/90 via-purple-900/90 to-indigo-900/90 backdrop-blur-lg border-b border-blue-700/30 shadow-lg">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3">
+      <nav aria-label="Breadcrumb" class="breadcrumb-top">
+        <ol>
+          <li><a href="/">Home</a></li>
+          <li><a href="/services/">Services</a></li>
+          <li><a href="/services/pr/">PR</a></li>
+          <li aria-current="page">OINP</li>
+        </ol>
+      </nav>
+    </div>
+  </div>
+
+
+  <!-- Hero Section with Dynamic Background -->
+  <section class="relative min-h-screen flex items-center justify-center overflow-hidden bg-gradient-to-br from-blue-900 via-indigo-900 to-purple-900">
+    <!-- Animated Background Elements -->
+    <div class="absolute inset-0">
+      <div class="absolute top-0 left-0 w-full h-full bg-gradient-to-r from-blue-600/10 to-indigo-600/10"></div>
+      <div class="absolute top-20 left-20 w-96 h-96 bg-blue-500/10 rounded-full blur-3xl animate-pulse"></div>
+      <div class="absolute bottom-20 right-20 w-80 h-80 bg-indigo-500/10 rounded-full blur-3xl animate-pulse" style="animation-delay: 1s;"></div>
+      <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-64 h-64 bg-purple-500/5 rounded-full blur-2xl animate-pulse" style="animation-delay: 2s;"></div>
+    </div>
+
+    <!-- Content -->
+    <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-32 pb-20 text-center">
+      <!-- Ontario Badge -->
+      <div class="inline-flex items-center gap-3 mb-8 opacity-0 animate-fade-in-up" style="animation-delay: 0.2s; animation-fill-mode: forwards;">
+        <div class="w-3 h-3 bg-gradient-to-r from-blue-400 to-indigo-400 rounded-full animate-pulse"></div>
+        <span class="text-blue-300 font-semibold text-sm uppercase tracking-wider">Ontario Provincial Nomination</span>
+        <div class="w-3 h-3 bg-gradient-to-r from-indigo-400 to-purple-400 rounded-full animate-pulse" style="animation-delay: 1s;"></div>
+      </div>
+      
+      <!-- Main Title -->
+      <h1 class="text-5xl md:text-7xl font-bold text-white mb-8 opacity-0 animate-fade-in-up" style="animation-delay: 0.4s; animation-fill-mode: forwards;">
+        Ontario Immigrant
+        <span class="block bg-gradient-to-r from-blue-400 via-indigo-400 to-purple-400 bg-clip-text text-transparent animate-gradient-shift">
+          Nominee Program
+        </span>
+      </h1>
+      
+      <!-- Subtitle -->
+      <p class="text-xl md:text-2xl text-blue-100 max-w-4xl mx-auto mb-12 opacity-0 animate-fade-in-up" style="animation-delay: 0.6s; animation-fill-mode: forwards;">
+        Your gateway to Ontario permanent residency through specialized streams. 
+        <br class="hidden md:block">
+        <span class="text-indigo-300">Lower CRS requirements</span> and <span class="text-purple-300">faster processing</span> than federal programs.
+      </p>
+
+      <!-- Ontario Icon -->
+      <div class="w-32 h-32 bg-gradient-to-br from-blue-500/20 to-indigo-500/20 rounded-full flex items-center justify-center mx-auto mb-12 opacity-0 animate-fade-in-up" style="animation-delay: 0.8s; animation-fill-mode: forwards;">
+        <span class="text-6xl">🍁</span>
+      </div>
+
+      <!-- Quick Eligibility Checker -->
+      <div id="eligibility" class="max-w-4xl mx-auto opacity-0 animate-fade-in-up" style="animation-delay: 1s; animation-fill-mode: forwards;">
+        <div class="bg-white/10 backdrop-blur-lg rounded-2xl border border-white/20 p-8">
+          <h2 class="text-2xl font-bold text-white mb-6">🚀 Quick OINP Eligibility Check</h2>
+          
+          <div class="grid md:grid-cols-3 gap-6 mb-6">
+            <!-- Work Experience -->
+            <div>
+              <label class="block text-blue-200 text-sm font-medium mb-2">Work Experience</label>
+              <select id="workExp" class="w-full px-4 py-3 bg-white/10 border border-white/20 rounded-lg text-white focus:outline-none focus:ring-2 focus:ring-blue-400">
+                <option value="">Select experience</option>
+                <option value="0-1">0-1 years</option>
+                <option value="1-2">1-2 years</option>
+                <option value="2-5">2-5 years</option>
+                <option value="5+">5+ years</option>
+              </select>
+            </div>
+            
+            <!-- Education -->
+            <div>
+              <label class="block text-blue-200 text-sm font-medium mb-2">Education Level</label>
+              <select id="education" class="w-full px-4 py-3 bg-white/10 border border-white/20 rounded-lg text-white focus:outline-none focus:ring-2 focus:ring-blue-400">
+                <option value="">Select education</option>
+                <option value="high-school">High School</option>
+                <option value="diploma">Diploma/Certificate</option>
+                <option value="bachelors">Bachelor's Degree</option>
+                <option value="masters">Master's Degree</option>
+                <option value="phd">PhD</option>
+              </select>
+            </div>
+            
+            <!-- Language -->
+            <div>
+              <label class="block text-blue-200 text-sm font-medium mb-2">Language Skills</label>
+              <select id="language" class="w-full px-4 py-3 bg-white/10 border border-white/20 rounded-lg text-white focus:outline-none focus:ring-2 focus:ring-blue-400">
+                <option value="">Select level</option>
+                <option value="clb4">CLB 4</option>
+                <option value="clb5">CLB 5</option>
+                <option value="clb6">CLB 6</option>
+                <option value="clb7">CLB 7</option>
+                <option value="clb8">CLB 8+</option>
+              </select>
+            </div>
+          </div>
+          
+          <button onclick="checkOINPEligibility()" class="w-full bg-gradient-to-r from-blue-500 to-indigo-600 hover:from-blue-600 hover:to-indigo-700 text-white font-bold py-4 px-8 rounded-xl transition-all duration-300 transform hover:scale-105">
+            🎯 Check My OINP Eligibility
+          </button>
+          
+          <!-- Eligibility Result -->
+          <div id="eligibilityResult" class="mt-6 p-4 rounded-lg hidden">
+            <div id="eligibleStreams" class="text-green-300"></div>
+            <div id="ineligibleReason" class="text-red-300"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Sticky Navigation Bar -->
+  <nav class="sticky top-0 z-50 bg-white/95 backdrop-blur-lg border-b border-gray-200 shadow-lg">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex items-center justify-center h-16">
+        <div class="flex items-center space-x-8">
+          <a href="#programs" class="text-gray-700 hover:text-blue-600 transition-colors duration-200 font-medium">Programs</a>
+          <a href="#data" class="text-gray-700 hover:text-blue-600 transition-colors duration-200 font-medium">Live Data</a>
+          <a href="#comparison" class="text-gray-700 hover:text-blue-600 transition-colors duration-200 font-medium">Comparison</a>
+          <a href="#eligibility" class="text-gray-700 hover:text-blue-600 transition-colors duration-200 font-medium">Eligibility</a>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- OINP Programs Overview -->
+  <section id="programs" class="py-20 bg-gray-50">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-16">
+        <h2 class="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
+          🎯 Choose Your OINP Pathway
+        </h2>
+        <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+          Ontario offers multiple streams organized by pathway type. Find the perfect match for your background and goals.
+        </p>
+      </div>
+
+      <!-- Job Offer Based Streams -->
+      <div class="mb-16">
+        <h3 class="text-2xl font-bold text-gray-800 mb-8 text-center">
+          🎯 Job Offer Based Streams
+        </h3>
+        <p class="text-lg text-gray-600 text-center mb-8 max-w-3xl mx-auto">
+          These streams require an eligible job offer from an eligible Ontario employer
+        </p>
+        <div class="grid md:grid-cols-3 gap-8">
+          <!-- Foreign Worker -->
+          <div class="group bg-white rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 border border-gray-100">
+            <div class="p-8">
+              <div class="w-16 h-16 bg-gradient-to-br from-emerald-500 to-green-600 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
+                <span class="text-2xl">👷</span>
+              </div>
+              <h3 class="text-2xl font-bold text-gray-900 mb-4">Foreign Worker</h3>
+              <p class="text-gray-600 mb-6">For skilled workers with Ontario job offers and relevant work experience.</p>
+              <div class="space-y-3 mb-6">
+                <div class="flex items-center gap-2 text-sm text-gray-600">
+                  <span class="w-2 h-2 bg-emerald-500 rounded-full"></span>
+                  <span>Job offer required</span>
+                </div>
+                <div class="flex items-center gap-2 text-sm text-gray-600">
+                  <span class="w-2 h-2 bg-emerald-500 rounded-full"></span>
+                  <span>Work experience</span>
+                </div>
+                <div class="flex items-center gap-2 text-sm text-gray-600">
+                  <span class="w-2 h-2 bg-emerald-500 rounded-full"></span>
+                  <span>CLB 5+ language</span>
+                </div>
+              </div>
+              <a href="/services/pr/oinp/foreign-worker" class="inline-flex items-center gap-2 text-emerald-600 font-semibold hover:text-emerald-700 transition-colors">
+                Learn More
+                <span class="group-hover:translate-x-1 transition-transform">→</span>
+              </a>
+            </div>
+          </div>
+
+          <!-- International Students -->
+          <div class="group bg-white rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 border border-gray-100">
+            <div class="p-8">
+              <div class="w-16 h-16 bg-gradient-to-br from-green-500 to-teal-600 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
+                <span class="text-2xl">🎓</span>
+              </div>
+              <h3 class="text-2xl font-bold text-gray-900 mb-4">International Students</h3>
+              <p class="text-gray-600 mb-6">Graduates from Ontario post-secondary institutions with Ontario job offers.</p>
+              <div class="space-y-3 mb-6">
+                <div class="flex items-center gap-2 text-sm text-gray-600">
+                  <span class="w-2 h-2 bg-green-500 rounded-full"></span>
+                  <span>Ontario degree/diploma</span>
+                </div>
+                <div class="flex items-center gap-2 text-sm text-gray-600">
+                  <span class="w-2 h-2 bg-green-500 rounded-full"></span>
+                  <span>Job offer required</span>
+                </div>
+                <div class="flex items-center gap-2 text-sm text-gray-600">
+                  <span class="w-2 h-2 bg-green-500 rounded-full"></span>
+                  <span>CLB 7+ language</span>
+                </div>
+              </div>
+              <a href="/services/pr/oinp/international-students" class="inline-flex items-center gap-2 text-green-600 font-semibold hover:text-green-700 transition-colors">
+                Learn More
+                <span class="group-hover:translate-x-1 transition-transform">→</span>
+              </a>
+            </div>
+          </div>
+
+          <!-- In-Demand Skills -->
+          <div class="group bg-white rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 border border-gray-100">
+            <div class="p-8">
+              <div class="w-16 h-16 bg-gradient-to-br from-orange-500 to-red-600 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
+                <span class="text-2xl">🔥</span>
+              </div>
+              <h3 class="text-2xl font-bold text-gray-900 mb-4">In-Demand Skills</h3>
+              <p class="text-gray-600 mb-6">For workers with skills in high demand in Ontario's labor market.</p>
+              <div class="space-y-3 mb-6">
+                <div class="flex items-center gap-2 text-sm text-gray-600">
+                  <span class="w-2 h-2 bg-orange-500 rounded-full"></span>
+                  <span>Job offer required</span>
+                </div>
+                <div class="flex items-center gap-2 text-sm text-gray-600">
+                  <span class="w-2 h-2 bg-orange-500 rounded-full"></span>
+                  <span>High demand skills</span>
+                </div>
+                <div class="flex items-center gap-2 text-sm text-gray-600">
+                  <span class="w-2 h-2 bg-orange-500 rounded-full"></span>
+                  <span>Work experience</span>
+                </div>
+              </div>
+              <a href="/services/pr/oinp/in-demand-skills" class="inline-flex items-center gap-2 text-orange-600 font-semibold hover:text-orange-700 transition-colors">
+                Learn More
+                <span class="group-hover:translate-x-1 transition-transform">→</span>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Express Entry Based Streams -->
+      <div class="mb-16">
+        <h3 class="text-2xl font-bold text-gray-800 mb-8 text-center">
+          🚀 Express Entry Based Streams
+        </h3>
+        <p class="text-lg text-gray-600 text-center mb-8 max-w-3xl mx-auto">
+          These streams require an Express Entry profile and work in targeted areas
+        </p>
+        <div class="grid md:grid-cols-3 gap-8">
+          <!-- Human Capital Priorities -->
+          <div class="group bg-white rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 border border-gray-100">
+            <div class="p-8">
+              <div class="w-16 h-16 bg-gradient-to-br from-blue-500 to-indigo-600 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
+                <span class="text-2xl">👨‍💼</span>
+              </div>
+              <h3 class="text-2xl font-bold text-gray-900 mb-4">Human Capital Priorities</h3>
+              <p class="text-gray-600 mb-6">For skilled workers with job offers in Ontario. Express Entry aligned with 600 CRS bonus points.</p>
+              <div class="space-y-3 mb-6">
+                <div class="flex items-center gap-2 text-sm text-gray-600">
+                  <span class="w-2 h-2 bg-blue-500 rounded-full"></span>
+                  <span>Job offer required</span>
+                </div>
+                <div class="flex items-center gap-2 text-sm text-gray-600">
+                  <span class="w-2 h-2 bg-blue-500 rounded-full"></span>
+                  <span>CLB 7+ language</span>
+                </div>
+                <div class="flex items-center gap-2 text-sm text-gray-600">
+                  <span class="w-2 h-2 bg-blue-500 rounded-full"></span>
+                  <span>1+ year experience</span>
+                </div>
+              </div>
+              <a href="/services/pr/oinp/human-capital" class="inline-flex items-center gap-2 text-blue-600 font-semibold hover:text-blue-700 transition-colors">
+                Learn More
+                <span class="group-hover:translate-x-1 transition-transform">→</span>
+              </a>
+            </div>
+          </div>
+
+          <!-- Skilled Trades -->
+          <div class="group bg-white rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 border border-gray-100">
+            <div class="p-8">
+              <div class="w-16 h-16 bg-gradient-to-br from-purple-500 to-pink-600 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
+                <span class="text-2xl">🔧</span>
+              </div>
+              <h3 class="text-2xl font-bold text-gray-900 mb-4">Skilled Trades</h3>
+              <p class="text-gray-600 mb-6">For tradespeople with Ontario job offers. Includes construction, manufacturing, and service trades.</p>
+              <div class="space-y-3 mb-6">
+                <div class="flex items-center gap-2 text-sm text-gray-600">
+                  <span class="w-2 h-2 bg-purple-500 rounded-full"></span>
+                  <span>Job offer required</span>
+                </div>
+                <div class="flex items-center gap-2 text-sm text-gray-600">
+                  <span class="w-2 h-2 bg-purple-500 rounded-full"></span>
+                  <span>2+ years experience</span>
+                </div>
+                <div class="flex items-center gap-2 text-sm text-gray-600">
+                  <span class="w-2 h-2 bg-purple-500 rounded-full"></span>
+                  <span>CLB 5+ language</span>
+                </div>
+              </div>
+              <a href="/services/pr/oinp/trade" class="inline-flex items-center gap-2 text-purple-600 font-semibold hover:text-purple-700 transition-colors">
+                Learn More
+                <span class="group-hover:translate-x-1 transition-transform">→</span>
+              </a>
+            </div>
+          </div>
+
+          <!-- French-Speaking Skilled Workers -->
+          <div class="group bg-white rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 border border-gray-100">
+            <div class="p-8">
+              <div class="w-16 h-16 bg-gradient-to-br from-indigo-500 to-purple-600 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
+                <span class="text-2xl">🇫🇷</span>
+              </div>
+              <h3 class="text-2xl font-bold text-gray-900 mb-4">French-Speaking Skilled Workers</h3>
+              <p class="text-gray-600 mb-6">Special stream for French speakers. Lower language requirements and priority processing.</p>
+              <div class="space-y-3 mb-6">
+                <div class="flex items-center gap-2 text-sm text-gray-600">
+                  <span class="w-2 h-2 bg-indigo-500 rounded-full"></span>
+                  <span>French CLB 5+</span>
+                </div>
+                <div class="flex items-center gap-2 text-sm text-gray-600">
+                  <span class="w-2 h-2 bg-indigo-500 rounded-full"></span>
+                  <span>English CLB 4+</span>
+                </div>
+                <div class="flex items-center gap-2 text-sm text-gray-600">
+                  <span class="w-2 h-2 bg-indigo-500 rounded-full"></span>
+                  <span>1+ year experience</span>
+                </div>
+              </div>
+              <a href="/services/pr/oinp/french" class="inline-flex items-center gap-2 text-indigo-600 font-semibold hover:text-indigo-700 transition-colors">
+                Learn More
+                <span class="group-hover:translate-x-1 transition-transform">→</span>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Graduate Streams -->
+      <div class="mb-16">
+        <h3 class="text-2xl font-bold text-gray-800 mb-8 text-center">
+          🎓 Graduate Streams
+        </h3>
+        <p class="text-lg text-gray-600 text-center mb-8 max-w-3xl mx-auto">
+          These streams are for Ontario graduates with no job offer required
+        </p>
+        <div class="grid md:grid-cols-2 gap-8">
+          <!-- Masters Graduates -->
+          <div class="group bg-white rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 border border-gray-100">
+            <div class="p-8">
+              <div class="w-16 h-16 bg-gradient-to-br from-teal-500 to-cyan-600 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
+                <span class="text-2xl">🎯</span>
+              </div>
+              <h3 class="text-2xl font-bold text-gray-900 mb-4">Masters Graduates</h3>
+              <p class="text-gray-600 mb-6">For master's degree holders from Ontario universities. No job offer or work experience required.</p>
+              <div class="space-y-3 mb-6">
+                <div class="flex items-center gap-2 text-sm text-gray-600">
+                  <span class="w-2 h-2 bg-teal-500 rounded-full"></span>
+                  <span>Ontario master's degree</span>
+                </div>
+                <div class="flex items-center gap-2 text-sm text-gray-600">
+                  <span class="w-2 h-2 bg-teal-500 rounded-full"></span>
+                  <span>CLB 7+ language</span>
+                </div>
+                <div class="flex items-center gap-2 text-sm text-gray-600">
+                  <span class="w-2 h-2 bg-teal-500 rounded-full"></span>
+                  <span>No experience needed</span>
+                </div>
+              </div>
+              <a href="/services/pr/oinp/masters" class="inline-flex items-center gap-2 text-teal-600 font-semibold hover:text-teal-700 transition-colors">
+                Learn More
+                <span class="group-hover:translate-x-1 transition-transform">→</span>
+              </a>
+            </div>
+          </div>
+
+          <!-- PhD Graduates -->
+          <div class="group bg-white rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 border border-gray-100">
+            <div class="p-8">
+              <div class="w-16 h-16 bg-gradient-to-br from-cyan-500 to-blue-600 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
+                <span class="text-2xl">🔬</span>
+              </div>
+              <h3 class="text-2xl font-bold text-gray-900 mb-4">PhD Graduates</h3>
+              <p class="text-gray-600 mb-6">For PhD holders from Ontario universities. Highest priority stream with fastest processing.</p>
+              <div class="space-y-3 mb-6">
+                <div class="flex items-center gap-2 text-sm text-gray-600">
+                  <span class="w-2 h-2 bg-cyan-500 rounded-full"></span>
+                  <span>Ontario PhD degree</span>
+                </div>
+                <div class="flex items-center gap-2 text-sm text-gray-600">
+                  <span class="w-2 h-2 bg-cyan-500 rounded-full"></span>
+                  <span>CLB 7+ language</span>
+                </div>
+                <div class="flex items-center gap-2 text-sm text-gray-600">
+                  <span class="w-2 h-2 bg-cyan-500 rounded-full"></span>
+                  <span>Priority processing</span>
+                </div>
+              </div>
+              <a href="/services/pr/oinp/phd" class="inline-flex items-center gap-2 text-cyan-600 font-semibold hover:text-cyan-700 transition-colors">
+                Learn More
+                <span class="group-hover:translate-x-1 transition-transform">→</span>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Live OINP Data & Insights -->
+  <section id="data" class="py-20 bg-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-16">
+        <h2 class="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
+          📊 Live OINP Insights & Data
+        </h2>
+        <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+          Real-time data from Ontario's latest draws. Track trends, scores, and invitation patterns.
+        </p>
+      </div>
+
+      <div class="grid lg:grid-cols-2 gap-12">
+        <!-- Latest OINP Data -->
+        <div class="bg-gradient-to-br from-blue-50 to-indigo-50 rounded-2xl p-8 border border-blue-100">
+          <h3 class="text-2xl font-bold text-gray-900 mb-6 flex items-center gap-3">
+            <span class="text-blue-600">📈</span>
+            Latest OINP Draw
+          </h3>
+          <LiveOINPData />
+        </div>
+
+        <!-- Recent OINP Draws -->
+        <div class="bg-gradient-to-br from-indigo-50 to-purple-50 rounded-2xl p-8 border border-indigo-100">
+          <h3 class="text-2xl font-bold text-gray-900 mb-6 flex items-center gap-3">
+            <span class="text-indigo-600">📋</span>
+            Recent OINP Draws
+          </h3>
+          <LiveOINPRecentDraws />
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- OINP vs Express Entry Comparison -->
+  <section id="comparison" class="py-20 bg-gray-900 text-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-16">
+        <h2 class="text-4xl md:text-5xl font-bold mb-6">
+          ⚖️ OINP vs Express Entry: Which is Right for You?
+        </h2>
+        <p class="text-xl text-gray-300 max-w-3xl mx-auto">
+          Understand the key differences to make the best choice for your immigration journey.
+        </p>
+      </div>
+
+      <div class="grid lg:grid-cols-2 gap-12">
+        <!-- OINP Advantages -->
+        <div class="bg-gradient-to-br from-blue-900 to-indigo-900 rounded-2xl p-8 border border-blue-700">
+          <h3 class="text-2xl font-bold mb-6 flex items-center gap-3">
+            <span class="text-blue-400">✅</span>
+            OINP Advantages
+          </h3>
+          <div class="space-y-4">
+            <div class="flex items-start gap-3">
+              <span class="text-green-400 text-xl">🎯</span>
+              <div>
+                <h4 class="font-semibold text-blue-200">Lower CRS Requirements</h4>
+                <p class="text-gray-300 text-sm">600 bonus points can significantly reduce your CRS score needs</p>
+              </div>
+            </div>
+            <div class="flex items-start gap-3">
+              <span class="text-green-400 text-xl">⚡</span>
+              <div>
+                <h4 class="font-semibold text-blue-200">Faster Processing</h4>
+                <p class="text-gray-300 text-sm">Provincial nominations often process faster than federal applications</p>
+              </div>
+            </div>
+            <div class="flex items-start gap-3">
+              <span class="text-green-400 text-xl">🏠</span>
+              <div>
+                <h4 class="font-semibold text-blue-200">Ontario Focus</h4>
+                <p class="text-gray-300 text-sm">Guaranteed to live and work in Ontario, Canada's economic powerhouse</p>
+              </div>
+            </div>
+            <div class="flex items-start gap-3">
+              <span class="text-green-400 text-xl">🎓</span>
+              <div>
+                <h4 class="font-semibold text-blue-200">Education Streams</h4>
+                <p class="text-gray-300 text-sm">Special pathways for Ontario graduates with no work experience required</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Express Entry Advantages -->
+        <div class="bg-gradient-to-br from-indigo-900 to-purple-900 rounded-2xl p-8 border border-indigo-700">
+          <h3 class="text-2xl font-bold mb-6 flex items-center gap-3">
+            <span class="text-indigo-400">✅</span>
+            Express Entry Advantages
+          </h3>
+          <div class="space-y-4">
+            <div class="flex items-start gap-3">
+              <span class="text-green-400 text-xl">🌍</span>
+              <div>
+                <h4 class="font-semibold text-indigo-200">Location Flexibility</h4>
+                <p class="text-gray-300 text-sm">Live and work anywhere in Canada, not restricted to one province</p>
+              </div>
+            </div>
+            <div class="flex items-start gap-3">
+              <span class="text-green-400 text-xl">📊</span>
+              <div>
+                <h4 class="font-semibold text-indigo-200">Merit-Based Selection</h4>
+                <p class="text-gray-300 text-sm">Pure CRS score ranking, no additional requirements</p>
+              </div>
+            </div>
+            <div class="flex items-start gap-3">
+              <span class="text-green-400 text-xl">🔄</span>
+              <div>
+                <h4 class="font-semibold text-indigo-200">Regular Draws</h4>
+                <p class="text-gray-300 text-sm">Bi-weekly draws with predictable patterns</p>
+              </div>
+            </div>
+            <div class="flex items-start gap-3">
+              <span class="text-green-400 text-xl">📝</span>
+              <div>
+                <h4 class="font-semibold text-indigo-200">Simpler Process</h4>
+                <p class="text-gray-300 text-sm">Single application process, no provincial nomination step</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Decision Matrix -->
+      <div class="mt-16 bg-gray-800 rounded-2xl p-8 border border-gray-700">
+        <h3 class="text-2xl font-bold mb-6 text-center">🎯 Quick Decision Guide</h3>
+        <div class="grid md:grid-cols-3 gap-8">
+          <div class="text-center">
+            <div class="w-16 h-16 bg-blue-600 rounded-full flex items-center justify-center mx-auto mb-4">
+              <span class="text-2xl">🎓</span>
+            </div>
+            <h4 class="font-semibold text-blue-200 mb-2">Choose OINP if:</h4>
+            <ul class="text-sm text-gray-300 space-y-1">
+              <li>• Ontario graduate</li>
+              <li>• Lower CRS score</li>
+              <li>• Want to live in Ontario</li>
+              <li>• Have Ontario job offer</li>
+            </ul>
+          </div>
+          <div class="text-center">
+            <div class="w-16 h-16 bg-indigo-600 rounded-full flex items-center justify-center mx-auto mb-4">
+              <span class="text-2xl">🌍</span>
+            </div>
+            <h4 class="font-semibold text-indigo-200 mb-2">Choose Express Entry if:</h4>
+            <ul class="text-sm text-gray-300 space-y-1">
+              <li>• High CRS score (470+)</li>
+              <li>• Want location flexibility</li>
+              <li>• Prefer simpler process</li>
+              <li>• No provincial ties</li>
+            </ul>
+          </div>
+          <div class="text-center">
+            <div class="w-16 h-16 bg-purple-600 rounded-full flex items-center justify-center mx-auto mb-4">
+              <span class="text-2xl">🔄</span>
+            </div>
+            <h4 class="font-semibold text-purple-200 mb-2">Apply to Both:</h4>
+            <ul class="text-sm text-gray-300 space-y-1">
+              <li>• Maximize chances</li>
+              <li>• Have multiple options</li>
+              <li>• Meet both criteria</li>
+              <li>• Strategic approach</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA Section -->
+  <section class="py-20 bg-gradient-to-r from-blue-600 to-indigo-700">
+    <div class="max-w-4xl mx-auto text-center px-4 sm:px-6 lg:px-8">
+      <h2 class="text-4xl md:text-5xl font-bold text-white mb-6">
+        🚀 Ready to Start Your OINP Journey?
+      </h2>
+      <p class="text-xl text-blue-100 mb-8">
+        Get personalized guidance, eligibility assessment, and expert support for your Ontario nomination.
+      </p>
+      
+      <div class="flex flex-col sm:flex-row gap-4 justify-center">
+        <a href="/tools/master-assessment?utm_source=immigratic&utm_medium=website&utm_campaign=oinp_page&utm_content=eligibility_check" target="_blank" class="inline-flex items-center justify-center gap-3 bg-white text-blue-600 font-bold py-4 px-8 rounded-xl hover:bg-gray-100 transition-all duration-300 transform hover:scale-105">
+          <span>📊</span>
+          Check My Eligibility
+        </a>
+        <a href="/contact?utm_source=immigratic&utm_medium=website&utm_campaign=oinp_page&utm_content=consultation" class="inline-flex items-center justify-center gap-3 bg-transparent border-2 border-white text-white font-bold py-4 px-8 rounded-xl hover:bg-white hover:text-blue-600 transition-all duration-300 transform hover:scale-105">
+          <span>💬</span>
+          Free Consultation
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Schema Markup -->
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "Service",
+    "name": "Ontario Immigrant Nominee Program (OINP) Immigration Services",
+    "description": "Professional immigration services for Ontario Provincial Nomination Program with expert guidance, eligibility assessment, and application support",
+    "provider": {
+      "@type": "Organization",
+      "name": "Immigratic",
+      "url": "https://immigratic.com",
+      "logo": "https://immigratic.com/logo-new.png"
+    },
+    "serviceType": "Immigration Services",
+    "category": "Provincial Nomination",
+    "areaServed": "CA-ON",
+    "audience": {
+      "@type": "Audience",
+      "audienceType": "Immigration Applicants"
+    }
+  })} />
+
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "What is the difference between OINP and Express Entry?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "OINP is Ontario's Provincial Nominee Program that can give you 600 CRS bonus points, while Express Entry is the federal system. OINP is ideal if you want to live in Ontario and have lower CRS scores."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "How long does OINP processing take?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "OINP processing typically takes 3-6 months for nomination, followed by federal processing. This is often faster than pure Express Entry applications."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Do I need a job offer for OINP?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "It depends on the stream. Human Capital Priorities and Skilled Trades require job offers, but Masters and PhD streams don't require job offers or work experience."
+        }
+      }
+    ]
+  })} />
+
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "name": "Home",
+        "item": "https://immigratic.com"
+      },
+      {
+        "@type": "ListItem",
+        "position": 2,
+        "name": "Services",
+        "item": "https://immigratic.com/services"
+      },
+      {
+        "@type": "ListItem",
+        "position": 3,
+        "name": "Permanent Residency",
+        "item": "https://immigratic.com/services/pr"
+      },
+      {
+        "@type": "ListItem",
+        "position": 4,
+        "name": "Ontario Immigrant Nominee Program",
+        "item": "https://immigratic.com/services/pr/oinp"
+      }
+    ]
+  })} />
+</Layout>
+
+<style>
+  @keyframes fade-in-up {
+    from {
+      opacity: 0;
+      transform: translateY(30px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  @keyframes gradient-shift {
+    0%, 100% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+  }
+  
+  .animate-fade-in-up {
+    animation: fade-in-up 0.8s ease-out;
+  }
+  
+  .animate-gradient-shift {
+    background-size: 200% 200%;
+    animation: gradient-shift 3s ease infinite;
+  }
+
+  /* Top Breadcrumb Styling */
+  .breadcrumb-top {
+    font-size: 14px;
+    margin-bottom: 0;
+  }
+  
+  .breadcrumb-top ol {
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+    padding: 0;
+    margin: 0;
+    align-items: center;
+  }
+  
+  .breadcrumb-top li + li::before {
+    content: ">";
+    padding: 0 8px;
+    color: rgba(255, 255, 255, 0.7);
+    font-weight: 500;
+  }
+  
+  .breadcrumb-top a {
+    text-decoration: none;
+    color: rgba(255, 255, 255, 0.9);
+    transition: color 0.2s ease;
+    font-weight: 500;
+  }
+  
+  .breadcrumb-top a:hover {
+    color: rgba(255, 255, 255, 1);
+    text-decoration: underline;
+  }
+  
+  .breadcrumb-top li:last-child {
+    color: rgba(255, 255, 255, 0.95);
+    font-weight: 600;
+  }
+  
+  /* Mobile responsiveness for top breadcrumbs */
+  @media (max-width: 640px) {
+    .breadcrumb-top {
+      font-size: 12px;
+    }
+    
+    .breadcrumb-top ol {
+      flex-wrap: wrap;
+    }
+    
+    .breadcrumb-top li + li::before {
+      padding: 0 4px;
+    }
+  }
+</style>
+
+<script>
+  // Smooth scrolling for navigation links
+  document.addEventListener('DOMContentLoaded', function() {
+    const navLinks = document.querySelectorAll('a[href^="#"]');
+    navLinks.forEach(link => {
+      link.addEventListener('click', function(e) {
+        e.preventDefault();
+        const targetId = this.getAttribute('href');
+        const targetSection = document.querySelector(targetId);
+        
+        if (targetSection) {
+          targetSection.scrollIntoView({
+            behavior: 'smooth',
+            block: 'start'
+          });
+        }
+      });
+    });
+  });
+
+  // Make functions globally accessible
+  window.checkOINPEligibility = function() {
+    // Show beautiful "Coming Soon" popup
+    showComingSoonPopup();
+  };
+  
+  function showComingSoonPopup() {
+    // Create popup overlay
+    const overlay = document.createElement('div');
+    overlay.id = 'comingSoonOverlay';
+    overlay.className = 'fixed inset-0 bg-black/50 backdrop-blur-sm z-50 flex items-center justify-center p-4';
+    
+    // Create popup content
+    const popup = document.createElement('div');
+    popup.className = 'bg-white rounded-2xl shadow-2xl max-w-md w-full mx-4 transform transition-all duration-300 scale-95 opacity-0';
+    popup.innerHTML = `
+      <div class="p-8 text-center">
+        <div class="w-20 h-20 bg-gradient-to-br from-blue-500 to-purple-600 rounded-full flex items-center justify-center mx-auto mb-6">
+          <span class="text-3xl">🚧</span>
+        </div>
+        <h3 class="text-2xl font-bold text-gray-900 mb-4">Coming Soon!</h3>
+        <p class="text-gray-600 mb-6">
+          Our advanced OINP eligibility checker is under development. 
+          We're building something amazing that will give you instant, 
+          accurate eligibility results for all OINP streams.
+        </p>
+        <div class="bg-gradient-to-r from-blue-50 to-purple-50 rounded-xl p-4 mb-6">
+          <p class="text-sm text-gray-700">
+            <strong>What's coming:</strong><br>
+            • Real-time eligibility assessment<br>
+            • Stream-specific requirements<br>
+            • Personalized recommendations<br>
+            • CRS score integration
+          </p>
+        </div>
+        <button onclick="closeComingSoonPopup()" class="w-full bg-gradient-to-br from-blue-600 to-purple-600 text-white font-semibold py-3 px-6 rounded-xl hover:from-blue-700 hover:to-purple-700 transition-all duration-200 transform hover:scale-105">
+          Got it! 🎯
+        </button>
+      </div>
+    `;
+    
+    // Add to page
+    overlay.appendChild(popup);
+    document.body.appendChild(overlay);
+    
+    // Animate in
+    setTimeout(() => {
+      popup.classList.remove('scale-95', 'opacity-0');
+      popup.classList.add('scale-100', 'opacity-100');
+    }, 10);
+    
+    // Close on overlay click
+    overlay.addEventListener('click', function(e) {
+      if (e.target === overlay) {
+        closeComingSoonPopup();
+      }
+    });
+  }
+  
+  // Make close function globally accessible
+  window.closeComingSoonPopup = function() {
+    const overlay = document.getElementById('comingSoonOverlay');
+    if (overlay) {
+      const popup = overlay.querySelector('div');
+      popup.classList.add('scale-95', 'opacity-0');
+      
+      setTimeout(() => {
+        document.body.removeChild(overlay);
+      }, 200);
+    }
+  };
+</script>

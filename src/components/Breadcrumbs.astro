@@ -1,0 +1,114 @@
+---
+export interface Props {
+  items: Array<{
+    name: string;
+    url: string;
+    fullName?: string; // For SEO structured data
+  }>;
+  currentPage: string;
+  currentPageFullName?: string; // For SEO structured data
+}
+
+const { items, currentPage, currentPageFullName } = Astro.props;
+
+// Build breadcrumb list for structured data
+const breadcrumbItems = [
+  {
+    "@type": "ListItem",
+    "position": 1,
+    "name": "Home",
+    "item": "https://immigratic.com/"
+  },
+  {
+    "@type": "ListItem", 
+    "position": 2,
+    "name": "Services",
+    "item": "https://immigratic.com/services/"
+  },
+  ...items.map((item, index) => ({
+    "@type": "ListItem",
+    "position": index + 3,
+    "name": item.fullName || item.name,
+    "item": `https://immigratic.com${item.url}`
+  })),
+  {
+    "@type": "ListItem",
+    "position": items.length + 3,
+    "name": currentPageFullName || currentPage,
+    "item": `https://immigratic.com${Astro.url.pathname}`
+  }
+];
+---
+
+<nav aria-label="Breadcrumb" class="breadcrumb">
+  <ol>
+    <li><a href="/">Home</a></li>
+    <li><a href="/services/">Services</a></li>
+    {items.map((item) => (
+      <li><a href={item.url}>{item.name}</a></li>
+    ))}
+    <li aria-current="page">{currentPage}</li>
+  </ol>
+</nav>
+
+<script type="application/ld+json" set:html={JSON.stringify({
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": breadcrumbItems
+})} />
+
+<style>
+  .breadcrumb {
+    font-size: 14px;
+    margin-bottom: 1rem;
+    padding: 0.75rem 0;
+  }
+  
+  .breadcrumb ol {
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+    padding: 0;
+    margin: 0;
+    align-items: center;
+  }
+  
+  .breadcrumb li + li::before {
+    content: ">";
+    padding: 0 8px;
+    color: #888;
+    font-weight: 500;
+  }
+  
+  .breadcrumb a {
+    text-decoration: none;
+    color: #0070f3;
+    transition: color 0.2s ease;
+  }
+  
+  .breadcrumb a:hover {
+    text-decoration: underline;
+    color: #0051a2;
+  }
+  
+  .breadcrumb li:last-child {
+    color: #666;
+    font-weight: 500;
+  }
+  
+  /* Mobile responsiveness */
+  @media (max-width: 640px) {
+    .breadcrumb {
+      font-size: 12px;
+      margin-bottom: 0.5rem;
+    }
+    
+    .breadcrumb ol {
+      flex-wrap: wrap;
+    }
+    
+    .breadcrumb li + li::before {
+      padding: 0 4px;
+    }
+  }
+</style>
