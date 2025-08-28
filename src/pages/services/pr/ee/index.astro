@@ -1,20 +1,13 @@
 ---
 import Layout from '../../../../layouts/Layout.astro';
 import LiveExpressEntryData from '../../../../components/LiveExpressEntryData.astro';
-import LiveExpressEntryMetrics from '../../../../components/LiveExpressEntryMetrics.astro';
-import LiveExpressEntryChart from '../../../../components/LiveExpressEntryChart.astro';
+import LiveCECMetrics from '../../../../components/LiveCECMetrics.astro';
+import LiveCECChart from '../../../../components/LiveCECChart.astro';
 ---
 
 <Layout 
   title="Express Entry Programs | Immigratic"
   description="Explore all Express Entry programs including CEC, FSW, and category-based streams. Check eligibility, compare programs, and track live draw data."
-  keywords="Express Entry, CEC, FSW, Health Category, French Category, STEM Category, Trade Category, Education Category, immigration programs, CRS calculator"
-  openGraph={{
-    title: "Express Entry Programs | Immigratic",
-    description: "Explore all Express Entry programs including CEC, FSW, and category-based streams. Check eligibility, compare programs, and track live draw data.",
-    image: "/og-image.jpg",
-    url: "https://immigratic.com/services/pr/ee"
-  }}
 >
   <!-- Hero Section -->
   <section class="relative bg-gradient-to-br from-blue-50 via-white to-emerald-50 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900 py-20 lg:py-32">
@@ -385,12 +378,12 @@ import LiveExpressEntryChart from '../../../../components/LiveExpressEntryChart.
 
       <!-- Live Metrics -->
       <div class="mb-12">
-        <LiveExpressEntryMetrics />
+        <LiveCECMetrics />
       </div>
 
       <!-- Live Chart -->
       <div class="mb-12">
-        <LiveExpressEntryChart />
+        <LiveCECChart />
       </div>
 
       <!-- Recent Draws -->
