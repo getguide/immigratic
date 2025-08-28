@@ -566,6 +566,11 @@ export const metadata = {
         <p class="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
           Your healthcare expertise is in high demand! Find your occupation and see exactly what you need to qualify.
         </p>
+        <div class="mt-4 p-4 bg-blue-50 dark:bg-blue-900/20 rounded-xl border border-blue-200 dark:border-blue-800">
+          <p class="text-blue-800 dark:text-blue-200 text-sm text-center">
+            💡 <strong>Pro Tip:</strong> Click the "🏛️ Official" link next to any NOC code to view the official government job description, duties, and requirements from Statistics Canada.
+          </p>
+        </div>
       </div>
 
       <!-- Search & Filter Bar -->
@@ -1729,11 +1734,7 @@ export const metadata = {
           searchInput.focus();
         }
         
-        // Scroll to eligibility section
-        const eligibilitySection = document.getElementById('eligibility');
-        if (eligibilitySection) {
-          eligibilitySection.scrollIntoView({ behavior: 'smooth' });
-        }
+        // Removed annoying scroll to eligibility section
       });
     });
 
@@ -1798,6 +1799,43 @@ export const metadata = {
         searchInput.dispatchEvent(event);
       }
     }
+
+    // Function to add official NOC links to all occupation items
+    function addOfficialNOCLinks() {
+      const occupationItems = document.querySelectorAll('.occupation-item');
+      
+      occupationItems.forEach(item => {
+        const nocCode = item.getAttribute('data-noc');
+        if (nocCode) {
+          // Generate the official NOC URL using your Airtable formula
+          const baseUrl = "https://www23.statcan.gc.ca/imdb/p3VD.pl?CLV=5&CST=01052021&CVD=1322870&Function=getVD&MLV=5&TVD=1322554&CPV=";
+          const paddedNOC = nocCode.padStart(5, '0');
+          const officialUrl = baseUrl + paddedNOC;
+          
+          // Check if link already exists
+          const existingLink = item.querySelector('.official-noc-link');
+          if (!existingLink) {
+            // Create the official NOC link
+            const link = document.createElement('a');
+            link.href = officialUrl;
+            link.target = '_blank';
+            link.className = 'official-noc-link inline-flex items-center gap-1 text-blue-600 hover:text-blue-800 text-xs font-medium transition-colors';
+            link.innerHTML = '🏛️ Official';
+            
+            // Add the link to the right side of the occupation item
+            const rightSide = item.querySelector('.flex.items-center.gap-2');
+            if (rightSide) {
+              rightSide.appendChild(link);
+            }
+          }
+        }
+      });
+    }
+
+    // Initialize official NOC links when page loads
+    document.addEventListener('DOMContentLoaded', function() {
+      setTimeout(addOfficialNOCLinks, 500);
+    });
 </script>
 
 <style>
