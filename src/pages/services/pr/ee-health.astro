@@ -713,16 +713,16 @@ export const metadata = {
                 💡 Try searching for: "nurse", "NOC 31301", "pharmacist", "TEER 1", etc.
               </p>
               <div class="flex flex-wrap gap-2 mt-3">
-                <button onclick="console.log('👩‍⚕️ Nurses clicked'); quickSearch('registered nurses and registered psychiatric nurses')" class="px-3 py-1 bg-emerald-100 dark:bg-emerald-900/30 text-emerald-700 dark:text-emerald-300 text-xs rounded-full hover:bg-emerald-200 dark:hover:bg-emerald-900/50 transition-colors">
+                <button onclick="scrollToSection('nurses-section')" class="px-3 py-1 bg-emerald-100 dark:bg-emerald-900/30 text-emerald-700 dark:text-emerald-300 text-xs rounded-full hover:bg-emerald-200 dark:hover:bg-emerald-900/50 transition-colors">
                   👩‍⚕️ Nurses
                 </button>
-                <button onclick="console.log('🏥 Family Physicians clicked'); quickSearch('general practitioners and family physicians')" class="px-3 py-1 bg-blue-100 dark:bg-blue-900/30 text-blue-700 dark:text-blue-300 text-xs rounded-full hover:bg-blue-200 dark:hover:bg-blue-900/50 transition-colors">
+                <button onclick="scrollToSection('doctors-section')" class="px-3 py-1 bg-blue-100 dark:bg-blue-900/30 text-blue-700 dark:text-blue-300 text-xs rounded-full hover:bg-blue-200 dark:hover:bg-blue-900/50 transition-colors">
                   🏥 Family Physicians
                 </button>
                 <button onclick="console.log('💊 Pharmacists clicked'); quickSearch('pharmacists')" class="px-3 py-1 bg-purple-100 dark:bg-purple-900/30 text-purple-700 dark:text-purple-300 text-xs rounded-full hover:bg-purple-200 dark:hover:bg-purple-900/50 transition-colors">
                   💊 Pharmacists
                 </button>
-                <button onclick="console.log('🔬 Technicians clicked'); quickSearch('medical laboratory technologists')" class="px-3 py-1 bg-yellow-100 dark:bg-yellow-900/30 text-yellow-700 dark:text-yellow-300 text-xs rounded-full hover:bg-yellow-200 dark:hover:bg-emerald-900/50 transition-colors">
+                <button onclick="scrollToSection('technicians-section')" class="px-3 py-1 bg-yellow-100 dark:bg-yellow-900/30 text-yellow-700 dark:text-yellow-300 text-xs rounded-full hover:bg-yellow-200 dark:hover:bg-emerald-900/50 transition-colors">
                   🔬 Technicians
                 </button>
               </div>
@@ -744,7 +744,7 @@ export const metadata = {
       <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-12">
         
         <!-- Medical Doctors & Specialists -->
-        <div class="occupation-category bg-white dark:bg-gray-800 rounded-3xl p-8 shadow-2xl border-2 border-blue-200 dark:border-gray-600 hover:border-blue-400 transition-all duration-300">
+        <div id="doctors-section" class="occupation-category bg-white dark:bg-gray-800 rounded-3xl p-8 shadow-2xl border-2 border-blue-200 dark:border-gray-600 hover:border-blue-400 transition-all duration-300">
           <div class="flex items-center gap-4 mb-6">
             <div class="w-16 h-16 bg-gradient-to-br from-blue-500 to-indigo-600 rounded-2xl flex items-center justify-center">
               <span class="text-3xl">👨‍⚕️</span>
@@ -803,7 +803,7 @@ export const metadata = {
         </div>
 
         <!-- Nurses & Nurse Practitioners -->
-        <div class="occupation-category bg-white dark:bg-gray-800 rounded-3xl p-8 shadow-2xl border-2 border-green-200 dark:border-gray-600 hover:border-green-400 transition-all duration-300">
+        <div id="nurses-section" class="occupation-category bg-white dark:bg-gray-800 rounded-3xl p-8 shadow-2xl border-2 border-green-200 dark:border-gray-600 hover:border-green-400 transition-all duration-300">
           <div class="flex items-center gap-4 mb-6">
             <div class="w-16 h-16 bg-gradient-to-br from-green-500 to-emerald-600 rounded-2xl flex items-center justify-center">
               <span class="text-3xl">👩‍⚕️</span>
@@ -855,7 +855,7 @@ export const metadata = {
       <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-12">
         
         <!-- Healthcare Technologists -->
-        <div class="occupation-category bg-white dark:bg-gray-800 rounded-3xl p-8 shadow-2xl border-2 border-purple-200 dark:border-gray-600 hover:border-purple-400 transition-all duration-300">
+        <div id="technicians-section" class="occupation-category bg-white dark:bg-gray-800 rounded-3xl p-8 shadow-2xl border-2 border-purple-200 dark:border-gray-600 hover:border-purple-400 transition-all duration-300">
           <div class="flex items-center gap-4 mb-6">
             <div class="w-16 h-16 bg-gradient-to-br from-purple-500 to-pink-600 rounded-2xl flex items-center justify-center">
               <span class="text-3xl">🔬</span>
@@ -1032,7 +1032,7 @@ export const metadata = {
       <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-12">
         
         <!-- Dental & Pharmacy Professionals -->
-        <div class="occupation-category bg-white dark:bg-gray-800 rounded-3xl p-8 shadow-2xl border-2 border-cyan-200 dark:border-gray-600 hover:border-cyan-400 transition-all duration-300">
+        <div id="pharmacy-section" class="occupation-category bg-white dark:bg-gray-800 rounded-3xl p-8 shadow-2xl border-2 border-cyan-200 dark:border-gray-600 hover:border-cyan-400 transition-all duration-300">
           <div class="flex items-center gap-4 mb-6">
             <div class="w-16 h-16 bg-gradient-to-br from-cyan-500 to-blue-600 rounded-2xl flex items-center justify-center">
               <span class="text-3xl">🦷</span>
@@ -1989,8 +1989,19 @@ export const metadata = {
       }
     }
 
-    // Make quickSearch globally available
-    window.quickSearch = quickSearch;
+    // Simple scroll to section function
+    function scrollToSection(sectionId) {
+      const section = document.getElementById(sectionId);
+      if (section) {
+        section.scrollIntoView({ 
+          behavior: 'smooth', 
+          block: 'start'
+        });
+      }
+    }
+
+    // Make functions globally available
+    window.scrollToSection = scrollToSection;
   });
 
   // Counter animation for success metrics
