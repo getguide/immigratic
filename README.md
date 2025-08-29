@@ -91,12 +91,37 @@ immigratic/
 ├── vercel.json            # Vercel deployment configuration
 ├── DESIGN_SYSTEM.md       # Comprehensive design system documentation
 ├── LIVE_DATA_ARCHITECTURE.md # Complete live data system documentation
+├── BREADCRUMB_SYSTEM_GUIDE.md # Standardized breadcrumb navigation system
 └── README.md              # This file
 ```
 
 ## 🎨 **Design System**
 
 We maintain a comprehensive design system documented in `DESIGN_SYSTEM.md` that includes:
+
+## 🎯 **Breadcrumb Navigation System**
+
+**ALL pages** on the Immigratic website use a standardized breadcrumb navigation system for consistent user experience. See `BREADCRUMB_SYSTEM_GUIDE.md` for complete implementation details.
+
+**Key Features:**
+- ✅ **100% standardized** across all 50+ pages
+- ✅ **Component-based** system for easy maintenance
+- ✅ **Hero-colored backgrounds** matching page themes
+- ✅ **Mobile responsive** design
+- ✅ **SEO optimized** navigation structure
+
+**Quick Implementation:**
+```astro
+import Breadcrumbs from '../../../components/Breadcrumbs.astro';
+
+<Breadcrumbs 
+  items={[
+    { text: "Home", href: "/" },
+    { text: "Section", href: "/section/" },
+    { text: "Current Page", current: true }
+  ]}
+/>
+```
 
 - **Component Library**: Reusable UI components with code examples
 - **Color System**: Primary palette, gradients, and usage guidelines
