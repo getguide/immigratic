@@ -65,6 +65,13 @@ export default defineType({
       description: 'A short summary of the post for previews.',
     }),
     defineField({
+      name: 'featured',
+      title: 'Featured Post',
+      type: 'boolean',
+      description: 'Mark this post as featured to display it prominently on the blog homepage.',
+      initialValue: false,
+    }),
+    defineField({
       name: 'body',
       title: 'Body',
       type: 'blockContent',

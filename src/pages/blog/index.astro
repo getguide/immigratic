@@ -3,20 +3,32 @@ import Layout from '../../layouts/Layout.astro';
 import Breadcrumbs from '../../components/Breadcrumbs.astro';
 import { client } from '../../lib/sanity.js';
 
-// Fetch blog posts from Sanity
-const posts = await client.fetch(`
-  *[_type == "post"] | order(publishedAt desc) {
-    _id,
-    title,
-    slug,
-    excerpt,
-    publishedAt,
-    "mainImage": mainImage.asset->url,
-    "authorName": author->name,
-    "categories": categories[]->title,
-    body
-  }
-`);
+// Fetch blog posts from Sanity with pagination
+const POSTS_PER_PAGE = 12; // Show 12 posts per page initially
+
+  const posts = await client.fetch(`
+    *[_type == "post"] | order(publishedAt desc) {
+      _id,
+      title,
+      slug,
+      excerpt,
+      publishedAt,
+      featured,
+      "mainImage": mainImage.asset->url,
+      "authorName": author->name,
+      "categories": categories[]->title,
+      body
+    }
+  `);
+  
+  // Separate featured and regular posts
+  const featuredPosts = posts.filter((post: any) => post.featured);
+  const regularPosts = posts.filter((post: any) => !post.featured);
+
+// Calculate pagination
+const totalPosts = posts.length;
+const totalPages = Math.ceil(totalPosts / POSTS_PER_PAGE);
+const initialPosts = posts.slice(0, POSTS_PER_PAGE);
 ---
 
 <Layout title="Immigration Blog | Latest Updates & Insights | Immigratic">
@@ -42,13 +54,175 @@ const posts = await client.fetch(`
     </div>
   </section>
 
+  <!-- Blog Controls -->
+  <section class="py-8 bg-white dark:bg-gray-800 border-b border-gray-200 dark:border-gray-700">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <!-- Search and Filter Bar -->
+      <div class="flex flex-col md:flex-row gap-4 items-center justify-between mb-8">
+        <!-- Search -->
+        <div class="relative w-full md:w-96">
+          <input 
+            type="text" 
+            id="blog-search"
+            placeholder="Search blog posts..."
+            class="w-full px-4 py-3 pl-10 bg-white dark:bg-gray-700 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent dark:text-white"
+          />
+          <svg class="absolute left-3 top-3.5 w-5 h-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+          </svg>
+        </div>
+        
+        <!-- Category Filter -->
+        <div class="flex gap-2 flex-wrap">
+          <button 
+            class="category-filter px-4 py-2 rounded-lg bg-blue-600 text-white hover:bg-blue-700 transition-colors"
+            data-category="all"
+          >
+            All Posts
+          </button>
+          {Array.from(new Set(posts.flatMap((post: any) => post.categories || []))).map((category: string) => (
+            <button 
+              class="category-filter px-4 py-2 rounded-lg bg-gray-200 dark:bg-gray-600 text-gray-700 dark:text-gray-300 hover:bg-gray-300 dark:hover:bg-gray-500 transition-colors"
+              data-category={category}
+            >
+              {category}
+            </button>
+          ))}
+        </div>
+      </div>
+
+      <!-- Blog Stats -->
+      <div class="text-center mb-8">
+        <p class="text-gray-600 dark:text-gray-400">
+          Showing <span id="post-count" class="font-semibold">{initialPosts.length}</span> of <span class="font-semibold">{totalPosts}</span> posts
+          {Array.from(new Set(posts.flatMap((post: any) => post.categories || []))).length > 0 && (
+            <span> across <span class="font-semibold">{Array.from(new Set(posts.flatMap((post: any) => post.categories || []))).length}</span> categories</span>
+          )}
+        </p>
+        {totalPages > 1 && (
+          <p class="text-sm text-gray-500 dark:text-gray-400 mt-2">
+            Page <span id="current-page" class="font-semibold">1</span> of <span class="font-semibold">{totalPages}</span>
+          </p>
+        )}
+      </div>
+    </div>
+  </section>
+
+  <!-- Featured Posts Section -->
+  {featuredPosts.length > 0 && (
+    <section class="py-16 bg-white dark:bg-gray-800">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <h2 class="text-3xl font-bold text-gray-900 dark:text-white mb-8 text-center">Featured Posts</h2>
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+          {featuredPosts.slice(0, 2).map((post: any) => (
+            <article class="bg-white dark:bg-gray-800 rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-shadow duration-300 border border-gray-200 dark:border-gray-700">
+              {post.mainImage && (
+                <div class="h-48 overflow-hidden">
+                  <img 
+                    src={post.mainImage} 
+                    alt={post.title}
+                    class="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
+                  />
+                </div>
+              )}
+              <div class="p-6">
+                <div class="flex items-center gap-2 mb-3">
+                  <span class="px-3 py-1 bg-yellow-100 dark:bg-yellow-900 text-yellow-800 dark:text-yellow-200 text-sm font-medium rounded-full">
+                    ⭐ Featured
+                  </span>
+                  {post.categories && post.categories.length > 0 && (
+                    <span class="px-3 py-1 bg-blue-100 dark:bg-blue-900 text-blue-800 dark:text-blue-200 text-sm rounded-full">
+                      {post.categories[0]}
+                    </span>
+                  )}
+                </div>
+                <h3 class="text-xl font-bold text-gray-900 dark:text-white mb-3 line-clamp-2">
+                  <a href={`/blog/${post.slug.current}`} class="hover:text-blue-600 dark:hover:text-blue-400 transition-colors">
+                    {post.title}
+                  </a>
+                </h3>
+                {post.excerpt && (
+                  <p class="text-gray-600 dark:text-gray-300 mb-4 line-clamp-3">{post.excerpt}</p>
+                )}
+                <div class="flex items-center justify-between">
+                  <div class="flex items-center gap-2 text-sm text-gray-500 dark:text-gray-400">
+                    {post.authorName && <span>By {post.authorName}</span>}
+                    {post.publishedAt && (
+                      <span>• {new Date(post.publishedAt).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })}</span>
+                    )}
+                  </div>
+                  <a 
+                    href={`/blog/${post.slug.current}`}
+                    class="text-blue-600 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-300 font-medium text-sm"
+                  >
+                    Read More →
+                  </a>
+                </div>
+              </div>
+            </article>
+          ))}
+        </div>
+      </div>
+    </section>
+  )}
+
+  <!-- Newsletter Signup Section -->
+  <section class="py-16 bg-gradient-to-r from-blue-600 to-purple-600">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      <h2 class="text-3xl font-bold text-white mb-4">Stay Updated with Immigration News</h2>
+      <p class="text-blue-100 mb-8 text-lg">Get the latest updates on Express Entry draws, OINP invitations, policy changes, and more delivered to your inbox.</p>
+      
+      <form id="newsletter-form" class="max-w-md mx-auto">
+        <div class="flex flex-col sm:flex-row gap-3 mb-4">
+          <input
+            type="text"
+            id="newsletter-firstname"
+            placeholder="First Name"
+            class="flex-1 px-4 py-3 rounded-lg border-0 focus:ring-2 focus:ring-white focus:ring-opacity-50"
+            required
+          />
+          <input
+            type="email"
+            id="newsletter-email"
+            placeholder="Email Address"
+            class="flex-1 px-4 py-3 rounded-lg border-0 focus:ring-2 focus:ring-white focus:ring-opacity-50"
+            required
+          />
+        </div>
+        
+        <div class="mb-6">
+          <label class="text-blue-100 text-sm mb-2 block">Interests (Optional):</label>
+          <div class="flex flex-wrap justify-center gap-2">
+            {['Express Entry', 'OINP', 'Temporary Residence', 'Policy Updates', 'Immigration News'].map((interest) => (
+              <label class="flex items-center gap-2 text-blue-100 text-sm">
+                <input type="checkbox" value={interest.toLowerCase().replace(' ', '-')} class="rounded" />
+                {interest}
+              </label>
+            ))}
+          </div>
+        </div>
+        
+        <button
+          type="submit"
+          class="w-full bg-white text-blue-600 font-semibold py-3 px-6 rounded-lg hover:bg-blue-50 transition-colors duration-300"
+        >
+          Subscribe to Newsletter
+        </button>
+        
+        <p class="text-blue-100 text-xs mt-3">
+          We respect your privacy. Unsubscribe at any time.
+        </p>
+      </form>
+    </div>
+  </section>
+
   <!-- Blog Posts Grid -->
   <section class="py-16 bg-gray-50 dark:bg-gray-900">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       {posts.length > 0 ? (
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {posts.map((post: any) => (
-            <article class="bg-white dark:bg-gray-800 rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-shadow duration-300">
+        <div id="blog-posts-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          {initialPosts.map((post: any) => (
+            <article class="post-card bg-white dark:bg-gray-800 rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-shadow duration-300">
               {post.mainImage && (
                 <div class="aspect-video overflow-hidden">
                   <img 
@@ -92,6 +266,80 @@ const posts = await client.fetch(`
             </article>
           ))}
         </div>
+        
+        <!-- Pagination Controls -->
+        {totalPages > 1 && (
+          <div class="mt-12 flex justify-center">
+            <div class="flex items-center gap-4">
+              <!-- Previous Page -->
+              <button 
+                id="prev-page"
+                class="px-4 py-2 bg-gray-200 dark:bg-gray-600 text-gray-700 dark:text-gray-300 rounded-lg hover:bg-gray-300 dark:hover:bg-gray-500 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+                disabled
+              >
+                ← Previous
+              </button>
+              
+              <!-- Page Numbers -->
+              <div class="flex gap-2">
+                {Array.from({ length: Math.min(5, totalPages) }, (_, i) => {
+                  const pageNum = i + 1;
+                  return (
+                    <button 
+                      class={`page-number px-3 py-2 rounded-lg transition-colors ${
+                        pageNum === 1 
+                          ? 'bg-blue-600 text-white' 
+                          : 'bg-gray-200 dark:bg-gray-600 text-gray-700 dark:text-gray-300 hover:bg-gray-300 dark:hover:bg-gray-500'
+                      }`}
+                      data-page={pageNum}
+                    >
+                      {pageNum}
+                    </button>
+                  );
+                })}
+                {totalPages > 5 && (
+                  <span class="px-3 py-2 text-gray-500">...</span>
+                )}
+              </div>
+              
+              <!-- Next Page -->
+              <button 
+                id="next-page"
+                class={`px-4 py-2 rounded-lg transition-colors ${
+                  totalPages > 1 
+                    ? 'bg-blue-600 text-white hover:bg-blue-700' 
+                    : 'bg-gray-200 dark:bg-gray-600 text-gray-700 dark:text-gray-300 opacity-50 cursor-not-allowed'
+                }`}
+                disabled={totalPages <= 1}
+              >
+                Next →
+              </button>
+            </div>
+          </div>
+        )}
+        
+        <!-- Load More Button (Alternative to pagination) -->
+        {totalPosts > POSTS_PER_PAGE && (
+          <div class="mt-8 text-center">
+            <button 
+              id="load-more"
+              class="px-8 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors"
+            >
+              Load More Posts ({POSTS_PER_PAGE} more)
+            </button>
+          </div>
+        )}
+        
+        <!-- No Posts Found Message (Hidden by default) -->
+        <div id="no-posts-message" class="hidden text-center py-16">
+          <div class="text-6xl mb-4">🔍</div>
+          <h3 class="text-2xl font-bold text-gray-900 dark:text-white mb-2">
+            No posts found
+          </h3>
+          <p class="text-gray-600 dark:text-gray-400">
+            Try adjusting your search or category filter.
+          </p>
+        </div>
       ) : (
         <div class="text-center py-16">
           <div class="text-6xl mb-4">📝</div>
@@ -121,4 +369,266 @@ const posts = await client.fetch(`
     -webkit-box-orient: vertical;
     overflow: hidden;
   }
+
+  .post-card {
+    transition: all 0.3s ease;
+  }
+
+  .post-card.hidden {
+    display: none;
+  }
+
+  .category-filter.active {
+    background-color: rgb(37 99 235);
+    color: white;
+  }
 </style>
+
+<script>
+  // Blog search, filtering, and pagination functionality
+  document.addEventListener('DOMContentLoaded', function() {
+    const searchInput = document.getElementById('blog-search');
+    const categoryFilters = document.querySelectorAll('.category-filter');
+    const postCards = document.querySelectorAll('.post-card');
+    const postCount = document.getElementById('post-count');
+    const currentPageSpan = document.getElementById('current-page');
+    const loadMoreBtn = document.getElementById('load-more');
+    const prevPageBtn = document.getElementById('prev-page');
+    const nextPageBtn = document.getElementById('next-page');
+    const pageNumbers = document.querySelectorAll('.page-number');
+    
+    let currentCategory = 'all';
+    let currentSearch = '';
+    let currentPage = 1;
+    let postsPerPage = 12;
+    let allPosts = [];
+    let filteredPosts = [];
+
+    // Initialize posts data
+    function initializePosts() {
+      // Get all posts from the DOM (this would normally come from your data)
+      allPosts = Array.from(postCards);
+      filteredPosts = [...allPosts];
+      updateDisplay();
+    }
+
+    // Search functionality
+    searchInput?.addEventListener('input', function(e) {
+      currentSearch = e.target.value.toLowerCase();
+      currentPage = 1; // Reset to first page
+      filterPosts();
+    });
+
+    // Category filtering
+    categoryFilters.forEach(filter => {
+      filter.addEventListener('click', function() {
+        // Update active state
+        categoryFilters.forEach(f => f.classList.remove('active'));
+        this.classList.add('active');
+        
+        currentCategory = this.dataset.category;
+        currentPage = 1; // Reset to first page
+        filterPosts();
+      });
+    });
+
+    // Pagination controls
+    if (prevPageBtn) {
+      prevPageBtn.addEventListener('click', () => {
+        if (currentPage > 1) {
+          currentPage--;
+          updateDisplay();
+        }
+      });
+    }
+
+    if (nextPageBtn) {
+      nextPageBtn.addEventListener('click', () => {
+        const totalPages = Math.ceil(filteredPosts.length / postsPerPage);
+        if (currentPage < totalPages) {
+          currentPage++;
+          updateDisplay();
+        }
+      });
+    }
+
+    // Page number clicks
+    pageNumbers.forEach(btn => {
+      btn.addEventListener('click', function() {
+        currentPage = parseInt(this.dataset.page);
+        updateDisplay();
+      });
+    });
+
+    // Load more functionality
+    if (loadMoreBtn) {
+      loadMoreBtn.addEventListener('click', function() {
+        postsPerPage += 12;
+        updateDisplay();
+        
+        // Hide load more if all posts are shown
+        if (postsPerPage >= filteredPosts.length) {
+          this.style.display = 'none';
+        } else {
+          this.textContent = `Load More Posts (${Math.min(12, filteredPosts.length - postsPerPage)} more)`;
+        }
+      });
+    }
+
+    function filterPosts() {
+      filteredPosts = allPosts.filter(card => {
+        const title = card.querySelector('h2')?.textContent?.toLowerCase() || '';
+        const excerpt = card.querySelector('p')?.textContent?.toLowerCase() || '';
+        const categories = Array.from(card.querySelectorAll('span')).map(cat => cat.textContent?.toLowerCase() || '');
+        
+        const matchesSearch = title.includes(currentSearch) || excerpt.includes(currentSearch);
+        const matchesCategory = currentCategory === 'all' || categories.includes(currentCategory);
+        
+        return matchesSearch && matchesCategory;
+      });
+      
+      updateDisplay();
+    }
+
+    function updateDisplay() {
+      const startIndex = (currentPage - 1) * postsPerPage;
+      const endIndex = startIndex + postsPerPage;
+      const postsToShow = filteredPosts.slice(startIndex, endIndex);
+      
+      // Hide all posts
+      allPosts.forEach(card => card.classList.add('hidden'));
+      
+      // Show filtered posts for current page
+      postsToShow.forEach(card => card.classList.remove('hidden'));
+      
+      // Update post count
+      if (postCount) {
+        postCount.textContent = postsToShow.length;
+      }
+      
+      // Update current page display
+      if (currentPageSpan) {
+        currentPageSpan.textContent = currentPage;
+      }
+      
+      // Update pagination button states
+      updatePaginationButtons();
+    }
+
+    function updatePaginationButtons() {
+      const totalPages = Math.ceil(filteredPosts.length / postsPerPage);
+      
+      if (prevPageBtn) {
+        prevPageBtn.disabled = currentPage <= 1;
+      }
+      
+      if (nextPageBtn) {
+        nextPageBtn.disabled = currentPage >= totalPages;
+      }
+      
+      // Update page number buttons
+      pageNumbers.forEach((btn, index) => {
+        const pageNum = index + 1;
+        if (pageNum === currentPage) {
+          btn.classList.add('bg-blue-600', 'text-white');
+          btn.classList.remove('bg-gray-200', 'dark:bg-gray-600', 'text-gray-700', 'dark:text-gray-300');
+        } else {
+          btn.classList.remove('bg-blue-600', 'text-white');
+          btn.classList.add('bg-gray-200', 'dark:bg-gray-600', 'text-gray-700', 'dark:text-gray-300');
+        }
+      });
+    }
+
+    // Initialize with "All Posts" active
+    const allPostsFilter = document.querySelector('[data-category="all"]');
+    if (allPostsFilter) {
+      allPostsFilter.classList.add('active');
+    }
+    
+    // Initialize posts
+    initializePosts();
+  });
+
+  // Newsletter Form Handler
+  document.getElementById('newsletter-form')?.addEventListener('submit', async function(e) {
+    e.preventDefault();
+    
+    const form = e.target;
+    const submitBtn = form.querySelector('button[type="submit"]');
+    const originalText = submitBtn.textContent;
+    
+    // Get form data
+    const firstName = document.getElementById('newsletter-firstname').value;
+    const email = document.getElementById('newsletter-email').value;
+    const interests = Array.from(form.querySelectorAll('input[type="checkbox"]:checked'))
+      .map(cb => cb.value);
+    
+    // Update button state
+    submitBtn.textContent = 'Subscribing...';
+    submitBtn.disabled = true;
+    
+    try {
+      // Here you would typically send to your backend/API
+      // For now, we'll simulate success and store in localStorage
+      const subscriber = {
+        firstName,
+        email,
+        interests,
+        subscribedAt: new Date().toISOString(),
+        source: 'blog',
+        status: 'active'
+      };
+      
+      // Store in localStorage (in production, send to your API)
+      const subscribers = JSON.parse(localStorage.getItem('newsletter_subscribers') || '[]');
+      subscribers.push(subscriber);
+      localStorage.setItem('newsletter_subscribers', JSON.stringify(subscribers));
+      
+      // Show success message
+      submitBtn.textContent = '✓ Subscribed!';
+      submitBtn.classList.add('bg-green-500');
+      
+      // Reset form
+      form.reset();
+      
+      // Reset button after 3 seconds
+      setTimeout(() => {
+        submitBtn.textContent = originalText;
+        submitBtn.disabled = false;
+        submitBtn.classList.remove('bg-green-500');
+      }, 3000);
+      
+      // Show success notification
+      showNotification('Successfully subscribed to newsletter!', 'success');
+      
+    } catch (error) {
+      console.error('Newsletter subscription error:', error);
+      submitBtn.textContent = 'Error - Try Again';
+      submitBtn.classList.add('bg-red-500');
+      
+      setTimeout(() => {
+        submitBtn.textContent = originalText;
+        submitBtn.disabled = false;
+        submitBtn.classList.remove('bg-red-500');
+      }, 3000);
+      
+      showNotification('Failed to subscribe. Please try again.', 'error');
+    }
+  });
+  
+  function showNotification(message, type) {
+    // Create notification element
+    const notification = document.createElement('div');
+    notification.className = `fixed top-4 right-4 p-4 rounded-lg shadow-lg z-50 ${
+      type === 'success' ? 'bg-green-500 text-white' : 'bg-red-500 text-white'
+    }`;
+    notification.textContent = message;
+    
+    document.body.appendChild(notification);
+    
+    // Remove after 5 seconds
+    setTimeout(() => {
+      notification.remove();
+    }, 5000);
+  }
+</script>
