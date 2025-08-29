@@ -66,7 +66,7 @@ import LiveCECChart from '../../../../components/LiveCECChart.astro';
               </select>
             </div>
           </div>
-          <button class="w-full bg-gradient-to-r from-blue-600 to-emerald-600 hover:from-blue-700 hover:to-emerald-700 text-white font-bold py-4 px-8 rounded-xl transition-all duration-300 transform hover:scale-105 shadow-lg">
+          <button onclick="showComingSoonPopup()" class="w-full bg-gradient-to-r from-blue-600 to-emerald-600 hover:from-blue-700 hover:to-emerald-700 text-white font-bold py-4 px-8 rounded-xl transition-all duration-300 transform hover:scale-105 shadow-lg">
             🎯 Check My Eligibility
           </button>
         </div>
@@ -467,6 +467,80 @@ import LiveCECChart from '../../../../components/LiveCECChart.astro';
       </div>
     </div>
   </section>
+
+  <!-- Coming Soon Popup -->
+  <div id="comingSoonPopup" class="fixed inset-0 bg-black bg-opacity-50 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
+    <div class="bg-white dark:bg-gray-800 rounded-3xl p-8 max-w-md w-full mx-4 shadow-2xl border-2 border-blue-200 dark:border-gray-600">
+      <div class="text-center">
+        <!-- Icon -->
+        <div class="w-20 h-20 bg-gradient-to-r from-blue-500 to-emerald-500 rounded-full flex items-center justify-center mx-auto mb-6">
+          <span class="text-4xl">🚀</span>
+        </div>
+        
+        <!-- Title -->
+        <h3 class="text-2xl font-bold text-gray-900 dark:text-white mb-4">
+          Coming Soon!
+        </h3>
+        
+        <!-- Message -->
+        <p class="text-gray-600 dark:text-gray-300 mb-6">
+          Our advanced Express Entry eligibility checker is under development. Get a comprehensive assessment of your profile with our Master Assessment tool instead!
+        </p>
+        
+        <!-- Primary CTA -->
+        <a href="/tools/master-assessment" class="block w-full bg-gradient-to-r from-blue-600 to-emerald-600 hover:from-blue-700 hover:to-emerald-700 text-white font-bold py-4 px-6 rounded-xl transition-all duration-300 transform hover:scale-105 shadow-lg mb-4">
+          🎯 Try Master Assessment
+        </a>
+        
+        <!-- Secondary CTA -->
+        <button onclick="closeComingSoonPopup()" class="w-full bg-gray-200 dark:bg-gray-600 hover:bg-gray-300 dark:hover:bg-gray-500 text-gray-700 dark:text-gray-300 font-medium py-3 px-6 rounded-xl transition-all duration-300">
+          Got it!
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- JavaScript Functions -->
+  <script>
+    function showComingSoonPopup() {
+      const popup = document.getElementById('comingSoonPopup');
+      if (popup) {
+        popup.classList.remove('hidden');
+        document.body.style.overflow = 'hidden';
+      }
+    }
+
+    function closeComingSoonPopup() {
+      const popup = document.getElementById('comingSoonPopup');
+      if (popup) {
+        popup.classList.add('hidden');
+        document.body.style.overflow = 'auto';
+      }
+    }
+
+    // Make functions globally accessible
+    window.showComingSoonPopup = showComingSoonPopup;
+    window.closeComingSoonPopup = closeComingSoonPopup;
+
+    // Close popup when clicking outside
+    document.addEventListener('DOMContentLoaded', function() {
+      const popup = document.getElementById('comingSoonPopup');
+      if (popup) {
+        popup.addEventListener('click', function(e) {
+          if (e.target === this) {
+            closeComingSoonPopup();
+          }
+        });
+      }
+    });
+
+    // Close popup with Escape key
+    document.addEventListener('keydown', function(e) {
+      if (e.key === 'Escape') {
+        closeComingSoonPopup();
+      }
+    });
+  </script>
 </Layout>
 
 <style>

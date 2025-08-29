@@ -167,11 +167,11 @@ export const metadata = {
             Fast processing, multiple options, expert guidance.
           </p>
           <div class="flex justify-center gap-4">
-            <a href="#express-entry" class="px-8 py-3 bg-gradient-to-r from-blue-500 to-indigo-600 text-white font-semibold rounded-xl hover:from-blue-600 hover:to-indigo-700 transition-all duration-300 transform hover:scale-105">
-              Explore Express Entry
+            <a href="/services/pr/ee" class="px-8 py-3 bg-gradient-to-r from-blue-500 to-indigo-600 text-white font-semibold rounded-xl hover:from-blue-600 hover:to-indigo-700 transition-all duration-300 transform hover:scale-105">
+              Explore Express Entry Hub
             </a>
-            <a href="#provincial-nominee" class="px-8 py-3 bg-gradient-to-r from-purple-500 to-violet-600 text-white font-semibold rounded-xl hover:from-purple-600 hover:to-violet-700 transition-all duration-300 transform hover:scale-105">
-              Check Ontario PNP
+            <a href="/services/pr/oinp" class="px-8 py-3 bg-gradient-to-r from-purple-500 to-violet-600 text-white font-semibold rounded-xl hover:from-purple-600 hover:to-violet-700 transition-all duration-300 transform hover:scale-105">
+              Explore Ontario PNP Hub
             </a>
           </div>
         </div>
@@ -244,6 +244,15 @@ export const metadata = {
         <p class="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto opacity-0 animate-fade-in-up" style="animation-delay: 0.6s; animation-fill-mode: forwards;">
           Canada's flagship immigration system for skilled workers, offering the fastest path to permanent residency.
         </p>
+        
+        <!-- Primary CTA to Express Entry Hub -->
+        <div class="text-center mt-8 opacity-0 animate-fade-in-up" style="animation-delay: 0.8s; animation-fill-mode: forwards;">
+          <a href="/services/pr/ee" class="inline-flex items-center gap-2 px-8 py-4 bg-gradient-to-r from-blue-600 to-purple-600 text-white font-bold rounded-2xl hover:from-blue-700 hover:to-purple-700 transition-all duration-300 transform hover:scale-105 shadow-2xl">
+            <span>🚀</span>
+            <span>Explore All Express Entry Programs</span>
+            <span>→</span>
+          </a>
+        </div>
       </div>
 
       <!-- Smart Program Matcher -->
@@ -313,7 +322,7 @@ export const metadata = {
               </div>
               
               <div class="flex gap-4 justify-center">
-                <a href="/services/pr/ee-cec?utm_source=immigratic&utm_medium=website&utm_campaign=pr_page&utm_content=cec" class="px-8 py-3 bg-gradient-to-r from-blue-600 to-purple-600 text-white font-semibold rounded-xl hover:from-blue-700 hover:to-purple-700 transition-all duration-300 text-center">
+                <a href="/services/pr/ee/cec?utm_source=immigratic&utm_medium=website&utm_campaign=pr_page&utm_content=cec" class="px-8 py-3 bg-gradient-to-r from-blue-600 to-purple-600 text-white font-semibold rounded-xl hover:from-blue-700 hover:to-purple-700 transition-all duration-300 text-center">
                   Learn More
                 </a>
                 <button onclick="window.openEligibilityModal()" class="px-8 py-3 border border-blue-600 text-blue-600 dark:text-blue-400 font-semibold rounded-xl hover:bg-blue-600 hover:text-white transition-all duration-300">
@@ -360,7 +369,7 @@ export const metadata = {
               </div>
               
               <div class="flex gap-4 justify-center">
-                <a href="/services/pr/ee-fsw?utm_source=immigratic&utm_medium=website&utm_campaign=pr_page&utm_content=fsw_smart" class="px-8 py-3 bg-gradient-to-r from-green-600 to-blue-600 text-white font-semibold rounded-xl hover:from-green-700 hover:to-blue-700 transition-all duration-300 text-center">
+                <a href="/services/pr/ee/fsw?utm_source=immigratic&utm_medium=website&utm_campaign=pr_page&utm_content=fsw_smart" class="px-8 py-3 bg-gradient-to-r from-green-600 to-blue-600 text-white font-semibold rounded-xl hover:from-green-700 hover:to-blue-700 transition-all duration-300 text-center">
                   Learn About FSW
                 </a>
                 <button onclick="window.openFSWEligibilityModal()" class="px-8 py-3 border border-green-600 text-green-600 dark:text-green-400 font-semibold rounded-xl hover:bg-green-600 hover:text-white transition-all duration-300">
@@ -502,7 +511,7 @@ export const metadata = {
               </div>
             </div>
             <p class="text-sm text-gray-600 dark:text-gray-400 mb-4">Healthcare professionals, nurses, doctors, medical technicians</p>
-            <a href="/services/pr/ee-health" class="block w-full px-4 py-2 bg-red-600 text-white text-sm font-semibold rounded-xl hover:bg-red-700 transition-colors text-center">
+            <a href="/services/pr/ee/health" class="block w-full px-4 py-2 bg-red-600 text-white text-sm font-semibold rounded-xl hover:bg-red-700 transition-colors text-center">
               Check Eligibility
             </a>
           </div>
@@ -521,7 +530,7 @@ export const metadata = {
               </div>
             </div>
             <p class="text-sm text-gray-600 dark:text-gray-400 mb-4">Scientists, engineers, tech professionals, researchers</p>
-            <a href="/services/pr/ee-stem" class="block w-full px-4 py-2 bg-blue-600 text-white text-sm font-semibold rounded-xl hover:bg-blue-700 transition-colors text-center">
+            <a href="/services/pr/ee/stem" class="block w-full px-4 py-2 bg-blue-600 text-white text-sm font-semibold rounded-xl hover:bg-blue-700 transition-colors text-center">
               Check Eligibility
             </a>
           </div>
@@ -540,7 +549,7 @@ export const metadata = {
               </div>
             </div>
             <p class="text-sm text-gray-600 dark:text-gray-400 mb-4">Skilled trades, electricians, plumbers, carpenters</p>
-            <a href="/services/pr/ee-trade" class="block w-full px-4 py-2 bg-yellow-600 text-white text-sm font-semibold rounded-xl hover:bg-yellow-700 transition-colors text-center">
+            <a href="/services/pr/ee/trade" class="block w-full px-4 py-2 bg-yellow-600 text-white text-sm font-semibold rounded-xl hover:bg-yellow-700 transition-colors text-center">
               Check Eligibility
             </a>
           </div>
@@ -559,7 +568,7 @@ export const metadata = {
               </div>
             </div>
             <p class="text-sm text-gray-600 dark:text-gray-400 mb-4">Teachers, professors, education administrators</p>
-            <a href="/services/pr/ee-education" class="block w-full px-4 py-2 bg-purple-600 text-white text-sm font-semibold rounded-xl hover:bg-purple-700 transition-colors text-center">
+            <a href="/services/pr/ee/education" class="block w-full px-4 py-2 bg-purple-600 text-white text-sm font-semibold rounded-xl hover:bg-purple-700 transition-colors text-center">
               Check Eligibility
             </a>
           </div>
@@ -578,7 +587,7 @@ export const metadata = {
               </div>
             </div>
             <p class="text-sm text-gray-600 dark:text-gray-400 mb-4">Farmers, agricultural specialists, food processors</p>
-            <a href="/services/pr/ee-agriculture" class="block w-full px-4 py-2 bg-green-600 text-white text-sm font-semibold rounded-xl hover:bg-green-700 transition-colors text-center">
+            <a href="/services/pr/ee/agriculture" class="block w-full px-4 py-2 bg-green-600 text-white text-sm font-semibold rounded-xl hover:bg-green-700 transition-colors text-center">
               Check Eligibility
             </a>
           </div>
@@ -597,7 +606,7 @@ export const metadata = {
               </div>
             </div>
             <p class="text-sm text-gray-600 dark:text-gray-400 mb-4">French-speaking professionals with CLB 7+</p>
-            <a href="/services/pr/ee-french" class="block w-full px-4 py-2 bg-indigo-600 text-white text-sm font-semibold rounded-xl hover:bg-indigo-700 transition-colors text-center">
+            <a href="/services/pr/ee/french" class="block w-full px-4 py-2 bg-indigo-600 text-white text-sm font-semibold rounded-xl hover:bg-indigo-700 transition-colors text-center">
               Check Eligibility
             </a>
           </div>
@@ -853,9 +862,18 @@ export const metadata = {
             <span class="bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">Ontario</span> Immigration Programs
           </h2>
           
-          <p class="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto opacity-0 animate-fade-in-up" style="animation-delay: 0.6s; animation-fill-mode: forwards;">
-            Choose your pathway: Express Entry boost or direct PR application
-          </p>
+                  <p class="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto opacity-0 animate-fade-in-up" style="animation-delay: 0.6s; animation-fill-mode: forwards;">
+          Choose your pathway: Express Entry boost or direct PR application
+        </p>
+        
+        <!-- Primary CTA to OINP Hub -->
+        <div class="text-center mt-8 opacity-0 animate-fade-in-up" style="animation-delay: 0.8s; animation-fill-mode: forwards;">
+          <a href="/services/pr/oinp" class="inline-flex items-center gap-2 px-8 py-4 bg-gradient-to-r from-purple-600 to-indigo-600 text-white font-bold rounded-2xl hover:from-purple-700 hover:to-indigo-700 transition-all duration-300 transform hover:scale-105 shadow-2xl">
+            <span>🏛️</span>
+            <span>Explore All Ontario PNP Programs</span>
+            <span>→</span>
+          </a>
+        </div>
         </div>
 
         <!-- Interactive Pathway Selector -->
@@ -908,7 +926,7 @@ export const metadata = {
                     </span>
                   </div>
                   <p class="text-gray-600 dark:text-gray-400 mb-6 text-center">For skilled workers with high CRS scores in the Express Entry pool</p>
-                            <a href="/services/pr/ee-oinp-human-capital" class="w-full px-6 py-3 bg-gradient-to-r from-blue-600 to-purple-600 text-white font-semibold rounded-xl hover:from-blue-700 hover:to-purple-700 transition-all duration-300 transform hover:scale-105 text-center block">
+                            <a href="/services/pr/oinp/human-capital" class="w-full px-6 py-3 bg-gradient-to-r from-blue-600 to-purple-600 text-white font-semibold rounded-xl hover:from-blue-700 hover:to-purple-700 transition-all duration-300 transform hover:scale-105 text-center block">
             Learn More
           </a>
                 </div>
@@ -928,7 +946,7 @@ export const metadata = {
                     </span>
                   </div>
                   <p class="text-gray-600 dark:text-gray-400 mb-6 text-center">For skilled trades workers in the Express Entry pool</p>
-                            <a href="/services/pr/ee-oinp-trade" class="w-full px-6 py-3 bg-gradient-to-r from-blue-600 to-indigo-600 text-white font-semibold rounded-xl hover:from-blue-700 hover:to-indigo-700 transition-all duration-300 transform hover:scale-105 text-center block">
+                            <a href="/services/pr/oinp/trade" class="w-full px-6 py-3 bg-gradient-to-r from-blue-600 to-indigo-600 text-white font-semibold rounded-xl hover:from-blue-700 hover:to-indigo-700 transition-all duration-300 transform hover:scale-105 text-center block">
             Learn More
           </a>
                 </div>
@@ -948,7 +966,7 @@ export const metadata = {
                     </span>
                   </div>
                   <p class="text-gray-600 dark:text-gray-400 mb-6 text-center">For French-speaking professionals in the Express Entry pool</p>
-                            <a href="/services/pr/ee-oinp-french" class="w-full px-6 py-3 bg-gradient-to-r from-indigo-600 to-purple-600 text-white font-semibold rounded-xl hover:from-indigo-700 hover:to-purple-700 transition-all duration-300 transform hover:scale-105 text-center block">
+                            <a href="/services/pr/oinp/french" class="w-full px-6 py-3 bg-gradient-to-r from-indigo-600 to-purple-600 text-white font-semibold rounded-xl hover:from-indigo-700 hover:to-purple-700 transition-all duration-300 transform hover:scale-105 text-center block">
             Learn More
           </a>
                 </div>
@@ -980,7 +998,7 @@ export const metadata = {
                       </span>
                     </div>
                     <p class="text-gray-600 dark:text-gray-400 mb-6 text-center">For skilled foreign workers with Ontario job offer</p>
-                              <a href="/services/pr/pnp-oinp-fws" class="w-full px-6 py-3 bg-gradient-to-r from-purple-600 to-indigo-600 text-white font-semibold rounded-xl hover:from-purple-700 hover:to-indigo-700 transition-all duration-300 transform hover:scale-105 text-center block">
+                              <a href="/services/pr/oinp/foreign-worker" class="w-full px-6 py-3 bg-gradient-to-r from-purple-600 to-indigo-600 text-white font-semibold rounded-xl hover:from-purple-700 hover:to-indigo-700 transition-all duration-300 transform hover:scale-105 text-center block">
             Learn More
           </a>
                   </div>
@@ -1000,7 +1018,7 @@ export const metadata = {
                       </span>
                     </div>
                     <p class="text-gray-600 dark:text-gray-400 mb-6 text-center">For international students with Ontario job offer</p>
-                              <a href="/services/pr/pnp-oinp-international-students" class="w-full px-6 py-3 bg-gradient-to-r from-purple-600 to-violet-600 text-white font-semibold rounded-xl hover:from-purple-700 hover:to-violet-700 transition-all duration-300 transform hover:scale-105 text-center block">
+                              <a href="/services/pr/oinp/international-students" class="w-full px-6 py-3 bg-gradient-to-r from-purple-600 to-violet-600 text-white font-semibold rounded-xl hover:from-purple-700 hover:to-violet-700 transition-all duration-300 transform hover:scale-105 text-center block">
             Learn More
           </a>
                   </div>
@@ -1020,7 +1038,7 @@ export const metadata = {
                       </span>
                     </div>
                     <p class="text-gray-600 dark:text-gray-400 mb-6 text-center">For in-demand occupations with Ontario job offer</p>
-                              <a href="/services/pr/pnp-oinp-in-demand-skills" class="w-full px-6 py-3 bg-gradient-to-r from-purple-600 to-fuchsia-600 text-white font-semibold rounded-xl hover:from-purple-700 hover:to-fuchsia-700 transition-all duration-300 transform hover:scale-105 text-center block">
+                              <a href="/services/pr/oinp/in-demand-skills" class="w-full px-6 py-3 bg-gradient-to-r from-purple-600 to-fuchsia-600 text-white font-semibold rounded-xl hover:from-purple-700 hover:to-fuchsia-700 transition-all duration-300 transform hover:scale-105 text-center block">
             Learn More
           </a>
                   </div>
@@ -1050,7 +1068,7 @@ export const metadata = {
                       </span>
                     </div>
                     <p class="text-gray-600 dark:text-gray-400 mb-8 text-center">For Masters graduates from eligible Ontario universities</p>
-                    <a href="/services/pr/pnp-oinp-masters" class="w-full px-6 py-3 bg-gradient-to-r from-purple-600 to-pink-600 text-white font-semibold rounded-xl hover:from-purple-700 hover:to-pink-700 transition-all duration-300 text-center block">
+                    <a href="/services/pr/oinp/masters" class="w-full px-6 py-3 bg-gradient-to-r from-purple-600 to-pink-600 text-white font-semibold rounded-xl hover:from-purple-700 hover:to-pink-700 transition-all duration-300 text-center block">
                       Learn More
                     </a>
                   </div>
@@ -1070,7 +1088,7 @@ export const metadata = {
                       </span>
                     </div>
                     <p class="text-gray-600 dark:text-gray-400 mb-8 text-center">Premium pathway for PhD graduates from eligible Ontario universities</p>
-                    <a href="/services/pr/pnp-oinp-phd" class="w-full px-6 py-3 bg-gradient-to-r from-indigo-600 to-purple-600 text-white font-semibold rounded-xl hover:from-indigo-700 hover:to-purple-700 transition-all duration-300 text-center block">
+                    <a href="/services/pr/oinp/phd" class="w-full px-6 py-3 bg-gradient-to-r from-indigo-600 to-purple-600 text-white font-semibold rounded-xl hover:from-indigo-700 hover:to-purple-700 transition-all duration-300 text-center block">
                       Learn More
                     </a>
                   </div>
@@ -1093,8 +1111,10 @@ export const metadata = {
                 <div class="relative">
                   <!-- Background Timeline Line (Gray) -->
                   <div class="absolute left-20 w-1 h-full bg-gray-200 dark:bg-gray-700 rounded-full"></div>
-                  <!-- Progressive Timeline Line (Animated) -->
-                  <div class="oinp-ee-timeline-line absolute left-20 w-1 bg-gradient-to-b from-blue-500 via-purple-500 to-green-500 rounded-full" style="height: 0%; transition: height 0.8s ease-out;"></div>
+                  
+                  <!-- Animated Progress Timeline Line (Colorful) -->
+                  <div id="oinp-ee-timeline-line" class="absolute left-20 w-1 bg-gradient-to-b from-blue-500 via-purple-500 to-indigo-500 rounded-full" style="height: 0%; transition: height 0.8s ease-out;"></div>
+
                   
                   <!-- Step 1: Be in EE Pool -->
                   <div class="oinp-ee-timeline-step relative mb-16" data-step="1">
@@ -1231,8 +1251,10 @@ export const metadata = {
                 <div class="relative">
                   <!-- Background Timeline Line (Gray) -->
                   <div class="absolute left-20 w-1 h-full bg-gray-200 dark:bg-gray-700 rounded-full"></div>
-                  <!-- Progressive Timeline Line (Animated) -->
-                  <div class="oinp-direct-timeline-line absolute left-20 w-1 bg-gradient-to-b from-purple-500 via-violet-500 to-indigo-500 rounded-full" style="height: 0%; transition: height 0.8s ease-out;"></div>
+                  
+                  <!-- Animated Progress Timeline Line (Colorful) -->
+                  <div id="oinp-direct-timeline-line" class="absolute left-20 w-1 bg-gradient-to-b from-orange-500 via-red-500 to-pink-500 rounded-full" style="height: 0%; transition: height 0.8s ease-out;"></div>
+
                   
                   <!-- Step 1: Submit EOI -->
                   <div class="oinp-direct-timeline-step relative mb-16" data-step="1">
@@ -1911,11 +1933,9 @@ export const metadata = {
       const mainSteps = document.querySelectorAll('.timeline-step');
       
       // OINP Express Entry Timeline
-      const oinpEETimeline = document.querySelector('.oinp-ee-timeline-line');
       const oinpEESteps = document.querySelectorAll('.oinp-ee-timeline-step');
       
       // OINP Direct Timeline
-      const oinpDirectTimeline = document.querySelector('.oinp-direct-timeline-line');
       const oinpDirectSteps = document.querySelectorAll('.oinp-direct-timeline-step');
       
       // Function to animate a specific timeline
@@ -1949,28 +1969,40 @@ export const metadata = {
         animateSpecificTimeline(mainTimeline, mainSteps);
       }
       
+      // Animate OINP Express Entry Timeline
+      const oinpEETimeline = document.getElementById('oinp-ee-timeline-line');
       if (oinpEETimeline && oinpEESteps.length) {
         animateSpecificTimeline(oinpEETimeline, oinpEESteps);
       }
       
+      // Animate OINP Direct Timeline
+      const oinpDirectTimeline = document.getElementById('oinp-direct-timeline-line');
       if (oinpDirectTimeline && oinpDirectSteps.length) {
         animateSpecificTimeline(oinpDirectTimeline, oinpDirectSteps);
       }
+      
+
+      
+
+      
+
 
       // Add observer for steps to add 'active' class
       const stepObserver = new IntersectionObserver((entries: IntersectionObserverEntry[]) => {
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
             entry.target.classList.add('active');
+            console.log('Added active class to:', entry.target.className);
           } else {
             entry.target.classList.remove('active');
+            console.log('Removed active class from:', entry.target.className);
           }
         });
       }, { threshold: 0.5 });
 
-      // Observe all timeline cards
-      document.querySelectorAll('.timeline-card').forEach(card => {
-        stepObserver.observe(card);
+      // Observe all timeline steps (including OINP steps)
+      document.querySelectorAll('.timeline-card, .oinp-ee-timeline-step, .oinp-direct-timeline-step').forEach(step => {
+        stepObserver.observe(step);
       });
     }
     
@@ -2157,39 +2189,10 @@ export const metadata = {
     transition: opacity 0.5s ease, filter 0.5s ease;
   }
 
-  /* For OINP Express Entry Timeline */
-  <!-- Timeline Container with adjusted line -->
-  <div class="relative pl-8"> <!-- Added padding-left for steps -->
-    <!-- Timeline Line - Moved to left -->
-    <div class="oinp-ee-timeline-line absolute left-3 top-0 h-full w-1 bg-gradient-to-b from-blue-300 to-green-300 dark:from-blue-700 dark:to-green-700 rounded-full z-0" style="height: 0%;"></div>
-    
-    <!-- Timeline Items with padding to avoid overlap -->
-    <div class="space-y-24">
-      <div class="oinp-ee-timeline-step flex items-center gap-6">
-        <div class="w-6 h-6 bg-blue-600 text-white rounded-full flex items-center justify-center font-bold z-10">1</div>
-        <div class="timeline-card bg-white dark:bg-gray-800 p-6 rounded-2xl shadow-xl hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-1 flex-1">
-          // ... content ...
-        </div>
-      </div>
-      // Repeat for other steps with z-10 on number circles
-    </div>
-  </div>
 
-  /* For OINP Direct Timeline */
-  <div class="relative pl-8">
-    <!-- Timeline Line - Moved to left -->
-    <div class="oinp-direct-timeline-line absolute left-3 top-0 h-full w-1 bg-gradient-to-b from-orange-300 to-yellow-300 dark:from-orange-700 dark:to-yellow-700 rounded-full z-0" style="height: 0%;"></div>
-    
-    <div class="space-y-24">
-      <div class="oinp-direct-timeline-step flex items-center gap-6">
-        <div class="w-6 h-6 bg-orange-600 text-white rounded-full flex items-center justify-center font-bold z-10">1</div>
-        <div class="timeline-card bg-white dark:bg-gray-800 p-6 rounded-2xl shadow-xl hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-1 flex-1">
-          // ... content ...
-        </div>
-      </div>
-      // Repeat for steps
-    </div>
-  </div>
+
+
+
 
   /* Add CSS for better layering */
   .timeline-line {
@@ -2208,10 +2211,9 @@ export const metadata = {
   /* Responsive Timeline Adjustments */
   @media (max-width: 768px) {
     .timeline-line,
-    .oinp-ee-timeline-line,
-    .oinp-direct-timeline-line {
-      left: 50% !important; /* Center on mobile */
-      transform: translateX(-50%);
+    .oinp-ee-timeline-line {
+      left: 2rem !important; /* Position just to the left of circles */
+      transform: none; /* Remove transform that was causing centering */
     }
     
     .timeline-step,
@@ -2234,23 +2236,44 @@ export const metadata = {
   }
 
   @media (min-width: 769px) {
-    .oinp-ee-timeline-line,
-    .oinp-direct-timeline-line {
-      left: 2rem !important; /* Adjust left position for desktop to avoid overlap */
-    }
-    
     .oinp-ee-timeline-step,
     .oinp-direct-timeline-step {
-      padding-left: 4rem; /* Add padding to shift content right */
+      padding-left: 1.5rem; /* Reduced padding to keep content closer to timeline */
       gap: 3rem; /* Larger gap on desktop */
     }
   }
 
   /* General fixes */
   .timeline-line,
-  .oinp-ee-timeline-line,
-  .oinp-direct-timeline-line {
+  .oinp-ee-timeline-line {
     z-index: 1; /* Behind numbers */
+  }
+  
+  /* Active state styling for OINP timeline steps */
+  .oinp-ee-timeline-step.active,
+  .oinp-direct-timeline-step.active {
+    transform: scale(1.02);
+    transition: all 0.3s ease;
+  }
+  
+  .oinp-ee-timeline-step.active .bg-blue-50,
+  .oinp-ee-timeline-step.active .bg-purple-50,
+  .oinp-ee-timeline-step.active .bg-indigo-50,
+  .oinp-ee-timeline-step.active .bg-green-50,
+  .oinp-direct-timeline-step.active .bg-orange-50,
+  .oinp-direct-timeline-step.active .bg-green-50,
+  .oinp-direct-timeline-step.active .bg-emerald-50,
+  .oinp-direct-timeline-step.active .bg-teal-50 {
+    filter: brightness(1.1);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+  }
+  
+  .oinp-ee-timeline-step.active .w-16,
+  .oinp-direct-timeline-step.active .w-16 {
+    transform: scale(1.1);
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+    transition: all 0.3s ease;
   }
 
   .w-6, .w-8 {
