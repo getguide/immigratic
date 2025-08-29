@@ -8,6 +8,18 @@ import { Image } from 'astro:assets';
   description="Access comprehensive immigration resources, guides, document templates, and partner materials. Expert guidance for your immigration journey and business partnership."
   image="/og-image.jpg"
 >
+  <!-- Breadcrumbs - At Very Top of Page -->
+  <div class="bg-gradient-to-r from-slate-900/90 via-blue-900/90 to-slate-900/90 backdrop-blur-lg border-b border-blue-700/30 shadow-lg">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3">
+      <nav aria-label="Breadcrumb" class="breadcrumb-top">
+        <ol>
+          <li><a href="/">Home</a></li>
+          <li aria-current="page">Resources</li>
+        </ol>
+      </nav>
+    </div>
+  </div>
+
   <!-- Hero Section -->
   <section class="relative overflow-hidden bg-gradient-to-br from-blue-600 via-purple-700 to-indigo-800 dark:from-blue-800 dark:via-purple-900 dark:to-indigo-900 py-24 lg:py-32">
     <!-- Animated Background Elements -->
@@ -383,6 +395,62 @@ import { Image } from 'astro:assets';
     </div>
   </section>
 </Layout>
+
+<style>
+  /* Top Breadcrumb Styling */
+  .breadcrumb-top {
+    font-size: 14px;
+    margin-bottom: 0;
+  }
+  
+  .breadcrumb-top ol {
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+    padding: 0;
+    margin: 0;
+    align-items: center;
+  }
+  
+  .breadcrumb-top li + li::before {
+    content: ">";
+    padding: 0 8px;
+    color: rgba(255, 255, 255, 0.7);
+    font-weight: 500;
+  }
+  
+  .breadcrumb-top a {
+    text-decoration: none;
+    color: rgba(255, 255, 255, 0.9);
+    transition: color 0.2s ease;
+    font-weight: 500;
+  }
+  
+  .breadcrumb-top a:hover {
+    color: rgba(255, 255, 255, 1);
+    text-decoration: underline;
+  }
+  
+  .breadcrumb-top li:last-child {
+    color: rgba(255, 255, 255, 0.95);
+    font-weight: 600;
+  }
+  
+  /* Mobile responsiveness for top breadcrumbs */
+  @media (max-width: 640px) {
+    .breadcrumb-top {
+      font-size: 12px;
+    }
+    
+    .breadcrumb-top ol {
+      flex-wrap: wrap;
+    }
+    
+    .breadcrumb-top li + li::before {
+      padding: 0 4px;
+    }
+  }
+</style>
 
 <style>
   @keyframes animate-pulse-slow {

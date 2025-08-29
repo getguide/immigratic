@@ -1,5 +1,6 @@
 ---
 import Layout from '../../../../layouts/Layout.astro';
+import Breadcrumbs from '../../../../components/Breadcrumbs.astro';
 import LiveExpressEntryData from '../../../../components/LiveExpressEntryData.astro';
 import LiveCECMetrics from '../../../../components/LiveCECMetrics.astro';
 import LiveCECChart from '../../../../components/LiveCECChart.astro';
@@ -9,19 +10,14 @@ import LiveCECChart from '../../../../components/LiveCECChart.astro';
   title="Express Entry Programs | Immigratic"
   description="Explore all Express Entry programs including CEC, FSW, and category-based streams. Check eligibility, compare programs, and track live draw data."
 >
-  <!-- Breadcrumbs - At Very Top of Page -->
-  <div class="bg-gradient-to-r from-blue-900/90 via-purple-900/90 to-indigo-900/90 backdrop-blur-lg border-b border-blue-700/30 shadow-lg">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3">
-      <nav aria-label="Breadcrumb" class="breadcrumb-top">
-        <ol>
-          <li><a href="/">Home</a></li>
-          <li><a href="/services/">Services</a></li>
-          <li><a href="/services/pr/">PR</a></li>
-          <li aria-current="page">EE</li>
-        </ol>
-      </nav>
-    </div>
-  </div>
+  <Breadcrumbs 
+    items={[
+      { text: "Home", href: "/" },
+      { text: "Services", href: "/services/" },
+      { text: "PR", href: "/services/pr/" },
+      { text: "EE", current: true }
+    ]}
+  />
   <!-- Hero Section -->
   <section class="relative bg-gradient-to-br from-blue-50 via-white to-emerald-50 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900 py-20 lg:py-32">
     <div class="absolute inset-0 bg-grid-pattern opacity-5"></div>
@@ -551,57 +547,5 @@ import LiveCECChart from '../../../../components/LiveCECChart.astro';
     background-size: 20px 20px;
   }
 
-  /* Top Breadcrumb Styling */
-  .breadcrumb-top {
-    font-size: 14px;
-    margin-bottom: 0;
-  }
-  
-  .breadcrumb-top ol {
-    list-style: none;
-    display: flex;
-    flex-wrap: wrap;
-    padding: 0;
-    margin: 0;
-    align-items: center;
-  }
-  
-  .breadcrumb-top li + li::before {
-    content: ">";
-    padding: 0 8px;
-    color: rgba(255, 255, 255, 0.7);
-    font-weight: 500;
-  }
-  
-  .breadcrumb-top a {
-    text-decoration: none;
-    color: rgba(255, 255, 255, 0.9);
-    transition: color 0.2s ease;
-    font-weight: 500;
-  }
-  
-  .breadcrumb-top a:hover {
-    color: rgba(255, 255, 255, 1);
-    text-decoration: underline;
-  }
-  
-  .breadcrumb-top li:last-child {
-    color: rgba(255, 255, 255, 0.95);
-    font-weight: 600;
-  }
-  
-  /* Mobile responsiveness for top breadcrumbs */
-  @media (max-width: 640px) {
-    .breadcrumb-top {
-      font-size: 12px;
-    }
-    
-    .breadcrumb-top ol {
-      flex-wrap: wrap;
-    }
-    
-    .breadcrumb-top li + li::before {
-      padding: 0 4px;
-    }
-  }
+
 </style>

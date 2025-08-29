@@ -1,5 +1,6 @@
 ---
 import Layout from '../../layouts/Layout.astro';
+import Breadcrumbs from '../../components/Breadcrumbs.astro';
 
 export const metadata = {
   title: 'NOC Navigator - Find Your NOC Code for Canadian Immigration',
@@ -11,6 +12,14 @@ export const metadata = {
 ---
 
 <Layout title={metadata.title} description={metadata.description}>
+  <Breadcrumbs 
+    items={[
+      { text: "Home", href: "/" },
+      { text: "Tools", href: "/tools/" },
+      { text: "NOC Navigator", current: true }
+    ]}
+  />
+
   <!-- Hero Section -->
   <section class="bg-gradient-to-br from-blue-50 via-white to-purple-50 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900 py-16">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -288,3 +297,7 @@ export const metadata = {
     console.log('📊 NOC Navigator tracking listeners set up successfully');
   </script>
 </Layout>
+
+<style>
+
+</style>

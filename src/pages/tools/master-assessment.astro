@@ -1,5 +1,6 @@
 ---
 import Layout from '../../layouts/Layout.astro';
+import Breadcrumbs from '../../components/Breadcrumbs.astro';
 
 export const metadata = {
   title: 'Master Assessment - Revolutionary Immigration Technology | Immigratic',
@@ -10,6 +11,14 @@ export const metadata = {
 ---
 
 <Layout title={metadata.title} description={metadata.description} image={metadata.image} canonical={metadata.canonical}>
+  <Breadcrumbs 
+    items={[
+      { text: "Home", href: "/" },
+      { text: "Tools", href: "/tools/" },
+      { text: "Master Assessment", current: true }
+    ]}
+  />
+
   <!-- Hero Section -->
   <section class="py-32 bg-gradient-to-br from-blue-600 via-purple-700 to-indigo-800 dark:from-blue-800 dark:via-purple-900 dark:to-indigo-900 relative overflow-hidden">
     <!-- Animated Background Elements -->
@@ -755,6 +764,10 @@ export const metadata = {
     </div>
   </section>
 </Layout>
+
+<style>
+
+</style>
 
 <style>
   /* Custom Animations */

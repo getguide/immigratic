@@ -1,5 +1,6 @@
 ---
 import Layout from '../../layouts/Layout.astro';
+import Breadcrumbs from '../../components/Breadcrumbs.astro';
 import pricingData from '../../data/pricing.json';
 
 const { immigration_pricing } = pricingData;
@@ -9,6 +10,14 @@ const { immigration_pricing } = pricingData;
   title="Immigration Pricing Calculator - Get Instant Quote | Immigratic"
   description="Calculate your immigration service fees instantly. Get transparent pricing for Express Entry, work permits, study permits, and more. Generate professional quotes in seconds."
 >
+  <Breadcrumbs 
+    items={[
+      { text: "Home", href: "/" },
+      { text: "Tools", href: "/tools/" },
+      { text: "Pricing Calculator", current: true }
+    ]}
+  />
+
   <!-- Hero Section -->
   <section class="relative py-20 bg-gradient-to-br from-green-600 via-blue-700 to-purple-800 dark:from-green-800 dark:via-blue-900 dark:to-purple-900 overflow-hidden">
     <div class="absolute inset-0 bg-black/20"></div>
@@ -470,6 +479,10 @@ const { immigration_pricing } = pricingData;
   </div>
 
 </Layout>
+
+<style>
+
+</style>
 
 <script define:vars={{ pricingData: immigration_pricing }}>
   // Pricing calculator functionality

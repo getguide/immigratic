@@ -1,70 +1,42 @@
 ---
 export interface Props {
   items: Array<{
-    name: string;
-    url: string;
-    fullName?: string; // For SEO structured data
+    text: string;
+    href?: string;
+    current?: boolean;
   }>;
-  currentPage: string;
-  currentPageFullName?: string; // For SEO structured data
 }
 
-const { items, currentPage, currentPageFullName } = Astro.props;
-
-// Build breadcrumb list for structured data
-const breadcrumbItems = [
-  {
-    "@type": "ListItem",
-    "position": 1,
-    "name": "Home",
-    "item": "https://immigratic.com/"
-  },
-  {
-    "@type": "ListItem", 
-    "position": 2,
-    "name": "Services",
-    "item": "https://immigratic.com/services/"
-  },
-  ...items.map((item, index) => ({
-    "@type": "ListItem",
-    "position": index + 3,
-    "name": item.fullName || item.name,
-    "item": `https://immigratic.com${item.url}`
-  })),
-  {
-    "@type": "ListItem",
-    "position": items.length + 3,
-    "name": currentPageFullName || currentPage,
-    "item": `https://immigratic.com${Astro.url.pathname}`
-  }
-];
+const { items } = Astro.props;
 ---
 
-<nav aria-label="Breadcrumb" class="breadcrumb">
-  <ol>
-    <li><a href="/">Home</a></li>
-    <li><a href="/services/">Services</a></li>
-    {items.map((item) => (
-      <li><a href={item.url}>{item.name}</a></li>
-    ))}
-    <li aria-current="page">{currentPage}</li>
-  </ol>
-</nav>
-
-<script type="application/ld+json" set:html={JSON.stringify({
-  "@context": "https://schema.org",
-  "@type": "BreadcrumbList",
-  "itemListElement": breadcrumbItems
-})} />
+<!-- Breadcrumbs - At Very Top of Page -->
+<div class="bg-gradient-to-r from-slate-900/90 via-blue-900/90 to-slate-900/90 backdrop-blur-lg border-b border-blue-700/30 shadow-lg">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3">
+    <nav aria-label="Breadcrumb" class="breadcrumb-top">
+      <ol>
+        {items.map((item, index) => (
+          <li class={item.current ? 'current' : ''}>
+            {item.href ? (
+              <a href={item.href}>{item.text}</a>
+            ) : (
+              <span aria-current={item.current ? 'page' : undefined}>{item.text}</span>
+            )}
+          </li>
+        ))}
+      </ol>
+    </nav>
+  </div>
+</div>
 
 <style>
-  .breadcrumb {
+  /* Top Breadcrumb Styling */
+  .breadcrumb-top {
     font-size: 14px;
-    margin-bottom: 1rem;
-    padding: 0.75rem 0;
+    margin-bottom: 0;
   }
   
-  .breadcrumb ol {
+  .breadcrumb-top ol {
     list-style: none;
     display: flex;
     flex-wrap: wrap;
@@ -73,41 +45,41 @@ const breadcrumbItems = [
     align-items: center;
   }
   
-  .breadcrumb li + li::before {
+  .breadcrumb-top li + li::before {
     content: ">";
     padding: 0 8px;
-    color: #888;
+    color: rgba(255, 255, 255, 0.7);
     font-weight: 500;
   }
   
-  .breadcrumb a {
+  .breadcrumb-top a {
     text-decoration: none;
-    color: #0070f3;
+    color: rgba(255, 255, 255, 0.9);
     transition: color 0.2s ease;
-  }
-  
-  .breadcrumb a:hover {
-    text-decoration: underline;
-    color: #0051a2;
-  }
-  
-  .breadcrumb li:last-child {
-    color: #666;
     font-weight: 500;
   }
   
-  /* Mobile responsiveness */
+  .breadcrumb-top a:hover {
+    color: rgba(255, 255, 255, 1);
+    text-decoration: underline;
+  }
+  
+  .breadcrumb-top li:last-child {
+    color: rgba(255, 255, 255, 0.95);
+    font-weight: 600;
+  }
+  
+  /* Mobile responsiveness for top breadcrumbs */
   @media (max-width: 640px) {
-    .breadcrumb {
+    .breadcrumb-top {
       font-size: 12px;
-      margin-bottom: 0.5rem;
     }
     
-    .breadcrumb ol {
+    .breadcrumb-top ol {
       flex-wrap: wrap;
     }
     
-    .breadcrumb li + li::before {
+    .breadcrumb-top li + li::before {
       padding: 0 4px;
     }
   }

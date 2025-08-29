@@ -1,5 +1,6 @@
 ---
 import Layout from '../../layouts/Layout.astro';
+import Breadcrumbs from '../../components/Breadcrumbs.astro';
 
 export const metadata = {
   title: 'CLB Navigator - Convert Language Test Scores to CLB Levels',
@@ -11,6 +12,13 @@ export const metadata = {
 ---
 
 <Layout title={metadata.title} description={metadata.description}>
+  <Breadcrumbs 
+    items={[
+      { text: "Home", href: "/" },
+      { text: "Tools", href: "/tools/" },
+      { text: "CLB Navigator", current: true }
+    ]}
+  />
   
   <!-- Hero Section -->
   <section class="relative py-20 bg-gradient-to-br from-green-600 via-teal-700 to-blue-800 dark:from-green-800 dark:via-teal-900 dark:to-blue-900 overflow-hidden">
@@ -358,6 +366,10 @@ export const metadata = {
   </section>
 
 </Layout>
+
+<style>
+
+</style>
 
 <script>
   // Smooth scroll function

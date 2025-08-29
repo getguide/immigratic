@@ -1,5 +1,6 @@
 ---
 import Layout from '../../layouts/Layout.astro';
+import Breadcrumbs from '../../components/Breadcrumbs.astro';
 import { getLatestExpressEntryDraw } from '../../lib/immiwatch-data';
 
 export const metadata = {
@@ -21,6 +22,13 @@ try {
 ---
 
 <Layout title={metadata.title} description={metadata.description}>
+  <Breadcrumbs 
+    items={[
+      { text: "Home", href: "/" },
+      { text: "Tools", href: "/tools/" },
+      { text: "Calculators", current: true }
+    ]}
+  />
   
   <!-- Hero Section -->
   <section class="relative py-32 min-h-[85vh] flex items-center bg-gradient-to-br from-blue-600 via-purple-700 to-indigo-800 dark:from-blue-800 dark:via-purple-900 dark:to-indigo-900 overflow-hidden">
@@ -1549,6 +1557,10 @@ try {
   </section>
 
 </Layout>
+
+<style>
+
+</style>
 
 <script define:vars={{ latestDrawData }}>
   // Inject server data

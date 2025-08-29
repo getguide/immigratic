@@ -1,8 +1,16 @@
 ---
 import Layout from '../../layouts/Layout.astro';
+import Breadcrumbs from '../../components/Breadcrumbs.astro';
 ---
 
 <Layout title="Immigration Agencies | Scale Your Practice with Advanced Technology | Immigratic">
+  <Breadcrumbs 
+    items={[
+      { text: "Home", href: "/" },
+      { text: "Solutions", href: "/solutions/" },
+      { text: "Immigration Agencies", current: true }
+    ]}
+  />
   <!-- Hero Section -->
   <section class="relative min-h-screen flex items-center justify-center overflow-hidden bg-gradient-to-br from-purple-900 via-blue-900 to-green-900">
     <!-- Animated Background -->
