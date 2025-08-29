@@ -13,7 +13,8 @@ const posts = await client.fetch(`
     publishedAt,
     "mainImage": mainImage.asset->url,
     "authorName": author->name,
-    "categories": categories[]->title
+    "categories": categories[]->title,
+    body
   }
 `);
 ---

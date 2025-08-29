@@ -1,0 +1,157 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Breadcrumbs from '../../components/Breadcrumbs.astro';
+import { client } from '../../lib/sanity.js';
+
+// Get the slug from the URL
+export async function getStaticPaths() {
+  // Fetch all blog posts from Sanity
+  const posts = await client.fetch(`
+    *[_type == "post"] {
+      slug,
+      title,
+      excerpt,
+      publishedAt,
+      "mainImage": mainImage.asset->url,
+      "authorName": author->name,
+      "categories": categories[]->title,
+      body
+    }
+  `);
+
+  // Generate static paths for each post
+  return posts.map((post: any) => ({
+    params: { slug: post.slug.current },
+    props: { post }
+  }));
+}
+
+// Get the post data
+const { post } = Astro.props;
+
+// Format the date
+const formattedDate = post.publishedAt ? new Date(post.publishedAt).toLocaleDateString('en-US', {
+  year: 'numeric',
+  month: 'long',
+  day: 'numeric'
+}) : '';
+---
+
+<Layout title={`${post.title} | Immigratic Blog`}>
+  <Breadcrumbs 
+    items={[
+      { text: "Home", href: "/" },
+      { text: "Blog", href: "/blog" },
+      { text: post.title, current: true }
+    ]}
+  />
+
+  <!-- Hero Section -->
+  <section class="relative bg-gradient-to-br from-blue-900 via-purple-900 to-blue-900 py-20">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      <div class="flex items-center justify-center gap-2 mb-4">
+        {post.categories && post.categories.map((category: string) => (
+          <span class="px-3 py-1 bg-blue-100 dark:bg-blue-900 text-blue-800 dark:text-blue-200 text-sm rounded-full">
+            {category}
+          </span>
+        ))}
+      </div>
+      <h1 class="text-4xl md:text-5xl font-bold text-white mb-6">
+        {post.title}
+      </h1>
+      <div class="flex items-center justify-center gap-4 text-blue-100">
+        {post.authorName && (
+          <span>By {post.authorName}</span>
+        )}
+        {formattedDate && (
+          <span>• {formattedDate}</span>
+        )}
+      </div>
+    </div>
+  </section>
+
+  <!-- Blog Post Content -->
+  <article class="py-16 bg-white dark:bg-gray-900">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+      {post.mainImage && (
+        <div class="mb-8">
+          <img 
+            src={post.mainImage} 
+            alt={post.title}
+            class="w-full h-64 md:h-96 object-cover rounded-xl shadow-lg"
+          />
+        </div>
+      )}
+      
+      {post.excerpt && (
+        <div class="mb-8">
+          <p class="text-xl text-gray-600 dark:text-gray-300 leading-relaxed italic">
+            {post.excerpt}
+          </p>
+        </div>
+      )}
+
+      <div class="prose prose-lg max-w-none dark:prose-invert">
+        {post.body && post.body.map((block: any) => {
+          if (block._type === 'block') {
+            // Handle text blocks
+            const text = block.children?.map((child: any) => child.text).join('') || '';
+            const style = block.style || 'normal';
+            
+            switch (style) {
+              case 'h1':
+                return <h1 class="text-3xl font-bold text-gray-900 dark:text-white mb-6">{text}</h1>;
+              case 'h2':
+                return <h2 class="text-2xl font-bold text-gray-900 dark:text-white mb-4">{text}</h2>;
+              case 'h3':
+                return <h3 class="text-xl font-bold text-gray-900 dark:text-white mb-3">{text}</h3>;
+              case 'blockquote':
+                return <blockquote class="border-l-4 border-blue-500 pl-4 italic text-gray-600 dark:text-gray-300 mb-4">{text}</blockquote>;
+              default:
+                return <p class="text-gray-700 dark:text-gray-300 mb-4 leading-relaxed">{text}</p>;
+            }
+          } else if (block._type === 'image') {
+            // Handle images
+            return (
+              <div class="my-8">
+                <img 
+                  src={block.asset?.url} 
+                  alt={block.alt || 'Blog image'}
+                  class="w-full rounded-lg shadow-md"
+                />
+                {block.caption && (
+                  <p class="text-sm text-gray-500 dark:text-gray-400 text-center mt-2">{block.caption}</p>
+                )}
+              </div>
+            );
+          }
+          return null;
+        })}
+      </div>
+
+      <!-- Back to Blog Link -->
+      <div class="mt-12 pt-8 border-t border-gray-200 dark:border-gray-700">
+        <a 
+          href="/blog"
+          class="inline-flex items-center gap-2 text-blue-600 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-300 font-medium"
+        >
+          ← Back to Blog
+        </a>
+      </div>
+    </div>
+  </article>
+</Layout>
+
+<style>
+  .prose {
+    color: inherit;
+  }
+  
+  .prose h1, .prose h2, .prose h3 {
+    color: inherit;
+  }
+  
+  .prose p {
+    color: inherit;
+  }
+</style>
