@@ -6,15 +6,11 @@ import vercel from '@astrojs/vercel/serverless';
 // https://astro.build/config
 export default defineConfig({
   site: 'https://www.immigratic.com',
-  output: 'hybrid',
+  output: 'hybrid', // Production deployment
   adapter: vercel({
     functionPerRoute: false
   }),
   integrations: [tailwind()],
-  build: {
-    outDir: 'dist',
-    inlineStylesheets: 'auto'
-  },
   vite: {
     build: {
       rollupOptions: {

@@ -10,6 +10,7 @@ export async function getStaticPaths() {
     *[_type == "post"] {
       slug,
       title,
+      shortTitle,
       excerpt,
       publishedAt,
       "mainImage": mainImage.asset->url,
@@ -37,12 +38,12 @@ const formattedDate = post.publishedAt ? new Date(post.publishedAt).toLocaleDate
 }) : '';
 ---
 
-<Layout title={`${post.title} | Immigratic Blog`}>
+<Layout title={`${post.shortTitle || post.title} | Immigratic Blog`}>
   <Breadcrumbs 
     items={[
       { text: "Home", href: "/" },
       { text: "Blog", href: "/blog" },
-      { text: post.title, current: true }
+      { text: post.shortTitle || post.title, current: true }
     ]}
   />
 

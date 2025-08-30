@@ -10,6 +10,7 @@ const POSTS_PER_PAGE = 12; // Show 12 posts per page initially
     *[_type == "post"] | order(publishedAt desc) {
       _id,
       title,
+      shortTitle,
       slug,
       excerpt,
       publishedAt,
@@ -166,55 +167,113 @@ const initialPosts = posts.slice(0, POSTS_PER_PAGE);
     </section>
   )}
 
-  <!-- Newsletter Signup Section -->
-  <section class="py-16 bg-gradient-to-r from-blue-600 to-purple-600">
+  <!-- Newsletter CTA Card - Subtle and elegant -->
+  <section class="py-16 bg-gradient-to-br from-gray-50 to-blue-50 dark:from-gray-800 dark:to-blue-900/20 border-t border-gray-200 dark:border-gray-700">
     <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-      <h2 class="text-3xl font-bold text-white mb-4">Stay Updated with Immigration News</h2>
-      <p class="text-blue-100 mb-8 text-lg">Get the latest updates on Express Entry draws, OINP invitations, policy changes, and more delivered to your inbox.</p>
-      
-      <form id="newsletter-form" class="max-w-md mx-auto">
-        <div class="flex flex-col sm:flex-row gap-3 mb-4">
-          <input
-            type="text"
-            id="newsletter-firstname"
-            placeholder="First Name"
-            class="flex-1 px-4 py-3 rounded-lg border-0 focus:ring-2 focus:ring-white focus:ring-opacity-50"
-            required
-          />
-          <input
-            type="email"
-            id="newsletter-email"
-            placeholder="Email Address"
-            class="flex-1 px-4 py-3 rounded-lg border-0 focus:ring-2 focus:ring-white focus:ring-opacity-50"
-            required
-          />
-        </div>
-        
-        <div class="mb-6">
-          <label class="text-blue-100 text-sm mb-2 block">Interests (Optional):</label>
-          <div class="flex flex-wrap justify-center gap-2">
-            {['Express Entry', 'OINP', 'Temporary Residence', 'Policy Updates', 'Immigration News'].map((interest) => (
-              <label class="flex items-center gap-2 text-blue-100 text-sm">
-                <input type="checkbox" value={interest.toLowerCase().replace(' ', '-')} class="rounded" />
-                {interest}
-              </label>
-            ))}
-          </div>
-        </div>
+      <div class="bg-white dark:bg-gray-800 rounded-2xl shadow-lg p-8 border border-gray-100 dark:border-gray-700">
+        <div class="text-4xl mb-4">📧</div>
+        <h2 class="text-2xl font-bold text-gray-900 dark:text-white mb-3">Stay Updated with Immigration News</h2>
+        <p class="text-gray-600 dark:text-gray-300 mb-6">Get the latest updates on Express Entry draws, OINP invitations, policy changes, and more delivered to your inbox.</p>
         
         <button
-          type="submit"
-          class="w-full bg-white text-blue-600 font-semibold py-3 px-6 rounded-lg hover:bg-blue-50 transition-colors duration-300"
+          id="newsletter-cta"
+          class="bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 px-8 rounded-lg transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl"
         >
           Subscribe to Newsletter
         </button>
         
-        <p class="text-blue-100 text-xs mt-3">
+        <p class="text-gray-500 dark:text-gray-400 text-xs mt-3">
           We respect your privacy. Unsubscribe at any time.
         </p>
-      </form>
+      </div>
     </div>
   </section>
+
+  <!-- Newsletter Modal Popup -->
+  <div id="newsletter-modal" class="fixed inset-0 bg-black bg-opacity-50 z-50 hidden flex items-center justify-center p-4">
+    <div class="bg-white dark:bg-gray-800 rounded-2xl shadow-2xl w-full max-w-lg max-h-[90vh] overflow-y-auto transform transition-all duration-300 scale-95 opacity-0" id="modal-content">
+      <!-- Modal Header -->
+      <div class="flex items-center justify-between p-6 border-b border-gray-200 dark:border-gray-700 sticky top-0 bg-white dark:bg-gray-800 rounded-t-2xl">
+        <h3 class="text-xl font-bold text-gray-900 dark:text-white">Subscribe to Newsletter</h3>
+        <button id="close-modal" class="text-gray-400 hover:text-gray-600 dark:hover:text-gray-300 transition-colors p-1 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-full">
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+          </svg>
+        </button>
+      </div>
+      
+      <!-- Modal Body -->
+      <div class="p-6">
+        <form id="newsletter-form" class="space-y-5">
+          <!-- Name and Email Row -->
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <div>
+              <label for="newsletter-firstname" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">First Name *</label>
+              <input
+                type="text"
+                id="newsletter-firstname"
+                placeholder="Enter your first name"
+                class="w-full px-4 py-3 rounded-lg border border-gray-300 dark:border-gray-600 focus:ring-2 focus:ring-blue-500 focus:border-transparent dark:bg-gray-700 dark:text-white transition-colors"
+                required
+              />
+            </div>
+            <div>
+              <label for="newsletter-email" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Email Address *</label>
+              <input
+                type="email"
+                id="newsletter-email"
+                placeholder="Enter your email"
+                class="w-full px-4 py-3 rounded-lg border border-gray-300 dark:border-gray-600 focus:ring-2 focus:ring-blue-500 focus:border-transparent dark:bg-gray-700 dark:text-white transition-colors"
+                required
+              />
+              <div id="email-error" class="hidden text-red-500 text-xs mt-1">Please enter a valid email address</div>
+            </div>
+          </div>
+          
+          <!-- Interests Section -->
+          <div>
+            <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-3">Interests (Optional)</label>
+            <div class="grid grid-cols-2 gap-3">
+              {['Express Entry', 'OINP', 'Temporary Residence', 'Policy Updates'].map((interest) => (
+                <label class="flex items-center gap-3 text-gray-600 dark:text-gray-400 text-sm cursor-pointer hover:text-gray-800 dark:hover:text-gray-200 transition-colors">
+                  <input type="checkbox" value={interest.toLowerCase().replace(' ', '-')} class="rounded border-gray-300 dark:border-gray-600 focus:ring-blue-500" />
+                  <span>{interest}</span>
+                </label>
+              ))}
+            </div>
+          </div>
+          
+          <!-- GDPR Consent -->
+          <div class="border-t border-gray-200 dark:border-gray-600 pt-4">
+            <label class="flex items-start gap-3 text-gray-700 dark:text-gray-300 text-sm cursor-pointer">
+              <input 
+                type="checkbox" 
+                id="newsletter-gdpr"
+                required
+                class="rounded border-gray-300 dark:border-gray-600 focus:ring-blue-500 mt-0.5" 
+              />
+              <span>I agree to receive email updates and understand I can unsubscribe at any time. By subscribing, you agree to our <a href="/privacy" class="text-blue-600 hover:text-blue-700 underline">Privacy Policy</a>.</span>
+            </label>
+          </div>
+          
+          <!-- Submit Button -->
+          <button
+            type="submit"
+            id="newsletter-submit"
+            class="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 px-6 rounded-lg transition-all duration-300 transform hover:scale-[1.02] active:scale-[0.98] disabled:opacity-50 disabled:cursor-not-allowed"
+          >
+            Subscribe to Newsletter
+          </button>
+          
+          <!-- Success Message -->
+          <div id="newsletter-success" class="hidden text-center p-4 bg-green-50 dark:bg-green-900/20 border border-green-200 dark:border-green-800 rounded-lg">
+            <div class="text-green-800 dark:text-green-200 font-medium">✓ Successfully subscribed!</div>
+            <div class="text-green-600 dark:text-green-300 text-sm mt-1">Welcome to our newsletter!</div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
 
   <!-- Blog Posts Grid -->
   <section class="py-16 bg-gray-50 dark:bg-gray-900">
@@ -568,38 +627,43 @@ const initialPosts = posts.slice(0, POSTS_PER_PAGE);
     submitBtn.disabled = true;
     
     try {
-      // Here you would typically send to your backend/API
-      // For now, we'll simulate success and store in localStorage
-      const subscriber = {
-        firstName,
-        email,
-        interests,
-        subscribedAt: new Date().toISOString(),
-        source: 'blog',
-        status: 'active'
-      };
+                 // Send to Customer.io via our API
+           const response = await fetch('/api/newsletter', {
+             method: 'POST',
+             headers: {
+               'Content-Type': 'application/json',
+               'x-api-key': 'immigratic_newsletter_2025_secure_key'
+             },
+        body: JSON.stringify({
+          name: firstName,
+          email: email,
+          interests: interests.length > 0 ? interests : ['general']
+        })
+      });
       
-      // Store in localStorage (in production, send to your API)
-      const subscribers = JSON.parse(localStorage.getItem('newsletter_subscribers') || '[]');
-      subscribers.push(subscriber);
-      localStorage.setItem('newsletter_subscribers', JSON.stringify(subscribers));
+      const result = await response.json();
       
-      // Show success message
-      submitBtn.textContent = '✓ Subscribed!';
-      submitBtn.classList.add('bg-green-500');
-      
-      // Reset form
-      form.reset();
-      
-      // Reset button after 3 seconds
-      setTimeout(() => {
-        submitBtn.textContent = originalText;
-        submitBtn.disabled = false;
-        submitBtn.classList.remove('bg-green-500');
-      }, 3000);
-      
-      // Show success notification
-      showNotification('Successfully subscribed to newsletter!', 'success');
+      if (result.success) {
+        // Show success message in modal
+        newsletterSuccess?.classList.remove('hidden');
+        newsletterForm?.classList.add('hidden');
+        
+        // Close modal after 3 seconds
+        setTimeout(() => {
+          closeNewsletterModal();
+          // Reset form and show form again
+          setTimeout(() => {
+            newsletterSuccess?.classList.add('hidden');
+            newsletterForm?.classList.remove('hidden');
+            form.reset();
+          }, 500);
+        }, 3000);
+        
+        // Show success notification
+        showNotification(result.message || 'Successfully subscribed to newsletter!', 'success');
+      } else {
+        throw new Error(result.error || 'Subscription failed');
+      }
       
     } catch (error) {
       console.error('Newsletter subscription error:', error);
@@ -630,5 +694,84 @@ const initialPosts = posts.slice(0, POSTS_PER_PAGE);
     setTimeout(() => {
       notification.remove();
     }, 5000);
+  }
+
+  // Newsletter Modal Controls
+  const newsletterModal = document.getElementById('newsletter-modal');
+  const modalContent = document.getElementById('modal-content');
+  const newsletterCta = document.getElementById('newsletter-cta');
+  const closeModal = document.getElementById('close-modal');
+  const emailInput = document.getElementById('newsletter-email');
+  const emailError = document.getElementById('email-error');
+  const newsletterForm = document.getElementById('newsletter-form');
+  const newsletterSuccess = document.getElementById('newsletter-success');
+  const newsletterSubmit = document.getElementById('newsletter-submit');
+
+  // Email validation function
+  function validateEmail(email) {
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return emailRegex.test(email);
+  }
+
+  // Real-time email validation
+  emailInput?.addEventListener('input', function() {
+    const email = this.value.trim();
+    if (email && !validateEmail(email)) {
+      emailError?.classList.remove('hidden');
+      this.classList.add('border-red-500', 'focus:ring-red-500');
+      this.classList.remove('border-gray-300', 'focus:ring-blue-500');
+    } else {
+      emailError?.classList.add('hidden');
+      this.classList.remove('border-red-500', 'focus:ring-red-500');
+      this.classList.add('border-gray-300', 'focus:ring-blue-500');
+    }
+  });
+
+  // Clear email error on focus
+  emailInput?.addEventListener('focus', function() {
+    emailError?.classList.add('hidden');
+    this.classList.remove('border-red-500', 'focus:ring-red-500');
+    this.classList.add('border-gray-300', 'focus:ring-blue-500');
+  });
+
+  // Open modal
+  newsletterCta?.addEventListener('click', function() {
+    newsletterModal?.classList.remove('hidden');
+    newsletterModal?.classList.add('flex');
+    
+    // Animate in
+    setTimeout(() => {
+      modalContent?.classList.remove('scale-95', 'opacity-0');
+      modalContent?.classList.add('scale-100', 'opacity-100');
+    }, 10);
+  });
+
+  // Close modal
+  closeModal?.addEventListener('click', function() {
+    closeNewsletterModal();
+  });
+
+  // Close on backdrop click
+  newsletterModal?.addEventListener('click', function(e) {
+    if (e.target === newsletterModal) {
+      closeNewsletterModal();
+    }
+  });
+
+  // Close on escape key
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape' && !newsletterModal?.classList.contains('hidden')) {
+      closeNewsletterModal();
+    }
+  });
+
+  function closeNewsletterModal() {
+    modalContent?.classList.add('scale-95', 'opacity-0');
+    modalContent?.classList.remove('scale-100', 'opacity-100');
+    
+    setTimeout(() => {
+      newsletterModal?.classList.add('hidden');
+      newsletterModal?.classList.remove('flex');
+    }, 300);
   }
 </script>

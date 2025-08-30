@@ -9,7 +9,15 @@ export default defineType({
       name: 'title',
       title: 'Title',
       type: 'string',
+      description: 'Full blog post title (used for SEO and display)',
       validation: (Rule) => Rule.required(),
+    }),
+    defineField({
+      name: 'shortTitle',
+      title: 'Short Title',
+      type: 'string',
+      description: 'Brief title for breadcrumbs and navigation (max 50 characters)',
+      validation: (Rule) => Rule.max(50).required(),
     }),
     defineField({
       name: 'slug',
