@@ -5,45 +5,85 @@ import { client } from '../../lib/sanity.js';
 
 // Get the slug from the URL
 export async function getStaticPaths() {
-  // Fetch all blog posts from Sanity
-  const posts = await client.fetch(`
-    *[_type == "post"] {
-      slug,
-      title,
-      shortTitle,
-      excerpt,
-      publishedAt,
-      "mainImage": mainImage.asset->url,
-      "authorName": author->name,
-      "categories": categories[]->title,
-      body
+  try {
+    console.log('Fetching blog posts from Sanity...');
+    
+    // Fetch all blog posts from Sanity
+    const posts = await client.fetch(`
+      *[_type == "post"] {
+        slug,
+        title,
+        shortTitle,
+        excerpt,
+        publishedAt,
+        "mainImage": mainImage.asset->url,
+        "authorName": author->name,
+        "categories": categories[]->title,
+        body
+      }
+    `);
+    
+    console.log('Fetched posts:', posts);
+    console.log('Number of posts found:', posts.length);
+    
+    if (!posts || posts.length === 0) {
+      console.log('No blog posts found in Sanity');
+      return [];
     }
-  `);
 
-  // Generate static paths for each post
-  return posts.map((post: any) => ({
-    params: { slug: post.slug.current },
-    props: { post }
-  }));
+    // Generate static paths for each post
+    const paths = posts.map((post: any) => {
+      console.log('Creating path for post:', post.slug?.current, post.title);
+      return {
+        params: { slug: post.slug.current },
+        props: { post }
+      };
+    });
+    
+    console.log('Generated paths:', paths);
+    return paths;
+    
+  } catch (error) {
+    console.error('Error in getStaticPaths:', error);
+    return [];
+  }
 }
 
 // Get the post data
 const { post } = Astro.props;
 
-// Format the date
+// Ensure post exists and has required fields
+if (!post) {
+  return Astro.redirect('/blog');
+}
+
+// Type assertion for the post
+const typedPost = post as {
+  title: string;
+  shortTitle?: string;
+  excerpt?: string;
+  publishedAt?: string;
+  mainImage?: string;
+  authorName?: string;
+  categories?: string[];
+  body?: any[];
+  slug: { current: string };
+};
+
+// Format the date with fallback
 const formattedDate = post.publishedAt ? new Date(post.publishedAt).toLocaleDateString('en-US', {
   year: 'numeric',
   month: 'long',
   day: 'numeric'
-}) : '';
+}) : 'Recently published';
 ---
 
-<Layout title={`${post.shortTitle || post.title} | Immigratic Blog`}>
+<Layout title={`${typedPost.shortTitle || typedPost.title} | Immigratic Blog`}>
   <Breadcrumbs 
     items={[
       { text: "Home", href: "/" },
       { text: "Blog", href: "/blog" },
-      { text: post.shortTitle || post.title, current: true }
+      { text: typedPost.shortTitle || typedPost.title, current: true }
     ]}
   />
 

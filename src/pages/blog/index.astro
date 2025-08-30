@@ -1,7 +1,8 @@
 ---
 import Layout from '../../layouts/Layout.astro';
 import Breadcrumbs from '../../components/Breadcrumbs.astro';
-import { client } from '../../lib/sanity.js';
+import NewsletterForm from '../../components/NewsletterForm.astro';
+import { client } from '../../lib/sanity';
 
 // Fetch blog posts from Sanity with pagination
 const POSTS_PER_PAGE = 12; // Show 12 posts per page initially
@@ -81,7 +82,7 @@ const initialPosts = posts.slice(0, POSTS_PER_PAGE);
           >
             All Posts
           </button>
-          {Array.from(new Set(posts.flatMap((post: any) => post.categories || []))).map((category: string) => (
+          {Array.from(new Set(posts.flatMap((post: any) => post.categories || []))).map((category: unknown) => (
             <button 
               class="category-filter px-4 py-2 rounded-lg bg-gray-200 dark:bg-gray-600 text-gray-700 dark:text-gray-300 hover:bg-gray-300 dark:hover:bg-gray-500 transition-colors"
               data-category={category}
@@ -100,11 +101,6 @@ const initialPosts = posts.slice(0, POSTS_PER_PAGE);
             <span> across <span class="font-semibold">{Array.from(new Set(posts.flatMap((post: any) => post.categories || []))).length}</span> categories</span>
           )}
         </p>
-        {totalPages > 1 && (
-          <p class="text-sm text-gray-500 dark:text-gray-400 mt-2">
-            Page <span id="current-page" class="font-semibold">1</span> of <span class="font-semibold">{totalPages}</span>
-          </p>
-        )}
       </div>
     </div>
   </section>
@@ -116,9 +112,9 @@ const initialPosts = posts.slice(0, POSTS_PER_PAGE);
         <h2 class="text-3xl font-bold text-gray-900 dark:text-white mb-8 text-center">Featured Posts</h2>
         <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
           {featuredPosts.slice(0, 2).map((post: any) => (
-            <article class="bg-white dark:bg-gray-800 rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-shadow duration-300 border border-gray-200 dark:border-gray-700">
+            <article class="featured-post bg-gray-50 dark:bg-gray-700 rounded-xl overflow-hidden shadow-lg hover:shadow-xl transition-shadow duration-300">
               {post.mainImage && (
-                <div class="h-48 overflow-hidden">
+                <div class="aspect-video overflow-hidden">
                   <img 
                     src={post.mainImage} 
                     alt={post.title}
@@ -128,37 +124,30 @@ const initialPosts = posts.slice(0, POSTS_PER_PAGE);
               )}
               <div class="p-6">
                 <div class="flex items-center gap-2 mb-3">
-                  <span class="px-3 py-1 bg-yellow-100 dark:bg-yellow-900 text-yellow-800 dark:text-yellow-200 text-sm font-medium rounded-full">
-                    ⭐ Featured
-                  </span>
-                  {post.categories && post.categories.length > 0 && (
+                  {post.categories && post.categories.map((category: string) => (
                     <span class="px-3 py-1 bg-blue-100 dark:bg-blue-900 text-blue-800 dark:text-blue-200 text-sm rounded-full">
-                      {post.categories[0]}
+                      {category}
                     </span>
-                  )}
+                  ))}
                 </div>
                 <h3 class="text-xl font-bold text-gray-900 dark:text-white mb-3 line-clamp-2">
                   <a href={`/blog/${post.slug.current}`} class="hover:text-blue-600 dark:hover:text-blue-400 transition-colors">
-                    {post.title}
+                    {post.shortTitle || post.title}
                   </a>
                 </h3>
-                {post.excerpt && (
-                  <p class="text-gray-600 dark:text-gray-300 mb-4 line-clamp-3">{post.excerpt}</p>
-                )}
-                <div class="flex items-center justify-between">
-                  <div class="flex items-center gap-2 text-sm text-gray-500 dark:text-gray-400">
-                    {post.authorName && <span>By {post.authorName}</span>}
-                    {post.publishedAt && (
-                      <span>• {new Date(post.publishedAt).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })}</span>
-                    )}
-                  </div>
-                  <a 
-                    href={`/blog/${post.slug.current}`}
-                    class="text-blue-600 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-300 font-medium text-sm"
-                  >
-                    Read More →
-                  </a>
+                <p class="text-gray-600 dark:text-gray-300 mb-4 line-clamp-3">{post.excerpt}</p>
+                <div class="flex items-center justify-between text-sm text-gray-500 dark:text-gray-400 mb-4">
+                  <span>{post.authorName || 'Immigratic Team'}</span>
+                  <span>{new Date(post.publishedAt).toLocaleDateString()}</span>
                 </div>
+                
+                <!-- CTA Button -->
+                <a 
+                  href={`/blog/${post.slug.current}`}
+                  class="inline-block bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 px-4 rounded-lg transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl"
+                >
+                  Read More →
+                </a>
               </div>
             </article>
           ))}
@@ -167,14 +156,15 @@ const initialPosts = posts.slice(0, POSTS_PER_PAGE);
     </section>
   )}
 
-  <!-- Newsletter CTA Card - Subtle and elegant -->
+  <!-- Newsletter Section - Minimal Card with Modal -->
   <section class="py-16 bg-gradient-to-br from-gray-50 to-blue-50 dark:from-gray-800 dark:to-blue-900/20 border-t border-gray-200 dark:border-gray-700">
-    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+    <div class="max-w-2xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
       <div class="bg-white dark:bg-gray-800 rounded-2xl shadow-lg p-8 border border-gray-100 dark:border-gray-700">
         <div class="text-4xl mb-4">📧</div>
         <h2 class="text-2xl font-bold text-gray-900 dark:text-white mb-3">Stay Updated with Immigration News</h2>
         <p class="text-gray-600 dark:text-gray-300 mb-6">Get the latest updates on Express Entry draws, OINP invitations, policy changes, and more delivered to your inbox.</p>
         
+        <!-- Primary CTA Button -->
         <button
           id="newsletter-cta"
           class="bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 px-8 rounded-lg transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl"
@@ -188,92 +178,6 @@ const initialPosts = posts.slice(0, POSTS_PER_PAGE);
       </div>
     </div>
   </section>
-
-  <!-- Newsletter Modal Popup -->
-  <div id="newsletter-modal" class="fixed inset-0 bg-black bg-opacity-50 z-50 hidden flex items-center justify-center p-4">
-    <div class="bg-white dark:bg-gray-800 rounded-2xl shadow-2xl w-full max-w-lg max-h-[90vh] overflow-y-auto transform transition-all duration-300 scale-95 opacity-0" id="modal-content">
-      <!-- Modal Header -->
-      <div class="flex items-center justify-between p-6 border-b border-gray-200 dark:border-gray-700 sticky top-0 bg-white dark:bg-gray-800 rounded-t-2xl">
-        <h3 class="text-xl font-bold text-gray-900 dark:text-white">Subscribe to Newsletter</h3>
-        <button id="close-modal" class="text-gray-400 hover:text-gray-600 dark:hover:text-gray-300 transition-colors p-1 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-full">
-          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
-          </svg>
-        </button>
-      </div>
-      
-      <!-- Modal Body -->
-      <div class="p-6">
-        <form id="newsletter-form" class="space-y-5">
-          <!-- Name and Email Row -->
-          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-            <div>
-              <label for="newsletter-firstname" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">First Name *</label>
-              <input
-                type="text"
-                id="newsletter-firstname"
-                placeholder="Enter your first name"
-                class="w-full px-4 py-3 rounded-lg border border-gray-300 dark:border-gray-600 focus:ring-2 focus:ring-blue-500 focus:border-transparent dark:bg-gray-700 dark:text-white transition-colors"
-                required
-              />
-            </div>
-            <div>
-              <label for="newsletter-email" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Email Address *</label>
-              <input
-                type="email"
-                id="newsletter-email"
-                placeholder="Enter your email"
-                class="w-full px-4 py-3 rounded-lg border border-gray-300 dark:border-gray-600 focus:ring-2 focus:ring-blue-500 focus:border-transparent dark:bg-gray-700 dark:text-white transition-colors"
-                required
-              />
-              <div id="email-error" class="hidden text-red-500 text-xs mt-1">Please enter a valid email address</div>
-            </div>
-          </div>
-          
-          <!-- Interests Section -->
-          <div>
-            <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-3">Interests (Optional)</label>
-            <div class="grid grid-cols-2 gap-3">
-              {['Express Entry', 'OINP', 'Temporary Residence', 'Policy Updates'].map((interest) => (
-                <label class="flex items-center gap-3 text-gray-600 dark:text-gray-400 text-sm cursor-pointer hover:text-gray-800 dark:hover:text-gray-200 transition-colors">
-                  <input type="checkbox" value={interest.toLowerCase().replace(' ', '-')} class="rounded border-gray-300 dark:border-gray-600 focus:ring-blue-500" />
-                  <span>{interest}</span>
-                </label>
-              ))}
-            </div>
-          </div>
-          
-          <!-- GDPR Consent -->
-          <div class="border-t border-gray-200 dark:border-gray-600 pt-4">
-            <label class="flex items-start gap-3 text-gray-700 dark:text-gray-300 text-sm cursor-pointer">
-              <input 
-                type="checkbox" 
-                id="newsletter-gdpr"
-                required
-                class="rounded border-gray-300 dark:border-gray-600 focus:ring-blue-500 mt-0.5" 
-              />
-              <span>I agree to receive email updates and understand I can unsubscribe at any time. By subscribing, you agree to our <a href="/privacy" class="text-blue-600 hover:text-blue-700 underline">Privacy Policy</a>.</span>
-            </label>
-          </div>
-          
-          <!-- Submit Button -->
-          <button
-            type="submit"
-            id="newsletter-submit"
-            class="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 px-6 rounded-lg transition-all duration-300 transform hover:scale-[1.02] active:scale-[0.98] disabled:opacity-50 disabled:cursor-not-allowed"
-          >
-            Subscribe to Newsletter
-          </button>
-          
-          <!-- Success Message -->
-          <div id="newsletter-success" class="hidden text-center p-4 bg-green-50 dark:bg-green-900/20 border border-green-200 dark:border-green-800 rounded-lg">
-            <div class="text-green-800 dark:text-green-200 font-medium">✓ Successfully subscribed!</div>
-            <div class="text-green-600 dark:text-green-300 text-sm mt-1">Welcome to our newsletter!</div>
-          </div>
-        </form>
-      </div>
-    </div>
-  </div>
 
   <!-- Blog Posts Grid -->
   <section class="py-16 bg-gray-50 dark:bg-gray-900">
@@ -299,479 +203,210 @@ const initialPosts = posts.slice(0, POSTS_PER_PAGE);
                     </span>
                   ))}
                 </div>
-                <h2 class="text-xl font-bold text-gray-900 dark:text-white mb-3 line-clamp-2">
-                  {post.title}
-                </h2>
-                <p class="text-gray-600 dark:text-gray-300 mb-4 line-clamp-3">
-                  {post.excerpt}
-                </p>
-                <div class="flex items-center justify-between">
-                  <div class="flex items-center gap-2 text-sm text-gray-500 dark:text-gray-400">
-                    {post.authorName && (
-                      <span>By {post.authorName}</span>
-                    )}
-                    {post.publishedAt && (
-                      <span>• {new Date(post.publishedAt).toLocaleDateString()}</span>
-                    )}
-                  </div>
-                  <a 
-                    href={`/blog/${post.slug.current}`}
-                    class="text-blue-600 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-300 font-medium"
-                  >
-                    Read More →
+                <h3 class="text-lg font-bold text-gray-900 dark:text-white mb-3 line-clamp-2">
+                  <a href={`/blog/${post.slug.current}`} class="hover:text-blue-600 dark:hover:text-blue-400 transition-colors">
+                    {post.shortTitle || post.title}
                   </a>
+                </h3>
+                <p class="text-gray-600 dark:text-gray-300 mb-4 line-clamp-3">{post.excerpt}</p>
+                <div class="flex items-center justify-between text-sm text-gray-500 dark:text-gray-400 mb-4">
+                  <span>{post.authorName || 'Immigratic Team'}</span>
+                  <span>{new Date(post.publishedAt).toLocaleDateString()}</span>
                 </div>
+                
+                <!-- CTA Button -->
+                <a 
+                  href={`/blog/${post.slug.current}`}
+                  class="inline-block bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 px-4 rounded-lg transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl"
+                >
+                  Read More →
+                </a>
               </div>
             </article>
           ))}
         </div>
-        
-        <!-- Pagination Controls -->
-        {totalPages > 1 && (
-          <div class="mt-12 flex justify-center">
-            <div class="flex items-center gap-4">
-              <!-- Previous Page -->
-              <button 
-                id="prev-page"
-                class="px-4 py-2 bg-gray-200 dark:bg-gray-600 text-gray-700 dark:text-gray-300 rounded-lg hover:bg-gray-300 dark:hover:bg-gray-500 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
-                disabled
-              >
-                ← Previous
-              </button>
-              
-              <!-- Page Numbers -->
-              <div class="flex gap-2">
-                {Array.from({ length: Math.min(5, totalPages) }, (_, i) => {
-                  const pageNum = i + 1;
-                  return (
-                    <button 
-                      class={`page-number px-3 py-2 rounded-lg transition-colors ${
-                        pageNum === 1 
-                          ? 'bg-blue-600 text-white' 
-                          : 'bg-gray-200 dark:bg-gray-600 text-gray-700 dark:text-gray-300 hover:bg-gray-300 dark:hover:bg-gray-500'
-                      }`}
-                      data-page={pageNum}
-                    >
-                      {pageNum}
-                    </button>
-                  );
-                })}
-                {totalPages > 5 && (
-                  <span class="px-3 py-2 text-gray-500">...</span>
-                )}
-              </div>
-              
-              <!-- Next Page -->
-              <button 
-                id="next-page"
-                class={`px-4 py-2 rounded-lg transition-colors ${
-                  totalPages > 1 
-                    ? 'bg-blue-600 text-white hover:bg-blue-700' 
-                    : 'bg-gray-200 dark:bg-gray-600 text-gray-700 dark:text-gray-300 opacity-50 cursor-not-allowed'
-                }`}
-                disabled={totalPages <= 1}
-              >
-                Next →
-              </button>
-            </div>
-          </div>
-        )}
-        
-        <!-- Load More Button (Alternative to pagination) -->
-        {totalPosts > POSTS_PER_PAGE && (
-          <div class="mt-8 text-center">
-            <button 
-              id="load-more"
-              class="px-8 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors"
-            >
-              Load More Posts ({POSTS_PER_PAGE} more)
-            </button>
-          </div>
-        )}
-        
-        <!-- No Posts Found Message (Hidden by default) -->
-        <div id="no-posts-message" class="hidden text-center py-16">
-          <div class="text-6xl mb-4">🔍</div>
-          <h3 class="text-2xl font-bold text-gray-900 dark:text-white mb-2">
-            No posts found
-          </h3>
-          <p class="text-gray-600 dark:text-gray-400">
-            Try adjusting your search or category filter.
-          </p>
-        </div>
       ) : (
         <div class="text-center py-16">
           <div class="text-6xl mb-4">📝</div>
-          <h3 class="text-2xl font-bold text-gray-900 dark:text-white mb-2">
-            No blog posts yet
-          </h3>
-          <p class="text-gray-600 dark:text-gray-400">
-            Check back soon for immigration insights and updates!
+          <h3 class="text-2xl font-bold text-gray-900 dark:text-white mb-2">No Posts Yet</h3>
+          <p class="text-gray-600 dark:text-gray-400">Check back soon for our latest immigration insights!</p>
+        </div>
+      )}
+
+      <!-- Load More Button -->
+      {totalPosts > POSTS_PER_PAGE && (
+        <div class="text-center mt-12">
+          <button
+            id="load-more-btn"
+            class="bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 px-8 rounded-lg transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl"
+          >
+            Load More Posts
+          </button>
+          <p class="text-gray-500 dark:text-gray-400 text-sm mt-3">
+            Showing {initialPosts.length} of {totalPosts} posts
           </p>
         </div>
       )}
     </div>
   </section>
+
+  <!-- Newsletter Modal Popup -->
+  <div id="newsletter-modal" class="fixed inset-0 bg-black bg-opacity-50 z-50 hidden flex items-center justify-center p-4">
+    <div class="bg-white dark:bg-gray-800 rounded-2xl shadow-2xl w-full max-w-lg max-h-[90vh] overflow-y-auto transform transition-all duration-300 scale-95 opacity-0" id="modal-content">
+      <!-- Modal Header -->
+      <div class="flex items-center justify-between p-6 border-b border-gray-200 dark:border-gray-700 sticky top-0 bg-white dark:bg-gray-800 rounded-t-2xl">
+        <h3 class="text-xl font-bold text-gray-900 dark:text-white">Subscribe to Newsletter</h3>
+        <button id="close-modal" class="text-gray-400 hover:text-gray-600 dark:hover:text-gray-300 transition-colors p-1 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-full">
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+          </svg>
+        </button>
+      </div>
+      
+      <!-- Modal Body -->
+      <div class="p-6">
+        <NewsletterForm />
+      </div>
+    </div>
+  </div>
 </Layout>
 
-<style>
-  .line-clamp-2 {
-    display: -webkit-box;
-    -webkit-line-clamp: 2;
-    -webkit-box-orient: vertical;
-    overflow: hidden;
-  }
-  
-  .line-clamp-3 {
-    display: -webkit-box;
-    -webkit-line-clamp: 3;
-    -webkit-box-orient: vertical;
-    overflow: hidden;
-  }
-
-  .post-card {
-    transition: all 0.3s ease;
-  }
-
-  .post-card.hidden {
-    display: none;
-  }
-
-  .category-filter.active {
-    background-color: rgb(37 99 235);
-    color: white;
-  }
-</style>
-
 <script>
-  // Blog search, filtering, and pagination functionality
+  // Blog functionality
   document.addEventListener('DOMContentLoaded', function() {
-    const searchInput = document.getElementById('blog-search');
+    const searchInput = document.getElementById('blog-search') as HTMLInputElement;
     const categoryFilters = document.querySelectorAll('.category-filter');
-    const postCards = document.querySelectorAll('.post-card');
+    const loadMoreBtn = document.getElementById('load-more-btn') as HTMLButtonElement;
     const postCount = document.getElementById('post-count');
-    const currentPageSpan = document.getElementById('current-page');
-    const loadMoreBtn = document.getElementById('load-more');
-    const prevPageBtn = document.getElementById('prev-page');
-    const nextPageBtn = document.getElementById('next-page');
-    const pageNumbers = document.querySelectorAll('.page-number');
     
+    let currentPage = 1;
     let currentCategory = 'all';
     let currentSearch = '';
-    let currentPage = 1;
-    let postsPerPage = 12;
-    let allPosts = [];
-    let filteredPosts = [];
-
-    // Initialize posts data
-    function initializePosts() {
-      // Get all posts from the DOM (this would normally come from your data)
-      allPosts = Array.from(postCards);
-      filteredPosts = [...allPosts];
-      updateDisplay();
-    }
-
+    
     // Search functionality
-    searchInput?.addEventListener('input', function(e) {
-      currentSearch = e.target.value.toLowerCase();
-      currentPage = 1; // Reset to first page
-      filterPosts();
+    searchInput?.addEventListener('input', function() {
+      currentSearch = this.value.toLowerCase();
+      currentPage = 1;
+      filterAndDisplayPosts();
     });
-
+    
     // Category filtering
     categoryFilters.forEach(filter => {
-      filter.addEventListener('click', function() {
-        // Update active state
-        categoryFilters.forEach(f => f.classList.remove('active'));
-        this.classList.add('active');
-        
-        currentCategory = this.dataset.category;
-        currentPage = 1; // Reset to first page
-        filterPosts();
-      });
-    });
-
-    // Pagination controls
-    if (prevPageBtn) {
-      prevPageBtn.addEventListener('click', () => {
-        if (currentPage > 1) {
-          currentPage--;
-          updateDisplay();
+      filter.addEventListener('click', function(this: HTMLElement) {
+        const category = this.getAttribute('data-category');
+        if (category) {
+          currentCategory = category;
+          currentPage = 1;
+          filterAndDisplayPosts();
+          
+          // Update active state
+          categoryFilters.forEach(f => f.classList.remove('active', 'bg-blue-600', 'text-white'));
+          categoryFilters.forEach(f => f.classList.add('bg-gray-200', 'dark:bg-gray-600', 'text-gray-700', 'dark:text-gray-300'));
+          this.classList.remove('bg-gray-200', 'dark:bg-gray-600', 'text-gray-700', 'dark:text-gray-300');
+          this.classList.add('active', 'bg-blue-600', 'text-white');
         }
       });
-    }
-
-    if (nextPageBtn) {
-      nextPageBtn.addEventListener('click', () => {
-        const totalPages = Math.ceil(filteredPosts.length / postsPerPage);
-        if (currentPage < totalPages) {
-          currentPage++;
-          updateDisplay();
-        }
-      });
-    }
-
-    // Page number clicks
-    pageNumbers.forEach(btn => {
-      btn.addEventListener('click', function() {
-        currentPage = parseInt(this.dataset.page);
-        updateDisplay();
-      });
     });
-
+    
     // Load more functionality
-    if (loadMoreBtn) {
-      loadMoreBtn.addEventListener('click', function() {
-        postsPerPage += 12;
-        updateDisplay();
-        
-        // Hide load more if all posts are shown
-        if (postsPerPage >= filteredPosts.length) {
-          this.style.display = 'none';
-        } else {
-          this.textContent = `Load More Posts (${Math.min(12, filteredPosts.length - postsPerPage)} more)`;
-        }
-      });
-    }
-
-    function filterPosts() {
-      filteredPosts = allPosts.filter(card => {
-        const title = card.querySelector('h2')?.textContent?.toLowerCase() || '';
-        const excerpt = card.querySelector('p')?.textContent?.toLowerCase() || '';
-        const categories = Array.from(card.querySelectorAll('span')).map(cat => cat.textContent?.toLowerCase() || '');
-        
-        const matchesSearch = title.includes(currentSearch) || excerpt.includes(currentSearch);
-        const matchesCategory = currentCategory === 'all' || categories.includes(currentCategory);
-        
-        return matchesSearch && matchesCategory;
-      });
-      
-      updateDisplay();
-    }
-
-    function updateDisplay() {
-      const startIndex = (currentPage - 1) * postsPerPage;
-      const endIndex = startIndex + postsPerPage;
-      const postsToShow = filteredPosts.slice(startIndex, endIndex);
-      
-      // Hide all posts
-      allPosts.forEach(card => card.classList.add('hidden'));
-      
-      // Show filtered posts for current page
-      postsToShow.forEach(card => card.classList.remove('hidden'));
-      
-      // Update post count
-      if (postCount) {
-        postCount.textContent = postsToShow.length;
-      }
-      
-      // Update current page display
-      if (currentPageSpan) {
-        currentPageSpan.textContent = currentPage;
-      }
-      
-      // Update pagination button states
-      updatePaginationButtons();
-    }
-
-    function updatePaginationButtons() {
-      const totalPages = Math.ceil(filteredPosts.length / postsPerPage);
-      
-      if (prevPageBtn) {
-        prevPageBtn.disabled = currentPage <= 1;
-      }
-      
-      if (nextPageBtn) {
-        nextPageBtn.disabled = currentPage >= totalPages;
-      }
-      
-      // Update page number buttons
-      pageNumbers.forEach((btn, index) => {
-        const pageNum = index + 1;
-        if (pageNum === currentPage) {
-          btn.classList.add('bg-blue-600', 'text-white');
-          btn.classList.remove('bg-gray-200', 'dark:bg-gray-600', 'text-gray-700', 'dark:text-gray-300');
-        } else {
-          btn.classList.remove('bg-blue-600', 'text-white');
-          btn.classList.add('bg-gray-200', 'dark:bg-gray-600', 'text-gray-700', 'dark:text-gray-300');
-        }
-      });
-    }
-
-    // Initialize with "All Posts" active
+    loadMoreBtn?.addEventListener('click', function() {
+      currentPage++;
+      filterAndDisplayPosts();
+    });
+    
+    // Set initial active state
     const allPostsFilter = document.querySelector('[data-category="all"]');
     if (allPostsFilter) {
       allPostsFilter.classList.add('active');
     }
     
     // Initialize posts
-    initializePosts();
-  });
-
-  // Newsletter Form Handler
-  document.getElementById('newsletter-form')?.addEventListener('submit', async function(e) {
-    e.preventDefault();
+    filterAndDisplayPosts();
     
-    const form = e.target;
-    const submitBtn = form.querySelector('button[type="submit"]');
-    const originalText = submitBtn.textContent;
-    
-    // Get form data
-    const firstName = document.getElementById('newsletter-firstname').value;
-    const email = document.getElementById('newsletter-email').value;
-    const interests = Array.from(form.querySelectorAll('input[type="checkbox"]:checked'))
-      .map(cb => cb.value);
-    
-    // Update button state
-    submitBtn.textContent = 'Subscribing...';
-    submitBtn.disabled = true;
-    
-    try {
-                 // Send to Customer.io via our API
-           const response = await fetch('/api/newsletter', {
-             method: 'POST',
-             headers: {
-               'Content-Type': 'application/json',
-               'x-api-key': 'immigratic_newsletter_2025_secure_key'
-             },
-        body: JSON.stringify({
-          name: firstName,
-          email: email,
-          interests: interests.length > 0 ? interests : ['general']
-        })
-      });
+    function filterAndDisplayPosts() {
+      const allPosts = Array.from(document.querySelectorAll('.post-card'));
+      let filteredPosts = allPosts;
       
-      const result = await response.json();
-      
-      if (result.success) {
-        // Show success message in modal
-        newsletterSuccess?.classList.remove('hidden');
-        newsletterForm?.classList.add('hidden');
-        
-        // Close modal after 3 seconds
-        setTimeout(() => {
-          closeNewsletterModal();
-          // Reset form and show form again
-          setTimeout(() => {
-            newsletterSuccess?.classList.add('hidden');
-            newsletterForm?.classList.remove('hidden');
-            form.reset();
-          }, 500);
-        }, 3000);
-        
-        // Show success notification
-        showNotification(result.message || 'Successfully subscribed to newsletter!', 'success');
-      } else {
-        throw new Error(result.error || 'Subscription failed');
+      // Filter by category
+      if (currentCategory !== 'all') {
+        filteredPosts = filteredPosts.filter(post => {
+          const categories = post.querySelectorAll('.bg-blue-100, .dark\\:bg-blue-900');
+          return Array.from(categories).some(cat => 
+            (cat as HTMLElement).textContent === currentCategory
+          );
+        });
       }
       
-    } catch (error) {
-      console.error('Newsletter subscription error:', error);
-      submitBtn.textContent = 'Error - Try Again';
-      submitBtn.classList.add('bg-red-500');
+      // Filter by search
+      if (currentSearch) {
+        filteredPosts = filteredPosts.filter(post => {
+          const title = post.querySelector('h3')?.textContent?.toLowerCase() || '';
+          const excerpt = post.querySelector('p')?.textContent?.toLowerCase() || '';
+          return title.includes(currentSearch) || excerpt.includes(currentSearch);
+        });
+      }
       
+      // Hide all posts first
+      allPosts.forEach(post => (post as HTMLElement).style.display = 'none');
+      
+      // Show filtered posts up to current page
+      const postsToShow = filteredPosts.slice(0, currentPage * 12);
+      postsToShow.forEach(post => (post as HTMLElement).style.display = 'block');
+      
+      // Update post count
+      if (postCount) {
+        postCount.textContent = postsToShow.length.toString();
+      }
+      
+      // Show/hide load more button
+      if (loadMoreBtn) {
+        if (postsToShow.length < filteredPosts.length) {
+          loadMoreBtn.style.display = 'block';
+        } else {
+          loadMoreBtn.style.display = 'none';
+        }
+      }
+    }
+  });
+
+  // Newsletter Modal Functionality
+  document.addEventListener('DOMContentLoaded', function() {
+    const newsletterCta = document.getElementById('newsletter-cta') as HTMLButtonElement;
+    const newsletterModal = document.getElementById('newsletter-modal') as HTMLDivElement;
+    const modalContent = document.getElementById('modal-content') as HTMLDivElement;
+    const closeModal = document.getElementById('close-modal') as HTMLButtonElement;
+
+    // Open modal
+    newsletterCta?.addEventListener('click', () => {
+      newsletterModal.classList.remove('hidden');
       setTimeout(() => {
-        submitBtn.textContent = originalText;
-        submitBtn.disabled = false;
-        submitBtn.classList.remove('bg-red-500');
-      }, 3000);
-      
-      showNotification('Failed to subscribe. Please try again.', 'error');
-    }
+        modalContent.classList.remove('scale-95', 'opacity-0');
+        modalContent.classList.add('scale-100', 'opacity-100');
+      }, 10);
+    });
+
+    // Close modal
+    const closeModalFunction = () => {
+      modalContent.classList.add('scale-95', 'opacity-0');
+      setTimeout(() => {
+        newsletterModal.classList.add('hidden');
+      }, 300);
+    };
+
+    closeModal?.addEventListener('click', closeModalFunction);
+
+    // Close modal when clicking outside
+    newsletterModal?.addEventListener('click', (e) => {
+      if (e.target === newsletterModal) {
+        closeModalFunction();
+      }
+    });
+
+    // Close modal on escape key
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && !newsletterModal.classList.contains('hidden')) {
+        closeModalFunction();
+      }
+    });
   });
-  
-  function showNotification(message, type) {
-    // Create notification element
-    const notification = document.createElement('div');
-    notification.className = `fixed top-4 right-4 p-4 rounded-lg shadow-lg z-50 ${
-      type === 'success' ? 'bg-green-500 text-white' : 'bg-red-500 text-white'
-    }`;
-    notification.textContent = message;
-    
-    document.body.appendChild(notification);
-    
-    // Remove after 5 seconds
-    setTimeout(() => {
-      notification.remove();
-    }, 5000);
-  }
-
-  // Newsletter Modal Controls
-  const newsletterModal = document.getElementById('newsletter-modal');
-  const modalContent = document.getElementById('modal-content');
-  const newsletterCta = document.getElementById('newsletter-cta');
-  const closeModal = document.getElementById('close-modal');
-  const emailInput = document.getElementById('newsletter-email');
-  const emailError = document.getElementById('email-error');
-  const newsletterForm = document.getElementById('newsletter-form');
-  const newsletterSuccess = document.getElementById('newsletter-success');
-  const newsletterSubmit = document.getElementById('newsletter-submit');
-
-  // Email validation function
-  function validateEmail(email) {
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    return emailRegex.test(email);
-  }
-
-  // Real-time email validation
-  emailInput?.addEventListener('input', function() {
-    const email = this.value.trim();
-    if (email && !validateEmail(email)) {
-      emailError?.classList.remove('hidden');
-      this.classList.add('border-red-500', 'focus:ring-red-500');
-      this.classList.remove('border-gray-300', 'focus:ring-blue-500');
-    } else {
-      emailError?.classList.add('hidden');
-      this.classList.remove('border-red-500', 'focus:ring-red-500');
-      this.classList.add('border-gray-300', 'focus:ring-blue-500');
-    }
-  });
-
-  // Clear email error on focus
-  emailInput?.addEventListener('focus', function() {
-    emailError?.classList.add('hidden');
-    this.classList.remove('border-red-500', 'focus:ring-red-500');
-    this.classList.add('border-gray-300', 'focus:ring-blue-500');
-  });
-
-  // Open modal
-  newsletterCta?.addEventListener('click', function() {
-    newsletterModal?.classList.remove('hidden');
-    newsletterModal?.classList.add('flex');
-    
-    // Animate in
-    setTimeout(() => {
-      modalContent?.classList.remove('scale-95', 'opacity-0');
-      modalContent?.classList.add('scale-100', 'opacity-100');
-    }, 10);
-  });
-
-  // Close modal
-  closeModal?.addEventListener('click', function() {
-    closeNewsletterModal();
-  });
-
-  // Close on backdrop click
-  newsletterModal?.addEventListener('click', function(e) {
-    if (e.target === newsletterModal) {
-      closeNewsletterModal();
-    }
-  });
-
-  // Close on escape key
-  document.addEventListener('keydown', function(e) {
-    if (e.key === 'Escape' && !newsletterModal?.classList.contains('hidden')) {
-      closeNewsletterModal();
-    }
-  });
-
-  function closeNewsletterModal() {
-    modalContent?.classList.add('scale-95', 'opacity-0');
-    modalContent?.classList.remove('scale-100', 'opacity-100');
-    
-    setTimeout(() => {
-      newsletterModal?.classList.add('hidden');
-      newsletterModal?.classList.remove('flex');
-    }, 300);
-  }
 </script>

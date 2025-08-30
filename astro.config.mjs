@@ -6,7 +6,7 @@ import vercel from '@astrojs/vercel/serverless';
 // https://astro.build/config
 export default defineConfig({
   site: 'https://www.immigratic.com',
-  output: 'hybrid', // Production deployment
+  output: 'hybrid', // Hybrid mode to allow getStaticPaths to work
   adapter: vercel({
     functionPerRoute: false
   }),
