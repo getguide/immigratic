@@ -401,26 +401,27 @@ import Breadcrumbs from '../components/Breadcrumbs.astro';
             <div class="w-24 h-24 bg-gradient-to-br from-blue-500 to-purple-600 rounded-2xl flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform duration-300 shadow-lg group-hover:shadow-xl">
               <span class="text-3xl font-bold text-white tracking-wider">M</span>
             </div>
-            <!-- Verified Badge -->
-            <a href="https://lso.ca/public-resources/finding-a-lawyer-or-paralegal/directory-search/member?MemberNumber=91531C" target="_blank" rel="noopener noreferrer" class="absolute -top-2 -right-2 group/badge">
-              <div class="flex items-center gap-2 bg-green-500 rounded-full px-3 py-2 shadow-lg group-hover/badge:scale-110 transition-transform duration-300">
-                <span class="text-white text-xs font-medium">Verify</span>
+            <!-- About Mona Badge -->
+            <div class="absolute -top-2 -right-2 group/badge cursor-pointer" onclick="openMonaModal()">
+              <div class="flex items-center gap-2 bg-blue-500 rounded-full px-3 py-2 shadow-lg group-hover/badge:scale-110 transition-transform duration-300">
+                <span class="text-white text-xs font-medium">About Mona</span>
                 <svg class="w-3 h-3 text-white transform rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
                 </svg>
                 <div class="w-4 h-4 bg-white rounded-full flex items-center justify-center relative">
-                  <div class="w-2 h-2 bg-green-500 rounded-full animate-pulse"></div>
-                  <div class="absolute inset-0 bg-green-400 rounded-full animate-ping opacity-75"></div>
+                  <div class="w-2 h-2 bg-blue-500 rounded-full animate-pulse"></div>
+                  <div class="absolute inset-0 bg-blue-400 rounded-full animate-ping opacity-75"></div>
                 </div>
               </div>
               <div class="absolute -bottom-8 left-1/2 transform -translate-x-1/2 bg-gray-900 text-white text-xs px-2 py-1 rounded opacity-0 group-hover/badge:opacity-100 transition-opacity duration-300 whitespace-nowrap">
-                LSO Verified
+                Click to learn more
               </div>
-            </a>
+              <div class="absolute inset-0 bg-transparent"></div>
+            </div>
           </div>
           <h3 class="text-xl font-bold text-gray-900 dark:text-white mb-2">Mona Ebrahimi</h3>
           <p class="text-blue-600 dark:text-blue-400 font-medium mb-3">Immigration Lawyer</p>
-          <p class="text-gray-600 dark:text-gray-300 text-sm">Leading our legal team with extensive expertise in immigration law and client advocacy.</p>
+          <p class="text-gray-600 dark:text-gray-300 text-sm">JR Specialist with extensive expertise in immigration law and client advocacy.</p>
         </div>
 
         <!-- Sue Mihankhah -->
@@ -458,22 +459,23 @@ import Breadcrumbs from '../components/Breadcrumbs.astro';
             <div class="w-24 h-24 bg-gradient-to-br from-purple-500 to-green-600 rounded-2xl flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform duration-300 shadow-lg group-hover:shadow-xl">
               <span class="text-3xl font-bold text-white tracking-wider">S</span>
             </div>
-            <!-- Verified Badge -->
-            <a href="https://register.college-ic.ca/Public-Register-EN/Licensee/Profile.aspx?ID=18096&b9100e1006f6=2#b9100e1006f6" target="_blank" rel="noopener noreferrer" class="absolute -top-2 -right-2 group/badge">
-              <div class="flex items-center gap-2 bg-green-500 rounded-full px-3 py-2 shadow-lg group-hover/badge:scale-110 transition-transform duration-300">
-                <span class="text-white text-xs font-medium">Verify</span>
+            <!-- About Saul Badge -->
+            <div class="absolute -top-2 -right-2 group/badge cursor-pointer" onclick="openSaulModal()">
+              <div class="flex items-center gap-2 bg-purple-500 rounded-full px-3 py-2 shadow-lg group-hover/badge:scale-110 transition-transform duration-300">
+                <span class="text-white text-xs font-medium">About Saul</span>
                 <svg class="w-3 h-3 text-white transform rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
                 </svg>
                 <div class="w-4 h-4 bg-white rounded-full flex items-center justify-center relative">
-                  <div class="w-2 h-2 bg-green-500 rounded-full animate-pulse"></div>
-                  <div class="absolute inset-0 bg-green-400 rounded-full animate-ping opacity-75"></div>
+                  <div class="w-2 h-2 bg-purple-500 rounded-full animate-pulse"></div>
+                  <div class="absolute inset-0 bg-purple-400 rounded-full animate-ping opacity-75"></div>
                 </div>
               </div>
               <div class="absolute -bottom-8 left-1/2 transform -translate-x-1/2 bg-gray-900 text-white text-xs px-2 py-1 rounded opacity-0 group-hover/badge:opacity-100 transition-opacity duration-300 whitespace-nowrap">
-                CICC Verified
+                Click to learn more
               </div>
-            </a>
+              <div class="absolute inset-0 bg-transparent"></div>
+            </div>
           </div>
           <h3 class="text-xl font-bold text-gray-900 dark:text-white mb-2">Saul Hosseini</h3>
           <p class="text-purple-600 dark:text-purple-400 font-medium mb-3">RCIC-IRB</p>
@@ -500,10 +502,16 @@ import Breadcrumbs from '../components/Breadcrumbs.astro';
     </div>
   </section>
 
-  <!-- Sue's Popup Modal -->
-  <div id="sue-modal" class="fixed inset-0 bg-black bg-opacity-50 z-50 hidden items-center justify-center">
-    <div class="bg-white dark:bg-gray-800 rounded-2xl p-8 max-w-md mx-4 shadow-2xl transform transition-all duration-300 scale-95 opacity-0" id="sue-modal-content">
-      <div class="text-center">
+     <!-- Sue's Popup Modal -->
+   <div id="sue-modal" class="fixed inset-0 bg-black bg-opacity-50 z-50 hidden items-center justify-center">
+     <div class="bg-white dark:bg-gray-800 rounded-2xl p-8 max-w-md mx-4 shadow-2xl transform transition-all duration-300 scale-95 opacity-0 relative" id="sue-modal-content">
+       <!-- Close X Button -->
+       <button onclick="closeSueModal()" class="absolute top-4 right-4 text-gray-400 hover:text-gray-600 dark:text-gray-500 dark:hover:text-gray-300 transition-colors duration-300">
+         <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+         </svg>
+       </button>
+       <div class="text-center">
         <div class="w-20 h-20 bg-gradient-to-br from-green-500 to-blue-600 rounded-2xl flex items-center justify-center mx-auto mb-6">
           <span class="text-2xl font-bold text-white tracking-wider">S</span>
         </div>
@@ -532,9 +540,95 @@ import Breadcrumbs from '../components/Breadcrumbs.astro';
           </div>
         </div>
         
-        <button onclick="closeSueModal()" class="mt-6 px-6 py-3 bg-gradient-to-r from-green-500 to-blue-600 text-white font-semibold rounded-xl hover:from-green-600 hover:to-blue-700 transition-all duration-300 transform hover:scale-105">
-          Close
-        </button>
+                 <div class="flex justify-center mt-6">
+           <button onclick="closeSueModal()" class="px-8 py-3 bg-gradient-to-r from-green-500 to-blue-600 text-white font-semibold rounded-xl hover:from-green-600 hover:to-blue-700 transition-all duration-300 transform hover:scale-105">
+             Close
+           </button>
+         </div>
+      </div>
+    </div>
+  </div>
+
+     <!-- Mona's Popup Modal -->
+   <div id="mona-modal" class="fixed inset-0 bg-black bg-opacity-50 z-50 hidden items-center justify-center">
+     <div class="bg-white dark:bg-gray-800 rounded-2xl p-8 max-w-md mx-4 shadow-2xl transform transition-all duration-300 scale-95 opacity-0 relative" id="mona-modal-content">
+       <!-- Close X Button -->
+       <button onclick="closeMonaModal()" class="absolute top-4 right-4 text-gray-400 hover:text-gray-600 dark:text-gray-500 dark:hover:text-gray-300 transition-colors duration-300">
+         <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+         </svg>
+       </button>
+       <div class="text-center">
+        <div class="w-20 h-20 bg-gradient-to-br from-blue-500 to-purple-600 rounded-2xl flex items-center justify-center mx-auto mb-6">
+          <span class="text-2xl font-bold text-white tracking-wider">M</span>
+        </div>
+        <h3 class="text-2xl font-bold text-gray-900 dark:text-white mb-4">Mona Ebrahimi</h3>
+                 <p class="text-blue-600 dark:text-blue-400 font-medium mb-4">Legal Team Lead & JR Specialist</p>
+        
+                 <div class="text-left space-y-4 text-gray-600 dark:text-gray-300">
+           <div>
+             <h4 class="font-semibold text-gray-900 dark:text-white mb-2">Professional Background</h4>
+             <p class="text-sm">Distinguished dual-licensed lawyer and founder of ELG (Professional Corporation). Serves as both barrister and solicitor in Ontario, Canada, and as an attorney in Iran.</p>
+           </div>
+           
+           <div>
+             <h4 class="font-semibold text-gray-900 dark:text-white mb-2">Education & Credentials</h4>
+             <p class="text-sm">LLB from Tehran University and LLM from respected Iranian universities. Admitted to the bar in Iran and Ontario, with Certificate of Qualification from the NCA.</p>
+           </div>
+           
+           <div>
+             <h4 class="font-semibold text-gray-900 dark:text-white mb-2">Role at Immigratic</h4>
+             <p class="text-sm">JR Specialist with extensive expertise in immigration law and client advocacy. Specializes in Judicial Review cases and complex legal matters.</p>
+           </div>
+         </div>
+        
+                 <div class="flex justify-center mt-6">
+           <a href="https://lso.ca/public-resources/finding-a-lawyer-or-paralegal/directory-search/member?MemberNumber=91531C" target="_blank" rel="noopener noreferrer" class="px-8 py-3 bg-green-500 text-white font-semibold rounded-xl hover:bg-green-600 transition-colors duration-300">
+             Verify License
+           </a>
+         </div>
+      </div>
+    </div>
+  </div>
+
+     <!-- Saul's Popup Modal -->
+   <div id="saul-modal" class="fixed inset-0 bg-black bg-opacity-50 z-50 hidden items-center justify-center">
+     <div class="bg-white dark:bg-gray-800 rounded-2xl p-8 max-w-md mx-4 shadow-2xl transform transition-all duration-300 scale-95 opacity-0 relative" id="saul-modal-content">
+       <!-- Close X Button -->
+       <button onclick="closeSaulModal()" class="absolute top-4 right-4 text-gray-400 hover:text-gray-600 dark:text-gray-500 dark:hover:text-gray-300 transition-colors duration-300">
+         <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+         </svg>
+       </button>
+       <div class="text-center">
+        <div class="w-20 h-20 bg-gradient-to-br from-purple-500 to-green-600 rounded-2xl flex items-center justify-center mx-auto mb-6">
+          <span class="text-2xl font-bold text-white tracking-wider">S</span>
+        </div>
+        <h3 class="text-2xl font-bold text-gray-900 dark:text-white mb-4">Saul Hosseini</h3>
+                 <p class="text-purple-600 dark:text-purple-400 font-medium mb-4">Immigration Team Lead</p>
+        
+                 <div class="text-left space-y-4 text-gray-600 dark:text-gray-300">
+           <div>
+             <h4 class="font-semibold text-gray-900 dark:text-white mb-2">Professional Background</h4>
+             <p class="text-sm">Regulated immigration consultant specializing in complex cases and appeals.</p>
+           </div>
+           
+           <div>
+             <h4 class="font-semibold text-gray-900 dark:text-white mb-2">Current Role</h4>
+             <p class="text-sm">Leading the immigration team at Immigratic, merging cutting-edge technology with legal expertise to revolutionize immigration services.</p>
+           </div>
+           
+           <div>
+             <h4 class="font-semibold text-gray-900 dark:text-white mb-2">Focus Areas</h4>
+             <p class="text-sm">Specializing in permanent residency applications, work permits, and complex immigration matters. Committed to providing accurate, reliable guidance to clients.</p>
+           </div>
+         </div>
+        
+                 <div class="flex justify-center mt-6">
+           <a href="https://register.college-ic.ca/Public-Register-EN/Licensee/Profile.aspx?ID=18096&b9100e1006f6=2#b9100e1006f6" target="_blank" rel="noopener noreferrer" class="px-8 py-3 bg-green-500 text-white font-semibold rounded-xl hover:bg-green-600 transition-colors duration-300">
+             Verify License
+           </a>
+         </div>
       </div>
     </div>
   </div>
@@ -739,7 +833,7 @@ import Breadcrumbs from '../components/Breadcrumbs.astro';
 
     counters.forEach(counter => observer.observe(counter));
 
-    // Sue Modal Functions
+    // Modal Functions
     window.openSueModal = function() {
       const modal = document.getElementById('sue-modal');
       const modalContent = document.getElementById('sue-modal-content');
@@ -769,10 +863,78 @@ import Breadcrumbs from '../components/Breadcrumbs.astro';
       }, 300);
     };
 
+    window.openMonaModal = function() {
+      const modal = document.getElementById('mona-modal');
+      const modalContent = document.getElementById('mona-modal-content');
+      
+      modal.classList.remove('hidden');
+      modal.classList.add('flex');
+      
+      // Animate modal content
+      setTimeout(() => {
+        modalContent.classList.remove('scale-95', 'opacity-0');
+        modalContent.classList.add('scale-100', 'opacity-100');
+      }, 10);
+    };
+
+    window.closeMonaModal = function() {
+      const modal = document.getElementById('mona-modal');
+      const modalContent = document.getElementById('mona-modal-content');
+      
+      // Animate modal content out
+      modalContent.classList.remove('scale-100', 'opacity-100');
+      modalContent.classList.add('scale-95', 'opacity-0');
+      
+      // Hide modal after animation
+      setTimeout(() => {
+        modal.classList.remove('flex');
+        modal.classList.add('hidden');
+      }, 300);
+    };
+
+    window.openSaulModal = function() {
+      const modal = document.getElementById('saul-modal');
+      const modalContent = document.getElementById('saul-modal-content');
+      
+      modal.classList.remove('hidden');
+      modal.classList.add('flex');
+      
+      // Animate modal content
+      setTimeout(() => {
+        modalContent.classList.remove('scale-95', 'opacity-0');
+        modalContent.classList.add('scale-100', 'opacity-100');
+      }, 10);
+    };
+
+    window.closeSaulModal = function() {
+      const modal = document.getElementById('saul-modal');
+      const modalContent = document.getElementById('saul-modal-content');
+      
+      // Animate modal content out
+      modalContent.classList.remove('scale-100', 'opacity-100');
+      modalContent.classList.add('scale-95', 'opacity-0');
+      
+      // Hide modal after animation
+      setTimeout(() => {
+        modal.classList.remove('flex');
+        modal.classList.add('hidden');
+      }, 300);
+    };
+
     // Close modal when clicking outside
     document.getElementById('sue-modal').addEventListener('click', function(e) {
       if (e.target === this) {
         closeSueModal();
+      }
+    });
+    document.getElementById('mona-modal').addEventListener('click', function(e) {
+      if (e.target === this) {
+        closeMonaModal();
+      }
+    });
+    document.getElementById('saul-modal').addEventListener('click', function(e) {
+      if (e.target === this) {
+        closeSaulModal();
       }
     });
   });
