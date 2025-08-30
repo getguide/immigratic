@@ -109,6 +109,13 @@ import Layout from '../layouts/Layout.astro';
       <div class="group relative opacity-0 animate-fade-in-up" style="animation-delay: 0.8s; animation-fill-mode: forwards;">
         <div class="absolute inset-0 bg-gradient-to-r from-blue-600 to-purple-600 rounded-3xl blur-xl opacity-0 group-hover:opacity-100 transition-all duration-700 scale-110"></div>
         <div class="relative bg-white/80 dark:bg-gray-800/80 backdrop-blur-xl rounded-3xl p-8 shadow-2xl border border-white/20 dark:border-gray-700/50 hover:shadow-3xl transition-all duration-700 transform hover:-translate-y-4 hover:scale-105 group-hover:border-blue-400/50 dark:group-hover:border-blue-500/50">
+          <!-- Individual Tag - Top Right -->
+          <div class="absolute top-6 right-10 z-10">
+            <span class="px-3 py-1 text-xs font-medium bg-blue-100 dark:bg-blue-900/30 text-blue-700 dark:text-blue-300 rounded-full border border-blue-200 dark:border-blue-700/50 shadow-sm">
+              Individual
+            </span>
+          </div>
+          
           <!-- Floating Icon Container -->
           <div class="relative mb-8">
             <div class="absolute inset-0 bg-gradient-to-br from-blue-500 to-purple-600 rounded-2xl blur-lg opacity-75 group-hover:opacity-100 transition-opacity duration-500"></div>
@@ -128,31 +135,53 @@ import Layout from '../layouts/Layout.astro';
             Permanent Residency
           </h3>
           
-          <!-- Clean Interactive List -->
+          <!-- Clean Interactive List with Line-Level CTAs -->
           <div class="space-y-3 mb-6">
-            <div class="flex items-center gap-3 hover:translate-x-2 transition-all duration-300 cursor-pointer">
-              <div class="w-2 h-2 bg-blue-500 rounded-full hover:scale-150 transition-transform duration-300"></div>
-              <span class="text-gray-600 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors duration-300">Express Entry (EE)</span>
+            <!-- Mobile hint - only visible on mobile -->
+            <div class="md:hidden text-xs text-gray-500 dark:text-gray-400 text-center mb-2">
+              💡 Tap any program to learn more
             </div>
-            
-            <div class="flex items-center gap-3 hover:translate-x-2 transition-all duration-300 cursor-pointer" style="transition-delay: 0.1s;">
-              <div class="w-2 h-2 bg-purple-500 rounded-full hover:scale-150 transition-transform duration-300"></div>
-              <span class="text-gray-600 dark:text-gray-300 hover:text-purple-600 dark:hover:text-purple-400 transition-colors duration-300">Ontario Immigrant Nominee Program</span>
-            </div>
-            
+            <!-- Express Entry -->
             <div class="group/item relative">
-              <div class="flex items-center gap-3 group-hover/item:translate-x-2 transition-all duration-300 cursor-pointer" style="transition-delay: 0.2s;">
-                <div class="w-2 h-2 bg-blue-600 rounded-full group-hover/item:scale-150 transition-transform duration-300"></div>
-                <span class="text-gray-600 dark:text-gray-300 group-hover/item:text-blue-600 dark:group-hover:item:text-blue-400 transition-colors duration-300">Family Sponsorship</span>
-              </div>
-
+              <a href="/services/pr/ee" class="flex items-center justify-between hover:translate-x-2 transition-all duration-300 cursor-pointer p-2 -m-2 rounded-lg hover:bg-blue-50 dark:hover:bg-blue-900/20">
+                <div class="flex items-center gap-3">
+                  <div class="w-2 h-2 bg-blue-500 rounded-full group-hover/item:scale-150 transition-transform duration-300"></div>
+                  <span class="text-gray-600 dark:text-gray-300 group-hover/item:text-blue-600 dark:group-hover/item:text-blue-400 transition-colors duration-300">Express Entry (EE)</span>
+                </div>
+                <!-- Arrow indicator - visible on mobile, enhanced on hover for desktop -->
+                <span class="text-blue-500 transition-all duration-300 transform group-hover/item:translate-x-1 md:opacity-0 md:group-hover/item:opacity-100 md:translate-x-2 md:group-hover/item:translate-x-0">→</span>
+              </a>
+            </div>
+            
+            <!-- OINP -->
+            <div class="group/item relative">
+              <a href="/services/pr/oinp" class="flex items-center justify-between hover:translate-x-2 transition-all duration-300 cursor-pointer p-2 -m-2 rounded-lg hover:bg-purple-50 dark:hover:bg-purple-900/20" style="transition-delay: 0.1s;">
+                <div class="flex items-center gap-3">
+                  <div class="w-2 h-2 bg-purple-500 rounded-full group-hover/item:scale-150 transition-transform duration-300"></div>
+                  <span class="text-gray-600 dark:text-gray-300 group-hover/item:text-purple-600 dark:group-hover/item:text-purple-400 transition-colors duration-300">Ontario Immigrant Nominee Program</span>
+                </div>
+                <!-- Arrow indicator - visible on mobile, enhanced on hover for desktop -->
+                <span class="text-purple-500 transition-all duration-300 transform group-hover/item:translate-x-1 md:opacity-0 md:group-hover/item:opacity-100 md:translate-x-2 md:group-hover/item:translate-x-0">→</span>
+              </a>
+            </div>
+            
+            <!-- Family Sponsorship -->
+            <div class="group/item relative">
+              <a href="/services/pr/family" class="flex items-center justify-between hover:translate-x-2 transition-all duration-300 cursor-pointer p-2 -m-2 rounded-lg hover:bg-blue-50 dark:hover:bg-blue-900/20" style="transition-delay: 0.2s;">
+                <div class="flex items-center gap-3">
+                  <div class="w-2 h-2 bg-blue-600 rounded-full group-hover/item:scale-150 transition-transform duration-300"></div>
+                  <span class="text-gray-600 dark:text-gray-300 group-hover/item:text-blue-600 dark:group-hover/item:text-blue-400 transition-colors duration-300">Family Sponsorship</span>
+                </div>
+                <!-- Arrow indicator - visible on mobile, enhanced on hover for desktop -->
+                <span class="text-blue-600 transition-all duration-300 transform group-hover/item:translate-x-1 md:opacity-0 md:group-hover/item:opacity-100 md:translate-x-2 md:group-hover/item:translate-x-0">→</span>
+              </a>
             </div>
           </div>
           
           <!-- Enhanced CTA Button -->
           <div class="group/btn relative">
             <div class="absolute inset-0 bg-gradient-to-r from-blue-600 to-purple-600 rounded-xl blur-lg opacity-0 group-hover/btn:opacity-100 transition-opacity duration-500 scale-110"></div>
-            <a href="/services" class="relative block w-full text-center py-4 px-6 bg-gradient-to-r from-blue-600 to-purple-600 text-white font-semibold rounded-xl hover:from-blue-700 hover:to-purple-700 transition-all duration-300 transform group-hover/btn:scale-105 group-hover/btn:shadow-xl">
+            <a href="/services/pr" class="relative block w-full text-center py-4 px-6 bg-gradient-to-r from-blue-600 to-purple-600 text-white font-semibold rounded-xl hover:from-blue-700 hover:to-purple-700 transition-all duration-300 transform group-hover/btn:scale-105 group-hover/btn:shadow-xl">
               Explore PR Programs
               <svg class="inline-block w-5 h-5 ml-2 group-hover/btn:translate-x-1 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
@@ -166,6 +195,13 @@ import Layout from '../layouts/Layout.astro';
       <div class="group relative opacity-0 animate-fade-in-up" style="animation-delay: 1s; animation-fill-mode: forwards;">
         <div class="absolute inset-0 bg-gradient-to-r from-green-600 to-blue-600 rounded-3xl blur-xl opacity-0 group-hover:opacity-100 transition-all duration-700 scale-110"></div>
         <div class="relative bg-white/80 dark:bg-gray-800/80 backdrop-blur-xl rounded-3xl p-8 shadow-2xl border border-white/20 dark:border-gray-700/50 hover:shadow-3xl transition-all duration-700 transform hover:-translate-y-4 hover:scale-105 group-hover:border-green-400/50 dark:group-hover:border-green-500/50">
+          <!-- Individual Tag - Top Right -->
+          <div class="absolute top-6 right-10 z-10">
+            <span class="px-3 py-1 text-xs font-medium bg-green-100 dark:bg-green-900/30 text-green-700 dark:text-green-300 rounded-full border border-green-200 dark:border-green-700/50 shadow-sm">
+              Individual
+            </span>
+          </div>
+          
           <!-- Floating Icon Container -->
           <div class="relative mb-8">
             <div class="absolute inset-0 bg-gradient-to-br from-green-500 to-blue-600 rounded-2xl blur-lg opacity-75 group-hover:opacity-100 transition-opacity duration-500"></div>
@@ -185,37 +221,54 @@ import Layout from '../layouts/Layout.astro';
             Temporary Residence
           </h3>
           
-          <!-- Clean Interactive List -->
+          <!-- Clean Interactive List with Line-Level CTAs -->
           <div class="space-y-3 mb-6">
-            <div class="group/item relative">
-              <div class="flex items-center gap-3 group-hover/item:translate-x-2 transition-all duration-300 cursor-pointer">
-                <div class="w-2 h-2 bg-green-500 rounded-full group-hover/item:scale-150 transition-transform duration-300"></div>
-                <span class="text-gray-600 dark:text-gray-300 group-hover/item:text-green-600 dark:group-hover/item:text-green-400 transition-colors duration-300">Visitor Visa</span>
-        </div>
-
-              </div>
+            <!-- Mobile hint - only visible on mobile -->
+            <div class="md:hidden text-xs text-gray-500 dark:text-gray-400 text-center mb-2">
+              💡 Tap any program to learn more
+            </div>
             
+            <!-- Visitor Visa -->
             <div class="group/item relative">
-              <div class="flex items-center gap-3 group-hover/item:translate-x-2 transition-all duration-300 cursor-pointer" style="transition-delay: 0.1s;">
-                <div class="w-2 h-2 bg-blue-500 rounded-full group-hover/item:scale-150 transition-transform duration-300"></div>
-                <span class="text-gray-600 dark:text-gray-300 group-hover/item:text-blue-600 dark:group-hover/item:text-blue-400 transition-colors duration-300">Study Permit</span>
-                  </div>
-
-                  </div>
-            
-            <div class="group/item relative">
-              <div class="flex items-center gap-3 group-hover/item:translate-x-2 transition-all duration-300 cursor-pointer" style="transition-delay: 0.2s;">
-                <div class="w-2 h-2 bg-green-600 rounded-full group-hover/item:scale-150 transition-transform duration-300"></div>
-                <span class="text-gray-600 dark:text-gray-300 group-hover/item:text-green-600 dark:group-hover/item:text-green-400 transition-colors duration-300">Work Permit</span>
+              <a href="/services/tr/visitors" class="flex items-center justify-between hover:translate-x-2 transition-all duration-300 cursor-pointer p-2 -m-2 rounded-lg hover:bg-green-50 dark:hover:bg-green-900/20">
+                <div class="flex items-center gap-3">
+                  <div class="w-2 h-2 bg-green-500 rounded-full group-hover/item:scale-150 transition-transform duration-300"></div>
+                  <span class="text-gray-600 dark:text-gray-300 group-hover/item:text-green-600 dark:group-hover/item:text-green-400 transition-colors duration-300">Visitor Visa</span>
                 </div>
-
+                <!-- Arrow indicator - visible on mobile, enhanced on hover for desktop -->
+                <span class="text-green-500 transition-all duration-300 transform group-hover/item:translate-x-1 md:opacity-0 md:group-hover/item:opacity-100 md:translate-x-2 md:group-hover/item:translate-x-0">→</span>
+              </a>
+            </div>
+            
+            <!-- Study Permit -->
+            <div class="group/item relative">
+              <a href="/services/tr/students" class="flex items-center justify-between hover:translate-x-2 transition-all duration-300 cursor-pointer p-2 -m-2 rounded-lg hover:bg-blue-50 dark:hover:bg-blue-900/20" style="transition-delay: 0.1s;">
+                <div class="flex items-center gap-3">
+                  <div class="w-2 h-2 bg-blue-500 rounded-full group-hover/item:scale-150 transition-transform duration-300"></div>
+                  <span class="text-gray-600 dark:text-gray-300 group-hover/item:text-blue-600 dark:group-hover/item:text-blue-400 transition-colors duration-300">Study Permit</span>
+                </div>
+                <!-- Arrow indicator - visible on mobile, enhanced on hover for desktop -->
+                <span class="text-blue-500 transition-all duration-300 transform group-hover/item:translate-x-1 md:opacity-0 md:group-hover/item:opacity-100 md:translate-x-2 md:group-hover/item:translate-x-0">→</span>
+              </a>
+            </div>
+            
+            <!-- Work Permit -->
+            <div class="group/item relative">
+              <a href="/services/tr/workers" class="flex items-center justify-between hover:translate-x-2 transition-all duration-300 cursor-pointer p-2 -m-2 rounded-lg hover:bg-green-50 dark:hover:bg-green-900/20" style="transition-delay: 0.2s;">
+                <div class="flex items-center gap-3">
+                  <div class="w-2 h-2 bg-green-600 rounded-full group-hover/item:scale-150 transition-transform duration-300"></div>
+                  <span class="text-gray-600 dark:text-gray-300 group-hover/item:text-green-600 dark:group-hover/item:text-green-400 transition-colors duration-300">Work Permit</span>
+                </div>
+                <!-- Arrow indicator - visible on mobile, enhanced on hover for desktop -->
+                <span class="text-green-600 transition-all duration-300 transform group-hover/item:translate-x-1 md:opacity-0 md:group-hover/item:opacity-100 md:translate-x-2 md:group-hover/item:translate-x-0">→</span>
+              </a>
             </div>
           </div>
           
           <!-- Enhanced CTA Button -->
           <div class="group/btn relative">
             <div class="absolute inset-0 bg-gradient-to-r from-green-600 to-blue-600 rounded-xl blur-lg opacity-0 group-hover/btn:opacity-100 transition-opacity duration-500 scale-110"></div>
-            <a href="/services" class="relative block w-full text-center py-4 px-6 bg-gradient-to-r from-green-600 to-blue-600 text-white font-semibold rounded-xl hover:from-green-700 hover:to-blue-700 transition-all duration-300 transform group-hover/btn:scale-105 group-hover/btn:shadow-xl">
+            <a href="/services/tr" class="relative block w-full text-center py-4 px-6 bg-gradient-to-r from-green-600 to-blue-600 text-white font-semibold rounded-xl hover:from-green-700 hover:to-blue-700 transition-all duration-300 transform group-hover/btn:scale-105 group-hover/btn:shadow-xl">
               Explore TR Programs
               <svg class="inline-block w-5 h-5 ml-2 group-hover/btn:translate-x-1 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
@@ -229,16 +282,21 @@ import Layout from '../layouts/Layout.astro';
       <div class="group relative opacity-0 animate-fade-in-up" style="animation-delay: 1.2s; animation-fill-mode: forwards;">
         <div class="absolute inset-0 bg-gradient-to-r from-orange-600 to-red-600 rounded-3xl blur-xl opacity-0 group-hover:opacity-100 transition-all duration-700 scale-110"></div>
         <div class="relative bg-white/80 dark:bg-gray-800/80 backdrop-blur-xl rounded-3xl p-8 shadow-2xl border border-white/20 dark:border-gray-700/50 hover:shadow-3xl transition-all duration-700 transform hover:-translate-y-4 hover:scale-105 group-hover:border-orange-400/50 dark:group-hover:border-orange-500/50">
+          <!-- Corporate Tag - Top Right -->
+          <div class="absolute top-6 right-10 z-10">
+            <span class="px-3 py-1 text-xs font-medium bg-orange-100 dark:bg-orange-900/30 text-orange-700 dark:text-orange-300 rounded-full border border-orange-200 dark:border-orange-700/50 shadow-sm">
+              Corporate
+            </span>
+          </div>
+          
           <!-- Floating Icon Container -->
           <div class="relative mb-8">
             <div class="absolute inset-0 bg-gradient-to-br from-orange-500 to-red-600 rounded-2xl blur-lg opacity-75 group-hover:opacity-100 transition-opacity duration-500"></div>
             <div class="relative w-20 h-20 bg-gradient-to-br from-orange-500 to-red-600 rounded-2xl flex items-center justify-center group-hover:scale-110 transition-all duration-500 transform group-hover:rotate-3 group-hover:shadow-2xl">
               <svg class="w-10 h-10 text-white group-hover:scale-110 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"></path>
-              </svg>
-              <!-- Icon Glow Effect -->
-              <div class="absolute inset-0 bg-gradient-to-br from-orange-400 to-red-500 rounded-2xl blur-md opacity-0 group-hover:opacity-100 transition-opacity duration-500 -z-10"></div>
-            </div>
+                </svg>
+              </div>
             <!-- Floating Particles -->
             <div class="absolute -top-2 -right-2 w-3 h-3 bg-orange-400 rounded-full animate-ping opacity-75"></div>
             <div class="absolute -bottom-2 -left-2 w-2 h-2 bg-red-400 rounded-full animate-ping opacity-75" style="animation-delay: 0.5s;"></div>
@@ -248,22 +306,35 @@ import Layout from '../layouts/Layout.astro';
             Enterprise Solutions
           </h3>
           
-          <!-- Clean Interactive List -->
+          <!-- Clean Interactive List with Line-Level CTAs -->
           <div class="space-y-3 mb-6">
-            <div class="group/item relative">
-              <div class="flex items-center gap-3 group-hover/item:translate-x-2 transition-all duration-300 cursor-pointer">
-                <div class="w-2 h-2 bg-red-500 rounded-full group-hover/item:scale-150 transition-transform duration-300"></div>
-                <span class="text-gray-600 dark:text-gray-300 group-hover/item:text-orange-600 dark:group-hover:item:text-orange-400 transition-colors duration-300">Educational Institutions</span>
-              </div>
-
+            <!-- Mobile hint - only visible on mobile -->
+            <div class="md:hidden text-xs text-gray-500 dark:text-gray-400 text-center mb-2">
+              💡 Tap any solution to learn more
             </div>
             
+            <!-- Educational Institutions -->
             <div class="group/item relative">
-              <div class="flex items-center gap-3 group-hover/item:translate-x-2 transition-all duration-300 cursor-pointer" style="transition-delay: 0.1s;">
-                <div class="w-2 h-2 bg-orange-600 rounded-full group-hover/item:scale-150 transition-transform duration-300"></div>
-                <span class="text-gray-600 dark:text-gray-300 group-hover/item:text-orange-600 dark:group-hover/item:text-orange-400 transition-colors duration-300">Immigration Agencies</span>
-              </div>
-
+              <a href="/solutions/educational-institutions" class="flex items-center justify-between hover:translate-x-2 transition-all duration-300 cursor-pointer p-2 -m-2 rounded-lg hover:bg-red-50 dark:hover:bg-red-900/20">
+                <div class="flex items-center gap-3">
+                  <div class="w-2 h-2 bg-red-500 rounded-full group-hover/item:scale-150 transition-transform duration-300"></div>
+                  <span class="text-gray-600 dark:text-gray-300 group-hover/item:text-orange-600 dark:group-hover/item:text-orange-400 transition-colors duration-300">Educational Institutions</span>
+                </div>
+                <!-- Arrow indicator - visible on mobile, enhanced on hover for desktop -->
+                <span class="text-red-500 transition-all duration-300 transform group-hover/item:translate-x-1 md:opacity-0 md:group-hover/item:opacity-100 md:translate-x-2 md:group-hover/item:translate-x-0">→</span>
+              </a>
+            </div>
+            
+            <!-- Immigration Agencies -->
+            <div class="group/item relative">
+              <a href="/solutions/immigration-agencies" class="flex items-center justify-between hover:translate-x-2 transition-all duration-300 cursor-pointer p-2 -m-2 rounded-lg hover:bg-orange-50 dark:hover:bg-orange-900/20" style="transition-delay: 0.1s;">
+                <div class="flex items-center gap-3">
+                  <div class="w-2 h-2 bg-orange-600 rounded-full group-hover/item:scale-150 transition-transform duration-300"></div>
+                  <span class="text-gray-600 dark:text-gray-300 group-hover/item:text-orange-600 dark:group-hover/item:text-orange-400 transition-colors duration-300">Immigration Agencies</span>
+                </div>
+                <!-- Arrow indicator - visible on mobile, enhanced on hover for desktop -->
+                <span class="text-orange-600 transition-all duration-300 transform group-hover/item:translate-x-1 md:opacity-0 md:group-hover/item:opacity-100 md:translate-x-2 md:group-hover/item:translate-x-0">→</span>
+              </a>
             </div>
             
             <div class="group/item relative">
@@ -485,43 +556,63 @@ import Layout from '../layouts/Layout.astro';
       <div class="max-w-4xl mx-auto mb-32">
         <!-- Professional Segmented Control -->
         <div class="flex justify-center mb-12 opacity-0 animate-fade-in-up" style="animation-delay: 0.8s; animation-fill-mode: forwards;">
-          <div class="relative bg-gray-100 dark:bg-gray-800 rounded-2xl p-2 shadow-inner">
-            <!-- Sliding Background -->
+          <div class="relative bg-gray-100/50 dark:bg-gray-800/50 backdrop-blur-sm rounded-full p-1.5 shadow-lg border border-gray-200/50 dark:border-gray-700/50 w-96 max-w-full">
+            <!-- Enhanced Sliding Background with Gradient -->
             <div 
-              class="absolute top-2 bottom-2 w-1/2 rounded-xl shadow-lg transition-all duration-500 ease-out"
-              :style="toggleState === 'old' ? 'left: 8px; transform: translateX(0);' : 'left: 8px; transform: translateX(calc(100% - 8px));'"
-              style="background: linear-gradient(135deg, #ffffff 0%, #f8fafc 100%); box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15), 0 2px 4px rgba(0, 0, 0, 0.1);"
+              class="absolute top-1.5 bottom-1.5 rounded-full shadow-lg transition-all duration-700 ease-out"
+              :style="toggleState === 'old' ? 'left: 6px; width: calc(50% - 6px); background: linear-gradient(135deg, #ef4444 0%, #dc2626 50%, #b91c1c 100%); box-shadow: 0 4px 20px rgba(239, 68, 68, 0.4), 0 2px 8px rgba(220, 38, 38, 0.3);' : 'left: calc(50% + 0.25px); width: calc(50% - 6px); background: linear-gradient(135deg, #3b82f6 0%, #2563eb 50%, #1d4ed8 100%); box-shadow: 0 4px 20px rgba(59, 130, 246, 0.4), 0 2px 8px rgba(37, 99, 235, 0.3);'"
             ></div>
             
-            <!-- Button Options -->
+            <!-- Button Options with Enhanced Styling -->
             <div class="relative flex">
               <!-- The Old Way Button -->
               <button 
                 @click="toggleState = 'old'"
-                class="relative z-10 flex-1 px-8 py-4 text-base font-semibold transition-all duration-300 rounded-xl flex items-center justify-center gap-3"
-                :class="toggleState === 'old' ? 'text-red-600 dark:text-red-400' : 'text-gray-600 dark:text-gray-400 hover:text-gray-800 dark:hover:text-gray-200'"
+                class="relative z-10 flex-1 px-10 py-3 text-sm font-semibold transition-all duration-500 rounded-full flex items-center justify-center gap-3 group"
+                :class="toggleState === 'old' ? 'text-white' : 'text-gray-600 dark:text-gray-400 hover:text-gray-800 dark:hover:text-gray-200'"
               >
-                <svg class="w-5 h-5 transition-all duration-300" :class="toggleState === 'old' ? 'text-red-500' : 'text-gray-400'" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <!-- Enhanced Icon with Animation -->
+                <svg class="w-4 h-4 transition-all duration-500" :class="toggleState === 'old' ? 'text-white scale-110' : 'text-gray-400 group-hover:scale-105'" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"></path>
-            </svg>
-                <span>The Old Way</span>
+                </svg>
+                <span class="transition-all duration-300" :class="toggleState === 'old' ? 'font-bold' : 'font-medium'">The Old Way</span>
+                
+                <!-- Hover Glow Effect -->
+                <div class="absolute inset-0 rounded-full bg-red-500/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none"></div>
               </button>
               
               <!-- Immigratic Way Button -->
               <button 
                 @click="toggleState = 'our-way'"
-                class="relative z-10 flex-1 px-8 py-4 text-base font-semibold transition-all duration-300 rounded-xl flex items-center justify-center gap-3"
-                :class="toggleState === 'our-way' ? 'text-blue-600 dark:text-blue-400' : 'text-gray-600 dark:text-gray-400 hover:text-gray-800 dark:hover:text-gray-200'"
+                class="relative z-10 flex-1 px-10 py-3 text-sm font-semibold transition-all duration-500 rounded-full flex items-center justify-center gap-3 group"
+                :class="toggleState === 'our-way' ? 'text-white' : 'text-gray-600 dark:text-gray-400 hover:text-gray-800 dark:hover:text-gray-200'"
               >
-                <svg class="w-5 h-5 transition-all duration-300" :class="toggleState === 'our-way' ? 'text-blue-500' : 'text-gray-400'" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <!-- Enhanced Icon with Animation -->
+                <svg class="w-4 h-4 transition-all duration-500" :class="toggleState === 'our-way' ? 'text-white scale-110' : 'text-gray-400 group-hover:scale-105'" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
                 </svg>
-                <span>Our Way</span>
+                <span class="transition-all duration-300" :class="toggleState === 'our-way' ? 'font-bold' : 'font-medium'">Our Way</span>
+                
+                <!-- Hover Glow Effect -->
+                <div class="absolute inset-0 rounded-full bg-blue-500/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none"></div>
               </button>
-          </div>
+            </div>
             
-            <!-- Enhanced Visual Feedback -->
-            <div class="absolute inset-0 rounded-2xl bg-gradient-to-r from-blue-500/5 to-purple-500/5 opacity-0 hover:opacity-100 transition-opacity duration-300 pointer-events-none"></div>
+            <!-- Enhanced Visual Feedback with Gradient Overlay -->
+            <div class="absolute inset-0 rounded-full bg-gradient-to-r from-red-500/5 via-transparent to-blue-500/5 opacity-0 hover:opacity-100 transition-opacity duration-500 pointer-events-none"></div>
+            
+            <!-- Directional Swipe Hints -->
+            <div class="absolute -top-8 left-1/2 transform -translate-x-1/2 opacity-0 hover:opacity-100 transition-opacity duration-300 pointer-events-none">
+              <div class="flex items-center gap-2 text-xs text-gray-500 dark:text-gray-400">
+                <svg class="w-3 h-3 animate-pulse" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 16l-4-4m0 0l4-4m-4 4h18"></path>
+                </svg>
+                <span>Swipe to explore</span>
+                <svg class="w-3 h-3 animate-pulse" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
+                </svg>
+              </div>
+            </div>
           </div>
         </div>
 
@@ -583,7 +674,7 @@ import Layout from '../layouts/Layout.astro';
           <!-- Immigratic Way Card -->
           <div 
             x-show="toggleState === 'our-way'"
-            class="bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-3xl p-8 shadow-xl"
+            class="bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-3xl p-8 shadow-xl hover:shadow-2xl hover:scale-[1.02] hover:border-blue-300 dark:hover:border-blue-600 transition-all duration-500 cursor-pointer group"
           >
             <div class="text-center mb-6">
               <div class="w-16 h-16 bg-blue-100 dark:bg-blue-900/20 rounded-full flex items-center justify-center mx-auto mb-4">
@@ -591,45 +682,59 @@ import Layout from '../layouts/Layout.astro';
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
             </svg>
           </div>
-              <h3 class="text-2xl font-bold text-gray-900 dark:text-white mb-2">One Form = All Programs</h3>
-              <p class="text-gray-600 dark:text-gray-400">Our unified approach that changes everything</p>
+              <h3 class="text-2xl font-bold text-gray-900 dark:text-white mb-2 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors duration-300">One Form = All Programs</h3>
+              <p class="text-gray-600 dark:text-gray-400 group-hover:text-gray-800 dark:group-hover:text-gray-200 transition-colors duration-300">Our unified approach that changes everything</p>
         </div>
 
             <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
                               <div class="space-y-3">
-                  <div class="flex items-center gap-3">
-                    <div class="w-2 h-2 bg-blue-500 rounded-full toggle-bullet blue"></div>
-                    <span class="text-gray-700 dark:text-gray-300">Single unified assessment</span>
+                  <div class="flex items-center gap-3 group hover:bg-blue-50 dark:hover:bg-blue-900/20 p-2 rounded-xl transition-all duration-300 cursor-pointer">
+                    <div class="w-2 h-2 bg-blue-500 rounded-full toggle-bullet blue group-hover:scale-150 transition-transform duration-300"></div>
+                    <span class="text-gray-700 dark:text-gray-300 group-hover:text-blue-800 dark:group-hover:text-blue-200 transition-colors duration-300">Single unified assessment</span>
                   </div>
-                  <div class="flex items-center gap-3">
-                    <div class="w-2 h-2 bg-blue-500 rounded-full toggle-bullet blue"></div>
-                    <span class="text-gray-700 dark:text-gray-300">35+ programs simultaneously</span>
+                  <div class="flex items-center gap-3 group hover:bg-blue-50 dark:hover:bg-blue-900/20 p-2 rounded-xl transition-all duration-300 cursor-pointer">
+                    <div class="w-2 h-2 bg-blue-500 rounded-full toggle-bullet blue group-hover:scale-150 transition-transform duration-300"></div>
+                    <span class="text-gray-700 dark:text-gray-300 group-hover:text-blue-800 dark:group-hover:text-blue-200 transition-colors duration-300">
+                      <span class="font-bold text-blue-600 dark:text-blue-400 text-lg group-hover:text-blue-700 dark:group-hover:text-blue-300">35+</span> programs simultaneously
+                    </span>
                   </div>
-                  <div class="flex items-center gap-3">
-                    <div class="w-2 h-2 bg-blue-500 rounded-full toggle-bullet blue"></div>
-                    <span class="text-gray-700 dark:text-gray-300">Real-time eligibility updates</span>
+                  <div class="flex items-center gap-3 group hover:bg-blue-50 dark:hover:bg-blue-900/20 p-2 rounded-xl transition-all duration-300 cursor-pointer">
+                    <div class="w-2 h-2 bg-blue-500 rounded-full toggle-bullet blue group-hover:scale-150 transition-transform duration-300"></div>
+                    <span class="text-gray-700 dark:text-gray-300 group-hover:text-blue-800 dark:group-hover:text-blue-200 transition-colors duration-300">Real-time eligibility updates</span>
                   </div>
                 </div>
                 <div class="space-y-3">
-                  <div class="flex items-center gap-3">
-                    <div class="w-2 h-2 bg-blue-500 rounded-full toggle-bullet blue"></div>
-                    <span class="text-gray-700 dark:text-gray-300">Live draw comparisons</span>
+                  <div class="flex items-center gap-3 group hover:bg-blue-50 dark:hover:bg-blue-900/20 p-2 rounded-xl transition-all duration-300 cursor-pointer">
+                    <div class="w-2 h-2 bg-blue-500 rounded-full toggle-bullet blue group-hover:scale-150 transition-transform duration-300"></div>
+                    <span class="text-gray-700 dark:text-gray-300 group-hover:text-blue-800 dark:group-hover:text-blue-200 transition-colors duration-300">Live draw comparisons</span>
                   </div>
-                  <div class="flex items-center gap-3">
-                    <div class="w-2 h-2 bg-blue-500 rounded-full toggle-bullet blue"></div>
-                    <span class="text-gray-700 dark:text-gray-300">99% assessment accuracy guarantee</span>
+                  <div class="flex items-center gap-3 group hover:bg-green-50 dark:hover:bg-green-900/20 p-2 rounded-xl transition-all duration-300 cursor-pointer">
+                    <div class="w-2 h-2 bg-blue-500 rounded-full toggle-bullet blue group-hover:scale-150 transition-transform duration-300"></div>
+                    <span class="text-gray-700 dark:text-gray-300 group-hover:text-green-800 dark:group-hover:text-green-200 transition-colors duration-300">
+                      <span class="font-bold text-green-600 dark:text-green-400 text-lg group-hover:text-green-700 dark:group-hover:text-green-300">99%</span> assessment accuracy guarantee
+                    </span>
                   </div>
-                  <div class="flex items-center gap-3">
-                    <div class="w-2 h-2 bg-blue-500 rounded-full toggle-bullet blue"></div>
-                    <span class="text-gray-700 dark:text-gray-300">10x faster than traditional</span>
+                  <div class="flex items-center gap-3 group hover:bg-orange-50 dark:hover:bg-orange-900/20 p-2 rounded-xl transition-all duration-300 cursor-pointer">
+                    <div class="w-2 h-2 bg-blue-500 rounded-full toggle-bullet blue group-hover:scale-150 transition-transform duration-300"></div>
+                    <span class="text-gray-700 dark:text-gray-300 group-hover:text-orange-800 dark:group-hover:text-orange-200 transition-colors duration-300">
+                      <span class="font-bold text-orange-600 dark:text-orange-400 text-lg group-hover:text-orange-700 dark:group-hover:text-orange-300">10x</span> faster than traditional
+                    </span>
                   </div>
                 </div>
             </div>
             
-            <div class="bg-blue-50 dark:bg-blue-900/20 border border-blue-200 dark:border-blue-800 rounded-2xl p-4">
-              <p class="text-blue-700 dark:text-blue-300 text-sm font-medium text-center">
-                <strong>Result:</strong> In minutes: clear answers, accurate results, and the confidence to plan your future in Canada.
-              </p>
+            <div class="bg-gradient-to-r from-blue-50 to-purple-50 dark:from-blue-900/30 dark:to-purple-900/30 border border-blue-200 dark:border-blue-700 rounded-2xl p-6 shadow-lg hover:shadow-xl hover:scale-[1.02] hover:border-blue-300 dark:hover:border-blue-600 transition-all duration-500 cursor-pointer group">
+              <div class="text-center">
+                <div class="inline-flex items-center gap-2 mb-2">
+                  <svg class="w-5 h-5 text-blue-600 dark:text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                  </svg>
+                  <span class="text-blue-700 dark:text-blue-300 font-bold text-sm uppercase tracking-wide">Result</span>
+                </div>
+                <p class="text-blue-800 dark:text-blue-200 text-base font-medium leading-relaxed">
+                  In <span class="font-bold text-blue-600 dark:text-blue-400">minutes</span>: clear answers, accurate results, and the <span class="font-bold text-purple-600 dark:text-purple-400">confidence</span> to plan your future in Canada.
+                </p>
+              </div>
             </div>
           </div>
         </div>
@@ -671,6 +776,10 @@ import Layout from '../layouts/Layout.astro';
         <div class="group relative">
           <div class="absolute inset-0 bg-gradient-to-r from-blue-600 to-purple-600 rounded-3xl blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
           <div class="relative bg-white dark:bg-gray-800 rounded-3xl p-8 shadow-xl border border-gray-200 dark:border-gray-700 hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2">
+            <!-- FREE! Tag -->
+            <div class="absolute top-4 right-4 z-10">
+              <span class="bg-green-500 text-white px-3 py-1.5 rounded-full text-xs font-bold shadow-lg animate-pulse">FREE!</span>
+            </div>
             <div class="w-16 h-16 bg-gradient-to-br from-blue-500 to-purple-600 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
               <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
@@ -691,6 +800,10 @@ import Layout from '../layouts/Layout.astro';
         <div class="group relative">
           <div class="absolute inset-0 bg-gradient-to-r from-green-600 to-blue-600 rounded-3xl blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
           <div class="relative bg-white dark:bg-gray-800 rounded-3xl p-8 shadow-xl border border-gray-200 dark:border-gray-700 hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2">
+            <!-- FREE! Tag -->
+            <div class="absolute top-4 right-4 z-10">
+              <span class="bg-green-500 text-white px-3 py-1.5 rounded-full text-xs font-bold shadow-lg animate-pulse">FREE!</span>
+            </div>
             <div class="w-16 h-16 bg-gradient-to-br from-green-500 to-blue-600 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
               <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"></path>
@@ -711,6 +824,10 @@ import Layout from '../layouts/Layout.astro';
         <div class="group relative">
           <div class="absolute inset-0 bg-gradient-to-r from-purple-600 to-pink-600 rounded-3xl blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
           <div class="relative bg-white dark:bg-gray-800 rounded-3xl p-8 shadow-xl border border-gray-200 dark:border-gray-700 hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2">
+            <!-- FREE! Tag -->
+            <div class="absolute top-4 right-4 z-10">
+              <span class="bg-green-500 text-white px-3 py-1.5 rounded-full text-xs font-bold shadow-lg animate-pulse">FREE!</span>
+            </div>
             <div class="w-16 h-16 bg-gradient-to-br from-purple-500 to-pink-600 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
               <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
@@ -727,20 +844,28 @@ import Layout from '../layouts/Layout.astro';
           </div>
         </div>
 
-        <!-- AI Generators -->
+        <!-- Immigration Calculators -->
         <div class="group relative">
           <div class="absolute inset-0 bg-gradient-to-r from-orange-600 to-red-600 rounded-3xl blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-          <div class="relative bg-white dark:bg-gray-800 rounded-3xl p-8 shadow-xl shadow-xl border border-gray-200 dark:border-gray-700 hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2">
+          <div class="relative bg-white dark:bg-gray-800 rounded-3xl p-8 shadow-xl border border-gray-200 dark:border-gray-700 hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2">
+            <!-- FREE! Tag -->
+            <div class="absolute top-4 right-4 z-10">
+              <span class="bg-green-500 text-white px-3 py-1.5 rounded-full text-xs font-bold shadow-lg animate-pulse">FREE!</span>
+            </div>
             <div class="w-16 h-16 bg-gradient-to-br from-orange-500 to-red-600 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
               <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"></path>
-            </svg>
-          </div>
-            <h3 class="text-xl font-bold text-gray-900 dark:text-white mb-3">AI Generators</h3>
-            <p class="text-gray-600 dark:text-gray-300 mb-6 leading-relaxed">Generate professional documents, cover letters, and resumes tailored to your immigration application.</p>
-            <div class="inline-flex items-center text-yellow-600 dark:text-yellow-400 font-semibold">
-              <span class="text-xs bg-yellow-100 dark:bg-yellow-900/30 text-yellow-800 dark:text-yellow-300 px-3 py-2 rounded-full font-medium animate-pulse">Coming Soon</span>
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 7h6m0 10v-3m-3 3h.01M9 17h.01M9 14h.01M12 14h.01M15 11h.01M12 11h.01M9 11h.01M7 21h10a2 2 0 002-2V5a2 2 0 00-2-2H7a2 2 0 00-2 2v14a2 2 0 002 2z"></path>
+              </svg>
             </div>
+            <h3 class="text-xl font-bold text-gray-900 dark:text-white mb-3">Our Calculators</h3>
+            <p class="text-gray-600 dark:text-gray-300 mb-6 leading-relaxed">Calculate your scores for CRS, FSW, and PNP Programs with live draw updates & comparisons.</p>
+            
+            <a href="/tools/calculators?utm_source=immigratic&utm_medium=landing_page&utm_campaign=tools_section&utm_content=immigration_calculators" class="inline-flex items-center text-orange-600 dark:text-orange-400 font-semibold hover:text-orange-700 dark:hover:text-orange-300 transition-colors">
+              Calculate Your Score
+              <svg class="w-4 h-4 ml-2 transform group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+              </svg>
+            </a>
           </div>
         </div>
       </div>
@@ -1193,7 +1318,11 @@ import Layout from '../layouts/Layout.astro';
               </div>
               
             <!-- Enhanced Main Card -->
-            <div class="bg-white dark:bg-gray-800 rounded-2xl p-6 sm:p-8 pt-12 sm:pt-16 shadow-xl border border-gray-200 dark:border-gray-700 hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-3 group-hover:border-blue-300 dark:group-hover:border-blue-600 group-hover:bg-gradient-to-br group-hover:from-blue-50 group-hover:to-purple-50 dark:group-hover:from-blue-900/20 dark:group-hover:to-purple-900/20">
+            <div class="bg-white dark:bg-gray-800 rounded-2xl p-6 sm:p-8 pt-12 sm:pt-16 shadow-xl border border-gray-200 dark:border-gray-700 hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-3 group-hover:border-blue-300 dark:group-hover:border-blue-600 group-hover:bg-gradient-to-br group-hover:from-blue-50 group-hover:to-purple-50 dark:group-hover:from-blue-900/20 dark:group-hover:to-purple-900/20 relative">
+              <!-- START HERE Tag -->
+              <div class="absolute top-4 right-4 z-10">
+                <span class="bg-green-100 dark:bg-green-900/30 text-green-800 dark:text-green-300 px-3 py-1.5 rounded-full text-xs font-semibold shadow-sm">START HERE</span>
+              </div>
               <h3 class="text-xl font-bold text-gray-900 dark:text-white mb-4 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">Smart Assessment</h3>
               <p class="text-gray-600 dark:text-gray-300 leading-relaxed mb-4">Complete our AI-powered assessment to discover your best immigration pathways and get a personalized roadmap.</p>
               
@@ -1230,7 +1359,11 @@ import Layout from '../layouts/Layout.astro';
             </div>
             
             <!-- Enhanced Main Card -->
-            <div class="bg-white dark:bg-gray-800 rounded-2xl p-8 pt-16 shadow-xl border border-gray-200 dark:border-gray-700 hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-3 group-hover:border-green-300 dark:group-hover:border-green-600 group-hover:bg-gradient-to-br group-hover:from-green-50 group-hover:to-blue-50 dark:group-hover:from-green-900/20 dark:group-hover:to-blue-900/20">
+            <div class="bg-white dark:bg-gray-800 rounded-2xl p-8 pt-16 shadow-xl border border-gray-200 dark:border-gray-700 hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-3 group-hover:border-green-300 dark:group-hover:border-green-600 group-hover:bg-gradient-to-br group-hover:from-green-50 group-hover:to-blue-50 dark:group-hover:from-green-900/20 dark:group-hover:to-blue-900/20 relative">
+              <!-- PLANNING Tag -->
+              <div class="absolute top-4 right-4 z-10">
+                <span class="bg-blue-100 dark:bg-blue-900/30 text-blue-800 dark:text-blue-300 px-3 py-1.5 rounded-full text-xs font-semibold shadow-sm">PLANNING</span>
+              </div>
               <h3 class="text-xl font-bold text-gray-900 dark:text-white mb-4 group-hover:text-green-600 dark:group-hover:text-green-400 transition-colors">Book a Consultation</h3>
               <p class="text-gray-600 dark:text-gray-300 leading-relaxed mb-4">Schedule a consultation with certified RCICs who will create your immigration profile and optimize your application strategy.</p>
               
@@ -1267,7 +1400,11 @@ import Layout from '../layouts/Layout.astro';
             </div>
             
             <!-- Enhanced Main Card -->
-            <div class="bg-white dark:bg-gray-800 rounded-2xl p-8 pt-16 shadow-xl border border-gray-200 dark:border-gray-700 hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-3 group-hover:border-purple-300 dark:group-hover:border-purple-600 group-hover:bg-gradient-to-br group-hover:from-purple-50 group-hover:to-pink-50 dark:group-hover:from-purple-900/20 dark:group-hover:to-pink-900/20">
+            <div class="bg-white dark:bg-gray-800 rounded-2xl p-8 pt-16 shadow-xl border border-gray-200 dark:border-gray-700 hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-3 group-hover:border-purple-300 dark:group-hover:border-purple-600 group-hover:bg-gradient-to-br group-hover:from-purple-50 group-hover:to-pink-50 dark:group-hover:from-purple-900/20 dark:group-hover:to-pink-900/20 relative">
+              <!-- BUILD Tag -->
+              <div class="absolute top-4 right-4 z-10">
+                <span class="bg-purple-100 dark:bg-purple-900/30 text-purple-800 dark:text-purple-300 px-3 py-1.5 rounded-full text-xs font-semibold shadow-sm">BUILD</span>
+              </div>
               <h3 class="text-xl font-bold text-gray-900 dark:text-white mb-4 group-hover:text-purple-600 dark:group-hover:text-purple-400 transition-colors">Seamless Submission</h3>
               <p class="text-gray-600 dark:text-gray-300 leading-relaxed mb-4">Our experts handle document preparation and submission, ensuring compliance and maximizing success rates.</p>
               
@@ -1312,7 +1449,11 @@ import Layout from '../layouts/Layout.astro';
               </div>
               
             <!-- Enhanced Main Card -->
-            <div class="bg-white dark:bg-gray-800 rounded-2xl p-8 pt-16 shadow-xl border border-gray-200 dark:border-gray-700 hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-3 group-hover:border-orange-300 dark:group-hover:border-orange-600 group-hover:bg-gradient-to-br group-hover:from-orange-50 group-hover:to-red-50 dark:group-hover:from-orange-900/20 dark:group-hover:to-red-900/20">
+            <div class="bg-white dark:bg-gray-800 rounded-2xl p-8 pt-16 shadow-xl border border-gray-200 dark:border-gray-700 hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-3 group-hover:border-orange-300 dark:group-hover:border-orange-600 group-hover:bg-gradient-to-br group-hover:from-orange-50 group-hover:to-red-50 dark:group-hover:from-orange-900/20 dark:group-hover:to-red-900/20 relative">
+              <!-- SUPPORT Tag -->
+              <div class="absolute top-4 right-4 z-10">
+                <span class="bg-orange-100 dark:bg-orange-900/30 text-orange-800 dark:text-orange-300 px-3 py-1.5 rounded-full text-xs font-semibold shadow-sm">SUPPORT</span>
+              </div>
               <h3 class="text-xl font-bold text-gray-900 dark:text-white mb-4 group-hover:text-orange-600 dark:group-hover:text-orange-400 transition-colors">Ongoing Support</h3>
               <p class="text-gray-600 dark:text-gray-300 leading-relaxed mb-4">Track progress, get updates, and access expert guidance throughout your entire immigration journey.</p>
               
@@ -1366,6 +1507,10 @@ import Layout from '../layouts/Layout.astro';
         <div class="group relative enterprise-card">
           <div class="absolute inset-0 bg-gradient-to-r from-blue-600 to-purple-600 rounded-2xl blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
           <div class="relative bg-white dark:bg-gray-800 rounded-2xl p-8 shadow-xl border border-gray-200 dark:border-gray-700 hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2">
+            <!-- TALENT RETENTION Tag -->
+            <div class="absolute top-4 right-4 z-10">
+              <span class="text-xs bg-blue-100 dark:bg-blue-900/30 text-blue-800 dark:text-blue-300 px-3 py-1 rounded-full font-semibold shadow-sm">TALENT RETENTION</span>
+            </div>
             <div class="w-16 h-16 bg-gradient-to-br from-blue-500 to-purple-600 rounded-xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
               <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"></path>
@@ -1381,6 +1526,10 @@ import Layout from '../layouts/Layout.astro';
         <div class="group relative enterprise-card">
           <div class="absolute inset-0 bg-gradient-to-r from-green-600 to-blue-600 rounded-2xl blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
           <div class="relative bg-white dark:bg-gray-800 rounded-2xl p-8 shadow-xl border border-gray-200 dark:border-gray-700 hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2">
+            <!-- CONVERSION Tag -->
+            <div class="absolute top-4 right-4 z-10">
+              <span class="text-xs bg-green-100 dark:bg-green-900/30 text-green-800 dark:text-green-300 px-3 py-1 rounded-full font-semibold shadow-sm">CONVERSION</span>
+            </div>
             <div class="w-16 h-16 bg-gradient-to-br from-green-500 to-blue-600 rounded-xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
               <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.746 0 3.332.477 4.5 1.253v13C19.832 18.477 18.246 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"></path>
@@ -1396,6 +1545,10 @@ import Layout from '../layouts/Layout.astro';
         <div class="group relative enterprise-card">
           <div class="absolute inset-0 bg-gradient-to-r from-purple-600 to-pink-600 rounded-2xl blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
           <div class="relative bg-white dark:bg-gray-800 rounded-2xl p-8 shadow-xl border border-gray-200 dark:border-gray-700 hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2">
+            <!-- SCALE UP Tag -->
+            <div class="absolute top-4 right-4 z-10">
+              <span class="text-xs bg-purple-100 dark:bg-purple-900/30 text-purple-800 dark:text-purple-300 px-3 py-1 rounded-full font-semibold shadow-sm">SCALE UP</span>
+            </div>
             <div class="w-16 h-16 bg-gradient-to-br from-purple-500 to-pink-600 rounded-xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
               <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
