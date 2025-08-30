@@ -33,6 +33,16 @@
   ],
   "redirects": [
     {
+      "source": "/admin",
+      "destination": "/admin/login",
+      "permanent": true
+    },
+    {
+      "source": "/admin/",
+      "destination": "/admin/login",
+      "permanent": true
+    },
+    {
       "source": "/products/noc-navigator",
       "destination": "/tools/noc-navigator",
       "permanent": true

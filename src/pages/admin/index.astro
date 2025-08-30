@@ -1,0 +1,20 @@
+---
+// Admin index page - automatically redirects to login
+---
+
+<script>
+  // Immediate redirect to admin login
+  window.location.href = '/admin/login';
+</script>
+
+<!-- Fallback content in case JavaScript is disabled -->
+<meta http-equiv="refresh" content="0;url=/admin/login">
+<title>Redirecting to Admin Login...</title>
+
+<div class="min-h-screen bg-gray-50 flex items-center justify-center">
+  <div class="text-center">
+    <div class="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600 mx-auto mb-4"></div>
+    <p class="text-gray-600">Redirecting to admin login...</p>
+    <p class="text-sm text-gray-500 mt-2">If you are not redirected automatically, <a href="/admin/login" class="text-blue-600 hover:underline">click here</a></p>
+  </div>
+</div>
