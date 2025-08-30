@@ -21,13 +21,14 @@ export const POST: APIRoute = async ({ request }) => {
     
     const { firstName, email, interests, source, status } = body;
 
-    // Basic validation
-    if (!email || !email.includes('@')) {
-      return new Response(JSON.stringify({
-        success: false,
-        error: 'Valid email is required'
-      }), { status: 400 });
-    }
+              // Enhanced email validation
+          const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+          if (!email || !emailRegex.test(email)) {
+            return new Response(JSON.stringify({
+              success: false,
+              error: 'Please enter a valid email address'
+            }), { status: 400 });
+          }
 
     if (!firstName || firstName.trim().length === 0) {
       return new Response(JSON.stringify({

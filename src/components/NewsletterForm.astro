@@ -86,106 +86,100 @@
 </div>
 
 <script>
-  // Newsletter Form Handler
-  document.getElementById('newsletter-form')?.addEventListener('submit', async function(e) {
-    e.preventDefault();
+  document.addEventListener('DOMContentLoaded', function() {
+    const form = document.getElementById('newsletter-form') as HTMLFormElement;
+    const firstNameInput = document.getElementById('newsletter-firstname') as HTMLInputElement;
+    const emailInput = document.getElementById('newsletter-email') as HTMLInputElement;
+    const emailError = document.getElementById('email-error') as HTMLDivElement;
+    const submitBtn = document.getElementById('newsletter-submit') as HTMLButtonElement;
+    const successMessage = document.getElementById('newsletter-success') as HTMLDivElement;
+    const gdprCheckbox = document.getElementById('newsletter-gdpr') as HTMLInputElement;
 
-    const form = e.target as HTMLFormElement;
-    const submitBtn = form.querySelector('button[type="submit"]') as HTMLButtonElement;
-    const originalText = submitBtn.textContent || 'Subscribe to Newsletter';
+    // Email validation regex
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
-    // Get form data
-    const formData = new FormData(form);
-    const firstName = formData.get('firstName') as string;
-    const email = formData.get('email') as string;
-    const interests = formData.getAll('interests') as string[];
-    const gdprConsent = (document.getElementById('newsletter-gdpr') as HTMLInputElement)?.checked || false;
-
-    // Check GDPR consent
-    if (!gdprConsent) {
-      showError('Please agree to receive email updates to continue.');
-      return;
-    }
-
-    // Validate email
-    if (!isValidEmail(email)) {
-      showError('Please enter a valid email address.');
-      return;
-    }
-
-    // Update button state
-    submitBtn.textContent = 'Subscribing...';
-    submitBtn.disabled = true;
-
-    try {
-      // Submit to Sanity via form action (we'll create this)
-      const response = await fetch('/newsletter-subscribe', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          firstName,
-          email,
-          interests: interests.length > 0 ? interests : ['general'],
-          source: 'website_newsletter',
-          status: 'active'
-        })
-      });
-
-      if (response.ok) {
-        // Show success message
-        showSuccess();
-        form.reset();
+    // Real-time email validation
+    emailInput.addEventListener('input', function() {
+      const email = this.value.trim();
+      if (email && !emailRegex.test(email)) {
+        emailError.textContent = 'Please enter a valid email address';
+        emailError.classList.remove('hidden');
+        this.classList.add('border-red-500');
       } else {
-        const errorData = await response.json();
-        throw new Error(errorData.error || 'Subscription failed');
+        emailError.classList.add('hidden');
+        this.classList.remove('border-red-500');
+      }
+    });
+
+    // Form submission
+    form.addEventListener('submit', async function(e: Event) {
+      e.preventDefault();
+      
+      const firstName = firstNameInput.value.trim();
+      const email = emailInput.value.trim();
+      const interests = Array.from(document.querySelectorAll('input[type="checkbox"]:checked')).map((cb) => (cb as HTMLInputElement).value);
+      const gdprConsent = gdprCheckbox.checked;
+
+      // Validation
+      if (!firstName) {
+        firstNameInput.focus();
+        return;
       }
 
-    } catch (error) {
-      console.error('Newsletter subscription error:', error);
-      const errorMessage = error instanceof Error ? error.message : 'Failed to subscribe. Please try again.';
-      showError(errorMessage);
-    } finally {
-      // Reset button state
-      submitBtn.textContent = originalText;
-      submitBtn.disabled = false;
-    }
+      if (!email || !emailRegex.test(email)) {
+        emailError.textContent = 'Please enter a valid email address';
+        emailError.classList.remove('hidden');
+        emailInput.focus();
+        return;
+      }
+
+      if (!gdprConsent) {
+        gdprCheckbox.focus();
+        return;
+      }
+
+      // Disable submit button
+      submitBtn.disabled = true;
+      submitBtn.textContent = 'Subscribing...';
+
+      try {
+        const response = await fetch('/newsletter-subscribe', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            firstName,
+            email,
+            interests,
+            source: 'website_newsletter',
+            status: 'active'
+          }),
+        });
+
+        const result = await response.json();
+
+        if (result.success) {
+          // Show success message
+          successMessage.classList.remove('hidden');
+          form.reset();
+          
+          // Hide success message after 5 seconds
+          setTimeout(() => {
+            successMessage.classList.add('hidden');
+          }, 5000);
+        } else {
+          // Show error message
+          alert(result.error || 'Subscription failed. Please try again.');
+        }
+      } catch (error) {
+        console.error('Newsletter subscription error:', error);
+        alert('Network error. Please check your connection and try again.');
+      } finally {
+        // Re-enable submit button
+        submitBtn.disabled = false;
+        submitBtn.textContent = 'Subscribe to Newsletter';
+      }
+    });
   });
-
-  // Email validation function
-  function isValidEmail(email: string): boolean {
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    return emailRegex.test(email);
-  }
-
-  // Show success message
-  function showSuccess(): void {
-    const successEl = document.getElementById('newsletter-success');
-    const errorEl = document.getElementById('newsletter-error');
-    
-    if (successEl) successEl.classList.remove('hidden');
-    if (errorEl) errorEl.classList.add('hidden');
-    
-    // Hide success message after 5 seconds
-    setTimeout(() => {
-      if (successEl) successEl.classList.add('hidden');
-    }, 5000);
-  }
-
-  // Show error message
-  function showError(message: string): void {
-    const errorMessageEl = document.getElementById('error-message');
-    const errorEl = document.getElementById('newsletter-error');
-    const successEl = document.getElementById('newsletter-success');
-    
-    if (errorMessageEl) errorMessageEl.textContent = message;
-    if (errorEl) errorEl.classList.remove('hidden');
-    if (successEl) successEl.classList.add('hidden');
-    
-    // Hide error message after 5 seconds
-    setTimeout(() => {
-      if (errorEl) errorEl.classList.add('hidden');
-    }, 5000);
-  }
 </script>
